@@ -633,7 +633,7 @@
                         document.querySelector('#phoneNumbers').value = phoneNumbers.join('\n');
                         document.querySelector('#error').textContent = '';
                     } else {
-                        document.querySelector('#error').textContent = 'No valid numbers found in the file.';
+                        document.querySelector('#error').textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
                     }
                 };
                 reader.onerror = function() {
@@ -663,7 +663,7 @@
         if (!(uniquePhoneNumbers.length>500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
 
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid phone numbers found. Ensure all numbers start with a country code.';
+            errorElement.textContent = 'No valid phone numbers are found. Ensure all numbers start with a country code.';
             return;
         }
 
