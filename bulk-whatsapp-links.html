@@ -618,29 +618,53 @@
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script>
-        document.querySelector('#fileUpload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const rows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
-                    const phoneNumbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
-                    if (phoneNumbers.length > 0) {
-                        document.querySelector('#phoneNumbers').value = phoneNumbers.join('\n');
-                        document.querySelector('#error').textContent = '';
-                    } else {
-                        document.querySelector('#error').textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
-                    }
-                };
-                reader.onerror = function() {
-                    document.querySelector('#error').textContent = 'File could not be loaded.';
-                };
-                reader.readAsArrayBuffer(file);
+document.querySelector('#fileUpload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const textarea = document.querySelector('#phoneNumbers');
+    const errorElement = document.querySelector('#error');
+
+    if (file) {
+        const reader = new FileReader();
+        textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
+
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            let phoneNumbers = [];
+
+            workbook.SheetNames.forEach(sheetName => {
+                const sheet = workbook.Sheets[sheetName];
+                const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
+                phoneNumbers = phoneNumbers.concat(numbers);
+            });
+
+            if (phoneNumbers.length > 0) {
+                textarea.value = phoneNumbers.join('\n');
+                errorElement.textContent = '';
+            } else {
+                errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
             }
-        });</script>
+
+            textarea.placeholder = ''; // Remove placeholder after loading
+        };
+
+        reader.onerror = function() {
+            errorElement.textContent = 'File could not be loaded.';
+            textarea.placeholder = ''; // Remove placeholder in case of error
+        };
+
+        reader.onabort = function() {
+            errorElement.textContent = 'File loading was aborted.';
+            textarea.placeholder = ''; // Remove placeholder in case of abort
+        };
+
+        reader.readAsArrayBuffer(file);
+    } else {
+        textarea.placeholder = ''; // Remove placeholder if no file is selected
+    }
+});
+</script>
 <script>
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
     var moreindex=500
