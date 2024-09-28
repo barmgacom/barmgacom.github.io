@@ -11,7 +11,7 @@
     <meta property="og:title" content="Barmga | Bulk Email Links Generator" />
     <meta property="og:description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." />
     <meta property="og:image" content="images/barmga.png" />
-    <meta property="og:url" content="https://barmga.com" />
+    <meta property="og:url" content="https://barmga.com/bulk-email-links" />
 
     <!-- Favicon -->
     <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
@@ -241,7 +241,11 @@
             <div class="container mt-5">
                 <div class="card p-4 tool">
                     <h3 class="card-title">Email Bulk Links Generator</h3>
-                    <small>Use this tool on android/ios device with Gmail application installed.</small>
+                    <small>Use this tool on a mobile device with Gmail application installed.</small>
+                    <div class="form-group">
+                        <label for="subject" class="lab">Subject</label>
+                        <input class="form-control" id="subject" rows="3"></textarea>
+                    </div>
                     <div class="form-group">
                         <label for="message" class="lab">Message</label>
                         <textarea class="form-control" id="message" rows="3"></textarea>
@@ -382,6 +386,7 @@
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Our Activities</h5>
                        <a class="btn btn-link" href="https://barmga.com/#services">Services</a>
+                       <a class="btn btn-link" href="https://barmga.com/bulk-whatsapp-links#tool">Free Whatsapp Tool</a>
                        <a class="btn btn-link" href="#tool">Free Email Tool</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
@@ -674,6 +679,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         document.querySelector('.back').setAttribute('data-bs-dismiss',"modal")
         document.querySelector('#loadmore').style.display="block"
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
+        const subject = document.querySelector('#subject').value;
         const message = document.querySelector('#message').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
@@ -703,6 +709,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
+        const encodedsubject = encodeURIComponent(subject);
 
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
@@ -712,7 +719,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=test&body=${encodedMessage}`;
+            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
@@ -729,6 +736,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
        document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
+        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -754,7 +762,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-
+        const encodedsubject = encodeURIComponent(subject);
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex-500*2,moreindex-500)
@@ -765,7 +773,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=test&body=${encodedMessage}`;
+            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
@@ -781,6 +789,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
+        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -808,7 +817,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-
+        const encodedsubject = encodeURIComponent(subject);
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex,moreindex+500)
@@ -819,7 +828,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=test&body=${encodedMessage}`;
+            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
