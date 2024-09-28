@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Bulk Whatsapp Links Generator</title>
+    <title>Bulk Email Links Generator</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="Barmga, Personal Development, Business Development, Educational Content, Tools, Resources, Learning">
 
     <meta name="description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes.">
-    <meta property="og:title" content="Barmga | Bulk Whatsapp Links Generator" />
+    <meta property="og:title" content="Barmga | Bulk Email Links Generator" />
     <meta property="og:description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." />
     <meta property="og:image" content="images/barmga.png" />
     <meta property="og:url" content="https://barmga.com" />
@@ -210,8 +210,8 @@
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5 py-5">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated zoomIn">Bulk Whatsapp Links</h1>
-                            <p class="text-white pb-3 animated zoomIn">We developed this tool to help you generate bulk whatsapp links from existing list of phone numbers. You can also add the text message to whatsapp links and then get redirected to the messaging app in one click.</p>
+                            <h1 class="text-white mb-4 animated zoomIn">Bulk Email Links</h1>
+                            <p class="text-white pb-3 animated zoomIn">We developed this tool to help you generate bulk email links from existing list of email addresses numbers. You can also add the text message to Email links and then get redirected to the messaging app in one click.</p>
                             <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
                             <a href="https://barmga.com" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;Home&nbsp;</a>
                         </div>
@@ -240,15 +240,15 @@
         <div class="container-fluid py-5" id="tool">
             <div class="container mt-5">
                 <div class="card p-4 tool">
-                    <h3 class="card-title">Whatsapp Bulk Links Generator</h3>
+                    <h3 class="card-title">Email Bulk Links Generator</h3>
                     <div class="form-group">
                         <label for="message" class="lab">Message</label>
                         <textarea class="form-control" id="message" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="phoneNumbers" class="lab">Phone Numbers (one per line)</label>
+                        <label for="phoneNumbers" class="lab">Email Addresses (one per line)</label>
                         <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
-                        <small class="form-text text-muted">All numbers should start with the country code.</small>
+                        <small class="form-text text-muted">Any duplicated email addresses will be removed.</small>
                     </div>
                     <div class="form-group">
                         <label for="fileUpload" class="lab">Upload Numbers From Excel File</label>
@@ -381,7 +381,7 @@
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Our Activities</h5>
                        <a class="btn btn-link" href="https://barmga.com/#services">Services</a>
-                       <a class="btn btn-link" href="#tool">Free Whatsapp Tool</a>
+                       <a class="btn btn-link" href="#tool">Free Email Tool</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Newsletter</h5>
@@ -457,7 +457,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="termsModalLabel">WhatsApp Links</h5>
+                  <h5 class="modal-title" id="termsModalLabel">Email Links</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -686,7 +686,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         if (!(uniquePhoneNumbers.length>500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
 
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid phone numbers are found. Ensure all numbers start with a country code.';
+            errorElement.textContent = 'No valid email addresses are found.';
             return;
         }
 
@@ -742,7 +742,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex-500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid phone numbers found. Ensure all numbers start with a country code.';
+            errorElement.textContent = 'No valid email addresses are found.';
             return;
         }
 
@@ -794,7 +794,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex+500)){document.querySelector('#loadmore').style.display="none"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid phone numbers found. Ensure all numbers start with a country code.';
+            errorElement.textContent = 'No valid email addresses are found.';
             return;
         }
 
