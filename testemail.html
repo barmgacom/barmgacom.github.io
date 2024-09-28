@@ -746,11 +746,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             return;
         }
 
-        // Check for links in the message
-        if (/https?:\/\/\S+/i.test(message)) {
-            errorElement.textContent = 'No links are allowed in the text message.';
-            return;
-        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
