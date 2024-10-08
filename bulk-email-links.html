@@ -44,6 +44,26 @@
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
 }
+.fixed-button {
+  position: fixed;
+  bottom: 65px; /* Space from the bottom */
+  right: 35px; /* Space from the right */
+  width: 45px; /* Slightly larger for a modern look */
+  height: 45px; /* Slightly larger for a modern look */
+  border-radius: 50%; /* Rounded button */
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 100000; /* Ensure it stays above other content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.fixed-button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
 .btn-custom {
             max-width: 250px; /* Adjust the width as needed */
             min-width: 150px; /* Adjust the width as needed */
@@ -61,9 +81,7 @@
             border-color: var(--secondary);
         }
     
-    .modal {
-      overflow: auto; /* Enable scroll if needed */
-    }
+
     
 
 .container{
@@ -180,7 +198,29 @@
     background-color: #978e8e;
 }
  .text-primary{color: #2780B7; }
+ .modal-body.scrollable-body {
+  max-height: calc(100vh - 140px); /* Adjust based on your header and footer height */
+  overflow-y: auto;
+  padding-bottom: 35px; /* Adjust the value as needed */
+  padding-top: 20px; /* Adjust the value as needed */
 
+}
+
+
+.modal-header {
+  position: sticky;
+  background-color: inherit;
+  z-index: 1055;
+}
+.modal-footer {
+  position: sticky;
+
+  background-color: inherit;
+  z-index: 1055;
+}
+.shadowed {
+color: #371c89;
+}
 
   </style>
 </head>
@@ -453,6 +493,7 @@
 
                 </form>
                 </div>
+                
                 <div class="modal-footer">
                   <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
                 </div>
@@ -466,13 +507,14 @@
                   <h5 class="modal-title" id="termsModalLabel">Email Links</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body scrollable-body">
                 </div>
                 <div class="modal-footer">
                     <a id="backButton" class="btn back" data-bs-dismiss="modal" style="background-color: rgb(95, 118, 156); color: rgb(253, 249, 249);"><i class="fa fa-arrow-left" style="color:#ffffff;"></i></a>
                     <div style="flex-grow: 1;"></div>
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
                     <a id="loadmore" class="btn" style="background-color: rgb(95, 156, 98); color: rgb(253, 249, 249);">More</a>
+                    <a id="fixedButton" class="btn" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
                 </div>
                 
               </div>
@@ -485,7 +527,7 @@
                   <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body scrollable-body">
                     <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com">barmga.com</a>.</p>
 
                     <h3>1. Introduction</h3>
@@ -672,6 +714,8 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 });
 </script>
 <script>
+    var nextId=1
+    var totalids
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
     var moreindex=500
     
@@ -713,6 +757,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
+        totalids=uniquePhoneNumbers.length
         uniquePhoneNumbers=uniquePhoneNumbers.slice(0,500)
         let i=0
         for (let number of uniquePhoneNumbers){
@@ -723,11 +768,14 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
+            a.setAttribute('data-id',String(i))
             p.appendChild(a);
             modalBody.appendChild(p);
+            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-
+        
+        nextId=1
         // Show the modal
         $('#linksmodal').modal('show');
     });
@@ -765,6 +813,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         const encodedsubject = encodeURIComponent(subject);
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
+        totalids=uniquePhoneNumbers.length
         uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex-500*2,moreindex-500)
         let i=moreindex-500*2
         moreindex=moreindex-500
@@ -777,8 +826,10 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
+            a.setAttribute('data-id',String(i))
             p.appendChild(a);
             modalBody.appendChild(p);
+            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
         document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
@@ -820,6 +871,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         const encodedsubject = encodeURIComponent(subject);
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
+        totalids=uniquePhoneNumbers.length
         uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex,moreindex+500)
         let i=moreindex+0
         moreindex=moreindex+500
@@ -832,14 +884,43 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.target="_blank"
             a.textContent = number;
             p.innerHTML=`<strong>${i} - </strong>`
+            a.setAttribute('data-id',String(i))
             p.appendChild(a);
             modalBody.appendChild(p);
+            a.addEventListener('click', function() {console.log('cliked'); saveNextLink(a);setcolor(a)})
 
         }
         document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
         // Show the modal
         //$('#linksmodal').modal('show');
     });
+function setcolor(elemento){
+    for (let ell of document.querySelectorAll("[data-id]")){ell.classList.remove('shadowed')}
+    elemento.classList.add('shadowed')
+}
+function saveNextLink(currentelement){
+    console.log(currentelement.parentElement)
+    nextId=parseInt(currentelement.parentElement.textContent.split('-')[0].trim())+1
+    if(nextId>totalids){nextId=0;}
+}
+async function clickNextLink(){
+    if (nextId==0){return}
+    nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
+    if (nextel){ nextel.click();nextel.scrollIntoView({ behavior: 'smooth',  block: "nearest" }); return}
+    else{document.body.style.pointerEvents = 'none';
+        if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
+        console.log('here')
+        while (document.querySelector('#loadmore').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
+        {console.log('herrrre');document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
+        else{
+            while (document.querySelector('.back').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
+            {document.body.style.pointerEvents = 'block';document.querySelector('.back').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));} 
+        }
+        document.body.style.pointerEvents = 'block';
+        nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
+        if (nextel){nextel.scrollIntoView({ behavior: 'smooth', block: "nearest" }); nextel.click(); return}
+    }
+}
 document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
 </script>
 
