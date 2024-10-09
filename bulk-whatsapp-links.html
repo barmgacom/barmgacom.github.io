@@ -823,7 +823,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         }
         modalBody.appendChild(document.createElement('p'));
         modalBody.appendChild(document.createElement('p'));
-        document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
+        document.querySelector('[data-id]').scrollIntoView(true)
         if(moreindex==500){document.querySelector('.back').setAttribute('data-bs-dismiss',"modal");}
     
     })
@@ -885,7 +885,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         }
         modalBody.appendChild(document.createElement('p'));
         modalBody.appendChild(document.createElement('p'));
-        document.querySelector('#linksmodal .modal-title').scrollIntoView(true);
+        document.querySelector('[data-id]').scrollIntoView(true)
         // Show the modal
         //$('#linksmodal').modal('show');
     });
@@ -906,12 +906,13 @@ async function clickNextLink(){
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
         while (document.querySelector('#loadmore').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-        {console.log('herrrre');document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
+        {document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
         else{
             while (document.querySelector('.back').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
             {document.body.style.pointerEvents = 'block';document.querySelector('.back').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));} 
         }
         document.body.style.pointerEvents = 'block';
+        document.querySelector('[data-id]').scrollIntoView({ behavior: 'smooth' })
         nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
         if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
     }
