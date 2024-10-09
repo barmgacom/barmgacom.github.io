@@ -44,7 +44,7 @@
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
 }
-.fixed-button {
+#fixed_button {
   position: fixed;
   bottom: 65px; /* Space from the bottom */
   right: 35px; /* Space from the right */
@@ -59,7 +59,7 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
-.fixed-button:hover {
+#fixed_button:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
   transform: translateY(-2px); /* Slight lift effect on hover */
 }
@@ -219,7 +219,8 @@
   width: 100%;
 }
 .shadowed {
-color: #371c89;
+color: #452d8c;
+text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 }
 
   </style>
@@ -507,7 +508,7 @@ color: #371c89;
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Links</h5>
                   <div style="flex-grow: 1;"></div>
-                  <a id="fixedButton" class="btn" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
+                  <a id="fixedButton" class="btn shadow-sm" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
                   
                 </div>
                 <div class="modal-body scrollable-body">
@@ -777,7 +778,8 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-        
+        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'))
         nextId=1
         // Show the modal
         $('#linksmodal').modal('show');
@@ -835,6 +837,8 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
+        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'))
         document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
         if(moreindex==500){document.querySelector('.back').setAttribute('data-bs-dismiss',"modal");}
     
@@ -893,6 +897,8 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             a.addEventListener('click', function() {console.log('cliked'); saveNextLink(a);setcolor(a)})
 
         }
+        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'))
         document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
         // Show the modal
         //$('#linksmodal').modal('show');
@@ -909,7 +915,7 @@ function saveNextLink(currentelement){
 async function clickNextLink(){
     if (nextId==0){return}
     nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-    if (nextel){ nextel.click();nextel.scrollIntoView({ behavior: 'smooth',  block: "nearest"}); return}
+    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"}); return}
     else{document.body.style.pointerEvents = 'none';
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
@@ -921,7 +927,7 @@ async function clickNextLink(){
         }
         document.body.style.pointerEvents = 'block';
         nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-        if (nextel){nextel.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
+        if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
     }
 }
 document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
