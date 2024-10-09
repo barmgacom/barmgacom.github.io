@@ -919,16 +919,16 @@ async function clickNextLink(){
     if (nextId==0){return}
     nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
     if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"}); return}
-    else{document.body.style.pointerEvents = 'none';
+    else{
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
-        console.log('here')
+
         while (document.querySelector('#loadmore').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-        {console.log('herrrre');document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
+        {document.querySelector('#loadmore').click(); await new Promise((resolve) => setTimeout(resolve,1000));}}
         else{
             while (document.querySelector('.back').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-            {document.body.style.pointerEvents = 'block';document.querySelector('.back').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));} 
+            {document.querySelector('.back').click(); await new Promise((resolve) => setTimeout(resolve,1000));} 
         }
-        document.body.style.pointerEvents = 'block';
+        
         document.querySelector('[data-id]').scrollIntoView({ behavior: 'smooth' })
         nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
         if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
@@ -949,8 +949,7 @@ async function autoclick(){
       } clickme(buttonx)}
 
 }
-for (let elem of document.querySelectorAll('.btn-close')){elem.addEventListener('click',function(){document.body.style.pointerEvents = 'block';})}
-document.querySelector('.back').addEventListener('click',function(){document.body.style.pointerEvents = 'block';})
+
 </script>
 
 </body>
