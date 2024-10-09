@@ -918,7 +918,7 @@ function saveNextLink(currentelement){
 async function clickNextLink(){
     if (nextId==0){return}
     nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"});document.querySelector('#linksmodal modal-title').scrollIntoView({ behavior: 'smooth' }); return}
+    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"});document.querySelector('#linksmodal .modal-title').scrollIntoView({ behavior: 'smooth' }); return}
     else{document.body.style.pointerEvents = 'none';
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
