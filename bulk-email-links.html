@@ -908,7 +908,7 @@ function saveNextLink(currentelement){
 async function clickNextLink(){
     if (nextId==0){return}
     nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-    if (nextel){ nextel.click();nextel.scrollIntoView({ behavior: 'smooth',  block: "nearest" }); return}
+    if (nextel){ nextel.click();nextel.scrollIntoView({ behavior: 'smooth',  block: "nearest" , inline: 'nearest'}); return}
     else{document.body.style.pointerEvents = 'none';
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
@@ -920,7 +920,7 @@ async function clickNextLink(){
         }
         document.body.style.pointerEvents = 'block';
         nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-        if (nextel){nextel.scrollIntoView({ behavior: 'smooth', block: "nearest" }); nextel.click(); return}
+        if (nextel){nextel.scrollIntoView({ behavior: 'smooth', block: "nearest" , inline: 'nearest'}); nextel.click(); return}
     }
 }
 document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
