@@ -222,7 +222,10 @@
 color: #452d8c;
 text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 }
-
+.modal{
+    position: fixed !important;
+    top: 0;
+}
   </style>
 </head>
 <body id="home">
@@ -918,7 +921,7 @@ function saveNextLink(currentelement){
 async function clickNextLink(){
     if (nextId==0){return}
     nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"});document.querySelector('#linksmodal .modal-title').scrollIntoView({ behavior: 'smooth' }); return}
+    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"}); return}
     else{document.body.style.pointerEvents = 'none';
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
