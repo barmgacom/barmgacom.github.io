@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Bulk Email Links Generator</title>
+    <title>Bulk Whatsapp Links Generator</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="Barmga, Personal Development, Business Development, Educational Content, Tools, Resources, Learning">
 
     <meta name="description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes.">
-    <meta property="og:title" content="Barmga | Bulk Email Links Generator" />
+    <meta property="og:title" content="Barmga | Bulk Whatsapp Links Generator" />
     <meta property="og:description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." />
     <meta property="og:image" content="images/barmga.png" />
-    <meta property="og:url" content="https://barmga.com/bulk-email-links" />
+    <meta property="og:url" content="https://barmga.com/bulk-whatsapp-links" />
 
     <!-- Favicon -->
     <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
@@ -44,26 +44,6 @@
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
 }
-#fixed_button {
-  position: fixed;
-  bottom: 65px; /* Space from the bottom */
-  right: 35px; /* Space from the right */
-  width: 45px; /* Slightly larger for a modern look */
-  height: 45px; /* Slightly larger for a modern look */
-  border-radius: 50%; /* Rounded button */
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 100000; /* Ensure it stays above other content */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
-}
-
-#fixed_button:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
-  transform: translateY(-2px); /* Slight lift effect on hover */
-}
-
 .btn-custom {
             max-width: 250px; /* Adjust the width as needed */
             min-width: 150px; /* Adjust the width as needed */
@@ -81,7 +61,10 @@
             border-color: var(--secondary);
         }
     
-           
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    
 
 .container{
   width: 100%;
@@ -223,6 +206,7 @@ color: #452d8c;
 text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 }
 
+
   </style>
 </head>
 <body id="home">
@@ -251,8 +235,8 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5 py-5">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated zoomIn">Bulk Email Links</h1>
-                            <p class="text-white pb-3 animated zoomIn">We developed this tool to help you generate bulk email links from existing list of email addresses. You can also add the text message to Email links and then get redirected to the messaging app in one click.</p>
+                            <h1 class="text-white mb-4 animated zoomIn">Bulk Whatsapp Links</h1>
+                            <p class="text-white pb-3 animated zoomIn">We developed this tool to help you generate bulk whatsapp links from existing list of phone numbers. You can also add the text message to whatsapp links and then get redirected to the messaging app in one click.</p>
                             <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
                             <a href="https://barmga.com" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;Home&nbsp;</a>
                         </div>
@@ -281,23 +265,19 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
         <div class="container-fluid py-5" id="tool">
             <div class="container mt-5">
                 <div class="card p-4 tool">
-                    <h3 class="card-title">Email Bulk Links Generator</h3>
-                    <small>Use this tool on a mobile device with <u>Gmail</u> application installed, updated & set as default mailing app. Preferably, do not exceed 300 daily messages per account.</small>
-                    <div class="form-group">
-                        <label for="subject" class="lab">Subject</label>
-                        <input class="form-control" id="subject" rows="3"></textarea>
-                    </div>
+                    <h3 class="card-title">Whatsapp Bulk Links Generator</h3>
+			<small>Use this tool on android/ios device with Whatsapp application installed.</small>
                     <div class="form-group">
                         <label for="message" class="lab">Message</label>
                         <textarea class="form-control" id="message" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="phoneNumbers" class="lab">Email Addresses (one per line)</label>
+                        <label for="phoneNumbers" class="lab">Phone Numbers (one per line)</label>
                         <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
-                        <small class="form-text text-muted">Any duplicates will be removed.</small>
+                        <small class="form-text text-muted">All numbers should start with the country code.</small>
                     </div>
                     <div class="form-group">
-                        <label for="fileUpload" class="lab">Upload Emails From Excel File</label>
+                        <label for="fileUpload" class="lab">Upload Numbers From Excel File</label>
                         <input type="file" class="form-control-file" id="fileUpload" accept=".xlsx">
                     </div>
                     <div class="d-flex justify-content-center">
@@ -427,8 +407,8 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Our Activities</h5>
                        <a class="btn btn-link" href="https://barmga.com/#services">Services</a>
-                       <a class="btn btn-link" href="https://barmga.com/bulk-whatsapp-links#tool">Free Whatsapp Tool</a>
-                       <a class="btn btn-link" href="#tool">Free Email Tool</a>
+                       <a class="btn btn-link" href="#tool">Free Whatsapp Tool</a>
+		       <a class="btn btn-link" href="https://barmga.com/bulk-email-links#tool">Free Email Tool</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Newsletter</h5>
@@ -494,7 +474,6 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 
                 </form>
                 </div>
-                
                 <div class="modal-footer">
                   <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
                 </div>
@@ -506,7 +485,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
               <div class="modal-content">
                 <div class="modal-header">
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Links</h5>
+                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Links</h5>
                   <div style="flex-grow: 1;"></div>
                   <a id="fixedButton" class="btn shadow-sm" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
                   
@@ -531,7 +510,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                   <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body scrollable-body">
+                <div class="modal-body">
                     <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com">barmga.com</a>.</p>
 
                     <h3>1. Introduction</h3>
@@ -687,7 +666,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             workbook.SheetNames.forEach(sheetName => {
                 const sheet = workbook.Sheets[sheetName];
                 const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(cell));
+                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
                 phoneNumbers = phoneNumbers.concat(numbers);
             });
 
@@ -695,7 +674,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
                 textarea.value = phoneNumbers.join('\n');
                 errorElement.textContent = '';
             } else {
-                errorElement.textContent = 'No valid email addresses are found in the file. Upload an Excel file in xlsx format that contains email addresses.';
+                errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
             }
 
             textarea.placeholder = ''; // Remove placeholder after loading
@@ -718,16 +697,14 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 });
 </script>
 <script>
-    var nextId=1
-    var totalids
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
     var moreindex=500
-    
+    var nextId=1
+    var totalids
     document.querySelector('#convertBtn').addEventListener('click', function() {
         document.querySelector('.back').setAttribute('data-bs-dismiss',"modal")
         document.querySelector('#loadmore').style.display="block"
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
-        const subject = document.querySelector('#subject').value;
         const message = document.querySelector('#message').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
@@ -737,16 +714,19 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
 
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid email addresses are found.';
+            errorElement.textContent = 'No valid phone numbers are found. Ensure all numbers start with a country code.';
             return;
         }
 
         // Check for links in the message
-
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'No links are allowed in the text message.';
+            return;
+        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
@@ -757,7 +737,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
 
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
@@ -768,18 +747,19 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
+            
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
         nextId=1
         // Show the modal
         $('#linksmodal').modal('show');
@@ -789,7 +769,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
        document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
-        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -798,13 +777,18 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex-500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid email addresses are found.';
+            errorElement.textContent = 'No valid phone numbers found. Ensure all numbers start with a country code.';
             return;
         }
 
+        // Check for links in the message
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'No links are allowed in the text message.';
+            return;
+        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
@@ -815,7 +799,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
+
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         totalids=uniquePhoneNumbers.length
@@ -827,19 +811,19 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
-        document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
+        document.querySelector('[data-id]').scrollIntoView(true)
         if(moreindex==500){document.querySelector('.back').setAttribute('data-bs-dismiss',"modal");}
     
     })
@@ -847,7 +831,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
-        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -856,15 +839,18 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex+500)){document.querySelector('#loadmore').style.display="none"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'No valid email addresses are found.';
+            errorElement.textContent = 'No valid phone numbers found. Ensure all numbers start with a country code.';
             return;
         }
 
         // Check for links in the message
-
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'No links are allowed in the text message.';
+            return;
+        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
@@ -875,7 +861,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
+
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         totalids=uniquePhoneNumbers.length
@@ -887,23 +873,23 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
-            a.addEventListener('click', function() {console.log('cliked'); saveNextLink(a);setcolor(a)})
+            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
-        document.querySelector('#linksmodal .modal-title').scrollIntoView(true)
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
+        document.querySelector('[data-id]').scrollIntoView(true)
         // Show the modal
         //$('#linksmodal').modal('show');
     });
-function setcolor(elemento){
+    function setcolor(elemento){
     for (let ell of document.querySelectorAll("[data-id]")){ell.classList.remove('shadowed')}
     elemento.classList.add('shadowed')
 }
@@ -920,12 +906,13 @@ async function clickNextLink(){
         if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
         console.log('here')
         while (document.querySelector('#loadmore').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-        {console.log('herrrre');document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
+        {document.body.style.pointerEvents = 'block';document.querySelector('#loadmore').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));}}
         else{
             while (document.querySelector('.back').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
             {document.body.style.pointerEvents = 'block';document.querySelector('.back').click();document.body.style.pointerEvents = 'none'; await new Promise((resolve) => setTimeout(resolve,1000));} 
         }
         document.body.style.pointerEvents = 'block';
+        document.querySelector('[data-id]').scrollIntoView({ behavior: 'smooth' })
         nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
         if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
     }
