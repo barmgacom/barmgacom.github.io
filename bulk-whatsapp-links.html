@@ -918,6 +918,8 @@ async function clickNextLink(){
     }
 }
 document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
+for (let elem of document.querySelectorAll('.btn-close')){elem.addEventListener('click',function(){document.body.style.pointerEvents = 'block';})}
+document.querySelector('.back').addEventListener('click',function(){document.body.style.pointerEvents = 'block';})
 </script>
 
 </body>
