@@ -135,7 +135,7 @@
     });
     
 })(jQuery);
-
+if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
 var theip="none"
 document.querySelector('#your-form').addEventListener('submit', function(event) {
     // Prevent form from submitting normally
