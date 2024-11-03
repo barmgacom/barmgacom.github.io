@@ -924,49 +924,65 @@ window.open("https://web.whatsapp.com")
     });
 
     
-async function saveData(dbName, storeName, data) {
+    async function saveData(dbName, storeName, data) {
   return new Promise((resolve, reject) => {
+    console.log('Opening database:', dbName);
     let request = indexedDB.open(dbName, 1);
 
     request.onupgradeneeded = function(event) {
+      console.log('Upgrading database');
       let db = event.target.result;
       if (!db.objectStoreNames.contains(storeName)) {
         db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+        console.log('Object store created:', storeName);
       }
     };
 
     request.onsuccess = function(event) {
+      console.log('Database opened successfully');
       let db = event.target.result;
 
-      // Here we check if objectStore exists before opening a transaction
       if (!db.objectStoreNames.contains(storeName)) {
         reject("Object store not found");
+        console.error('Object store not found:', storeName);
         return;
       }
 
       let transaction = db.transaction(storeName, "readwrite");
       let store = transaction.objectStore(storeName);
 
-      store.clear();
+      // Clear store before adding new data
+      let clearRequest = store.clear();
+      clearRequest.onsuccess = function() {
+        console.log('Object store cleared');
 
-      if (Array.isArray(data)) {
-        data.forEach(item => {
-          store.put(item);
-        });
-      } else {
-        store.put(data);
-      }
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            store.put(item);
+          });
+        } else {
+          store.put(data);
+        }
 
-      transaction.oncomplete = function() {
-        resolve("Data saved or updated successfully");
+        transaction.oncomplete = function() {
+          console.log('Transaction complete');
+          resolve("Data saved or updated successfully");
+        };
+
+        transaction.onerror = function(event) {
+          console.error('Transaction error:', event);
+          reject("Error saving or updating data");
+        };
       };
 
-      transaction.onerror = function() {
-        reject("Error saving or updating data");
+      clearRequest.onerror = function(event) {
+        console.error('Error clearing object store:', event);
+        reject("Error clearing object store");
       };
     };
 
-    request.onerror = function() {
+    request.onerror = function(event) {
+      console.error('Error opening database:', event);
       reject("Error opening database");
     };
   });
