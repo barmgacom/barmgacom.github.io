@@ -17,12 +17,12 @@ async function start(){
 var data=document.querySelector('.data')
 var mindelay=Math.max(localStorage.getItem('wabarmgamindelay'),1)
 var maxdelay=Math.max(2,localStorage.getItem('wabarmgamaxdelay'))
-var dicto=getData("wabarmga","wabarmga")
+var dicto=getData("wabarmgadata","wabarmgadata")
 var status=localStorage.getItem("wabarmgastatus")
 data.setAttribute('data-status',status)
 data.setAttribute('data-mindelay',mindelay)
 data.setAttribute('data-maxdelay',maxdelay)
-var database=await getData('wabarmga','wabarmga')
+var database=await getData('wabarmgadata','wabarmgadata')
 
 for (let num of Object.keys(database)){
   console.log(num)
