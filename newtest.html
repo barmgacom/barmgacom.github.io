@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>barmga</title>
+</head>
+<body>
+   <div class="data"></div>
+   <div class="report"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+    
+    <script>
+start()
+async function start(){
+var data=document.querySelector('.data')
+var mindelay=Math.max(localStorage.getItem('wabarmgamindelay'),1)
+var maxdelay=Math.max(2,localStorage.getItem('wabarmgamaxdelay'))
+var dicto=getData("wabarmga","wabarmga")
+var status=localStorage.getItem("wabarmgastatus")
+data.setAttribute('data-status',status)
+data.setAttribute('data-mindelay',mindelay)
+data.setAttribute('data-maxdelay',maxdelay)
+var database=await getData('wabarmga','wabarmga')
+
+for (let num of Object.keys(database)){
+  console.log(num)
+
+  if(num=="id"){continue}
+  let newel=document.createElement("span")
+  newel.setAttribute('data-phone',num)
+  newel.setAttribute('data-message',data[num])
+  data.appendChild(newel)
+}}
+async function saveData(dbName, storeName, data) {
+  return new Promise((resolve, reject) => {
+    let request = indexedDB.open(dbName, 1);
+
+    request.onupgradeneeded = function(event) {
+      let db = event.target.result;
+      if (!db.objectStoreNames.contains(storeName)) {
+        db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+      }
+    };
+
+    request.onsuccess = function(event) {
+      let db = event.target.result;
+      let transaction = db.transaction(storeName, "readwrite");
+      let store = transaction.objectStore(storeName);
+
+      store.clear();
+
+      if (Array.isArray(data)) {
+        data.forEach(item => {
+          store.put(item);
+        });
+      } else {
+        store.put(data);
+      }
+
+      transaction.oncomplete = function() {
+        resolve("Data saved or updated successfully");
+      };
+
+      transaction.onerror = function() {
+        reject("Error saving or updating data");
+      };
+    };
+
+    request.onerror = function() {
+      reject("Error opening database");
+    };
+  });
+}
+
+async function getDataAsync(dbName, storeName) {
+  return new Promise((resolve, reject) => {
+    let request = indexedDB.open(dbName, 1);
+
+    request.onsuccess = function(event) {
+      let db = event.target.result;
+      let transaction = db.transaction(storeName, "readonly");
+      let store = transaction.objectStore(storeName);
+      let data = {};
+
+      store.openCursor().onsuccess = function(event) {
+        let cursor = event.target.result;
+        if (cursor) {
+          Object.assign(data, cursor.value);
+          cursor.continue();
+        } else {
+          resolve(data);
+        }
+      };
+
+      transaction.onerror = function() {
+        reject("Error retrieving data");
+      };
+    };
+
+    request.onerror = function() {
+      reject("Error opening database");
+    };
+  });
+}
+
+async function getData(dbName, storeName) {
+  try {
+    const data = await getDataAsync(dbName, storeName);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
+}
+function updatereportall(){
+  let report={}
+  let spans=document.querySelector('.report').querySelectorAll('span')
+  for (let el of spans){
+     report[el.getAttribute('data-phone')=el.getAttribute('data-sent')]
+  }
+  saveData('wabarmgareport','wabarmgareport',report)
+}
+function checkStatus() {
+    const interval = setInterval(() => {
+        const status = localStorage.getItem('wabarmgastatus');
+        updatereportall()
+        if (status === 'stop') {
+            document.querySelector('.data').setAttribute('data-status','stop')
+            console.log('Status is stop');
+            clearInterval(interval);
+            if (document.querySelector('[download]')){
+              var ellels=document.querySelector('[download]').querySelectorAll("span")
+              var reported={}
+              for (let span of ellels){reported[span.getAttribute('data-phone')]=span.getAttribute('data-sent')}
+              saveData("wabarmgareport","wabarmgareport",reported)
+            return;}
+        }
+    }, 5000);
+}
+
+// Call the function to start checking
+checkStatus();
+
+</script>
+</body></html>
