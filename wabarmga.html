@@ -18,6 +18,60 @@
 
 <style>
     body{font-family: 'Gabriela', serif !important;}
+    .stop-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px; /* Adjust size as needed */
+            height: 60px; /* Adjust size as needed */
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+      /* Customize slider appearance */
+      #rangeSlider .noUi-handle {
+          border: none;
+          border-radius: 50%;
+          background: #007bff;
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      @media (min-width: 768px) {
+          #rangeSlider .noUi-handle {
+              width: 20px;
+              height: 20px;
+          }
+      }
+      
+      #rangeSlider .noUi-connect {
+          background: #007bff;
+      }
+      
+      #rangeSlider {
+          height: 4px;
+          background: #d3d3d3;
+      }
+      
+      .noUi-tooltip {
+          bottom: -25px !important;
+          transform: translateY(100%);
+          font-size: 12px;
+          background: #ffffff;
+          color: #007bff;
+          border: 1px solid #007bff;
+          border-radius: 4px;
+          padding: 4px 8px;
+          white-space: nowrap;
+      }
     .tool > *,.lab {
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
@@ -318,97 +372,8 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
           </div>
       </div>
       
-      <script src="https://cdn.jsdelivr.net/npm/nouislider@15.5.0/dist/nouislider.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.5.0/dist/nouislider.min.css">
-      <script>
-      
-      document.addEventListener('DOMContentLoaded', function() {
-          const rangeSlider = document.getElementById('rangeSlider');
-      
-          noUiSlider.create(rangeSlider, {
-              start: [24, 40],
-              connect: true,
-              range: {
-                  'min': 0,
-                  'max': 200
-              },
-              step: 1,
-              tooltips: [true, true],
-              format: {
-                  to: function (value) {
-                      return parseInt(value);
-                  },
-                  from: function (value) {
-                      return parseInt(value);
-                  }
-              }
-          });
-      
-          rangeSlider.noUiSlider.on('update', function(values, handle) {
-              document.querySelectorAll('.noUi-tooltip').forEach(tooltip => {
-                  tooltip.style.position = 'absolute';
-                  tooltip.style.bottom = '-25px';
-              });
-          });
-      });
-      </script>
-      
-      <style>
-                .stop-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 60px; /* Adjust size as needed */
-            height: 60px; /* Adjust size as needed */
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 50%; /* Makes it circular */
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-      /* Customize slider appearance */
-      #rangeSlider .noUi-handle {
-          border: none;
-          border-radius: 50%;
-          background: #007bff;
-          width: 16px;
-          height: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-      }
-      
-      @media (min-width: 768px) {
-          #rangeSlider .noUi-handle {
-              width: 20px;
-              height: 20px;
-          }
-      }
-      
-      #rangeSlider .noUi-connect {
-          background: #007bff;
-      }
-      
-      #rangeSlider {
-          height: 4px;
-          background: #d3d3d3;
-      }
-      
-      .noUi-tooltip {
-          bottom: -25px !important;
-          transform: translateY(100%);
-          font-size: 12px;
-          background: #ffffff;
-          color: #007bff;
-          border: 1px solid #007bff;
-          border-radius: 4px;
-          padding: 4px 8px;
-          white-space: nowrap;
-      }
-      </style>
+ 
+
       
       
       
@@ -418,8 +383,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 
 
 
-        <!-- Portfolio Start -->
-</div></div>
+
 
 
         <!-- Newsletter Start -->
@@ -451,7 +415,40 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
     </div>
 
     <!-- JavaScript Libraries -->
-
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.5.0/dist/nouislider.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.5.0/dist/nouislider.min.css">
+    <script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const rangeSlider = document.getElementById('rangeSlider');
+    
+        noUiSlider.create(rangeSlider, {
+            start: [24, 40],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 200
+            },
+            step: 1,
+            tooltips: [true, true],
+            format: {
+                to: function (value) {
+                    return parseInt(value);
+                },
+                from: function (value) {
+                    return parseInt(value);
+                }
+            }
+        });
+    
+        rangeSlider.noUiSlider.on('update', function(values, handle) {
+            document.querySelectorAll('.noUi-tooltip').forEach(tooltip => {
+                tooltip.style.position = 'absolute';
+                tooltip.style.bottom = '-25px';
+            });
+        });
+    });
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
