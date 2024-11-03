@@ -796,7 +796,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
     <script>
     window.localStorage.setItem('wabarmgastatus','stop')
     saveData("wabarmgareport","wabarmgareport",{})
-    saveData("wabarmga","wabarmga",{})
+    saveData("wabarmgadata","wabarmgadata",{})
     document.querySelector('#fileUpload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         const textarea = document.querySelector('#phoneNumbers');
@@ -882,7 +882,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
         }, {});
         
         // Save to IndexedDB via Origin Storage
-        saveData("wabarmga","wabarmga",dicto)
+        saveData("wabarmgadata","wabarmgadata",dicto)
     
         // Set status to "working"
         window.localStorage.setItem('wabarmgastatus','working')
