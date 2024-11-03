@@ -46,6 +46,13 @@ async function saveData(dbName, storeName, data) {
 
     request.onsuccess = function(event) {
       let db = event.target.result;
+
+      // Here we check if objectStore exists before opening a transaction
+      if (!db.objectStoreNames.contains(storeName)) {
+        reject("Object store not found");
+        return;
+      }
+
       let transaction = db.transaction(storeName, "readwrite");
       let store = transaction.objectStore(storeName);
 
@@ -73,6 +80,7 @@ async function saveData(dbName, storeName, data) {
     };
   });
 }
+
 
 async function getDataAsync(dbName, storeName) {
   return new Promise((resolve, reject) => {
