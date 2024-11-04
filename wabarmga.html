@@ -641,8 +641,10 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
         if (file) {
             const reader = new FileReader();
             textarea.placeholder = 'loading...';
-    
+            console.log('startloading')
             reader.onload = function(e) {
+                console.log('onload')
+                console.log('file')
                 const data = new Uint8Array(e.target.result);
                 const workbook = XLSX.read(data, { type: 'array' });
                 let phoneNumbers = [];
