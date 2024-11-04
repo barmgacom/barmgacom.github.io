@@ -606,58 +606,61 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
 
     <!-- Template Javascript -->
    
-
+ 
 
     
     <script>
-    minValue=1
-    maxValue=2
-    current_status="stop"
-    dataitem={}
-
+    var minValue=1
+    var maxValue=2
+    var current_status="stop"
+    var dataitem={}
+    
     document.querySelector('#fileUpload').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    const textarea = document.querySelector('#phoneNumbers');
-    const errorElement = document.querySelector('#error');
-
-    if (file) {
-        const reader = new FileReader();
-        textarea.placeholder = 'loading...';
-
-        reader.onload = function(e) {
-            const data = e.target.result;
-            const worker = new Worker('worker.js');
-
-            worker.onmessage = function(event) {
-                const { error, phoneNumbers } = event.data;
-                if (error) {
-                    errorElement.textContent = error;
-                } else {
+        const file = event.target.files[0];
+        const textarea = document.querySelector('#phoneNumbers');
+        const errorElement = document.querySelector('#error');
+    
+        if (file) {
+            const reader = new FileReader();
+            textarea.placeholder = 'loading...';
+    
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                let phoneNumbers = [];
+    
+                workbook.SheetNames.forEach(sheetName => {
+                    const sheet = workbook.Sheets[sheetName];
+                    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
+                    phoneNumbers = phoneNumbers.concat(numbers);
+                });
+    
+                if (phoneNumbers.length > 0) {
                     textarea.value = phoneNumbers.join('\n');
                     errorElement.textContent = '';
+                } else {
+                    errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
                 }
+    
                 textarea.placeholder = '';
             };
-
-            worker.postMessage(data);
-        };
-
-        reader.onerror = function() {
-            errorElement.textContent = 'File could not be loaded.';
+    
+            reader.onerror = function() {
+                errorElement.textContent = 'File could not be loaded.';
+                textarea.placeholder = '';
+            };
+    
+            reader.onabort = function() {
+                errorElement.textContent = 'File loading was aborted.';
+                textarea.placeholder = '';
+            };
+    
+            reader.readAsArrayBuffer(file);
+        } else {
             textarea.placeholder = '';
-        };
-
-        reader.onabort = function() {
-            errorElement.textContent = 'File loading was aborted.';
-            textarea.placeholder = '';
-        };
-
-        reader.readAsArrayBuffer(file);
-    } else {
-        textarea.placeholder = '';
-    }
-});
-
+        }
+    });
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
 
     document.querySelector('#convertBtn').addEventListener('click', function() {
