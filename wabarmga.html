@@ -140,17 +140,7 @@ input[type="range"] {
           background: #d3d3d3;
       }
       
-      .noUi-tooltip {
-          bottom: -25px !important;
-          transform: translateY(100%);
-          font-size: 12px;
-          background: #ffffff;
-          color: #007bff;
-          border: 1px solid #007bff;
-          border-radius: 4px;
-          padding: 4px 8px;
-          white-space: nowrap;
-      }
+
     .tool > *,.lab {
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
@@ -423,7 +413,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                       <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
                       <small class="form-text text-muted">All numbers should start with the country code.</small>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" style="display: none;">
                       <label for="fileUpload" class="lab">Upload Numbers From Excel File</label>
                       <input type="file" class="form-control-file" id="fileUpload" accept=".xlsx">
                   </div>
@@ -445,11 +435,11 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                             <div class="form_control">
                               <div class="form_control_container">
                                   
-                                  <input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="200"/>
+                                  <input class="form_control_container__time__input noUi-tooltip" type="number" id="fromInput" value="10" min="0" max="200"/>
                                 </div>
                                 <div class="form_control_container">
                                   
-                                  <input class="form_control_container__time__input" type="number" id="toInput" value="30" min="0" max="200"/>
+                                  <input class="form_control_container__time__input noUi-tooltip" type="number" id="toInput" value="30" min="0" max="200"/>
                                 </div>
                             </div>
                         </div>
@@ -612,14 +602,14 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
     <script>
     var minValue=1
     var maxValue=2
-    var current_status="stop"
+    var stopornot=false
     var dataitem={}
-    
+    var reported={}
     document.querySelector('#fileUpload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         const textarea = document.querySelector('#phoneNumbers');
         const errorElement = document.querySelector('#error');
-    
+       
         if (file) {
             const reader = new FileReader();
             textarea.placeholder = 'loading...';
@@ -700,7 +690,7 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
         }, {});
         dataitem=[dicto][0]
         // Save to IndexedDB via Origin Storage
-        current_status="working"
+        stopornot=false
 
     
         // Toggle buttons
@@ -710,34 +700,45 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
 const tooltips = document.querySelectorAll('.noUi-tooltip');
 
 // Parse the values and store them in variables
- minValue = Math.min(parseInt(tooltips[0].textContent),parseInt(tooltips[1].textContent));
- maxValue = Math.max(parseInt(tooltips[0].textContent),parseInt(tooltips[1].textContent));
+ minValue = Math.min(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
+ maxValue = Math.max(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
+ mainFunc(dataitem, minValue, maxValue)
 
-hidecurrent()
-showstop()
     });
     
     document.querySelector('#stopBtn').addEventListener('click', function() {
-        window.localStorage.setItem('wabarmgastatus','stop')
+        stopornot=true
         document.querySelector('#stopBtn').style.display = 'none';
         document.querySelector('#downloadReportBtn').style.display = 'block';
     });
     
     document.querySelector('#downloadReportBtn').addEventListener('click', function() {
-        var report=getData("wabarmgareport","wabarmgareport")
-        function rep(reportData) {
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.json_to_sheet(Object.keys(reportData).map(key => ({
-                phone: key,
-                status: reportData[key]
-            })), { header: ['phone', 'status'] });
-            XLSX.utils.book_append_sheet(wb, ws, 'Report');
-            XLSX.writeFile(wb, 'report.xlsx');
-        };
-        rep(report)
-        document.querySelector('#downloadReportBtn').style.display = 'none';
-        document.querySelector('#convertBtn').style.display = 'block';
-    });
+    
+
+    function rep(reportData) {
+        const csvContent = Object.keys(reportData).map(key => {
+            return `${key},${reportData[key]}`;
+        }).join('\n');
+
+        const csvHeader = 'phone,status\n';
+        const csvString = csvHeader + csvContent;
+
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "report.csv");
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    rep(reported);
+    document.querySelector('#downloadReportBtn').style.display = 'none';
+    document.querySelector('#convertBtn').style.display = 'block';
+});
+
 
     
     async function saveData(dbName, storeName, data) {
@@ -845,7 +846,28 @@ async function getData(dbName, storeName) {
   }
 }
 </script>
-
+<script>
+    var sendcss='[aria-label="Send"]'
+    function updatereport(phone,status){
+        reported[phone]=status
+    }
+     async function mainFunc(dataDict, minDelay, maxDelay) {
+  for (let phone of Object.keys(dataDict)){
+  document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone+"?text="+dataDict[phone])
+  document.querySelector('a.wabarmga').click()
+  let xi=0
+  while(document.querySelector(sendcss)==null){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));xi++;await checkiframestop(); if (xi>11||stopornot){break}}
+  if(stopornot){return}
+  if (xi>11){updatereport(phone,"failure");continue}
+  document.querySelector(sendcss).click()
+  updatereport(phone,"success")
+  let i=0
+  let maxsleep=getRandomFloat(parseInt(minDelay),parseInt(maxDelay))
+  while(i*500<maxsleep && !stopornot){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));i++}
+    if(stopornot){return}
+}
+  }
+</script>
 
 </body>
 
