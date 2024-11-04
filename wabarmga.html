@@ -396,12 +396,8 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
     <div class="container-fluid bg-white p-0">
 
 
-
-        <!-- About Start -->
-        <button class="stop-button" style="display: none;" onclick="stopAction();document.querySelector('.refresh').style.display='block';document.querySelector('#downloadReportBtn').click();this.style.display='none'">Stop</button>
-        <button class="stop-button refresh" style="display: none;" onclick="window.location.href='https://web.whatsapp.com'">Restart</button>
         <div class="container-fluid py-5" id="tool">
-          <div class="container mt-5">
+          <div class="container mt-1">
               <div class="card p-4 tool">
                   <h3 class="card-title">Whatsapp Sender</h3>
                   <div class="form-group">
@@ -709,7 +705,6 @@ const tooltips = document.querySelectorAll('.noUi-tooltip');
 // Parse the values and store them in variables
  minValue = Math.min(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
  maxValue = Math.max(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
- console.log('here')
  mainFunc(dataitem, minValue, maxValue)
 
     });
@@ -864,6 +859,7 @@ async function getData(dbName, storeName) {
         reported[phone]=status
     }
      async function mainFunc(dataDict, minDelay, maxDelay) {
+        reported={}
   for (let phone of Object.keys(dataDict)){
   console.log(phone)
   document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone.replace('+','')+"?text="+dataDict[phone])
