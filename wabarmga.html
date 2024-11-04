@@ -654,6 +654,13 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
 
     document.querySelector('#convertBtn').addEventListener('click', function() {
+        if(!document.querySelector('a.wabarmga')){
+            var barm=document.createElement('a')
+     barm.setAttribute('class','wabarmga')
+     barm.setAttribute('style','display: none;')
+     barm.textContent='Next'
+     document.querySelector('h1').parentElement.appendChild(barm)
+        }
         const message = document.querySelector('#message').value;
         //const phoneNumbers = document.querySelector('#phoneNumbers').value.trim().split('\n').filter(num => num.startsWith('+'));
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
@@ -848,11 +855,7 @@ async function getData(dbName, storeName) {
 }
 </script>
 <script>
-     var barm=document.createElement('a')
-     barm.setAttribute('class','wabarmga')
-     barm.setAttribute('style','display: none;')
-     barm.textContent='Next'
-     document.querySelector('h1').parentElement.appendChild(barm)
+
     var sendcss='[aria-label="Send"]'
     function updatereport(phone,status){
         reported[phone]=status
