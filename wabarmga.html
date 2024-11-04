@@ -640,6 +640,7 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
     
         if (file) {
             const reader = new FileReader();
+            console.log('startloadinghere')
             textarea.placeholder = 'loading...';
             console.log('startloading')
             reader.onload = function(e) {
