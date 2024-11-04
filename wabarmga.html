@@ -863,7 +863,7 @@ async function getData(dbName, storeName) {
      async function mainFunc(dataDict, minDelay, maxDelay) {
   for (let phone of Object.keys(dataDict)){
   console.log(phone)
-  document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone+"?text="+dataDict[phone])
+  document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone.replace('+','')+"?text="+dataDict[phone])
   document.querySelector('a.wabarmga').click()
   let xi=0
   while(document.querySelector(sendcss)==null){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));xi++;await checkiframestop(); if (xi>11||stopornot){break}}
