@@ -856,7 +856,10 @@ async function getData(dbName, storeName) {
 </script>
 <script>
 
-    var sendcss='[aria-label="Send"]'
+    var sendcss='[aria-label="Send"],[aria-label="Envoyer"],[aria-label="إرسال"],button:has(>[data-icon="send"])'
+    function getRandomFloat(min, max) {
+    return Math.random() * (max - min) + min;
+}
     function updatereport(phone,status){
         reported[phone]=status
     }
