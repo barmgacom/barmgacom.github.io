@@ -869,7 +869,7 @@ async function getData(dbName, storeName) {
   document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone.replace('+','')+"?text="+dataDict[phone])
   document.querySelector('a.wabarmga').click()
   let xi=0
-  while(document.querySelector(sendcss)==null){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));xi++;await checkiframestop(); if (xi>11||stopornot){break}}
+  while(document.querySelector(sendcss)==null){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));xi++; if (xi>11||stopornot){break}}
   if(stopornot){return}
   if (xi>11){updatereport(phone,"failure");continue}
   document.querySelector(sendcss).click()
