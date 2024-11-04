@@ -702,6 +702,7 @@ const tooltips = document.querySelectorAll('.noUi-tooltip');
 // Parse the values and store them in variables
  minValue = Math.min(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
  maxValue = Math.max(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
+ console.log('here')
  mainFunc(dataitem, minValue, maxValue)
 
     });
@@ -853,6 +854,7 @@ async function getData(dbName, storeName) {
     }
      async function mainFunc(dataDict, minDelay, maxDelay) {
   for (let phone of Object.keys(dataDict)){
+  console.log(phone)
   document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone+"?text="+dataDict[phone])
   document.querySelector('a.wabarmga').click()
   let xi=0
