@@ -653,7 +653,7 @@ toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
                     const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
                     phoneNumbers = phoneNumbers.concat(numbers);
                 });
-    
+                console.log(phoneNumbers)
                 if (phoneNumbers.length > 0) {
                     textarea.value = phoneNumbers.join('\n');
                     errorElement.textContent = '';
