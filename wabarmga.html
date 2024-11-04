@@ -848,6 +848,10 @@ async function getData(dbName, storeName) {
 }
 </script>
 <script>
+     var barm=document.createElement('a')
+     barm.setAttribute('class','wabarmga')
+     barm.setAttribute('style','display: none;')
+     document.body.appendChild(barm)
     var sendcss='[aria-label="Send"]'
     function updatereport(phone,status){
         reported[phone]=status
