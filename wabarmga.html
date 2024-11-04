@@ -851,7 +851,8 @@ async function getData(dbName, storeName) {
      var barm=document.createElement('a')
      barm.setAttribute('class','wabarmga')
      barm.setAttribute('style','display: none;')
-     document.body.appendChild(barm)
+     barm.textContent('Next')
+     document.querySelector('h1').parentElement.appendChild(barm)
     var sendcss='[aria-label="Send"]'
     function updatereport(phone,status){
         reported[phone]=status
