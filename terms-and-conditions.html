@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bulk Whatsapp Links Generator</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://barmga.com/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="https://barmga.com/css/style.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
+
+
+
+<style>
+    .range_container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+}
+
+.sliders_control {
+  position: relative;
+  min-height: 50px;
+}
+
+.form_control {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  color: #635a5a;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #C6C6C6;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #C6C6C6;
+  cursor: pointer;  
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  background: #f7f7f7;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+  -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+}
+
+input[type="number"] {
+  color: #8a8383;
+  width: 50px;
+  height: 30px;
+
+  border: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; 
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  background-color: #C6C6C6;
+  pointer-events: none;
+}
+
+#fromSlider {
+  height: 0;
+  z-index: 1;
+}
+    .popup-content{font-family: 'Gabriela', serif !important;}
+    .stop-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px; /* Adjust size as needed */
+            height: 60px; /* Adjust size as needed */
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+      /* Customize slider appearance */
+      #rangeSlider .noUi-handle {
+          border: none;
+          border-radius: 50%;
+          background: #007bff;
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      @media (min-width: 768px) {
+          #rangeSlider .noUi-handle {
+              width: 20px;
+              height: 20px;
+          }
+      }
+      
+      #rangeSlider .noUi-connect {
+          background: #007bff;
+      }
+      
+      #rangeSlider {
+          height: 4px;
+          background: #d3d3d3;
+      }
+      
+
+    .tool > *,.lab {
+    margin-top: 10px; /* Adjust the value as needed */
+    margin-bottom: 10px; /* Adjust the value as needed */
+}
+.btn-custom {
+            max-width: 250px; /* Adjust the width as needed */
+            min-width: 150px; /* Adjust the width as needed */
+        }
+
+            .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+    
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    
+
+.container{
+  width: 100%;
+}
+[onclick] {
+    cursor: pointer;
+}
+:target {
+  padding-top: 70px; /* height of your navbar */
+  margin-top: -70px;
+}
+
+@media (min-width: 992px) {
+            .navbar {
+              height: 60px;
+            }
+            .navbar .dropdown-menu {
+          margin-top: 0px;
+        }
+        .navbar-nav {
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+          font-weight: 500;
+        }
+          }
+          .navbar-nav .nav-link:hover {
+          text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          color: rgb(1, 106, 226) !important;
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+          color: rgb(11, 3, 112) !important;
+        }
+        
+        
+          .navbar {
+          position: fixed !important;
+          top: 0;
+          z-index: 1020;  /* Bootstrap's z-index for sticky navbar */
+        }
+        .navbar {
+                top: 0;
+                z-index: 100;
+                background-color: white;
+                font-family: 'Gabriela', serif !important;
+        
+              }
+              .nav-item {
+    text-align: center;
+    transition: all 0.5s ease;
+}
+.nav-item:hover {
+
+    background-color: rgb(218, 226, 235);
+    border-radius: 30px;
+    padding: 0px 10px; /* Adjust as needed */
+    
+}
+@media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
+    .navbar-nav .nav-item.dropdown:hover {
+        position: static;
+        float: none;
+        width: 100%;
+        background-color: rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+    .navbar-nav .dropdown-menu {
+        text-align: center;
+        position: static;
+        float: none;
+        width: 100%;
+        background-color:rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 35%;
+    font-size: 200%; /* Increase size */
+    font-weight: bold; /* Make thicker */
+    z-index: 10;
+    color: white;
+}
+
+.owl-prev {
+    left: -5%;
+}
+
+.owl-next {
+    right: -5%;
+}
+.owl-dots {
+    text-align: center; /* Center the dots */
+    padding-top: 30px; /* Add space above the dots */
+}
+.owl-dots .owl-dot {
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #cccccc;
+    border-radius: 50%;
+}
+
+.owl-dots .owl-dot.active {
+    background-color: #978e8e;
+}
+ .text-primary{color: #2780B7; }
+ .modal-body.scrollable-body {
+  max-height: calc(100vh - 140px); /* Adjust based on your header and footer height */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Adjust the value as needed */
+  padding-top: 20px; /* Adjust the value as needed */
+
+}
+
+
+.modal-header {
+  position: sticky;
+  background-color: inherit;
+  z-index: 1055;
+}
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: inherit;
+  z-index: 1055;
+  width: 100%;
+}
+.shadowed {
+color: #452d8c;
+text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+}
+
+
+.loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+.loader:before {
+  animation: before 2s infinite;
+}
+.loader:after {
+  animation: after 2s infinite;
+}
+
+@keyframes before {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+@keyframes after {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 1.25em);
+  left: calc(50% - 1.25em);
+}
+.loaderx {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 9999999;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+    }
+
+    .loaderx.fade-out {
+        opacity: 0;
+    }
+  </style>
+
+
+</head>
+<body id="home">
+
+    <div class="container-fluid bg-white p-0">
+
+
+      <div class="modal-body">
+        <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com">barmga.com</a>.</p>
+
+        <h3>1. Introduction</h3>
+        <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
+    
+        <h3>2. Intellectual Property Rights</h3>
+        <p>Unless otherwise stated, Barmga and/or its licensors own the intellectual property rights for all material on Barmga. All intellectual property rights are reserved. You may access this from Barmga for your own personal use subjected to restrictions set in these terms and conditions.</p>
+    
+        <h3>3. Restrictions</h3>
+        <p>You are specifically restricted from all of the following:</p>
+        <ul>
+            <li>Publishing any website material in any other media;</li>
+            <li>Selling, sublicensing, and/or otherwise commercializing any website materials or our softwares or databases;</li>
+            <li>Publicly performing and/or showing any website material;</li>
+            <li>Using this website in any way that is or may be damaging to this website;</li>
+            <li>Using this website in any way that impacts user access to this website;</li>
+            <li>Using this website contrary to applicable laws and regulations, or in any way may cause harm to the website, or to any person or business entity;</li>
+            <li>Engaging in any data mining, data harvesting, data extracting, or any other similar activity in relation to this website;</li>
+            <li>Using this website to engage in any advertising or marketing.</li>
+        </ul>
+    
+        <h3>4. Your Privacy</h3>
+        <p>All your information are neither sold nor shared with thirdparties. All your information is collected through our platform or hotmart.</p>
+    
+        <h3>5. No warranties</h3>
+        <p>This website is provided "as is," with all faults, and Barmga express no representations or warranties, of any kind related to this website or the materials contained on this website. Also, nothing contained on this website shall be interpreted as advising you.</p>
+    
+        <h3>6. Limitation of liability</h3>
+        <p>In no event shall Barmga, nor any of its officers, directors, and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Barmga, including its officers, directors, and employees shall not be held liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p>
+    
+        <h3>7. Indemnification</h3>
+        <p>You hereby indemnify to the fullest extent Barmga from and against any and/or all liabilities, costs, demands, causes of action, damages, and expenses arising in any way related to your breach of any of the provisions of these terms.</p>
+    
+        <h3>8. Severability</h3>
+        <p>If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+    
+        <h3>9. Variation of Terms</h3>
+        <p>Barmga is permitted to revise these terms at any time as it sees fit, and by using this website you are expected to review these terms on a regular basis.</p>
+    
+        <h3>10. Assignment</h3>
+        <p>The Barmga is allowed to assign, transfer, and subcontract its rights and/or obligations under these terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these terms.</p>
+    
+        <h3>11. Entire Agreement</h3>
+        <p>These terms constitute the entire agreement between Barmga and you in relation to your use of this website and supersede all prior agreements and understandings.</p>
+    
+    </div>
+
+
+       <!--  <a href="#" style="display: none;"class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-arrow-up"></i></a> -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+
+    <script>
+    function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
+    const [from, to] = getParsed(fromInput, toInput);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#256eda', controlSlider);
+    if (from > to) {
+        fromSlider.value = to;
+        fromInput.value = to;
+    } else {
+        fromSlider.value = from;
+    }
+}
+    
+function controlToInput(toSlider, fromInput, toInput, controlSlider) {
+    const [from, to] = getParsed(fromInput, toInput);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#256eda', controlSlider);
+    setToggleAccessible(toInput);
+    if (from <= to) {
+        toSlider.value = to;
+        toInput.value = to;
+    } else {
+        toInput.value = from;
+    }
+}
+
+function controlFromSlider(fromSlider, toSlider, fromInput) {
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, '#C6C6C6', '#256eda', toSlider);
+  if (from > to) {
+    fromSlider.value = to;
+    fromInput.value = to;
+  } else {
+    fromInput.value = from;
+  }
+}
+
+function controlToSlider(fromSlider, toSlider, toInput) {
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, '#C6C6C6', '#256eda', toSlider);
+  setToggleAccessible(toSlider);
+  if (from <= to) {
+    toSlider.value = to;
+    toInput.value = to;
+  } else {
+    toInput.value = from;
+    toSlider.value = from;
+  }
+}
+
+function getParsed(currentFrom, currentTo) {
+  const from = parseInt(currentFrom.value, 10);
+  const to = parseInt(currentTo.value, 10);
+  return [from, to];
+}
+
+function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+    const rangeDistance = to.max-to.min;
+    const fromPosition = from.value - to.min;
+    const toPosition = to.value - to.min;
+    controlSlider.style.background = `linear-gradient(
+      to right,
+      ${sliderColor} 0%,
+      ${sliderColor} ${(fromPosition)/(rangeDistance)*100}%,
+      ${rangeColor} ${((fromPosition)/(rangeDistance))*100}%,
+      ${rangeColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} 100%)`;
+}
+
+function setToggleAccessible(currentTarget) {
+  const toSlider = document.querySelector('#toSlider');
+  if (Number(currentTarget.value) <= 0 ) {
+    toSlider.style.zIndex = 2;
+  } else {
+    toSlider.style.zIndex = 0;
+  }
+}
+
+const fromSlider = document.querySelector('#fromSlider');
+const toSlider = document.querySelector('#toSlider');
+const fromInput = document.querySelector('#fromInput');
+const toInput = document.querySelector('#toInput');
+fillSlider(fromSlider, toSlider, '#C6C6C6', '#256eda', toSlider);
+setToggleAccessible(toSlider);
+
+fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
+toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
+fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
+toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+
+</script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Template Javascript -->
+   
+ 
+
+    
+    <script>
+    var minValue=1
+    var maxValue=2
+    var stopornot=false
+    var dataitem={}
+    var reported={}
+    document.querySelector('#fileUpload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const textarea = document.querySelector('#phoneNumbers');
+        const errorElement = document.querySelector('#error');
+       
+        if (file) {
+            const reader = new FileReader();
+            textarea.placeholder = 'loading...';
+    
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                let phoneNumbers = [];
+    
+                workbook.SheetNames.forEach(sheetName => {
+                    const sheet = workbook.Sheets[sheetName];
+                    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
+                    phoneNumbers = phoneNumbers.concat(numbers);
+                });
+    
+                if (phoneNumbers.length > 0) {
+                    textarea.value = phoneNumbers.join('\n');
+                    errorElement.textContent = '';
+                } else {
+                    errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
+                }
+    
+                textarea.placeholder = '';
+            };
+    
+            reader.onerror = function() {
+                errorElement.textContent = 'File could not be loaded.';
+                textarea.placeholder = '';
+            };
+    
+            reader.onabort = function() {
+                errorElement.textContent = 'File loading was aborted.';
+                textarea.placeholder = '';
+            };
+    
+            reader.readAsArrayBuffer(file);
+        } else {
+            textarea.placeholder = '';
+        }
+    });
+    const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
+
+    document.querySelector('#convertBtn').addEventListener('click', function() {
+        if(!document.querySelector('a.wabarmga')){
+            var barm=document.createElement('a')
+     barm.setAttribute('class','wabarmga')
+     barm.setAttribute('style','display: none;')
+     barm.textContent='Next'
+     document.querySelector('h1').parentElement.appendChild(barm)
+        }
+        const message = document.querySelector('#message').value;
+        //const phoneNumbers = document.querySelector('#phoneNumbers').value.trim().split('\n').filter(num => num.startsWith('+'));
+        const phoneNumbersText = document.querySelector('#phoneNumbers').value;
+        const errorElement = document.querySelector('#error');
+        // Clear previous error messages
+        errorElement.textContent = '';
+
+        // Check and process phone numbers
+        const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
+        if (uniquePhoneNumbers.length === 0) {
+            errorElement.textContent = 'No valid phone numbers are found. Ensure all numbers start with a country code.';
+            return;
+        }
+
+        // Check for links in the message
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'No links are allowed in the text message.';
+            return;
+        }
+        //if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
+        // Check for forbidden words in the message
+        const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
+        if (forbiddenWordFound) {
+            errorElement.textContent = 'Forbidden content was detected.';
+            return;
+        }
+
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+        const dicto = uniquePhoneNumbers.reduce((acc, num) => {
+            acc[num] = encodedMessage;
+            return acc;
+        }, {});
+        dataitem=[dicto][0]
+        // Save to IndexedDB via Origin Storage
+        stopornot=false
+
+    
+        // Toggle buttons
+        document.querySelector('#convertBtn').style.display = 'none';
+        document.querySelector('#stopBtn').style.display = 'block';
+        // Assume there are exactly two tooltips
+const tooltips = document.querySelectorAll('.noUi-tooltip');
+
+// Parse the values and store them in variables
+ minValue = Math.min(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
+ maxValue = Math.max(parseInt(tooltips[0].value),parseInt(tooltips[1].value));
+ mainFunc(dataitem, minValue, maxValue)
+
+    });
+    
+    document.querySelector('#stopBtn').addEventListener('click', function() {
+        stopornot=true
+        document.querySelector('#stopBtn').style.display = 'none';
+        document.querySelector('#downloadReportBtn').style.display = 'block';
+    });
+    
+    document.querySelector('#downloadReportBtn').addEventListener('click', function() {
+    
+
+    function rep(reportData) {
+        const csvContent = Object.keys(reportData).map(key => {
+            return `${key},${reportData[key]}`;
+        }).join('\n');
+
+        const csvHeader = 'phone,status\n';
+        const csvString = csvHeader + csvContent;
+
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "report.csv");
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    rep(reported);
+    document.querySelector('#downloadReportBtn').style.display = 'none';
+    document.querySelector('#convertBtn').style.display = 'block';
+});
+
+
+    
+    async function saveData(dbName, storeName, data) {
+  return new Promise((resolve, reject) => {
+    console.log('Opening database:', dbName);
+    let request = indexedDB.open(dbName, 1);
+
+    request.onupgradeneeded = function(event) {
+      console.log('Upgrading database');
+      let db = event.target.result;
+      if (!db.objectStoreNames.contains(storeName)) {
+        db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+        console.log('Object store created:', storeName);
+      }
+    };
+
+    request.onsuccess = function(event) {
+      console.log('Database opened successfully');
+      let db = event.target.result;
+
+      if (!db.objectStoreNames.contains(storeName)) {
+        reject("Object store not found");
+        console.error('Object store not found:', storeName);
+        return;
+      }
+
+      let transaction = db.transaction(storeName, "readwrite");
+      let store = transaction.objectStore(storeName);
+
+      // Clear store before adding new data
+      let clearRequest = store.clear();
+      clearRequest.onsuccess = function() {
+        console.log('Object store cleared');
+
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            store.put(item);
+          });
+        } else {
+          store.put(data);
+        }
+
+        transaction.oncomplete = function() {
+          console.log('Transaction complete');
+          resolve("Data saved or updated successfully");
+        };
+
+        transaction.onerror = function(event) {
+          console.error('Transaction error:', event);
+          reject("Error saving or updating data");
+        };
+      };
+
+      clearRequest.onerror = function(event) {
+        console.error('Error clearing object store:', event);
+        reject("Error clearing object store");
+      };
+    };
+
+    request.onerror = function(event) {
+      console.error('Error opening database:', event);
+      reject("Error opening database");
+    };
+  });
+}
+
+async function getDataAsync(dbName, storeName) {
+  return new Promise((resolve, reject) => {
+    let request = indexedDB.open(dbName, 1);
+
+    request.onsuccess = function(event) {
+      let db = event.target.result;
+      let transaction = db.transaction(storeName, "readonly");
+      let store = transaction.objectStore(storeName);
+      let data = {};
+
+      store.openCursor().onsuccess = function(event) {
+        let cursor = event.target.result;
+        if (cursor) {
+          Object.assign(data, cursor.value);
+          cursor.continue();
+        } else {
+          resolve(data);
+        }
+      };
+
+      transaction.onerror = function() {
+        reject("Error retrieving data");
+      };
+    };
+
+    request.onerror = function() {
+      reject("Error opening database");
+    };
+  });
+}
+
+async function getData(dbName, storeName) {
+  try {
+    const data = await getDataAsync(dbName, storeName);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
+}
+</script>
+<script>
+
+    var sendcss='[aria-label="Send"],[aria-label="Envoyer"],[aria-label="إرسال"],button:has(>[data-icon="send"])'
+    function getRandomFloat(min, max) {
+    return Math.random() * (max - min) + min;
+}
+    function updatereport(phone,status){
+        reported[phone]=status
+    }
+     async function mainFunc(dataDict, minDelay, maxDelay) {
+        reported={}
+  for (let phone of Object.keys(dataDict)){
+  console.log(phone)
+  document.querySelector('a.wabarmga').setAttribute('href','https://wa.me/'+phone.replace('+','')+"?text="+dataDict[phone])
+  document.querySelector('a.wabarmga').click()
+  let xi=0
+  do{await new Promise((resolve) => setTimeout(resolve,getRandomFloat(750,950)));xi++; if (xi>11||stopornot){break}}while(document.querySelector(sendcss)==null)
+  if(stopornot){return}
+  if (xi>11){updatereport(phone,"failure");continue}
+  document.querySelector(sendcss).click()
+  updatereport(phone,"success")
+  let i=0
+  let maxsleep=getRandomFloat(parseInt(minDelay),parseInt(maxDelay))*1000
+  while(i*500<maxsleep && !stopornot){await new Promise((resolve) => setTimeout(resolve,getRandomFloat(490,510)));i++}
+    if(stopornot){return}
+}
+  }
+</script>
+
+</body>
+
+</html>
