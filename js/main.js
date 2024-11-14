@@ -191,6 +191,7 @@ function callbackFunction() {
     // Display a "Comment submitted" message above the form
     var message=document.querySelector("#submitted")
     message.textContent = 'Message received! We will get back to you shortly.';
+    if(window.location.href.includes('/ar')||window.location.href.includes('-ar')){message.textContent="تم الارسال بنجاح! سيتم التواصل معكم قريبا"}
 
     // Scroll to the message
     message.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
@@ -226,7 +227,9 @@ function callbackFunctionSub() {
     
     for (let eli of document.querySelectorAll('#subscribe')){
     message=eli.parentElement.parentElement.querySelector(".submitted")
+    message.style.display="block"
     message.textContent = 'Subscribed!.';
+    if(window.location.href.includes('/ar')||window.location.href.includes('-ar')){message.textContent="تم اللإشتراك"};
     eli.parentElement.parentElement.querySelector('#email-sub').value = '';
 }}
 
