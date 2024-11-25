@@ -1176,6 +1176,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 
     displayElementFromHash()
     </script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
@@ -2004,32 +2005,9 @@ function validateEmail(email) {
 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 return re.test(email);
 }
-document.addEventListener("DOMContentLoaded", function() {
-    var video = document.getElementById("myVideo");
-    var source = video.querySelector("source");
-    var retries = 3;
-
-    function reloadVideo() {
-        if (retries > 0) {
-            retries--;
-            console.log("Retrying video load, attempts left: " + retries);
-            video.load();
-        } else {
-            console.log("Failed to load video after multiple attempts.");
-        }
-    }
-
-    video.addEventListener("error", function() {
-        console.log("Video failed to load, retrying...");
-        setTimeout(reloadVideo, 2000); // Retry after 2 seconds
-    });
-
-    // Initial load attempt
-    video.load();
-});
 
 </script>  
-<script src="https://player.vimeo.com/api/player.js"></script>
+
 
 </body>
 
