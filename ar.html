@@ -80,6 +80,7 @@
           margin-top: 0px;
         }
         .navbar-nav {
+            direction: rtl;
           font-weight: bold;
         }
         .navbar-nav .nav-link {
@@ -389,23 +390,24 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <i class="fa fa-th-list" style="color:#2780B7;"></i>
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0" dir="rtl">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#home">الرئيسية</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#services">خدماتنا</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;" >
+                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl" >
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">أدوات التسويق على الإيميل</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#about">من نحن</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
                         </ul>
-                        <ul class="navbar-nav ms-auto" style="display: block;" dir="rtl">
-                            <li class="nav-item dropdown">
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown" dir="rtl">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -1148,10 +1150,10 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 <script>
 function openURLnew(lang) {
     if (lang=='en'){
-    if (!window.location.href.includes('product=')){return window.location.href=window.location.href.replace('barmga.com/ar','barmga.com/')}
     var currentURL = new URL(window.location.href.replace('barmga.com/ar','barmga.com/').replace('barmga.com//',"barmga.com/"));
     var dkey=allnames[decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0].replace(/ /g,'-')];
-    currentURL.searchParams.set('product', String(dkey))
+    if (window.location.href.includes('product=')){
+    currentURL.searchParams.set('product', String(dkey))}
     currentURL.searchParams.set('lang', 'en')
     window.location.href= currentURL.toString();}
     else {return ''}}
