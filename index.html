@@ -84,7 +84,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
 
-<style>
+<style> 
         .shadowme{
         box-shadow: 0 6px 10px 0 rgba(43, 43, 45, 0.44), 0 6px 10px 0 rgba(43, 43, 45, 0.44);
     }
@@ -107,6 +107,7 @@
 }
 
 @media (min-width: 992px) {
+    li+li.nav-item.dropdown{margin-right: 15px;}
     .downel{display: none !important;}
             .navbar {
               height: 60px;
@@ -159,6 +160,7 @@
     
 }
 @media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
+
 img.topim{max-height: 400px;}
     .navbar-nav .nav-item.dropdown:hover {
         position: static;
@@ -348,7 +350,7 @@ img.topim{max-height: 400px;}
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#home">Home</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#services">Services</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">Products</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
                                     <li><a class="dropdown-item" onclick="showonly('whatsapp')">Whatsapp Marketing</a></li>
