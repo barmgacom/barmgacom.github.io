@@ -600,9 +600,25 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-primary btn-custom lab" id="convertBtn">ابدأ</button>
                     </div>
-                    <small class="d-flex justify-content-center productad">
+                    <small class="justify-content-center productad">
                         يمكنك تحميل قوائم الأرقام من&nbsp;<a href="https://barmga.com/ar#products" style="text-decoration: underline;">مجموعة بيانات العملاء المحتملين.</a>
                     </small>
+                    <style>
+                        .productad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 767px) { /* Adjust this breakpoint as needed */
+    .productad {
+        display: block; /* Switch to block display on small screens */
+        text-align: center;
+    }
+}
+
+                    </style>
                     <div id="error" class="text-danger mt-3"></div>
                 </div>
             </div>

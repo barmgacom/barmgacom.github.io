@@ -526,9 +526,25 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-primary btn-custom lab" id="convertBtn">Generate</button>
                     </div>
-                    <small class="d-flex justify-content-center productad">
+                    <small class="justify-content-center productad">
                         Download contact lists from the&nbsp;<a href="https://barmga.com/?lang=en#products" style="text-decoration: underline;">customers databases.</a>
                     </small>
+                    <style>
+                        .productad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 767px) { /* Adjust this breakpoint as needed */
+    .productad {
+        display: block; /* Switch to block display on small screens */
+        text-align: center;
+    }
+}
+
+                    </style>
                     <div id="error" class="text-danger mt-3"></div>
                 </div>
             </div>
