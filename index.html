@@ -31,10 +31,10 @@
     "job-advertisements": "اعلانات-واظائف"
 }
     function updateURLtext() {
-    if (!window.location.href.includes('product=')){return window.location.href.replace('barmga.com/','barmga.com/ar')}
+    if (!(window.location.href.includes('product='))){return window.location.href.replace('barmga.com/','barmga.com/ar')}
     const currentURL = new URL(window.location.href);
     let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
-     currentURL.searchParams.set('product', String(allnames[dkey]));
+     currentURL.searchParams.set('product', String(dkey));
      return currentURL.toString()}
     function isBrowserLanguageArabic() { const userLang = navigator.language || navigator.userLanguage; return userLang.startsWith('ar'); }
     if (isBrowserLanguageArabic() && !(window.location.href.toLowerCase().includes('lang=en'))){window.location.href=updateURLtext()}
