@@ -68,58 +68,6 @@
     });
 
 
-    // Testimonials carousel
-    $(".testimonial-carousel:not(#prods)").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        margin: 25,
-        dots: false,
-        loop: true,
-        center: true,
-        nav: true,
-        navText: ["<", ">"],
-        dots:true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:3
-            },
-            992:{
-                items:3
-            }
-        }
-    });
-    // Testimonials carousel
-    $(".testimonial-carousel#prods").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        margin: 25,
-        dots: false,
-        loop: true,
-        center: true,
-        nav: true,
-        navText: ["<", ">"],
-        dots:true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:2
-            },
-            768:{
-                items:3
-            },
-            992:{
-                items:4
-            }
-        }
-    });
 
     
     // Portfolio isotope and filter
