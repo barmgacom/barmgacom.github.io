@@ -1135,8 +1135,8 @@ function validateEmail(email) {
 function openURLnew(lang) {
     if (lang=='ar'){
     if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar').replace('lang=en','lang=ar')}
-    const currentURL = new URL(window.location.href.replace('barmga.com/','barmga.com/ar'));
-    let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
+    var currentURL = new URL(window.location.href.replace('barmga.com/','barmga.com/ar'));
+    var dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
     currentURL.searchParams.set('product', String(dkey))
     window.location.href= currentURL.toString();}
     else {return ''}}
