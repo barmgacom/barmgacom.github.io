@@ -31,7 +31,7 @@
     "job-advertisements": "اعلانات-واظائف"
 }
     function updateURLtext() {
-    if (!window.location.href.includes('product=')){return window.location.href.replace('barmga.com/','barmga.com/ar/')}
+    if (!window.location.href.includes('product=')){return window.location.href.replace('barmga.com/','barmga.com/ar')}
     const currentURL = new URL(window.location.href);
     let dkey=namesdict[window.location.href.split('product=')[1].split('&')[0].split['#'][0]];
      currentURL.searchParams.set('product', String(namesdict[dkey]));
@@ -380,7 +380,7 @@ img.topim{max-height: 400px;}
         <div  class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
                 <div class="container px-5">
-                    <a class="navbar-brand fw-bold" href="https://barmga.com/?lang=en">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com?lang=en">
                     <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-th-list" style="color:#2780B7;"></i>
@@ -763,7 +763,7 @@ img.topim{max-height: 400px;}
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="https://barmga.com/?lang=en">Barmga 2024</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="https://barmga.com?lang=en">Barmga 2024</a>, All Right Reserved. 
 							
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 							<div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
@@ -825,7 +825,7 @@ img.topim{max-height: 400px;}
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body scrollable-body">
-                    <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com/?lang=en">barmga.com</a>.</p>
+                    <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com?lang=en">barmga.com</a>.</p>
 
                     <h3>1. Introduction</h3>
                     <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
@@ -1090,7 +1090,7 @@ function validateEmail(email) {
     function sharePost(hash) {
     if (navigator.share) {
       // Construct the URL with the hash
-      var urlWithHash = 'https://barmga.com/?product='+hash.replace(/ /g,"-").toLowerCase()
+      var urlWithHash = 'https://barmga.com?product='+hash.replace(/ /g,"-").toLowerCase()
 
       navigator.share({
         title: hash,
@@ -1175,7 +1175,7 @@ function validateEmail(email) {
 <script>
 function openURLnew(lang) {
     if (lang=='ar'){
-    if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar/').replace('lang=en','lang=ar')}
+    if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar').replace('lang=en','lang=ar')}
     const currentURL = new URL(window.location.href);
     let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split['#'][0]];
     currentURL.searchParams.set('product', String(namesdict[dkey]))
@@ -1840,7 +1840,7 @@ function selectedproduct(curr) {
     document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr.parentElement.querySelector('h5').textContent);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
@@ -1873,7 +1873,7 @@ function selectedproduct2(curr) {
     document.querySelector('title').textContent= 'Barmga | ' + curr;
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
