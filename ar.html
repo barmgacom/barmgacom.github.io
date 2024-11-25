@@ -1151,10 +1151,10 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 function openURLnew(lang) {
     if (lang=='en'){
     var currentURL = new URL(window.location.href.replace('barmga.com/ar','barmga.com/').replace('barmga.com//',"barmga.com/"));
-    var dkey=allnames[decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0].replace(/ /g,'-')];
     if (window.location.href.includes('product=')){
-    currentURL.searchParams.set('product', String(dkey))}
-    currentURL.searchParams.set('lang', 'en')
+    var dkey=allnames[decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0].replace(/ /g,'-')];
+    currentURL.searchParams.set('product', String(dkey))};
+    currentURL.searchParams.set('lang', 'en');
     window.location.href= currentURL.toString();}
     else {return ''}}
 function shadowall(element){
