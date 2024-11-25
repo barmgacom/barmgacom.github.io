@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <title>برمجة | الأسئلة الشائعة</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="برمحة, تسويق, قواعد بيانات, الشراكة بين الشركات, بيانات منتجات, روبوت, التسويق على الواتساب,  التسويق على البريد الألكتروني, بوتات, تطبيقات">
+
+    <meta name="description" content="نساعد المؤسسات في جمع البيانات وأتمتة الأعمال بطريقة سريعة ومبتكرة. نقدم حلولا تقنية لإنجاز المهام بشكل اسرع، وخفض تكاليف اليد العاملة من خلال اتمتتة الاعمال المتكررة والخدمات المكتبية التي تحتاج السرعة والدقة.نقدم تشكيلة منوعة من قواعد البيانات لحصر اكبر قدر من العملاء والمنتجات ولتحليل السوق.">
+    <meta property="og:title" content="برمجة | الأسئلة الشائعة" />
+    <meta property="og:description" content="نساعد المؤسسات في جمع البيانات وأتمتة الأعمال بطريقة سريعة ومبتكرة. نقدم حلولا تقنية لإنجاز المهام بشكل اسرع، وخفض تكاليف اليد العاملة من خلال اتمتتة الاعمال المتكررة والخدمات المكتبية التي تحتاج السرعة والدقة.نقدم تشكيلة منوعة من قواعد البيانات لحصر اكبر قدر من العملاء والمنتجات ولتحليل السوق." />
+    <meta property="og:url" content="https://barmga.com/faq-ar" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+     
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+    <script>
+      function ipRangeChecker(ipAddress) {
+          const israelRanges = [
+              { start: '2.52.0.0', end: '2.57.228.255' },
+              { start: '5.22.128.0', end: '5.28.128.255' },
+              { start: '5.29.0.0', end: '5.100.248.255' },
+              // Add more ranges as needed
+          ];
+          
+          const palestineRanges = [
+              { start: '46.60.0.0', end: '46.63.255.255' },
+              { start: '213.57.0.0', end: '213.57.255.255' },
+              { start: '109.73.0.0', end: '109.73.255.255' },
+              // Add more ranges as needed
+          ];
+      
+          function ipToNumber(ip) {
+              return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0);
+          }
+      
+          function isInRange(ip, range) {
+              return ipToNumber(range.start) <= ip && ip <= ipToNumber(range.end);
+          }
+      
+          const ipNum = ipToNumber(ipAddress);
+      
+          return israelRanges.some(range => isInRange(ipNum, range)) || palestineRanges.some(range => isInRange(ipNum, range));
+      }
+      
+          async function getIPAddressx() {
+          var theipx=""
+          try {
+              const response = await fetch('https://api.ipify.org?format=json');
+              const data = await response.json();
+              theipx = data.ip;
+              if (ipRangeChecker(theipx)){window.location.href=window.location.href.replace('barmga.com/','barmga.com/v1')}
+              return;
+          } catch (error) {
+              return;
+          }
+      }
+      getIPAddressx()
+      </script>
+    <style>
+        
+        .how-it-works {
+            padding: 40px 0;
+        }
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+        .steps li {
+            margin-bottom: 30px;
+        }
+        .steps .step-number {
+            margin-bottom: 10px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: linear-gradient(135deg, #87CEFA, #1E90FF);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    }
+    
+    
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    .tool > *,.lab {
+    margin-top: 10px; /* Adjust the value as needed */
+    margin-bottom: 10px; /* Adjust the value as needed */
+}
+.btn-custom {
+            max-width: 250px; /* Adjust the width as needed */
+            min-width: 150px; /* Adjust the width as needed */
+        }
+
+            .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+    
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    
+
+.container{
+  width: 100%;
+}
+[onclick] {
+    cursor: pointer;
+}
+:target {
+  padding-top: 70px; /* height of your navbar */
+  margin-top: -70px;
+}
+
+@media (min-width: 992px) {
+            .navbar {
+              height: 60px;
+            }
+            .navbar .dropdown-menu {
+          margin-top: 0px;
+        }
+        .navbar-nav {
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+          font-weight: 500;
+        }
+          }
+          .navbar-nav .nav-link:hover {
+          text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          color: rgb(1, 106, 226) !important;
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+          color: rgb(11, 3, 112) !important;
+        }
+        
+        
+          .navbar {
+          position: fixed !important;
+          top: 0;
+          z-index: 1020;  /* Bootstrap's z-index for sticky navbar */
+        }
+        .navbar {
+                top: 0;
+                z-index: 100;
+                background-color: white;
+                font-family: 'El Messiri', sans-serif !important;
+        
+              }
+              .nav-item {
+    text-align: center;
+    transition: all 0.5s ease;
+}
+.nav-item:hover {
+
+    background-color: rgb(218, 226, 235);
+    border-radius: 30px;
+    padding: 0px 10px; /* Adjust as needed */
+    
+}
+@media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
+    .navbar-nav .nav-item.dropdown:hover {
+        position: static;
+        float: none;
+        width: 100%;
+        background-color: rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+    .navbar-nav .dropdown-menu {
+        text-align: center;
+        position: static;
+        float: none;
+        width: 100%;
+        background-color:rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 35%;
+    font-size: 200%; /* Increase size */
+    font-weight: bold; /* Make thicker */
+    z-index: 10;
+    color: white;
+}
+
+.owl-prev {
+    left: -5%;
+}
+
+.owl-next {
+    right: -5%;
+}
+.owl-dots {
+    text-align: center; /* Center the dots */
+    padding-top: 30px; /* Add space above the dots */
+}
+.owl-dots .owl-dot {
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #cccccc;
+    border-radius: 50%;
+}
+
+.owl-dots .owl-dot.active {
+    background-color: #978e8e;
+}
+ .text-primary{color: #2780B7; }
+ .modal-body.scrollable-body {
+  max-height: calc(100vh - 140px); /* Adjust based on your header and footer height */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Adjust the value as needed */
+  padding-top: 20px; /* Adjust the value as needed */
+
+}
+
+
+.modal-header {
+  position: sticky;
+  background-color: inherit;
+  z-index: 1055;
+}
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: inherit;
+  z-index: 1055;
+  width: 100%;
+}
+.shadowed {
+color: #452d8c;
+text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+}
+
+ /*** Section Title ***/
+ .section-title-right::before {
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 4px;
+    bottom: 0;
+    right: 0;
+    background: var(--dark);
+}
+
+.section-title-right::after {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 4px;
+    bottom: 0;
+    right: 50px;
+    background: var(--dark);
+}
+
+.section-title-right.text-center::before {
+    right: 50%;
+    margin-right: -25px;
+}
+
+.section-title-right.text-center::after {
+    right: 50%;
+    margin-right: 25px;
+}
+
+.section-title-right h6::before,
+.section-title-right h6::after {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    top: 2px;
+    right: 0;
+    background: rgba(33, 110, 177, 0.5);
+}
+
+.section-title-right h6::after {
+    top: 5px;
+    right: 3px;
+}
+    .footer .btn.btn-linkx {
+    display: block;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: right;
+    color: var(--light);
+    font-weight: normal;
+    transition: .3s;
+}
+
+.footer .btn.btn-linkx::before {
+    position: relative;
+    content:"•";
+    font-family: "Font Awesome 4 Free";
+    font-weight: 900;
+    margin-left: 10px;
+}
+
+.footer .btn.btn-linkx:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+input[type="text"]:-moz-placeholder {
+    text-align: right !important;
+}
+input[type="text"]:-ms-input-placeholder {
+    text-align: right!important;
+}
+input[type="text"]::-webkit-input-placeholder {
+    text-align: right!important;
+}
+body{ font-family: 'El Messiri', sans-serif !important;}
+.loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+.loader:before {
+  animation: before 2s infinite;
+}
+.loader:after {
+  animation: after 2s infinite;
+}
+
+@keyframes before {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+@keyframes after {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 1.25em);
+  left: calc(50% - 1.25em);
+}
+.loaderx {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 9999999;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+    }
+
+    .loaderx.fade-out {
+        opacity: 0;
+    }
+    .hero-header-ar {
+    background:
+        url(../img/bg-dot.png),
+        url(../img/bg-dot.png),
+        url(../img/bg-round.png),
+        url(../img/bg-tree.png),
+        url(../img/bg-bottom-hero.png);
+    background-position:
+        10px 10px,
+        bottom 190px right 10px,
+        left 55% top -1px,
+        left 45% bottom -1px,
+        center bottom -1px;
+    background-repeat: no-repeat;
+    background-size: 
+        auto,
+        auto,
+        auto,
+        auto,
+        100% auto;
+    direction: rtl;
+}
+  </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var loader = document.querySelector('.loaderx');
+        loader.style.display = "block";
+
+        window.addEventListener('load', function() {
+            loader.classList.add('fade-out');
+            setTimeout(function() {
+                loader.style.display = "none";
+            }, 1000); // Matches the transition duration
+        });
+    });
+</script>
+</head>
+<body id="home">
+    <div class="loaderx fullscreen" ><div class="loader" ></div></div>
+    <div class="container-fluid bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div  class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/ar">
+                    <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0" dir="rtl">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar/#services">خدماتنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3"  href="https://barmga.com/ar/#products">منتجاتنا</a></li>
+                            <li class="nav-item dropdown" style="margin-right: 15px;" >
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
+                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('email')">أدوات التسويق على الإيميل</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar/#about">من نحن</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
+
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;" dir="rtl">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://barmga.com/faq">English</a></li>
+                                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid py-5 bg-primary hero-header mb-5"  style="text-align: right;">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-lg-6 text-center text-lg-end" style="text-align: right;" >
+                            <h1 class="text-white mb-4 animated zoomIn" dir="rtl">الأسئلة الشائعة</h1>
+                            <p class="text-white pb-3 animated zoomIn" dir="rtl" style="size: 120%;">هذه الصفحة تساعدك في العثور على معلومات حول منتجاتنا وخدمتنا وردود عن الأسئلة المتكررة.</p>
+                            <a href="#contact" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;&nbsp;اتصل بنا&nbsp;&nbsp;</a>
+                            <a href="#FAQ" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;الأسئلة الشائعة&nbsp;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <div class="container-fluid py-4 bg-white" id="FAQ" dir="rtl">
+            <div class="container py-5 px-lg-5 accordion w-100" id="basicAccordion">
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="ما-هي-أنواع-قواعد-البيانات">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    ما هي أنواع قواعد البيانات؟
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="ما-هي-أنواع-قواعد-البيانات" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نحن نقدم مجموعة متنوعة من قواعد البيانات تشمل:
+                    <ul>
+                        <li>قوائم الأعمال B2B | قواعد بيانات الشركات (عناوين البريد الإلكتروني، أرقام الهواتف، تفاصيل أخرى)</li>
+                        <li>قواعد بيانات المنتجات بما في ذلك الأسماء، الصور، الأسعار، الأوصاف والمزيد!</li>
+                        <li>قواعد بيانات الإعلانات (مثال: إعلانات العقارات)</li>
+                        <li>قواعد بيانات المقالات (مثل وصفات الطعام، المقالات التقنية...إلخ)</li>
+                        <li>الصور/النصوص بكميات التي تم إنشاؤها بواسطة الذكاء الاصطناعي أو المستخرجة من مواقع الإنترنت</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="كيف-تضمن-دقة-البيانات">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    كيف تضمن دقة البيانات؟
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="كيف-تضمن-دقة-البيانات" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نحن نضمن دقة بياناتنا باختيار أفضل المواقع وأكثرها مصداقية لاستخراج البيانات الظاهرة عليها. <br>نحن نجمع البيانات من خلال عمليات آلية ودقيقة وهي اشبه بنسخ المعلومات العامة برمجيا ولا نقوم باستخراج اي بيانات سرية بأي شكل من الأشكال.<br>يمكنك مشاهدة بعض <a href="https://mostaql.com/u/barmga/reviews" target="_blank" style="text-decoration:underline;">مراجعات العملاء على موقع مستقل</a>.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="كيف-أستفيد-من-قواعد-البيانات">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    كيف أستفيد من قواعد البيانات؟
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="كيف-أستفيد-من-قواعد-البيانات" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    يمكن استخدام قواعد بياناتنا لأغراض متعددة، بما في ذلك:
+                    <ul>
+                        <li>التسويق المستهدف B2B</li>
+                        <li>حصر بيانات العملاء المحتملين</li>
+                        <li>أبحاث السوق</li>
+                        <li>إدخال بيانات المنتجات على المواقع الإلكترونية</li>
+                        <li>تحسين محركات البحث (SEO)</li>
+                        <li>التدوين</li>
+                        <li>تدريب نماذج الذكاء الاصطناعي</li>
+                        <li>استخدامات أخرى قيمة تحسن من استراتيجيات عملك!</li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="هل-هناك-أي-قيود-على-الاستخدام">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreew" aria-expanded="false" aria-controls="collapseThreew">
+                    هل هناك أي قيود على الاستخدام؟
+                  </button>
+                </h2>
+                <div id="collapseThreew" class="accordion-collapse collapse" aria-labelledby="هل-هناك-أي-قيود-على-الاستخدام" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نعم، عن طريق الحصول على قواعد البيانات أو الأدوات المجانية أو المدفوعة لدينا فإنك توافق على <a data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer; text-decoration: underline;" class="primary">سياسة الاستخدام</a>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="كيف-تستخرج-قواعد-البيانات">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    كيف تستخرج قواعد البيانات؟
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="كيف-تستخرج-قواعد-البيانات" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نحن نستخرج قواعد البيانات باستخدام برمجيات وتقنيات متقدمة. هذه الأدوات تسمح لنا بجمع البيانات من مصادر متعددة بكفاءة ودقة. فريقنا يضمن الامتثال للوائح حماية البيانات ذات الصلة أثناء عملية الاستخراج.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="ما-هي-الأدوات-المتاحة-للتسويق-عبر-البريد-الإلكتروني-والواتساب">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    ما هي الأدوات المتاحة للتسويق عبر البريد الإلكتروني والواتساب؟
+                  </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="ما-هي-الأدوات-المتاحة-للتسويق-عبر-البريد-الإلكتروني-والواتساب" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    حاليًا، نقدم 3 أدوات مجانية:
+                    <ul>
+                      <li><a href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" >WABarmga لإرسال رسائل واتساب:</a><br>أرسل رسائل واتساب آلية باستخدام Wabarmga. يمكن استخدام هذه الأداة مع متصفح كروم على الكمبيوتر الشخصي.</li>
+                      <li><a href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank" >مولد روابط واتساب:</a><br>حوّل أرقام الهواتف إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق واتساب ببضع نقرات!</li>
+                      <li><a href="https://barmga.com/bulk-email-links-ar" target="_blank" >مولد روابط البريد الإلكتروني:</a><br>حوّل عناوين البريد الإلكتروني إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق جيميل ببضع نقرات!</li>
+                    </ul>
+                    التعليمات والتفاصيل متاحة على صفحات الأدوات.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="ما-هي-المهارات-الأساسية-التي-أحتاجها-لاستخدام-منتجاتكم">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    ما هي المهارات الأساسية التي أحتاجها لاستخدام منتجاتكم؟
+                  </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="ما-هي-المهارات-الأساسية-التي-أحتاجها-لاستخدام-منتجاتكم" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    لاستخدام منتجاتنا، تحتاج إلى مهارات أساسية في الكمبيوتر، بما في ذلك:
+                    <ul>
+                      <li>استخدام متصفحات الإنترنت</li>
+                      <li>إدارة جداول البيانات (مثل إكسل). بشكل أساسي، النسخ واختيار الخلايا، استخدام فلاتر إكسل وفلترة البيانات بالكلمات المفتاحية.</li>
+                      <li>فهم أساسي لمنصات البريد الإلكتروني وواتساب</li> </ul> نحن نوفر أيضًا دعم تقني لمساعدتك على البدء. </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="ما-هي-طرق-الدفع-المتاحة">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    ما هي طرق الدفع المتاحة؟
+                  </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="ما-هي-طرق-الدفع-المتاحة" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نحن نقبل العديد من طرق الدفع.<br><br>
+                    <strong>1. الدفع الإلكتروني عبر منصة Hotmart</strong>:
+                    <ul>
+                      <li>بطاقات الائتمان/الخصم</li>
+                      <li>باي بال</li>
+                    </ul>
+                    <strong>2. الدفع الغير الكتروني (التحويل المباشر)</strong>:
+                    <ul>
+                      <li>وسترن يونيون</li>
+                      <li>STC PAY</li>
+                      <li>التحويل البنكي</li>
+                      <li>العملة الرقمية (USDT)</li>
+                    </ul>
+                    جميع المدفوعات الإلكترونية تكون بالدولار الأمريكي. إذا كنت تفضل الدفع غير المباشر بعملتك المحلية، فكر في أي بنوك محلية تدعم تحويلات وسترن يونيون.<br>لاحظ أنك لا تحتاج بالضرورة إلى حساب بنكي لإجراء تحويل وسترن يونيون.<br>إذا كنت موجوداً في المملكة العربية السعودية، فكر في استخدام مصرف الإنماء، بنك البلاد، STC Pay أو زيارة الفروع المحلية لخدمة وسترن يونيون.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow-sm">
+                <h2 class="accordion-header" id="هل-هناك-أي-شروط-للحصول-على-استرداد">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    هل هناك أي شروط للحصول على استرداد؟
+                  </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="هل-هناك-أي-شروط-للحصول-على-استرداد" data-bs-parent="#basicAccordion">
+                  <div class="accordion-body">
+                    نعم، لدينا سياسة استرداد. لكي تكون مؤهلاً لاسترداد الأموال، يجب تقديم طلب خلال 7 أيام من الشراء. بالإضافة إلى ذلك، يرجى تقديم شرح مفصل لسبب طلب الاسترداد. سيتم مراجعة جميع طلبات الاسترداد خلال الفترة المحددة وتخضع للموافقة أو الرفض بناءً على التفاصيل المقدمة. إذا كنت تواجه أي مشاكل أو تحتاج إلى دعم إضافي، يرجى <a href="#contact">الاتصال بنا</a>.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+</div></div>
+
+
+
+
+
+
+        <!-- Contact Start -->
+        <div class="container-fluid py-4" id="contact">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-title-right position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s" dir="rtl">
+                            <h6 class="position-relative d-inline text-primary ps-4" style="padding-right: 20px;">اتصل بنا</h6>
+                            <h2 class="mt-2">من أجل أي استفسار</h2>
+                            <br>
+                        </div>
+                        <div class="wow fadeInUp" data-wow-delay="0.3s">
+
+                            <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
+                            <form id="your-form" dir="rtl" style="text-align: right;">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating right">
+                                            <input type="text" class="form-control right" id="your-name-input" placeholder="الاسم">
+                                            <label for="name">الاسم</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="your-email-input" placeholder="البريد الالكتروني">
+                                            <label for="email">البريد الالكتروني</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-phone-input" placeholder="رقم الجوال">
+                                            <label for="phone">رقم الجوال</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-subject-input" placeholder="الموضوع">
+                                            <label for="subject">الموضوع</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="الرسالة" id="your-message-input" style="height: 150px"></textarea>
+                                            <label for="message">الرسالة</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" id="submit" type="submit">أرسل الآن</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+        
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">لطلب الدعم</h5>
+                        <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                        <a class="btn btn-linkx" href="#contact">اتصل بنا</a>
+                        <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+                            
+                            <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">برمجة</h5>
+                        <a class="btn btn-linkx" href="https://barmga.com/ar">الرئيسية</a>
+                        <a class="btn btn-linkx" href="https://barmga.com/ar/#about">من نحن</a>
+                        <a class="btn btn-linkx" href="https://mostaql.com/u/barmga/reviews" target="_blank">تقييمات العملاء</a>
+                        <a class="btn btn-linkx" href="#FAQ">الأسئلة الشائعة</a>
+                        <a class="btn btn-linkx" data-bs-toggle="modal" data-bs-target="#termsModal">سياسة الاستخدام</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">نشاطنا</h5>
+                       <a class="btn btn-linkx" href="https://barmga.com/ar/#services">خدماتنا</a>
+                       <a class="btn btn-linkx" href="https://barmga.com/ar/#products">قواعد البيانات</a>
+                       <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
+			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">النشرة البريدية</h5>
+                        <p>اشترك الآن واحصل على أحدث العروض والأدوات المميزة.</p>
+                        <div class="position-relative w-100 mt-3">
+                            <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="البريد الالكتروني" style="height: 48px;">
+                            <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                        <br>
+                        <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="https://barmga.com/ar">Barmga 2024</a>, جميع الحقوق محفوظة. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							<div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom"  style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+          <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="termsModalLabel">Contact</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- Insert your terms and conditions here -->
+                  <p>To purchase this item please enter the required information</p>
+                  <form id="contactinfoform" class="buyb2bform">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="your-name-input" placeholder="Enter your name">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="your-email-input" placeholder="Enter your email">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="your-phone-input" placeholder="Enter your phone number">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Information about your business</label>
+                        <input class="form-control" id="your-message-input" placeholder="Enter your website">
+                        <br>
+                    </div>
+                    <div class="d-flex align-items-end"><input type="checkbox" class="btn-check b2bcheckButton" id="checkButton" autocomplete="off"><label class="btn btn-outline-primary btn-square mb-1" for="checkButton" style="max-width: 13px; max-height: 13px;"></label><span class="text-muted" style="font-size: 80%; align-items: center;">&nbsp;&nbsp;&nbsp;By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsModal" style="cursor: pointer;">service policy</a></span></div>
+
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="linksmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+              <div class="modal-content">
+                <div class="modal-header fixed-top">
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Links</h5>
+                  <div style="flex-grow: 1;"></div>
+                  <a id="fixedButton" class="btn shadow-sm" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
+                  
+                </div>
+                <div class="modal-body scrollable-body">
+                </div>
+                <div class="modal-footer">
+                    <a id="backButton" class="btn back" data-bs-dismiss="modal" style="background-color: rgb(95, 118, 156); color: rgb(253, 249, 249);"><i class="fa fa-arrow-left" style="color:#ffffff;"></i></a>
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                    <a id="loadmore" class="btn" style="background-color: rgb(95, 156, 98); color: rgb(253, 249, 249);">More</a>
+                    
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" dir="rtl">
+                    <h5 class="modal-title" id="termsModalLabel">سياسة الموقع</h5>
+                    <div style="flex-grow: 1;"></div>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  
+                </div>
+                <div class="modal-body scrollable-body" dir="rtl">
+                    <p>مرحبًا بكم في Barmga! هذه الشروط والأحكام تحدد القواعد واللوائح لاستخدام موقع Barmga، الموجود على <a href="https://barmga.com">barmga.com</a>.</p>
+                
+                    <h3>1. المقدمة</h3>
+                    <p>من خلال الوصول إلى هذا الموقع، نفترض أنك تقبل هذه الشروط والأحكام. لا تستمر في استخدام Barmga إذا كنت لا توافق على جميع الشروط والأحكام المذكورة في هذه الصفحة.</p>
+                
+                    <h3>2. حقوق الملكية الفكرية</h3>
+                    <p>ما لم يذكر خلاف ذلك، تمتلك Barmga و/أو المرخصون التابعون لها حقوق الملكية الفكرية لجميع المواد الموجودة على Barmga. جميع حقوق الملكية الفكرية محفوظة. يمكنك الوصول إلى هذه المواد من Barmga لاستخدامك الشخصي فقط بموجب القيود المنصوص عليها في هذه الشروط والأحكام.</p>
+                
+                    <h3>3. القيود</h3>
+                    <p>أنت مقيد تحديدًا من كل ما يلي:</p>
+                    <ul>
+                        <li>نشر أي مواد من الموقع في أي وسائط أخرى؛</li>
+                        <li>بيع أو ترخيص فرعي أو تسويق أي مواد من الموقع؛</li>
+                        <li>أداء أو عرض أي مواد من الموقع بشكل علني؛</li>
+                        <li>استخدام هذا الموقع بأي طريقة تكون أو قد تكون ضارة لهذا الموقع؛</li>
+                        <li>استخدام هذا الموقع بأي طريقة تؤثر على وصول المستخدمين إلى هذا الموقع؛</li>
+                        <li>استخدام هذا الموقع بما يتعارض مع القوانين واللوائح المعمول بها، أو بأي طريقة قد تسبب ضررًا للموقع، أو لأي شخص أو كيان تجاري؛</li>
+                        <li>الانخراط في أي تعدين بيانات أو جمع بيانات أو استخراج بيانات أو أي نشاط مشابه آخر يتعلق بهذا الموقع؛</li>
+                        <li>استخدام منتجاتنا المجانية او المدفوعة في اي نشاط سياسي اوالترويج لمحتوى يخالف الشريعة الاسلامية</li>
+                    </ul>
+                
+                    <h3>4. خصوصيتك</h3>
+                    <p>جميع معلوماتك ليست للبيع أو للمشاركة مع أطراف ثالثة. جميع معلوماتك يتم جمعها من خلال منصتنا أو Hotmart.</p>
+                    <h3>5. ضمانات</h3>
+                    <p>يتم توفير هذا الموقع "كما هو". تقتصر ضماناتنا على ما هو منصوص عليه على منصتنا. لا تعبر Barmga عن أي تمثيلات أو ضمانات إضافية من أي نوع تتعلق بهذا الموقع.</p>
+                    
+                    <h3>6. تحديد المسؤولية</h3>
+                    <p>في أي حال من الأحوال، لا يجوز لـ Barmga أو أي من مسؤوليها أو مديريها أو موظفيها أن يكونوا مسؤولين عن أي شيء ينشأ عن أو يتعلق بأي شكل من الأشكال باستخدامك لهذا الموقع سواء كانت هذه المسؤولية بموجب العقد. Barmga، بما في ذلك مسؤوليها ومديريها وموظفيها، لا يتحملون أي مسؤولية غير مباشرة أو تبعية أو خاصة تنشأ عن أو تتعلق بأي شكل من الأشكال باستخدامك لهذا الموقع.</p>
+                
+                    <h3>7. التعويض</h3>
+                    <p>أنت تعوض Barmga إلى أقصى حد عن أي وجميع المسؤوليات والتكاليف والمطالب والأسباب والدعاوى والأضرار والنفقات الناشئة بأي شكل من الأشكال عن خرقك لأي من أحكام هذه الشروط.</p>
+                
+                    <h3>8. قابلية الفصل</h3>
+                    <p>إذا تم العثور على أي حكم من هذه الشروط باطلًا بموجب أي قانون معمول به، فسيتم حذف هذه الأحكام دون التأثير على الأحكام المتبقية هنا.</p>
+                
+                    <h3>9. تغيير الشروط</h3>
+                    <p>يحق لـ Barmga مراجعة هذه الشروط في أي وقت تراه مناسبًا، ومن خلال استخدام هذا الموقع، من المتوقع أن تراجع هذه الشروط بانتظام.</p>
+                
+                    <h3>10. التنازل</h3>
+                    <p>يحق لـ Barmga التنازل عن حقوقها و/أو التزاماتها بموجب هذه الشروط أو نقلها أو التعاقد من الباطن دون أي إشعار. ومع ذلك، لا يحق لك التنازل عن أي من حقوقك و/أو التزاماتك بموجب هذه الشروط أو نقلها أو التعاقد من الباطن.</p>
+                
+                    <h3>11. الاتفاقية الكاملة</h3>
+                    <p>تشكل هذه الشروط الاتفاقية الكاملة بين Barmga وبينك فيما يتعلق باستخدامك لهذا الموقع وتحل محل جميع الاتفاقيات والتفاهمات السابقة.</p>
+                </div>
+                
+                <div class="modal-footer">
+                  <a  id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">موافق</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- Back to Top -->
+       <!--  <a href="#" style="display: none;"class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-arrow-up"></i></a> -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+<div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+    <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+        <div class="modal-content">
+            <div class="modal-header fixed-top">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div style="flex-grow: 1;"></div>
+                <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</strong></h5>
+                
+            </div>
+            <div class="modal-body scrollable-body text-center">
+            </div>
+            <div class="modal-footer">
+                <div style="flex-grow: 1;"></div>
+                <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+    <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+        <div class="modal-content">
+            <div class="modal-header fixed-top">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div style="flex-grow: 1;"></div>
+                <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات البريد الإلكتروني</strong></h5>
+                
+            </div>
+            <div class="modal-body scrollable-body text-center">
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #b75727; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
+                        <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني
+                    </a>
+                </div>
+                <p class="emailx">حول عناوين البريد الإلكتروني إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق جيميل في بضع نقرات</p>
+                <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+            </div>
+            <div class="modal-footer">
+                <div style="flex-grow: 1;"></div>
+                <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+    <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+        <div class="modal-content">
+            <div class="modal-header fixed-top">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div style="flex-grow: 1;"></div>
+                <h5 class="modal-title" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الواتساب</strong></h5>
+            </div>
+            <div class="modal-body scrollable-body text-center">
+                <div class="d-flex justify-content-center mb-3 whatsappx">
+                    <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                        <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | مرسل واتساب
+                    </a>
+                </div>
+                <p class="whatsappx">ارسل رسائل واتساب تلقائية إلى مجموعة من الأرقام بشكل آلى، تستخدم هذه الأداة مع متصفح كروم على الكمبيوتر</p>
+                <img src="img/bot.png" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                <hr class="whatsappx">
+                <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                    <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank">
+                        <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط رسائل واتساب
+                    </a>
+                </div>
+                <p class="whatsappx">حول أرقام واتساب إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق واتساب في بضع نقرات</p>
+                <img src="img/click.png" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+            </div>
+            <div class="modal-footer">
+                <div style="flex-grow: 1;"></div>
+                <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .accordion-header>button{color: #645c5c; background-color: white;}
+    .accordion-body{color: #645c5c;}
+</style>
+<div class="modal fade" id="termsUseModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" dir="rtl">
+            <h5 class="modal-title" id="termsModalLabel">سياسة الاستخدام</h5>
+            <div style="flex-grow: 1;"></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          
+        </div>
+        <div class="modal-body scrollable-body" dir="rtl">
+            <p>مرحبًا بكم في Barmga! هذه الشروط والأحكام تحدد القواعد واللوائح لاستخدام منتجات موقع Barmga.</p>
+        
+            <h3>1.حدود الاستخدام</h3>
+            <ul>
+            <li>تستخدم البيانات في حدود اجراء البحوث ودراسة السوق اوتسويق بضائع وخدمات للجهات المستهدفة او رفع معلومات بضائع بموقع الكتروني أو أي استخدام لا يتعارض مع شروط وسياسة الموقع.</li>
+            <li> في حال احتواء قواعد البيانات على جهات اتصال يتلزم المشتري بعدم إرسال او اظاهر او تداول هذه البيانات مع أطراف ثالثة باستثناء فريق العمل الملتزمين بنفس شروط وحدود الاستخدام كاملة.</li>
+            </ul>
+            <h3>2. شروط الاستخدام</h3>
+            <p> يلزم المشتري:</p>
+            <ul>
+                <li>بعدم استخدام هذا المنتج في تسويق محتوى مخالف للشريعة الاسلامية.</li>
+                <li>بعدم تسوق محتوى رقمي غير شرعي أو بضائع غير قانونية او مضرة أومحرمة مثل اشتراكات نتفلكس والتبغ اوصور يحرم نشرها او تداولها مثل صور النساء على صناديق المنتجات اوبالاعلانات نفسها.</li>
+                <li>بعدم نشر روابط المواقع التي بها محتوى سمعي او بصري او كتابي مخالف لأحكام الشريعة الاسلامية.</li>
+                <li>بعدم الترويج لمناسبات سياسية اوشخصيات سياسية.</li>
+                <li>بعدم الدعاية لأعياد دينية اوأفكار دينية مخالفة للدين الاسلامي.</li>
+            </ul>
+        
+            <h3>3. التحديثات</h3>
+            <p>نقدم تحديثات واضافات مجانية للبيانات  في حال تم اعادة سحبها من نفس المواقع ولكن هذا لا يعتبر الزاما للبائع باعادة تجميعها.</p>
+            <h3>4. الاستلام</h3>
+            <p>يتم استلام البيانات على البريد الالكتروني</p>
+            
+            <h3>5.سياسة الموقع</h3>
+            <p>يمكنك ايضا الاضطلاع على <a class="primary" data-bs-toggle="modal" data-bs-target="#termsModal" onclick="document.querySelector('.amhere').click()">سياسة استخدام الموقع كاملة.</a></p>
+        
+        </div>
+        
+        <div class="modal-footer">
+          <a  id="confirmButton" class="btn amhere" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">موافق</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    function showonly(classname){
+    if (classname=='all'){
+    var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+    var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
+    $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
+    $('#optionsmodal').modal('show')}
+    else{$('#optionsmodal'+classname).modal('show')}
+}
+function updateURL(dkey, dvalue) {
+    const currentURL = new URL(window.location.href);
+    currentURL.searchParams.set(dkey, dvalue);
+    window.history.pushState({}, '', currentURL);
+}
+function normalize(input) { return input.replace(/\s+/g, ' '); }
+function updatemeta(myid){
+  let mainheader=normalize('الأسئلة الشائعة | '+document.querySelector("#"+myid+">button").textContent)
+  let maincontent=normalize(document.querySelector("#"+myid+"+div>div").textContent)
+  let title='title'
+  let title2='[property="og:title"]'
+  let description='[property="og:description"]'
+  let description2='[name="description"]'
+  let url='[property="og:url"]'
+  document.querySelector(url).setAttribute('content','https://barmga.com/faq-ar/?question='+myid)
+  document.querySelector(title2).setAttribute('content',mainheader)
+  document.querySelector(title).textContent=mainheader
+  document.querySelector(description).setAttribute('content',maincontent)
+  document.querySelector(description2).setAttribute('content',maincontent)
+}
+function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
+if(window.location.href.includes('question=')){var myid=window.location.href.split('question=')[1].split('&')[0].split('#')[0];if(document.querySelector('#'+myid+'>button')){document.querySelector('#'+myid+'>button').scrollIntoView();scrollByNavbarHeight(); document.querySelector('#'+myid+'>button').click()};updatemeta(myid)}
+document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', function() {
+        let myidx = this.parentElement.getAttribute('id');
+        updatemeta(myidx);
+        updateURL("question", myidx);
+    });
+});
+</script>
+</body>
+
+</html>
