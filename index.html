@@ -1138,7 +1138,7 @@ function openURLnew(lang) {
     var currentURL = new URL(window.location.href.replace('barmga.com/','barmga.com/ar'));
     var dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
     currentURL.searchParams.set('product', String(dkey))
-    window.location.href= currentURL.toString();}
+    window.location.href= currentURL.toString().replace('lang=en','lang=ar');}
     else {return ''}}
     
 function shadowall(element){
