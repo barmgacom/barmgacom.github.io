@@ -33,8 +33,8 @@
     function updateURLtext() {
     if (!window.location.href.includes('product=')){return window.location.href.replace('barmga.com/','barmga.com/ar')}
     const currentURL = new URL(window.location.href);
-    let dkey=namesdict[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
-     currentURL.searchParams.set('product', String(namesdict[dkey]));
+    let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
+     currentURL.searchParams.set('product', String(allnames[dkey]));
      return currentURL.toString()}
     function isBrowserLanguageArabic() { const userLang = navigator.language || navigator.userLanguage; return userLang.startsWith('ar'); }
     if (isBrowserLanguageArabic() && !(window.location.href.toLowerCase().includes('lang=en'))){window.location.href=updateURLtext()}
@@ -1177,7 +1177,7 @@ function validateEmail(email) {
 function openURLnew(lang) {
     if (lang=='ar'){
     if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar').replace('lang=en','lang=ar')}
-    const currentURL = new URL(window.location.href);
+    const currentURL = new URL(window.location.href.replace('barmga.com/','barmga.com/ar'));
     let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
     currentURL.searchParams.set('product', String(namesdict[dkey]))
     window.location.href= currentURL.toString();}
