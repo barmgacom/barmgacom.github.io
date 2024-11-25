@@ -1193,7 +1193,7 @@ function openURLnew(lang) {
     if (!window.location.href.includes('product=')){return window.location.href=window.location.href.replace('barmga.com/ar','barmga.com/')}
     const currentURL = new URL(window.location.href);
     let dkey=allnames[decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0].replace(/ /g,'-')];
-    currentURL.searchParams.set('product', String(namesdict[dkey]))
+    currentURL.searchParams.set('product', String(allnames[dkey]))
     currentURL.searchParams.set('lang', 'en')
     window.location.href= currentURL.toString();}
     else {return ''}}
