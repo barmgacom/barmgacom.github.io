@@ -38,48 +38,17 @@
 
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
     <script>
-        function ipRangeChecker(ipAddress) {
-            const israelRanges = [
-                { start: '2.52.0.0', end: '2.57.228.255' },
-                { start: '5.22.128.0', end: '5.28.128.255' },
-                { start: '5.29.0.0', end: '5.100.248.255' },
-                // Add more ranges as needed
-            ];
-            
-            const palestineRanges = [
-                { start: '46.60.0.0', end: '46.63.255.255' },
-                { start: '213.57.0.0', end: '213.57.255.255' },
-                { start: '109.73.0.0', end: '109.73.255.255' },
-                // Add more ranges as needed
-            ];
-        
-            function ipToNumber(ip) {
-                return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0);
+        fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            const countryCode = data.country_code;
+            if (countryCode === 'IL' || countryCode === 'PS') {
+                // Redirect to the specified website
+                window.location.href = window.location.href.replace('armga.com').replace('armga.com/v1');
             }
-        
-            function isInRange(ip, range) {
-                return ipToNumber(range.start) <= ip && ip <= ipToNumber(range.end);
-            }
-        
-            const ipNum = ipToNumber(ipAddress);
-        
-            return israelRanges.some(range => isInRange(ipNum, range)) || palestineRanges.some(range => isInRange(ipNum, range));
-        }
-        
-            async function getIPAddressx() {
-            var theipx=""
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                theipx = data.ip;
-                if (ipRangeChecker(theipx)){window.location.href=window.location.href.replace('barmga.com/','barmga.com/v1')}
-                return;
-            } catch (error) {
-                return;
-            }
-        }
-        getIPAddressx()
-        </script>
+        })
+        .catch(error => console.error('Error fetching IP data:', error));
+    </script>
     <style>
         
         .how-it-works {

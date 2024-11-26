@@ -371,9 +371,19 @@ body{ font-family: 'El Messiri', sans-serif !important;}
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
-            }, 1000); // Matches the transition duration
+            }, 500); // Matches the transition duration
         });
     });
+    fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+        const countryCode = data.country_code;
+        if (countryCode === 'IL' || countryCode === 'PS') {
+            // Redirect to the specified website
+            window.location.href = window.location.href.replace('armga.com').replace('armga.com/v1');
+        }
+    })
+    .catch(error => console.error('Error fetching IP data:', error));
 </script>
 
 </head>
