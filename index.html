@@ -93,7 +93,9 @@
     .modal {
       overflow: auto; /* Enable scroll if needed */
     }
-    
+    * {
+  scroll-margin-top: 55px;
+}
 
 .container{
   width: 100%;
@@ -1050,7 +1052,7 @@ function validateEmail(email) {
     function sharePost(hash) {
     if (navigator.share) {
       // Construct the URL with the hash
-      var urlWithHash = 'https://barmga.com/?product='+hash.replace(/ /g,"-").toLowerCase()
+      var urlWithHash = decodeURIComponent(window.location.href).split('#')[0]
 
       navigator.share({
         title: hash,
@@ -1805,7 +1807,7 @@ function selectedproduct(curr) {
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});;scrollByNavbarHeight()');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});');
     if (firstclick){document.querySelector('.downel').setAttribute('style',"display: block;")}
     document.title.textContent=curr.parentElement.querySelector('h5').textContent
 
@@ -1838,7 +1840,7 @@ function selectedproduct2(curr) {
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});;scrollByNavbarHeight()');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});');
     document.title.textContent=curr
     let family=product.family.split(',')[0].trim()
     if (!firstclick){
