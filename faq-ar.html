@@ -1120,7 +1120,7 @@ function updatemeta(myid){
   document.querySelector(description2).setAttribute('content',maincontent)
 }
 function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
-if(window.location.href.includes('question=')){var myid=window.location.href.split('question=')[1].split('&')[0].split('#')[0];if(document.querySelector('#'+myid+'>button')){document.querySelector('#'+myid+'>button').scrollIntoView();scrollByNavbarHeight(); document.querySelector('#'+myid+'>button').click()};updatemeta(myid)}
+if(window.location.href.includes('question=')){var myid=decodeURIComponent(window.location.href).split('question=')[1].split('&')[0].split('#')[0];if(document.querySelector('#'+myid+'>button')){document.querySelector('#'+myid+'>button').scrollIntoView();scrollByNavbarHeight(); document.querySelector('#'+myid+'>button').click()};updatemeta(myid)}
 document.querySelectorAll('.accordion-button').forEach(button => {
     button.addEventListener('click', function() {
         let myidx = this.parentElement.getAttribute('id');
