@@ -1146,6 +1146,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 <script>
+function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
 function openURLnew(lang) {
     if (lang=='en'){
     var currentURL = new URL(window.location.href.replace('barmga.com/ar','barmga.com/').replace('barmga.com//',"barmga.com/"));
@@ -1861,7 +1862,7 @@ function selectedproduct(curr) {
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});scrollByNavbarHeight()');
     if (firstclick){document.querySelector('.downel').setAttribute('style',"display: block;")}
     document.title.textContent=curr.parentElement.querySelector('h5').textContent
     
@@ -1895,7 +1896,7 @@ function selectedproduct2(curr) {
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"});scrollByNavbarHeight()');
     
     document.title.textContent=curr
     let family=product.family.split(',')[0].trim()
