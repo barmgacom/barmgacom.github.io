@@ -291,7 +291,7 @@ img.topim{max-height: 400px;}
         background-color: white;
         z-index: 9999999;
         opacity: 1;
-        transition: opacity 1s ease-out;
+        transition: opacity 0.5s ease-out;
     }
 
     .loaderx.fade-out {
@@ -328,7 +328,7 @@ img.topim{max-height: 400px;}
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
-            }, 1000); // Matches the transition duration
+            }, 500); // Matches the transition duration
         });
     });
 </script>
@@ -466,7 +466,7 @@ img.topim{max-height: 400px;}
                     <div class="col-lg-6">
                         <div class="section-title position-relative mb-4 pb-2">
                             <h6 class="position-relative text-primary ps-4" id="selectedprodsubtitle">Database</h6>
-                            <h2 class="mt-2" id="selectedprodtitle">AddGram: Auto Add Telegram Contacts</h2>
+                            <h2 class="mt-2" id="selectedprodtitle"></h2>
                         </div>
                         <div class="mb-3">
                             <small  id="selectedprodpriceundiscount" style="text-decoration: line-through; font-size: 105%;">
@@ -515,7 +515,7 @@ img.topim{max-height: 400px;}
             </div>
         </div>
         <!-- addgram End -->
-        <div class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;" id="prods">
+        <div class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;" id="prods">
             <div class="container py-5 px-lg-5">
             <div class="container px-lg-5">
               <br>
