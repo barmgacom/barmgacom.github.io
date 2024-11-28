@@ -1861,9 +1861,9 @@ function selectedproduct(curr) {
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/ar?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-'));
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
+    document.querySelector('.selectedproduct').scrollIntoView();
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"})');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView()');
     if (firstclick){document.querySelector('.downel').setAttribute('style',"display: block;")}
     document.title.textContent=curr.parentElement.querySelector('h5').textContent
     
@@ -1895,9 +1895,9 @@ function selectedproduct2(curr) {
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/ar?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-'));
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('#products').scrollIntoView({behavior: 'smooth'});
+    document.querySelector('.selectedproduct').scrollIntoView();
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
-    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView({behavior: "smooth"})');
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView()');
     
     document.title.textContent=curr
     let family=product.family.split(',')[0].trim()
