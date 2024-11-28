@@ -1068,7 +1068,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 
       navigator.share({
         title: hash,
-        text: 'Check out this product!',
+        text: '!شاهد هذا المنتج',
         url: urlWithHash,
       })
       .then(() => console.log('Successful share'))
@@ -1397,7 +1397,7 @@ var allproducts ={
     "محلات البقالة والسوبرماركت": {
         "info": "ملف اكسل فيه 12 ألف جهة اتصال لمحلات السوبر ماركت والبقالة السعودية. تفيد لتسويق المنتجات الغذائية ومواد التنظيف جملة.",
         "feature2": "",
-        "feature1": "10 ألف رقم جوال",
+        "feature1": "10 آلاف رقم جوال",
         "feature3": "1 ملف إكسل",
         "id": "sa-supermarkets",
         "gift": "",
@@ -1541,7 +1541,7 @@ var allproducts ={
     "محلات الأزياء": {
         "info": "ملف اكسل فيه 8 آلاف جهة اتصال لمحلات الازياء والاحذية السعودية. تفيد مصنعي ومصممي الملابس.",
         "feature2": "",
-        "feature1": "7 ألف رقم جوال",
+        "feature1": "7 آلاف رقم جوال",
         "feature3": "1 ملف إكسل",
         "id": "sa-clothes-shops",
         "gift": "",
@@ -1647,7 +1647,6 @@ var allproducts ={
         "source": "تلجرام"
     }
 }
-
 
 
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
