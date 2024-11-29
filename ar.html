@@ -1966,20 +1966,16 @@ function validateEmail(email) {
 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 return re.test(email);
 }
-
-</script>  
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var iframe = document.getElementById("videolink");
-        //var defaultImage = document.getElementById("defaultImage");
-        console.log('onload')
-        iframe.onerror = function() {
-            iframe.style.display = "none";
-            console.log('failed')
-            //defaultImage.style.display = "block";
-        };
+var menuItems = document.querySelectorAll('nav a'); 
+menuItems.forEach(function(item) {
+    item.addEventListener('click', async function(){
+        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]');
+        await new Promise((resolve) => setTimeout(resolve,200));
+        if (button){button.click()};
     });
-    </script>
+})
+</script>  
+
     
 
 

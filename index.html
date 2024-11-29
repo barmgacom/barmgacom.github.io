@@ -1910,6 +1910,14 @@ function showonly(classname){
     $('#optionsmodal').modal('show')}
     else{$('#optionsmodal'+classname).modal('show')}
 }
+var menuItems = document.querySelectorAll('nav a'); 
+menuItems.forEach(function(item) {
+    item.addEventListener('click', async function(){
+        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]');
+        await new Promise((resolve) => setTimeout(resolve,200));
+        if (button){button.click()};
+    });
+})
 </script>
 
 
