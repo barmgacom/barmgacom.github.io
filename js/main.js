@@ -85,7 +85,23 @@
 })(jQuery);
 if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
 var theip="none"
-document.querySelector('#your-form').addEventListener('submit', function(event) {
+async function isInternetFunctional() {
+    const url = 'https://www.google.com/favicon.ico'; // Small, lightweight resource
+    const img = new Image();
+
+    return new Promise((resolve) => {
+        img.onload = function() {
+            resolve(true);
+        };
+
+        img.onerror = function() {
+            resolve(false);
+        };
+
+        img.src = url + '?t=' + new Date().getTime(); // Add timestamp to avoid caching
+    });
+}
+document.querySelector('#your-form').addEventListener('submit', async function(event) {
     // Prevent form from submitting normally
     event.preventDefault();
 
@@ -106,9 +122,9 @@ document.querySelector('#your-form').addEventListener('submit', function(event) 
         'entry.1065046570': subject.value,
         'entry.839337160': messageInput.value,
     };
-
+    var isonline = await isInternetFunctional()
     // Create a new script element
-    if( nameInput.value && emailInput.value && phone.value && messageInput.value && navigator.onLine){
+    if( nameInput.value && emailInput.value && phone.value && messageInput.value && isonline){
     var script = document.createElement('script');
     script.src = 'https://docs.google.com/forms/d/e/1FAIpQLSfdFtNw_4PpbO4AZvtmyQj-gHqbDmmHO1CEknZf7hGR-hDr2A/formResponse?callback=callbackFunction&' + 
         Object.keys(formData).map(function(key) {
