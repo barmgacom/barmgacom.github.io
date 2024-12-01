@@ -1910,10 +1910,10 @@ function showonly(classname){
     $('#optionsmodal').modal('show')}
     else{$('#optionsmodal'+classname).modal('show')}
 }
-var menuItems = document.querySelectorAll('nav a'); 
+var menuItems = document.querySelectorAll('nav a:not(.dropdown-toggle)'); 
 menuItems.forEach(function(item) {
     item.addEventListener('click', async function(){
-        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]:not(.dropdown-toggle)');
+        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]');
         await new Promise((resolve) => setTimeout(resolve,200));
         if (button){button.click()};
     });
