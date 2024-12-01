@@ -1966,7 +1966,7 @@ function validateEmail(email) {
 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 return re.test(email);
 }
-var menuItems = document.querySelectorAll('nav a'); 
+var menuItems = document.querySelectorAll('nav a:not(.dropdown-toggle)'); 
 menuItems.forEach(function(item) {
     item.addEventListener('click', async function(){
         var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]:not(.dropdown-toggle)');
