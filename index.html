@@ -1913,7 +1913,7 @@ function showonly(classname){
 var menuItems = document.querySelectorAll('nav a'); 
 menuItems.forEach(function(item) {
     item.addEventListener('click', async function(){
-        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]');
+        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]:not(.dropdown-toggle)');
         await new Promise((resolve) => setTimeout(resolve,200));
         if (button){button.click()};
     });
