@@ -110,6 +110,8 @@
 
 @media (min-width: 992px) {
     li+li.nav-item.dropdown{margin-right: 15px;}
+    .mobilebloc{display: none !important;}
+    #clientsreviews{display: block !important;}
     .downel{display: none !important;}
             .navbar {
               height: 60px;
@@ -162,7 +164,8 @@
     
 }
 @media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
-
+.mobilebloc{display: block !important;}
+#clientsreviews{display: none !important;}
 img.topim{max-height: 400px;}
     .navbar-nav .nav-item.dropdown:hover {
         position: static;
@@ -490,21 +493,47 @@ img.topim{max-height: 400px;}
                             </div>
                         </div>
                         <div class="d-flex" style="margin-top:20px; display:none !important;" id="giftmain">
-    
                             <img src="images/gift.png" alt="Saudi Arabian Flag" width="30" height="30" style="margin-right:10px"><span style="margin-top:6px" id="giftitem"></span>
                         </div>
-                        <div class="d-flex align-items-center mt-4">
-                            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3"  href="" id="productlink" target="_blank"><img src="img/excelfile.png" style="max-width: 20px; max-height: 20px; margin-bottom: 5px;">&nbsp;Download</a>
-                            <a class="btn btn-outline-primary btn-square me-3" href="#contact"><i class="fa fa-envelope"></i></a>
-                            <a onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share"></i></a>
-                            <div style="flex-grow: 1;"></div>
-                            <a class="btn btn-outline-primary me-3 downel" style="display: none;"> <i class="fa fa-arrow-down"></i></a>
+                        <div class="d-flex align-items-end mt-4">
+                            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="productlink" target="_blank"><img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="samplelink" target="_blank"><img src="img/excelfileblue.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Free Sample</a>
+                            <a onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="https://mostaql.com/u/barmga/reviews" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
                         </div>
-                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy.</a><a class="text-muted" > You can also download a <a id="samplelink"  href="#downloadfreesample" style="cursor: pointer;">free sample.</a></a></span></div>
+                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy.</a> <a class="text-muted" > Payment is powered by <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> Hotmart.</a></a></span></div>
+                        <div class="d-flex align-items-end mt-4 mobilebloc" style="display: none;">
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-2" href="https://t.me/bigdata_shop" target="_blank" style="font-size: 85%;">
+                                <i class="fa fa-telegram btn-outline-primary" style="font-size: 120%; margin-right: 4px;"></i>Telegram
+                            </a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-2" href="https://mostaql.com/u/barmga/reviews" target="_blank" style="font-size: 85%;">
+                                <i class="fa fa-star" style="margin-right: 4px;"></i>Reviews
+                            </a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-2" href="#about" style="font-size: 85%;">
+                                <i class="fa fa-info" style="margin-right: 6px;"></i>About Us
+                            </a>
+                        </div>
+<style>
+    .custom-icon {
+    border: 1px solid #2780B7; /* Customize border color */
+    border-radius: 50%; /* Makes the border circular */
+    padding: 2px; /* Space around the icon */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2em; /* Adjust width and height as needed */
+    height: 1.2em;
+}
+.overlay-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; /* Ensure button is above the iframe */ background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */ color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; } .overlay-button.hidden { display: none; /* Hide the button */ }
+</style>                        
                     </div>
                     <div class="col-lg-6 videoarea" >
                         <iframe allow="fullscreen" style="width: 100% !important; height:100% !important;" id="videolink" src="" frameborder="0" allowfullscreen></iframe>
+                        <div class="d-flex align-items-center justify-content-center mt-2 mb-2">
+                        <a class="btn btn-outline-primary align-items-center justify-content-center downel" style="display: none;"> <i class="fa fa-arrow-down"></i></a></div>
                     </div>
+                    
+
                     <style>
                         @media (max-width: 992px) {
                             .videoarea { 
@@ -851,7 +880,7 @@ img.topim{max-height: 400px;}
                     
                     <h3>1. Usage Limits</h3>
                     <ul>
-                        <li>The data is used within the limits of conducting research, market study, marketing goods and services to targeted entities, or uploading information about goods on a website.</li>
+                        <li>Our products can be used used for: marketing, conducting research, market study, advertising goods and services to targeted entities, or uploading information about goods on a website.</li>
                         <li>If the databases contain contact information, the buyer must not send, disclose, or share this data with third parties except for the team members who are committed to the same terms and usage limits in full.</li>
                     </ul>
                     
@@ -883,6 +912,40 @@ img.topim{max-height: 400px;}
           </div>
         <!-- Back to Top -->
        <!--  <a href="#" style="display: none;"class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-arrow-up"></i></a> -->
+    </div>
+    <div class="modal fade" id="hotmartmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 50px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close closeme" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel"></h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body text-center scrollable-body">
+                    <div id="mb-4">
+                        <div class="mb-3">
+                            <a href="" class="clickmart" target="_blank" style="display: none;"></a>
+                            <p style="font-size: 120%;">
+                                <strong>Hotmart Marketplace</strong></p>
+                            <div>
+                                <a style="color: #2780B7;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart', 'https://go.hotmart'))">Hotmart</a> platform connects digital product providers with their customers, acting as a sales intermediary. All our digital products are reviewed & delivered by Hotmart.<br> You can also request this product through  
+                                <a style="color: #2780B7;" target="_blank" href="https://mostaql.com/u/barmga">Mostaql (freelance platform)</a> 
+                                or by 
+                                <a style="color: #2780B7;" href="#contact" onclick="document.querySelector('.closeme').click()">contacting us</a>.
+                            </div>
+                        </div>
+                        <a onclick="document.querySelector('#productlink').click();document.querySelector('.closeme').click()" class="btn btn-primary" style="margin-bottom: 20px;">Buy Now</a>
+                        <div class="mt-2 mb-2">
+                            <img src="img/paypal.png" alt="PayPal">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="downloadmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 50px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
@@ -1056,7 +1119,7 @@ function validateEmail(email) {
 
       navigator.share({
         title: hash,
-        text: 'Check out this product!',
+        text: hash,
         url: urlWithHash,
       })
       .then(() => console.log('Successful share'))
@@ -1137,6 +1200,17 @@ function validateEmail(email) {
     <script src="js/main.js"></script>
 <script>
 function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
+function openUrl(url) {
+    // Create an invisible link element
+    const link = document.querySelector('a.clickmart');
+    
+    // Set the URL to open
+    link.href = url;
+    
+    // Trigger the link to be clicked programmatically
+    link.click();
+}
+
 function openURLnew(lang) {
     if (lang=='ar'){
     if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar').replace('lang=en','lang=ar')}
@@ -1197,7 +1271,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Realestate-Companies.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665869?h=afbf7d7ebb&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665869?h=afbf7d7ebb&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Ejar & Rega (Authorities)"
@@ -1215,7 +1289,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Self-Care-Centers.xlsx",
         "family": "health",
-        "videolink": "https://player.vimeo.com/video/1032665904?h=c830aaa600&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665904?h=c830aaa600&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1233,7 +1307,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Organisations.xlsx",
         "samplelink": "",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032637122?h=6537942db1&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637122?h=6537942db1&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "NCNP (Authority)"
@@ -1251,7 +1325,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/E95263962U?off=3hnpdd4p",
         "samplelink": "https://barmga.com/samples/Sample-SA-Retaurents-and-cafes.xlsx",
         "family": "food",
-        "videolink": "https://player.vimeo.com/video/1032665861?h=71c970faa9&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665861?h=71c970faa9&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1269,7 +1343,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Contractors.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665892?h=15efed03f2&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665892?h=15efed03f2&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024 - 2022",
         "source": "Muqawil (Authority)"
@@ -1287,7 +1361,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/O96101973U?off=796oith9",
         "samplelink": "https://barmga.com/samples/Sample-SA-Engineering-Offices.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665882?h=1eea90d3a9&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665882?h=1eea90d3a9&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Balady (Authority)"
@@ -1305,7 +1379,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
         "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Suppliers.xlsx",
         "family": "realestate, commerce",
-        "videolink": "https://player.vimeo.com/video/1032666017?h=0647ae521e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666017?h=0647ae521e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
         "source": "Muqawil (Authority), Google Maps"
@@ -1323,7 +1397,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Q95256443N?off=8y4mwj5b",
         "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Products.xlsx",
         "family": "realestate, commerce",
-        "videolink": "https://player.vimeo.com/video/1032666008?h=7a5d62f560&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666008?h=7a5d62f560&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1341,7 +1415,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Telegram-Realestate-Ads.xlsx",
         "samplelink": "",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032596366?h=f829dacc8a&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596366?h=f829dacc8a&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Telegram Groups & Channels"
@@ -1359,7 +1433,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/S95586549W?off=4m3brdp0",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Hotels.xlsx",
         "family": "realestate, food",
-        "videolink": "https://player.vimeo.com/video/1032596744?h=3d6d1742ad&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596744?h=3d6d1742ad&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps, Tourism Ministry"
@@ -1371,13 +1445,13 @@ var allproducts ={
         "feature3": "1 Sheet | Excel File",
         "id": "sa-bakeries",
         "gift": "",
-        "originalprice": "",
-        "price": "35$",
+        "originalprice": "35$",
+        "price": "19$",
         "category": "B2B Listing",
-        "productlink": "https://pay.hotmart.com/B95283196U?off=czi407vo",
+        "productlink": "https://pay.hotmart.com/B95283196U?off=82fbl5jw",
         "samplelink": "https://barmga.com/samples/Sample-SA-Cakes-Shops.xlsx",
         "family": "food",
-        "videolink": "https://player.vimeo.com/video/1032665944?h=5d3ce2c637&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665944?h=5d3ce2c637&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1395,7 +1469,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G95282853O?off=alj9iswj",
         "samplelink": "https://barmga.com/samples/Sample-SA-Markets.xlsx",
         "family": "food, commerce",
-        "videolink": "https://player.vimeo.com/video/1032637133?h=510fb3d1fd&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637133?h=510fb3d1fd&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1413,7 +1487,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96104958Q?off=2vh5b325",
         "samplelink": "https://barmga.com/samples/Sample-SA-Transport.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665900?h=777d5894d8&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665900?h=777d5894d8&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "TGA (Authority)"
@@ -1431,7 +1505,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/F96158478S?off=tpd5sz8g",
         "samplelink": "https://barmga.com/samples/5-Sheets-Sample-SA-Factories.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665971?h=85c8229f58&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665971?h=85c8229f58&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2022 -2023 -2024",
         "source": "Authorities & Governmental Websites"
@@ -1449,7 +1523,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
         "samplelink": "https://barmga.com/samples/Sample-SA-Health-&-Medical-Companies.xlsx",
         "family": "health",
-        "videolink": "https://player.vimeo.com/video/1032665846?h=fabc4c134f&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665846?h=fabc4c134f&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1467,7 +1541,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
         "samplelink": "https://barmga.com/samples/SA-Sample-Makeup-Products.xlsx",
         "family": "health, commerce",
-        "videolink": "https://player.vimeo.com/video/1032665964?h=8c43b1cf7c&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665964?h=8c43b1cf7c&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1485,7 +1559,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Y95514188G?off=0ifgzw2c",
         "samplelink": "https://barmga.com/samples/SA-Sample-Pharmacy-Products.xlsx",
         "family": "health, commerce",
-        "videolink": "https://player.vimeo.com/video/1032665987?h=d46f11be19&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665987?h=d46f11be19&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1503,7 +1577,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/C96102034J?off=xv54d8dv",
         "samplelink": "https://barmga.com/samples/Sample-SA-Maroof-Ecommerce.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665917?h=d87bd826ef&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665917?h=d87bd826ef&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Maroof"
@@ -1521,7 +1595,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96102167I?off=m6r6z1lc",
         "samplelink": "https://barmga.com/samples/Sample-SA-Electronics.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665934?h=f19fef2b7e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665934?h=f19fef2b7e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1539,7 +1613,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/J96042526A?off=6qe5nd2n",
         "samplelink": "https://barmga.com/samples/Sample-SA-Clothes-Stores.xlsx",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665953?h=c2b02e216a&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665953?h=c2b02e216a&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1557,7 +1631,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Fabric-Tailoring-Shops.xlsx",
         "samplelink": "",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665923?h=7e9a6245ac&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665923?h=7e9a6245ac&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1575,7 +1649,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
         "samplelink": "https://barmga.com/samples/SA-Sample-Perfume-Products.xlsx",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665997?h=a46ea27786&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665997?h=a46ea27786&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1593,7 +1667,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G96523641C?off=bcs926nm",
         "samplelink": "https://barmga.com/samples/Sample-SA-Supermarket-Products.xlsx",
         "family": "commerce, food",
-        "videolink": "https://player.vimeo.com/video/1032665980?h=a1e0f3978e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665980?h=a1e0f3978e&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1611,7 +1685,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Telegram-Job-Ads.xlsx",
         "samplelink": "",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032585423?h=bef11403cd&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032585423?h=bef11403cd&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Telegram Groups & Channels"
@@ -1622,14 +1696,14 @@ var allproducts ={
         "feature1": "5K Mobile Numbers",
         "feature3": "4 Sheets | Excel Files",
         "id": "sa-schools",
-        "gift": "",
+        "gift": "2k Records for libraries & educative materials stores (Free)",
         "originalprice": "",
         "price": "35$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/V96104436J?off=k4xo07s4",
         "samplelink": "https://barmga.com/samples/4-Sheets-Sample-SA-Schools.xlsx",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032665836?h=baec0778a0&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665836?h=baec0778a0&badge=0&autopause=0&player_id=0&app_id=58479&byline=0&title=0&quality=720p&portrait=0&play_button_position=center&vimeo_logo=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
         "source": "Google Maps & Other Schools Directories"
@@ -1643,7 +1717,7 @@ var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="d
         <div class="service-iconx flex-shrink-0">
             <img class="card-img-top" src="img/imagehere.png" alt="titlehere">
         </div>
-        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(190, 91, 12) ;">price</div>
+        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(181, 181, 0) ;">price</div>
         <div class="position-absolute" style="top: 0.5rem; left: 0.5rem;">
     <img src="images/sa.png" alt="Saudi Arabian Flag" width="30" height="20">
 </div>
@@ -1711,6 +1785,7 @@ function propagateproducts() {
         let aroducthtmlc=String(aroducthtml)
         if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
         if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
+        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(181, 181, 0)','background-color: rgb(5, 158, 189)')}
         document.querySelector('.allproducts').innerHTML += aroducthtmlc
             .replace(/titlehere/g, title)
             .replace(/idhere/g, product.id)
@@ -1791,15 +1866,15 @@ function selectedproduct(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href =  product.productlink;
-    if (product.price=="Free"){document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick')}
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href = product.samplelink;
-    if (!product.samplelink){document.querySelector('#samplelink').parentElement.style.display="none"}else{document.querySelector('#samplelink').parentElement.style.display="block"}
+    if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
     if(product.videolink==""){
         document.querySelector('#videolink').style.display="none"
     }else{document.querySelector('#videolink').style.display="block"}
     document.querySelector('.selectedproduct').style.display = "block";
-    document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;
+    document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;+' Database'
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr.parentElement.querySelector('h5').textContent);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
@@ -1824,15 +1899,15 @@ function selectedproduct2(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href = product.productlink;
-    if (product.price=="Free"){document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick')}
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href =  product.samplelink;
-    if (!product.samplelink){document.querySelector('#samplelink').parentElement.style.display="none"}else{document.querySelector('#samplelink').parentElement.style.display="block"}
+    if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
     if(product.videolink==""){
         document.querySelector('#videolink').style.display="none"
     }else{document.querySelector('#videolink').style.display="block"}
     document.querySelector('.selectedproduct').style.display = "block";
-    document.querySelector('title').textContent= 'Barmga | ' + curr;
+    document.querySelector('title').textContent= 'Barmga | ' + curr+' Database';
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
@@ -1881,7 +1956,7 @@ function addStatements(name){
     var source2="Resources: All products databases are public information collected from saudi stores."
     var updates="Updated on: "+allproducts[name].date
     var delivered='Delivered to: Email Address used in <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.')+'"  target="_blank" style=" text-decoration: underline;">online payment</a>. If you prefer offline payment please <a href="#contact" onclick="showpaymentnote('+"'"+name+"'"+')" style=" text-decoration: underline;">contact us.</a>'
-    var verification='Note: All our products are verified & delivered by <a href="'+allproducts[name].productlink.replace('https://pay.','https://go.')+'"  target="_blank" style=" text-decoration: underline;">Hotmart marketplace</a>.'
+    var verification='Partner: This product is available on <a  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer; text-decoration: underline;" target="_blank">Hotmart Marketplace</a>.'
     var html='<p class="hiddenx"><strong>xxx</p>'
     var elementhtml=""
     if (allproducts[name].category=="B2B Listing"){
@@ -1918,6 +1993,7 @@ menuItems.forEach(function(item) {
         if (button){button.click()};
     });
 })
+
 </script>
 
 
