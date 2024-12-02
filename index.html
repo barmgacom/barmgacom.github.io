@@ -145,6 +145,9 @@
           top: 0;
           z-index: 1020;  /* Bootstrap's z-index for sticky navbar */
         }
+        h6{ font-family: 'Gabriela', serif !important; font-weight: 700 !important;}
+
+body{font-family: 'Gabriela', serif !important;}
         .navbar {
                 top: 0;
                 z-index: 100;
@@ -1199,6 +1202,26 @@ function validateEmail(email) {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 <script>
+function movel(dict, key) {
+    // Convert dictionary to an array of [key, value] pairs
+    const entries = Object.entries(dict);
+
+    // Find the index of the element with the specified key
+    const index = entries.findIndex(entry => entry[0] === key);
+
+    // If the key is found and it's not already in the third position
+    if (index !== -1 && index !== 2) {
+        // Remove the element from its current position
+        const [element] = entries.splice(index, 1);
+        
+        // Insert the element at the third position (index 2)
+        entries.splice(2, 0, element);
+    }
+
+    // Convert the array back to an object
+    return Object.fromEntries(entries);
+}
+
 function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
 function openUrl(url) {
     // Create an invisible link element
@@ -1260,8 +1283,8 @@ var allnames={
 var allproducts ={
     "Real Estate Companies": {
         "info": "Excel files containing data for 20,000 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
-        "feature2": "9K Email Addresses",
-        "feature1": "20K Mobile Numbers",
+        "feature2": "9,000 Email Addresses",
+        "feature1": "20,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-realestate-brokers",
         "gift": "",
@@ -1279,7 +1302,7 @@ var allproducts ={
     "Beauty and Sports Centers": {
         "info": "Excel files containing over 17,000 contact details, mostly beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
         "feature2": "",
-        "feature1": "16K Mobile Numbers",
+        "feature1": "16,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-beauty-sallons",
         "gift": "",
@@ -1296,7 +1319,7 @@ var allproducts ={
     },
     "Organisations": {
         "info": "Excel file dedicated to charities containing over 4500 contact details, numbers, and emails. Useful for charity project owners.",
-        "feature2": "4500 Email Addresses",
+        "feature2": "4,500 Email Addresses",
         "feature1": "4500 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-charity",
@@ -1315,7 +1338,7 @@ var allproducts ={
     "Restaurants and Cafes": {
         "info": "Excel file containing 25,000 contact details for restaurants and cafes in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
         "feature2": "",
-        "feature1": "21K Mobile Numbers",
+        "feature1": "21,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-restaurants-cafes",
         "gift": "",
@@ -1332,8 +1355,8 @@ var allproducts ={
     },
     "Construction Companies": {
         "info": "Excel files containing data for over 18,000 contact details for contracting and real estate development companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically. All information were collected from Muqawil (authority) and GoogleMaps.",
-        "feature2": "18K Email Addresses",
-        "feature1": "10K Mobile Numbers",
+        "feature2": "18,000 Email Addresses",
+        "feature1": "10,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-contractors",
         "gift": "",
@@ -1350,8 +1373,8 @@ var allproducts ={
     },
     "Engineering Offices": {
         "info": "Excel file containing over 3,800 contact details for engineering offices, in Saudi Arabia. This data is useful for contracting companies to find cooperative offices to bring in projects.",
-        "feature2": "3300 Email Addresses",
-        "feature1": "3800 Mobile Numbers",
+        "feature2": "3,300 Email Addresses",
+        "feature1": "3,800 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-engineering-offices",
         "gift": "",
@@ -1368,8 +1391,8 @@ var allproducts ={
     },
     "Building Materials Suppliers": {
         "info": "Excel files containing 11,000 contact details for building materials suppliers, stores, and factories in Saudi Arabia. Useful for contractors to find the best supplier of building materials and request their prices in a practical way.",
-        "feature2": "3K Email Addresses",
-        "feature1": "11K Mobile Numbers",
+        "feature2": "3,000 Email Addresses",
+        "feature1": "11,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-building-materials-suppliers",
         "gift": "",
@@ -1387,7 +1410,7 @@ var allproducts ={
     "Building Materials Products": {
         "info": "Excel file containing 4,500 products for building materials, lighting, plumbing, tools, and equipment necessary for construction & contracting projects. All products are accompanied by images and include details such as name, price, category, and description if available. Practical and excellent for uploading products to an online store easily from a ready-made Excel file.",
         "feature2": "",
-        "feature1": "4500 Rows",
+        "feature1": "4,500 Rows",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-building-materials",
         "gift": "3K Records for building materials factories (Free)",
@@ -1405,7 +1428,7 @@ var allproducts ={
     "Real Estate Advertisements": {
         "info": "Excel file dedicated to real estate advertisements posted on Telegram groups. Useful for studying the market and finding deals.",
         "feature2": "1600 Email Addresses",
-        "feature1": "6K ADs",
+        "feature1": "6,000 ADs",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-realestate-ads",
         "gift": "",
@@ -1423,7 +1446,7 @@ var allproducts ={
     "Hotels and Apartments": {
         "info": "Excel files containing over 11,000 contact details for hotels, apartments, and chalets in Saudi Arabia. This data is useful for marketing cleaning services, security, and hotel offers.",
         "feature2": "2500 Email Addresses",
-        "feature1": "9K Mobile Numbers",
+        "feature1": "9,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-hotels",
         "gift": "",
@@ -1441,7 +1464,7 @@ var allproducts ={
     "Bakeries and Cake Shops": {
         "info": "Excel file containing 9,000 contact details for bakeries, sweets shops, juice shops, and ice cream shops in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
         "feature2": "",
-        "feature1": "8K Mobile Numbers",
+        "feature1": "8,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-bakeries",
         "gift": "",
@@ -1459,7 +1482,7 @@ var allproducts ={
     "Grocery Stores and Supermarkets": {
         "info": "Excel file containing 12,000 contact details for supermarkets and grocery stores in Saudi Arabia. Useful for advertising wholesale food products and cleaning supplies.",
         "feature2": "",
-        "feature1": "10K Mobile Numbers",
+        "feature1": "10,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-supermarkets",
         "gift": "",
@@ -1476,8 +1499,8 @@ var allproducts ={
     },
     "Transport Companies": {
         "info": "Excel file containing over 11,000 contact details for companies licensed by the Transport Authority. Suitable for suppliers of transport equipment and for renting licensed yards.",
-        "feature2": "9K Email Addresses",
-        "feature1": "8K Mobile Numbers",
+        "feature2": "9,000 Email Addresses",
+        "feature1": "8,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-logistics",
         "gift": "",
@@ -1494,8 +1517,8 @@ var allproducts ={
     },
     "Factories": {
         "info": "Excel files containing 12,000 contact details for Saudi Arabian factories. Useful for store owners to reach suppliers of goods, as well as transport companies and industrial equipment suppliers to market their services.",
-        "feature2": "12K Email Addresses",
-        "feature1": "6K Mobile Numbers",
+        "feature2": "12,000 Email Addresses",
+        "feature1": "6,000 Mobile Numbers",
         "feature3": "5 Sheets | Excel Files",
         "id": "sa-factories",
         "gift": "",
@@ -1513,7 +1536,7 @@ var allproducts ={
     "Medical Centers": {
         "info": "Excel file containing 10,000 contact details for clinics, hospitals, pharmacies, and optical stores, in Saudi Arabia. Ideal for advertising medical equipment supplies, pharmaceutical promotion, and collaboration with healthcare providers.",
         "feature2": "",
-        "feature1": "5K Mobile Numbers",
+        "feature1": "5,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-medical-companies",
         "gift": "",
@@ -1549,7 +1572,7 @@ var allproducts ={
     "Pharmaceutical Products": {
         "info": "Excel file containing 8,400 pharmacy products records in the Saudi market. Contains information on medicines, care products, dietary supplements, makeup, and mother and child supplies. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
         "feature2": "",
-        "feature1": "8K Rows",
+        "feature1": "8,000 Rows",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-pharmacy-products",
         "gift": "",
@@ -1566,8 +1589,8 @@ var allproducts ={
     },
     "Maroof Ecommerce Stores": {
         "info": "Excel file containing data for over 60,000 online stores and projects registered on Maroof Saudi website. This data can be used for marketing campaigns (digital services, wholesale goods).",
-        "feature2": "60K Email Addresses",
-        "feature1": "49K Mobile Numbers",
+        "feature2": "60,000 Email Addresses",
+        "feature1": "49,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-ecommerce",
         "gift": "",
@@ -1603,7 +1626,7 @@ var allproducts ={
     "Clothing Stores": {
         "info": "Excel file containing 8,000 contact details for clothing and shoe stores in Saudi Arabia. Useful for clothing manufacturers and designers.",
         "feature2": "",
-        "feature1": "7K Mobile Numbers",
+        "feature1": "7,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-clothes-shops",
         "gift": "",
@@ -1621,7 +1644,7 @@ var allproducts ={
     "Fabric and Tailoring Shops": {
         "info": "Excel file containing 6,000 contact details for fabric and tailoring shops in Saudi Arabia. Useful for clothing manufacturers and designers, as well as owners of clothing stores.",
         "feature2": "",
-        "feature1": "5K Mobile Numbers",
+        "feature1": "5,000 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-sewing",
         "gift": "",
@@ -1639,7 +1662,7 @@ var allproducts ={
     "Perfume Products": {
         "info": "Excel file containing 1,700 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
         "feature2": "",
-        "feature1": "1700 Rows",
+        "feature1": "1,700 Rows",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-parfumes",
         "gift": "",
@@ -1655,9 +1678,9 @@ var allproducts ={
         "source": ""
     },
     "Supermarket Products": {
-        "info": "Excel file containing 7,900 supermarket products (food & cleaning products) extracted from Saudi Arabia Carrefour website. All products are accompanied by images and include details such as name, price, category, barcode and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
-        "feature2": "7400 barcodes",
-        "feature1": "7900 Rows",
+        "info": "Excel file containing 7,900 supermarket products (food & cleaning products) extracted from Saudi Arabia Carrefour website. All products are accompanied by images and include details such as name, price, category, barcode and description, if available.  Upload products to an online store easily and quickly from a ready-made Excel file.",
+        "feature2": "7,400 barcodes",
+        "feature1": "7,900 Rows",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-supermarket-products",
         "gift": "2K Records for food factories (Free)",
@@ -1674,8 +1697,8 @@ var allproducts ={
     },
     "Job Advertisements": {
         "info": "Excel file dedicated to job advertisements posted on Telegram groups. Useful for job seekers.",
-        "feature2": "2K Email Addresses",
-        "feature1": "5K ADs",
+        "feature2": "2,000 Email Addresses",
+        "feature1": "5,000 ADs",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-job-ads",
         "gift": "",
@@ -1692,8 +1715,8 @@ var allproducts ={
     },
     "Schools": {
         "info": "Excel files containing over 8,000 contact details for schools, kindergartens, and educational centers. Can be used to market anything that benefits children and the education sector.",
-        "feature2": "1800 Email Addresses",
-        "feature1": "5K Mobile Numbers",
+        "feature2": "1,800 Email Addresses",
+        "feature1": "5,000 Mobile Numbers",
         "feature3": "4 Sheets | Excel Files",
         "id": "sa-schools",
         "gift": "2k Records for libraries & educative materials stores (Free)",
@@ -1709,7 +1732,6 @@ var allproducts ={
         "source": "Google Maps & Other Schools Directories"
     }
 }
-
 
 
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
@@ -1847,7 +1869,7 @@ if(window.location.href.includes('category=')){var cat=window.location.href.spli
     for (let prod of Object.keys(allproducts)){
         if (allproducts[prod].family.includes(catdict[cat])){specialx.push(prod)}
     }
-    if (specialx){allproducts=rearrangeDict(allproducts,specialx)}
+    if (specialx){allproducts=movel(rearrangeDict(allproducts,specialx),'Organisations')}
 }
 
 propagateproducts()
@@ -1928,7 +1950,7 @@ function selectedproduct2(curr) {
     if(special){
         //special=spli(curr,special)
         allproducts=rearrangeDict(allproducts, special);
-    }propagateproducts();}else{document.querySelector('.downel').setAttribute('style',"display: block;");}
+    };allproducts=movel(allproducts,"Organisations");propagateproducts();}else{document.querySelector('.downel').setAttribute('style',"display: block;");}
     
 }
 if (window.location.href.includes('product=')){
