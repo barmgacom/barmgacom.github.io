@@ -1874,7 +1874,7 @@ function selectedproduct(curr) {
         document.querySelector('#videolink').style.display="none"
     }else{document.querySelector('#videolink').style.display="block"}
     document.querySelector('.selectedproduct').style.display = "block";
-    document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;+' Database'
+    document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;+' Database Saudi Arabia'
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr.parentElement.querySelector('h5').textContent);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
@@ -1907,7 +1907,7 @@ function selectedproduct2(curr) {
         document.querySelector('#videolink').style.display="none"
     }else{document.querySelector('#videolink').style.display="block"}
     document.querySelector('.selectedproduct').style.display = "block";
-    document.querySelector('title').textContent= 'Barmga | ' + curr+' Database';
+    document.querySelector('title').textContent= 'Barmga | ' + curr+' Database Saudi Arabia';
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
