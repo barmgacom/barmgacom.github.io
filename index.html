@@ -1717,7 +1717,7 @@ var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="d
         <div class="service-iconx flex-shrink-0">
             <img class="card-img-top" src="img/imagehere.png" alt="titlehere">
         </div>
-        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(181, 181, 0) ;">price</div>
+        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(198, 165, 2) ;">price</div>
         <div class="position-absolute" style="top: 0.5rem; left: 0.5rem;">
     <img src="images/sa.png" alt="Saudi Arabian Flag" width="30" height="20">
 </div>
@@ -1785,7 +1785,7 @@ function propagateproducts() {
         let aroducthtmlc=String(aroducthtml)
         if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
         if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
-        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(181, 181, 0)','background-color: rgb(5, 158, 189)')}
+        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(198, 165, 2)','background-color: rgb(5, 158, 189)')}
         document.querySelector('.allproducts').innerHTML += aroducthtmlc
             .replace(/titlehere/g, title)
             .replace(/idhere/g, product.id)
