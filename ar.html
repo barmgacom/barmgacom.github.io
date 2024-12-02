@@ -49,6 +49,9 @@
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
 
 <style>
+        .shadowmex{
+        box-shadow: 0 3px 5px 0 rgba(43, 43, 45, 0.316), 0 3px 5px 0 rgba(43, 43, 45, 0.316);
+    }
     .shadowme{
         box-shadow: 0 6px 10px 0 rgba(43, 43, 45, 0.44), 0 6px 10px 0 rgba(43, 43, 45, 0.44);
     }
@@ -265,10 +268,8 @@ input[type="text"]::-webkit-input-placeholder {
     text-align: right!important;
 }
 body{ font-family: 'El Messiri', sans-serif !important;}
-.feature1{ font-family: 'El Messiri', sans-serif !important; font-weight: 700 !important;}
-.feature2{ font-family: 'El Messiri', sans-serif !important; font-weight: 700 !important;}
-.feature3{ font-family: 'El Messiri', sans-serif !important; font-weight: 700 !important;}
-.feature4{ font-family: 'El Messiri', sans-serif !important; font-weight: 700 !important;}
+h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !important;}
+
 .loader {
   position: relative;
   width: 2.5em;
@@ -630,7 +631,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
         <div class="container-fluid  py-1"style="background-color: #F3F6FF;">
             <div class="container px-lg-2">
                 <div class="position-relative text-center mt-4 mb-4 pb-3" >
-                    <a class="btn btn-primary rounded-pill px-4 me-3 moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';" >شاهد المزيد</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';" >شاهد المزيد</a>
                 </div>
                
             </div>
