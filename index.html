@@ -1810,7 +1810,7 @@ function spli(element, array) {
 }
 function findProductName(dicto,ida){
     for (keyo of Object.keys(dicto)){
-        if(dicto[keyo]['id']==ida){if(['sa-supermarkets','sa-medical-companies'].includes(ida)){document.querySelector('.trackimg').setAttribute('src','https://bit.ly/'+ida+'-img')};return keyo}
+        if(dicto[keyo]['id']==ida){if(ida){document.querySelector('.trackimg').setAttribute('src','https://bit.ly/'+ida+'-img')};return keyo}
     } return ''
 }
 function updateURL(dkey, dvalue) {
