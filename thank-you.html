@@ -763,6 +763,8 @@ function validateEmail(email) {
     link.href = url;}
     function scilo(driveLinkId) { return `https://drive.google.com/uc?export=download&id=${driveLinkId}`; }
     function scildrv(driveLinkId) { return `https://drive.google.com/drive/folders/${driveLinkId}`; }
+    function transio0(){if(window.location.href.includes('?await=1')){document.querySelector('.arabic-text').innerHTML=document.querySelector('.arabic-text').innerHTML.replace('24 ساعة','24 ساعة بعد تأكيد الدفع');document.querySelector('.english-text').innerHTML=document.querySelector('.english-text').innerHTML.replace('24 hours','24 hours after payment confirmation')}}
+    transio0()
     function transio(){if(window.location.href.includes('barmgaproduct=')){var ida=window.location.href.split('barmgaproduct=')[1].split('&')[0].split('#')[0];if (!ida || ida=="verified"){return}else{document.querySelector('.yesdownloaden').style.display="block";document.querySelector('.yesdownloadar').style.display="block"};addlink(scildrv(ida),"googledrivear");addlink(scildrv(ida),"googledriveen");updateURL('barmgaproduct', 'verified')}}
     transio()
     function capT(str) { return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); }
