@@ -32,6 +32,7 @@
 }
     function updateURLtext() {
     if (!(window.location.href.includes('product='))){return window.location.href.replace('barmga.com/','barmga.com/ar')}
+    if(window.location.href.includes('product=sa-')){return}
     const currentURL = new URL(window.location.href);
     let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
      currentURL.searchParams.set('product', String(dkey));
@@ -447,7 +448,7 @@ img.topim{max-height: 400px;}
                         <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>Clients reviews <a class="underline" target="_blank" href="https://mostaql.com/u/barmga/reviews">on Mostaql</a></span></div>
                     </div>
                     <div class="col-lg-6">
-                        <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-left: 10%;" data-wow-delay="0.3s" alt="barmga about" src="images/about.png">
+                        <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-left: 10%;" data-wow-delay="0.1s" alt="barmga about" src="images/about.png">
                     </div>
                 </div>
             </div>
@@ -662,7 +663,7 @@ img.topim{max-height: 400px;}
                             <h2 class="mt-2">Contact For Any Query</h2>
                             <br>
                         </div>
-                        <div class="wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
                             <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">We accept offline payments through western union, stc pay, bank transfer and usdt.</small>
                             <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
                             <form id="your-form">
@@ -715,6 +716,7 @@ img.topim{max-height: 400px;}
             <div class="container py-5 px-lg-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-3">
+                        <img class="trackimg" style="display: none !important;">
                         <h5 class="text-white mb-4">Get In Touch</h5>
                         <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                         <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
@@ -1772,6 +1774,11 @@ function spli(element, array) {
     // Concatenate the second part with the first part
     return secondPart.concat(firstPart);
 }
+function findProductName(dicto,ida){
+    for (keyo of Object.keys(dicto)){
+        if(dicto[keyo]['id']==ida){if(['sa-supermarkets','sa-medical-companies'].includes(ida)){document.querySelector('.trackimg').setAttribute('src','https://bit.ly/'+ida+'-img')};return keyo}
+    } return ''
+}
 function updateURL(dkey, dvalue) {
     const currentURL = new URL(window.location.href);
     currentURL.searchParams.set(dkey, dvalue);
@@ -1956,7 +1963,9 @@ function selectedproduct2(curr) {
     
 }
 if (window.location.href.includes('product=')){
-    let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0].replace(/-/g,' ')
+    let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0]
+    console.log(productname)
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname)}else{productname=productname.replace(/-/g,' ')}
     selectedproduct2(capT(productname).replace(' And '," and "))
 }
 if (window.location.href.includes('#products')){

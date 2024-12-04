@@ -499,7 +499,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                 <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>&nbsp;&nbsp;&nbsp;&nbsp; <a class="underline" target="_blank" href="https://mostaql.com/u/barmga/reviews">تقييمات عملائنا</a> على منصة مستقل</span></div>
             </div>
             <div class="col-lg-6">
-                <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-right: 10%;" data-wow-delay="0.3s" alt="barmga about" src="images/about.png">
+                <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-right: 10%;" data-wow-delay="0.1s" alt="barmga about" src="images/about.png">
             </div>
         </div>
     </div>
@@ -594,7 +594,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
 </style> 
                     </div>
                     <div class="col-lg-6 videoarea">
-                        <iframe allow="fullscreen" style="width: 100% !important; height:100% !important;" id="videolink" src="" frameborder="0" allowfullscreen></iframe>
+                        <iframe allow="fullscreen" style="width: 100% !important; height:100% !important;" src="" id="videolink" frameborder="0" allowfullscreen></iframe>
                         <div class="d-flex align-items-center justify-content-center mt-2 mb-2">
                             <a class="btn btn-outline-primary align-items-center justify-content-center downel" style="display: none;"> <i class="fa fa-arrow-down"></i></a></div>
                         </div>
@@ -729,7 +729,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                             <h2 class="mt-2">من أجل أي استفسار</h2>
                             <br>
                         </div>
-                        <div class="wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
                             <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">نقبل الحوالات المباشرة عن طريق وسترن يونيون، اس تي سي باي، تحويل بنكي، عملات رقمية</small>
                             <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
                             <form id="your-form" dir="rtl" style="text-align: right;">
@@ -782,6 +782,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
             <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-3">
+                        <img class="trackimg" style="display: none !important;">
                         <h5 class="text-white mb-4">لطلب الدعم</h5>
                         <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                         <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
@@ -1777,6 +1778,11 @@ function spli(element, array) {
     // Concatenate the second part with the first part
     return secondPart.concat(firstPart);
 }
+function findProductName(dicto,ida){
+    for (keyo of Object.keys(dicto)){
+        if(dicto[keyo]['id']==ida){if(['sa-supermarkets','sa-medical-companies'].includes(ida)){document.querySelector('.trackimg').setAttribute('src','https://bit.ly/'+ida+'-img')};return keyo}
+    } return ''
+}
 function updateURL(dkey, dvalue) {
     const currentURL = new URL(window.location.href);
     currentURL.searchParams.set(dkey, dvalue);
@@ -2010,7 +2016,8 @@ function selectedproduct2(curr) {
     
 }
 if (window.location.href.includes('product=')){
-    let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0].replace(/-/g,' ')
+    let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname)}else{productname=productname.replace(/-/g,' ')}
     selectedproduct2(productname)
 }
 if (window.location.href.includes('#products')){
