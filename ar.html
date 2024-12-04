@@ -2049,7 +2049,7 @@ function selectedproduct2(curr) {
 }
 if (window.location.href.includes('product=')){
     let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname)}else{productname=productname.replace(/-/g,' ')}
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
     selectedproduct2(productname)
 }
 if (window.location.href.includes('#products')){

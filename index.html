@@ -1999,7 +1999,7 @@ function selectedproduct2(curr) {
 if (window.location.href.includes('product=')){
     let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0]
     console.log(productname)
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname)}else{productname=productname.replace(/-/g,' ')}
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
     selectedproduct2(capT(productname).replace(' And '," and "))
 }
 if (window.location.href.includes('#products')){
