@@ -1210,6 +1210,12 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Restaurants and Cafes',2);
         dicta=movelPos(dicta,'Medical Centers',3);
         dicta=movelPos(dicta,'Organisations',4);
+    }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Makeup Products',1);
+        dicta=movelPos(dicta,'Supermarket Products',2);
+        dicta=movelPos(dicta,'Organisations',3);
+        dicta=movelPos(dicta,'Perfume Products',4);
+        dicta=movelPos(dicta,'Pharmaceutical Products',5);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
@@ -1333,7 +1339,7 @@ var allproducts ={
         "source": "Ejar & Rega (Authorities)"
     },
     "Beauty and Sports Centers": {
-        "info": "Excel files containing over 17,000 contact details, mostly beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
+        "info": "Excel files containing over 17,000 contact details, most of selected companies are beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
         "feature2": "",
         "feature1": "16,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
@@ -1351,9 +1357,9 @@ var allproducts ={
         "source": "Google Maps"
     },
     "Organisations": {
-        "info": "Excel file dedicated to charities containing over 4500 contact details, numbers, and emails. Useful for charity project owners.",
+        "info": "Excel file dedicated to charities containing over 4,500 contact details, phone numbers and emails. Useful for charity project owners.",
         "feature2": "4,500 Email Addresses",
-        "feature1": "4500 Mobile Numbers",
+        "feature1": "4,500 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-charity",
         "gift": "",
