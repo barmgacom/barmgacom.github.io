@@ -50,6 +50,9 @@
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
 
 <style> 
+        .shadowmex{
+        box-shadow: 0 3px 5px 0 rgba(43, 43, 45, 0.316), 0 3px 5px 0 rgba(43, 43, 45, 0.316);
+    }
         .shadowme{
         box-shadow: 0 6px 10px 0 rgba(43, 43, 45, 0.44), 0 6px 10px 0 rgba(43, 43, 45, 0.44);
     }
@@ -383,11 +386,19 @@ img.topim{max-height: 400px;}
                         <div class="thank-you-container">
                             <div class="arabic-text">
                                 <p  style="font-size: 110%; color: #2780B7;"><strong>شكرًا لاختيارك برمجة!</strong></p>
+                                <div class="yesdownloadar mb-4" style="display: none;">
+                                <p>يمكنك تحميل البيانات مباشرة من خلال</p>
+                                <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3 mt-2 shadowmex" style="font-size: 90%;"  href="" id="googledrivear" target="_blank"><img src="img/excelfile.png" style="max-width: 17px; max-height: 17px;">&nbsp;قوقل درايف</a>
+                                </div>
                                 <p>سيتم ارسال الملفات إلى عنوان بريدك الإلكتروني خلال أقل من 24 ساعة. إذا كانت لديك أية أسئلة أو تحتاج إلى المساعدة، لا تتردد في الاتصال بنا من خلال <a href="https://barmga.com/ar#contact" target="_blank">النموذج</a> أو عبر البريد الإلكتروني: info@barmga.com</p>
                                 <p>نشكر وقتكم واهتمامكم</p>
                             </div>
                             <div class="english-text">
                                 <p style="font-size: 110%; color: #2780B7;"><strong>Thank you for choosing Barmga!</strong></p>
+                                <div class="yesdownloaden mb-4" style="display: none;">
+                                    <p>You can download documents from</p>
+                                    <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3 mt-2 shadowmex" style="font-size: 90%;"  href="" id="googledriveen" target="_blank"><img src="img/excelfile.png" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Google Drive&nbsp;</a>
+                                    </div>
                                 <p>We will deliver the documents to your email address in less than 24 hours. If you have any questions or need further assistance, do not hesitate to contact us through the <a href="https://barmga.com/?lang=en#contact" target="_blank">Form</a> or via email: info@barmga.com</p>
                                 <p>Thanks for your time & interest</p>
                             </div>
@@ -740,6 +751,20 @@ function validateEmail(email) {
     </div>   
     <!-- JavaScript Libraries -->
     <script>
+    function updateURL(dkey, dvalue) {
+    const currentURL = new URL(window.location.href);
+    currentURL.searchParams.set(dkey, dvalue);
+    window.history.pushState({}, '', currentURL);}
+    function addlink(url,ida) {
+    // Create an invisible link element
+    var link = document.querySelector('#'+ida);
+    
+    // Set the URL to open
+    link.href = url;}
+    function scilo(driveLinkId) { return `https://drive.google.com/uc?export=download&id=${driveLinkId}`; }
+    function scildrv(driveLinkId) { return `https://drive.google.com/drive/folders/${driveLinkId}`; }
+    function transio(){if(window.location.href.includes('barmgaproduct=')){var ida=window.location.href.split('barmgaproduct=')[1].split('&')[0].split('#')[0];if (!ida || ida=="verified"){return}else{document.querySelector('.yesdownloaden').style.display="block";document.querySelector('.yesdownloadar').style.display="block"};addlink(scildrv(ida),"googledrivear");addlink(scildrv(ida),"googledriveen");updateURL('barmgaproduct', 'verified')}}
+    transio()
     function capT(str) { return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); }
     function removeinfototerms(){
     // Get the elements
