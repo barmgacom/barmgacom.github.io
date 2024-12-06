@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Instead of waiting for the load event
     document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        if (document.readyState === 'interactive' || document.readyState === 'complete'  || document.querySelector('iframe[src^="https://"]')) {
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
