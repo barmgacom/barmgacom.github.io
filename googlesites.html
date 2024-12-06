@@ -2,12 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Barmga</title>
+  <title>Redirect Example</title>
+  <script>
+    function openInNewTab(url) {
+      var a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Use a timeout to delay the opening, giving the page time to load
+    window.onload = function() {
+      setTimeout(function() {
+        openInNewTab('https://barmga.com');
+      }, 1000); // 1-second delay
+    };
+  </script>
 </head>
 <body>
-  <a href="https://barmga.com" target="_blank">Barmga.com</a>
-  <script>
-    document.querySelector("a").click()
-  </script>
+  <p>Redirecting you to the new page...</p>
 </body>
 </html>
