@@ -335,17 +335,21 @@ img.topim{max-height: 400px;}
 }
   </style>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var loader = document.querySelector('.loaderx');
-        loader.style.display = "block";
+document.addEventListener("DOMContentLoaded", function() {
+    var loader = document.querySelector('.loaderx');
+    loader.style.display = "block";
 
-        window.addEventListener('load', function() {
+    // Instead of waiting for the load event
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
             }, 500); // Matches the transition duration
-        });
+        }
     });
+});
+
 </script>
 </head>
 <body id="home">
