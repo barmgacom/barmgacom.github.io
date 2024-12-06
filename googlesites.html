@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+  <meta charset="UTF-8">
+  <title>Google Sites Example</title>
+  <script>
+    function openInTopWindow(url) {
+      window.top.location.href = url;
+    }
+  </script>
 </head>
 <body>
-<script> function openInParentTab(url) { window.top.location.href = url; }; window.open("https://barmga.com")  </script>
+  <a href="#" onclick="openInTopWindow('https://example.com')">Open Example in Main Tab</a>
 </body>
 </html>
