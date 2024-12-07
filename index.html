@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         </div>
                         <div class="d-flex align-items-end mt-4">
                             <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="productlink" target="_blank"><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now</a>
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="samplelink" target="_blank"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="samplelink" target="_blank" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')}"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga/reviews" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
                         </div>
@@ -725,6 +725,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-3">
                         <img class="trackimg" style="display: none !important;">
+                        <img class="tracksample" style="display: none !important;" src="">
                         <h5 class="text-white mb-4">Get In Touch</h5>
                         <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                         <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
