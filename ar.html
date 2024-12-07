@@ -1232,18 +1232,18 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الجمعيات',3);
         dicta=movelPos(dicta,'منتجات العطور',4);
         dicta=movelPos(dicta,'منتجات الصيدلية',5);
-    }else if (['شركات عقارية','realestate companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'اعلانات عقارية',1);
         dicta=movelPos(dicta,'شركات النقل',2);
-        dicta=movelPos(dicta,'مصانع',3);
-        dicta=movelPos(dicta,'شركات عقارية',4);
-        dicta=movelPos(dicta,'شركات مقاولات',5);
+        dicta=movelPos(dicta,'المصانع',3);
+        dicta=movelPos(dicta,'الشركات العقارية',4);
+        dicta=movelPos(dicta,'شركات المقاولات',5);
     }else if (['شركات النقل','transport companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'اعلانات عقارية',1);
-        dicta=movelPos(dicta,'شركات عقارية',2);
+        dicta=movelPos(dicta,'الشركات العقارية',2);
         dicta=movelPos(dicta,'شركات النقل',3);
-        dicta=movelPos(dicta,'مصانع',4);
-        dicta=movelPos(dicta,'شركات مقاولات',5);
+        dicta=movelPos(dicta,'المصانع',4);
+        dicta=movelPos(dicta,'شركات المقاولات',5);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
