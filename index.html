@@ -1221,6 +1221,18 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Organisations',3);
         dicta=movelPos(dicta,'Perfume Products',4);
         dicta=movelPos(dicta,'Pharmaceutical Products',5);
+    }else if (['شركات عقارية','realestate companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Real Estate Advertisements',1);
+        dicta=movelPos(dicta,'Transport Companies',2);
+        dicta=movelPos(dicta,'Factories',3);
+        dicta=movelPos(dicta,'Realestate Companies',4);
+        dicta=movelPos(dicta,'Construction Companies',5);
+    }else if (['شركات النقل','transport companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Real Estate Advertisements',1);
+        dicta=movelPos(dicta,'Realestate Companies',2);
+        dicta=movelPos(dicta,'Transport Companies',3);
+        dicta=movelPos(dicta,'Factories',4);
+        dicta=movelPos(dicta,'Construction Companies',5);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
