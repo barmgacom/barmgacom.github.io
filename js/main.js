@@ -12,8 +12,7 @@
     spinner();
     
     
-    // Initiate the wowjs
-    new WOW().init();
+
 
 
     // Sticky Navbar
@@ -209,3 +208,5 @@ async function getIPAddress() {
     }
 }
 getIPAddress()
+    // Initiate the wowjs
+new WOW().init();
