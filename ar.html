@@ -1244,6 +1244,22 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'شركات النقل',3);
         dicta=movelPos(dicta,'المصانع',4);
         dicta=movelPos(dicta,'شركات المقاولات',5);
+    }else if (['شركات المقاولات','construction companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'شركات النقل',1);
+        dicta=movelPos(dicta,'موردي مواد البناء',2);
+        dicta=movelPos(dicta,'اعلانات عقارية',3);
+        dicta=movelPos(dicta,'شركات المقاولات',4);
+        dicta=movelPos(dicta,'المصانع',5);
+        dicta=movelPos(dicta,'مستلزمات البناء',6);
+        dicta=movelPos(dicta,'الفنادق والشقق',7);
+    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
+        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
+        dicta=movelPos(dicta,'المطاعم والمقاهي',3);
+        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',4);
+        dicta=movelPos(dicta,'الفنادق والشقق',5);
+        dicta=movelPos(dicta,'شركات النقل',6);
+        dicta=movelPos(dicta,'المصانع',7);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
@@ -1334,9 +1350,13 @@ var allnames={
     "منتجات-العطور": "perfume-products",
     "منتجات-السوبرماركت": "supermarket-products",
     "المدارس-ورياض-الأطفال": "schools",
-    "اعلانات-واظائف": "job-advertisements"
+    "اعلانات-واظائف": "job-advertisements",
+    "شركات-التنظيف-والمغاسل":"cleaning-services-companies",
+    "متاجر-العطور":"perfumes-stores",
+    "محلات-الزهور-والمشاتل":"flowers-and-plants-shops",
+    "محلات-الأغذية-الطبيعية":"natural-food-stores"
 }
-var allproducts ={
+var allproducts={
     "الشركات العقارية": {
         "info": "ملفات اكسل فيها بيانات 20,000 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عند عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.  ",
         "feature2": "9,000 عنوان بريد الكتروني",
@@ -1350,7 +1370,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
         "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-شركات-عقارية.xlsx",
         "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1032665869?h=afbf7d7ebb&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665869?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "منصة ايجار والهيئة العامة للعقار"
@@ -1368,13 +1388,13 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
         "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-مراكز-العناية.xlsx",
         "family": "الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665904?h=c830aaa600&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
     },
     "الجمعيات": {
-        "info": "ملف اكسل خاص بالجمعيات السعودية فيه اكثر من 4,500 جهة اتصال أرقام وايميلات. تفيد أصحاب المشاريع الخيرية والمبادرات الاجتماعية.",
+        "info": "ملف اكسل خاص بالجمعيات السعودية فيه اكثر من 4,500 جهة اتصال أرقام وايميلات. تفيد أصحاب المشاريع الخيرية والمبادرات الاجتماعية. ",
         "feature2": "4,500 عنوان بريد الكتروني",
         "feature1": "4,500 رقم جوال",
         "feature3": "1 ملف إكسل",
@@ -1386,7 +1406,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-الجمعيات.xlsx",
         "samplelink": "",
         "family": "التعليم",
-        "videolink": "https://player.vimeo.com/video/1032637122?h=6537942db1&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637122?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "المركز الوطني للتنمية القطاع الغير الربحي"
@@ -1404,7 +1424,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/E95263962U?off=3hnpdd4p",
         "samplelink": "https://barmga.com/samples/SA-عينة-مطاعم-ومقاهي.xlsx",
         "family": "مطاعم, العقار",
-        "videolink": "https://player.vimeo.com/video/1032665861?h=71c970faa9&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665861?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1415,14 +1435,14 @@ var allproducts ={
         "feature1": "10,000 رقم جوال",
         "feature3": "2 ملفات إكسل",
         "id": "sa-contractors",
-        "gift": "",
-        "originalprice": "99$",
+        "gift": "800 جهة إتصال لشركات ومكاتب التطوير العقاري (إضافة مجانية) ",
+        "originalprice": "",
         "price": "55$",
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
         "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-شركات-مقاولات.xlsx",
         "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1032665892?h=15efed03f2&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665892?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024 - 2022",
         "source": "الهيئة العامة للمقاولين"
@@ -1440,7 +1460,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/O96101973U?off=796oith9",
         "samplelink": "https://barmga.com/samples/SA-عينة-مكاتب-هندسية.xlsx",
         "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1032665882?h=1eea90d3a9&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665882?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "موقع بلدي"
@@ -1458,7 +1478,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
         "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-موردي-مواد-البناء.xlsx",
         "family": "العقار, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032666017?h=0647ae521e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666017?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل والهيئة العامة للمقاولين"
@@ -1476,7 +1496,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Q95256443N?off=8y4mwj5b",
         "samplelink": "https://barmga.com/samples/SA-عينة-مستلزمات-البناء.xlsx",
         "family": "العقار, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032666008?h=7a5d62f560&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666008?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": ""
@@ -1494,7 +1514,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-اعلانات-عقارية-تلجرام.xlsx",
         "samplelink": "",
         "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1032596366?h=f829dacc8a&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596366?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "تلجرام"
@@ -1512,7 +1532,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/S95586549W?off=4m3brdp0",
         "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-فنادق-وشقق.xlsx",
         "family": "العقار, مطاعم",
-        "videolink": "https://player.vimeo.com/video/1032596744?h=3d6d1742ad&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596744?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل ووزارة السياحة"
@@ -1530,13 +1550,31 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/B95283196U?off=82fbl5jw",
         "samplelink": "https://barmga.com/samples/SA-عينة-محلات-حلويات.xlsx",
         "family": "مطاعم",
-        "videolink": "https://player.vimeo.com/video/1032665944?h=5d3ce2c637&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665944?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "خرائط قوقل"
+    },
+    "محلات الأغذية الطبيعية": {
+        "info": "ملف اكسل فيه 570 جهة اتصال لمحلات الأغذية الطبيعية والصحية.",
+        "feature2": "",
+        "feature1": "500 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-natural-food-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "جهات إتصال",
+        "productlink": "https://barmga.com/samples/SA-محلات-الأغذية-الطبيعية.xlsx",
+        "samplelink": "",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1039176466?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
     },
     "محلات البقالة والسوبرماركت": {
-        "info": "ملف اكسل فيه 12,000 ألف جهة اتصال مختلفة لمحلات البقالة والسوبرماركت في السعودية، مجمعة من خرائط قوقل. تفيد في تسويق المنتجات الغذائية ومواد التنظيف جملة.",
+        "info": "ملف اكسل فيه 12,000 ألف جهة اتصال لمحلات السوبر ماركت والبقالة السعودية، من خرائط قوقل. تفيد في تسويق المنتجات الغذائية ومواد التنظيف جملة.",
         "feature2": "",
         "feature1": "10,000 رقم جوال",
         "feature3": "1 ملف إكسل",
@@ -1548,7 +1586,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G95282853O?off=alj9iswj",
         "samplelink": "https://barmga.com/samples/SA-عينة-محلات-البقالة-والسوبرماركت.xlsx",
         "family": "مطاعم, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032637133?h=510fb3d1fd&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637133?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1566,7 +1604,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96104958Q?off=2vh5b325",
         "samplelink": "https://barmga.com/samples/SA-عينة-شركات-النقل.xlsx",
         "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665900?h=777d5894d8&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "هيئة النقل"
@@ -1584,7 +1622,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/F96158478S?off=tpd5sz8g",
         "samplelink": "https://barmga.com/samples/5-Sheets-SA-عنية-مصانع.xlsx",
         "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665971?h=85c8229f58&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665971?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024 -2023 - 2022",
         "source": "المركز الوطني للمعلومات الصناعية ومواقع حكومية اخرى"
@@ -1602,7 +1640,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
         "samplelink": "https://barmga.com/samples/SA-عينة-مؤسسات-طبية.xlsx",
         "family": "الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665846?h=fabc4c134f&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1620,7 +1658,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
         "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-التجميل.xlsx",
         "family": "الصحة, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665964?h=8c43b1cf7c&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": ""
@@ -1638,7 +1676,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Y95514188G?off=0ifgzw2c",
         "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-الصيدلية.xlsx",
         "family": "الصحة, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665987?h=d46f11be19&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665987?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": ""
@@ -1656,7 +1694,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/C96102034J?off=xv54d8dv",
         "samplelink": "https://barmga.com/samples/SA-عينة-معروف-تجارة-الكترونية.xlsx",
         "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665917?h=d87bd826ef&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "معروف"
@@ -1674,7 +1712,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96102167I?off=m6r6z1lc",
         "samplelink": "https://barmga.com/samples/SA-عينة-محلات-الكترونيات.xlsx",
         "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665934?h=f19fef2b7e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665934?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1692,7 +1730,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/J96042526A?off=6qe5nd2n",
         "samplelink": "https://barmga.com/samples/SA-عينة-محلات-ملابس.xlsx",
         "family": "تجارة, الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665953?h=c2b02e216a&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665953?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1710,7 +1748,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-محلات-الخياطة-والأقمشة.xlsx",
         "samplelink": "",
         "family": "تجارة, الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665923?h=7e9a6245ac&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665923?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1728,10 +1766,46 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
         "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-العطور.xlsx",
         "family": "تجارة, الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665997?h=a46ea27786&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": ""
+    },
+    "متاجر العطور": {
+        "info": "ملف اكسل فيه أكثر من  7,000آلاف جهة اتصال لمحلات ومتاجر بيع العطور في السعودية. تفيد تسويق منتجات العود والعطور بالجملة.",
+        "feature2": "4,600 عنوان بريد الكتروني",
+        "feature1": "6500 رقم جوال",
+        "feature3": "2 ملفات إكسل",
+        "id": "sa-perfumes-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/K97076880J?off=h4naxx79",
+        "samplelink": "https://barmga.com/samples/SA-عينة-متاجر-العطور.xlsx",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1034893155?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "خرائط قوقل وموقع معروف"
+    },
+    "محلات الزهور والمشاتل": {
+        "info": "ملف اكسل فيه 3,400 جهة اتصال لمحلات بيع المشاتل والزهور من خرائط قوقل.",
+        "feature2": "",
+        "feature1": "3,300 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-flowers-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "جهات إتصال",
+        "productlink": "https://barmga.com/samples/SA-محلات-زهور-ومشاتل.xlsx",
+        "samplelink": "",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "خرائط قوقل"
     },
     "منتجات السوبرماركت": {
         "info": "ملف اكسل يحتوي على 7,900 سطر لبيانات منتجات السوبرماركت (منتجات غذائية ومستلزمات التنظيف) مستخرجة من موقع كارفور السعودية. جميع المنتجات مرفقة بصور وتشمل تفاصيل مثل الاسم والسعر والفئة والباركود والوصف إن توفر.",
@@ -1746,7 +1820,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G96523641C?off=bcs926nm",
         "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-السوبرماركت.xlsx",
         "family": "تجارة, مطاعم",
-        "videolink": "https://player.vimeo.com/video/1032665980?h=a1e0f3978e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665980?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1764,7 +1838,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/V96104436J?off=k4xo07s4",
         "samplelink": "https://barmga.com/samples/4-Sheets-SA-عينة-مدارس-وروضات.xlsx",
         "family": "التعليم",
-        "videolink": "https://player.vimeo.com/video/1032665836?h=baec0778a0&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665836?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024 - 2023",
         "source": "خرائط قوقل ودلائل مدارس"
@@ -1782,12 +1856,32 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-اعلانات-وظائف-تلجرام.xlsx",
         "samplelink": "",
         "family": "التعليم",
-        "videolink": "https://player.vimeo.com/video/1032585423?h=bef11403cd&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "تلجرام"
+    },
+    "شركات التنظيف والمغاسل": {
+        "info": "ملف اكسل فيه  7,000 جهة اتصال لشركات التنظيف ومغاسل الملابس والسيارات في السعودية. تفيد تسويق منتجات التنظيف بالجملة.",
+        "feature2": "",
+        "feature1": "6700 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-cleaning-companies",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/P97077043Q?off=diem6u1p",
+        "samplelink": "https://barmga.com/samples/SA-عينة-المغاسل-وشركات-التنظيف.xlsx",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1034893167?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "خرائط قوقل"
     }
 }
+
+
 
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
@@ -1993,7 +2087,7 @@ function selectedproduct(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href =  product.productlink;
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href = product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -2027,7 +2121,7 @@ function selectedproduct2(curr) {
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
 
     document.querySelector('#productlink').href = product.productlink;
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href =  product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);

@@ -28,8 +28,17 @@
     "perfume-products": "منتجات-العطور",
     "supermarket-products": "منتجات-السوبرماركت",
     "schools": "المدارس-ورياض-الأطفال",
-    "job-advertisements": "اعلانات-واظائف"
+    "job-advertisements": "اعلانات-واظائف",
+    "cleaning-services-companies": "شركات-التنظيف-والمغاسل",
+    "perfumes-stores": "متاجر-العطور",
+    "flowers-and-plants-shops": "محلات-الزهور-والمشاتل",
+    "natural-food-stores": "محلات-الأغذية-الطبيعية",
+    "cleaning-services-companies": "شركات-التنظيف-والمغاسل",
+    "perfumes-stores": "متاجر-العطور",
+    "flowers-and-plants-shops": "محلات-الزهور-والمشاتل",
+    "natural-food-stores": "محلات-الأغذية-الطبيعية"
 }
+
     function updateURLtext() {
     if (!(window.location.href.includes('product='))){return window.location.href.replace('barmga.com/','barmga.com/ar')}
     if(window.location.href.includes('product=sa-')){return}
@@ -1204,6 +1213,11 @@ function validateEmail(email) {
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
 
 
     <!-- Template Javascript -->
@@ -1233,6 +1247,14 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Transport Companies',3);
         dicta=movelPos(dicta,'Factories',4);
         dicta=movelPos(dicta,'Construction Companies',5);
+    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Natural Food Stores',1);
+        dicta=movelPos(dicta,'Grocery Stores and Supermarkets',2);
+        dicta=movelPos(dicta,'Restaurants and Cafes',3);
+        dicta=movelPos(dicta,'Bakeries and Cake Shops',4);
+        dicta=movelPos(dicta,'Hotel and Appartments',5);
+        dicta=movelPos(dicta,'Transport Companies',6);
+        dicta=movelPos(dicta,'Factories',7);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
@@ -1350,7 +1372,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Realestate-Companies.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665869?h=afbf7d7ebb&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665869?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Ejar & Rega (Authorities)"
@@ -1368,7 +1390,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Self-Care-Centers.xlsx",
         "family": "health",
-        "videolink": "https://player.vimeo.com/video/1032665904?h=c830aaa600&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1376,7 +1398,7 @@ var allproducts ={
     "Organisations": {
         "info": "Excel file containing over 4,500 contact details for organisations located in Saudi Arabia. Useful for social activities & projects.",
         "feature2": "4,500 Email Addresses",
-        "feature1": "4,500 Mobile Numbers",
+        "feature1": "4500 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-organisations",
         "gift": "",
@@ -1386,7 +1408,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Organisations.xlsx",
         "samplelink": "",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032637122?h=6537942db1&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637122?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "NCNP (Authority)"
@@ -1404,25 +1426,25 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/E95263962U?off=3hnpdd4p",
         "samplelink": "https://barmga.com/samples/Sample-SA-Retaurents-and-cafes.xlsx",
         "family": "food",
-        "videolink": "https://player.vimeo.com/video/1032665861?h=71c970faa9&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665861?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
     },
     "Construction Companies": {
-        "info": "Excel files containing data for over 18,000 contact details for contracting and real estate development companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically. All information were collected from Muqawil (authority) and GoogleMaps.",
+        "info": "Excel files containing data for over 18,000 contact details for contracting and real estate development companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
         "feature2": "18,000 Email Addresses",
         "feature1": "10,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-contractors",
-        "gift": "",
-        "originalprice": "99$",
+        "gift": "800 Records for real estate development companies (Free)",
+        "originalprice": "",
         "price": "55$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Contractors.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665892?h=15efed03f2&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665892?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2022",
         "source": "Muqawil (Authority)"
@@ -1440,7 +1462,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/O96101973U?off=796oith9",
         "samplelink": "https://barmga.com/samples/Sample-SA-Engineering-Offices.xlsx",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032665882?h=1eea90d3a9&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665882?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Balady (Authority)"
@@ -1458,7 +1480,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
         "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Suppliers.xlsx",
         "family": "realestate, commerce",
-        "videolink": "https://player.vimeo.com/video/1032666017?h=0647ae521e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666017?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
         "source": "Muqawil (Authority), Google Maps"
@@ -1476,7 +1498,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Q95256443N?off=8y4mwj5b",
         "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Products.xlsx",
         "family": "realestate, commerce",
-        "videolink": "https://player.vimeo.com/video/1032666008?h=7a5d62f560&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032666008?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1494,7 +1516,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Telegram-Realestate-Ads.xlsx",
         "samplelink": "",
         "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1032596366?h=f829dacc8a&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596366?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Telegram Groups & Channels"
@@ -1512,7 +1534,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/S95586549W?off=4m3brdp0",
         "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Hotels.xlsx",
         "family": "realestate, food",
-        "videolink": "https://player.vimeo.com/video/1032596744?h=3d6d1742ad&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032596744?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps, Tourism Ministry"
@@ -1530,7 +1552,25 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/B95283196U?off=82fbl5jw",
         "samplelink": "https://barmga.com/samples/Sample-SA-Cakes-Shops.xlsx",
         "family": "food",
-        "videolink": "https://player.vimeo.com/video/1032665944?h=5d3ce2c637&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665944?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps"
+    },
+    "Natural Food Stores": {
+        "info": "Excel file containing 570 contact details for natural food stores.",
+        "feature2": "",
+        "feature1": "500 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-natural-food-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Natural-Food-Stores.xlsx",
+        "samplelink": "",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1039176466?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1548,7 +1588,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G95282853O?off=alj9iswj",
         "samplelink": "https://barmga.com/samples/Sample-SA-Markets.xlsx",
         "family": "food, commerce",
-        "videolink": "https://player.vimeo.com/video/1032637133?h=510fb3d1fd&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032637133?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1566,7 +1606,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96104958Q?off=2vh5b325",
         "samplelink": "https://barmga.com/samples/Sample-SA-Transport.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665900?h=777d5894d8&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "TGA (Authority)"
@@ -1584,7 +1624,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/F96158478S?off=tpd5sz8g",
         "samplelink": "https://barmga.com/samples/5-Sheets-Sample-SA-Factories.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665971?h=85c8229f58&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665971?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2022 -2023 -2024",
         "source": "Authorities & Governmental Websites"
@@ -1602,7 +1642,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
         "samplelink": "https://barmga.com/samples/Sample-SA-Health-&-Medical-Companies.xlsx",
         "family": "health",
-        "videolink": "https://player.vimeo.com/video/1032665846?h=fabc4c134f&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1620,7 +1660,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
         "samplelink": "https://barmga.com/samples/SA-Sample-Makeup-Products.xlsx",
         "family": "health, commerce",
-        "videolink": "https://player.vimeo.com/video/1032665964?h=8c43b1cf7c&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1638,7 +1678,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/Y95514188G?off=0ifgzw2c",
         "samplelink": "https://barmga.com/samples/SA-Sample-Pharmacy-Products.xlsx",
         "family": "health, commerce",
-        "videolink": "https://player.vimeo.com/video/1032665987?h=d46f11be19&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665987?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1656,7 +1696,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/C96102034J?off=xv54d8dv",
         "samplelink": "https://barmga.com/samples/Sample-SA-Maroof-Ecommerce.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665917?h=d87bd826ef&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Maroof"
@@ -1674,7 +1714,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A96102167I?off=m6r6z1lc",
         "samplelink": "https://barmga.com/samples/Sample-SA-Electronics.xlsx",
         "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665934?h=f19fef2b7e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665934?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1692,7 +1732,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/J96042526A?off=6qe5nd2n",
         "samplelink": "https://barmga.com/samples/Sample-SA-Clothes-Stores.xlsx",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665953?h=c2b02e216a&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665953?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1710,7 +1750,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Fabric-Tailoring-Shops.xlsx",
         "samplelink": "",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665923?h=7e9a6245ac&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665923?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Google Maps"
@@ -1728,10 +1768,46 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
         "samplelink": "https://barmga.com/samples/SA-Sample-Perfume-Products.xlsx",
         "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665997?h=a46ea27786&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
+    },
+    "Perfumes Stores": {
+        "info": "Excel file containing over 7,000 contact details for perfumes stores, in Saudi Arabia. This data is useful for wholesale perfumes suppliers.",
+        "feature2": "4,600 Email Addresses",
+        "feature1": "6,500 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-perfumes-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/K97076880J?off=h4naxx79",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Perfumes-Stores.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893155?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps & Maroof"
+    },
+    "Flowers and Plants Shops": {
+        "info": "Excel file containing 3,400 contact details for flowers & plants stores in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "3,300 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-flowers-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Plants-and-Flowers-Shops.xlsx",
+        "samplelink": "",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps"
     },
     "Supermarket Products": {
         "info": "Excel file containing 7,900 supermarket products (food & cleaning products) extracted from Saudi Arabia Carrefour website. All products are accompanied by images and include details such as name, price, category, barcode and description, if available.  Upload products to an online store easily and quickly from a ready-made Excel file.",
@@ -1746,7 +1822,7 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/G96523641C?off=bcs926nm",
         "samplelink": "https://barmga.com/samples/Sample-SA-Supermarket-Products.xlsx",
         "family": "commerce, food",
-        "videolink": "https://player.vimeo.com/video/1032665980?h=a1e0f3978e&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665980?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": ""
@@ -1764,7 +1840,7 @@ var allproducts ={
         "productlink": "https://barmga.com/samples/SA-Telegram-Job-Ads.xlsx",
         "samplelink": "",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032585423?h=bef11403cd&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
         "source": "Telegram Groups & Channels"
@@ -1782,10 +1858,28 @@ var allproducts ={
         "productlink": "https://pay.hotmart.com/V96104436J?off=k4xo07s4",
         "samplelink": "https://barmga.com/samples/4-Sheets-Sample-SA-Schools.xlsx",
         "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032665836?h=baec0778a0&badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665836?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
         "source": "Google Maps & Other Schools Directories"
+    },
+    "Cleaning Services companies": {
+        "info": "Excel file containing over 7,000 contact details for  companies proving car wash, laundary and other cleaning services, in Saudi Arabia. This data is useful for contracting companies to advertise wholesale cleaning materials.",
+        "feature2": "",
+        "feature1": "6700 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-cleaning-companies",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/P97077043Q?off=diem6u1p",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Cleaning-Services-Companies.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893167?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps"
     }
 }
 
@@ -1948,7 +2042,7 @@ function selectedproduct(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href =  product.productlink;
-    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href = product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -1981,7 +2075,7 @@ function selectedproduct2(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href = product.productlink;
-    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href =  product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -2077,14 +2171,10 @@ menuItems.forEach(function(item) {
         if (button){button.click()};
     });
 })
-
+if(window.location.href.includes('&tools')||window.location.href.includes('?tools')){showonly('all')}
 </script>
 
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/isotope/isotope.pkgd.min.js"></script>
-<script src="lib/lightbox/js/lightbox.min.js"></script>
+
     
 </body>
 
