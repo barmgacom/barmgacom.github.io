@@ -209,5 +209,3 @@ async function getIPAddress() {
     }
 }
 getIPAddress()
-    // Initiate the wowjs
-new WOW().init();
