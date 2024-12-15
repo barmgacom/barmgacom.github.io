@@ -1380,7 +1380,7 @@ var allproducts ={
     "Beauty and Sports Centers": {
         "info": "Excel files containing over 17,000 contact details, most of selected companies are beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
         "feature2": "",
-        "feature1": "16,000 Mobile Numbers",
+        "feature1": "15,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-beauty-sallons",
         "gift": "",
@@ -1432,7 +1432,7 @@ var allproducts ={
         "source": "Google Maps"
     },
     "Construction Companies": {
-        "info": "Excel files containing data for over 18,000 contact details for contracting and real estate development companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
+        "info": "Excel files containing data for over 18,000 contact details for construction companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
         "feature2": "18,000 Email Addresses",
         "feature1": "10,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
@@ -1569,7 +1569,7 @@ var allproducts ={
         "category": "B2B Listing",
         "productlink": "https://barmga.com/samples/SA-Natural-Food-Stores.xlsx",
         "samplelink": "",
-        "family": "commerce",
+        "family": "food",
         "videolink": "https://player.vimeo.com/video/1039176466?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
@@ -1883,6 +1883,7 @@ var allproducts ={
     }
 }
 
+
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
         <div class="service-iconx flex-shrink-0">
@@ -2017,13 +2018,19 @@ var catdict={
     "تجارة": "commerce",
     "التعليم": "education"
 }
-
+function findfree(){
+    var catme=""
+    if(window.location.href.includes('category=')){ catme=decodeURIComponent(window.location.href).split('category=')[1].split('&')[0].split('#')[0];}
+    if (!catme){return "Organisations"}
+    for (let ke of Object.keys(allproducts)){if(allproducts[ke]['price']=="Free" && allproducts[ke]['family'].includes(catdict[catme])){return ke}}
+    return 'Organisations'
+}
 if(window.location.href.includes('category=')){var cat=window.location.href.split('category=')[1].split('&')[0].split('#')[0];
     var specialx=[]
     for (let prod of Object.keys(allproducts)){
         if (allproducts[prod].family.includes(catdict[cat])){specialx.push(prod)}
     }
-    if (specialx){allproducts=movel(rearrangeDict(allproducts,specialx),'Organisations')}
+    if (specialx){allproducts=movel(rearrangeDict(allproducts,specialx),findfree())}
 }
 
 propagateproducts()
