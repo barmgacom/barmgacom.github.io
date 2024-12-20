@@ -1690,7 +1690,7 @@ var allproducts ={
         "feature3": "1 Sheet | Excel File",
         "id": "sa-ecommerce",
         "gift": "",
-        "originalprice": "99$",
+        "originalprice": "",
         "price": "89$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/C96102034J?off=xv54d8dv",
@@ -2123,6 +2123,7 @@ if (window.location.href.includes('product=')){
 if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
 }
+if(window.location.href.includes('&h=1')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 function showpaymentnote(name){
     document.querySelector('.offlinepayment').style.display='block';
     document.querySelector('#your-subject-input').value="Product: "+name
@@ -2179,6 +2180,7 @@ menuItems.forEach(function(item) {
     });
 })
 if(window.location.href.includes('&tools')||window.location.href.includes('?tools')){showonly('all')}
+
 </script>
 
 

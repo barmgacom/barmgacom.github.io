@@ -1254,9 +1254,9 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الفنادق والشقق',7);
     }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
-        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
+        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',4);
         dicta=movelPos(dicta,'المطاعم والمقاهي',3);
-        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',4);
+        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',2);
         dicta=movelPos(dicta,'الفنادق والشقق',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'المصانع',7);
@@ -1688,7 +1688,7 @@ var allproducts={
         "feature3": "1 ملف إكسل",
         "id": "sa-ecommerce",
         "gift": "",
-        "originalprice": "99$",
+        "originalprice": "",
         "price": "89$",
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/C96102034J?off=xv54d8dv",
@@ -2170,6 +2170,7 @@ if (window.location.href.includes('product=')){
 if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
 }
+if(window.location.href.includes('&h=1')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 
 
 function subdow(){
