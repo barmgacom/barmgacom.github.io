@@ -1358,13 +1358,13 @@ var allnames={
 }
 var allproducts={
     "الشركات العقارية": {
-        "info": "ملفات اكسل فيها بيانات 20,000 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عند عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.  ",
+        "info": "ملفات اكسل فيها بيانات 20,000 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عندك عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.  ",
         "feature2": "9,000 عنوان بريد الكتروني",
         "feature1": "20,000 رقم جوال",
         "feature3": "2 ملفات إكسل",
         "id": "sa-realestate-brokers",
         "gift": "",
-        "originalprice": "89$",
+        "originalprice": "99$",
         "price": "55$",
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
@@ -2193,7 +2193,7 @@ downloadButton.addEventListener('click', function (event) {
     event.preventDefault(); // Prevent form submission
     
     // Validate email
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
     if (!validateEmail(email)) {
         emailInput.classList.add('is-invalid');
         return;

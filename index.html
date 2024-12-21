@@ -1022,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); // Prevent form submission
         
         // Validate email
-        const email = emailInput.value;
+        const email = emailInput.value.trim();
         if (!validateEmail(email)) {
             emailInput.classList.add('is-invalid');
             return;
@@ -1366,7 +1366,7 @@ var allproducts ={
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-realestate-brokers",
         "gift": "",
-        "originalprice": "89$",
+        "originalprice": "99$",
         "price": "55$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
