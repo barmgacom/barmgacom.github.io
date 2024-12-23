@@ -1260,6 +1260,15 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الفنادق والشقق',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'المصانع',7);
+    }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
+        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
+        dicta=movelPos(dicta,'متاجر الكترونية',3);
+        dicta=movelPos(dicta,'مصانع',4);
+        dicta=movelPos(dicta,'محلات الزهور والمشاتل',5);
+        dicta=movelPos(dicta,'محلات الالكترونيات',6);
+        dicta=movelPos(dicta,'شركات المقاولات',7);
+        dicta=movelPos(dicta,'موردي مواد البناء',7);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
@@ -2087,6 +2096,7 @@ function selectedproduct(curr) {
     document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
     document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
     document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
+    document.querySelector('div:has(>#selectedprodprice)').style.display="block";
     if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
     document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2"  style="padding-left: 7px;"></i>'+product.feature1;
     document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2"  style="padding-left: 7px;"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3;
@@ -2120,6 +2130,7 @@ function selectedproduct2(curr) {
     document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
     document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
     document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
+    document.querySelector('div:has(>#selectedprodprice)').style.display="block";
     if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
     document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature1;
     document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3;
@@ -2162,10 +2173,12 @@ function selectedproduct2(curr) {
     propagateproducts()}else{document.querySelector('.downel').setAttribute('style',"display: block;")}
     
 }
+var elix=false
 if (window.location.href.includes('product=')){
     let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
-    selectedproduct2(productname)
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true}else{productname=productname.replace(/-/g,' ');}
+    selectedproduct2(productname);
+    //if (elix){document.querySelector('div:has(>#selectedprodprice)').style.display="none";}
 }
 if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
