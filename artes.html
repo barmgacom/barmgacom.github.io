@@ -1221,11 +1221,11 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     <script src="js/main.js"></script>
 <script>
 var browserx="https://"
-function isTelegramBrowser() {return navigator.userAgent.toLowerCase().includes('android') && (window.location.href.includes('?tg')||window.location.href.includes('&tg'))}//const userAgent = document.referrer; return userAgent.toLowerCase().includes('telegram'); }
+function isTelegramBrowser() {return navigator.userAgent.toLowerCase().includes('android') || (window.location.href.includes('?tg')||window.location.href.includes('&tg'))}//const userAgent = document.referrer; return userAgent.toLowerCase().includes('telegram'); }
 if(isTelegramBrowser()){browserx="googlechrome://"}
 function openInExternalBrowser(event, element) {if (browserx === "https://") { return;} event.preventDefault();
      // Prevent the default link behavior 
-     window.open(element.href.replace('googlechrome://',"https://"), '_blank'); }
+     window.open(element.href.replace('googlechrome://pay.',"https://go."), '_blank'); }
      document.querySelector('#productlink').addEventListener('click', function(event) { openInExternalBrowser(event, this); });
 function suggestMe(productname,dicta){
     if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
