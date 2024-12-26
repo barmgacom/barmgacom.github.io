@@ -1221,9 +1221,9 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     <script src="js/main.js"></script>
 <script>
 var browserx="https://"
-function isTelegramBrowser() { const userAgent = navigator.vendor; return userAgent.toLowerCase().includes('telegram'); }
+function isTelegramBrowser() { const userAgent = document.referrer; return userAgent.toLowerCase().includes('telegram'); }
 if(isTelegramBrowser()){browserx="googlechrome://"}
-document.querySelector('h1').textContent=navigator.vendor
+document.querySelector('h1').textContent=document.referrer
 function suggestMe(productname,dicta){
     if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',1);
