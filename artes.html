@@ -557,7 +557,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                             <img src="images/gift.webp" alt="Saudi Arabian Flag" width="30" height="30" style="margin-left:10px"><span style="margin-top:6px" id="giftitem"></span>
                         </div>
                         <div class="d-flex align-items-center mt-4">
-                            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3" style="font-size: 90%;"  href="" id="productlink" target="_blank"><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن</a>
+                            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3" style="font-size: 90%;"  href="" id="productlink" ><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن</a>
                             
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')}"  href="" id="samplelink" target="_blank"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px;">&nbsp;عينة مجانية</a>
 
@@ -1220,13 +1220,9 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 <script>
-var browserx="https://"
+var browserx="https://pay."
 function isTelegramBrowser() {return navigator.userAgent.toLowerCase().includes('android') || (window.location.href.includes('?tg')||window.location.href.includes('&tg'))}//const userAgent = document.referrer; return userAgent.toLowerCase().includes('telegram'); }
-if(isTelegramBrowser()){browserx="googlechrome://"}
-function openInExternalBrowser(event, element) {if (browserx === "https://") { return;} event.preventDefault();
-     // Prevent the default link behavior 
-     window.open(element.href.replace('googlechrome://pay.',"https://go."), '_blank'); }
-     document.querySelector('#productlink').addEventListener('click', function(event) { openInExternalBrowser(event, this); });
+if(isTelegramBrowser()){browserx="https://go."}
 function suggestMe(productname,dicta){
     if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',1);
@@ -1961,7 +1957,7 @@ var format2="الصيغة: ملف إكسل مع مجلد صور";
 var source1="المصادر: معلومات مجمعة من " + allproducts[name].source;
 var source2="المصادر: جميع بيانات المنتجات مجمعة من متاجر سعودية.";
 var updates="سنة التحديث: " + allproducts[name].date;
-var delivered='يتم الاستلام على: عنوان البريد الإلكتروني المستخدم في <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.').replace('https://',browserx)+'" target="_blank" style="text-decoration: underline;">بوابة الدفع</a>. إذا كنت تفضل الدفع غير الإلكتروني، يرجى <a href="#contact" onclick="showpaymentnote(\''+name+'\')" style="text-decoration: underline;">الاتصال بنا.</a>';
+var delivered='يتم الاستلام على: عنوان البريد الإلكتروني المستخدم في <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.').replace('https://pay.',browserx)+'" target="_blank" style="text-decoration: underline;">بوابة الدفع</a>. إذا كنت تفضل الدفع غير الإلكتروني، يرجى <a href="#contact" onclick="showpaymentnote(\''+name+'\')" style="text-decoration: underline;">الاتصال بنا.</a>';
 var verification='شركاؤنا: هذا المنتج متاح على <a  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer; text-decoration: underline;" target="_blank">منصة هوت مارت</a>.';
 var html='<p class="hiddenx"><strong>xxx</strong></p>';
 
@@ -2109,8 +2105,8 @@ function selectedproduct(curr) {
     document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2"  style="padding-left: 7px;"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3;
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
-    document.querySelector('#productlink').href =  product.productlink.replace('https://',browserx);
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink.replace('https://',browserx);document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    document.querySelector('#productlink').href =  product.productlink.replace('https://pay.',browserx);
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink.replace('https://pay.',browserx);document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href = product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -2144,8 +2140,8 @@ function selectedproduct2(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
 
-    document.querySelector('#productlink').href = product.productlink.replace('https://',browserx);
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink.replace('https://',browserx);document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    document.querySelector('#productlink').href = product.productlink.replace('https://pay.',browserx);
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink.replace('https://pay.',browserx);document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href =  product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
