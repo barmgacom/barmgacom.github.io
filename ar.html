@@ -360,7 +360,10 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
   padding-top: 20px; /* Adjust the value as needed */
 
 }
+#filemodal .modal-body.scrollable-body {
+  overflow-x: scroll;
 
+}
 
 .modal-header {
   position: sticky;
@@ -559,7 +562,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                         <div class="d-flex align-items-center mt-4">
                             <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3" style="font-size: 90%;"  href="" id="productlink" ><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن</a>
                             
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')}"  href="" id="samplelink" ><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px;">&nbsp;عينة مجانية</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href)"  href="" id="samplelink" ><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px;">&nbsp;عينة مجانية</a>
 
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3" style="font-size: 80%;"> <i class="fa fa-reply"></i></a>
 
@@ -1601,7 +1604,7 @@ var allproducts={
         "source": "خرائط قوقل"
     },
     "شركات النقل": {
-        "info": "ملف اكسل فيه اكثر من 9,000 آلاف جهة اتصال للشركات المرخصة من هيئة النقل. مناسبة لتسويق المخازن، أجهزة الاستشعار والتتبع وكميرات المراقبة أوتوريد معدات النقل.",
+        "info": "ملف اكسل فيه اكثر من 9,000 آلاف جهة اتصال للشركات المرخصة من هيئة النقل. مناسبة لتأجير الاحواش المرخصة أوتوريد معدات النقل.",
         "feature2": "9,000 عنوان بريد الكتروني",
         "feature1": "8,000 رقم جوال",
         "feature3": "1 ملف إكسل",
@@ -1610,7 +1613,7 @@ var allproducts={
         "originalprice": "",
         "price": "45$",
         "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/H97379656N?off=odun8z7z",
+        "productlink": "https://pay.hotmart.com/A96104958Q?off=2vh5b325",
         "samplelink": "https://barmga.com/samples/SA-عينة-شركات-النقل.xlsx",
         "family": "تجارة",
         "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
@@ -1761,6 +1764,24 @@ var allproducts={
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
+    },
+    "منتجات العطور": {
+        "info": "ملف اكسل فيه 1,700 منتج للعطور المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر. ",
+        "feature2": "",
+        "feature1": "1,700 سطر",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-perfumes",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "بضائع",
+        "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
+        "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-العطور.xlsx",
+        "family": "تجارة, الصحة",
+        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": ""
     },
     "متاجر العطور": {
         "info": "ملف اكسل فيه أكثر من  7,000آلاف جهة اتصال لمحلات ومتاجر بيع العطور في السعودية. تفيد تسويق منتجات العود والعطور بالجملة.",
@@ -2231,11 +2252,219 @@ menuItems.forEach(function(item) {
         if (button){button.click()};
     });
 })
+function moveright(){
+    const modalBody = document.querySelector('#filemodal .modal-body'); modalBody.scrollLeft += 100;
+}
 </script>  
 
     
 
+<div class="modal fade" id="filemodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;" style="overflow-x: scroll !important;">
+    <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+      <div class="modal-content">
+        <div class="modal-header fixed-top">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="dowsampleclose"></button>
+          <div style="flex-grow: 1;"></div>
+          <a class="btn btn-outline-primary" href="" onclick="document.querySelector('#dowsampleclose').click()"  id="dowsample" ><i class="fa fa-download"></i> حمل العينة</a>
+        </div>
+        <div class="modal-body scrollable-body text-center mt-2" style="overflow-x: scroll !important;">
+          <!-- Excel preview will be inserted here -->
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+          <div style="flex-grow: 1;"></div>
+          <a  class="btn btn-outline-primary" onclick="moveright()"><i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+  /* Target the specific element you want to zoom out */
+/* Target the specific table you want to zoom out */
+/* Target the specific table you want to zoom out */
+/* Target the specific table you want to zoom out */
+.modal-body .zoom-out {
+    transform: scale(0.6); /* Scale down to 50% */
+    transform-origin: top left; /* Set the origin point for the transformation */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+    margin-right: -200%;
+    margin-bottom: -110%;
+}
 
+
+
+
+  .custom-scroll-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+    background-color: #fff; /* Optional: To match the background */
+    z-index: 1050; /* Ensure it stays above other elements */
+    padding: 5px 0; /* Optional: Add padding if needed */
+    margin-bottom: -10px;
+  }
+  
+  /* Scroll buttons */
+  .scroll-button {
+    cursor: pointer;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  /* Scroll track */
+  .scroll-track {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    position: relative;
+    margin: 0 5px;
+  }
+  
+  /* Scroll thumb */
+  .scroll-thumb {
+    width: 50px; /* Adjust size based on content */
+    height: 100%;
+    background-color: #888;
+    position: absolute;
+  }
+  </style>
+<script>
+
+    function detectDeviceType() {
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        if (/mobile|android|iphone|ipad|tablet|touch|blackberry|bb|playbook/.test(userAgent)) {
+            return true;
+            // Perform actions for mobile devices
+        } else {
+            return false;
+            // Perform actions for desktops/laptops
+        }
+    }
+    function loadXLSXLibrary() { return new Promise((resolve, reject) => { const script = document.createElement('script'); script.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"; script.onload = () => resolve(); script.onerror = () => reject(new Error('Failed to load xlsx library')); document.head.appendChild(script); })};
+    var xlsxloaded=false
+    // Function to fetch and preview the Excel file
+    async function previewExcelFile(url) {
+        try {
+        if (!detectDeviceType()){return}else if(!xlsxloaded){await loadXLSXLibrary();xlsxloaded=true}
+        document.querySelector('#dowsample').href=url
+        url = url.replace('.xlsx', "-preview.xlsx")
+        
+            // Fetch the file from the URL
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+
+            // Parse the Excel file
+            const data = new Uint8Array(arrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Get the first sheet
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+
+            // Modify the worksheet cells for display and remove hyperlinks
+            const range = XLSX.utils.decode_range(worksheet['!ref']);
+            const numRows = range.e.r - range.s.r +1
+            
+            for (let R = range.s.r; R <= range.e.r; ++R) {
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    const cell_address = XLSX.utils.encode_cell({ r: R, c: C });
+                    if (worksheet[cell_address]) {
+                        worksheet[cell_address].s = {
+                            alignment: { wrapText: true, vertical: "center", horizontal: "center" },
+                            font: { size: 12 },
+                            border: {
+                                top: { style: "thin", color: { rgb: "D3D3D3" } },
+                                bottom: { style: "thin", color: { rgb: "D3D3D3" } },
+                                left: { style: "thin", color: { rgb: "D3D3D3" } },
+                                right: { style: "thin", color: { rgb: "D3D3D3" } }
+                            }
+                        };
+
+                        // Remove hyperlink by converting it to plain text
+                        if (worksheet[cell_address].l && worksheet[cell_address].l.Target) {
+                            worksheet[cell_address].v = worksheet[cell_address].l.Target;
+                            delete worksheet[cell_address].l;
+                        }
+
+                        const cellValue = worksheet[cell_address].v.toString().replace(/[\r\n]+/g, ' ');
+                        worksheet[cell_address].v = cellValue.length > 13 ? cellValue.substring(0, 13) + "..." : cellValue;
+                    }
+                }
+            }
+
+            // Convert the sheet to HTML
+            const html = XLSX.utils.sheet_to_html(worksheet, {
+                id: "excel-preview",
+                editable: false,
+                header: `
+                    <style>
+                        table { 
+                            border-collapse: collapse; 
+                            width: auto; 
+                            white-space: nowrap; 
+                        }
+                        th, td { 
+                            border: 1px solid lightgray; 
+                            height: 20px; 
+                            overflow: hidden; 
+                            text-overflow: ellipsis; 
+                            white-space: nowrap; 
+                            padding: 5px; 
+                            text-align: center; 
+                            max-width: 150px; /* Adjust based on 13 characters */
+                            min-width: 50px; /* Minimum width for smaller content */
+                        }
+                        th { 
+                            background-color: #f9f9f9; 
+                            font-weight: bold; 
+                        }
+                    </style>
+                `
+            });
+
+            // Insert the HTML into the modal body
+            const modalBody = document.querySelector('#filemodal .modal-body');
+            modalBody.innerHTML = html;
+
+            // Adjust column widths based on content
+            const table = modalBody.querySelector('table');
+            table.classList.add('zoom-out')
+            document.querySelector('.zoom-out').setAttribute('style',"margin-bottom:-"+String(numRows/30*120)+"% !important;")
+            const columns = table.querySelectorAll('th, td');
+            columns.forEach(column => {
+                const content = column.textContent;
+                if (content.length >= 13) {
+                    column.style.width = `${13 * 8}px`; // Approximate width for 13 characters
+                } else {
+                    column.style.width = 'auto'; // Let the content determine the width
+                }
+            });
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('filemodal'));
+            var modalBodyx = document.querySelector('#filemodal .modal-body'); modalBodyx.scrollLeft = 0;
+            console.log( modalBodyx.scrollLeft)
+            modal.show();
+            
+        } catch (error) {
+            document.querySelector('#filemodal .modal-body').innerHTML = '<p>إستخدم جهاز كمبيوتر لمعاينة هذا الملف</p>';
+            const modal = new bootstrap.Modal(document.getElementById('filemodal'));
+            var modalBody = document.querySelector('#filemodal .modal-body'); modalBody.scrollRight = 0;
+
+        }
+    }
+</script>
+<script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
+
+
+
+
+  
 </body>
 
 </html>
