@@ -350,10 +350,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Instead of waiting for the load event
     document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'interactive' || document.readyState === 'complete'  || document.querySelector('iframe[src^="https://"]')) {
+        if (document.readyState === 'interactive' || document.readyState === 'complete' || document.querySelector('iframe[src^="https://"]')) {
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
+                if(window.location.href.includes('&sample') && document.querySelector('#samplelink').href.startsWith('https://')){document.querySelector('#samplelink').click()}
             }, 500); // Matches the transition duration
         }
     });
@@ -2382,6 +2383,7 @@ if(window.location.href.includes('&tools')||window.location.href.includes('?tool
 
         }
     }
+
 </script>
 <script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
 
