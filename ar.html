@@ -1249,9 +1249,9 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المصانع',4);
         dicta=movelPos(dicta,'شركات المقاولات',5);
     }else if (['شركات المقاولات','construction companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'شركات النقل',1);
+        dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
         dicta=movelPos(dicta,'موردي مواد البناء',2);
-        dicta=movelPos(dicta,'اعلانات عقارية',3);
+        dicta=movelPos(dicta,'شركات النقل',3);
         dicta=movelPos(dicta,'شركات المقاولات',4);
         dicta=movelPos(dicta,'المصانع',5);
         dicta=movelPos(dicta,'مستلزمات البناء',6);
@@ -1460,6 +1460,23 @@ var allproducts={
         "subtitle": "قاعدة بيانات",
         "date": "2024 - 2022",
         "source": "الهيئة العامة للمقاولين"
+    },    "شركات المعدات الثقيلة": {
+        "info": "ملف اكسل فيه  420 جهة اتصال لشركات المعدات الثقيلة في السعودية. تفيد المقاولين والمسوقين.",
+        "feature2": "",
+        "feature1": "360 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-heavy-equipments",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "جهات إتصال",
+        "productlink": "https://barmga.com/samples/SA-معدات-ثقيلة.xlsx",
+        "samplelink": "",
+        "family": "العقار",
+        "videolink": "https://player.vimeo.com/video/1046555098?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025",
+        "source": "خرائط قوقل"
     },
     "المكاتب الهندسية": {
         "info": "ملف اكسل فيه اكثر من 3,800 جهة اتصال لمكاتب هندسية بالسعودية. تفيد شركات المقاولات للعثور على مكاتب متعاونة لجلب المشاريع.",
@@ -1891,24 +1908,6 @@ var allproducts={
         "videolink": "https://player.vimeo.com/video/1034893167?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
-        "source": "خرائط قوقل"
-    },
-    "شركات المعدات الثقيلة": {
-        "info": "ملف اكسل فيه  420 جهة اتصال لشركات المعدات الثقيلة في السعودية. تفيد المقاولين والمسوقين.",
-        "feature2": "",
-        "feature1": "360 رقم جوال",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-heavy-equipments",
-        "gift": "",
-        "originalprice": "",
-        "price": "مجاني",
-        "category": "جهات إتصال",
-        "productlink": "https://barmga.com/samples/SA-معدات-ثقيلة.xlsx",
-        "samplelink": "",
-        "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1046555098?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2025",
         "source": "خرائط قوقل"
     }
 }
