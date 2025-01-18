@@ -1076,12 +1076,21 @@ function validateEmail(email) {
                 </div>
                 <div class="modal-body scrollable-body text-center  mt-2">
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
-                        <a type="button" class="btn d-flex align-items-center" style="background-color: #b75727; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | Gmail Sender
+                        </a>
+                    </div>
+                    <p class="emailx">Automatically send individual messages to bulk email addresses using your Gmail account. This tool works with the Microsoft Edge browser on a computer.</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>                    
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
                             <i class="fa fa-mobile"></i>&nbsp;&nbsp;Email Bulk Links Generator
                         </a>
                     </div>
                     <p class="emailx">Turn Email addresses to links and send messages easily from Mobile browser & Gmail mobile app in few clicks!</p>
-                    <img src="img/click.webp" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                    <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+    
                 </div>
 
                 <div class="modal-footer">
@@ -1775,6 +1784,24 @@ var allproducts ={
         "date": "2024",
         "source": "Google Maps"
     },
+    "Perfume Products": {
+        "info": "Excel file containing 1,700 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
+        "feature2": "",
+        "feature1": "1,700 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-perfumes",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Perfume-Products.xlsx",
+        "family": "commerce, health",
+        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": ""
+    },
     "Perfumes Stores": {
         "info": "Excel file containing over 7,000 contact details for perfumes stores, in Saudi Arabia. This data is useful for wholesale perfumes suppliers.",
         "feature2": "4,600 Email Addresses",
@@ -1885,7 +1912,8 @@ var allproducts ={
     }
 }
 
-
+//REMOVE THIS LINE
+if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['Perfume Products']}
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
         <div class="service-iconx flex-shrink-0">
