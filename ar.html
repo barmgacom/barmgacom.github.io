@@ -1265,12 +1265,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الفنادق والشقق',7);
     }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
-        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',4);
+        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
         dicta=movelPos(dicta,'المطاعم والمقاهي',3);
-        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',2);
-        dicta=movelPos(dicta,'الفنادق والشقق',5);
+        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',4);
+	dicta=movelPos(dicta,'منتجات السوبرماركت',5);
+        dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات النقل',6);
-        dicta=movelPos(dicta,'المصانع',7);
+        dicta=movelPos(dicta,'المصانع',8);
     }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
