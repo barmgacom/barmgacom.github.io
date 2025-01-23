@@ -3,18 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>أداة التسويق على البريد الإلكتروني</title>
+    <title>Barmga Mailer | مرسل البريد الإلكتروني</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="برمحة, تسويق, قواعد بيانات, الشراكة بين الشركات, بيانات منتجات, روبوت, التسويق على الواتساب,  التسويق على البريد الألكتروني, بوتات, تطبيقات">
-
-    <meta name="description" content="تقوم هذه الأداة بتحويل عنواين البريد الإلكتروني إلى روابط إرسال مباشرة مرفق فيها نص الإعلان. ثم كل عملية إرسال لن تحتاج منك إلا كبستي زر.">
-    <meta property="og:title" content="برمجة | أداة التسويق على الإيميل" />
-    <meta property="og:description" content="تقوم هذه الأداة بتحويل عنواين البريد الإلكتروني إلى روابط إرسال مباشرة مرفق فيها نص الإعلان. ثم كل عملية إرسال لن تحتاج منك إلا كبستي زر." />
+    <meta name="keywords" content="مرسل البريد الإلكتروني, Barmga Mailer, إرسال جماعي للبريد الإلكتروني, أداة أتمتة البريد الإلكتروني, إضافة كروم, رسائل البريد الإلكتروني, إرسال رسائل البريد الإلكتروني, تكامل Gmail, تسويق البريد الإلكتروني">
+    <meta name="description" content="Barmga Mailer هي أداة قوية لأتمتة الإرسال على Gmail تساعدك على القيام بحملات مراسلة عبر البريد الإلكتروني. قم بتثبيت إضافة كروم، سجّل الدخول إلى حساب Gmail الخاص بك، وابدأ بإرسال الرسائل بسهولة.">
+    <meta property="og:title" content="Barmga Mailer | مرسل Gmail" />
+    <meta property="og:description" content="اكتشف Barmga Mailer، أداة الإرسال الآلي للبريد الإلكتروني. أرسل الرسائل الجماعية بسهولة، وأتمت تسويقك عبر البريد الإلكتروني باستخدام هذه الإضافة السهلة. جرّبها الآن!" />
     <meta property="og:image" content="images/barmga.png" />
-    <meta property="og:url" content="https://barmga.com/bulk-email-links-ar" />
+    <meta property="og:url" content="https://barmga.com/barmga-mailer-ar" />
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    
     <!-- Favicon -->
-
 
     <link rel="icon" type="image/x-icon" href="images/logo.png" />
 
@@ -22,13 +21,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
     
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
      
     <!-- Customized Bootstrap Stylesheet -->
@@ -129,26 +128,6 @@
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
 }
-#fixed_button {
-  position: fixed;
-  bottom: 65px; /* Space from the bottom */
-  right: 35px; /* Space from the right */
-  width: 45px; /* Slightly larger for a modern look */
-  height: 45px; /* Slightly larger for a modern look */
-  border-radius: 50%; /* Rounded button */
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 100000; /* Ensure it stays above other content */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
-}
-
-#fixed_button:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
-  transform: translateY(-2px); /* Slight lift effect on hover */
-}
-
 .btn-custom {
             max-width: 250px; /* Adjust the width as needed */
             min-width: 150px; /* Adjust the width as needed */
@@ -166,7 +145,10 @@
             border-color: var(--secondary);
         }
     
-           
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    
 
 .container{
   width: 100%;
@@ -187,7 +169,7 @@
           margin-top: 0px;
         }
         .navbar-nav {
-            direction: rtl;
+          direction: rtl;
           font-weight: bold;
         }
         .navbar-nav .nav-link {
@@ -202,7 +184,7 @@
         .navbar-nav .nav-link{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
 }
-          .navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link {
           color: rgb(11, 3, 112) !important;
         }
         
@@ -308,6 +290,7 @@
 color: #452d8c;
 text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 }
+
  /*** Section Title ***/
  .section-title-right::before {
     position: absolute;
@@ -465,6 +448,28 @@ body{ font-family: 'El Messiri', sans-serif !important;}
     .loaderx.fade-out {
         opacity: 0;
     }
+    .hero-header-ar {
+    background:
+        url(../img/bg-dot.png),
+        url(../img/bg-dot.png),
+        url(../img/bg-round.png),
+        url(../img/bg-tree.png),
+        url(../img/bg-bottom-hero.png);
+    background-position:
+        10px 10px,
+        bottom 190px right 10px,
+        left 55% top -1px,
+        left 45% bottom -1px,
+        center bottom -1px;
+    background-repeat: no-repeat;
+    background-size: 
+        auto,
+        auto,
+        auto,
+        auto,
+        100% auto;
+    direction: rtl;
+}
   </style>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -496,8 +501,8 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;"  dir="rtl">
+                            <li class="nav-item"><a class="nav-link me-lg-3"  href="https://barmga.com/ar#products">منتجاتنا</a></li>
+                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
                                     <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
@@ -509,51 +514,40 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 
                         </ul>
                         <ul class="navbar-nav ms-auto" style="display: block;">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" dir="rtl">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="https://barmga.com/bulk-email-links">English</a></li>
+                                    <li><a class="dropdown-item" href="https://barmga.com/wabarmga-whatsapp-sender">English</a></li>
                                     <li><a class="dropdown-item" href="#">العربية</a></li>
                                 </ul>
                             </li>
                         </ul>
-                    
                     </div>
                 </div>
             </nav>
 
-
-            <div class="container-fluid py-5 bg-primary hero-header mb-5"  style="text-align: right;">
+            <div class="container-fluid py-5 bg-primary hero-header mb-5" style="text-align: right;">
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5 py-5">
-                        <div class="col-lg-6 text-center text-lg-end" >
-                            <h1 class="text-white mb-4 animated zoomIn">أداة التسويق على الإيميل</h1>
-                            <p class="text-white pb-3 animated zoomIn" dir="rtl" style="size: 120%;">تقوم هذه الأداة بتحويل عناوين البريد الإلكتروني إلى روابط إرسال مباشرة مرفق فيها نص الإعلان. كل عملية إرسال لن تحتاج منك إلا كبستي زر. الأداة مجانية وهي تيسر التسويق من جهاز الموبايل مباشرة.</p>
-                            <a href="https://barmga.com/ar" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;الرئيسية&nbsp;</a>
-                            <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;&nbsp;أبدأ الآن&nbsp;&nbsp;</a>
+                        <div class="col-lg-6 text-center text-lg-end" style="text-align: right;">
+                            <h2 class="text-white mb-4 animated zoomIn" dir="rtl">Barmga Mailer - مرسل البريد الإلكتروني</h2>
+                            <p class="text-white pb-3 animated zoomIn" dir="rtl" style="font-size: 120%;">أرسل رسائل بريد إلكتروني جماعية بشكل آلي دون تدخل يدوي!<br>Barmga Mailer، إضافة متصفح تقوم بأتمتة إرسال رسائل البريد الإلكتروني الجماعية إلى قائمة محددة.</p>
+                            <a href="#how-it-works" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;شرح الأداة&nbsp;</a>
+                            <a href="https://microsoftedge.microsoft.com/addons/detail/barmga-mailer/cgaiajamjnihmdimpnilibhfjigobcnl" target="_blank" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;حمل الأداة&nbsp;</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            
         </div>
         <!-- Navbar & Hero End -->
 
 
-        <!-- Full Screen Search Start -->
-        <div class="modal fade" id="searchModal" tabindex="-1">
-            <div class="modal-dialog modal-fullscreen" style="padding: 20px; position: absolute !important;">
-                <div class="modal-content" style="background: rgba(29, 29, 39, 0.95);">
-                    <div class="modal-header border-0" style="padding: 20px;">
-                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <!-- Full Screen Search End -->
-        <div class="container-fluid my-5 wow fadeInUp" data-wow-delay="0.1s" id="how-it-works" dir="rtl" >
+        <div class="container-fluid my-2 wow fadeInUp" data-wow-delay="0.1s" id="how-it-works" dir="rtl" >
             <div class="container px-lg-5">
                 <div class="container how-it-works">
                     <div class="row align-items-center">
@@ -561,97 +555,68 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                             <ul class="steps">
                                 <li>
                                     <span class="step-number">1.</span>
-                                    <h3 class="step-title">افتح الأداة</h3>
-                                    <p class="step-description">قم بتحميل تطبيق Gmail على جوالك وتأكد أنه محدث وأنه التطبيق الرئيسي للإرسال بإعدادات جهازك (يستحسن استخدام جهاز اندرويد). ثم افتح متصفح كروم على نفس الجهاز وقم بالدخول الى <a href="#tool" style="text-decoration: underline;">صفحة الأداة</a>.</p>
+                                    <h3 class="step-title">تثبيت الإضافة</h3>
+                                    <p class="step-description">
+                                        قم بتثبيت إضافة <a href="https://microsoftedge.microsoft.com/addons/detail/barmga-mailer/cgaiajamjnihmdimpnilibhfjigobcnl" style="text-decoration: underline;" target="_blank">Barmga Mailer</a> على متصفح <a href="https://www.microsoft.com/edge" target="_blank" style="text-decoration: underline;">Microsoft Edge</a> بجهاز الكمبيوتر.
+                                    </p>
                                 </li>
                                 <li>
                                     <span class="step-number">2.</span>
-                                    <h3 class="step-title">أدخل المعلومات المطلوبة</h3>
-                                    <p class="step-description">قم بإدراج الموضوع ثم نص الرسالة وقائمة الإيميلات المستهدفة في الخانات المخصصة. يمكنك رفع ملف اكسل يحتوى على عناوين بريد إلكتروني بدل لصقها بخانة الإيميلات. بعدها انقر على زر البدء.</p>
+                                    <h3 class="step-title">تسجيل الدخول إلى Gmail</h3>
+                                    <p class="step-description">اذهب إلى <a style="text-decoration: underline;" href="https://mail.google.com" target="_blank">Mail.google.com</a> وسجّل الدخول إلى حساب Gmail الخاص بك.</p>
                                 </li>
                                 <li>
                                     <span class="step-number">3.</span>
-                                    <h3 class="step-title">أنقر على أول عنوان بريد إلكتروني</h3>
-                                    <p class="step-description">من خلال الصفحة التي ظهرت انقر على عنوان الايميل الذي ستبدأ منه الحملة مهما كان ترتيبه. ويمكنك المواصلة من خلال الزر الأزرق أعلى الشاشة. كلما ضغطت عليه سيفتح تطبيق Gmail مرفقا فيه نص الاعلان وكل ما عليك فعله الارسال. </p>
+                                    <h3 class="step-title">افتح الأداة</h3>
+                                    <p class="step-description">انقر على زر Barmga Mailer الذي يظهر في أعلى الصفحة.</p>
                                 </li>
                                 <li>
                                     <span class="step-number">4.</span>
-                                    <h3 class="step-title">واصل</h3>
-                                    <p class="step-description">عد إلى هذه الصفحة وواصل الإرسال بنفس الطريقة الموضحة بالخطوة 3. يمكنك تحميل قوائم عناوين البريد الإلكتروني من خلال مجموعة <a href="https://barmga.com/ar#products" style="text-decoration: underline;">بيانات العملاء المحتملين.</a></p>
+                                    <h3 class="step-title">اكتب الرسالة وأرسلها</h3>
+                                    <p class="step-description">أدخل موضوع البريد الإلكتروني، المحتوى، وقائمة عناوين البريد الإلكتروني المستلمين (مفصولة بفواصل أو مسافات أو أسطر جديدة). انقر على بدء.<br><strong>حافظ على متصفحك نشطًا وتجنب التبديل إلى نوافذ أخرى عند الإرسال.</strong></p>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-5 step-image">
-                            <img src="images/bulk-email-links-barmga-ar.png" alt="مولد روابط الارسال على الايميل">
+                            <img src="images/barmga-mailer.png" alt="Barmga Mailer">
                         </div>
                     </div>
                 </div>
+                
                 </div></div>
-        <!-- start Start -->
-        <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" dir="rtl" style="text-align: right;">
-            <div class="container px-lg-5">
-                <div class="d-flex align-items-center justify-content-center" style="max-height: 250px;">
-                    <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight" style="margin-top: 20px; margin-bottom: 20px;">&nbsp;&nbsp;أبدأ الآن&nbsp;&nbsp;</a>
-                </div>
-            </div>
-        </div>        
-        <!-- start End -->
+
+
+
         <!-- About Start -->
-        <div class="container-fluid py-5" id="tool" dir="rtl"style="text-align:right;">
-            <div class="container mt-5">
-                <div class="card p-4 tool">
-                    <h3 class="card-title">أداة التسويق على الإيميل</h3>
-                    <small>استخدم هذه الأداة على جهازك المحمول مع تطبيق Gmail مثبت ومحدّث ومُعيّن كتطبيق الارسال الرئيسي بإعدادات الجهاز. يُفضّل عدم تجاوز ٣٠٠-٤٠٠ رسالة يومياً لكل حساب Gmail.<br>
-                    يستحسن عدم اتستخدم طبيق مراسلة آخر غير Gmail لضمان وصول الرسالة مع استخدام جهاز اندرويد.</small>
-                    <div class="form-group">
-                        <label for="subject" class="lab">الموضوع</label>
-                        <input class="form-control" id="subject" rows="3"></textarea>
+        <div class="py-4 container-fluid" style="background-color: white; display: none;">
+            <div class="container px-lg-5">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10 videoarea" style="min-height: 350px;">
+                        <iframe allow="fullscreen"  style=" width: 100% !important; height: 100% !important;" id="videolink" src=""></iframe>
+                    
                     </div>
-                    <div class="form-group">
-                        <label for="message" class="lab">الرسالة</label>
-                        <textarea class="form-control" id="message" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumbers" class="lab">عناوين البريد الإلكتروني (ايميل بكل سطر)</label>
-                        <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
-                        <small class="form-text text-muted">أي تكرار سيتم حذفه آليا.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="fileUpload" class="lab">أرفع الإيميلات من ملف إكسل</label>
-                        <input type="file" class="form-control-file" id="fileUpload" accept=".xlsx">
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-primary btn-custom lab" id="convertBtn">إبدأ</button>
-                    </div>
-                    <small class="justify-content-center productad">
-                        يمكنك تحميل قوائم الإيميل من&nbsp;<a href="https://barmga.com/ar#products" style="text-decoration: underline;">مجموعة بيانات العملاء المحتملين.</a>
-                    </small>
+                    <div class="col-lg-1 mb-3"></div>
                     <style>
-                        .productad {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-@media (max-width: 767px) { /* Adjust this breakpoint as needed */
-    .productad {
-        display: block; /* Switch to block display on small screens */
-        text-align: center;
-    }
-}
-
-                    </style>
-                    <div id="error" class="text-danger mt-3"></div>
-                </div>
-            </div>
-        </div>
+                        @media (max-width: 992px) {
+                         .videoarea {
+                             min-height: 250px;
+                         }
+                        }
+                        
+ 
+                     </style>
+                     
+                </div></div></div>
         <!-- About End -->
 
 
-
+        <div class="position-relative text-center mt-2 mb-4 pb-3 wow fadeInUp" data-wow-delay="0.1s" >
+            <a class="btn btn-primary rounded-pill px-4 me-3 mb-4" target="_blank" href="https://microsoftedge.microsoft.com/addons/detail/barmga-mailer/cgaiajamjnihmdimpnilibhfjigobcnl" >حمل البرنامج</a>
+        </div>
         <!-- Portfolio Start -->
-</div></div>
+</div>
+
 
         <!-- Newsletter Start -->
         <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" dir="rtl" style="text-align: right;">
@@ -834,7 +799,6 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 
                 </form>
                 </div>
-                
                 <div class="modal-footer">
                   <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
                 </div>
@@ -846,7 +810,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
               <div class="modal-content">
                 <div class="modal-header fixed-top">
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Links</h5>
+                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Links</h5>
                   <div style="flex-grow: 1;"></div>
                   <a id="fixedButton" class="btn shadow-sm" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
                   
@@ -1001,7 +965,6 @@ body{ font-family: 'El Messiri', sans-serif !important;}
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
@@ -1026,7 +989,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             workbook.SheetNames.forEach(sheetName => {
                 const sheet = workbook.Sheets[sheetName];
                 const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(cell));
+                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
                 phoneNumbers = phoneNumbers.concat(numbers);
             });
 
@@ -1034,7 +997,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
                 textarea.value = phoneNumbers.join('\n');
                 errorElement.textContent = '';
             } else {
-                errorElement.textContent = 'لم يتم العثور على عناوين بريد إلكتروني. ارفع ملف اكسل يحتوي على الإيميلات المستهدفة.';
+                errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
             }
 
             textarea.placeholder = ''; // Remove placeholder after loading
@@ -1057,17 +1020,14 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 });
 </script>
 <script>
-    var nextId=1
-    var totalids
-    var stopme=true
     const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
     var moreindex=500
-    
+    var nextId=1
+    var totalids
     document.querySelector('#convertBtn').addEventListener('click', function() {
         document.querySelector('.back').setAttribute('data-bs-dismiss',"modal")
         document.querySelector('#loadmore').style.display="block"
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
-        const subject = document.querySelector('#subject').value;
         const message = document.querySelector('#message').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
@@ -1077,16 +1037,20 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
 
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على عناوين بريد إلكتروني.';
+            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
             return;
         }
-        // Check for links in the message
-        if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
 
+        // Check for links in the message
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
+            return;
+        }
+        if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
         if (forbiddenWordFound) {
@@ -1096,7 +1060,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
 
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
@@ -1107,30 +1070,28 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
+            
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
         nextId=1
         // Show the modal
         $('#linksmodal').modal('show');
-        stopme=false
-        //autoclick()
     });
     document.querySelector('.back').addEventListener('click', function() {
        if(document.querySelector('.back').getAttribute('data-bs-dismiss')=="modal"){return}
        document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
-        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -1139,13 +1100,18 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex-500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على عناوين بريد إلكتروني.';
+            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
             return;
         }
 
+        // Check for links in the message
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
+            return;
+        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
@@ -1156,7 +1122,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
+
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         totalids=uniquePhoneNumbers.length
@@ -1168,18 +1134,18 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
             a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
         document.querySelector('[data-id]').scrollIntoView(true)
         if(moreindex==500){document.querySelector('.back').setAttribute('data-bs-dismiss',"modal");}
     
@@ -1188,7 +1154,6 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
         document.querySelector('.back').setAttribute('data-bs-dismiss',"")
         const phoneNumbersText = document.querySelector('#phoneNumbers').value;
         const message = document.querySelector('#message').value;
-        const subject = document.querySelector('#subject').value;
         const errorElement = document.querySelector('#error');
         const modalBody = document.querySelector('#linksmodal .modal-body');
 
@@ -1197,15 +1162,18 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Check and process phone numbers
         const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(num));
+        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
         if (!(uniquePhoneNumbers.length>moreindex+500)){document.querySelector('#loadmore').style.display="none"}
         if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على عناوين بريد إلكتروني.';
+            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
             return;
         }
 
         // Check for links in the message
-
+        if (/https?:\/\/\S+/i.test(message)) {
+            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
+            return;
+        }
 
         // Check for forbidden words in the message
         const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
@@ -1216,7 +1184,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
 
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
-        const encodedsubject = encodeURIComponent(subject);
+
         // Create WhatsApp links and update the modal
         modalBody.innerHTML = ''; // Clear previous content
         totalids=uniquePhoneNumbers.length
@@ -1228,23 +1196,23 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
             i++
             const p = document.createElement('p');
             const a = document.createElement('a');
-            a.href = `mailto:${number}?subject=${encodedsubject}&body=${encodedMessage}`;
+            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
             a.target="_blank"
             a.textContent = number;
-            p.innerHTML=`<strong>${i} - </strong>`
             a.setAttribute('data-id',String(i))
+            p.innerHTML=`<strong>${i} - </strong>`
             p.appendChild(a);
             modalBody.appendChild(p);
-            a.addEventListener('click', function() {console.log('cliked'); saveNextLink(a);setcolor(a)})
+            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
 
         }
-        modalBody.appendChild(document.createElement('p'))
-        modalBody.appendChild(document.createElement('p'))
+        modalBody.appendChild(document.createElement('p'));
+        modalBody.appendChild(document.createElement('p'));
         document.querySelector('[data-id]').scrollIntoView(true)
         // Show the modal
         //$('#linksmodal').modal('show');
     });
-function setcolor(elemento){
+    function setcolor(elemento){
     for (let ell of document.querySelectorAll("[data-id]")){ell.classList.remove('shadowed')}
     elemento.classList.add('shadowed')
 }
@@ -1272,22 +1240,7 @@ async function clickNextLink(){
         if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
     }
 }
-//document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
-function clickme(buttonx){
-    buttonx.click()
-}
-async function autoclick(){
-    var buttonx=document.querySelector('#fixedButton')
-    clickme(buttonx)
-      await new Promise((resolve) => setTimeout(resolve,700))
-      while (!stopme){
-      while(!document.hidden){
-        console.log('here')
-        await new Promise((resolve) => setTimeout(resolve,500))
-      } clickme(buttonx)}
-
-}
-
+document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
 </script>
 <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
     <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
@@ -1323,7 +1276,7 @@ async function autoclick(){
                     </a>
                 </div>
                 <p class="emailx">أرسل بشكل آلى إلى مجموعة من عناوين البريد الإلكتروني من خلال حساب قوقل، تستخدم هذه الأداة مع متصفح مايكروسوفت آدج على الكمبيوتر</p>
-                <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                <img src="img/bot.png" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
                 <hr>
                 <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                     <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
@@ -1331,7 +1284,7 @@ async function autoclick(){
                     </a>
                 </div>
                 <p class="emailx">حول عناوين البريد الإلكتروني إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق جيميل الجوال في بضع نقرات</p>
-                <img src="img/click.webp" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
             </div>
             <div class="modal-footer">
                 <div style="flex-grow: 1;"></div>
@@ -1367,6 +1320,7 @@ async function autoclick(){
             </div>
             <div class="modal-footer">
                 <div style="flex-grow: 1;"></div>
+                <img style="display: none;" class="trackemail">
                 <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
             </div>
         </div>
@@ -1381,6 +1335,8 @@ async function autoclick(){
     $('#optionsmodal').modal('show')}
     else{$('#optionsmodal'+classname).modal('show')}
 }
+if (window.location.href.includes('?email')){document.querySelector('img.trackemail').setAttribute('src','https://bit.ly/wabarmga-ar-img')}
+if (window.location.href.includes('?tg')){document.querySelector('img.trackemail').setAttribute('src','https://bit.ly/wabarmga-tg')}
 </script>
 </body>
 

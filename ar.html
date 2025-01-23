@@ -1021,6 +1021,14 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                 </div>
                 <div class="modal-body scrollable-body text-center mt-2">
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer-ar" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | مرسل البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">أرسل بشكل آلى إلى مجموعة من عناوين البريد الإلكتروني من خلال حساب قوقل، تستخدم هذه الأداة مع متصفح مايكروسوفت آدج على الكمبيوتر</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
                             <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني
                         </a>
@@ -1228,15 +1236,15 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
 function suggestMe(productname,dicta){
     if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',1);
-        dicta=movelPos(dicta,'المطاعم والمقاهي',2);
-        dicta=movelPos(dicta,'المراكز الطبية',3);
+        dicta=movelPos(dicta,'الفنادق والشقق',3);
+        dicta=movelPos(dicta,'المراكز الطبية',2);
         dicta=movelPos(dicta,'الجمعيات',4);
     }else if(['medical centers','المراكز الطبية'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'الجمعيات',1);
-        dicta=movelPos(dicta,'المدارس ورياض الأطفال',2);
-        dicta=movelPos(dicta,'مراكز التجميل واللياقة',3);
+        dicta=movelPos(dicta,'المدارس ورياض الأطفال',3);
+        dicta=movelPos(dicta,'مراكز التجميل واللياقة',5);
         dicta=movelPos(dicta,'المراكز الطبية',4);
-	dicta=movelPos(dicta,'شركات النقل',5);
+	dicta=movelPos(dicta,'شركات النقل',2);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات التجميل',1);
         dicta=movelPos(dicta,'منتجات السوبرماركت',2);
@@ -1268,19 +1276,18 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
         dicta=movelPos(dicta,'المطاعم والمقاهي',3);
         dicta=movelPos(dicta,'المخابز ومحلات الحلويات',4);
-	dicta=movelPos(dicta,'منتجات السوبرماركت',5);
+	    dicta=movelPos(dicta,'منتجات السوبرماركت',5);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'المصانع',8);
     }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
-        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
-        dicta=movelPos(dicta,'متاجر الكترونية',3);
-        dicta=movelPos(dicta,'المصانع',4);
-        dicta=movelPos(dicta,'محلات الزهور والمشاتل',5);
+        dicta=movelPos(dicta,'محلات الزهور والمشاتل',1);
+        dicta=movelPos(dicta,'متاجر الكترونية',2);
+        dicta=movelPos(dicta,'المصانع',3);
+        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',5);
         dicta=movelPos(dicta,'محلات الالكترونيات',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-        dicta=movelPos(dicta,'موردي مواد البناء',8);
+        dicta=movelPos(dicta,'موردي مواد البناء',4);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
