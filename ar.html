@@ -2221,7 +2221,7 @@ if (window.location.href.includes('product=')){
 if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
 }
-if(window.location.href.includes('&h=1')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
+if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 
 
 function subdow(){
