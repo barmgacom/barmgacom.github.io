@@ -1241,14 +1241,14 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الجمعيات',4);
     }else if(['medical centers','المراكز الطبية'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'الجمعيات',1);
-        dicta=movelPos(dicta,'شركات النقل',5);
+        dicta=movelPos(dicta,'متاجر العطور',2);
         dicta=movelPos(dicta,'منتجات الصيدلية',3);
         dicta=movelPos(dicta,'المراكز الطبية',4);
+        dicta=movelPos(dicta,'شركات النقل',5);
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',6);
-	    dicta=movelPos(dicta,'مراكز التجميل واللياقة',8);
-        dicta=movelPos(dicta,'شركات التنظيف والمغاسل',9);
         dicta=movelPos(dicta,'محلات الزهور والمشاتل',7);
-        dicta=movelPos(dicta,'متاجر العطور',2);
+        dicta=movelPos(dicta,'مراكز التجميل واللياقة',8);
+        dicta=movelPos(dicta,'شركات التنظيف والمغاسل',9);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات التجميل',1);
         dicta=movelPos(dicta,'منتجات السوبرماركت',2);
