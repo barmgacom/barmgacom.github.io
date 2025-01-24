@@ -1241,11 +1241,14 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الجمعيات',4);
     }else if(['medical centers','المراكز الطبية'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'الجمعيات',1);
-        dicta=movelPos(dicta,'شركات النقل',2);
+        dicta=movelPos(dicta,'شركات النقل',5);
         dicta=movelPos(dicta,'منتجات الصيدلية',3);
         dicta=movelPos(dicta,'المراكز الطبية',4);
-        dicta=movelPos(dicta,'المدارس ورياض الأطفال',5);
-	    dicta=movelPos(dicta,'مراكز التجميل واللياقة',6);
+        dicta=movelPos(dicta,'المدارس ورياض الأطفال',6);
+	    dicta=movelPos(dicta,'مراكز التجميل واللياقة',8);
+        dicta=movelPos(dicta,'شركات التنظيف والمغاسل',9);
+        dicta=movelPos(dicta,'محلات الزهور والمشاتل',7);
+        dicta=movelPos(dicta,'متاجر العطور',2);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات التجميل',1);
         dicta=movelPos(dicta,'منتجات السوبرماركت',2);
@@ -1405,20 +1408,20 @@ var allproducts={
         "date": "2024",
         "source": "منصة ايجار والهيئة العامة للعقار"
     },
-    "مراكز التجميل واللياقة": {
-        "info": "ملفات اكسل فيها اكثر من 17,000 ألف جهة اتصال معظمها صالونات تجميل وحلاقة وفيها مراكز عناية والمنتجعات ومراكز الرياضة وكل ما يفيد الصحة والجمال (نسائي ورجالي). البيانات مثالية لتسويق منتجات التجميل والمعدات الرياضية.",
+    "المراكز الطبية": {
+        "info": "ملف اكسل فيه 10,000 آلاف جهة اتصال للعيادات والمستشفيات والصديليات ومحلات البصريات في السعودية، من خرائط قوقل. مثالية لتوريد المعدات الطبية، الترويج للأدوية، والتعاون مع مقدمي خدمات الرعاية الصحية. ",
         "feature2": "",
-        "feature1": "15,000 رقم جوال",
-        "feature3": "2 ملفات إكسل",
-        "id": "sa-beauty-sallons",
+        "feature1": "5,000 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-medical-companies",
         "gift": "",
         "originalprice": "",
-        "price": "49$",
+        "price": "39$",
         "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
-        "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-مراكز-العناية.xlsx",
+        "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
+        "samplelink": "https://barmga.com/samples/SA-عينة-مؤسسات-طبية.xlsx",
         "family": "الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1674,20 +1677,20 @@ var allproducts={
         "date": "2024 -2023 - 2022",
         "source": "المركز الوطني للمعلومات الصناعية ومواقع حكومية اخرى"
     },
-    "المراكز الطبية": {
-        "info": "ملف اكسل فيه 10,000 آلاف جهة اتصال للعيادات والمستشفيات والصديليات ومحلات البصريات في السعودية، من خرائط قوقل. مثالية لتوريد المعدات الطبية، الترويج للأدوية، والتعاون مع مقدمي خدمات الرعاية الصحية. ",
+    "مراكز التجميل واللياقة": {
+        "info": "ملفات اكسل فيها اكثر من 17,000 ألف جهة اتصال معظمها صالونات تجميل وحلاقة وفيها مراكز عناية والمنتجعات ومراكز الرياضة وكل ما يفيد الصحة والجمال (نسائي ورجالي). البيانات مثالية لتسويق منتجات التجميل والمعدات الرياضية.",
         "feature2": "",
-        "feature1": "5,000 رقم جوال",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-medical-companies",
+        "feature1": "15,000 رقم جوال",
+        "feature3": "2 ملفات إكسل",
+        "id": "sa-beauty-sallons",
         "gift": "",
         "originalprice": "",
-        "price": "39$",
+        "price": "49$",
         "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
-        "samplelink": "https://barmga.com/samples/SA-عينة-مؤسسات-طبية.xlsx",
+        "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
+        "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-مراكز-العناية.xlsx",
         "family": "الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "خرائط قوقل"
@@ -1711,7 +1714,7 @@ var allproducts={
         "source": ""
     },
     "منتجات الصيدلية": {
-        "info": "ملف اكسل فيه 8,400 آلاف منتج للصيدلية في السوق السعودي. تحتوي على معلومات الادوية ومنتجات العناية والمكملات الغذائية والمكياج ومستلزمات الام والطفل. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر. ارقام الباركود متاحة لمعظم المنتجات.",
+        "info": "ملف اكسل فيه 8,400 آلاف منتج للصيدلية في السوق السعودي. تحتوي على معلومات الادوية ومنتجات العناية والمكملات الغذائية ومستحضرات التجميل ومستلزمات الام والطفل. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر. ارقام الباركود متاحة لمعظم المنتجات.",
         "feature2": "7,500 باركود",
         "feature1": "8,400 سطر",
         "feature3": "1 ملف إكسل",
