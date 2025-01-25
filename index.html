@@ -91,7 +91,30 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
 
-<style>         
+<style>      
+        .noticeme {
+            background: linear-gradient(270deg, #ffffff, #fdfeff, #bff1fd, #ffffff, #ffffff);
+            color: #2780B7; /* Original text color */
+            animation: gradientAnimation 5s ease infinite, shadowAnimation 3s ease infinite, textColorAnimation 5s ease infinite; /* Added shadow and text color animations */
+            background-size: 1200% 1200%;
+        }
+        
+        @keyframes shadowAnimation {
+            0%, 100% { box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 0 10px 7px rgba(201, 220, 231, 0.5); } /* Darker shadow */
+        }
+        
+        @keyframes textColorAnimation {
+            0%, 100% { color: #28cee1; }
+            25% { color: #1A5E89; } /* Darker shade */
+            50% { color: #00d2dd; }
+            75% { color: #023957; } /* Darker shade */
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }   
     #productlink,#samplelink, #share, .barmgareviews{box-shadow: 0 2px 5px 0 rgba(43, 43, 45, 0.184), 0 2px 5px 0 rgba(43, 43, 45, 0.184);}
     .showmore{text-shadow: 2px 2px 4px rgba(5, 1, 59, 0.121);}
 
@@ -518,7 +541,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         </div>
                         <div class="d-flex align-items-end mt-4">
                             <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="productlink"><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now</a>
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="samplelink" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href)"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 noticeme" style="font-size: 90%;"  href="" id="samplelink" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href); document.querySelector('#samplelink').classList.remove('noticeme')"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga/reviews" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
                         </div>
@@ -1497,7 +1520,7 @@ var allproducts ={
         "source": "Balady (Authority)"
     },
     "Building Materials Suppliers": {
-        "info": "Excel files containing 11,000 contact details for building materials suppliers, stores, and factories in Saudi Arabia. Useful for contractors to find the best supplier of building materials and request their prices in a practical way.",
+        "info": "Excel files containing 11,800 contact details for building materials suppliers, stores, and factories in Saudi Arabia. Useful for contractors to find the best supplier of building materials and request their prices in a practical way.",
         "feature2": "3,000 Email Addresses",
         "feature1": "11,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
@@ -1895,7 +1918,7 @@ var allproducts ={
     "Cleaning Services companies": {
         "info": "Excel file containing over 7,000 contact details for  companies proving car wash, laundary and other cleaning services, in Saudi Arabia. This data is useful for contracting companies to advertise wholesale cleaning materials.",
         "feature2": "",
-        "feature1": "6700 Mobile Numbers",
+        "feature1": "6,700 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
         "id": "sa-cleaning-companies",
         "gift": "",

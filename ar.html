@@ -48,7 +48,31 @@
 
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        .noticeme {
+            background: linear-gradient(270deg, #ffffff, #fdfeff, #bff1fd, #ffffff, #ffffff);
+            color: #2780B7; /* Original text color */
+            animation: gradientAnimation 5s ease infinite, shadowAnimation 3s ease infinite, textColorAnimation 5s ease infinite; /* Added shadow and text color animations */
+            background-size: 1200% 1200%;
+        }
+        
+        @keyframes shadowAnimation {
+            0%, 100% { box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 0 10px 7px rgba(201, 220, 231, 0.5); } /* Darker shadow */
+        }
+        
+        @keyframes textColorAnimation {
+            0%, 100% { color: #28cee1; }
+            25% { color: #1A5E89; } /* Darker shade */
+            50% { color: #00d2dd; }
+            75% { color: #023957; } /* Darker shade */
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    
     #productlink,#samplelink, #share, .barmgareviews{box-shadow: 0 2px 5px 0 rgba(43, 43, 45, 0.184), 0 2px 5px 0 rgba(43, 43, 45, 0.184);}
     .showmore{text-shadow: 2px 2px 4px rgba(5, 1, 59, 0.121);}
         .shadowmex{
@@ -564,7 +588,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                         <div class="d-flex align-items-center mt-4">
                             <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3" style="font-size: 90%;"  href="" id="productlink" ><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن</a>
                             
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href)"  href="" id="samplelink" ><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px;">&nbsp;عينة مجانية</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 noticeme" style="font-size: 90%;" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href); document.querySelector('#samplelink').classList.remove('noticeme')"  href="" id="samplelink" ><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px;">&nbsp;عينة مجانية</a>
 
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3" style="font-size: 80%;"> <i class="fa fa-reply"></i></a>
 
@@ -585,6 +609,13 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                                 <i class="fa fa-info" style="margin-left: 6px;"></i>من نحن
                             </a>
                         </div>
+
+
+                        
+                        
+                        
+                        
+                        
 <style>
     .custom-icon {
     border: 1px solid #2780B7; /* Customize border color */
@@ -1272,9 +1303,35 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'موردي مواد البناء',2);
         dicta=movelPos(dicta,'شركات النقل',3);
         dicta=movelPos(dicta,'شركات المقاولات',4);
-        dicta=movelPos(dicta,'المصانع',5);
+        dicta=movelPos(dicta,'المكاتب الهندسية',5);
         dicta=movelPos(dicta,'مستلزمات البناء',6);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
+    }else if (['شركات المعدات الثقيلة','heavy equipments companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'موردي مواد البناء',1);
+        dicta=movelPos(dicta,'المكاتب الهندسية',2);
+        dicta=movelPos(dicta,'شركات النقل',3);
+        dicta=movelPos(dicta,'الشركات العقارية',4);
+        dicta=movelPos(dicta,'شركات المعدات الثقيلة',5);
+        dicta=movelPos(dicta,'مستلزمات البناء',6);
+        dicta=movelPos(dicta,'الفنادق والشقق',7);
+        dicta=movelPos(dicta,'شركات المقاولات',8);
+    }else if (['موردي مواد البناء','building materials suppliers'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
+        dicta=movelPos(dicta,'المكاتب الهندسية',2);
+        dicta=movelPos(dicta,'شركات النقل',3);
+        dicta=movelPos(dicta,'موردي مواد البناء',4);
+        dicta=movelPos(dicta,'مستلزمات البناء',5);
+        dicta=movelPos(dicta,'الشركات العقارية',6);
+        dicta=movelPos(dicta,'الفنادق والشقق',7);
+        dicta=movelPos(dicta,'شركات المقاولات',8);
+    }else if (['منتجات مواد البناء','building materials products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
+        dicta=movelPos(dicta,'موردي مواد البناء',2);
+        dicta=movelPos(dicta,'شركات النقل',3);
+        dicta=movelPos(dicta,'مستلزمات البناء',4);
+        dicta=movelPos(dicta,'الشركات العقارية',5);
+        dicta=movelPos(dicta,'الفنادق والشقق',6);
+        dicta=movelPos(dicta,'شركات المقاولات',7);
     }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
@@ -1516,7 +1573,7 @@ var allproducts={
         "source": "موقع بلدي"
     },
     "موردي مواد البناء": {
-        "info": "ملفات اكسل فيها 11,000 ألف جهة اتصال لموردي مواد البناء محلات ومصانع في السعودية. تفيد المقاولين في حصر معظم المصنعين والموردين بالسعودية وطلب ثم مقارنة اسعارهم ومنتجاتهم.",
+        "info": "ملفات اكسل فيها 11,800 ألف جهة اتصال لموردي مواد البناء محلات ومصانع في السعودية. تفيد المقاولين في حصر معظم المصنعين والموردين بالسعودية وطلب ثم مقارنة اسعارهم ومنتجاتهم.",
         "feature2": "3,000 عنوان بريد الكتروني",
         "feature1": "11,000 رقم جوال",
         "feature3": "2 ملفات إكسل",
@@ -1914,7 +1971,7 @@ var allproducts={
     "شركات التنظيف والمغاسل": {
         "info": "ملف اكسل فيه  7,000 جهة اتصال لشركات التنظيف ومغاسل الملابس والسيارات في السعودية. تفيد تسويق منتجات التنظيف بالجملة.",
         "feature2": "",
-        "feature1": "6700 رقم جوال",
+        "feature1": "6,700 رقم جوال",
         "feature3": "1 ملف إكسل",
         "id": "sa-cleaning-companies",
         "gift": "",
