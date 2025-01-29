@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>WAB</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://barmga.com/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="https://barmga.com/css/style.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
+
+
+
+<style>
+    .range_container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+}
+
+.sliders_control {
+  position: relative;
+  min-height: 50px;
+}
+
+.form_control {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  color: #635a5a;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #C6C6C6;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #C6C6C6;
+  cursor: pointer;  
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  background: #f7f7f7;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+  -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+}
+
+input[type="number"] {
+  color: #8a8383;
+  width: 50px;
+  height: 30px;
+
+  border: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; 
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  background-color: #C6C6C6;
+  pointer-events: none;
+}
+
+#fromSlider {
+  height: 0;
+  z-index: 1;
+}
+    .popup-content{font-family: 'Gabriela', serif !important;}
+    .stop-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px; /* Adjust size as needed */
+            height: 60px; /* Adjust size as needed */
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+      /* Customize slider appearance */
+      #rangeSlider .noUi-handle {
+          border: none;
+          border-radius: 50%;
+          background: #007bff;
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      @media (min-width: 768px) {
+          #rangeSlider .noUi-handle {
+              width: 20px;
+              height: 20px;
+          }
+      }
+      
+      #rangeSlider .noUi-connect {
+          background: #007bff;
+      }
+      
+      #rangeSlider {
+          height: 4px;
+          background: #d3d3d3;
+      }
+      
+
+    .tool > *,.lab {
+    margin-top: 10px; /* Adjust the value as needed */
+    margin-bottom: 10px; /* Adjust the value as needed */
+}
+.btn-custom {
+            max-width: 250px; /* Adjust the width as needed */
+            min-width: 150px; /* Adjust the width as needed */
+        }
+
+            .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+    
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    
+
+.container{
+  width: 100%;
+}
+[onclick] {
+    cursor: pointer;
+}
+:target {
+  padding-top: 70px; /* height of your navbar */
+  margin-top: -70px;
+}
+
+@media (min-width: 992px) {
+            .navbar {
+              height: 60px;
+            }
+            .navbar .dropdown-menu {
+          margin-top: 0px;
+        }
+        .navbar-nav {
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+          font-weight: 500;
+        }
+          }
+          .navbar-nav .nav-link:hover {
+          text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          color: rgb(1, 106, 226) !important;
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+          color: rgb(11, 3, 112) !important;
+        }
+        
+        
+          .navbar {
+          position: fixed !important;
+          top: 0;
+          z-index: 1020;  /* Bootstrap's z-index for sticky navbar */
+        }
+        .navbar {
+                top: 0;
+                z-index: 100;
+                background-color: white;
+                font-family: 'Gabriela', serif !important;
+        
+              }
+              .nav-item {
+    text-align: center;
+    transition: all 0.5s ease;
+}
+.nav-item:hover {
+
+    background-color: rgb(218, 226, 235);
+    border-radius: 30px;
+    padding: 0px 10px; /* Adjust as needed */
+    
+}
+@media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
+    .navbar-nav .nav-item.dropdown:hover {
+        position: static;
+        float: none;
+        width: 100%;
+        background-color: rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+    .navbar-nav .dropdown-menu {
+        text-align: center;
+        position: static;
+        float: none;
+        width: 100%;
+        background-color:rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 35%;
+    font-size: 200%; /* Increase size */
+    font-weight: bold; /* Make thicker */
+    z-index: 10;
+    color: white;
+}
+
+.owl-prev {
+    left: -5%;
+}
+
+.owl-next {
+    right: -5%;
+}
+.owl-dots {
+    text-align: center; /* Center the dots */
+    padding-top: 30px; /* Add space above the dots */
+}
+.owl-dots .owl-dot {
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #cccccc;
+    border-radius: 50%;
+}
+
+.owl-dots .owl-dot.active {
+    background-color: #978e8e;
+}
+ .text-primary{color: #2780B7; }
+ .modal-body.scrollable-body {
+  max-height: calc(100vh - 140px); /* Adjust based on your header and footer height */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Adjust the value as needed */
+  padding-top: 20px; /* Adjust the value as needed */
+
+}
+
+
+.modal-header {
+  position: sticky;
+  background-color: inherit;
+  z-index: 1055;
+}
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: inherit;
+  z-index: 1055;
+  width: 100%;
+}
+.shadowed {
+color: #452d8c;
+text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+}
+
+
+.loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+.loader:before {
+  animation: before 2s infinite;
+}
+.loader:after {
+  animation: after 2s infinite;
+}
+
+@keyframes before {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+@keyframes after {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 1.25em);
+  left: calc(50% - 1.25em);
+}
+.loaderx {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 9999999;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+    }
+
+    .loaderx.fade-out {
+        opacity: 0;
+    }
+  </style>
+
+
+</head>
+<body id="home">
+    <script>window.location.href="https://chromewebstore.google.com/detail/wabarmga/lmlkpneojdlbpjchniidkcljkkcfkace"</script>
+    <div class="container-fluid bg-white p-0">
+
+
+        <div class="container-fluid py-5" id="tool">
+          <div class="container mt-1">
+              <div class="card p-4 tool">
+                  <h3 class="card-title">Whatsapp Sender</h3>
+                      <small>
+                     Please read the following <strong><a href="https://barmga.com/wabarmga-whatsapp-sender?instructions#how-it-works" target="_blank" style="color: #61879c; text-decoration: underline;">instructions</a></strong> before you start sending.
+                     </small>
+                    
+                  <div class="form-group">
+                      <label for="message" class="lab">Message</label>
+                      <textarea class="form-control" id="message" rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="phoneNumbers" class="lab">Phone Numbers (one per line)</label>
+                      <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
+                      <small class="form-text text-muted">All numbers should start with the country code.</small>
+                  </div>
+                  <div class="form-group" style="display: none;">
+                      <label for="fileUpload" class="lab">Upload Numbers From Excel File</label>
+                      <input type="file" class="form-control-file" id="fileUpload" accept=".xlsx">
+                  </div>
+      
+                  <!-- Added delay inputs -->
+                  <div class="form-group">
+                      <label for="delayRange" class="lab">Time Delay (seconds)</label>
+                      <div class="d-flex justify-content-between mb-2">
+                          <span>0s</span>
+                          <span style="padding-left: 20px; padding-right: 20px;"></span>
+                          <span>200s</span>
+                      </div>
+                      <div class="d-flex flex-column align-items-center">
+                        <div class="range_container">
+                            <div class="sliders_control">
+                               <input id="fromSlider" type="range" value="10" min="0" max="200"/>
+                               <input id="toSlider" type="range" value="30" min="0" max="200"/>
+                            </div>
+                            <div class="form_control">
+                              <div class="form_control_container">
+                                  
+                                  <input class="form_control_container__time__input noUi-tooltip"  style="pointer-events: none;" type="number" id="fromInput" value="10" min="0" max="200"/>
+                                </div>
+                                <div class="form_control_container">
+                                  
+                                  <input class="form_control_container__time__input noUi-tooltip"  style="pointer-events: none;" type="number" id="toInput" value="30" min="0" max="200"/>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+      
+                  <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary btn-custom lab" id="convertBtn">Start</button>
+                      <button class="btn btn-danger btn-custom lab" id="stopBtn" style="display: none;">Stop</button>
+                      <button class="btn btn-secondary btn-custom lab" id="downloadReportBtn" style="display: none;">Download Report</button>
+                  </div>
+                  <div class="progress mt-3">
+                  <div class="progress-bar progress-bar-striped" id="progressBarBarmga" role="progressbar" style="width: 0%; background-color: #5382e6; display: none;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  <small class="wabarmganext mt-2"></small>
+                  </div>
+                  <div id="error" class="text-danger mt-3"></div>
+              </div>
+          </div>
+      </div>
+      
+ 
+
+      
+      
+      
+      
+      
+        <!-- About End -->
+
+
+
+
+
+
+        <!-- Newsletter Start -->
+        <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" >
+            <div class="container px-lg-5">
+                <div class="row align-items-center" style="height: 250px;">
+                    <div >
+                        <h3 class="text-white">WABarmga</h3>
+                        <small class="text-white">Created with ♥ by Amal</small>
+                        <p></p>
+                        <p class="text-white"><strong>Explore our activities at:</strong> <a class="barobarmga" href="https://barmga.com/" style="color: white; text-decoration: underline; display: block !important;" target="_blank">barmga.com</a></p>
+                        <p class="text-white"><strong>Contact:</strong> <span>&#105;&#110;&#102;&#111;&#64;&#98;&#97;&#114;&#109;&#103;&#97;&#46;&#99;&#111;&#109;</p>
+
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Newsletter End -->
+        <!-- Portfolio Start -->
+
+
+       <!--  <a href="#" style="display: none;"class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-arrow-up"></i></a> -->
+    </div>
+
+
+
+</body>
+
+</html>
