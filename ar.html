@@ -2015,7 +2015,7 @@ var allproducts={
     }
 }
 //REMOVE THIS LINE
-if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
+//if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
 
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
