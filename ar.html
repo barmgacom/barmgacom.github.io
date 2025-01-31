@@ -442,6 +442,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
                                     <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
                                     <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#about">من نحن</a></li>
@@ -849,6 +850,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                        <a class="btn btn-linkx" onclick="document.querySelector('.selectedproduct').style.display='none'"  href="#products">قواعد البيانات</a>
                        <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
 			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
+                <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1007,7 +1009,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                     </ul>
                 
                     <h3>3. التحديثات</h3>
-                    <p>نقدم تحديثات واضافات مجانية للبيانات في حال تم اعادة سحبها من نفس المواقع خلال مدة سنة ولكن هذا لا يعتبر الزاما للبائع باعادة تجميعها.</p>
+                    <p>نقدم تحديث مجاني للبيانات أول ما يتم إعادة استخراجها في حال تم التحديث ولكن هذا لا يعتبر الزاما للبائع باعادة تجميعها.</p>
                     <h3>4. الاستلام</h3>
                     <p>يتم استلام الملفات المشتراه على عنوان البريد الالكتروني الذي حدده العميل في بوابة الدفع.</p>
                     
@@ -1033,6 +1035,31 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                     
                 </div>
                 <div class="modal-body scrollable-body text-center mt-2">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الأعمال</strong></h5>
+                    
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
                 </div>
                 <div class="modal-footer">
                     <div style="flex-grow: 1;"></div>
@@ -1988,7 +2015,7 @@ var allproducts={
     }
 }
 //REMOVE THIS LINE
-//if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
+if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
 
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
@@ -2076,14 +2103,15 @@ var html='<p class="hiddenx"><strong>xxx</strong></p>';
     elementhtml='<a onclick="showmoredetails()" class="showmore" style=" text-decoration: underline;">&nbspمزيد التفاصيل</a><br>'+elementhtml
     return elementhtml
 }
-    function showonly(classname){
-    if (classname=='all'){
-    var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
-    var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
-    $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
-    $('#optionsmodal').modal('show')}
-    else{$('#optionsmodal'+classname).modal('show')}
-}
+function showonly(classname){
+        if (classname=='all'){
+        var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+        var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
+        var otherpart=$('#optionsmodalother .modal-body')[0].innerHTML
+        $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
+        $('#optionsmodal').modal('show')}
+        else{$('#optionsmodal'+classname).modal('show')}
+    }
 function calcdisc(originalPrice, finalPrice) {
 
 // Ensure the inputs are numbers

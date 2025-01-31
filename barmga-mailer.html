@@ -410,6 +410,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
                                     <li><a class="dropdown-item" onclick="showonly('whatsapp')">Whatsapp Marketing</a></li>
                                     <li><a class="dropdown-item" onclick="showonly('email')">Email Marketing</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('other')">Business Tools</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#about">About</a></li>
@@ -645,6 +646,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
                         <a class="btn btn-link" href="https://barmga.com/?lang=en#products">Products</a>
                         <a class="btn btn-link" onclick="showonly('whatsapp')">Whatsapp Marketing Tools</a>
                         <a class="btn btn-link" onclick="showonly('email')">Email Marketing Tools</a>
+                        <a class="btn btn-link" onclick="showonly('other')">Business Tools</a>
                      </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Newsletter</h5>
@@ -858,6 +860,33 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
         </div>
         
     </div>    
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Business Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+    
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;Bulk Email Validator
+                        </a>
+                    </div>
+                    <p class="emailx">Clean your email lists from inactive business email addresses, for a better email deliverability rate!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>  
     <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
             <div class="modal-content">
@@ -979,6 +1008,7 @@ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
         if (classname=='all'){
         var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
         var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
+        var otherpart=$('#optionsmodalother .modal-body')[0].innerHTML
         $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
         $('#optionsmodal').modal('show')}
         else{$('#optionsmodal'+classname).modal('show')}
