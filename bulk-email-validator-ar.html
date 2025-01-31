@@ -1210,6 +1210,9 @@ async function autoclick(){
         if(!stopnow)
         {document.querySelector('#stopme').click()}
         jx=0
+        await new Promise((resolve) => setTimeout(resolve,500));
+        stopnow=false
+        document.querySelector('#notice2').textContent=document.querySelector('#notice2').textContent.replace('انتظر قليلا... ','');
         document.querySelector('#notice').innerHTML='تم تأكيد من فعالية أسماء النطاق ل&nbsp;<a style="text-decoration: underline; color:#2582ce;" onclick="document.querySelector('+"'#downloadme'"+').click();">'+validEmails.size+" عنوان بريد إلكتروني.</a>"
         const blob = new Blob([Array.from(validEmails).join('\n')], { type: 'text/plain' });
         document.querySelector('#downloadme').href=URL.createObjectURL(blob);
@@ -1240,10 +1243,7 @@ async function autoclick(){
         unloading()
     }
     document.querySelector('#startme').addEventListener('click', function() {document.querySelector('#stopme').style.display='block';document.querySelector('#startme').style.display='none';stopnow=false;validateMain()})
-    document.querySelector('#stopme').addEventListener('click', function() {
-    document.querySelector('#notice2').textContent=document.querySelector('#notice2').textContent.replace('انتظر قليلا... ','');
-        
-    })
+
 
     async function updateProgressBar(totalLength) {
             var progressBar = document.getElementById('progressBarBarmga');
@@ -1258,7 +1258,7 @@ async function autoclick(){
                 // Simulate progression over time
                 await new Promise(resolve => setTimeout(resolve, 100));
             }
-                stopnow=false
+
                 progressBar.style.width = '0%';
                 progressBar.setAttribute('aria-valuenow', 0);
             
