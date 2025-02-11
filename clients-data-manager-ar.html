@@ -1094,15 +1094,15 @@ function createRejectRegex(formatsToReject) {
     }
 
     const convertToRegex = format => {
-        return `^${format
+        return `${format
             .replace(/[+]/g, '\\+')      // Escape the + symbol
-            .replace(/[xX]/g, '\\d')}$`;    // Replace x and X with \d and add start (^) and end ($) anchors
+            .replace(/[xX]/g, '\\d')}`;    // Replace x and X with \d and add start (^) and end ($) anchors
     };
 
     const rejectRegex = formatsToReject.map(convertToRegex).join('|');
 
     // Create the RegExp object with the global flag
-    return new RegExp(rejectRegex);
+    return new RegExp(rejectRegex,'g');
 }
 
 function extractWithRegex(text, formatsToAccept, formatsToReject) {
@@ -1129,7 +1129,7 @@ function splitContent(textarea) {
     // Filter out any empty strings
     const filteredArray = splitArray.filter(item => item.trim() !== '');
     return filteredArray}
-function refilterData(){
+    function refilterData(){
     const textarea1 = document.querySelector('#phoneNumbers').value;
     const textarea2 = document.querySelector('#rejectlist').style.display.includes('block')? document.querySelector('#phoneNumbers2').value:''
     var phoneRegextxt=/\+\d{6,20}/g
@@ -1142,21 +1142,18 @@ function refilterData(){
                             phoneRegextxt=createAcceptRegex(keepforms);
                             rejectRegex=createRejectRegex(rejectforms);
                             }
-    phoneNumbers = phoneRadio.checked? textarea1.match(phoneRegextxt) || []: textarea1.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    phoneNumbers2 = phoneRadio.checked? textarea2.match(phoneRegextxt) || []: textarea2.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    if (rejectRegex && rejectRegex !== '' || phoneNumbers2 && phoneNumbers2.length > 0) {
-    phoneNumbers = phoneNumbers.filter(match => {
-        const rejectCondition = rejectRegex && rejectRegex !== '' ? !rejectRegex.test(match) : true;
-        const phoneNumbers2Condition = phoneNumbers2.length > 0 ? !phoneNumbers2.includes(match) : true;
-        return rejectCondition && phoneNumbers2Condition;
-    });
-    
-}
+ phoneNumbers = phoneRadio.checked ? textarea1.match(phoneRegextxt) || [] : textarea1.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+let phoneNumbers2 = phoneRadio.checked ? textarea2.match(phoneRegextxt) || [] : textarea2.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+let rejectedlist = textarea1.match(rejectRegex) || [];
+let allreject = new Set(phoneNumbers2.concat(rejectedlist));
+
+phoneNumbers = phoneNumbers.filter(number => !allreject.has(number));
 
 return phoneNumbers
 
 
 }
+
 function getSelectedFileType() {
             const selectElement = document.getElementById('fileType');
             const selectedFileType = selectElement.options[selectElement.selectedIndex].value;
@@ -1164,6 +1161,7 @@ function getSelectedFileType() {
             // You can use 'selectedFileType' for further processing
         }
 function doitnow(){
+    if (document.querySelector('[placeholder="Loading..."]')){return}
     var entryType=document.querySelector('#phoneRadio').checked?'Phone':'Email';
     var inputFormat=getSelectedFileType().includes('xlsx')? "xlsx": "txt";
     var lista =refilterData();
@@ -1171,6 +1169,7 @@ function doitnow(){
     lista=Array.from(new Set(lista));
     var maxEntries=document.querySelector('#maxEntries').value?parseInt(document.querySelector('#maxEntries').value):10000000000000000000000;
     var prefix=document.querySelector('#filePrefix').value?document.querySelector('#filePrefix').value:entryType+'s';
+    console.log('reach2')
     createFiles(inputFormat, lista, maxEntries, prefix, entryType) 
 }
 

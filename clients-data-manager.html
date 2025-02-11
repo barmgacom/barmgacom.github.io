@@ -1116,7 +1116,7 @@ function createRegex(formatsToAccept, formatsToReject) {
     let finalRegex;
     if (rejectRegex) {
         finalRegex =  `^(?!.*(?:${rejectRegex})).*(?:${acceptRegex}).*$`;
-        console.log(finalRegex)
+        //console.log(finalRegex)
     } else {
         finalRegex = acceptRegex;
     }
@@ -1145,15 +1145,15 @@ function createRejectRegex(formatsToReject) {
     }
 
     const convertToRegex = format => {
-        return `^${format
+        return `${format
             .replace(/[+]/g, '\\+')      // Escape the + symbol
-            .replace(/[xX]/g, '\\d')}$`;    // Replace x and X with \d and add start (^) and end ($) anchors
+            .replace(/[xX]/g, '\\d')}`;    // Replace x and X with \d and add start (^) and end ($) anchors
     };
 
     const rejectRegex = formatsToReject.map(convertToRegex).join('|');
 
     // Create the RegExp object with the global flag
-    return new RegExp(rejectRegex);
+    return new RegExp(rejectRegex,'g');
 }
 
 function extractWithRegex(text, formatsToAccept, formatsToReject) {
@@ -1180,7 +1180,7 @@ function splitContent(textarea) {
     // Filter out any empty strings
     const filteredArray = splitArray.filter(item => item.trim() !== '');
     return filteredArray}
-function refilterData(){
+    function refilterData(){
     const textarea1 = document.querySelector('#phoneNumbers').value;
     const textarea2 = document.querySelector('#rejectlist').style.display.includes('block')? document.querySelector('#phoneNumbers2').value:''
     var phoneRegextxt=/\+\d{6,20}/g
@@ -1193,16 +1193,12 @@ function refilterData(){
                             phoneRegextxt=createAcceptRegex(keepforms);
                             rejectRegex=createRejectRegex(rejectforms);
                             }
-    phoneNumbers = phoneRadio.checked? textarea1.match(phoneRegextxt) || []: textarea1.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    phoneNumbers2 = phoneRadio.checked? textarea2.match(phoneRegextxt) || []: textarea2.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    if (rejectRegex && rejectRegex !== '' || phoneNumbers2 && phoneNumbers2.length > 0) {
-    phoneNumbers = phoneNumbers.filter(match => {
-        const rejectCondition = rejectRegex && rejectRegex !== '' ? !rejectRegex.test(match) : true;
-        const phoneNumbers2Condition = phoneNumbers2.length > 0 ? !phoneNumbers2.includes(match) : true;
-        return rejectCondition && phoneNumbers2Condition;
-    });
-    
-}
+ phoneNumbers = phoneRadio.checked ? textarea1.match(phoneRegextxt) || [] : textarea1.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+let phoneNumbers2 = phoneRadio.checked ? textarea2.match(phoneRegextxt) || [] : textarea2.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+let rejectedlist = textarea1.match(rejectRegex) || [];
+let allreject = new Set(phoneNumbers2.concat(rejectedlist));
+
+phoneNumbers = phoneNumbers.filter(number => !allreject.has(number));
 
 return phoneNumbers
 
@@ -1229,6 +1225,7 @@ function getSelectedFileType() {
             // You can use 'selectedFileType' for further processing
         }
 function doitnow(){
+    if (document.querySelector('[placeholder="Loading..."]')){return}
     var entryType=document.querySelector('#phoneRadio').checked?'Phone':'Email';
     var inputFormat=getSelectedFileType().includes('xlsx')? "xlsx": "txt";
     var lista =refilterData();
@@ -1249,7 +1246,6 @@ function chunkArray(array, chunkSize) {
 
         function createFiles(inputFormat, list, maxEntries, filenamePrefix, entryType) {
             const groups = chunkArray(list, maxEntries);
-            console.log(groups);
 
             if (inputFormat === 'xlsx') {
                 if (groups.length === 1) {
@@ -1310,7 +1306,7 @@ document.querySelector('#fileUploadx').addEventListener('change', function(event
                         const result = e.target.result;
                         if(document.querySelector('#keepx').style.display.includes('block') && phoneRadio.checked){
                             var keepforms=splitContent(document.querySelector('#keepFormat').value.trim());
-                            console.log(keepforms)
+                            //console.log(keepforms)
                             var rejectforms=splitContent(document.querySelector('#excludeFormat').value.trim())
                             //phoneRegex=createRegex(keepforms,rejectforms);
                             phoneRegextxt=createAcceptRegex(keepforms);
@@ -1498,7 +1494,6 @@ document.querySelector('#fileUploadx').addEventListener('change', function(event
             } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { // Handle xlsx files
                 const data = new Uint8Array(result);
                 const workbook = XLSX.read(data, { type: 'array' });
-
                 workbook.SheetNames.forEach(sheetName => {
                     var sheet = workbook.Sheets[sheetName];
                     var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
@@ -1510,6 +1505,7 @@ document.querySelector('#fileUploadx').addEventListener('change', function(event
                     }
                     if (numbers) {
                         phoneNumbers = phoneNumbers.concat(numbers);
+                        
                     }
                 });
             }
@@ -1543,7 +1539,7 @@ function setcolor(elemento){
     elemento.classList.add('shadowed')
 }
 function saveNextLink(currentelement){
-    console.log(currentelement.parentElement)
+    
     nextId=parseInt(currentelement.parentElement.textContent.split('-')[0].trim())+1
     if(nextId>totalids){nextId=0;}
 }
@@ -1576,7 +1572,7 @@ async function autoclick(){
       await new Promise((resolve) => setTimeout(resolve,700))
       while (!stopme){
       while(!document.hidden){
-        console.log('here')
+        
         await new Promise((resolve) => setTimeout(resolve,500))
       } clickme(buttonx)}
 
@@ -1621,10 +1617,10 @@ async function autoclick(){
             var dom = await checkMXRecords(domainList);
             jx++;
             if (dom){j++;verifiedDomains.add(dom);document.querySelector('#notice2').textContent="Please wait... "+String(j)+" unique domains were verified out of "+String(domains.size)+"."}
-            if(stopnow){break;console.log('breaking');}
+            if(stopnow){break;}
             await new Promise((resolve) => setTimeout(resolve,200));
         }
-        console.log('afterbreaking')
+        
         emails.forEach(email => {
             const domain = email.split('@')[1];
             if (verifiedDomains.has(domain)) {
