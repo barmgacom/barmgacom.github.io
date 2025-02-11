@@ -1303,149 +1303,165 @@ document.querySelector('#fileUploadx').addEventListener('change', function(event
             }
         });
         document.querySelector('#fileUpload2').addEventListener('click', function(event) {event.target.value = '';})
-document.querySelector('#fileUpload2').addEventListener('change', function(event) {
-            const files = event.target.files;
-            const textarea = document.querySelector('#phoneNumbers2');
-            const errorElement = document.querySelector('#error2');
-            const phoneRadio = document.querySelector('#phoneRadio');
-            var entryty=phoneRadio.checked?' أرقام اتصال ':' عناوين بريد الكتروني '
-            var phoneRegex=/^\+\d{6,20}$/
-            var phoneRegextxt=/\+\d{6,20}/g
-            var phoneNumbers = [];
-            var rejectRegex=''
-            if (files.length > 0) {
-                textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
-                textarea.value = '';
-                
+        document.querySelector('#fileUpload2').addEventListener('change', async function(event) {
+    const files = event.target.files;
+    const textarea = document.querySelector('#phoneNumbers2');
+    const errorElement = document.querySelector('#error2');
+    const phoneRadio = document.querySelector('#phoneRadio');
+    var entryty = phoneRadio.checked ? ' phone numbers ' : ' email addresses ';
+    var phoneRegextxt = /\+\d{6,20}/g;
+    var phoneNumbers = [];
+    var rejectRegex = '';
 
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const result = e.target.result;
-                        
-                        if (file.type === 'text/plain') { // Handle text files
-                            var content = String(result);
-                            phoneNumbers = phoneRadio.checked? content.match(phoneRegextxt) || []: content.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-                            if(rejectRegex){phoneNumbers=phoneNumbers.filter(match => !rejectRegex.test(match))};
-                            
-                        } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { // Handle xlsx files
-                            const data = new Uint8Array(result);
-                            const workbook = XLSX.read(data, { type: 'array' });
-        
-                            
-                            workbook.SheetNames.forEach(sheetName => {
-                                var sheet = workbook.Sheets[sheetName];
-                                var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                                var entireSheet = rows.flat().join(' ');
-                                var numbers=[]
-                                phoneRadio.checked? numbers=entireSheet.match(phoneRegextxt):numbers=entireSheet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || []
-                                phoneRadio.checked && rejectRegex && numbers? numbers=numbers.filter(match => !rejectRegex.test(match)):numbers=numbers
-                                if(numbers){phoneNumbers = phoneNumbers.concat(numbers)};
-                            });
-                        }
-        
-                        if (phoneNumbers.length > 0) {
-                            textarea.value = phoneNumbers.join('\n');
-                            errorElement.textContent = '';
-                        } else {
-                            errorElement.textContent = "لم يتم العثور على جهات اتصال في الملفات. يرجى تحميل ملفات تحتوي على البيانات المطلوبة.".replace(' جهات اتصال ',entryty);
-                        }
-                        textarea.placeholder = ''; // Remove placeholder after loading
-                    };
-        
-                    reader.onerror = function() {
-                        errorElement.textContent = 'File could not be loaded.';
-                        textarea.placeholder = ''; // Remove placeholder in case of error
-                    };
-        
-                    reader.onabort = function() {
-                        errorElement.textContent = 'File loading was aborted.';
-                        textarea.placeholder = ''; // Remove placeholder in case of abort
-                    };
-        
-                    if (file.type === 'text/plain') {
-                        reader.readAsText(file); // Read text files
-                    } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
-                        reader.readAsArrayBuffer(file); // Read xlsx files
+    if (files.length > 0) {
+        textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
+        textarea.value = '';
+
+        for (let file of files) {
+            const reader = new FileReader();
+            const result = await new Promise((resolve, reject) => {
+                reader.onload = function(e) {
+                    resolve(e.target.result);
+                };
+                reader.onerror = function() {
+                    reject('File could not be loaded.');
+                };
+                reader.onabort = function() {
+                    reject('File loading was aborted.');
+                };
+
+                if (file.type === 'text/plain') {
+                    reader.readAsText(file);
+                } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                    reader.readAsArrayBuffer(file);
+                }
+            }).catch(error => {
+                errorElement.textContent = error;
+                textarea.placeholder = ''; // Remove placeholder in case of error
+                return null;
+            });
+
+            if (!result) continue;
+
+            if (file.type === 'text/plain') { // Handle text files
+                var content = String(result);
+                phoneNumbers = phoneRadio.checked ? content.match(phoneRegextxt) || [] : content.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+                if (rejectRegex) {
+                    phoneNumbers = phoneNumbers.filter(match => !rejectRegex.test(match));
+                }
+
+            } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { // Handle xlsx files
+                const data = new Uint8Array(result);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                workbook.SheetNames.forEach(sheetName => {
+                    var sheet = workbook.Sheets[sheetName];
+                    var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    var entireSheet = rows.flat().join(' ');
+                    var numbers = [];
+                    phoneRadio.checked ? numbers = entireSheet.match(phoneRegextxt) : numbers = entireSheet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+                    if (phoneRadio.checked && rejectRegex && numbers) {
+                        numbers = numbers.filter(match => !rejectRegex.test(match));
+                    }
+                    if (numbers) {
+                        phoneNumbers = phoneNumbers.concat(numbers);
                     }
                 });
-            } else {
-                textarea.placeholder = ''; // Remove placeholder if no file is selected
             }
-        });
+        }
+
+        if (phoneNumbers.length > 0) {
+            textarea.value = phoneNumbers.join('\n');
+            errorElement.textContent = '';
+        } else {
+            errorElement.textContent = 'No valid entries are found in the file(s). Upload valid files that contain the required data.'.replace(' entries ', entryty);
+        }
+        textarea.placeholder = ''; // Remove placeholder after loading
+    } else {
+        textarea.placeholder = ''; // Remove placeholder if no file is selected
+    }
+});
+
         document.querySelector('#startme').addEventListener('click',function(){doitnow()})
         document.querySelector('#fileUpload').addEventListener('click', function(event) {event.target.value = '';})
-document.querySelector('#fileUpload').addEventListener('change', function(event) {
-            const files = event.target.files;
-            const textarea = document.querySelector('#phoneNumbers');
-            const errorElement = document.querySelector('#error');
-            const phoneRadio = document.querySelector('#phoneRadio');
-            var entryty=phoneRadio.checked?' أرقام اتصال ':' عناوين بريد الكتروني '
-            var phoneRegex=/^\+\d{6,20}$/
-            var phoneRegextxt=/\+\d{6,20}/g
-            var phoneNumbers = [];
-            var rejectRegex=''
-            if (files.length > 0) {
-                textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
-                textarea.value = '';
-                
+        document.querySelector('#fileUpload').addEventListener('change', async function(event) {
+    const files = event.target.files;
+    const textarea = document.querySelector('#phoneNumbers');
+    const errorElement = document.querySelector('#error');
+    const phoneRadio = document.querySelector('#phoneRadio');
+    var entryty = phoneRadio.checked ? ' phone numbers ' : ' email addresses ';
+    var phoneRegextxt = /\+\d{6,20}/g;
+    var phoneNumbers = [];
+    var rejectRegex = '';
+    if (files.length > 0) {
+        textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
+        textarea.value = '';
 
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const result = e.target.result;
-                        
-                        if (file.type === 'text/plain') { // Handle text files
-                            var content = String(result);
-                            phoneNumbers = phoneRadio.checked? content.match(phoneRegextxt) || []: content.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-                            if(rejectRegex){phoneNumbers=phoneNumbers.filter(match => !rejectRegex.test(match))};
-                            
-                        } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { // Handle xlsx files
-                            const data = new Uint8Array(result);
-                            const workbook = XLSX.read(data, { type: 'array' });
-        
-                            
-                            workbook.SheetNames.forEach(sheetName => {
-                                var sheet = workbook.Sheets[sheetName];
-                                var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                                var entireSheet = rows.flat().join(' ');
-                                var numbers=[]
-                                phoneRadio.checked? numbers=entireSheet.match(phoneRegextxt):numbers=entireSheet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || []
-                                phoneRadio.checked && rejectRegex && numbers? numbers=numbers.filter(match => !rejectRegex.test(match)):numbers=numbers
-                                if(numbers){phoneNumbers = phoneNumbers.concat(numbers)};
-                            });
-                        }
-        
-                        if (phoneNumbers.length > 0) {
-                            textarea.value = phoneNumbers.join('\n');
-                            errorElement.textContent = '';
-                        } else {
-                            errorElement.textContent = "لم يتم العثور على جهات اتصال في الملفات. يرجى تحميل ملفات تحتوي على البيانات المطلوبة.".replace(' جهات اتصال ',entryty);
-                        }
-                        textarea.placeholder = ''; // Remove placeholder after loading
-                    };
-        
-                    reader.onerror = function() {
-                        errorElement.textContent = 'File could not be loaded.';
-                        textarea.placeholder = ''; // Remove placeholder in case of error
-                    };
-        
-                    reader.onabort = function() {
-                        errorElement.textContent = 'File loading was aborted.';
-                        textarea.placeholder = ''; // Remove placeholder in case of abort
-                    };
-        
-                    if (file.type === 'text/plain') {
-                        reader.readAsText(file); // Read text files
-                    } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
-                        reader.readAsArrayBuffer(file); // Read xlsx files
+        for (let file of files) {
+            const reader = new FileReader();
+            const result = await new Promise((resolve, reject) => {
+                reader.onload = function(e) {
+                    resolve(e.target.result);
+                };
+                reader.onerror = function() {
+                    reject('File could not be loaded.');
+                };
+                reader.onabort = function() {
+                    reject('File loading was aborted.');
+                };
+
+                if (file.type === 'text/plain') {
+                    reader.readAsText(file);
+                } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                    reader.readAsArrayBuffer(file);
+                }
+            }).catch(error => {
+                errorElement.textContent = error;
+                textarea.placeholder = ''; // Remove placeholder in case of error
+                return null;
+            });
+
+            if (!result) continue;
+
+            if (file.type === 'text/plain') { // Handle text files
+                var content = String(result);
+                phoneNumbers = phoneRadio.checked ? content.match(phoneRegextxt) || [] : content.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+                if (rejectRegex) {
+                    phoneNumbers = phoneNumbers.filter(match => !rejectRegex.test(match));
+                }
+
+            } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') { // Handle xlsx files
+                const data = new Uint8Array(result);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                workbook.SheetNames.forEach(sheetName => {
+                    var sheet = workbook.Sheets[sheetName];
+                    var rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    var entireSheet = rows.flat().join(' ');
+                    var numbers = [];
+                    phoneRadio.checked ? numbers = entireSheet.match(phoneRegextxt) : numbers = entireSheet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+                    if (phoneRadio.checked && rejectRegex && numbers) {
+                        numbers = numbers.filter(match => !rejectRegex.test(match));
+                    }
+                    if (numbers) {
+                        phoneNumbers = phoneNumbers.concat(numbers);
                     }
                 });
-            } else {
-                textarea.placeholder = ''; // Remove placeholder if no file is selected
             }
-        });
-        
+        }
+
+        if (phoneNumbers.length > 0) {
+            textarea.value = phoneNumbers.join('\n');
+            errorElement.textContent = '';
+        } else {
+            errorElement.textContent = 'No valid entries are found in the file(s). Upload valid files that contain the required data.'.replace(' entries ', entryty);
+        }
+        textarea.placeholder = ''; // Remove placeholder after loading
+    } else {
+        textarea.placeholder = ''; // Remove placeholder if no file is selected
+    }
+});
+      
         </script>
         
 <script>
