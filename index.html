@@ -484,7 +484,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <a class="btn btn-outline-primary btn-square me-3"  href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
                             <a class="btn btn-outline-primary btn-square me-3" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
                         </div>
-                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>Clients reviews <a class="underline" target="_blank" href="https://mostaql.com/u/barmga/reviews">on Mostaql</a></span></div>
+                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>Clients reviews <a class="underline" target="_blank" href="https://mostaql.com/u/barmga">on Mostaql</a></span></div>
                     </div>
                     <div class="col-lg-6">
                         <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-left: 10%;" data-wow-delay="0.1s" alt="barmga about" src="images/about.webp">
@@ -544,14 +544,14 @@ document.addEventListener("DOMContentLoaded", function() {
                             <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="productlink"><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now</a>
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 noticeme" style="font-size: 90%;"  href="" id="samplelink" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href); document.querySelector('#samplelink').classList.remove('noticeme')"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga/reviews" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
                         </div>
                         <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy.</a> <a class="text-muted" > Payment is powered by <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> Hotmart.</a></a></span></div>
                         <div class="d-flex align-items-end mt-3 mobilebloc" style="display: none;">
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="https://t.me/bigdata_shop" target="_blank" style="font-size: 85%;">
                                 <i class="fa fa-telegram btn-outline-primary" style="font-size: 120%; margin-right: 4px;"></i>Telegram
                             </a>
-                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="https://mostaql.com/u/barmga/reviews" target="_blank" style="font-size: 85%;">
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2 barmgareviewsmob" href="https://mostaql.com/u/barmga" target="_blank" style="font-size: 85%;">
                                 <i class="fa fa-star" style="margin-right: 4px;"></i>Reviews
                             </a>
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="#about" style="font-size: 85%;">
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <h5 class="text-white mb-4">Our Company</h5>
                         <a class="btn btn-link" href="#home">Home</a>
                         <a class="btn btn-link" href="#about">About Us</a>
-                        <a class="btn btn-link" href="https://mostaql.com/u/barmga/reviews" target="_blank">Reviews on Mostaql</a>
+                        <a class="btn btn-link" href="https://mostaql.com/u/barmga" target="_blank">Reviews on Mostaql</a>
                         <a class="btn btn-link" href="https://barmga.com/faq">FAQ</a>
                         <a class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Condition</a>
                     </div>
@@ -1447,7 +1447,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665869?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Ejar & Rega (Authorities)"
+        "source": "Ejar & Rega (Authorities)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
     },
     "Beauty and Sports Centers": {
         "info": "Excel files containing over 17,000 contact details, most of selected companies are beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
@@ -1465,7 +1466,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Organisations": {
         "info": "Excel file containing over 4,500 contact details for organisations located in Saudi Arabia. Useful for social activities & projects.",
@@ -1483,7 +1485,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032637122?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "NCNP (Authority)"
+        "source": "NCNP (Authority)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/8302098"
     },
     "Restaurants and Cafes": {
         "info": "Excel file containing 25,000 contact details for restaurants and cafes in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
@@ -1501,7 +1504,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665861?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7031296"
     },
     "Construction Companies": {
         "info": "Excel files containing data for over 18,000 contact details for construction companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
@@ -1519,7 +1523,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665892?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2022",
-        "source": "Muqawil (Authority)"
+        "source": "Muqawil (Authority)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
     },
     "Engineering Offices": {
         "info": "Excel file containing over 3,800 contact details for engineering offices, in Saudi Arabia. This data is useful for contracting companies to find cooperative offices to bring in projects.",
@@ -1537,7 +1542,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665882?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Balady (Authority)"
+        "source": "Balady (Authority)",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Building Materials Suppliers": {
         "info": "Excel files containing 11,000 contact details for building materials suppliers, stores, and factories in Saudi Arabia. Useful for contractors to find the best supplier of building materials and request their prices in a practical way.",
@@ -1545,8 +1551,8 @@ var allproducts ={
         "feature1": "11,000 Mobile Numbers",
         "feature3": "2 Sheets | Excel Files",
         "id": "sa-building-materials-suppliers",
-        "gift": "",
-        "originalprice": "1,200 Records for real estate development companies (Free)",
+        "gift": "1,200 Records for real estate development companies (Free)",
+        "originalprice": "",
         "price": "55$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
@@ -1555,7 +1561,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032666017?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
-        "source": "Muqawil (Authority), Google Maps"
+        "source": "Muqawil (Authority), Google Maps",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7998119"
     },
     "Building Materials Products": {
         "info": "Excel file containing 4,500 products for building materials, lighting, plumbing, tools, and equipment necessary for construction & contracting projects. All products are accompanied by images and include details such as name, price, category, and description if available. Practical and excellent for uploading products to an online store easily from a ready-made Excel file.",
@@ -1573,7 +1580,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032666008?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": ""
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Real Estate Advertisements": {
         "info": "Excel file dedicated to real estate advertisements posted on Telegram groups. Useful for studying the market and finding deals.",
@@ -1591,7 +1599,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032596366?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Telegram Groups & Channels"
+        "source": "Telegram Groups & Channels",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Hotels and Apartments": {
         "info": "Excel files containing over 11,000 contact details for hotels, apartments, and chalets in Saudi Arabia. This data is useful for marketing cleaning services, security, and hotel offers.",
@@ -1609,7 +1618,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032596744?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps, Tourism Ministry"
+        "source": "Google Maps, Tourism Ministry",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Bakeries and Cake Shops": {
         "info": "Excel file containing 9,000 contact details for bakeries, sweets shops, juice shops, and ice cream shops in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
@@ -1627,7 +1637,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665944?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Natural Food Stores": {
         "info": "Excel file containing 570 contact details for natural food stores.",
@@ -1645,7 +1656,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1039176466?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Grocery Stores and Supermarkets": {
         "info": "Excel file containing 12,000 contact details for supermarkets and grocery stores in Saudi Arabia. Useful for advertising wholesale food products and cleaning supplies.",
@@ -1663,7 +1675,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032637133?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Transport Companies": {
         "info": "Excel file containing over 11,000 contact details for companies licensed by the Transport Authority. Suitable for suppliers of transport equipment and for renting licensed yards.",
@@ -1681,7 +1694,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "TGA (Authority)"
+        "source": "TGA (Authority)",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Factories": {
         "info": "Excel files containing 12,000 contact details for Saudi Arabian factories. Useful for store owners to reach suppliers of goods, as well as transport companies and industrial equipment suppliers to market their services.",
@@ -1699,7 +1713,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665971?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2022 -2023 -2024",
-        "source": "Authorities & Governmental Websites"
+        "source": "Authorities & Governmental Websites",
+        "reviews": "https://mostaql.com/u/barmga/reviews/4663661"
     },
     "Medical Centers": {
         "info": "Excel file containing 10,000 contact details for clinics, hospitals, pharmacies, and optical stores, in Saudi Arabia. Ideal for advertising medical equipment supplies, pharmaceutical promotion, and collaboration with healthcare providers.",
@@ -1717,7 +1732,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "MakeUp Products": {
         "info": "Excel file containing 3,200 makeup & beauty products records in the Saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
@@ -1735,7 +1751,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": ""
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Pharmaceutical Products": {
         "info": "Excel file containing 8,400 pharmacy products records in the Saudi market. Contains information on medicines, care products, dietary supplements, makeup, and mother and child supplies. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
@@ -1753,7 +1770,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665987?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": ""
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Maroof Ecommerce Stores": {
         "info": "Excel file containing data for over 60,000 online stores and projects registered on Maroof Saudi website. This data can be used for marketing campaigns (digital services, wholesale goods).",
@@ -1771,7 +1789,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Maroof"
+        "source": "Maroof",
+        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
     },
     "Electronics Stores": {
         "info": "Excel file containing 5,000 contact details for electronics stores in Saudi Arabia. Useful for suppliers of electronic products & parts.",
@@ -1789,7 +1808,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665934?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Clothing Stores": {
         "info": "Excel file containing 8,000 contact details for clothing and shoe stores in Saudi Arabia. Useful for clothing manufacturers and designers.",
@@ -1807,7 +1827,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665953?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Fabric and Tailoring Shops": {
         "info": "Excel file containing 6,000 contact details for fabric and tailoring shops in Saudi Arabia. Useful for clothing manufacturers and designers, as well as owners of clothing stores.",
@@ -1825,7 +1846,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665923?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Perfume Products": {
         "info": "Excel file containing 1,700 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
@@ -1843,7 +1865,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": ""
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Perfumes Stores": {
         "info": "Excel file containing over 7,000 contact details for perfumes stores, in Saudi Arabia. This data is useful for wholesale perfumes suppliers.",
@@ -1861,7 +1884,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1034893155?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps & Maroof"
+        "source": "Google Maps & Maroof",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Flowers and Plants Shops": {
         "info": "Excel file containing 3,400 contact details for flowers & plants stores in Saudi Arabia.",
@@ -1879,7 +1903,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Supermarket Products": {
         "info": "Excel file containing 7,900 supermarket products (food & cleaning products) extracted from Saudi Arabia Carrefour website. All products are accompanied by images and include details such as name, price, category, barcode and description, if available.  Upload products to an online store easily and quickly from a ready-made Excel file.",
@@ -1897,7 +1922,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665980?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": ""
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7367510"
     },
     "Job Advertisements": {
         "info": "Excel file dedicated to job advertisements posted on Telegram groups. Useful for job seekers.",
@@ -1915,7 +1941,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Telegram Groups & Channels"
+        "source": "Telegram Groups & Channels",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Schools": {
         "info": "Excel files containing over 8,000 contact details for schools, kindergartens, and educational centers. Can be used to market anything that benefits children and the education sector.",
@@ -1933,7 +1960,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1032665836?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024 - 2023",
-        "source": "Google Maps & Other Schools Directories"
+        "source": "Google Maps & Other Schools Directories",
+        "reviews": "https://mostaql.com/u/barmga/reviews/8302098"
     },
     "Cleaning Services companies": {
         "info": "Excel file containing over 7,000 contact details for  companies proving car wash, laundary and other cleaning services, in Saudi Arabia. This data is useful for contracting companies to advertise wholesale cleaning materials.",
@@ -1951,7 +1979,8 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1034893167?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Heavy Equipments Companies": {
         "info": "Excel file containing 420 contact details for heavy equipments companies in Saudi Arabia.",
@@ -1969,9 +1998,13 @@ var allproducts ={
         "videolink": "https://player.vimeo.com/video/1046555098?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2025",
-        "source": "Google Maps"
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     }
 }
+
+
+
 //if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['Perfume Products']}
 var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
     <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
@@ -2138,6 +2171,8 @@ function selectedproduct(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href =  product.productlink;
+    document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
+    document.querySelector('.barmgareviewsmob').href =  product.reviews;
     if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href = product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
@@ -2171,6 +2206,8 @@ function selectedproduct2(curr) {
     document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
     !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
     document.querySelector('#productlink').href = product.productlink;
+    document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
+    document.querySelector('.barmgareviewsmob').href =  product.reviews;
     if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
     document.querySelector('#samplelink').href =  product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
