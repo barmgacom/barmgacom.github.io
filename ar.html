@@ -1302,9 +1302,12 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
 function suggestMe(productname,dicta){
     if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',1);
-        dicta=movelPos(dicta,'الفنادق والشقق',3);
-        dicta=movelPos(dicta,'المراكز الطبية',2);
+        dicta=movelPos(dicta,'الفنادق والشقق',2);
+        dicta=movelPos(dicta,'المطاعم والمقاهي',3);
         dicta=movelPos(dicta,'الجمعيات',4);
+        dicta=movelPos(dicta,'المراكز الطبية',5);
+        dicta=movelPos(dicta,'شركات النقل',6);
+        dicta=movelPos(dicta,'شركات المقاولات',7);
     }else if(['medical centers','المراكز الطبية'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'الجمعيات',1);
         dicta=movelPos(dicta,'متاجر العطور',2);
@@ -1346,7 +1349,7 @@ function suggestMe(productname,dicta){
             dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
             dicta=movelPos(dicta,'شركات المقاولات',2);
         dicta=movelPos(dicta,'المصانع',3);
-        dicta=movelPos(dicta,'الفنادق والشقق',4);
+        dicta=movelPos(dicta,'المدارس ورياض الأطفال',4);
         dicta=movelPos(dicta,'شركات النقل',5);
         dicta=movelPos(dicta,'المطاعم والمقاهي',6);
         dicta=movelPos(dicta,'محلات الزهور والمشاتل',7);
@@ -1390,6 +1393,18 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الفنادق والشقق',6);
         dicta=movelPos(dicta,'محلات الزهور والمشاتل',7);
         //dicta=movelPos(dicta,'محلات الزهور والمشاتل',7);
+        return dicta
+        }
+        if(window.location.href.includes('&exh')){
+            dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
+            dicta=movelPos(dicta,'محلات الأزياء',2);
+            dicta=movelPos(dicta,'متاجر العطور',3);
+            dicta=movelPos(dicta,'المخابز ومحلات الحلويات',4);
+            dicta=movelPos(dicta,'محلات الزهور والمشاتل',5);
+            dicta=movelPos(dicta,'المطاعم والمقاهي',6);
+        dicta=movelPos(dicta,'متاجر الكترونية',7);
+        dicta=movelPos(dicta,'المصانع',8);
+        dicta=movelPos(dicta,'شركات النقل',9);
         return dicta
         }
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
