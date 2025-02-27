@@ -106,7 +106,7 @@
     <loc>https://barmga.com/دليل-اعلانات-عقارية?product=sa-realestate-ads</loc>
     <lastmod>2025-02-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://barmga.com/دليل-الفنادق-والشقق?product=sa-hotels</loc>
@@ -171,7 +171,9 @@
   <url>
     <loc>https://barmga.com/دليل-محلات-الالكترونيات?product=sa-electronics</loc>
     <lastmod>2025-02-27</lastmod>
-    <changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 <url>
     <loc>https://barmga.com/دليل-محلات-الأزياء?product=sa-clothes-shops</loc>
     <lastmod>2025-02-27</lastmod>
@@ -218,7 +220,7 @@
     <loc>https://barmga.com/دليل-اعلانات-واظائف?product=sa-job-ads</loc>
     <lastmod>2025-02-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://barmga.com/دليل-شركات-التنظيف-والمغاسل?product=sa-cleaning-companies</loc>
