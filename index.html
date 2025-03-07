@@ -94,7 +94,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
 
-<style>      
+<style>   
+.btn-outline-primary.bg-white:hover{color: #023957;}   
         .noticeme {
             background: linear-gradient(270deg, #ffffff, #fdfeff, #bfe2fd, #ffffff, #ffffff);
             color: #2780B7; /* Original text color */
@@ -595,6 +596,36 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
         <!-- addgram End -->
         <div class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;" id="prods">
+            <div class="text-center mt-2 pt-2 filter justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" >
+                                Categories
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" >
+                                <li><a class="dropdown-item" id="all" onclick="filterCat(this.id)">All Categories</a></li>
+                                <li><a class="dropdown-item" id="realestate" onclick="filterCat(this.id)">Real Estate</a></li>
+                                <li><a class="dropdown-item" id="health" onclick="filterCat(this.id)">Health & Beauty</a></li>
+                                <li><a class="dropdown-item" id="commerce" onclick="filterCat(this.id)">Commerce</a></li>
+                                <li><a class="dropdown-item" id="food" onclick="filterCat(this.id)">Food & Hotels</a></li>
+                                <li><a class="dropdown-item" id="education" onclick="filterCat(this.id)">Education</a></li>
+                                <li><a class="dropdown-item" id="productsx" onclick="filterCat(this.id)">Products</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-outline-primary bg-white dropdown-toggle countryButton" type="button" id="dropdownMenuButtony" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" >
+                               Country
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtony" >
+                                <li><a class="dropdown-item" id="sa" onclick="filterCont(this.id)">Saudi Arabia</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container py-5 px-lg-5">
             <div class="container px-lg-5">
               <br>
@@ -1294,30 +1325,30 @@ function validateEmail(email) {
     <script src="js/main.js"></script>
 <script>
 function suggestMe(productname,dicta){
-    if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    if (['organisations','الجمعيات'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Schools',1);
         dicta=movelPos(dicta,'Restaurants and Cafes',2);
         dicta=movelPos(dicta,'Medical Centers',3);
         dicta=movelPos(dicta,'Organisations',4);
-    }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Makeup Products',1);
         dicta=movelPos(dicta,'Supermarket Products',2);
         dicta=movelPos(dicta,'Organisations',3);
         dicta=movelPos(dicta,'Perfume Products',4);
         dicta=movelPos(dicta,'Pharmaceutical Products',5);
-    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Real Estate Advertisements',1);
         dicta=movelPos(dicta,'Transport Companies',2);
         dicta=movelPos(dicta,'Factories',3);
         dicta=movelPos(dicta,'Realestate Companies',4);
         dicta=movelPos(dicta,'Construction Companies',5);
-    }else if (['شركات النقل','transport companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['شركات النقل','transport companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Real Estate Advertisements',1);
         dicta=movelPos(dicta,'Realestate Companies',2);
         dicta=movelPos(dicta,'Transport Companies',3);
         dicta=movelPos(dicta,'Factories',4);
         dicta=movelPos(dicta,'Construction Companies',5);
-    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Natural Food Stores',1);
         dicta=movelPos(dicta,'Grocery Stores and Supermarkets',2);
         dicta=movelPos(dicta,'Restaurants and Cafes',3);
@@ -2130,6 +2161,58 @@ discount = Math.floor(discount);
 // Return the formatted string
 return `-${discount}%`;
 }
+function filterCatx(family){
+         var newdict={}
+         console.log(family)
+         if (["العقار","الصحة","تجارة","التعليم","مطاعم","realestate","commerce","health","food","education"].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                allproducts[el].family.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else if(['بضائع','productsx'].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                let prox=allproducts[el].category.toLowerCase()+'x'
+                prox.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else{return allproducts}
+}
+function filterCat(family){
+     var mydict=filterCatx(family)
+     propagateproductsx(mydict)
+     document.querySelector('.moreproducts').click()
+     document.querySelector('.categoryButton').textContent=document.querySelector('#'+family).textContent
+}
+function filterCont(family){
+     if(family.toLowerCase()=="products"){family="productsx"}
+     document.querySelector('.countryButton').textContent=document.querySelector('#'+family).textContent
+}
+function propagateproductsx(allproductsx) {
+    let ix = 0;
+    let display = "block";
+    document.querySelector('.allproducts').innerHTML=''
+    for (let title in allproductsx) {
+        let product = allproductsx[title];
+        let anim='class="col-lg-3 col-md-6 itemhere"'
+        ix++;
+        if (ix > 4) {
+            display = "none";
+            anim='class="col-lg-3 col-md-6 itemhere"'
+        }
+        let aroducthtmlc=String(aroducthtml)
+        if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
+        if(product.price=="مجاني"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        document.querySelector('.allproducts').innerHTML += aroducthtmlc
+            .replace(/titlehere/g, title)
+            .replace(/idhere/g, product.id)
+            .replace(/subhere/g, product.subtitle)
+            .replace('price', product.price)
+            .replace('category', product.category)
+            .replace('block', display)
+            .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
+            
+    }
+}
 
 function propagateproducts() {
     let ix = 0;
@@ -2246,7 +2329,7 @@ function selectedproduct(curr) {
     document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;+' Database Saudi Arabia'
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr.parentElement.querySelector('h5').textContent);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLowerCase());
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('.selectedproduct').scrollIntoView();
     document.querySelector('.selectedproduct').setAttribute('id', product.id);
@@ -2281,7 +2364,7 @@ function selectedproduct2(curr) {
     document.querySelector('title').textContent= 'Barmga | ' + curr+' Database Saudi Arabia';
     document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr);
     document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
-    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLocaleLowerCase());
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLowerCase());
     document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
     document.querySelector('.selectedproduct').scrollIntoView();
     document.querySelector('.selectedproduct').setAttribute('id', product.id);

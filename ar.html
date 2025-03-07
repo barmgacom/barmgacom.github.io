@@ -49,6 +49,7 @@
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
 
     <style>
+        .btn-outline-primary.bg-white:hover{color: #023957;}
         .noticeme {
             background: linear-gradient(270deg, #ffffff, #fdfeff, #bfe2fd, #ffffff, #ffffff);
             color: #2780B7; /* Original text color */
@@ -658,9 +659,39 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
         </div>
         <!-- addgram End -->
         <div dir="rtl" class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;" id="prods">
-            <div class="container py-5 px-lg-5">
-            <div class="container px-lg-5">
-              <br>
+
+                <div class="text-center mt-2 pt-2 filter justify-content-center">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" dir="rtl">
+                                    التصنيف
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" dir="rtl" style="text-align: right;">
+                                    <li><a class="dropdown-item" id="الكل" onclick="filterCat(this.id)">جميع الأصناف</a></li>
+                                    <li><a class="dropdown-item" id="العقار" onclick="filterCat(this.id)">العقار والمقاولات</a></li>
+                                    <li><a class="dropdown-item" id="الصحة" onclick="filterCat(this.id)">الصحة والجمال</a></li>
+                                    <li><a class="dropdown-item" id="تجارة" onclick="filterCat(this.id)">التجارة والصناعة</a></li>
+                                    <li><a class="dropdown-item" id="مطاعم" onclick="filterCat(this.id)">الأطعمة والفندقة</a></li>
+                                    <li><a class="dropdown-item" id="التعليم" onclick="filterCat(this.id)">التعليم والجمعيات</a></li>
+                                    <li><a class="dropdown-item" id="بضائع" onclick="filterCat(this.id)">بضائع</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-outline-primary bg-white dropdown-toggle countryButton" type="button" id="dropdownMenuButtony" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" dir="rtl">
+                                    &nbsp;&nbsp;الدولة&nbsp;&nbsp;
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtony" dir="rtl" style="text-align: right;">
+                                    <li><a class="dropdown-item" id="sa" onclick="filterCont(this.id)">السعودية</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container py-5 px-lg-5">
+                <div class="container px-lg-5">
               <div class="row g-4 allproducts">
       
                 </div>
@@ -1209,6 +1240,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     </div>
     <!-- JavaScript Libraries -->
     <script>
+    
     function removeinfototerms(){
     // Get the elements
     document.querySelector('#termsModal').remove();}
@@ -1300,7 +1332,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     <script src="js/main.js"></script>
 <script>
 function suggestMe(productname,dicta){
-    if (['organisations','الجمعيات'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    if (['organisations','الجمعيات'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'المدارس ورياض الأطفال',1);
         dicta=movelPos(dicta,'الفنادق والشقق',2);
         dicta=movelPos(dicta,'المطاعم والمقاهي',3);
@@ -1308,7 +1340,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المراكز الطبية',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-    }else if(['medical centers','المراكز الطبية',"sfda companies","هئية الغذاء والدواء"].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if(['medical centers','المراكز الطبية',"sfda companies","هئية الغذاء والدواء"].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات الصيدلية',1);
         dicta=movelPos(dicta,'المراكز الطبية',2);
         dicta=movelPos(dicta,'الجمعيات',3);
@@ -1318,25 +1350,25 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'متاجر العطور',7);
         dicta=movelPos(dicta,'مراكز التجميل واللياقة',8);
         dicta=movelPos(dicta,'شركات التنظيف والمغاسل',9);
-    }else if (['منتجات العطور','perfume products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات التجميل',1);
         dicta=movelPos(dicta,'منتجات السوبرماركت',2);
         dicta=movelPos(dicta,'الجمعيات',3);
         dicta=movelPos(dicta,'منتجات العطور',4);
         dicta=movelPos(dicta,'منتجات الصيدلية',5);
-    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'اعلانات عقارية',1);
         dicta=movelPos(dicta,'شركات النقل',2);
         dicta=movelPos(dicta,'المصانع',3);
         dicta=movelPos(dicta,'الشركات العقارية',4);
         dicta=movelPos(dicta,'شركات المقاولات',5);
-    }else if (['شركات النقل','transport companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['شركات النقل','transport companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'اعلانات عقارية',1);
         dicta=movelPos(dicta,'الشركات العقارية',2);
         dicta=movelPos(dicta,'شركات النقل',3);
         dicta=movelPos(dicta,'المصانع',4);
         dicta=movelPos(dicta,'شركات المقاولات',5);
-    }else if (['شركات المقاولات','construction companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['شركات المقاولات','construction companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
         dicta=movelPos(dicta,'موردي مواد البناء',2);
         dicta=movelPos(dicta,'شركات النقل',3);
@@ -1344,7 +1376,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المكاتب الهندسية',5);
         dicta=movelPos(dicta,'مستلزمات البناء',6);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
-    }else if (['شركات المعدات الثقيلة','heavy equipments companies'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['شركات المعدات الثقيلة','heavy equipments companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         if(window.location.href.includes('&g')){
             dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
             dicta=movelPos(dicta,'شركات المقاولات',2);
@@ -1364,7 +1396,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'مستلزمات البناء',6);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات المقاولات',8);
-    }else if (['موردي مواد البناء','building materials suppliers'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['موردي مواد البناء','building materials suppliers'].includes(productname.toLowerCase().replace(/-/g,' '))){
 
         dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
         dicta=movelPos(dicta,'المكاتب الهندسية',2);
@@ -1374,7 +1406,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الشركات العقارية',6);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات المقاولات',8);
-    }else if (['منتجات مواد البناء','building materials products'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['منتجات مواد البناء','building materials products'].includes(productname.toLowerCase().replace(/-/g,' '))){
         
         dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
         dicta=movelPos(dicta,'موردي مواد البناء',2);
@@ -1383,7 +1415,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الشركات العقارية',5);
         dicta=movelPos(dicta,'الفنادق والشقق',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLowerCase().replace(/-/g,' '))){
         if(window.location.href.includes('&g')){
             dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'متاجر الكترونية',2);
@@ -1415,7 +1447,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'المصانع',8);
-    }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLocaleLowerCase().replace(/-/g,' '))){
+    }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الزهور والمشاتل',1);
         dicta=movelPos(dicta,'متاجر الكترونية',2);
         dicta=movelPos(dicta,'المصانع',3);
@@ -1593,7 +1625,7 @@ var allproducts={
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/E95263962U?off=3hnpdd4p",
         "samplelink": "https://barmga.com/samples/SA-عينة-مطاعم-ومقاهي.xlsx",
-        "family": "مطاعم, العقار",
+        "family": "مطاعم",
         "videolink": "https://player.vimeo.com/video/1032665861?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
@@ -2267,7 +2299,55 @@ discount = Math.floor(discount);
 // Return the formatted string
 return `-${discount}%`;
 }
-
+function filterCatx(family){
+         var newdict={}
+         if (["العقار","الصحة","تجارة","التعليم","مطاعم","realestate","commerce","health","food","education"].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                allproducts[el].family.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else if(['بضائع','products'].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                allproducts[el].category.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else{return allproducts}
+}
+function filterCat(family){
+     var mydict=filterCatx(family)
+     propagateproductsx(mydict)
+     document.querySelector('.moreproducts').click()
+     document.querySelector('.categoryButton').textContent=document.querySelector('#'+family).textContent
+}
+function filterCont(family){
+     document.querySelector('.countryButton').textContent=document.querySelector('#'+family).textContent
+}
+function propagateproductsx(allproductsx) {
+    let ix = 0;
+    let display = "block";
+    document.querySelector('.allproducts').innerHTML=''
+    for (let title in allproductsx) {
+        let product = allproductsx[title];
+        let anim='class="col-lg-3 col-md-6 itemhere"'
+        ix++;
+        if (ix > 4) {
+            display = "none";
+            anim='class="col-lg-3 col-md-6 itemhere"'
+        }
+        let aroducthtmlc=String(aroducthtml)
+        if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
+        if(product.price=="مجاني"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        document.querySelector('.allproducts').innerHTML += aroducthtmlc
+            .replace(/titlehere/g, title)
+            .replace(/idhere/g, product.id)
+            .replace(/subhere/g, product.subtitle)
+            .replace('price', product.price)
+            .replace('category', product.category)
+            .replace('block', display)
+            .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
+            
+    }
+}
 function propagateproducts() {
     let ix = 0;
     let display = "block";
