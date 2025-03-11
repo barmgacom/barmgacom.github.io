@@ -2441,6 +2441,11 @@ function addStatements(name){
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
+    else if (allproducts[name].category=="Products" && allproducts[name].source){
+        for (ele of [format1,source1,updates,delivered,verification])
+        {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
+        elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
     else if (allproducts[name].category=="Products"){
         for (ele of [format2,use2,source2,updates,delivered,verification])
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
