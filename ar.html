@@ -2282,7 +2282,7 @@ var html='<p class="hiddenx"><strong>xxx</strong></p>';
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="بضائع" && allproducts[name].source){
-        for (ele of [format2,use2,source1,updates,delivered,verification])
+        for (ele of [format1,source1,updates,delivered,verification])
         {if (allproducts[name].price=="مجاني"){if(ele==delivered || ele==verification){continue}};
         elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
