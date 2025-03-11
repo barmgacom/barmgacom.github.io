@@ -1521,6 +1521,7 @@ var disc={
     "إعلانات":""
 }
 var allnames={
+    "الأجهزة-الطبية":"medical-devices",
     "هئية-الغذاء-والدواء":"sfda-companies",
     "ورشات-الحدادة-والنجارة":"blacksmiths-and-joiners",
     "محطات-الوقود":"gaz-stations",
@@ -1625,7 +1626,7 @@ var allproducts={
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/E95263962U?off=3hnpdd4p",
         "samplelink": "https://barmga.com/samples/SA-عينة-مطاعم-ومقاهي.xlsx",
-        "family": "مطاعم",
+        "family": "العقار",
         "videolink": "https://player.vimeo.com/video/1032665861?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
         "date": "2024",
@@ -2182,9 +2183,27 @@ var allproducts={
         "date": "2025",
         "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "الأجهزة الطبية": {
+        "info": "ملفات اكسل تحتوي على 191 ألف سطر لبيانات الأجهزة الطبية المتاحة على موقع هيئة الغذاء والدواء.",
+        "feature2": "129 ألف اسم جهاز/براند",
+        "feature1": " 191 ألف سطر مختلف",
+        "feature3": "2 ملفات إكسل",
+        "id": "sa-sfda-md",
+        "gift": "",
+        "originalprice": "120$",
+        "price": "95$",
+        "category": "بضائع",
+        "productlink": "https://pay.hotmart.com/X98610380T",
+        "samplelink": "https://barmga.com/samples/2-Sheets-SFDA-عينة-اجهزة-طبية.xlsx",
+        "family": "الصحة, تجارة",
+        "videolink": "https://player.vimeo.com/video/1064751177?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025",
+        "source": "هيئة الغذاء والدواء",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     }
 }
-
 
 //if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
 
@@ -2261,6 +2280,11 @@ var html='<p class="hiddenx"><strong>xxx</strong></p>';
         for (ele of [format1,use1,source1,updates,note,delivered,verification])
         {if (allproducts[name].price=="مجاني"){if(ele==delivered || ele==verification){continue}};
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
+    else if (allproducts[name].category=="بضائع" && allproducts[name].source){
+        for (ele of [format2,use2,source1,updates,delivered,verification])
+        {if (allproducts[name].price=="مجاني"){if(ele==delivered || ele==verification){continue}};
+        elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="بضائع"){
         for (ele of [format2,use2,source2,updates,delivered,verification])
