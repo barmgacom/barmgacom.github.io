@@ -1340,16 +1340,17 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المراكز الطبية',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-    }else if(['medical centers','المراكز الطبية',"sfda companies","هئية الغذاء والدواء"].includes(productname.toLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'منتجات الصيدلية',1);
-        dicta=movelPos(dicta,'المراكز الطبية',2);
-        dicta=movelPos(dicta,'الجمعيات',3);
-        dicta=movelPos(dicta,'هئية الغذاء والدواء',4);
-        dicta=movelPos(dicta,'شركات النقل',5);
-        dicta=movelPos(dicta,'المدارس ورياض الأطفال',6);
-        dicta=movelPos(dicta,'متاجر العطور',7);
-        dicta=movelPos(dicta,'مراكز التجميل واللياقة',8);
-        dicta=movelPos(dicta,'شركات التنظيف والمغاسل',9);
+    }else if(['medical centers','المراكز الطبية',"sfda companies","هئية الغذاء والدواء","الأجهزة الطبية","medical devices"].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'الجمعيات',1);
+        dicta=movelPos(dicta,'هئية الغذاء والدواء',2);
+        dicta=movelPos(dicta,'المراكز الطبية',3);
+        dicta=movelPos(dicta,'الأجهزة الطبية',4);
+        dicta=movelPos(dicta,'منتجات الصيدلية',5);
+        dicta=movelPos(dicta,'شركات النقل',6);
+        dicta=movelPos(dicta,'المدارس ورياض الأطفال',7);
+        dicta=movelPos(dicta,'متاجر العطور',8);
+        dicta=movelPos(dicta,'مراكز التجميل واللياقة',9);
+        dicta=movelPos(dicta,'شركات التنظيف والمغاسل',10);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'منتجات التجميل',1);
         dicta=movelPos(dicta,'منتجات السوبرماركت',2);
@@ -2056,7 +2057,7 @@ var allproducts={
         "family": "تجارة, مطاعم",
         "videolink": "https://player.vimeo.com/video/1032665980?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
-        "date": "2024 (شهر 10 - 11)",
+        "date": "2024",
         "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga/reviews/7367510"
     },
@@ -2199,8 +2200,8 @@ var allproducts={
         "feature1": " 191 ألف سطر مختلف",
         "feature3": "2 ملفات إكسل",
         "id": "sa-sfda-md",
-        "gift": "",
-        "originalprice": "120$",
+        "gift": "ملف المراكز الطبية اضافة مجانية (10 آلاف رقم اتصال)",
+        "originalprice": "",
         "price": "95$",
         "category": "بضائع",
         "productlink": "https://pay.hotmart.com/X98610380T",
