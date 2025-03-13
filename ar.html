@@ -1356,6 +1356,15 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الجمعيات',3);
         dicta=movelPos(dicta,'منتجات العطور',4);
         dicta=movelPos(dicta,'منتجات الصيدلية',5);
+    }else if (['منتجات السوبرماركت','supermarket products'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
+        dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
+        dicta=movelPos(dicta,'منتجات الصيدلية',3);
+	    dicta=movelPos(dicta,'منتجات السوبرماركت',4);
+        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',5);
+        dicta=movelPos(dicta,'المطاعم والمقاهي',6);
+        dicta=movelPos(dicta,'الفنادق والشقق',7);
+        dicta=movelPos(dicta,'شركات النقل',8);
     }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'اعلانات عقارية',1);
         dicta=movelPos(dicta,'شركات النقل',2);
