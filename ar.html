@@ -406,6 +406,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
 
   </style>
 <script>
+    var notyet=true
     document.addEventListener("DOMContentLoaded", function() {
         var loader = document.querySelector('.loaderx');
         loader.style.display = "block";
@@ -414,6 +415,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
             loader.classList.add('fade-out');
             setTimeout(function() {
                 loader.style.display = "none";
+                notyet=false
                 if(window.location.href.includes('&sample') && document.querySelector('#samplelink').href.startsWith('https://')){console.log(loader.style.display);document.querySelector('#samplelink').click()};
             }, 500); // Matches the transition duration
         });
@@ -564,7 +566,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                             <h6 class="position-relative text-primary ps-4" id="selectedprodsubtitle" style="padding-right: 20px;"></h6>
                             <h2 class="mt-2" id="selectedprodtitle"></h2>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 theprodprice">
                             <small  id="selectedprodpriceundiscount" style="text-decoration: line-through; font-size: 105%;">
                              
                             </small>
@@ -2477,7 +2479,7 @@ function selectedproduct(curr) {
     document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
     document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
     document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
-    document.querySelector('div:has(>#selectedprodprice)').style.display="block";
+    //document.querySelector('div:has(>#selectedprodprice)').style.display="block";
     if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
     document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2"  style="padding-left: 7px;"></i>'+product.feature1;
     document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2"  style="padding-left: 7px;"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3;
@@ -2513,7 +2515,7 @@ function selectedproduct2(curr) {
     document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
     document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
     document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
-    document.querySelector('div:has(>#selectedprodprice)').style.display="block";
+    //document.querySelector('div:has(>#selectedprodprice)').style.display="block";
     if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
     document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature1;
     document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2" style="padding-left: 7px;"></i>'+product.feature3;
@@ -2561,7 +2563,7 @@ function selectedproduct2(curr) {
 var elix=false
 if (window.location.href.includes('product=')){
     let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true}else{productname=productname.replace(/-/g,' ');}
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true}else{productname=productname.replace(/-/g,' ');document.querySelector('.theprodprice').style.display="none";}
     selectedproduct2(productname);
     //if (elix){document.querySelector('div:has(>#selectedprodprice)').style.display="none";}
 }
@@ -2842,7 +2844,27 @@ function moveright(){
     }
 </script>
 <script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
+<script>
+    function showOnScrollOrClick() {
+    var element=document.querySelector('.theprodprice');
+    if (!element) {
+        return;
+    }
 
+    function showElement() {
+        if(notyet){return}
+        element.style.display = 'block';
+        notyet=true
+    }
+
+    // Add event listeners for scroll and click
+    window.addEventListener('scroll', showElement);
+    window.addEventListener('click', showElement);
+}
+showOnScrollOrClick()
+
+
+</script>
 
 
   
