@@ -2563,7 +2563,7 @@ function selectedproduct2(curr) {
 var elix=false
 if (window.location.href.includes('product=')){
     let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true}else{productname=productname.replace(/-/g,' ');document.querySelector('.theprodprice').style.display="none";}
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true;document.querySelector('.theprodprice').style.display="none";}else{productname=productname.replace(/-/g,' ');}
     selectedproduct2(productname);
     //if (elix){document.querySelector('div:has(>#selectedprodprice)').style.display="none";}
 }
