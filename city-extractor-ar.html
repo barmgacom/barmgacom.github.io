@@ -3,24 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <title>أداة التسويق على الواتساب</title>
+    <title>أداة استخراج اسماء المدن</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="برمحة, تسويق, قواعد بيانات, الشراكة بين الشركات, بيانات منتجات, روبوت, التسويق على الواتساب,  التسويق على البريد الألكتروني, بوتات, تطبيقات">
+    <meta name="keywords" content="استخراج أسماء المدن, ملف Excel, عناوين, أدوات الأعمال, التسويق للشركات, الموارد">
+    <meta name="description" content="هذه الأداة المجانية تساعدك على استخراج أسماء المدن بسهولة وكفاءة من ملفات Excel التي تحتوي على عناوين.">
+    <meta property="og:title" content="استخرج اسماء المدن من العناوين">
+    <meta property="og:description" content="هذه الأداة المجانية تساعدك على استخراج أسماء المدن بسهولة وكفاءة من ملفات Excel التي تحتوي على عناوين.">
+    <meta property="og:image" content="images/barmga.png">
+    <meta property="og:url" content="https://barmga.com/city-extractor-ar">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">    
+    
 
-    <meta name="description" content="تقوم هذه الأداة بتحويل أرقام الجوال إلى روابط واتساب مباشرة مرفق فيها نص الإعلان. ثم كل عملية إرسال لن تحتاج منك إلا كبستي زر.">
-    <meta property="og:title" content="برمجة | أداة التسويق على الواتساب" />
-    <meta property="og:description" content="تقوم هذه الأداة بتحويل أرقام الجوال إلى روابط واتساب مباشرة مرفق فيها نص الإعلان. ثم كل عملية إرسال لن تحتاج منك إلا كبستي زر." />
-    <meta property="og:image" content="images/barmga.png" />
-    <meta property="og:url" content="https://barmga.com/bulk-whatsapp-links-ar" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <!-- Favicon -->
 
     <link rel="icon" type="image/x-icon" href="images/logo.png" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -129,6 +128,26 @@
     margin-top: 10px; /* Adjust the value as needed */
     margin-bottom: 10px; /* Adjust the value as needed */
 }
+#fixed_button {
+  position: fixed;
+  bottom: 65px; /* Space from the bottom */
+  right: 35px; /* Space from the right */
+  width: 45px; /* Slightly larger for a modern look */
+  height: 45px; /* Slightly larger for a modern look */
+  border-radius: 50%; /* Rounded button */
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 100000; /* Ensure it stays above other content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+#fixed_button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
 .btn-custom {
             max-width: 250px; /* Adjust the width as needed */
             min-width: 150px; /* Adjust the width as needed */
@@ -146,10 +165,7 @@
             border-color: var(--secondary);
         }
     
-    .modal {
-      overflow: auto; /* Enable scroll if needed */
-    }
-    
+           
 
 .container{
   width: 100%;
@@ -185,7 +201,7 @@
         .navbar-nav .nav-link{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
 }
-.navbar-light .navbar-nav .nav-link {
+          .navbar-light .navbar-nav .nav-link {
           color: rgb(11, 3, 112) !important;
         }
         
@@ -291,7 +307,6 @@
 color: #452d8c;
 text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Modern shadow effect */
 }
-
  /*** Section Title ***/
  .section-title-right::before {
     position: absolute;
@@ -477,11 +492,11 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <i class="fa fa-th-list" style="color:#2780B7;"></i>
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0" >
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3"  href="https://barmga.com/ar#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#products">منتجاتنا</a></li>
+                            <li class="nav-item dropdown" style="margin-right: 15px;"  dir="rtl">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
                                     <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
@@ -493,144 +508,120 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
 
                         </ul>
-                        <ul class="navbar-nav ms-auto" style="display: block;" >
-                            <li class="nav-item dropdown" dir="rtl">
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="https://barmga.com/bulk-whatsapp-links">English</a></li>
+                                    <li><a class="dropdown-item" href="https://barmga.com/city-extractor">English</a></li>
                                     <li><a class="dropdown-item" href="#">العربية</a></li>
                                 </ul>
                             </li>
                         </ul>
+                    
                     </div>
                 </div>
             </nav>
 
-            <div class="container-fluid py-5 bg-primary hero-header mb-5"  style="text-align: right;">
+
+            <div class="container-fluid py-5 bg-primary hero-header mb-5" style="text-align: right;">
                 <div class="container my-5 py-5 px-lg-5">
                     <div class="row g-5 py-5">
-                        <div class="col-lg-6 text-center text-lg-end" >
-                            <h1 class="text-white mb-4 animated zoomIn">أداة التسويق على الواتساب</h1>
-                            <p class="text-white pb-3 animated zoomIn" dir="rtl" style="size: 120%;">تقوم هذه الأداة بتحويل أرقام الجوال إلى روابط واتساب مباشرة مرفق فيها نص الإعلان. كل عملية إرسال لن تحتاج منك إلا كبستي زر. الأداة مجانية وهي تيسر التسويق من جهاز الموبايل مباشرة.</p>
-                            <a href="#how-it-works" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;شرح الأداة&nbsp;</a>
+                        <div class="col-lg-6 text-center text-lg-end">
+                            <h1 class="text-white mb-4 animated zoomIn">استخرج اسماء المدن من العناوين</h1>
+                            <p class="text-white pb-3 animated zoomIn" dir="rtl">
+                                 
+                                تساعدك هذه الأداة المجانية في استخراج معظم أسماء المدن بسهولة وكفاءة من ملفات Excel التي تحتوي على عناوين متعددة. 
+                                تمكّنك من تبسيط معالجة البيانات وتقليل الجهد في العمل.
+                            </p>
+                            <a href="https://barmga.com/ar" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;الرئيسية&nbsp;</a>
                             <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;&nbsp;أبدأ الآن&nbsp;&nbsp;</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
         <!-- Navbar & Hero End -->
 
 
-        <!-- Full Screen Search Start -->
-        <div class="modal fade" id="searchModal" tabindex="-1">
-            <div class="modal-dialog modal-fullscreen" style="padding: 20px;">
-                <div class="modal-content" style="background: rgba(29, 29, 39, 0.95);">
-                    <div class="modal-header border-0" style="padding: 20px;">
-                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Full Screen Search End -->
-        <div class="container-fluid my-5 wow fadeInUp" data-wow-delay="0.1s" id="how-it-works" dir="rtl" >
-            <div class="container px-lg-5">
-                <div class="container how-it-works">
-                    <div class="row align-items-center">
-                        <div class="col-md-7">
-                            <ul class="steps">
-                                <li>
-                                    <span class="step-number">1.</span>
-                                    <h3 class="step-title">افتح الأداة</h3>
-                                    <p class="step-description">قم بتحميل تطبيق الواتساب على جوالك ثم افتح متصفح كروم على نفس الجهاز وقم بالدخول الى <a href="#tool" style="text-decoration: underline;">صفحة الأداة</a>.</p>
-                                </li>
-                                <li>
-                                    <span class="step-number">2.</span>
-                                    <h3 class="step-title">أدخل المعلومات المطلوبة</h3>
-                                    <p class="step-description">قم بإدراج نص الرسالة وقائمة الأرقام المستهدفة في الخانات المخصصة. يمكنك رفع ملف اكسل يحتوى على أرقام جوال بدل لصقها بخانة الأرقام. من المهم أن تبدأ جميع الأرقام برمز الدولة. بعدها انقر على زر البدء.</p>
-                                </li>
-                                <li>
-                                    <span class="step-number">3.</span>
-                                    <h3 class="step-title">أنقر على أول رقم</h3>
-                                    <p class="step-description">من خلال الصفحة التي ظهرت انقر على الرقم الذي ستبدأ منه الحملة مهما كان ترتيبه. ويمكنك المواصلة من خلال الزر الأزرق أعلى الشاشة. كلما ضغطت عليه سيفتح تطبيق واتساب مرفقا فيه نص الاعلان وكل ما عليك فعله الارسال. </p>
-                                </li>
-                                <li>
-                                    <span class="step-number">4.</span>
-                                    <h3 class="step-title">واصل</h3>
-                                    <p class="step-description"> عد إلى هذه الصفحة وواصل الإرسال بنفس الطريقة الموضحة بالخطوة 3. هذه العملية تيسر بشكل كبير الإرسال من الجوال. إذا تفضل طريقة آلية بشكل كامل وعملية أكثر يمكنك تجربة الأداة الثانية <a style="text-decoration: underline;" target="_blank" href="https://barmga.com/wabarmga-whatsapp-sender-ar">WABarmga.</a> يمكنك تحميل قائمة الأرقام من خلال مجموعة <a href="https://barmga.com/ar#products" style="text-decoration: underline;">بيانات العملاء المحتملين.</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-5 step-image">
-                            <img src="images/bulk-whatsapp-links-barmga-ar.png" alt="مولد روابط الواتساب">
-                        </div>
-                    </div>
-                </div>
-                </div></div>
-        <!-- start Start -->
-        <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" dir="rtl" style="text-align: right;">
-            <div class="container px-lg-5">
-                <div class="d-flex align-items-center justify-content-center" style="max-height: 250px;">
-                    <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight" style="margin-top: 20px; margin-bottom: 20px;">&nbsp;&nbsp;أبدأ الآن&nbsp;&nbsp;</a>
-                </div>
-            </div>
-        </div>        
-        <!-- start End -->
         <!-- About Start -->
-        <div class="container-fluid py-5" id="tool" dir="rtl" style="text-align: right;">
+        <div class="container-fluid py-5" id="tool" dir="rtl" style="text-align:right;">
             <div class="container mt-5">
                 <div class="card p-4 tool">
-                    <h3 class="card-title">أداة التسويق على الواتساب</h3>
-			<small>تستخدم هذه الأداة على جهاز الموبايل اوتابليت مع التأكد من تنزيل تطبيق الواتساب أولا.</small>
+                    <h3 class="card-title">أداة استخراج أسماء المدن</h3>
+                    <small>تساعد هذا الأداة في استخراج <strong style="text-decoration: underline;">معظم</strong> أسماء المدن من العناوين الخاصة بخرائط قوقل بناءا على طريقة صياغة العنوان.</small>
                     <div class="form-group">
-                        <label for="message" class="lab">الرسالة</label>
-                        <textarea class="form-control" id="message" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumbers" class="lab">أرقام الاتصال (رقم في كل سطر)</label>
-                        <textarea class="form-control" id="phoneNumbers" rows="5" dir="ltr"></textarea>
-                        <small class="form-text text-muted">جميع الأرقام يجب أن تبدأ برمز الدولة.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="fileUpload" class="lab">إرفع الأرقام من خلال ملف اكسل</label>
+                        <label for="fileUpload" class="lab">أرفع ملف إكسل</label>
                         <input type="file" class="form-control-file" id="fileUpload" accept=".xlsx">
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-primary btn-custom lab" id="convertBtn">ابدأ</button>
+                    <div class="form-group">
+                        <label for="addressCol" class="lab">اسم العمود المخصص للعناوين</label>
+                        <input type="text" class="form-control" id="addressCol" value="address">
                     </div>
-                    <small class="justify-content-center productad">
-                        يمكنك تحميل قوائم الأرقام من&nbsp;<a href="https://barmga.com/ar#products" style="text-decoration: underline;">مجموعة بيانات العملاء المحتملين.</a>
+                    <div class="form-group">
+                        <label for="cities" class="lab">أسماء المدن</label>
+                        <textarea type="text" class="form-control" id="cities">الرياض, جدة, الدمام, مكة, المدينة المنورة, الخبر, بريدة, خميس مشيط, أبها, الأحساء, صامطة, الطائف, تبوك, الخرج, الجبيل, حائل, الكامل, الظهران, جازان, القطيف, الدرعية, عنيزة, نجران, المزاحمية, حفر الباطن, ينبع, المجمعة, أحد رفيدة, بيشة, عرعر, الدوادمي, محايل, الزلفي, الدلم, الرس, البكيرية, الخفجي, صبيا, حوطة بني تميم, خليص, الباحة, الحوية, أبو عريش, سكاكا, رابغ, الجموم, العوالي, القويعية, ضرما, وادي الدواسر, حريملاء, عفيف, الأفلاج, القنفذة, النعيرية, شقراء, القريات, البدائع, سيهات, رأس تنورة, أحد المسارحة, المذنب, رماح, بلجرشي, تاروت, الهفوف, بقيق, الريان, العقيق, العلا, شرورة, بيش, الليث, رياض الخبراء, المجاردة, رفحاء, رنية, ضباء, السليل, الوجه, بارق, سراة عبيدة, صفوى, الدائر, الحناكية, تمير, قلوة, أملج, بدر, بلقرن, تيماء, ثول, دومة الجندل, رجال ألمع, روضة سدير, ضمد, عسفان, مرات, الحائر, الحريق, القيصومة, المظيلف, أم الحمام, طريف, فيفا, مهد الذهب, وادي بن هشبل, الجمش, الشماسية, القوارة, بللسمر, تثليث, ذهبان, مدينة الملك عبد الله الاقتصادية, الأسياح, الجفر, الرين, المندق, بقعاء, دخنة, ظهران الجنوب, عشيرة, أضم, الأرطاوية, البرك, حقل, خيبر, طبرجل, أشيقر, المويه, الهدا, بني حسن, بني عمرو, سدير, ظلم, قنا, قياء, مدركة, وادي الفرع, البرك, البشائر</textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="specificCityCheckbox" onclick="toggleCityInput()">
+                        <label for="specificCityCheckbox" class="lab">استخرج بيانات مدينة معينة في ملف منفصل</label>
+                        <input class="form-control mt-2" id="specificCityInput" placeholder="اسم المدينة" style="display: none;">
+                        <small id="specificCitySmall" class="mt-2" style="font-size: 75%; color: #a79e9e; display: none;">* تأكد من كتابة اسم المدينة بشكل صحيح</small>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary btn-custom lab" style="display: block;" id="startme">إبدأ</a>
+                        <a class="btn btn-custom lab" style="display: none; background-color: #d45137; color: white;" id="loadingBtn">جاري التحميل...</a>
+                        <a class="btn btn-custom lab" style="display: none; background-color: #20afa3; color: white;" href="" download="data.xlsx" id="downloadme">حمل الملف</a>
+                    </div>
+                    <small class="justify-content-center productad downloadagain" style="display: none;">
+                        لإعادة تحميل الملف&nbsp;<a onclick="document.querySelector('#downloadme').click()" style="text-decoration: underline;">اضغط هنا</a>
+                    </small>
+                    <small class="justify-content-center productad" style="background-color: #f7f9fd; width: 100%; color: #6968a6; padding-top: 10px; padding-bottom: 10px;">
+                        يمكنك تحميل عناوين الشركات من&nbsp;<a href="https://barmga.com/ar#products" style="text-decoration: underline;">مجموعة بيانات العملاء المحتملين.</a>
                     </small>
                     <style>
                         .productad {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-@media (max-width: 767px) { /* Adjust this breakpoint as needed */
-    .productad {
-        display: block; /* Switch to block display on small screens */
-        text-align: center;
-    }
-}
-
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                        }
+                        @media (max-width: 767px) {
+                            .productad {
+                                display: block;
+                                text-align: center;
+                            }
+                        }
+                        #specificCityInput::placeholder {
+      color: lightgray; /* Set the color to a lighter shade */
+      font-weight: 300; /* Make the font weight lighter */
+  }
                     </style>
                     <div id="error" class="text-danger mt-3"></div>
                 </div>
             </div>
         </div>
+
+        
+        <script>
+            // Function to toggle visibility of the specific city text area
+            function toggleCityInput() {
+                const checkbox = document.getElementById("specificCityCheckbox");
+                const cityInput = document.getElementById("specificCityInput");
+                const citySmall = document.getElementById("specificCitySmall");
+                cityInput.style.display = checkbox.checked ? "block" : "none";
+                citySmall.style.display = checkbox.checked ? "block" : "none";
+            }
+        </script>
+        
         <!-- About End -->
 
 
 
         <!-- Portfolio Start -->
 </div></div>
-
 
         <!-- Newsletter Start -->
         <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" dir="rtl" style="text-align: right;">
@@ -747,8 +738,8 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                        <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
                        <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
-			           <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
-                       <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
+                <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -814,6 +805,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
 
                 </form>
                 </div>
+                
                 <div class="modal-footer">
                   <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
                 </div>
@@ -825,7 +817,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
               <div class="modal-content">
                 <div class="modal-header fixed-top">
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Links</h5>
+                  <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Links</h5>
                   <div style="flex-grow: 1;"></div>
                   <a id="fixedButton" class="btn shadow-sm" style="background-color: #7db3ed;" onclick="clickNextLink()"><img src="img/click.png"></a>
                   
@@ -987,277 +979,196 @@ body{ font-family: 'El Messiri', sans-serif !important;}
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script>
-document.querySelector('#fileUpload').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    const textarea = document.querySelector('#phoneNumbers');
-    const errorElement = document.querySelector('#error');
-
-    if (file) {
-        const reader = new FileReader();
-        textarea.placeholder = 'loading...'; // Set placeholder to 'loading...'
-
-        reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-            let phoneNumbers = [];
-
-            workbook.SheetNames.forEach(sheetName => {
-                const sheet = workbook.Sheets[sheetName];
-                const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                const numbers = rows.flat().filter(cell => typeof cell === 'string' && /^\+\d{7,}$/.test(cell));
-                phoneNumbers = phoneNumbers.concat(numbers);
-            });
-
-            if (phoneNumbers.length > 0) {
-                textarea.value = phoneNumbers.join('\n');
-                errorElement.textContent = '';
-            } else {
-                errorElement.textContent = 'No valid numbers are found in the file. Upload an Excel file & ensure all numbers start with a country code.';
-            }
-
-            textarea.placeholder = ''; // Remove placeholder after loading
-        };
-
-        reader.onerror = function() {
-            errorElement.textContent = 'File could not be loaded.';
-            textarea.placeholder = ''; // Remove placeholder in case of error
-        };
-
-        reader.onabort = function() {
-            errorElement.textContent = 'File loading was aborted.';
-            textarea.placeholder = ''; // Remove placeholder in case of abort
-        };
-
-        reader.readAsArrayBuffer(file);
-    } else {
-        textarea.placeholder = ''; // Remove placeholder if no file is selected
-    }
-});
-</script>
 <script>
-    const forbidden_words = ["netflix", "nitflex","سكليف","نتفلكس","نيتفلكس","ناتفلكس","اعذار","أعذار"]; // Add your forbidden words here
-    var moreindex=500
-    var nextId=1
-    var totalids
-    document.querySelector('#convertBtn').addEventListener('click', function() {
-        document.querySelector('.back').setAttribute('data-bs-dismiss',"modal")
-        document.querySelector('#loadmore').style.display="block"
-        const phoneNumbersText = document.querySelector('#phoneNumbers').value;
-        const message = document.querySelector('#message').value;
-        const errorElement = document.querySelector('#error');
-        const modalBody = document.querySelector('#linksmodal .modal-body');
-        moreindex=500
-        // Clear previous error messages
-        errorElement.textContent = '';
+    document.getElementById("startme").addEventListener("click", handleStart);
+document.getElementById("downloadme").addEventListener("click", handleDownload);
 
-        // Check and process phone numbers
-        const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
-        if (!(uniquePhoneNumbers.length>500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
+let uploadedFile = null;
 
-        if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
-            return;
+document.getElementById("fileUpload").addEventListener("change", (event) => {
+    uploadedFile = event.target.files[0]; // Store the uploaded file
+    console.log("File uploaded:", uploadedFile);
+});
+function cityfinder(addressName, cities) {
+    // Step 1: Replace all Arabic commas with English commas
+    addressName = addressName.replace(/،/g, ",");
+
+    // Step 2: Remove all consecutive digits followed by a space
+    addressName = addressName.replace(/\d+\s+/g, "");
+
+    // Step 3: Replace all consecutive spaces with a single space
+    addressName = addressName.replace(/\s+/g, " ").trim();
+
+    // Step 4: Check both conditions in a single loop
+    for (let city of cities) {
+        let cityx="محافظة "+city
+        if (addressName.startsWith(city) || addressName.startsWith(cityx) || addressName.includes(`, ${city}`)|| addressName.includes(`, ${cityx}`)) {
+            return city; // Return the city if either condition is satisfied
         }
+    }
 
-        // Check for links in the message
-        if (/https?:\/\/\S+/i.test(message)) {
-            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
-            return;
-        }
-        if (window.location.href.split('/')[2]!=String(atob('YmFybWdhLmNvbQ=='))){window.location.href=atob('aHR0cHM6Ly9iYXJtZ2EuY29t')};
-        // Check for forbidden words in the message
-        const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
-        if (forbiddenWordFound) {
-            errorElement.textContent = 'غير مسموح بنشر محتوى غير شرعي أوسبام.';
-            return;
-        }
-
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
-
-        // Create WhatsApp links and update the modal
-        modalBody.innerHTML = ''; // Clear previous content
-        totalids=uniquePhoneNumbers.length
-        uniquePhoneNumbers=uniquePhoneNumbers.slice(0,500)
-        let i=0
-        for (let number of uniquePhoneNumbers){
-            i++
-            const p = document.createElement('p');
-            const a = document.createElement('a');
-            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
-            a.target="_blank"
-            a.textContent = number;
-            a.setAttribute('data-id',String(i))
-            p.innerHTML=`<strong>${i} - </strong>`
-            p.appendChild(a);
-            modalBody.appendChild(p);
-            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
-            
-
-        }
-        modalBody.appendChild(document.createElement('p'));
-        modalBody.appendChild(document.createElement('p'));
-        nextId=1
-        // Show the modal
-        $('#linksmodal').modal('show');
-    });
-    document.querySelector('.back').addEventListener('click', function() {
-       if(document.querySelector('.back').getAttribute('data-bs-dismiss')=="modal"){return}
-       document.querySelector('.back').setAttribute('data-bs-dismiss',"")
-        const phoneNumbersText = document.querySelector('#phoneNumbers').value;
-        const message = document.querySelector('#message').value;
-        const errorElement = document.querySelector('#error');
-        const modalBody = document.querySelector('#linksmodal .modal-body');
-
-        // Clear previous error messages
-        errorElement.textContent = '';
-
-        // Check and process phone numbers
-        const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
-        if (!(uniquePhoneNumbers.length>moreindex-500)){document.querySelector('#loadmore').style.display="none"}else{document.querySelector('#loadmore').style.display="block"}
-        if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
-            return;
-        }
-
-        // Check for links in the message
-        if (/https?:\/\/\S+/i.test(message)) {
-            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
-            return;
-        }
-
-        // Check for forbidden words in the message
-        const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
-        if (forbiddenWordFound) {
-            errorElement.textContent = 'غير مسموح بنشر محتوى غير شرعي أوسبام.';
-            return;
-        }
-
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
-
-        // Create WhatsApp links and update the modal
-        modalBody.innerHTML = ''; // Clear previous content
-        totalids=uniquePhoneNumbers.length
-        uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex-500*2,moreindex-500)
-        let i=moreindex-500*2
-        moreindex=moreindex-500
-        
-        for (let number of uniquePhoneNumbers){
-            i++
-            const p = document.createElement('p');
-            const a = document.createElement('a');
-            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
-            a.target="_blank"
-            a.textContent = number;
-            a.setAttribute('data-id',String(i))
-            p.innerHTML=`<strong>${i} - </strong>`
-            p.appendChild(a);
-            modalBody.appendChild(p);
-            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
-
-        }
-        modalBody.appendChild(document.createElement('p'));
-        modalBody.appendChild(document.createElement('p'));
-        document.querySelector('[data-id]').scrollIntoView(true)
-        if(moreindex==500){document.querySelector('.back').setAttribute('data-bs-dismiss',"modal");}
-    
-    })
-    document.querySelector('#loadmore').addEventListener('click', function() {
-        document.querySelector('.back').setAttribute('data-bs-dismiss',"")
-        const phoneNumbersText = document.querySelector('#phoneNumbers').value;
-        const message = document.querySelector('#message').value;
-        const errorElement = document.querySelector('#error');
-        const modalBody = document.querySelector('#linksmodal .modal-body');
-
-        // Clear previous error messages
-        errorElement.textContent = '';
-
-        // Check and process phone numbers
-        const phoneNumbers = phoneNumbersText.split('\n').map(num => num.trim());
-        var uniquePhoneNumbers = [...new Set(phoneNumbers)].filter(num => /^\+\d{7,}$/.test(num));
-        if (!(uniquePhoneNumbers.length>moreindex+500)){document.querySelector('#loadmore').style.display="none"}
-        if (uniquePhoneNumbers.length === 0) {
-            errorElement.textContent = 'لم يتم العثور على الأرقام. تأكد أن جميع الأرقام تبدأ برمز الدولة.';
-            return;
-        }
-
-        // Check for links in the message
-        if (/https?:\/\/\S+/i.test(message)) {
-            errorElement.textContent = 'الروابط غير مسموح بها في نص الاعلان على الواتساب.';
-            return;
-        }
-
-        // Check for forbidden words in the message
-        const forbiddenWordFound = forbidden_words.some(word => message.includes(word));
-        if (forbiddenWordFound) {
-            errorElement.textContent = 'غير مسموح بنشر محتوى غير شرعي أوسبام.';
-            return;
-        }
-
-        // Encode the message for URL
-        const encodedMessage = encodeURIComponent(message);
-
-        // Create WhatsApp links and update the modal
-        modalBody.innerHTML = ''; // Clear previous content
-        totalids=uniquePhoneNumbers.length
-        uniquePhoneNumbers=uniquePhoneNumbers.slice(moreindex,moreindex+500)
-        let i=moreindex+0
-        moreindex=moreindex+500
-        
-        for (let number of uniquePhoneNumbers){
-            i++
-            const p = document.createElement('p');
-            const a = document.createElement('a');
-            a.href = `https://wa.me/${number.replace('+','')}?text=${encodedMessage}`;
-            a.target="_blank"
-            a.textContent = number;
-            a.setAttribute('data-id',String(i))
-            p.innerHTML=`<strong>${i} - </strong>`
-            p.appendChild(a);
-            modalBody.appendChild(p);
-            a.addEventListener('click', function() {console.log('cliked');saveNextLink(a);setcolor(a)})
-
-        }
-        modalBody.appendChild(document.createElement('p'));
-        modalBody.appendChild(document.createElement('p'));
-        document.querySelector('[data-id]').scrollIntoView(true)
-        // Show the modal
-        //$('#linksmodal').modal('show');
-    });
-    function setcolor(elemento){
-    for (let ell of document.querySelectorAll("[data-id]")){ell.classList.remove('shadowed')}
-    elemento.classList.add('shadowed')
+    // Step 5: If no city is found, return an empty string
+    return "";
 }
-function saveNextLink(currentelement){
-    console.log(currentelement.parentElement)
-    nextId=parseInt(currentelement.parentElement.textContent.split('-')[0].trim())+1
-    if(nextId>totalids){nextId=0;}
-}
-async function clickNextLink(){
-    if (nextId==0){return}
-    nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-    if (nextel){ nextel.click();nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth',  block: "nearest"}); return}
-    else{
-        if (!(parseInt(document.querySelector('[data-id]').getAttribute('data-id'))>nextId)){
-
-        while (document.querySelector('#loadmore').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-        {document.querySelector('#loadmore').click(); await new Promise((resolve) => setTimeout(resolve,1000));}}
-        else{
-            while (document.querySelector('.back').style.display!="none" && !document.querySelector('[data-id="'+String(nextId)+'"]'))
-            {document.querySelector('.back').click(); await new Promise((resolve) => setTimeout(resolve,1000));} 
-        }
-        
-        document.querySelector('[data-id]').scrollIntoView({ behavior: 'smooth' })
-        nextel=document.querySelector('[data-id="'+String(nextId)+'"]')
-        if (nextel){nextel.parentElement.nextElementSibling.nextElementSibling.scrollIntoView({ behavior: 'smooth', block: "nearest"}); nextel.click(); return}
+function scrollToNearestCorner(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest", // Ensures visibility near the vertical edge
+            inline: "nearest" // Ensures visibility near the horizontal edge
+        });
+    } else {
+        console.error(`Element with ID "${elementId}" not found.`);
     }
 }
-//document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
+
+
+
+function handleStart() {
+    const addressColName = document.getElementById("addressCol").value.trim().toLowerCase();
+
+    if (!uploadedFile || !addressColName) {
+        
+        const errorMessage = "يرجى تحديد الملف واسم العمود.";
+        document.getElementById("error").textContent = errorMessage;
+        console.error("Error: Missing required inputs. File:", uploadedFile, "Column Name:", addressColName);
+        resetToStart();
+        document.querySelector(".downloadagain").style.display = "none";
+        scrollToNearestCorner("error");
+        return;
+    }
+
+    showLoadingButton();
+
+    const citiesInput = document.getElementById("cities").value;
+    const cities = citiesInput.split(/[,،\n]/).map(c => c.trim()).filter(c => c);
+    var specificCity=''
+    if (cities==[]||cities==['']) {
+        
+        const errorMessage = "يرجى تحديد أسماء المدن.";
+        document.getElementById("error").textContent = errorMessage;
+        resetToStart();
+        document.querySelector(".downloadagain").style.display = "none";
+        scrollToNearestCorner("error");
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: "array" });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const json = XLSX.utils.sheet_to_json(sheet);
+            const allcolumnNames = Object.keys(json[0]).map(key => key.toLowerCase());
+            if (!allcolumnNames.includes(addressColName)){
+                const errorMessage = "يرجى تحديد اسم العمود المخصص للعناوين بشكل صحيح.";
+                
+        document.getElementById("error").textContent = errorMessage;
+        console.error("Error: Missing required inputs. File:", uploadedFile, "Column Name:", addressColName);
+        resetToStart();
+        document.querySelector(".downloadagain").style.display = "none";
+        scrollToNearestCorner("error");
+        return;
+            }
+            if (document.getElementById('specificCityCheckbox').checked && document.getElementById('specificCityInput').value.trim()){
+                specificCity=document.getElementById('specificCityInput').value.trim()
+                if (!cities.includes(specificCity)){cities.push(specificCity)}
+            }
+            // Normalize column names to lowercase and append "City" at the end
+            const updatedData = json.map(row => {
+                const normalizedRow = {};
+                Object.keys(row).forEach(key => {
+                    normalizedRow[key.toLowerCase()] = row[key]?.toString(); // Ensure all values are strings
+                });
+                const address = normalizedRow[addressColName]?.toLowerCase() || "";
+                const city = cityfinder(address,cities);
+                normalizedRow["city"] = city; // Add "City" column at the end
+                return normalizedRow;
+            });
+            
+            // Prepare sheet data with column names in bold
+            var newSheet = XLSX.utils.json_to_sheet(updatedData);
+
+            // Apply styles to the header row
+            var headerRange = XLSX.utils.decode_range(newSheet["!ref"]);
+            for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+                const headerCell = XLSX.utils.encode_cell({ r: 0, c: C });
+                if (!newSheet[headerCell]) continue;
+                newSheet[headerCell].s = {
+                    font: { bold: true },
+                    alignment: { horizontal: "center", vertical: "center" },
+                };
+            }
+            if (specificCity){
+                // Prepare sheet data, filter rows based on specificCity
+   newSheet = XLSX.utils.json_to_sheet(
+    updatedData.filter(row => {
+        return !specificCity || row.city === specificCity.toLowerCase(); // Use specificCity directly
+    })
+);
+
+// Apply styles to the header row
+ headerRange = XLSX.utils.decode_range(newSheet["!ref"]);
+for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+    const headerCell = XLSX.utils.encode_cell({ r: 0, c: C });
+    if (!newSheet[headerCell]) continue;
+    newSheet[headerCell].s = {
+        font: { bold: true },
+        alignment: { horizontal: "center", vertical: "center" },
+    };
+}
+
+
+            }
+            const newWorkbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(newWorkbook, newSheet, "UpdatedData");
+
+            const output = XLSX.write(newWorkbook, { bookType: "xlsx", type: "array" });
+            const blob = new Blob([output], { type: "application/octet-stream" });
+            const url = URL.createObjectURL(blob);
+            
+            document.getElementById("downloadme").href = url;
+            showDownloadButton();
+        } catch (error) {
+            const errorMessage = "حدث خطأ أثناء معالجة الملف.";
+            document.getElementById("error").textContent = errorMessage;
+            console.error("Error during file processing:", error);
+            resetToStart();
+            document.querySelector(".downloadagain").style.display = "none";
+            scrollToNearestCorner("error");
+        }
+    };
+    reader.readAsArrayBuffer(uploadedFile);
+}
+
+function showLoadingButton() {
+    document.querySelector(".downloadagain").style.display = "none";
+    document.getElementById("startme").style.display = "none";
+    document.getElementById("loadingBtn").style.display = "block";
+    document.getElementById("downloadme").style.display = "none";
+}
+
+function showDownloadButton() {
+    document.getElementById("startme").style.display = "none";
+    document.getElementById("loadingBtn").style.display = "none";
+    document.getElementById("downloadme").style.display = "block";
+}
+
+function resetToStart() {
+    document.querySelector(".downloadagain").style.display = "block";
+    document.getElementById("downloadme").style.display = "none";
+    document.getElementById("loadingBtn").style.display = "none";
+    document.getElementById("startme").style.display = "block";
+}
+
+function handleDownload() {
+
+    resetToStart();
+}
+
 </script>
+
 <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
     <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
         <div class="modal-content">
@@ -1395,6 +1306,7 @@ async function clickNextLink(){
         else{$('#optionsmodal'+classname).modal('show')}
     }
 </script>
+
 </body>
 
 </html>
