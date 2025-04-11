@@ -2483,7 +2483,7 @@ function addStatements(name){
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="Products" && allproducts[name].source){
-        for (ele of [format1,source1,updates,notead,delivered,verification])
+        for (ele of [format1,source1,updates,delivered,verification])
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
         elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
@@ -2493,7 +2493,7 @@ function addStatements(name){
         elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="Ads"){
-        for (ele of [format1,updates,delivered,verification])
+        for (ele of [format1,updates,notead,delivered,verification])
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
