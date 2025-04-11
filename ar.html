@@ -2320,6 +2320,7 @@ var format2="الصيغة: ملف إكسل مع مجلد صور";
 var source1="المصادر: معلومات مجمعة من " + allproducts[name].source;
 var source2="المصادر: جميع بيانات المنتجات مجمعة من متاجر سعودية.";
 var note="ملاحظة: عدد الأسطر بالملف (نتائج السحب) أكثر من عدد جهات الاتصال.";
+var notead="ملاحظة: قد تجد بعض العروض المقدمة من أكثر من معلن.";
 var updates="سنة التحديث: " + allproducts[name].date;
 var delivered='يتم الاستلام على: عنوان البريد الإلكتروني المستخدم في <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.')+'" style="text-decoration: underline;">بوابة الدفع</a>. إذا كنت تفضل الدفع غير الإلكتروني، يرجى <a href="#contact" onclick="showpaymentnote(\''+name+'\')" style="text-decoration: underline;">الاتصال بنا.</a>';
 var verification='شركاؤنا: هذا المنتج متاح على <a  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer; text-decoration: underline;" target="_blank">منصة هوت مارت</a>.';
@@ -2342,7 +2343,7 @@ var html='<p class="hiddenx"><strong>xxx</strong></p>';
         elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="إعلانات"){
-        for (ele of [format1,updates,delivered,verification])
+        for (ele of [format1,updates,notead,delivered,verification])
         {if (allproducts[name].price=="مجاني"){if(ele==delivered || ele==verification){continue}};
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
