@@ -2474,14 +2474,16 @@ function addStatements(name){
     var delivered='Delivered to: Email Address used in <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.')+'" style=" text-decoration: underline;">online payment</a>. If you prefer offline payment please <a href="#contact" onclick="showpaymentnote('+"'"+name+"'"+')" style=" text-decoration: underline;">contact us.</a>'
     var verification='Partner: This product is available on <a  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer; text-decoration: underline;" target="_blank">Hotmart Marketplace</a>.'
     var html='<p class="hiddenx"><strong>xxx</p>'
+    var note="Note: Number of rows (search results) exceeds number of different contact details.";
+    var notead="Note: Some offers are published by multiple advertisors."
     var elementhtml=""
     if (allproducts[name].category=="B2B Listing"){
-        for (ele of [format1,use1,source1,updates,delivered,verification])
+        for (ele of [format1,use1,source1,updates,note,delivered,verification])
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
             elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
     else if (allproducts[name].category=="Products" && allproducts[name].source){
-        for (ele of [format1,source1,updates,delivered,verification])
+        for (ele of [format1,source1,updates,notead,delivered,verification])
         {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
         elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
     }
