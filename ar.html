@@ -1360,6 +1360,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المراكز الطبية',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
+    }else if (['hotels and appartments','الفنادق والشقق'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'وكالات السفر والسياحة',1);
+        dicta=movelPos(dicta,'المطاعم والمقاهي',2);
+        dicta=movelPos(dicta,'الشركات العقارية',3);
+        dicta=movelPos(dicta,'الفنادق والشقق',4);
+        dicta=movelPos(dicta,'شركات النقل',5);
+        dicta=movelPos(dicta,'المراكز الطبية',6);
     }else if(['medical centers','المراكز الطبية',"sfda companies","هئية الغذاء والدواء","الأجهزة الطبية","medical devices"].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'الجمعيات',1);
         dicta=movelPos(dicta,'هئية الغذاء والدواء',2);
@@ -1562,6 +1569,7 @@ var allnames={
     "المطاعم-والمقاهي": "restaurants-and-cafes",
     "شركات-المقاولات": "construction-companies",
     "المكاتب-الهندسية": "engineering-offices",
+    "وكالات-السفر-والسياحة": "travel-agencies",
     "الفنادق-والشقق": "hotels-and-apartments",
     "موردي-مواد-البناء": "building-materials-suppliers",
     "مستلزمات-البناء": "building-materials-products",
@@ -1760,22 +1768,41 @@ var allproducts={
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "الفنادق والشقق": {
-        "info": "ملفات اكسل فيها اكثر من 11,000 ألف جهة اتصال للفنادق والشقق والشاليهات بالسعودية تفيد في تسويق خدمات النظافة والـحراسة والعروض الفندقية ومختلف المنتجات الموجهة لهذه الفئة.",
+        "info": "ملفات اكسل فيها اكثر من 14,000 ألف جهة اتصال للفنادق والشقق والشاليهات بالسعودية تفيد في تسويق خدمات النظافة والـحراسة والعروض الفندقية ومختلف المنتجات الموجهة لهذه الفئة.",
         "feature2": "2,500 عنوان بريد الكتروني",
-        "feature1": "9,000 رقم جوال",
+        "feature1": "10,000 رقم جوال",
         "feature3": "2 ملفات إكسل",
         "id": "sa-hotels",
+        "gift": "390 عنوان بريد الكتروني لشركات الحج والعمرة (اضافة)",
+        "originalprice": "",
+        "price": "49$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
+        "samplelink": "https://barmga.com/samples/3-Sheets-SA-عينة-فنادق-وشقق.xlsx",
+        "family": "العقار, مطاعم",
+        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025 - 2024",
+        "source": "خرائط قوقل ووزارة السياحة",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "وكالات السفر والسياحة": {
+        "info": "ملف اكسل فيه 1,900 جهة اتصال للوكالات السفر والسياحة في السعودية.",
+        "feature2": "",
+        "feature1": "870 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-travel-agencies",
         "gift": "",
         "originalprice": "",
-        "price": "39$",
+        "price": "مجاني",
         "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/S95586549W?off=4m3brdp0",
-        "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-فنادق-وشقق.xlsx",
-        "family": "العقار, مطاعم",
-        "videolink": "https://player.vimeo.com/video/1032596744?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "productlink": "https://barmga.com/samples/SA-عينة-وكالات-سياحية.xlsx",
+        "samplelink": "",
+        "family": "مطاعم",
+        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "خرائط قوقل ووزارة السياحة",
+        "date": "2025",
+        "source": "وزارة السياحة",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "المخابز ومحلات الحلويات": {
