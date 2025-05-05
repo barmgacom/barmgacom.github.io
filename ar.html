@@ -1360,7 +1360,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المراكز الطبية',5);
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-    }else if (['hotels and appartments','الفنادق والشقق'].includes(productname.toLowerCase().replace(/-/g,' '))){
+    }else if (['hotels and apartments','الفنادق والشقق',"وكالات السفر والسياحة","travel agencies"].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'وكالات السفر والسياحة',1);
         dicta=movelPos(dicta,'المطاعم والمقاهي',2);
         dicta=movelPos(dicta,'الشركات العقارية',3);
@@ -1596,25 +1596,45 @@ var allnames={
     "شركات-المعدات-الثقيلة":"heavy-equipments-companies"
 }
 var allproducts={
-    "محلات الزهور والمشاتل": {
-        "info": "ملف اكسل فيه 3,400 جهة اتصال لمحلات بيع المشاتل والزهور من خرائط قوقل.",
+    "وكالات السفر والسياحة": {
+        "info": "ملف اكسل فيه 1,900 جهة اتصال للوكالات السفر والسياحة في السعودية.",
         "feature2": "",
-        "feature1": "3,300 رقم جوال",
+        "feature1": "870 رقم جوال",
         "feature3": "1 ملف إكسل",
-        "id": "sa-flowers-shops",
+        "id": "sa-travel-agencies",
         "gift": "",
         "originalprice": "",
         "price": "مجاني",
         "category": "جهات إتصال",
-        "productlink": "https://barmga.com/samples/SA-محلات-زهور-ومشاتل.xlsx",
+        "productlink": "https://barmga.com/samples/SA-وكالات-سياحية.xlsx",
         "samplelink": "",
-        "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "family": "مطاعم",
+        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "خرائط قوقل",
+        "date": "2025",
+        "source": "وزارة السياحة",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
+    "الفنادق والشقق": {
+        "info": "ملفات اكسل فيها اكثر من 14,000 ألف جهة اتصال للفنادق والشقق والشاليهات بالسعودية تفيد منظمي الرحلات السياحية ومزودي خدمات النظافة والـحراسة والعروض الفندقية ومختلف المنتجات الموجهة لهذه الفئة.",
+        "feature2": "2,500 عنوان بريد الكتروني",
+        "feature1": "10,000 رقم جوال",
+        "feature3": "3 ملفات إكسل",
+        "id": "sa-hotels",
+        "gift": "390 عنوان بريد الكتروني لشركات الحج والعمرة (اضافة)",
+        "originalprice": "",
+        "price": "49$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
+        "samplelink": "https://barmga.com/samples/3-Sheets-SA-عينة-فنادق-وشقق.xlsx",
+        "family": "العقار, مطاعم",
+        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025 - 2024",
+        "source": "خرائط قوقل ووزارة السياحة",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    
     "الشركات العقارية": {
         "info": "ملفات اكسل فيها بيانات 20,000 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عند عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.  ",
         "feature2": "9,000 عنوان بريد الكتروني",
@@ -1634,25 +1654,7 @@ var allproducts={
         "source": "منصة ايجار والهيئة العامة للعقار",
         "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
     },
-    "متاجر الكترونية": {
-        "info": "ملف اكسل فيه بيانات اكثر من 60,000 ألف جهة للمتاجر والمشاريع المنوعة المسجلة بموقع معروف السعودي. يمكن الافادة منها في حملات التسويق (خدمات رقمية - بضائع بالجملة).",
-        "feature2": "60,000 عنوان بريد الكتروني",
-        "feature1": "49,000 رقم جوال",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-ecommerce",
-        "gift": "2000 جهة اتصال لشركات تسويق (اضافة مجانية)",
-        "originalprice": "",
-        "price": "85$",
-        "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
-        "samplelink": "https://barmga.com/samples/SA-عينة-معروف-تجارة-الكترونية.xlsx",
-        "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "معروف",
-        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
-    },
+
     "المطاعم والمقاهي": {
         "info": "ملف اكسل فيه 32,000 ألف جهة اتصال لمطاعم ومقاهي السعودية. تفيد موردي المنتجات الغذائية وشركات الديكور والتصميم الداخلي لتسويق خدماتهم ومنتجاتهم.",
         "feature2": "",
@@ -1671,6 +1673,42 @@ var allproducts={
         "date": "2025",
         "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga/reviews/7031296"
+    },"محلات الزهور والمشاتل": {
+        "info": "ملف اكسل فيه 3,400 جهة اتصال لمحلات بيع المشاتل والزهور من خرائط قوقل.",
+        "feature2": "",
+        "feature1": "3,300 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-flowers-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "جهات إتصال",
+        "productlink": "https://barmga.com/samples/SA-محلات-زهور-ومشاتل.xlsx",
+        "samplelink": "",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "خرائط قوقل",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "متاجر الكترونية": {
+        "info": "ملف اكسل فيه بيانات اكثر من 60,000 ألف جهة للمتاجر والمشاريع المنوعة المسجلة بموقع معروف السعودي. يمكن الافادة منها في حملات التسويق (خدمات رقمية - بضائع بالجملة).",
+        "feature2": "60,000 عنوان بريد الكتروني",
+        "feature1": "49,000 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-ecommerce",
+        "gift": "2000 جهة اتصال لشركات تسويق (اضافة مجانية)",
+        "originalprice": "",
+        "price": "85$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
+        "samplelink": "https://barmga.com/samples/SA-عينة-معروف-تجارة-الكترونية.xlsx",
+        "family": "تجارة",
+        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "معروف",
+        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
     },
     "شركات المقاولات": {
         "info": "ملفات اكسل فيها بيانات اكثر من 20,000 ألف شركة مقاولات بالسعودية يمكن الافادة منها في حملات التسويق (مواد بناء - معدات وآلات) او حملة طلب تسعير مشاريع المقاولات والعثور على افضل سعر وخدمة بشكل سريع وعملي. ",
@@ -1765,44 +1803,6 @@ var allproducts={
         "subtitle": "قاعدة بيانات",
         "date": "2024",
         "source": "تلجرام",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
-    "الفنادق والشقق": {
-        "info": "ملفات اكسل فيها اكثر من 14,000 ألف جهة اتصال للفنادق والشقق والشاليهات بالسعودية تفيد منظمي الرحلات السياحية ومزودي خدمات النظافة والـحراسة والعروض الفندقية ومختلف المنتجات الموجهة لهذه الفئة.",
-        "feature2": "2,500 عنوان بريد الكتروني",
-        "feature1": "10,000 رقم جوال",
-        "feature3": "3 ملفات إكسل",
-        "id": "sa-hotels",
-        "gift": "390 عنوان بريد الكتروني لشركات الحج والعمرة (اضافة)",
-        "originalprice": "",
-        "price": "49$",
-        "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
-        "samplelink": "https://barmga.com/samples/3-Sheets-SA-عينة-فنادق-وشقق.xlsx",
-        "family": "العقار, مطاعم",
-        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2025 - 2024",
-        "source": "خرائط قوقل ووزارة السياحة",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
-    "وكالات السفر والسياحة": {
-        "info": "ملف اكسل فيه 1,900 جهة اتصال للوكالات السفر والسياحة في السعودية.",
-        "feature2": "",
-        "feature1": "870 رقم جوال",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-travel-agencies",
-        "gift": "",
-        "originalprice": "",
-        "price": "مجاني",
-        "category": "جهات إتصال",
-        "productlink": "https://barmga.com/samples/SA-وكالات-سياحية.xlsx",
-        "samplelink": "",
-        "family": "مطاعم",
-        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2025",
-        "source": "وزارة السياحة",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "المخابز ومحلات الحلويات": {

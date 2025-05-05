@@ -1349,6 +1349,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Restaurants and Cafes',2);
         dicta=movelPos(dicta,'Medical Centers',3);
         dicta=movelPos(dicta,'Organisations',4);
+    }else if (['hotels and apartments','الفنادق والشقق',"وكالات السفر والسياحة","travel agencies"].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Travel Agencies',1);
+        dicta=movelPos(dicta,'Restaurants and Cafes',2);
+        dicta=movelPos(dicta,'Realestate Companies',3);
+        dicta=movelPos(dicta,'Hotels and Apartments',4);
+        dicta=movelPos(dicta,'Transport Companies',5);
+        dicta=movelPos(dicta,'Medical Centers',6);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Makeup Products',1);
         dicta=movelPos(dicta,'Supermarket Products',2);
@@ -1372,7 +1379,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Grocery Stores and Supermarkets',2);
         dicta=movelPos(dicta,'Restaurants and Cafes',3);
         dicta=movelPos(dicta,'Bakeries and Cake Shops',4);
-        dicta=movelPos(dicta,'Hotel and Appartments',5);
+        dicta=movelPos(dicta,'Hotel and Apartments',5);
         dicta=movelPos(dicta,'Transport Companies',6);
         dicta=movelPos(dicta,'Factories',7);
     }return dicta
@@ -1490,25 +1497,44 @@ var allnames={
     "heavy-equipments-companies":"شركات-المعدات-الثقيلة"
 }
 var allproducts ={
-    "Flowers and Plants Shops": {
-        "info": "Excel file containing 3,400 contact details for flowers & plants stores in Saudi Arabia.",
+    "Travel Agencies": {
+        "info": "Excel file containing 1,900 contact details for Travel Agencies in Saudi Arabia.",
         "feature2": "",
-        "feature1": "3,300 Mobile Numbers",
+        "feature1": "870 Mobile Numbers",
         "feature3": "1 Sheet | Excel File",
-        "id": "sa-flowers-shops",
+        "id": "sa-travel-agencies",
         "gift": "",
         "originalprice": "",
         "price": "Free",
         "category": "B2B Listing",
-        "productlink": "https://barmga.com/samples/SA-Plants-and-Flowers-Shops.xlsx",
+        "productlink": "https://barmga.com/samples/SA-Travel-Agencies.xlsx",
         "samplelink": "",
-        "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "family": "food",
+        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
-        "date": "2024",
-        "source": "Google Maps",
+        "date": "2025",
+        "source": "Tourism Ministry",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Hotels and Apartments": {
+        "info": "Excel files containing over 14,000 contact details for hotels, apartments, and chalets in Saudi Arabia. This data is useful for marketing cleaning services, security, and hotel offers.",
+        "feature2": "2,500 Email Addresses",
+        "feature1": "10,000 Mobile Numbers",
+        "feature3": "3 Sheets | Excel Files",
+        "id": "sa-hotels",
+        "gift": "390 records for Haj & Umrah companies (Free)",
+        "originalprice": "",
+        "price": "49$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
+        "samplelink": "https://barmga.com/samples/3-Sheets-Sample-SA-Hotels.xlsx",
+        "family": "realestate, food",
+        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025 - 2024",
+        "source": "Google Maps, Tourism Ministry",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
+
     "Real Estate Companies": {
         "info": "Excel files containing data for 20,000 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
         "feature2": "9,000 Email Addresses",
@@ -1528,25 +1554,6 @@ var allproducts ={
         "source": "Ejar & Rega (Authorities)",
         "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
     },
-    "Maroof Ecommerce Stores": {
-        "info": "Excel file containing data for over 60,000 online stores and projects registered on Maroof Saudi website. This data can be used for marketing campaigns (digital services, wholesale goods).",
-        "feature2": "60,000 Email Addresses",
-        "feature1": "49,000 Mobile Numbers",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-ecommerce",
-        "gift": "2000 Records for marketing companies from GMaps (Free)",
-        "originalprice": "",
-        "price": "85$",
-        "category": "B2B Listing",
-        "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
-        "samplelink": "https://barmga.com/samples/Sample-SA-Maroof-Ecommerce.xlsx",
-        "family": "commerce",
-        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2024",
-        "source": "Maroof",
-        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
-    },
     "Restaurants and Cafes": {
         "info": "Excel file containing 32,000 contact details for restaurants and cafes in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
         "feature2": "",
@@ -1565,6 +1572,42 @@ var allproducts ={
         "date": "2025",
         "source": "Google Maps",
         "reviews": "https://mostaql.com/u/barmga/reviews/7031296"
+    },    "Flowers and Plants Shops": {
+        "info": "Excel file containing 3,400 contact details for flowers & plants stores in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "3,300 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-flowers-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Plants-and-Flowers-Shops.xlsx",
+        "samplelink": "",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Maroof Ecommerce Stores": {
+        "info": "Excel file containing data for over 60,000 online stores and projects registered on Maroof Saudi website. This data can be used for marketing campaigns (digital services, wholesale goods).",
+        "feature2": "60,000 Email Addresses",
+        "feature1": "49,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-ecommerce",
+        "gift": "2000 Records for marketing companies from GMaps (Free)",
+        "originalprice": "",
+        "price": "85$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Maroof-Ecommerce.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Maroof",
+        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
     },
     "Construction Companies": {
         "info": "Excel files containing data for over 20,000 contact details for construction companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
@@ -1661,44 +1704,8 @@ var allproducts ={
         "source": "Telegram Groups & Channels",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
-    "Hotels and Apartments": {
-        "info": "Excel files containing over 14,000 contact details for hotels, apartments, and chalets in Saudi Arabia. This data is useful for marketing cleaning services, security, and hotel offers.",
-        "feature2": "2,500 Email Addresses",
-        "feature1": "10,000 Mobile Numbers",
-        "feature3": "3 Sheets | Excel Files",
-        "id": "sa-hotels",
-        "gift": "390 records for Haj & Umrah companies (Free)",
-        "originalprice": "",
-        "price": "49$",
-        "category": "B2B Listing",
-        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
-        "samplelink": "https://barmga.com/samples/3-Sheets-Sample-SA-Hotels.xlsx",
-        "family": "realestate, food",
-        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2025 - 2024",
-        "source": "Google Maps, Tourism Ministry",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
-    "Travel Agencies": {
-        "info": "Excel file containing 1,900 contact details for Travel Agencies in Saudi Arabia.",
-        "feature2": "",
-        "feature1": "870 Mobile Numbers",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-travel-agencies",
-        "gift": "",
-        "originalprice": "",
-        "price": "Free",
-        "category": "B2B Listing",
-        "productlink": "https://barmga.com/samples/SA-Travel-Agencies.xlsx",
-        "samplelink": "",
-        "family": "food",
-        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2025",
-        "source": "Tourism Ministry",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },"Bakeries and Cake Shops": {
+
+"Bakeries and Cake Shops": {
         "info": "Excel file containing 9,000 contact details for bakeries, sweets shops, juice shops, and ice cream shops in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
         "feature2": "",
         "feature1": "8,000 Mobile Numbers",
