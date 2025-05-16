@@ -1401,11 +1401,12 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الشركات العقارية',4);
         dicta=movelPos(dicta,'شركات المقاولات',5);
     }else if (['شركات النقل','transport companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'اعلانات عقارية',1);
-        dicta=movelPos(dicta,'الشركات العقارية',2);
-        dicta=movelPos(dicta,'شركات النقل',3);
-        dicta=movelPos(dicta,'المصانع',4);
-        dicta=movelPos(dicta,'شركات المقاولات',5);
+        dicta=movelPos(dicta,'معارض السيارات',1);
+        dicta=movelPos(dicta,'متاجر الكترونية',2);
+        dicta=movelPos(dicta,'محلات قطع غيار السيارات',3);
+        dicta=movelPos(dicta,'شركات النقل',4);
+        dicta=movelPos(dicta,'ورش السيارات',5);
+        dicta=movelPos(dicta,'شركات المقاولات',6);
     }else if (['شركات المقاولات','construction companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'شركات المعدات الثقيلة',1);
         dicta=movelPos(dicta,'موردي مواد البناء',2);
