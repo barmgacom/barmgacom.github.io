@@ -680,8 +680,9 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" dir="rtl" style="text-align: right;">
                                     <li><a class="dropdown-item" id="الكل" onclick="filterCat(this.id)">جميع الأصناف</a></li>
                                     <li><a class="dropdown-item" id="العقار" onclick="filterCat(this.id)">العقار والمقاولات</a></li>
-                                    <li><a class="dropdown-item" id="الصحة" onclick="filterCat(this.id)">الصحة والجمال</a></li>
+                                    <li><a class="dropdown-item" id="النقل" onclick="filterCat(this.id)">النقل والسيارات</a></li>
                                     <li><a class="dropdown-item" id="تجارة" onclick="filterCat(this.id)">التجارة والصناعة</a></li>
+                                    <li><a class="dropdown-item" id="الصحة" onclick="filterCat(this.id)">الصحة والجمال</a></li>
                                     <li><a class="dropdown-item" id="مطاعم" onclick="filterCat(this.id)">الأطعمة والفندقة</a></li>
                                     <li><a class="dropdown-item" id="التعليم" onclick="filterCat(this.id)">التعليم والجمعيات</a></li>
                                     <li><a class="dropdown-item" id="بضائع" onclick="filterCat(this.id)">بضائع</a></li>
@@ -1485,13 +1486,11 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'شركات النقل',6);
         dicta=movelPos(dicta,'المصانع',8);
     }else if (['متاجر الكترونية','maroof ecommerce stores'].includes(productname.toLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'محلات الزهور والمشاتل',1);
-        dicta=movelPos(dicta,'متاجر الكترونية',2);
-        dicta=movelPos(dicta,'المصانع',3);
-        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',5);
-        dicta=movelPos(dicta,'محلات الالكترونيات',6);
-        dicta=movelPos(dicta,'شركات المقاولات',7);
-        dicta=movelPos(dicta,'موردي مواد البناء',4);
+        dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
+        dicta=movelPos(dicta,'شركات النقل',2);
+        dicta=movelPos(dicta,'المصانع',3);        
+        dicta=movelPos(dicta,'متاجر الكترونية',4);
+        dicta=movelPos(dicta,'محلات الزهور والمشاتل',5);
     }return dicta
 }
 function movelPos(dict, key, position_index) {
@@ -1558,6 +1557,9 @@ var disc={
     "إعلانات":""
 }
 var allnames={
+        "محلات-قطع-غيار-السيارات": "car-parts-stores",
+    "ورش-السيارات": "car-repair-stores",
+    "معارض-السيارات": "car-exhibitions",
     "إعلانات-عقارية-بالرياض":"riyadh-realestate-ads",
     "الأجهزة-الطبية":"medical-devices",
     "هئية-الغذاء-والدواء":"sfda-companies",
@@ -1692,21 +1694,21 @@ var allproducts={
         "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },    "متاجر الكترونية": {
-        "info": "ملف اكسل فيه بيانات اكثر من 60,000 ألف جهة للمتاجر والمشاريع المنوعة المسجلة بموقع معروف السعودي. يمكن الافادة منها في حملات التسويق (خدمات رقمية - بضائع بالجملة).",
-        "feature2": "60,000 عنوان بريد الكتروني",
-        "feature1": "49,000 رقم جوال",
+        "info": "ملف اكسل فيه بيانات اكثر من 67,400 ألف جهة اتصال للمتاجر والمشاريع المنوعة المسجلة بموقع معروف السعودي. يمكن الافادة منها في حملات التسويق (خدمات رقمية - بضائع بالجملة).",
+        "feature2": "67,400 عنوان بريد الكتروني",
+        "feature1": "54,000 رقم جوال",
         "feature3": "1 ملف إكسل",
         "id": "sa-ecommerce",
-        "gift": "2000 جهة اتصال لشركات تسويق (اضافة مجانية)",
+        "gift": "ألفين جهة اتصال لشركات تسويق (اضافة مجانية)",
         "originalprice": "",
         "price": "85$",
         "category": "جهات إتصال",
         "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
         "samplelink": "https://barmga.com/samples/SA-عينة-معروف-تجارة-الكترونية.xlsx",
         "family": "تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665917?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "videolink": "https://player.vimeo.com/video/1082903245?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "قاعدة بيانات",
-        "date": "2024",
+        "date": "2025",
         "source": "معروف",
         "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
     },
@@ -2242,17 +2244,17 @@ var allproducts={
         "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
-    "الأجهزة الطبية": {
+"الأجهزة الطبية": {
         "info": "ملفات اكسل تحتوي على 191 ألف سطر لبيانات الأجهزة الطبية المتاحة على موقع هيئة الغذاء والدواء.",
         "feature2": " 129 ألف اسم جهاز/براند",
         "feature1": " 191 ألف سطر مختلف",
         "feature3": "2 ملفات إكسل",
         "id": "sa-sfda-md",
-        "gift": "",
-        "originalprice": "120$",
-        "price": "95$",
+        "gift": "10,000 جهة اتصال للمراكز الطبية (إضافة مجانية)",
+        "originalprice": "",
+        "price": "85$",
         "category": "بضائع",
-        "productlink": "https://pay.hotmart.com/X98610380T",
+        "productlink": "https://pay.hotmart.com/X98610380T?off=wakt17k0",
         "samplelink": "https://barmga.com/samples/2-Sheets-SFDA-عينة-اجهزة-طبية.xlsx",
         "family": "الصحة, تجارة",
         "videolink": "https://player.vimeo.com/video/1064751177?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
@@ -2277,6 +2279,62 @@ var allproducts={
         "subtitle": "قاعدة بيانات",
         "date": "2025 - تم نسخ الاعلانات بين 23 و26 مارس",
         "source": "موقع عقار",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "محلات قطع غيار السيارات": {
+        "info": "ملف اكسل فيه 5,000 آلاف جهة اتصال لمحلات قطع غيار السيارات السعودية. تفيد موردي قطع غيار جملة.",
+        "feature2": "",
+        "feature1": "4,000 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-car-parts-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/N99594888T",
+        "samplelink": "https://barmga.com/samples/SA-عينة-محلات-قطع-غيار-السيارات.xlsx",
+        "family": "النقل, التجارة",
+        "videolink": "https://player.vimeo.com/video/1084937544?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025",
+        "source": "خرائط قوقل",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "ورش السيارات": {
+        "info": "ملف اكسل فيه 13,000 آلاف جهة اتصال لورش صيانة السيارات في السعودية. تفيد تجار قطع غيار السيارات في الوصول لفئة من العملاء.",
+        "feature2": "",
+        "feature1": "12,000 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-car-repair",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "جهات إتصال",
+        "productlink": "https://pay.hotmart.com/D99594357A",
+        "samplelink": "https://barmga.com/samples/SA-عينة-ورشات-السيارات.xlsx",
+        "family": "النقل, التجارة",
+        "videolink": "https://player.vimeo.com/video/1084936855?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025",
+        "source": "خرائط قوقل",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "معارض السيارات": {
+        "info": "ملف اكسل فيه 1,500 جهة اتصال لمعارض السيارات في السعودية.",
+        "feature2": "",
+        "feature1": "1,300 رقم جوال",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-car-exhibitions",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "جهات إتصال",
+        "productlink": "https://barmga.com/samples/SA-معارض-السيارات.xlsx",
+        "samplelink": "",
+        "family": "النقل, التجارة",
+        "videolink": "https://player.vimeo.com/video/1084935792?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025",
+        "source": "خرائط قوقل",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     }
 }
@@ -2403,7 +2461,7 @@ return `-${discount}%`;
 }
 function filterCatx(family){
          var newdict={}
-         if (["العقار","الصحة","تجارة","التعليم","مطاعم","realestate","commerce","health","food","education"].includes(family.toLowerCase())){
+         if (["العقار","الصحة","تجارة","التعليم","مطاعم","realestate","commerce","health","food","education","النقل","transport"].includes(family.toLowerCase())){
             for (let el of Object.keys(allproducts)){
                 allproducts[el].family.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
             };return newdict
@@ -2519,7 +2577,10 @@ var catdict={
     "food":"مطاعم",
     "health":"الصحة",
     "commerce":"تجارة",
-    "education":"التعليم"
+    "النقل": "transport",
+    "التعليم": "education",
+    "transport": "النقل",
+    "6": "transport"
 }
 function findfree(){
     var catme=""
