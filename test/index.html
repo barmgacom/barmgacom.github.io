@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-850CMRFY24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-850CMRFY24');
+</script>
+    <meta charset="utf-8">
+    <title>Barmga For Business Automation</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="Barmga, Personal Development, Business Development, Educational Content, Tools, Resources, Learning" data-react-helmet="true">
+
+    <meta name="description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." data-react-helmet="true">
+    <meta property="og:title" content="Barmga For Data & Business Automation" data-react-helmet="true" />
+    <meta property="og:description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." data-react-helmet="true" />
+    <meta property="og:image" content="images/barmga.png" data-react-helmet="true" />
+    <meta property="og:url" content="https://barmga.com" data-react-helmet="true" />
+    <meta name="twitter:card" content="summary_large_image" data-react-helmet="true">
+    <meta name="twitter:title" content="Barmga For Data & Business Automation" data-react-helmet="true">
+    <meta name="twitter:description" content="Welcome to Barmga, We are dedicated to transforming the way businesses collect or manage their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes." data-react-helmet="true">
+    <meta name="twitter:image" content="images/barmga.png" data-react-helmet="true">
+    <meta name="twitter:url" content="https://barmga.com" data-react-helmet="true">
+    
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+     
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Gabriela&display=swap" rel="stylesheet">
+<script>
+    var namesdict={
+        "car-parts-stores": "محلات-قطع-غيار-السيارات",
+    "car-repair-stores": "ورش-السيارات",
+    "car-exhibitions": "معارض-السيارات",
+        "riyadh-realestate-ads":"إعلانات-عقارية-بالرياض",
+        "medical-devices":"الأجهزة-الطبية",
+        "sfda-companies": "هئية-الغذاء-والدواء",
+    "blacksmiths-and-joiners": "ورشات-الحدادة-والنجارة",
+    "gaz-stations": "محطات-الوقود",
+    "real-estate-companies": "الشركات-العقارية",
+    "beauty-and-sports-centers": "مراكز-التجميل-واللياقة",
+    "organisations": "الجمعيات",
+    "restaurants-and-cafes": "المطاعم-والمقاهي",
+    "construction-companies": "شركات-المقاولات",
+    "engineering-offices": "المكاتب-الهندسية",
+    "hotels-and-apartments": "الفنادق-والشقق",
+    "travel-agencies":"وكالات-السفر-والسياحة",
+    "building-materials-suppliers": "موردي-مواد-البناء",
+    "building-materials-products": "مستلزمات-البناء",
+    "real-estate-advertisements": "اعلانات-عقارية",
+    "bakeries-and-cake-shops": "المخابز-ومحلات-الحلويات",
+    "grocery-stores-and-supermarkets": "محلات-البقالة-والسوبرماركت",
+    "medical-centers": "المراكز-الطبية",
+    "makeup-products": "منتجات-التجميل",
+    "pharmaceutical-products": "منتجات-الصيدلية",
+    "maroof-ecommerce-stores": "متاجر-الكترونية",
+    "transport-companies": "شركات-النقل",
+    "factories": "المصانع",
+    "electronics-stores": "محلات-الالكترونيات",
+    "clothing-stores": "محلات-الأزياء",
+    "fabric-and-tailoring-shops": "محلات-الأقمشة-والخياطة",
+    "perfume-products": "منتجات-العطور",
+    "supermarket-products": "منتجات-السوبرماركت",
+    "schools": "المدارس-ورياض-الأطفال",
+    "job-advertisements": "اعلانات-واظائف",
+    "cleaning-services-companies": "شركات-التنظيف-والمغاسل",
+    "perfumes-stores": "متاجر-العطور",
+    "flowers-and-plants-shops": "محلات-الزهور-والمشاتل",
+    "natural-food-stores": "محلات-الأغذية-الطبيعية",
+    "heavy-equipments-companies":"شركات-المعدات-الثقيلة"
+}
+
+    function updateURLtext() {
+    if (!(window.location.href.includes('product='))){return window.location.href.replace('barmga.com/','barmga.com/ar')}
+    if(window.location.href.includes('product=sa-')){return}
+    const currentURL = new URL(window.location.href);
+    let dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
+     currentURL.searchParams.set('product', String(dkey));
+     return currentURL.toString()}
+    function isBrowserLanguageArabic() { const userLang = navigator.language || navigator.userLanguage; return userLang.startsWith('ar'); }
+    if (isBrowserLanguageArabic() && !(window.location.href.toLowerCase().includes('lang=en'))){window.location.href=updateURLtext()}
+</script>
+<style>   
+#sa-aqar-riyadh .feature3{display: none !important;}
+.btn-outline-primary.bg-white:hover{color: #023957;}   
+        .noticeme {
+            background: linear-gradient(270deg, #ffffff, #fdfeff, #bfe2fd, #ffffff, #ffffff);
+            color: #2780B7; /* Original text color */
+            animation: gradientAnimation 5s ease infinite, shadowAnimation 3s ease infinite, textColorAnimation 5s ease infinite; /* Added shadow and text color animations */
+            background-size: 1200% 1200%;
+        }
+        
+        @keyframes shadowAnimation {
+            0%, 100% { box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 0 10px 7px rgba(201, 220, 231, 0.5); } /* Darker shadow */
+        }
+        
+        @keyframes textColorAnimation {
+            0%, 100% { color: #28cee1; }
+            25% { color: #1A5E89; } /* Darker shade */
+            50% { color: #0090dd; }
+            75% { color: #023957; } /* Darker shade */
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }   
+    #productlink,#samplelink, #share, .barmgareviews{box-shadow: 0 2px 5px 0 rgba(43, 43, 45, 0.184), 0 2px 5px 0 rgba(43, 43, 45, 0.184);}
+    .showmore{text-shadow: 2px 2px 4px rgba(5, 1, 59, 0.121);}
+
+.shadowmex{
+    box-shadow: 0 3px 5px 0 rgba(43, 43, 45, 0.316), 0 3px 5px 0 rgba(43, 43, 45, 0.316);
+}
+        .shadowme{
+        box-shadow: 0 6px 10px 0 rgba(43, 43, 45, 0.44), 0 6px 10px 0 rgba(43, 43, 45, 0.44);
+    }
+        .downel{border-radius: 50%;}
+    .hiddenx{display: none;}
+    .modal {
+      overflow: auto; /* Enable scroll if needed */
+    }
+    * {
+  scroll-margin-top: 55px;
+}
+
+.container{
+  width: 100%;
+}
+[onclick] {
+    cursor: pointer;
+}
+:target {
+  padding-top: 70px; /* height of your navbar */
+  margin-top: -70px;
+}
+
+@media (min-width: 992px) {
+    li+li.nav-item.dropdown{margin-right: 15px;}
+    .mobilebloc{display: none !important;}
+    #clientsreviews{display: block !important;}
+    .downel{display: none !important;}
+            .navbar {
+              height: 60px;
+            }
+            .navbar .dropdown-menu {
+          margin-top: 0px;
+        }
+        .navbar-nav {
+          font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+          font-weight: 500;
+        }
+          }
+          .navbar-nav .nav-link:hover {
+          text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          color: rgb(1, 106, 226) !important;
+          font-weight: bold;
+          
+        }
+        .navbar-nav .nav-link{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+          color: rgb(11, 3, 112) !important;
+        }
+        
+        
+          .navbar {
+          position: fixed !important;
+          top: 0;
+          z-index: 1020;  /* Bootstrap's z-index for sticky navbar */
+        }
+        h6{ font-family: 'Gabriela', serif !important; font-weight: 700 !important;}
+
+body{font-family: 'Gabriela', serif !important;}
+        .navbar {
+                top: 0;
+                z-index: 100;
+                background-color: white;
+                font-family: 'Gabriela', serif !important;
+        
+              }
+              .nav-item {
+    text-align: center;
+    transition: all 0.5s ease;
+}
+.nav-item:hover {
+
+    background-color: rgb(218, 226, 235);
+    border-radius: 30px;
+    padding: 0px 10px; /* Adjust as needed */
+    
+}
+@media (max-width: 992px) { /* Adjust as per your navbar's collapsing breakpoint */
+.mobilebloc{display: block !important;}
+#clientsreviews{display: none !important;}
+img.topim{max-height: 400px;}
+    .navbar-nav .nav-item.dropdown:hover {
+        position: static;
+        float: none;
+        width: 100%;
+        background-color: rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+    .navbar-nav .dropdown-menu {
+        text-align: center;
+        position: static;
+        float: none;
+        width: 100%;
+        background-color:rgb(218, 226, 235);
+        border-color: rgba(240, 248, 255, 0); /* Adjust as per your requirement */
+        border-radius: 30px;
+    }
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 35%;
+    font-size: 200%; /* Increase size */
+    font-weight: bold; /* Make thicker */
+    z-index: 10;
+    color: white;
+}
+
+.owl-prev {
+    left: -5%;
+}
+
+.owl-next {
+    right: -5%;
+}
+.owl-dots {
+    text-align: center; /* Center the dots */
+    padding-top: 30px; /* Add space above the dots */
+}
+.owl-dots .owl-dot {
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background-color: #cccccc;
+    border-radius: 50%;
+}
+
+.owl-dots .owl-dot.active {
+    background-color: #978e8e;
+}
+.badge {
+        font-size: 1em; /* Adjust the size as needed */
+    }
+ .text-primary{color: #2780B7; }
+
+ .loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+.loader:before {
+  animation: before 2s infinite;
+}
+.loader:after {
+  animation: after 2s infinite;
+}
+
+@keyframes before {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+@keyframes after {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 1.25em);
+  left: calc(50% - 1.25em);
+}
+.loaderx {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 9999999;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+    }
+
+    .loaderx.fade-out {
+        opacity: 0;
+    }
+    .modal-body.scrollable-body {
+  max-height: calc(100vh - 140px); /* Adjust based on your header and footer height */
+  overflow-y: auto;
+  padding-bottom: 70px; /* Adjust the value as needed */
+  padding-top: 20px; /* Adjust the value as needed */
+
+}
+
+
+.modal-header {
+  position: sticky;
+  background-color: inherit;
+  z-index: 1055;
+}
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: inherit;
+  z-index: 1055;
+  width: 100%;
+}
+  </style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var loader = document.querySelector('.loaderx');
+    loader.style.display = "block";
+
+    // Instead of waiting for the load event
+    document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'interactive' || document.readyState === 'complete' || document.querySelector('iframe[src^="https://"]')) {
+            loader.classList.add('fade-out');
+            setTimeout(function() {
+                loader.style.display = "none";
+                if(window.location.href.includes("?tools")||window.location.href.includes("&tools")){showonlyx("allx")}
+                if(window.location.href.includes('&sample') && document.querySelector('#samplelink').href.startsWith('https://')){document.querySelector('#samplelink').click()}
+            }, 500); // Matches the transition duration
+        }
+    });
+});
+
+</script>
+</head>
+<body id="home">
+    <div class="loaderx fullscreen" ><div class="loader" ></div></div>
+    <div class="container-fluid bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div  class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/?lang=en">
+                    <img src="images/barmga-logo.webp" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#services">Services</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">Products</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">Whatsapp Marketing</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('email')">Email Marketing</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('other')">Business Tools</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">Contact</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;" >
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/gb.webp" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">English</a></li>
+                                    <li><a class="dropdown-item" onclick="openURLnew('ar')">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated zoomIn">Barmga For Business Automation</h1>
+                            <p class="text-white pb-3 animated zoomIn">We are dedicated to transforming the way businesses collect their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes.</p>
+                            <a onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;Products&nbsp;</a>
+                            <a href="#services" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;Services&nbsp;</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid topim" src="images/hero.webp" alt=barmga"">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Full Screen Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen" style="padding: 20px;">
+                <div class="modal-content" style="background: rgba(29, 29, 39, 0.95);">
+                    <div class="modal-header border-0" style="padding: 20px;">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+
+
+        <!-- About Start -->
+        <div class="container-fluid py-5" id="about">
+            <div class="container px-lg-5">
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <div class="section-title position-relative mb-4 pb-2">
+                            <h6 class="position-relative text-primary ps-4">About Us</h6>
+                            <h2 class="mt-2">Barmga: We Are Strategic, Innovators & Automators</h2>
+                        </div>
+                        <p class="mb-4", style="color: #5f5a5a;">Success is not working so hard, it is achieving the best results the smart, fast and enjoyable way! Boost your progress with our unique tools, actionable hacks, and large databases. <br>We provide data and software solutions for automating marketing, content creation, products research, market study and several other tasks.</p>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Variety of Resources</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Professional Staff</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Satisfied Costumers</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Unique Solutions</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mt-4">
+                            <a class="btn btn-primary rounded-pill px-4 me-3"  href="#contact">Contact Us</a>
+                            <a class="btn btn-outline-primary btn-square me-3"  href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-3"  href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                            <a class="btn btn-outline-primary btn-square me-3" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        </div>
+                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>Clients reviews <a class="underline" target="_blank" href="https://mostaql.com/u/barmga">on Mostaql</a></span></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="img-fluid wow zoomIn topim" style="width: 80%; height: 90%; margin-left: 10%;" data-wow-delay="0.1s" alt="barmga about" src="images/about.webp">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+
+        <!-- Portfolio Start -->
+        <div class="container-fluid mt-5 py-1"style="background-color: #F3F6FF;" id="products">
+            <div class="container px-lg-2">
+                <div class="section-title position-relative text-center mb-5 pb-3 wow fadeInUp" data-wow-delay="0.1s" >
+                    <br><br>
+                    <h6 class="position-relative d-inline text-primary ps-4">Our Products</h6>
+                    <h2 class="mt-2 fepro">Our Featured Products</h2>
+                </div>
+               
+            </div>
+            
+        </div>
+        <!-- Portfolio End -->
+        <!-- addgram Start -->
+        <div class="container-fluid py-5 prody selectedproduct" id="" style="display: none; background-color: white;">
+            <div class="container px-lg-5">
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <div class="section-title position-relative mb-4 pb-2">
+                            <h6 class="position-relative text-primary ps-4" id="selectedprodsubtitle">Database</h6>
+                            <h2 class="mt-2" id="selectedprodtitle"></h2>
+                        </div>
+                        <div class="mb-3">
+                            <small  id="selectedprodpriceundiscount" style="text-decoration: line-through; font-size: 105%;">
+                             
+                            </small>
+                            <span class="h5" id="selectedprodprice" style="color: #068e89;">
+                             75$
+                            </span>
+                           </div>
+                        <p class="mb-4", style="color: #5f5a5a;" id="selectedprodinfo">Success is not working so hard, it is achieving the best results the smart, fast and enjoyable way! Unleash your potential with our unique tools, actionable hacks, and insightful content. <br>From memory boosts and mindful habits to SEO secrets and marketing magic, we empower you to navigate life's challenges and conquer your goals, faster and smarter.</p>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <h6 class="mb-3 feature1"><i class="fa fa-check text-primary me-2"></i>xxx</h6>
+                                <h6 class="mb-0 feature2"><i class="fa fa-check text-primary me-2"></i>xxx</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6 class="mb-3 feature3"><i class="fa fa-check text-primary me-2"></i>xxx</h6>
+                                <h6 class="mb-0 feature4"><i class="fa fa-check text-primary me-2"></i>Free Updates</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex" style="margin-top:20px; display:none !important;" id="giftmain">
+                            <img src="images/gift.webp" alt="Saudi Arabian Flag" width="30" height="30" style="margin-right:10px"><span style="margin-top:6px" id="giftitem"></span>
+                        </div>
+                        <div class="d-flex align-items-end mt-4">
+                            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-3 me-3" style="font-size: 90%;"  href="" id="productlink"><img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now</a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 noticeme" style="font-size: 90%;"  href="" id="samplelink" onclick="if(document.querySelector('.tracksample').getAttribute('src')==''){document.querySelector('.tracksample').setAttribute('src','https://bit.ly/3OLZjJw')};previewExcelFile(this.href); document.querySelector('#samplelink').classList.remove('noticeme')"><img src="img/excelfileblue.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Sample</a>
+                            <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
+                        </div>
+                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy.</a> <a class="text-muted" > Payment is powered by <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> Hotmart.</a></a></span></div>
+                        <div class="d-flex align-items-end mt-3 mobilebloc" style="display: none;">
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="https://t.me/bigdata_shop" target="_blank" style="font-size: 85%;">
+                                <i class="fa fa-telegram btn-outline-primary" style="font-size: 120%; margin-right: 4px;"></i>Telegram
+                            </a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2 barmgareviewsmob" href="https://mostaql.com/u/barmga" target="_blank" style="font-size: 85%;">
+                                <i class="fa fa-star" style="margin-right: 4px;"></i>Reviews
+                            </a>
+                            <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="#about" style="font-size: 85%;">
+                                <i class="fa fa-info" style="margin-right: 6px;"></i>Barmga
+                            </a>
+                        </div>
+<style>
+    .custom-icon {
+    border: 1px solid #2780B7; /* Customize border color */
+    border-radius: 50%; /* Makes the border circular */
+    padding: 2px; /* Space around the icon */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2em; /* Adjust width and height as needed */
+    height: 1.2em;
+}
+.overlay-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; /* Ensure button is above the iframe */ background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */ color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; } .overlay-button.hidden { display: none; /* Hide the button */ }
+</style>                        
+                    </div>
+                    <div class="col-lg-6 videoarea" >
+                        <iframe allow="fullscreen" style="width: 100% !important; height:100% !important;" id="videolink" src="" frameborder="0" allowfullscreen></iframe>
+                        <div class="d-flex align-items-center justify-content-center mt-2 mb-2">
+                        <a class="btn btn-outline-primary align-items-center justify-content-center downel" style="display: none;"> <i class="fa fa-arrow-down"></i></a></div>
+                    </div>
+                    
+
+                    <style>
+                        @media (max-width: 992px) {
+                            .videoarea { 
+                                min-height: 250px; 
+                            }
+                        }
+                    
+                    </style>
+                </div>
+            </div>
+        </div>
+        <!-- addgram End -->
+        <div class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;" id="prods">
+            <div class="text-center mt-2 pt-2 filter justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" >
+                                Categories
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" >
+                                <li><a class="dropdown-item" id="all" onclick="filterCat(this.id)">All Categories</a></li>
+                                <li><a class="dropdown-item" id="realestate" onclick="filterCat(this.id)">Real Estate</a></li>
+                                <li><a class="dropdown-item" id="health" onclick="filterCat(this.id)">Transport & Cars</a></li>
+                                <li><a class="dropdown-item" id="commerce" onclick="filterCat(this.id)">Commerce</a></li>
+                                <li><a class="dropdown-item" id="health" onclick="filterCat(this.id)">Health & Beauty</a></li>
+                                <li><a class="dropdown-item" id="food" onclick="filterCat(this.id)">Food & Hotels</a></li>
+                                <li><a class="dropdown-item" id="education" onclick="filterCat(this.id)">Education</a></li>
+                                <li><a class="dropdown-item" id="productsx" onclick="filterCat(this.id)">Products</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="dropdown d-inline-block">
+                            <button class="btn btn-outline-primary bg-white dropdown-toggle countryButton" type="button" id="dropdownMenuButtony" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" >
+                               Country
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtony" >
+                                <li><a class="dropdown-item" id="sa" onclick="filterCont(this.id)">Saudi Arabia</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container py-5 px-lg-5">
+            <div class="container px-lg-5">
+              <br>
+              <div class="row g-4 allproducts">
+      
+                </div>
+              </div>
+            </div></div>
+                    <!-- Portfolio Start -->
+        <div class="container-fluid  py-1"style="background-color: #F3F6FF;">
+            <div class="container px-lg-2">
+                <div class="position-relative text-center mt-4 mb-4 pb-3" >
+                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';" >More Products</a>
+                </div>
+               
+            </div>
+            
+        </div>
+
+<!-- Service Start -->
+<div class="container-fluid py-5" id="services">
+  <div class="container px-lg-5">
+    <div class="section-title position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="position-relative d-inline text-primary ps-4">Our Services</h6>
+      <h2 class="mt-2">Business Solutions We Provide</h2>
+    </div>
+    <br>
+    <div class="row g-4 container-fluid py-5" >
+        <div class="col-lg-3 col-md-6">
+            <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+              <div class="service-icon flex-shrink-0">
+                <i class="fa fa-code fa-2x"></i>
+              </div>
+              <h5 class="mb-3">Software Developement</h5>
+              <p>We design and develop desktop & web applications to perform different types of tasks!</p>
+              <a class="btn px-3 mt-auto mx-auto" href="#Contact">Contact Us</a><p></p>
+            </div>
+          </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+          <div class="service-icon flex-shrink-0">
+            <i class="fa fa-database fa-2x"></i>
+          </div>
+          <h5 class="mb-3">Data Scraping</h5>
+          <p>We automate data extraction from websites to excel files. Such as: products, companies info, articles, ads & more!</p>
+          <a class="btn px-3 mt-auto mx-auto" href="#contact">Contact Us</a><p></p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+          <div class="service-icon flex-shrink-0">
+            <i class="fa fa-laptop fa-2x"></i>
+          </div>
+          <h5 class="mb-3">Data Entry</h5>
+          <p>We automate the process of data entry from your databases to websites. This helps you perform repetitive tasks faster!</p>
+          <a class="btn px-3 mt-auto mx-auto" href="#contact">Contact Us</a><p></p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+          <div class="service-icon flex-shrink-0">
+            <i class="fa fa-edit fa-2x"></i>
+          </div>
+          <h5 class="mb-3">Data Edition</h5>
+          <p>We help you analyse, edit and reshape big databases for better outputs. That includes text, images & audio-visual content.</p>
+          <a class="btn px-3 mt-auto mx-auto" href="#contact">Contact Us</a><p></p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Service End -->
+        <!-- Newsletter Start -->
+        <div class="container-fluid bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s" >
+            <div class="container px-lg-5">
+                <div class="row align-items-center" style="height: 250px;">
+                    <div class="col-12 col-md-6">
+                        <h3 class="text-white">Ready to get started</h3>
+                        <small class="text-white">Subscribe to our newsletter for lastest offers & updates.</small>
+                        
+                        <div class="position-relative w-100 mt-3">
+                            <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                        <br>
+                        <small class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></small>
+                    </div>
+                    <div class="col-md-6 text-center mb-n5 d-none d-md-block">
+                        <img class="img-fluid mt-5" style="height: 250px;" src="images/newsletter.webp">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Newsletter End -->
+        <!-- Portfolio Start -->
+
+
+
+        <!-- Contact Start -->
+        <div class="container-fluid py-4" id="contact">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-title position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                            <h6 class="position-relative d-inline text-primary ps-4">Contact Us</h6>
+                            <h2 class="mt-2">Contact For Any Query</h2>
+                            <br>
+                        </div>
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
+                            <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">We accept offline payments through western union, stc pay, bank transfer and usdt.</small>
+                            <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
+                            <form id="your-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-name-input" placeholder="Your Name">
+                                            <label for="name">Your Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="your-email-input" placeholder="Your Email">
+                                            <label for="email">Your Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-phone-input" placeholder="Phone">
+                                            <label for="phone">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-subject-input" placeholder="Subject">
+                                            <label for="subject">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a message here" id="your-message-input" style="height: 150px"></textarea>
+                                            <label for="message">Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" id="submit" type="submit">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+        
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <img class="trackimg" style="display: none !important;">
+                        <img class="tracksample" style="display: none !important;" src="">
+                        <h5 class="text-white mb-4">Get In Touch</h5>
+                        <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                        <a class="btn btn-link" href="">Contact Us</a>
+                        <p><i class="fa fa-envelope me-3"></i>info@barmga.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+                            
+                            <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Our Company</h5>
+                        <a class="btn btn-link" href="#home">Home</a>
+                        <a class="btn btn-link" href="#about">About Us</a>
+                        <a class="btn btn-link" href="https://mostaql.com/u/barmga" target="_blank">Reviews on Mostaql</a>
+                        <a class="btn btn-link" href="https://barmga.com/faq">FAQ</a>
+                        <a class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Condition</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Our Activities</h5>
+                        <a class="btn btn-link" href="#services">Services</a>
+                        <a class="btn btn-link"onclick="document.querySelector('.selectedproduct').style.display='none'"   href="#products">Products</a>
+                        <a class="btn btn-link" onclick="showonly('whatsapp')">Whatsapp Marketing Tools</a>
+                        <a class="btn btn-link" onclick="showonly('email')">Email Marketing Tools</a>
+                        <a class="btn btn-link" onclick="showonly('other')">Business Tools</a>
+                     </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Newsletter</h5>
+                        <p>Subscribe to our newsletter for lastest offers & updates.</p>
+                        <div class="position-relative w-100 mt-3">
+                            <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
+                            <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                        <br>
+                        <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="https://barmga.com/?lang=en">Barmga 2025</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							<div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom"  style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+          <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="termsModalLabel">Contact</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- Insert your terms and conditions here -->
+                  <p>To purchase this item please enter the required information</p>
+                  <form id="contactinfoform" class="buyb2bform">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="your-name-input" placeholder="Enter your name">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="your-email-input" placeholder="Enter your email">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="your-phone-input" placeholder="Enter your phone number">
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Information about your business</label>
+                        <input class="form-control" id="your-message-input" placeholder="Enter your website">
+                        <br>
+                    </div>
+                    <div class="d-flex align-items-end"><input type="checkbox" class="btn-check b2bcheckButton" id="checkButton" autocomplete="off"><label class="btn btn-outline-primary btn-square mb-1" for="checkButton" style="max-width: 13px; max-height: 13px;"></label><span class="text-muted" style="font-size: 80%; align-items: center;">&nbsp;&nbsp;&nbsp;By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy</a></span></div>
+
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <a name="contactinfo" id="confirmButton" class="btn fw-bold buyb2bbtn" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);" onclick="validateAndRedirect('https://bit.ly/b2bsaudidata')">confirm</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="z-index:10000;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body scrollable-body">
+                    <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com/?lang=en">barmga.com</a>.</p>
+
+                    <h3>1. Introduction</h3>
+                    <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
+                
+                    <h3>2. Intellectual Property Rights</h3>
+                    <p>Unless otherwise stated, Barmga and/or its licensors own the intellectual property rights for all material on Barmga. All intellectual property rights are reserved. You may access this from Barmga for your own personal use subjected to restrictions set in these terms and conditions.</p>
+                
+                    <h3>3. Restrictions</h3>
+                    <p>You are specifically restricted from all of the following:</p>
+                    <ul>
+                        <li>Publishing any website material in any other media;</li>
+                        <li>Selling, sublicensing, and/or otherwise commercializing any website material;</li>
+                        <li>Publicly performing and/or showing any website material;</li>
+                        <li>Using this website in any way that is or may be damaging to this website;</li>
+                        <li>Using this website in any way that impacts user access to this website;</li>
+                        <li>Using this website contrary to applicable laws and regulations, or in any way may cause harm to the website, or to any person or business entity;</li>
+                        <li>Engaging in any data mining, data harvesting, data extracting, or any other similar activity in relation to this website;</li>
+                        <li>Using our free or paid products in any political activity or promoting content that contradicts Islamic laws and regulations.</li>
+
+                    </ul>
+                
+                    <h3>4. Your Privacy</h3>
+                    <p>All your information are neither sold nor shared with thirdparties. All your information is collected through our platform or hotmart.</p>
+                    <h3>5. No warranties</h3>
+                    <p>This website is provided "as is," with all faults. Our guarantees are limited to what is stated on our platform. Barmga express no additional representations or warranties.</p>
+                    
+                    <h3>6. Limitation of liability</h3>
+                    <p>In no event shall Barmga, nor any of its officers, directors, and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Barmga, including its officers, directors, and employees shall not be held liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p>
+                
+                    <h3>7. Indemnification</h3>
+                    <p>You hereby indemnify to the fullest extent Barmga from and against any and/or all liabilities, costs, demands, causes of action, damages, and expenses arising in any way related to your breach of any of the provisions of these terms.</p>
+                
+                    <h3>8. Severability</h3>
+                    <p>If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+                
+                    <h3>9. Variation of Terms</h3>
+                    <p>Barmga is permitted to revise these terms at any time as it sees fit, and by using this website you are expected to review these terms on a regular basis.</p>
+                
+                    <h3>10. Assignment</h3>
+                    <p>The Barmga is allowed to assign, transfer, and subcontract its rights and/or obligations under these terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these terms.</p>
+                
+                    <h3>11. Entire Agreement</h3>
+                    <p>These terms constitute the entire agreement between Barmga and you in relation to your use of this website and supersede all prior agreements and understandings.</p>
+                
+                </div>
+                <div class="modal-footer">
+                  <a  id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">confirm</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="termsUseModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="z-index: 9999;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body scrollable-body">
+                    <p>Welcome to Barmga! These terms and conditions define the rules and regulations for using the products of the Barmga website.</p>
+                    
+                    <h3>1. Usage Limits</h3>
+                    <ul>
+                        <li>Our products can be used used for: marketing, conducting research, market study, advertising goods and services to targeted entities, or uploading information about goods on a website.</li>
+                        <li>If the databases contain contact information, the buyer must not send, disclose, or share this data with third parties except for the team members who are committed to the same terms and usage limits in full.</li>
+                    </ul>
+                    
+                    <h3>2. Terms of Use</h3>
+                    <p>The buyer is required to:</p>
+                    <ul>
+                        <li>Not use this product to market content that contradicts Islamic law.</li>
+                        <li>Not market illegal digital content or illegal or harmful goods, such as Netflix subscriptions, tobacco, or images prohibited from being published or circulated, such as pictures of women on product boxes or in the ads themselves.</li>
+                        <li>Not publish links of websites containing audio, visual, or written content that contradicts the provisions of Islamic law.</li>
+                        <li>Not promote political events or political figures.</li>
+                        <li>Not advertise religious events or religious beliefs contrary to Islam.</li>
+                    </ul>
+                    
+                    <h3>3. Updates</h3>
+                    <p>We provide a free updated version of the database as soon as it is re-collected from the same sites, but this does not constitute an obligation on the seller to re-collect it. Only B2B Listings & products databases are included.</p>
+                    
+                    <h3>4. Delivery</h3>
+                    <p>The data is delivered to the email address specified by the client.</p>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                  <a  id="confirmButton" class="btn amhere" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">confirm</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- Back to Top -->
+       <!--  <a href="#" style="display: none;"class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-arrow-up"></i></a> -->
+    </div>
+    <div class="modal fade" id="hotmartmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 50px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close closeme" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel"></h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body text-center scrollable-body">
+                    <div id="mb-4">
+                        <div class="mb-3">
+                            <a href="" class="clickmart" style="display: none;"></a>
+                            <p style="font-size: 120%;">
+                                <strong>Hotmart Marketplace</strong></p>
+                            <div>
+                                <a style="color: #2780B7;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart', 'https://go.hotmart'))">Hotmart</a> platform connects digital product providers with their customers, acting as a sales intermediary. All our digital products are reviewed & delivered by Hotmart.<br> You can also request this product through  
+                                <a style="color: #2780B7;" target="_blank" href="https://mostaql.com/u/barmga">Mostaql (freelance platform)</a> 
+                                or by 
+                                <a style="color: #2780B7;" href="#contact" onclick="document.querySelector('.closeme').click()">contacting us</a>.
+                            </div>
+                        </div>
+                        <a onclick="document.querySelector('#productlink').click();document.querySelector('.closeme').click()" class="btn btn-primary" style="margin-bottom: 20px;">Buy Now</a>
+                        <div class="mt-2 mb-2">
+                            <img src="img/paypal.webp" alt="PayPal">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="downloadmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 50px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel"></h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body text-center scrollable-body">
+                    <form id="emailForm mb-4">
+                        <div class="mb-3">
+                            <label for="emailInputx" class="form-label">Enter your email</label>
+                            <input type="text" class="form-control" id="emailInputx" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                        <button type="submit" id="downloadButton" class="btn btn-primary" style="margin-bottom: 20px;">Download</button>
+                        <div class="d-flex align-items-center justify-content-center mb-1"><span class="text-muted" style="font-size: 80%; align-items: center;">By downloading this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy</a></span></div>
+                    </form>
+                    <div id="downloadMessage" style="display: none; margin-top: 10px;">
+                        <p>Thanks for downloading. If the download didn't start automatically, <a id="manualDownloadLink" class="clickhere" href="#">click here</a>.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+function subdow(){
+    var link=document.querySelector(".clickhere").href
+    var input=document.querySelector('#email-sub')
+    input.value=document.querySelector("#emailInputx").value+"?downloaded="+link
+    var button=document.querySelector('#email-sub+button')
+    button.click()
+    if (document.querySelector('.submitted')){document.querySelector('.submitted').style.display="none"}
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const downloadButton = document.querySelector('#downloadButton');
+    const emailInput = document.querySelector('#emailInputx');
+    const downloadMessage = document.querySelector('#downloadMessage');
+    const manualDownloadLink = document.querySelector('#manualDownloadLink');
+
+
+    // Handle download button click
+    downloadButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Validate email
+        const email = emailInput.value.trim();
+        if (!validateEmail(email)) {
+            emailInput.classList.add('is-invalid');
+            return;
+        }
+        
+        emailInput.classList.remove('is-invalid');
+        
+        // Simulate a file download by clicking the manual download link
+        manualDownloadLink.click();
+        subdow()
+        // Display the download message
+        downloadMessage.style.display = 'block';
+        
+    });
+});
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+</script>    
+    
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+    
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                 
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Business Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+    
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor" target="_blank">
+                            <i class="fa fa-map-marker"></i>&nbsp;&nbsp;City Extractor Tool
+                        </a>
+                    </div>
+                    <p class="emailx">Extract city names from google maps addresses then add a city name column to your excel file!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager" target="_blank">
+                            <i class="fa fa-group"></i>&nbsp;&nbsp;Contacts Manager
+                        </a>
+                    </div>
+                    <p class="emailx">Extract email addresses & phone numbers from several files, then split them to multiple parts before launching your marketing campaigns!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;Bulk Email Validator
+                        </a>
+                    </div>
+                    <p class="emailx">Clean your email lists from inactive business email addresses, for a better email deliverability rate!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+    
+                </div>
+                <div class="modal-body scrollable-body text-center  mt-2">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | Gmail Sender
+                        </a>
+                    </div>
+                    <p class="emailx">Automatically send individual messages to bulk email addresses using your Gmail account. This tool works with the Microsoft Edge browser on a computer.</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>                    
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Email Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="emailx">Turn Email addresses to links and send messages easily from Mobile browser & Gmail mobile app in few clicks!</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+    
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>    
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+    
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | Whatsapp Sender
+                        </a>
+                    </div>
+                    <p class="whatsappx">Send automated Whatsapp messages using Wabarmga. This tool can be used with chrome browser on PC.</p>
+                    <img src="img/bot.webp" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Whatsapp Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="whatsappx">Turn Whatsapp phone numbers to links and send messages easily from Mobile browser & Whatsapp app in few clicks!</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                    </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>   
+    <!-- JavaScript Libraries -->
+    <script>
+    function capT(str) { return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '); }
+    function removeinfototerms(){
+    // Get the elements
+    document.querySelector('#termsModal').remove();}
+    function sharePost(hash) {
+    if (navigator.share) {
+      // Construct the URL with the hash
+      var urlWithHash = "https://barmga.com/?product="+document.querySelector('.selectedproduct').getAttribute('id')
+
+      navigator.share({
+        title: hash,
+        text: hash,
+        url: urlWithHash,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+    } else {
+      // Fallback for devices that do not support the Web Share API
+      alert('Your device does not support the Web Share API');
+    }
+}
+    function displayElementFromHash() {
+        // Get the URL hash value
+        var hash = window.location.hash.substring(1);
+    
+        // Use the hash value to find the first element with that ID
+        var element = document.getElementById(hash.split('pre')[0]);
+    
+        // If the element exists, change its display style to 'block'
+        if (element) {
+            element.style.display = 'block';
+        }
+    }
+    function validateAndRedirect(url) {
+    // Select the button, form, and checkbox
+    var button = document.querySelector('.buyb2bbtn');
+    var form = document.querySelector('.buyb2bform');
+    var checkbox = document.querySelector('.b2bcheckButton');
+    var ele=document.querySelector('#contactModal .btn-close')
+    // Add click event listener to the button
+    button.addEventListener('click', function() {
+        // Get all input elements inside the form
+        var inputs = form.querySelectorAll('input');
+        var allFilled = true;
+
+        // Iterate over each input element
+        for (var i = 0; i < inputs.length; i++) {
+            // If the input element does not contain any string
+            if (inputs[i].value.trim() === '') {
+                // Color the border in red
+                inputs[i].style.borderColor = 'red';
+                allFilled = false;
+            } else {
+                // Reset the border color
+                inputs[i].style.borderColor = '';
+            }
+        }
+
+        // Check if the checkbox is checked
+        if (!checkbox.checked) {
+            // Color the border in red
+            checkbox.nextElementSibling.style.borderColor = 'red';
+            allFilled = false;
+        } else {
+            // Reset the border color
+            checkbox.nextElementSibling.style.borderColor = '';
+        }
+
+        // If all input elements contain a string and the checkbox is checked
+        if (allFilled) {
+            // Redirect to the specified URL in a new page
+            ele.click()
+            window.open(url, '_blank');
+        }
+    });
+}
+
+    displayElementFromHash()
+    </script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+<script>
+function suggestMe(productname,dicta){
+    if (['organisations','الجمعيات'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Schools',1);
+        dicta=movelPos(dicta,'Restaurants and Cafes',2);
+        dicta=movelPos(dicta,'Medical Centers',3);
+        dicta=movelPos(dicta,'Organisations',4);
+    }else if (['hotels and apartments','الفنادق والشقق',"وكالات السفر والسياحة","travel agencies"].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Travel Agencies',1);
+        dicta=movelPos(dicta,'Restaurants and Cafes',2);
+        dicta=movelPos(dicta,'Realestate Companies',3);
+        dicta=movelPos(dicta,'Hotels and Apartments',4);
+        dicta=movelPos(dicta,'Transport Companies',5);
+        dicta=movelPos(dicta,'Medical Centers',6);
+    }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Makeup Products',1);
+        dicta=movelPos(dicta,'Supermarket Products',2);
+        dicta=movelPos(dicta,'Organisations',3);
+        dicta=movelPos(dicta,'Perfume Products',4);
+        dicta=movelPos(dicta,'Pharmaceutical Products',5);
+    }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Real Estate Advertisements',1);
+        dicta=movelPos(dicta,'Transport Companies',2);
+        dicta=movelPos(dicta,'Factories',3);
+        dicta=movelPos(dicta,'Realestate Companies',4);
+        dicta=movelPos(dicta,'Construction Companies',5);
+    }else if (['شركات النقل','transport companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Real Estate Advertisements',1);
+        dicta=movelPos(dicta,'Realestate Companies',2);
+        dicta=movelPos(dicta,'Transport Companies',3);
+        dicta=movelPos(dicta,'Factories',4);
+        dicta=movelPos(dicta,'Construction Companies',5);
+    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLowerCase().replace(/-/g,' '))){
+        dicta=movelPos(dicta,'Natural Food Stores',1);
+        dicta=movelPos(dicta,'Grocery Stores and Supermarkets',2);
+        dicta=movelPos(dicta,'Restaurants and Cafes',3);
+        dicta=movelPos(dicta,'Bakeries and Cake Shops',4);
+        dicta=movelPos(dicta,'Hotel and Apartments',5);
+        dicta=movelPos(dicta,'Transport Companies',6);
+        dicta=movelPos(dicta,'Factories',7);
+    }return dicta
+}
+function movelPos(dict, key, position_index) {
+    // Convert dictionary to an array of [key, value] pairs
+    const entries = Object.entries(dict);
+
+    // Convert 1-based position_index to 0-based
+    const zero_based_index = position_index - 1;
+
+    // Find the index of the element with the specified key
+    const index = entries.findIndex(entry => entry[0] === key);
+
+    // If the key is found and it's not already in the specified position
+    if (index !== -1 && index !== zero_based_index) {
+        // Remove the element from its current position
+        const [element] = entries.splice(index, 1);
+
+        // Insert the element at the specified position (zero_based_index)
+        entries.splice(zero_based_index, 0, element);
+    }
+
+    // Convert the array back to an object
+    return Object.fromEntries(entries);
+}
+
+function movel(dict, key) {
+    // Convert dictionary to an array of [key, value] pairs
+    const entries = Object.entries(dict);
+
+    // Find the index of the element with the specified key
+    const index = entries.findIndex(entry => entry[0] === key);
+
+    // If the key is found and it's not already in the third position
+    if (index !== -1 && index !== 2) {
+        // Remove the element from its current position
+        const [element] = entries.splice(index, 1);
+        
+        // Insert the element at the third position (index 2)
+        entries.splice(2, 0, element);
+    }
+
+    // Convert the array back to an object
+    return Object.fromEntries(entries);
+}
+
+function scrollByNavbarHeight() { const navbar = document.querySelector('.navbar'); const navbarHeight = navbar ? navbar.offsetHeight : 0; window.scrollBy({ top: navbarHeight, behavior: 'smooth' }); }
+function openUrl(url) {
+    // Create an invisible link element
+    const link = document.querySelector('a.clickmart');
+    
+    // Set the URL to open
+    link.href = url;
+    
+    // Trigger the link to be clicked programmatically
+    link.click();
+}
+
+function openURLnew(lang) {
+    if (lang=='ar'){
+    if (!(window.location.href.includes('product='))){return window.location.href=window.location.href.replace('barmga.com/','barmga.com/ar').replace('lang=en','lang=ar')}
+    var currentURL = new URL(window.location.href.replace('barmga.com/','barmga.com/ar'));
+    var dkey=allnames[window.location.href.split('product=')[1].split('&')[0].split('#')[0]];
+    currentURL.searchParams.set('product', String(dkey))
+    window.location.href= currentURL.toString().replace('lang=en','lang=ar');}
+    else {return ''}}
+    
+function shadowall(element){
+    for (let el of document.querySelectorAll('.itemhere')){el.querySelector('div').classList.remove('shadowme')}
+    element.classList.add('shadowme')
+}
+var firstclick=false
+var disc={
+    "B2B Listing":"",
+    "Products":"",
+    "Ads":""
+}
+var allnames={
+    "car-parts-stores": "محلات-قطع-غيار-السيارات",
+    "car-repair-stores": "ورش-السيارات",
+    "car-exhibitions": "معارض-السيارات",
+    "riyadh-realestate-ads":"إعلانات-عقارية-بالرياض",
+    "medical-devices":"الأجهزة-الطبية",
+    "sfda-companies": "هئية-الغذاء-والدواء",
+    "blacksmiths-and-joiners": "ورشات-الحدادة-والنجارة",
+    "gaz-stations": "محطات-الوقود",
+    "real-estate-companies": "الشركات-العقارية",
+    "beauty-and-sports-centers": "مراكز-التجميل-واللياقة",
+    "organisations": "الجمعيات",
+    "restaurants-and-cafes": "المطاعم-والمقاهي",
+    "construction-companies": "شركات-المقاولات",
+    "engineering-offices": "المكاتب-الهندسية",
+    "hotels-and-apartments": "الفنادق-والشقق",
+    "travel-agencies":"وكالات-السفر-والسياحة",
+    "building-materials-suppliers": "موردي-مواد-البناء",
+    "building-materials-products": "مستلزمات-البناء",
+    "real-estate-advertisements": "اعلانات-عقارية",
+    "bakeries-and-cake-shops": "المخابز-ومحلات-الحلويات",
+    "grocery-stores-and-supermarkets": "محلات-البقالة-والسوبرماركت",
+    "medical-centers": "المراكز-الطبية",
+    "makeup-products": "منتجات-التجميل",
+    "pharmaceutical-products": "منتجات-الصيدلية",
+    "maroof-ecommerce-stores": "متاجر-الكترونية",
+    "transport-companies": "شركات-النقل",
+    "factories": "المصانع",
+    "electronics-stores": "محلات-الالكترونيات",
+    "clothing-stores": "محلات-الأزياء",
+    "fabric-and-tailoring-shops": "محلات-الأقمشة-والخياطة",
+    "perfume-products": "منتجات-العطور",
+    "supermarket-products": "منتجات-السوبرماركت",
+    "schools": "المدارس-ورياض-الأطفال",
+    "job-advertisements": "اعلانات-واظائف",
+    "cleaning-services-companies": "شركات-التنظيف-والمغاسل",
+    "perfumes-stores": "متاجر-العطور",
+    "flowers-and-plants-shops": "محلات-الزهور-والمشاتل",
+    "natural-food-stores": "محلات-الأغذية-الطبيعية",
+    "heavy-equipments-companies":"شركات-المعدات-الثقيلة"
+}
+var allproducts ={
+    "Travel Agencies": {
+        "info": "Excel file containing 1,900 contact details for Travel Agencies in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "870 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-travel-agencies",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Travel-Agencies.xlsx",
+        "samplelink": "",
+        "family": "food",
+        "videolink": "https://player.vimeo.com/video/1081089623?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Tourism Ministry",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Hotels and Apartments": {
+        "info": "Excel files containing over 14,000 contact details for hotels, apartments, and chalets in Saudi Arabia. This data is useful for marketing cleaning services, security, and hotel offers.",
+        "feature2": "2,500 Email Addresses",
+        "feature1": "10,000 Mobile Numbers",
+        "feature3": "3 Sheets | Excel Files",
+        "id": "sa-hotels",
+        "gift": "390 records for Haj & Umrah companies (Free)",
+        "originalprice": "",
+        "price": "49$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/S95586549W?off=5lhblztv",
+        "samplelink": "https://barmga.com/samples/3-Sheets-Sample-SA-Hotels.xlsx",
+        "family": "realestate, food",
+        "videolink": "https://player.vimeo.com/video/1081090457?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025 - 2024",
+        "source": "Google Maps, Tourism Ministry",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+
+    "Real Estate Companies": {
+        "info": "Excel files containing data for 20,000 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
+        "feature2": "9,000 Email Addresses",
+        "feature1": "20,000 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-realestate-brokers",
+        "gift": "",
+        "originalprice": "89$",
+        "price": "55$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/W96101861T?off=4o64ki1o",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Realestate-Companies.xlsx",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1032665869?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Ejar & Rega (Authorities)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
+    },
+    "Restaurants and Cafes": {
+        "info": "Excel file containing 32,000 contact details for restaurants and cafes in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
+        "feature2": "",
+        "feature1": "28,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-restaurants-cafes",
+        "gift": "",
+        "originalprice": "79$",
+        "price": "65$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/E95263962U?off=6ler8kd6",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Restaurants-and-cafes.xlsx",
+        "family": "food",
+        "videolink": "https://player.vimeo.com/video/1072905217?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7031296"
+    },    "Flowers and Plants Shops": {
+        "info": "Excel file containing 3,400 contact details for flowers & plants stores in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "3,300 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-flowers-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Plants-and-Flowers-Shops.xlsx",
+        "samplelink": "",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893151?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Maroof Ecommerce Stores": {
+        "info": "Excel file containing data for over 68,000 online stores and projects registered on Maroof Saudi website. This data can be used for marketing campaigns (digital services, wholesale goods).",
+        "feature2": "67,400 Email Addresses",
+        "feature1": "54,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-ecommerce",
+        "gift": "2000 Records for marketing companies from GMaps (Free)",
+        "originalprice": "",
+        "price": "85$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/C96102034J?off=ajp9ya6s",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Maroof-Ecommerce.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1082903245?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Maroof",
+        "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
+    },
+    "Construction Companies": {
+        "info": "Excel files containing data for over 20,000 contact details for construction companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
+        "feature2": "20,000 Email Addresses",
+        "feature1": "11,000 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-contractors",
+        "gift": "1,200 Records for real estate development companies (Free)",
+        "originalprice": "",
+        "price": "55$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Contractors.xlsx",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1062962778?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025 - 2022",
+        "source": "Muqawil (Authority)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
+    },
+    "Engineering Offices": {
+        "info": "Excel file containing over 3,800 contact details for engineering offices, in Saudi Arabia. This data is useful for contracting companies to find cooperative offices to bring in projects.",
+        "feature2": "3,300 Email Addresses",
+        "feature1": "3,800 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-engineering-offices",
+        "gift": "",
+        "originalprice": "",
+        "price": "15$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/O96101973U?off=796oith9",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Engineering-Offices.xlsx",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1032665882?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Balady (Authority)",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Building Materials Suppliers": {
+        "info": "Excel files containing 11,000 contact details for building materials suppliers, stores, and factories in Saudi Arabia. Useful for contractors to find the best supplier of building materials and request their prices in a practical way.",
+        "feature2": "3,000 Email Addresses",
+        "feature1": "11,000 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-building-materials-suppliers",
+        "gift": "1,200 Records for real estate development companies (Free)",
+        "originalprice": "",
+        "price": "55$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Suppliers.xlsx",
+        "family": "realestate, commerce",
+        "videolink": "https://player.vimeo.com/video/1032666017?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024 - 2023",
+        "source": "Muqawil (Authority), Google Maps",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7998119"
+    },
+    "Building Materials Products": {
+        "info": "Excel file containing 4,500 products for building materials, lighting, plumbing, tools, and equipment necessary for construction & contracting projects. All products are accompanied by images and include details such as name, price, category, and description if available. Practical and excellent for uploading products to an online store easily from a ready-made Excel file.",
+        "feature2": "",
+        "feature1": "4,500 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-building-materials",
+        "gift": "3K Records for building materials factories (Free)",
+        "originalprice": "",
+        "price": "49$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/Q95256443N?off=8y4mwj5b",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Products.xlsx",
+        "family": "realestate, commerce",
+        "videolink": "https://player.vimeo.com/video/1032666008?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Real Estate Advertisements": {
+        "info": "Excel file dedicated to real estate advertisements posted on Telegram groups. Useful for studying the market and finding deals.",
+        "feature2": "",
+        "feature1": "6,000 ADs",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-realestate-ads",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "Ads",
+        "productlink": "https://barmga.com/samples/SA-Telegram-Realestate-Ads.xlsx",
+        "samplelink": "",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1032596366?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Telegram Groups & Channels",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+
+"Bakeries and Cake Shops": {
+        "info": "Excel file containing 9,000 contact details for bakeries, sweets shops, juice shops, and ice cream shops in Saudi Arabia. Useful for suppliers of food products, decoration companies, and interior design companies to market their services and products.",
+        "feature2": "",
+        "feature1": "8,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-bakeries",
+        "gift": "",
+        "originalprice": "35$",
+        "price": "19$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/B95283196U?off=82fbl5jw",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Cakes-Shops.xlsx",
+        "family": "food",
+        "videolink": "https://player.vimeo.com/video/1032665944?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Natural Food Stores": {
+        "info": "Excel file containing 570 contact details for natural food stores.",
+        "feature2": "",
+        "feature1": "500 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-natural-food-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Natural-Food-Stores.xlsx",
+        "samplelink": "",
+        "family": "food",
+        "videolink": "https://player.vimeo.com/video/1039176466?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Grocery Stores and Supermarkets": {
+        "info": "Excel file containing 14,000 contact details for supermarkets and grocery stores in Saudi Arabia. Useful for advertising wholesale food products and cleaning supplies.",
+        "feature2": "",
+        "feature1": "11,800 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-supermarkets",
+        "gift": "4K Records for food & drinks projects registered on Maroof (Free)",
+        "originalprice": "",
+        "price": "59$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/G95282853O?off=rldfvapl",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Markets.xlsx",
+        "family": "food, commerce",
+        "videolink": "https://player.vimeo.com/video/1069173412?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Transport Companies": {
+        "info": "Excel file containing over 11,000 contact details for companies licensed by the Transport Authority. Suitable for suppliers of transport equipment and for renting licensed yards.",
+        "feature2": "9,000 Email Addresses",
+        "feature1": "8,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-logistics",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/H97379656N?off=odun8z7z",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Transport.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "TGA (Authority)",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Factories": {
+        "info": "Excel files containing 12,000 contact details for Saudi Arabian factories. Useful for store owners to reach suppliers of goods, as well as transport companies and industrial equipment suppliers to market their services.",
+        "feature2": "12,000 Email Addresses",
+        "feature1": "6,000 Mobile Numbers",
+        "feature3": "5 Sheets | Excel Files",
+        "id": "sa-factories",
+        "gift": "",
+        "originalprice": "55$",
+        "price": "40$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/F96158478S?off=tpd5sz8g",
+        "samplelink": "https://barmga.com/samples/5-Sheets-Sample-SA-Factories.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1032665971?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2022 -2023 -2024",
+        "source": "Authorities & Governmental Websites",
+        "reviews": "https://mostaql.com/u/barmga/reviews/4663661"
+    },
+    "Medical Centers": {
+        "info": "Excel file containing 10,000 contact details for clinics, hospitals, pharmacies, and optical stores, in Saudi Arabia. Ideal for advertising medical equipment supplies, pharmaceutical promotion, and collaboration with healthcare providers.",
+        "feature2": "",
+        "feature1": "5,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-medical-companies",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/H96103088C?off=mcj4vz26",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Health-&-Medical-Companies.xlsx",
+        "family": "health",
+        "videolink": "https://player.vimeo.com/video/1032665846?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "MakeUp Products": {
+        "info": "Excel file containing 3,200 makeup & beauty products records in the Saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
+        "feature2": "3000 barcode",
+        "feature1": "3200 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-makeup-products",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Makeup-Products.xlsx",
+        "family": "health, commerce",
+        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Pharmaceutical Products": {
+        "info": "Excel file containing 8,400 pharmacy products records in the Saudi market. Contains information on medicines, care products, dietary supplements, makeup, and mother and child supplies. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
+        "feature2": "",
+        "feature1": "8,000 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-pharmacy-products",
+        "gift": "",
+        "originalprice": "99$",
+        "price": "75$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/Y95514188G?off=0ifgzw2c",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Pharmacy-Products.xlsx",
+        "family": "health, commerce",
+        "videolink": "https://player.vimeo.com/video/1032665987?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Organisations": {
+        "info": "Excel file containing over 4,500 contact details for organisations located in Saudi Arabia. Useful for social activities & projects.",
+        "feature2": "4,500 Email Addresses",
+        "feature1": "4500 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-organisations",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Organisations.xlsx",
+        "samplelink": "",
+        "family": "education",
+        "videolink": "https://player.vimeo.com/video/1032637122?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "NCNP (Authority)",
+        "reviews": "https://mostaql.com/u/barmga/reviews/8302098"
+    },
+    "Beauty and Sports Centers": {
+        "info": "Excel files containing over 17,000 contact details, most of selected companies are beauty salons and barber shops, as well as care centers, resorts, and sports centers, all of which benefit fitness and beauty for women & men. This data is ideal for marketing beauty products and sports equipment.",
+        "feature2": "",
+        "feature1": "15,000 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-beauty-sallons",
+        "gift": "",
+        "originalprice": "",
+        "price": "49$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/B96102272Q?off=x6szlbsc",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Self-Care-Centers.xlsx",
+        "family": "health",
+        "videolink": "https://player.vimeo.com/video/1032665904?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Electronics Stores": {
+        "info": "Excel file containing 5,000 contact details for electronics stores in Saudi Arabia. Useful for suppliers of electronic products & parts.",
+        "feature2": "",
+        "feature1": "4800 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-electronics",
+        "gift": "",
+        "originalprice": "",
+        "price": "19$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/A96102167I?off=m6r6z1lc",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Electronics.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1032665934?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Clothing Stores": {
+        "info": "Excel file containing 8,000 contact details for clothing and shoe stores in Saudi Arabia. Useful for clothing manufacturers and designers.",
+        "feature2": "",
+        "feature1": "7,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-clothes-shops",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/J96042526A?off=6qe5nd2n",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Clothes-Stores.xlsx",
+        "family": "commerce, health",
+        "videolink": "https://player.vimeo.com/video/1032665953?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Fabric and Tailoring Shops": {
+        "info": "Excel file containing 6,000 contact details for fabric and tailoring shops in Saudi Arabia. Useful for clothing manufacturers and designers, as well as owners of clothing stores.",
+        "feature2": "",
+        "feature1": "5,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-sewing",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Fabric-Tailoring-Shops.xlsx",
+        "samplelink": "",
+        "family": "commerce, health",
+        "videolink": "https://player.vimeo.com/video/1032665923?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Perfume Products": {
+        "info": "Excel file containing 1,700 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
+        "feature2": "",
+        "feature1": "1,700 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-perfumes",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Perfume-Products.xlsx",
+        "family": "commerce, health",
+        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Perfumes Stores": {
+        "info": "Excel file containing over 7,000 contact details for perfumes stores, in Saudi Arabia. This data is useful for wholesale perfumes suppliers.",
+        "feature2": "4,600 Email Addresses",
+        "feature1": "6,500 Mobile Numbers",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-perfumes-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "39$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/K97076880J?off=h4naxx79",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Perfumes-Stores.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893155?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps & Maroof",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Supermarket Products": {
+        "info": "Excel file containing 7,900 supermarket products (food & cleaning products) extracted from Saudi Arabia Carrefour website. All products are accompanied by images and include details such as name, price, category, barcode and description, if available.  Upload products to an online store easily and quickly from a ready-made Excel file.",
+        "feature2": "7,400 barcodes",
+        "feature1": "7,900 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-supermarket-products",
+        "gift": "2K Records for food factories (Free)",
+        "originalprice": "",
+        "price": "75$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/G96523641C?off=bcs926nm",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Supermarket-Products.xlsx",
+        "family": "commerce, food",
+        "videolink": "https://player.vimeo.com/video/1032665980?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga/reviews/7367510"
+    },
+    "Job Advertisements": {
+        "info": "Excel file dedicated to job advertisements posted on Telegram groups. Useful for job seekers.",
+        "feature2": "2,000 Email Addresses",
+        "feature1": "5,000 ADs",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-job-ads",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "Ads",
+        "productlink": "https://barmga.com/samples/SA-Telegram-Job-Ads.xlsx",
+        "samplelink": "",
+        "family": "education",
+        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Telegram Groups & Channels",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Schools": {
+        "info": "Excel files containing over 8,000 contact details for schools, kindergartens, and educational centers. Can be used to market anything that benefits children and the education sector.",
+        "feature2": "1,800 Email Addresses",
+        "feature1": "5,000 Mobile Numbers",
+        "feature3": "4 Sheets | Excel Files",
+        "id": "sa-schools",
+        "gift": "2k Records for libraries & educative materials stores (Free)",
+        "originalprice": "",
+        "price": "35$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/V96104436J?off=k4xo07s4",
+        "samplelink": "https://barmga.com/samples/4-Sheets-Sample-SA-Schools.xlsx",
+        "family": "education",
+        "videolink": "https://player.vimeo.com/video/1032665836?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024 - 2023",
+        "source": "Google Maps & Other Schools Directories",
+        "reviews": "https://mostaql.com/u/barmga/reviews/8302098"
+    },
+    "Cleaning Services companies": {
+        "info": "Excel file containing over 7,000 contact details for  companies proving car wash, laundary and other cleaning services, in Saudi Arabia. This data is useful for contracting companies to advertise wholesale cleaning materials.",
+        "feature2": "",
+        "feature1": "6,700 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-cleaning-companies",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/P97077043Q?off=diem6u1p",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Cleaning-Services-Companies.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1034893167?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Heavy Equipments Companies": {
+        "info": "Excel file containing 420 contact details for heavy equipments companies in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "360 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-heavy-equipments",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Heavy-Equipments-Companies.xlsx",
+        "samplelink": "",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1046555098?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Blacksmiths and Joiners": {
+        "info": "Excel file containing 2,100 contact details for Blacksmiths and Joiners companies in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "2,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-joiners",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/SA-Blacksmiths-and-Joiners.xlsx",
+        "samplelink": "",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1062961294?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "SFDA Companies": {
+        "info": "Excel file containing 7,500 contact details for companies ceritified by Saudi Food and Drug Authority.",
+        "feature2": "",
+        "feature1": "4,100 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-sfda",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/N98508811G",
+        "samplelink": "https://barmga.com/samples/Sample-SA-SFDA.xlsx",
+        "family": "health",
+        "videolink": "https://player.vimeo.com/video/1062961905?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Gaz Stations": {
+        "info": "Excel file containing 1,200 contact details for 6,500 gaz stations records from Google Maps.",
+        "feature2": "",
+        "feature1": "1,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-stations",
+        "gift": "",
+        "originalprice": "",
+        "price": "12$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/Q98509052S",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Gaz-Stations.xlsx",
+        "family": "commerce",
+        "videolink": "https://player.vimeo.com/video/1062961547?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Medical Devices": {
+        "info": "Excel file containing 191K records for Medical Devices from available listing on SFDA.",
+        "feature2": "129K Unique Names/Brands",
+        "feature1": "191K Unique Rows",
+        "feature3": "2 Sheets | Excel Files",
+        "id": "sa-sfda-md",
+        "gift": "10k Records for medical centers (Free)",
+        "originalprice": "",
+        "price": "85$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/X98610380T?off=wakt17k0",
+        "samplelink": "https://barmga.com/samples/Sample-SA-SFDA-MD.xlsx",
+        "family": "health, commerce",
+        "videolink": "https://player.vimeo.com/video/1064751177?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "SFDA",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Riyadh Realestate Ads": {
+        "info": "Excel file containing 40,000 real estate listings in Riyadh from AQAR website, including all available details for each listing. The data helps analyze the real estate market, filter information, and easily access the desired offers.",
+        "feature2": "",
+        "feature1": "40,000 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-aqar-riyadh",
+        "gift": "",
+        "originalprice": "99$",
+        "price": "65$",
+        "category": "Ads",
+        "productlink": "https://pay.hotmart.com/I98976213O",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Riyadh-AQAR.xlsx",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1071150086?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025 (23-26 march)",
+        "source": "AQAR",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "Car Parts Stores": {
+        "info": "Excel file containing 5,000 contact details for car parts companies & stores in Saudi Arabia. Useful for wholesale suppliers for car parts.",
+        "feature2": "",
+        "feature1": "4,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-car-parts-stores",
+        "gift": "",
+        "originalprice": "",
+        "price": "29$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/N99594888T",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Car-Parts-Stores.xlsx",
+        "family": "transport, commerce",
+        "videolink": "https://player.vimeo.com/video/1084937544?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Car Repair Stores": {
+        "info": "Excel file containing 13,000 contact details for car parts companies & stores in Saudi Arabia. Useful for suppliers of car parts.",
+        "feature2": "",
+        "feature1": "12,000 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-car-repair",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "B2B Listing",
+        "productlink": "https://pay.hotmart.com/D99594357A",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Car-Repair.xlsx",
+        "family": "transport",
+        "videolink": "https://player.vimeo.com/video/1084936855?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "Car Exhibitions": {
+        "info": "Excel file containing 1,500 contact details for car vendors & exhibitions in Saudi Arabia.",
+        "feature2": "",
+        "feature1": "1,300 Mobile Numbers",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-car-exhibitions",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "B2B Listing",
+        "productlink": "https://barmga.com/samples/Sample-SA-Car-Exhibitions.xlsx",
+        "samplelink": "",
+        "family": "transport, commerce",
+        "videolink": "https://player.vimeo.com/video/1084935792?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025",
+        "source": "Google Maps",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    }
+}
+
+
+
+
+//if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['Perfume Products']}
+var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="display: block;" onclick="firstclick=true;selectedproduct2(this.querySelector('h5').textContent);document.querySelector('.moreproducts').click();updateURL('product',this.querySelector('h5').textContent.replace(/ /g,'-').toLowerCase());shadowall(this.querySelector('div'));">
+    <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
+        <div class="service-iconx flex-shrink-0">
+            <img class="card-img-top" src="img/imagehere.webp" alt="titlehere">
+        </div>
+        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(208, 174, 3) ;">price</div>
+        <div class="position-absolute" style="top: 0.5rem; left: 0.5rem;">
+    <img src="images/sa.webp" alt="Saudi Arabian Flag" width="30" height="20">
+</div>
+        <div class="discountbadge position-absolute text-white" style="bottom: 0.5rem; right: 0.5rem ;background-image: url('img/discountbadge.png'); width:60px; padding-left:20px;padding-top:4px;padding-bottom:-4px;font-size:80%;display:none;">discounthere</div>
+        <div class="position-absolute gifthere" style="display:none; bottom: 0.7rem; right: 0.5rem;">
+           <img src="images/gift.webp" alt="Saudi Arabian Flag" width="30" height="30">
+        </div>
+        <h5 class="mb-3">titlehere</h5>
+
+        <div class="text-center"><div class="badge text-white" style="background-color: rgb(22, 100, 52);" >category</div></div>
+        <p class="px-3 mt-auto mx-auto"><br>subhere</p>
+        <a class="btn px-3 mt-auto mx-auto">Learn More</a>
+    </div>
+</div>`;
+function spli(element, array) {
+    // Find the index of the first occurrence of the element
+    const index = array.indexOf(element);
+
+    // If element is not found, return the array as is
+    if (index === -1) {
+        return array;
+    }
+
+    // Split the array into two parts
+    const firstPart = array.slice(0, index);
+    const secondPart = array.slice(index);
+
+    // Concatenate the second part with the first part
+    return secondPart.concat(firstPart);
+}
+function findProductName(dicto,ida){
+    for (keyo of Object.keys(dicto)){
+        if(dicto[keyo]['id']==ida){if(ida){document.querySelector('.trackimg').setAttribute('src','https://bit.ly/'+ida+'-img')};return keyo}
+    } return ''
+}
+function updateURL(dkey, dvalue) {
+    const currentURL = new URL(window.location.href);
+    currentURL.searchParams.set(dkey, dvalue);
+    window.history.pushState({}, '', currentURL);
+}
+
+function calcdisc(originalPrice, finalPrice) {
+
+// Ensure the inputs are numbers
+originalPrice = parseFloat(originalPrice.replace('$',''));
+finalPrice = parseFloat(finalPrice.replace('$',''));
+
+// Calculate the discount percentage
+let discount = ((originalPrice - finalPrice) / originalPrice) * 100;
+
+// Truncate to integer
+discount = Math.floor(discount);
+
+// Return the formatted string
+return `-${discount}%`;
+}
+function filterCatx(family){
+         var newdict={}
+         console.log(family)
+         if (["العقار","الصحة","تجارة","التعليم","مطاعم","realestate","commerce","health","food","education","transport","النقل"].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                allproducts[el].family.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else if(['بضائع','productsx'].includes(family.toLowerCase())){
+            for (let el of Object.keys(allproducts)){
+                let prox=allproducts[el].category.toLowerCase()+'x'
+                prox.includes(family.toLowerCase())?newdict[el]=allproducts[el]:''
+            };return newdict
+         }else{return allproducts}
+}
+function filterCat(family){
+     var mydict=filterCatx(family)
+     propagateproductsx(mydict)
+     document.querySelector('.moreproducts').click()
+     document.querySelector('.categoryButton').textContent=document.querySelector('#'+family).textContent
+}
+function filterCont(family){
+     if(family.toLowerCase()=="products"){family="productsx"}
+     document.querySelector('.countryButton').textContent=document.querySelector('#'+family).textContent
+}
+function propagateproductsx(allproductsx) {
+    let ix = 0;
+    let display = "block";
+    document.querySelector('.allproducts').innerHTML=''
+    for (let title in allproductsx) {
+        let product = allproductsx[title];
+        let anim='class="col-lg-3 col-md-6 itemhere"'
+        ix++;
+        if (ix > 4) {
+            display = "none";
+            anim='class="col-lg-3 col-md-6 itemhere"'
+        }
+        let aroducthtmlc=String(aroducthtml)
+        if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
+        if(product.price=="مجاني"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        document.querySelector('.allproducts').innerHTML += aroducthtmlc
+            .replace(/titlehere/g, title)
+            .replace(/idhere/g, product.id)
+            .replace(/subhere/g, product.subtitle)
+            .replace('price', product.price)
+            .replace('category', product.category)
+            .replace('block', display)
+            .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
+            
+    }
+}
+
+function propagateproducts() {
+    let ix = 0;
+    let display = "block";
+    document.querySelector('.allproducts').innerHTML=''
+    for (let title in allproducts) {
+        let product = allproducts[title];
+        let anim='class="col-lg-3 col-md-6 itemhere"'
+        ix++;
+        if (ix > 4) {
+            display = "none";
+            anim='class="col-lg-3 col-md-6 itemhere"'
+        }
+        let aroducthtmlc=String(aroducthtml)
+        if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
+        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        document.querySelector('.allproducts').innerHTML += aroducthtmlc
+            .replace(/titlehere/g, title)
+            .replace(/idhere/g, product.id)
+            .replace(/subhere/g, product.subtitle)
+            .replace('price', product.price)
+            .replace('category', product.category)
+            .replace('block', display)
+            .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
+            
+    }
+}
+
+var colorbycategory={
+    "B2B Listing":'rgb(1, 106, 226) ',
+    "Products":"rgb(226, 102, 1) ",
+    "Ads":" rgb(95, 156, 95)"
+
+}
+function rearrangeDict(dict, keys) {
+    let newDict = {};
+
+    // Add specified keys first
+    keys.forEach(key => {
+        if (key in dict) {
+            newDict[key] = dict[key];
+        }
+    });
+
+    // Add remaining keys in their original order
+    Object.keys(dict).forEach(key => {
+        if (!(key in newDict)) {
+            newDict[key] = dict[key];
+        }
+    });
+
+    return newDict;
+}
+var catdict={
+    "1":"realestate",
+    "2":"food",
+    "3":"health",
+    "4":"commerce",
+    "5":"education",
+    "realestate":"realestate",
+    "food":"food",
+    "health":"health",
+    "commerce":"commerce",
+    "education":"education",
+    "العقار": "realestate",
+    "مطاعم": "food",
+    "الصحة": "health",
+    "تجارة": "commerce",
+    "النقل": "transport",
+    "التعليم": "education",
+    "transport": "النقل",
+    "6": "transport"
+}
+function findfree(){
+    var catme=""
+    if(window.location.href.includes('category=')){ catme=decodeURIComponent(window.location.href).split('category=')[1].split('&')[0].split('#')[0];}
+    if (!catme){return "Organisations"}
+    for (let ke of Object.keys(allproducts)){if(allproducts[ke]['price']=="Free" && allproducts[ke]['family'].includes(catdict[catme])){return ke}}
+    return 'Organisations'
+}
+if(window.location.href.includes('category=')){var cat=window.location.href.split('category=')[1].split('&')[0].split('#')[0];
+    var specialx=[]
+    for (let prod of Object.keys(allproducts)){
+        if (allproducts[prod].family.includes(catdict[cat])){specialx.push(prod)}
+    }
+    if (specialx){allproducts=movel(rearrangeDict(allproducts,specialx),findfree())}
+}
+
+propagateproducts()
+
+
+function selectedproduct(curr) {
+    let product = allproducts[curr.parentElement.querySelector('h5').textContent];
+    document.querySelector('#selectedprodinfo').innerHTML = product.info.replace(/\./g,'.<br>').replace(/<br><br>/g,'<br>')+addStatements(curr.parentElement.querySelector('h5').textContent)
+    document.querySelector('#selectedprodtitle').textContent = curr.parentElement.querySelector('h5').textContent;
+    document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
+    document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
+    document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
+    if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
+    document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2"></i>'+product.feature1;
+    document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2"></i>'+product.feature3;
+    document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
+    !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
+    document.querySelector('#productlink').href =  product.productlink;
+    document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
+    document.querySelector('.barmgareviewsmob').href =  product.reviews;
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
+    document.querySelector('#samplelink').href = product.samplelink;
+    if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
+    document.querySelector('#videolink').setAttribute('src', product.videolink);
+    if(product.videolink==""){
+        document.querySelector('#videolink').style.display="none"
+    }else{document.querySelector('#videolink').style.display="block"}
+    document.querySelector('.selectedproduct').style.display = "block";
+    document.querySelector('title').textContent='Barmga | ' + curr.parentElement.querySelector('h5').textContent;+' Database Saudi Arabia'
+    document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr.parentElement.querySelector('h5').textContent);
+    document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLowerCase());
+    document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
+    document.querySelector('.selectedproduct').scrollIntoView();
+    document.querySelector('.selectedproduct').setAttribute('id', product.id);
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView();');
+    if (firstclick){document.querySelector('.downel').setAttribute('style',"display: block;")}
+    document.title.textContent=curr.parentElement.querySelector('h5').textContent
+
+}
+function selectedproduct2(curr) {
+    let product = allproducts[curr];
+    document.querySelector('#selectedprodinfo').innerHTML = product.info.replace(/\./g,'.<br>').replace(/<br><br>/g,'<br>')+addStatements(curr);
+    document.querySelector('#selectedprodtitle').textContent = curr;
+    document.querySelector('#selectedprodsubtitle').textContent = product.subtitle;
+    document.querySelector('#selectedprodprice').innerHTML = '<strong>'+product.price+'</strong>'
+    document.querySelector('#selectedprodpriceundiscount').textContent = product.originalprice;
+    if(product.gift){document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: block !important;");document.querySelector('#giftitem').innerHTML=product.gift}else{document.querySelector('#giftmain').setAttribute("style","margin-top: 20px; display: none !important;");document.querySelector('#giftitem').innerHTML=""}
+    document.querySelector('.feature1').innerHTML ='<i class="fa fa-check text-primary me-2"></i>'+product.feature1;
+    document.querySelector('.feature2').innerHTML =product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature2 : '<i class="fa fa-check text-primary me-2"></i>'+product.feature3;
+    document.querySelector('.feature3').innerHTML = product.feature2?'<i class="fa fa-check text-primary me-2"></i>'+product.feature3:document.querySelector('.feature4').innerHTML;
+    !product.feature2?document.querySelector('.feature4').style.display="none":document.querySelector('.feature4').style.display="block";
+    document.querySelector('#productlink').href = product.productlink;
+    document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
+    document.querySelector('.barmgareviewsmob').href =  product.reviews;
+    if (product.price=="Free"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Download';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px; margin-bottom: 4px;">&nbsp;Buy Now';}
+    document.querySelector('#samplelink').href =  product.samplelink;
+    if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
+    document.querySelector('#videolink').setAttribute('src', product.videolink);
+    if(product.videolink==""){
+        document.querySelector('#videolink').style.display="none"
+    }else{document.querySelector('#videolink').style.display="block"}
+    document.querySelector('.selectedproduct').style.display = "block";
+    document.querySelector('title').textContent= 'Barmga | ' + curr+' Database Saudi Arabia';
+    document.querySelector('[property="og:title"]').setAttribute('content', 'Barmga | ' + curr);
+    document.querySelector('[property="og:description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
+    document.querySelector('[property="og:url"]').setAttribute('content', 'https://barmga.com/?product=' + document.querySelector('.selectedproduct').querySelector('h2').textContent.replace(/ /g,'-').toLowerCase());
+    document.querySelector('[name="description"]').setAttribute('content', product.info.replace(/<br>/g,' '));
+    document.querySelector('.selectedproduct').scrollIntoView();
+    document.querySelector('.selectedproduct').setAttribute('id', product.id);
+    document.querySelector('.downel').setAttribute('onclick', 'document.querySelector("'+'#'+product.id+'x").scrollIntoView();');
+    document.title.textContent=curr
+    let family=product.family.split(',')[0].trim()
+    if (!firstclick){
+    let special=[]
+    for (let prod of Object.keys(allproducts)){
+        if (allproducts[prod].family.startsWith(family)){special.push(prod);}
+    } 
+    for (let prod of Object.keys(allproducts)){
+        if ((allproducts[prod].family.includes(family)) && !(allproducts[prod].family.startsWith(family))){special.push(prod);}
+    } 
+    if(special){
+        //special=spli(curr,special)
+        allproducts=rearrangeDict(allproducts, special);
+    };allproducts=movel(allproducts,"Organisations");allproducts=suggestMe(curr,allproducts);propagateproducts();}else{document.querySelector('.downel').setAttribute('style',"display: block;");}
+    
+}
+if (window.location.href.includes('product=')){
+    let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0]
+    console.log(productname)
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
+    selectedproduct2(capT(productname).replace(' And '," and "))
+}
+if (window.location.href.includes('#products')){
+    document.querySelector('.moreproducts').click()
+}
+if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
+function showpaymentnote(name){
+    document.querySelector('.offlinepayment').style.display='block';
+    document.querySelector('#your-subject-input').value="Product: "+name
+
+}
+function showmoredetails(){
+    for(let elemento of document.querySelectorAll('.hiddenx')){elemento.classList.remove('hiddenx')}
+    document.querySelector('.showmore').style.display="none"
+}
+function addStatements(name){
+    var use1='How to use: Our <a onclick="showonly('+"'all'"+')" class="primary" style=" text-decoration: underline;">free marketing tools</a> can help you launch your compaign on whatsapp & email.'
+    var use2='How to use: All products can be uploaded on your online store in one click from excel file. Example: <a href="https://help.salla.sa/article/1082536000" target="_blank" style=" text-decoration: underline;">how to upload products on Salla</a>.'
+    var format1="Format: Excel Databse"
+    var format2="Format: Excel Database & Images Files"
+    var source1="Resources: Public information collected from "+allproducts[name].source
+    var source2="Resources: All products databases are public information collected from saudi stores."
+    var updates="Updated on: "+allproducts[name].date
+    var delivered='Delivered to: Email Address used in <a href="'+allproducts[name].productlink.replace('https://go.','https://pay.')+'" style=" text-decoration: underline;">online payment</a>. If you prefer offline payment please <a href="#contact" onclick="showpaymentnote('+"'"+name+"'"+')" style=" text-decoration: underline;">contact us.</a>'
+    var verification='Partner: This product is available on <a  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer; text-decoration: underline;" target="_blank">Hotmart Marketplace</a>.'
+    var html='<p class="hiddenx"><strong>xxx</p>'
+    var note="Note: Number of rows (search results) exceeds number of different contact details.";
+    var notead="Note: Some offers are published by multiple advertisors."
+    var elementhtml=""
+    if (allproducts[name].category=="B2B Listing"){
+        for (ele of [format1,use1,source1,updates,note,delivered,verification])
+        {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
+            elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
+    else if (allproducts[name].category=="Products" && allproducts[name].source){
+        for (ele of [format1,source1,updates,delivered,verification])
+        {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
+        elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
+    else if (allproducts[name].category=="Products"){
+        for (ele of [format2,use2,source2,updates,delivered,verification])
+        {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
+        elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
+    else if (allproducts[name].category=="Ads"){
+        for (ele of [format1,updates,notead,delivered,verification])
+        {if (allproducts[name].price=="Free"){if(ele==delivered || ele==verification){continue}};
+            elementhtml=elementhtml+html.replace('xxx',ele).replace(':',":</strong>")}
+    }
+    elementhtml='<a onclick="showmoredetails()" class="showmore" style=" text-decoration: underline;">&nbspMore Details</a><br>'+elementhtml
+    return elementhtml
+}
+function showonly(classname){
+        if (classname=='all'){
+        var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+        var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
+        var otherpart=$('#optionsmodalother .modal-body')[0].innerHTML
+        $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
+        $('#optionsmodal').modal('show')}
+        else{$('#optionsmodal'+classname).modal('show')}
+    }
+var menuItems = document.querySelectorAll('nav a:not(.dropdown-toggle)'); 
+menuItems.forEach(function(item) {
+    item.addEventListener('click', async function(){
+        var button=document.querySelector('button[data-bs-toggle="collapse"][aria-expanded="true"]');
+        await new Promise((resolve) => setTimeout(resolve,200));
+        if (button){button.click()};
+    });
+})
+
+
+</script>
+
+<div class="modal fade" id="filemodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;" style="overflow-x: scroll !important;">
+    <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+      <div class="modal-content">
+        <div class="modal-header fixed-top">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="dowsampleclose"></button>
+          <div style="flex-grow: 1;"></div>
+          <a class="btn btn-outline-primary" href="" onclick="document.querySelector('#dowsampleclose').click()"  id="dowsample" ><i class="fa fa-download"></i> Download</a>
+        </div>
+        <div class="modal-body scrollable-body text-center mt-2" style="overflow-x: scroll !important;">
+          <!-- Excel preview will be inserted here -->
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+          <div style="flex-grow: 1;"></div>
+          <a  class="btn btn-outline-primary" onclick="moveright()"><i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+  /* Target the specific element you want to zoom out */
+/* Target the specific table you want to zoom out */
+/* Target the specific table you want to zoom out */
+/* Target the specific table you want to zoom out */
+.modal-body .zoom-out {
+    transform: scale(0.6); /* Scale down to 50% */
+    transform-origin: top left; /* Set the origin point for the transformation */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+    margin-right: -200%;
+    margin-bottom: -110%;
+}
+
+
+
+
+  .custom-scroll-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+    background-color: #fff; /* Optional: To match the background */
+    z-index: 1050; /* Ensure it stays above other elements */
+    padding: 5px 0; /* Optional: Add padding if needed */
+    margin-bottom: -10px;
+  }
+  
+  /* Scroll buttons */
+  .scroll-button {
+    cursor: pointer;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  /* Scroll track */
+  .scroll-track {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    position: relative;
+    margin: 0 5px;
+  }
+  
+  /* Scroll thumb */
+  .scroll-thumb {
+    width: 50px; /* Adjust size based on content */
+    height: 100%;
+    background-color: #888;
+    position: absolute;
+  }
+  </style>
+<script>
+
+    function detectDeviceType() {
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        if (/mobile|android|iphone|ipad|tablet|touch|blackberry|bb|playbook/.test(userAgent)) {
+            return true;
+            // Perform actions for mobile devices
+        } else {
+            return false;
+            // Perform actions for desktops/laptops
+        }
+    }
+    function loadXLSXLibrary() { return new Promise((resolve, reject) => { const script = document.createElement('script'); script.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"; script.onload = () => resolve(); script.onerror = () => reject(new Error('Failed to load xlsx library')); document.head.appendChild(script); })};
+    var xlsxloaded=false
+    // Function to fetch and preview the Excel file
+    async function previewExcelFile(url) {
+        try {
+        if (!detectDeviceType()){return}else if(!xlsxloaded){await loadXLSXLibrary();xlsxloaded=true}
+        document.querySelector('#dowsample').href=url
+        url = url.replace('.xlsx', "-preview.xlsx")
+        
+            // Fetch the file from the URL
+            const response = await fetch(url);
+            const arrayBuffer = await response.arrayBuffer();
+
+            // Parse the Excel file
+            const data = new Uint8Array(arrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Get the first sheet
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+
+            // Modify the worksheet cells for display and remove hyperlinks
+            const range = XLSX.utils.decode_range(worksheet['!ref']);
+            const numRows = range.e.r - range.s.r +1
+            
+            for (let R = range.s.r; R <= range.e.r; ++R) {
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    const cell_address = XLSX.utils.encode_cell({ r: R, c: C });
+                    if (worksheet[cell_address]) {
+                        worksheet[cell_address].s = {
+                            alignment: { wrapText: true, vertical: "center", horizontal: "center" },
+                            font: { size: 12 },
+                            border: {
+                                top: { style: "thin", color: { rgb: "D3D3D3" } },
+                                bottom: { style: "thin", color: { rgb: "D3D3D3" } },
+                                left: { style: "thin", color: { rgb: "D3D3D3" } },
+                                right: { style: "thin", color: { rgb: "D3D3D3" } }
+                            }
+                        };
+
+                        // Remove hyperlink by converting it to plain text
+                        if (worksheet[cell_address].l && worksheet[cell_address].l.Target) {
+                            worksheet[cell_address].v = worksheet[cell_address].l.Target;
+                            delete worksheet[cell_address].l;
+                        }
+
+                        const cellValue = worksheet[cell_address].v.toString().replace(/[\r\n]+/g, ' ');
+                        worksheet[cell_address].v = cellValue.length > 13 ? cellValue.substring(0, 13) + "..." : cellValue;
+                    }
+                }
+            }
+
+            // Convert the sheet to HTML
+            const html = XLSX.utils.sheet_to_html(worksheet, {
+                id: "excel-preview",
+                editable: false,
+                header: `
+                    <style>
+                        table { 
+                            border-collapse: collapse; 
+                            width: auto; 
+                            white-space: nowrap; 
+                        }
+                        th, td { 
+                            border: 1px solid lightgray; 
+                            height: 20px; 
+                            overflow: hidden; 
+                            text-overflow: ellipsis; 
+                            white-space: nowrap; 
+                            padding: 5px; 
+                            text-align: center; 
+                            max-width: 150px; /* Adjust based on 13 characters */
+                            min-width: 50px; /* Minimum width for smaller content */
+                        }
+                        th { 
+                            background-color: #f9f9f9; 
+                            font-weight: bold; 
+                        }
+                    </style>
+                `
+            });
+
+            // Insert the HTML into the modal body
+            const modalBody = document.querySelector('#filemodal .modal-body');
+            modalBody.innerHTML = html;
+
+            // Adjust column widths based on content
+            const table = modalBody.querySelector('table');
+            table.classList.add('zoom-out')
+            document.querySelector('.zoom-out').setAttribute('style',"margin-bottom:-"+String(numRows/30*120)+"% !important;")
+            const columns = table.querySelectorAll('th, td');
+            columns.forEach(column => {
+                const content = column.textContent;
+                if (content.length >= 13) {
+                    column.style.width = `${13 * 8}px`; // Approximate width for 13 characters
+                } else {
+                    column.style.width = 'auto'; // Let the content determine the width
+                }
+            });
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('filemodal'));
+            var modalBodyx = document.querySelector('#filemodal .modal-body'); modalBodyx.scrollLeft = 0;
+            console.log( modalBodyx.scrollLeft)
+            modal.show();
+            
+        } catch (error) {
+            document.querySelector('#filemodal .modal-body').innerHTML = '<p>use a computer to download and view this file</p>';
+            const modal = new bootstrap.Modal(document.getElementById('filemodal'));
+            var modalBody = document.querySelector('#filemodal .modal-body'); modalBody.scrollRight = 0;
+
+        }
+    }
+    function showonlyx(classname){
+    if (classname=='all'){
+    var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+    var mailpart=$('#optionsmodalemail .modal-body')[0].innerHTML
+    var otherpart=$('#optionsmodalother .modal-body')[0].innerHTML
+    $('#optionsmodal .modal-body')[0].innerHTML=wapart+"<hr>"+mailpart
+    $('#optionsmodal').modal('show')}else if (classname=='allx'){
+    var wapart=document.querySelector('#optionsmodalwhatsapp .modal-body').innerHTML
+    var mailpart=document.querySelector('#optionsmodalemail .modal-body').innerHTML
+    var otherpart=document.querySelector('#optionsmodalother .modal-body').innerHTML
+    document.querySelector('#optionsmodal .modal-body').innerHTML=wapart+"<hr>"+mailpart+"<hr>"+otherpart
+    $('#optionsmodal').modal('show')}
+    else{$('#optionsmodal'+classname).modal('show')}
+}
+</script>
+<script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
+
+
+    
+</body>
+
+</html>
