@@ -413,7 +413,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
 
   </style>
 <script>
-    var notyet=true
+    var notyet=false
     document.addEventListener("DOMContentLoaded", function() {
         var loader = document.querySelector('.loaderx');
         loader.style.display = "block";
@@ -2395,6 +2395,7 @@ function showpaymentnote(name){
 function showmoredetails(){
     for(let elemento of document.querySelectorAll('.hiddenx')){elemento.classList.remove('hiddenx')}
     document.querySelector('.showmore').style.display="none"
+    showOnScrollOrClick()
 }
 function addStatements(name){
     var use1='كيفية الاستخدام: نوفر لك مجموعة من <a onclick="showonly(\'all\')" class="primary" style="text-decoration: underline;">أدوات التسويق المجانية</a> لمساعدتك في إطلاق حملتك على واتساب أوالبريد الإلكتروني.';
@@ -2982,12 +2983,12 @@ function moveright(){
         element.style.display = 'block';
         notyet=true
     }
-
+    showElement()
     // Add event listeners for scroll and click
     //window.addEventListener('scroll', showElement);
-    document.querySelector('.showmore').addEventListener('click', showElement);
+    //window.addEventListener('click', showElement);
 }
-showOnScrollOrClick()
+//showOnScrollOrClick()
 function showonlyx(classname){
     if (classname=='all'){
     var wapart=$('#optionsmodalwhatsapp .modal-body')[0].innerHTML
