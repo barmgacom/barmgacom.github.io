@@ -2632,7 +2632,7 @@ function selectedproduct(curr) {
     document.querySelector('#productlink').href =  product.productlink;
     document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
     document.querySelector('.barmgareviewsmob').href =  product.reviews;
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الآن';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href = product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -2669,7 +2669,7 @@ function selectedproduct2(curr) {
     document.querySelector('#productlink').href = product.productlink;
     document.querySelector('.barmgareviews').href =  product.reviews.replace('#profile-sidebar','');
     document.querySelector('.barmgareviewsmob').href =  product.reviews;
-    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الملف';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
+    if (product.price=="مجاني"){document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;حمل الآن';document.querySelector('#productlink').removeAttribute('href');document.querySelector('.clickhere').href=product.productlink;document.querySelector('#productlink').setAttribute('onclick',"$('#downloadmodal').modal('show')");document.querySelector('#downloadMessage').style.display="none";}else{document.querySelector('#productlink').removeAttribute('onclick');document.querySelector('#productlink').innerHTML='<img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">&nbsp;إشتري الآن';}
     document.querySelector('#samplelink').href =  product.samplelink;
     if (!product.samplelink){document.querySelector('#samplelink').style.display="none"}else{document.querySelector('#samplelink').style.display="block"}
     document.querySelector('#videolink').setAttribute('src', product.videolink);
@@ -2796,7 +2796,9 @@ function moveright(){
           <a class="btn btn-outline-primary" href="" onclick="document.querySelector('#dowsampleclose').click()" id="dowsample" ><i class="fa fa-download"></i> حمل العينة</a>
         
         </div>
-        <small style="text-align: right; margin-right: 5px; margin-top: 5px; font-size: 70%;" dir="rtl">يستحسن تحميل وفتح الملف على حهاز الحاسوب</small>
+        <div style=" background-color: #edf0fa;  font-size: 75%; text-align: right; " dir="rtl">
+        <small style="margin-right: 5px; margin-top: 5px;" >يستحسن تحميل وفتح الملف على جهاز الحاسوب</small>
+        </div>
         <div class="modal-body scrollable-body text-center" style="overflow-x: scroll !important;">
           <!-- Excel preview will be inserted here -->
         </div>
