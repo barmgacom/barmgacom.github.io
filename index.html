@@ -106,7 +106,15 @@
     function isBrowserLanguageArabic() { const userLang = navigator.language || navigator.userLanguage; return userLang.startsWith('ar'); }
     if (isBrowserLanguageArabic() && !(window.location.href.toLowerCase().includes('lang=en'))){window.location.href=updateURLtext()}
 </script>
-<style>   
+<style>  
+        .itemhere>div {
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.itemhere>div:hover {
+    transform: translateY(-10px); /* Moves the card up */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Adds shadow effect */
+} 
 #sa-aqar-riyadh .feature3{display: none !important;}
 .btn-outline-primary.bg-white:hover{color: #023957;}   
         .noticeme {
@@ -1781,7 +1789,7 @@ var allproducts ={
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/H97379656N?off=odun8z7z",
         "samplelink": "https://barmga.com/samples/Sample-SA-Transport.xlsx",
-        "family": "commerce",
+        "family": "transport",
         "videolink": "https://player.vimeo.com/video/1032665900?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
         "date": "2024",
@@ -2253,19 +2261,22 @@ var aroducthtml = `<div id="idherex" class="col-lg-3 col-md-6 itemhere" style="d
         <div class="service-iconx flex-shrink-0">
             <img class="card-img-top" src="img/imagehere.webp" alt="titlehere">
         </div>
-        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: rgb(208, 174, 3) ;">price</div>
-        <div class="position-absolute" style="top: 0.5rem; left: 0.5rem;">
+        <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: #cb9910 ;">price</div>
+        <div class="position-absolute" style="bottom: 0.5rem; left: 0.5rem;">
     <img src="images/sa.webp" alt="Saudi Arabian Flag" width="30" height="20">
 </div>
         <div class="discountbadge position-absolute text-white" style="bottom: 0.5rem; right: 0.5rem ;background-image: url('img/discountbadge.png'); width:60px; padding-left:20px;padding-top:4px;padding-bottom:-4px;font-size:80%;display:none;">discounthere</div>
         <div class="position-absolute gifthere" style="display:none; bottom: 0.7rem; right: 0.5rem;">
-           <img src="images/gift.webp" alt="Saudi Arabian Flag" width="30" height="30">
+           <img src="images/gift.webp" alt="gift" width="30" height="30">
         </div>
+                <div class="badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem;background-color: #37be8a; font-size:85%; display:none;">samplehere</div>
         <h5 class="mb-3">titlehere</h5>
 
-        <div class="text-center"><div class="badge text-white" style="background-color: rgb(22, 100, 52);" >category</div></div>
-        <p class="px-3 mt-auto mx-auto"><br>subhere</p>
-        <a class="btn px-3 mt-auto mx-auto">Learn More</a>
+                <div class="text-center"><div class="badge" style="background-color: white; color:  rgb(22, 100, 52); border: 1px solid  rgb(22, 100, 52);" >category</div></div>
+        <p class="px-3 mt-3 mx-auto">subhere</p>
+                <a class="btn-primary rounded-pill px-3 shadowmex text-center mt-2 mx-auto" style="padding:7px;">
+            <img src="img/excelfile.webp" style="max-width: 17px; max-height: 17px;">
+            Download</a>
     </div>
 </div>`;
 function spli(element, array) {
@@ -2348,8 +2359,10 @@ function propagateproductsx(allproductsx) {
         }
         let aroducthtmlc=String(aroducthtml)
         if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.samplelink){aroducthtmlc=aroducthtmlc.replace('display:none;">samplehere','">+Free Sample')}
+
         if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
-        if(product.price=="مجاني"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: #cb9910','background-color: rgb(5, 158, 189)')}
         document.querySelector('.allproducts').innerHTML += aroducthtmlc
             .replace(/titlehere/g, title)
             .replace(/idhere/g, product.id)
@@ -2358,6 +2371,7 @@ function propagateproductsx(allproductsx) {
             .replace('category', product.category)
             .replace('block', display)
             .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category])
             .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
             
     }
@@ -2377,8 +2391,9 @@ function propagateproducts() {
         }
         let aroducthtmlc=String(aroducthtml)
         if(product.originalprice){aroducthtmlc=aroducthtmlc.replace('display:none;">discounthere','">'+calcdisc(product.originalprice,product.price))}
+        if(product.samplelink){aroducthtmlc=aroducthtmlc.replace('display:none;">samplehere','">+Free Sample')}
         if(product.gift){aroducthtmlc=aroducthtmlc.replace('gifthere" style="display:none;','gifthere" style="')}
-        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: rgb(208, 174, 3)','background-color: rgb(5, 158, 189)')}
+        if(product.price=="Free"){aroducthtmlc=aroducthtmlc.replace('background-color: #cb9910','background-color: rgb(5, 158, 189)')}
         document.querySelector('.allproducts').innerHTML += aroducthtmlc
             .replace(/titlehere/g, title)
             .replace(/idhere/g, product.id)
@@ -2387,6 +2402,7 @@ function propagateproducts() {
             .replace('category', product.category)
             .replace('block', display)
             .replace('imagehere', product.id.replace(/-/g,''))
+            .replace('rgb(22, 100, 52)',colorbycategory[product.category])
             .replace('rgb(22, 100, 52)',colorbycategory[product.category]);
             
     }
