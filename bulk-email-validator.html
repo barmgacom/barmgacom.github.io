@@ -1208,7 +1208,7 @@ async function autoclick(){
         var stringhere=document.querySelector('textarea').value
         try{
             await validateEmails(stringhere)
-        }catch(error){displayErrorMessage();unloading()}
+        }catch(error){console.log(error);unloading()}
         unloading()
     }
     document.querySelector('#startme').addEventListener('click', function() {document.querySelector('#stopme').style.display='block';document.querySelector('#startme').style.display='none';stopnow=false;validateMain()})
