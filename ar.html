@@ -1462,7 +1462,7 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الشركات العقارية',5);
         dicta=movelPos(dicta,'الفنادق والشقق',6);
         dicta=movelPos(dicta,'شركات المقاولات',7);
-    }else if (['المطاعم والمقاهي','محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','restaurants and cafes','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLowerCase().replace(/-/g,' '))){
+    }else if (['محلات البقالة والسوبرماركت','المخابز ومحلات الحلويات','محلات الأغذية الطبيعية','grocery stores and supermarkets','natural food stores','bakeries and cake shops'].includes(productname.toLowerCase().replace(/-/g,' '))){
         if(window.location.href.includes('&g')){
             dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'متاجر الكترونية',2);
@@ -1500,7 +1500,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'المصانع',3);        
         dicta=movelPos(dicta,'متاجر الكترونية',4);
         dicta=movelPos(dicta,'محلات الزهور والمشاتل',5);
-    }return dicta
+    }else if (['المطاعم والمقاهي','restaurants and cafes'].includes(productname.toLowerCase().replace(/-/g,' '))){
+            dicta=movelPos(dicta,'الجمعيات',1);
+        dicta=movelPos(dicta,'الفنادق والشقق',2);
+        dicta=movelPos(dicta,'شركات المقاولات',3);
+        dicta=movelPos(dicta,'شركات النقل',4);
+        dicta=movelPos(dicta,'الشركات العقارية',5);
+        }return dicta
 }
 function movelPos(dict, key, position_index) {
     // Convert dictionary to an array of [key, value] pairs
