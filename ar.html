@@ -2705,7 +2705,8 @@ function selectedproduct2(curr) {
         //special=spli(curr,special)
         allproducts=rearrangeDict(allproducts, special)
     }
-    allproducts=movel(allproducts,"الجمعيات");allproducts=suggestMe(curr,allproducts);
+    //allproducts=movel(allproducts,"الجمعيات");
+    allproducts=suggestMe(curr,allproducts);
     propagateproducts()}else{document.querySelector('.downel').setAttribute('style',"display: block;")}
     
 }
