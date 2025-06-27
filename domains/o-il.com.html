@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>o-il.com - Premium Domain for Sale</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght[300..800]&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #333;
+        }
+        /* Custom gradient background for hero section */
+        .hero-gradient-bg {
+            background: linear-gradient(to right bottom, #1a202c, #2d3748, #4a5568); /* Dark teal to lighter blue-gray */
+        }
+        /* Custom button styling */
+        .btn-primary {
+            background-color: #fca311; /* Vibrant orange */
+            color: #1a202c; /* Dark text for contrast */
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #fb8c00; /* Slightly darker orange on hover */
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #fca311, #ffde00); /* Orange to yellow gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Success message styling */
+        .success-message {
+            background-color: #d1fae5; /* Green-100 */
+            color: #065f46; /* Green-800 */
+            border: 1px solid #34d399; /* Green-400 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Hero Section -->
+        <header class="hero-gradient-bg flex-grow flex items-center justify-center text-center py-16 px-4 lg:w-1/2">
+            <div class="max-w-4xl mx-auto w-full">
+                <h1 id="domainNameHeader" class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                    <span class="text-gradient">o-il.com</span> <span class="text-white">For Sale</span>
+                </h1>
+                <p class="text-gray-300 text-lg sm:text-xl md:text-2xl font-light mb-10">
+                    A Premium Domain Awaits Your Vision. Unlock Your Digital Future.
+                </p>
+                <a href="#contact-form"
+                   class="btn-primary inline-block px-10 py-4 text-xl font-bold rounded-full shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50">
+                    Send Your Offer
+                </a>
+            </div>
+        </header>
+
+        <!-- Contact Form Section -->
+        <section id="contact-form" class="flex-grow flex items-center py-16 px-4 bg-white lg:w-1/2">
+            <div class="max-w-xl mx-auto p-8 rounded-lg shadow-xl w-full">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-8">Inquire About <span class="text-gradient">o-il.com</span></h2>
+                <form id="googleForm" action="https://docs.google.com/forms/d/e/1FAIpQLScBboE7GKFL3JBz9W_imXNscmuIenVAJ2y1e0z4zTDDSH0umg/formResponse" method="POST">
+                    <!-- The hidden subject input is no longer needed for Google Forms -->
+
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
+                        <input type="text" id="name" name="entry.1582846128" required
+                               class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fca311 focus:border-transparent">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
+                        <input type="email" id="email" name="entry.134613542" required
+                               class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fca311 focus:border-transparent">
+                    </div>
+                    <div class="mb-4">
+                        <label for="offer" class="block text-gray-700 text-sm font-bold mb-2">Your Offer (USD):</label>
+                        <input type="number" id="offer" name="entry.1862265984" min="0" step="1"
+                               class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fca311 focus:border-transparent"
+                               placeholder="$">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message (optional):</label>
+                        <textarea id="message" name="entry.1550123875" rows="5"
+                                  class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fca311 focus:border-transparent resize-y"
+                                  placeholder="Tell us about your interest or any questions you have."></textarea>
+                    </div>
+
+                    <p class="text-gray-700 text-sm mb-2 text-center">
+                        The purchase will occur through a reputable marketplace mutually agreed upon.
+                    </p>
+                    <p class="text-center mb-6 text-base text-gray-700" style="font-size: 90%;">
+                        Owner Email: <a href="mailto:info@barmga.com" class="text-blue-600 hover:underline">info@barmga.com</a>
+                    </p>
+
+                    <div class="text-center">
+                        <button type="submit"
+                                class="btn-primary inline-block px-8 py-3 text-lg font-bold rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50">
+                            Submit Offer
+                        </button>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden success-message p-4 rounded-lg mt-6 text-center text-sm">
+                        Thank you for your offer! We will get back to you shortly.
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Potential Uses / Industries Section -->
+    <section class="py-16 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Where Could <span class="text-gradient">o-il.com</span> Lead?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Use Case 1: Energy Sector -->
+                <div class="p-6 rounded-xl shadow-md bg-white flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="mb-4 text-6xl text-gray-700">
+                        <!-- Icon for Energy Sector (Oil Rig / Energy) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Energy & Resources</h3>
+                    <p class="text-gray-600 text-center text-sm">Ideal for oil, gas, renewable energy, and related industries.</p>
+                </div>
+                <!-- Use Case 2: Automotive & Lubricants -->
+                <div class="p-6 rounded-xl shadow-md bg-white flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="mb-4 text-6xl text-gray-700">
+                        <!-- Icon for Automotive (Car) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Automotive & Lubricants</h3>
+                    <p class="text-gray-600 text-center text-sm">Perfect for car care products, engine oils, and vehicle services.</p>
+                </div>
+                <!-- Use Case 3: Tech Startups & Innovation -->
+                <div class="p-6 rounded-xl shadow-md bg-white flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="mb-4 text-6xl text-gray-700">
+                        <!-- Icon for Tech (Circuit Board) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Tech & Innovation</h3>
+                    <p class="text-gray-600 text-center text-sm">Short for "Online Innovation Lab" or similar tech ventures.</p>
+                </div>
+                <!-- Use Case 4: Logistics & Distribution -->
+                <div class="p-6 rounded-xl shadow-md bg-white flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="mb-4 text-6xl text-gray-700">
+                        <!-- Icon for Logistics (Global Map) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Logistics & Distribution</h3>
+                    <p class="text-gray-600 text-center text-sm">Relevant for supply chain, shipping, and delivery services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 px-4 bg-gray-800 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-white text-4xl font-bold mb-8">
+                Do you have an offer?
+            </h2>
+            <a href="#contact-form"
+               class="btn-primary inline-block px-10 py-4 text-xl font-bold rounded-full shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50">
+                Send An Offer
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-gray-900 text-center text-gray-400">
+        <div class="max-w-6xl mx-auto">
+            <p class="mb-2">&copy; 2025 o-il.com. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('googleForm').addEventListener('submit', async function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const offer = document.getElementById('offer').value;
+            const message = document.getElementById('message').value;
+            const successMessageDiv = document.getElementById('successMessage');
+
+            // Hide previous success message if any
+            successMessageDiv.classList.add('hidden');
+
+            // Extract domain name from the header
+            const domainHeader = document.querySelector('#domainNameHeader .text-gradient');
+            let domain = '';
+            if (domainHeader) {
+                // Remove any leading/trailing whitespace
+                domain = domainHeader.textContent.trim();
+                // If the domain includes ".com", remove "For Sale" if present
+                if (domain.includes('.com')) {
+                    domain = domain.split(' ')[0]; // Takes 'o-il.com' from 'o-il.com For Sale'
+                }
+            }
+
+            // Google Form entry IDs
+            const entryDomain = 'entry.689517349';
+            const entryName = 'entry.1582846128';
+            const entryEmail = 'entry.134613542';
+            const entryOffer = 'entry.1862265984';
+            const entryMessage = 'entry.1550123875';
+
+            // Base Google Form submission URL
+            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScBboE7GKFL3JBz9W_imXNscmuIenVAJ2y1e0z4zTDDSH0umg/formResponse';
+
+            // Construct the URLSearchParams with form data
+            const formData = new URLSearchParams();
+            formData.append(entryDomain, domain);
+            formData.append(entryName, name);
+            formData.append(entryEmail, email);
+            formData.append(entryOffer, offer);
+            formData.append(entryMessage, message);
+
+            try {
+                // Submit the form data using fetch API
+                // Google Forms usually returns a 302 redirect on successful submission.
+                // fetch automatically follows redirects.
+                const response = await fetch(googleFormUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for cross-origin Google Forms submission
+                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                });
+
+                // Since mode: 'no-cors', response.ok will always be false.
+                // We assume success if the fetch operation completes without an error.
+                // A more robust solution might involve a server-side proxy to handle CORS.
+
+                // Show success message
+                successMessageDiv.classList.remove('hidden');
+                // Clear the form fields
+                this.reset();
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                // Optionally show an error message to the user
+                successMessageDiv.textContent = 'There was an error submitting your offer. Please try again.';
+                successMessageDiv.classList.remove('success-message'); // Remove green styling
+                successMessageDiv.classList.add('bg-red-100', 'text-red-800', 'border-red-400'); // Add red error styling
+                successMessageDiv.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
