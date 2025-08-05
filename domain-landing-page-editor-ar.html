@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <title>محرر صفحة بيع النطاق - خصص صفحة البيع الخاصة بك</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="نطاق للبيع, شراء نطاق, محرر صفحة بيع النطاق, منشئ صفحات الهبوط, قوالب نطاقات مخصصة, نطاقات مميزة, أصول رقمية">
+    <meta name="description" content="قم بتحرير وتخصيص قوالب صفحات هبوط بيع النطاقات الاحترافية بسهولة. روّج لنطاقك بفعالية واجذب المشترين المحتملين بقوائم جذابة.">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="محرر صفحة بيع النطاق - خصص صفحة هبوط نطاقك">
+    <meta property="og:description" content="أنشئ وحرر صفحة هبوط بيع نطاقك بسهولة لتعزيز الرؤية وجذب المشترين. مثالي لعرض النطاقات المميزة.">
+    <meta property="og:image" content="images/domain-sale-preview.png"> <!-- Update to a relevant preview image -->
+    <meta property="og:url" content="https://barmga.com/domain-landing-page-editor-ar">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        textarea {
+            direction: ltr;
+        }
+
+        .how-it-works {
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        .tool>*,
+        .lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                direction: rtl;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'El Messiri', sans-serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+
+        /*** Section Title ***/
+        .section-title-right::before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 4px;
+            bottom: 0;
+            right: 0;
+            background: var(--dark);
+        }
+
+        .section-title-right::after {
+            position: absolute;
+            content: "";
+            width: 4px;
+            height: 4px;
+            bottom: 0;
+            right: 50px;
+            background: var(--dark);
+        }
+
+        .section-title-right.text-center::before {
+            right: 50%;
+            margin-right: -25px;
+        }
+
+        .section-title-right.text-center::after {
+            right: 50%;
+            margin-right: 25px;
+        }
+
+        .section-title-right h6::before,
+        .section-title-right h6::after {
+            position: absolute;
+            content: "";
+            width: 10px;
+            height: 10px;
+            top: 2px;
+            right: 0;
+            background: rgba(33, 110, 177, 0.5);
+        }
+
+        .section-title-right h6::after {
+            top: 5px;
+            right: 3px;
+        }
+
+        .footer .btn.btn-linkx {
+            display: block;
+            margin-bottom: 10px;
+            padding: 0;
+            text-align: right;
+            color: var(--light);
+            font-weight: normal;
+            transition: .3s;
+        }
+
+        .footer .btn.btn-linkx::before {
+            position: relative;
+            content: "•";
+            font-family: "Font Awesome 4 Free";
+            font-weight: 900;
+            margin-left: 10px;
+        }
+
+        .footer .btn.btn-linkx:hover {
+            letter-spacing: 1px;
+            box-shadow: none;
+        }
+
+        input[type="text"]:-moz-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]:-ms-input-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]::-webkit-input-placeholder {
+            text-align: right !important;
+        }
+
+        body {
+            font-family: 'El Messiri', sans-serif !important;
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container-fluid {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* Updated: Gradient header */
+        .header-bg {
+            background: linear-gradient(90deg, #2b6cb0 0%, #91acc9 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* Updated: Lighter card header color */
+        .card-header {
+            background-color: #2b6cb0;
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            font-weight: bold;
+            padding: 15px 20px;
+        }
+
+        /* Updated: Lighter primary button color */
+        .btn-primary {
+            background-color: #2b6cb0;
+            border-color: #2b6cb0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: bold;
+        }
+
+        /* Updated: Hover state for new primary color */
+        .btn-primary:hover {
+            background-color: #3580cf;
+            border-color: #3580cf;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: bold;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-2px);
+        }
+
+        /* Updated: Focus state for form controls */
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(106, 133, 255, 0.25);
+            border-color: #2d69aa;
+        }
+
+        /* Updated: Checkbox color */
+        .form-check-input:checked {
+            background-color: #2d69aa;
+            border-color: #2d69aa;
+        }
+
+        .input-group-text {
+            background-color: #e9ecef;
+            border-right: 0;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        .small-text {
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .feature-input-group,
+        .previous-sale-input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group>.form-control:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .input-group>.form-control:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        /* New CSS rule for the modal scroll */
+        .modal-body {
+            max-height: 70vh;
+            /* Adjust this value as needed */
+            overflow-y: auto;
+        }
+
+        /* Custom styles for validation errors */
+        .is-invalid {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+        }
+
+        .is-invalid+.invalid-feedback,
+        .is-invalid~.invalid-feedback {
+            display: block;
+        }
+
+        .invalid-feedback {
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body id="home">
+    <div class="loaderx fullscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <input id="fileUploadx" style="display: none;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/ar">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#products">منتجاتنا</a></li>
+                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
+                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
+                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
+
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://barmga.com/contacts-manager">English</a></li>
+                                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+        <!-- Navbar & Hero End -->
+    </div>
+    <div class="container-fluid py-5 header-bg">
+        <h1 class="display-4 fw-bold text-white mt-5">محرر صفحة بيع النطاق</h1>
+        <p class="lead">قم بتحميل قالبك، خصص التفاصيل، وقم بتنزيل HTML المحدث!</p>
+    </div>
+
+    <div class="container mt-5" dir="rtl">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        تحميل القالب
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="templateUpload" class="form-label">قم بتحميل ملف القالب الخاص بك:</label>
+                            <input class="form-control" type="file" id="templateUpload" accept=".html" required>
+                            <div id="uploadStatus" class="small-text mt-2"></div>
+                            <!-- Validation message placeholder for template upload -->
+                            <div class="invalid-feedback" id="templateUpload-feedback">هذا الحقل مطلوب.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Editing Mode Section -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        وضع التحرير
+                    </div>
+                    <div class="card-body">
+<div class="form-check" style="position: relative;">
+  <input class="form-check-input" type="radio" name="editMode" id="editFullTemplate" value="full" checked
+         style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+  <label class="form-check-label" for="editFullTemplate" style="padding-right: 30px; padding-top: 10px;">
+    تحرير القالب بالكامل
+  </label>
+</div>
+
+<div class="form-check mt-2" style="position: relative;">
+  <input class="form-check-input" type="radio" name="editMode" id="updateCheckoutLinkOnly" value="checkout"
+         style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+  <label class="form-check-label" for="updateCheckoutLinkOnly" style="padding-right: 30px; padding-top: 10px;">
+    تحديث رابط الدفع فقط
+  </label>
+</div>
+
+                    </div>
+                </div>
+                <!-- End New Editing Mode Section -->
+
+                <div class="card" id="generalDomainInfoCard">
+                    <div class="card-header">
+                        معلومات النطاق العامة
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3" id="domainNameDiv">
+                            <label for="domainName" class="form-label">اسم النطاق (مثال: yourdomain.com):</label>
+                            <input type="text" class="form-control" id="domainName" placeholder="مثال: yourdomain.com">
+                            <div class="invalid-feedback" id="domainName-feedback">هذا الحقل مطلوب.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="checkoutLink" class="form-label">رابط الدفع GoDaddy:</label>
+                            <input type="url" class="form-control" id="checkoutLink" placeholder="مثال: https://checkoutlink.godaddy.com/" required>
+                            <div class="invalid-feedback" id="checkoutLink-feedback">هذا الحقل مطلوب.</div>
+                        </div>
+                        <!-- New input for Google Form Link -->
+                        <div class="mb-3" id="googleFormLinkDiv">
+                            <label for="googleFormLink" class="form-label">رابط نموذج جوجل:</label>
+                            <input type="url" class="form-control" id="googleFormLink" placeholder="مثال: https://docs.google.com/forms/d/e/12345/viewform">
+                            <div class="invalid-feedback" id="googleFormLink-feedback">هذا الحقل مطلوب.</div>
+                            <div class="small-text">
+                                لإنشاء رابط نموذج، <a href="#" data-bs-toggle="modal" data-bs-target="#instructionsModal">اتبع هذه التعليمات</a>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="flashSaleSettingsCard">
+                    <div class="card-header">
+                        إعدادات عروض الفلاش
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check mb-3" style="position: relative;">
+                            <input class="form-check-input border-3" id="enableFlashSale" type="checkbox" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+                            <label class="form-check-label" for="enableFlashSale" style="padding-right: 30px;padding-top: 10px;">
+                                تفعيل عرض الفلاش
+                            </label>
+                        </div>
+
+                        <div id="flashSaleInputs" style="display: none;">
+                            <div class="mb-3">
+                                <label for="finalPrice" class="form-label">السعر النهائي ($):</label>
+                                <input type="number" class="form-control" id="finalPrice" min="0" step="1" placeholder="مثال: 1999">
+                                <div class="invalid-feedback" id="finalPrice-feedback">هذا الحقل مطلوب.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="originalPrice" class="form-label">السعر الأصلي ($):</label>
+                                <input type="number" class="form-control" id="originalPrice" min="0" step="1" placeholder="مثال: 2900">
+                                <div class="invalid-feedback" id="originalPrice-feedback">هذا الحقل مطلوب.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="saleEndDate" class="form-label">تاريخ انتهاء العرض:</label>
+                                <input type="date" class="form-control" id="saleEndDate">
+                                <div class="invalid-feedback" id="saleEndDate-feedback">هذا الحقل مطلوب.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="pricingOfferSettingsCard">
+                    <div class="card-header">
+                        إعدادات التسعير والعرض
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3" id="minOfferValueDiv">
+                            <label for="minOfferValue" class="form-label">الحد الأدنى لقيمة العرض ($):</label>
+                            <input type="number" class="form-control" id="minOfferValue" min="0" step="1" placeholder="مثال: 500">
+                            <div class="invalid-feedback" id="minOfferValue-feedback">هذا الحقل مطلوب.</div>
+                            <div class="small-text">
+                                سيحدد هذا قيمة العنصر النائب لحقل إدخال العرض في القالب.
+                            </div>
+                        </div>
+                        <div class="mb-3" id="buyNowPriceDiv">
+                            <label for="buyNowPrice" class="form-label">سعر الشراء الآن ($):</label>
+                            <input type="number" class="form-control" id="buyNowPrice" min="0" step="1" placeholder="مثال: 2900">
+                            <div class="invalid-feedback" id="buyNowPrice-feedback">هذا الحقل مطلوب.</div>
+                            <div class="small-text">
+                                سيقوم هذا بتحديث سعر "اشتر الآن" في القالب.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="domainFeaturesCard">
+                    <div class="card-header">
+                        ميزات النطاق (حتى 4)
+                    </div>
+                    <div class="card-body">
+                        <div id="featureInputsContainer">
+                            <div class="feature-input-group mb-3">
+                                <label for="feature1" class="form-label">الميزة 1:</label>
+                                <input type="text" class="form-control feature-input" id="feature1" placeholder="مثال: نطاق قصير وقابل للتسويق">
+                            </div>
+                            <div class="feature-input-group mb-3">
+                                <label for="feature2" class="form-label">الميزة 2:</label>
+                                <input type="text" class="form-control feature-input" id="feature2" placeholder="مثال: سهل الحفظ">
+                            </div>
+                            <div class="feature-input-group mb-3">
+                                <label for="feature3" class="form-label">الميزة 3:</label>
+                                <input type="text" class="form-control feature-input" id="feature3" placeholder="مثال: متعدد الاستخدامات لمختلف الصناعات">
+                            </div>
+                            <div class="feature-input-group mb-3">
+                                <label for="feature4" class="form-label">الميزة 4:</label>
+                                <input type="text" class="form-control feature-input" id="feature4" placeholder="مثال: إمكانات استثمار عالية">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="previousSalesCard">
+                    <div class="card-header">
+                        المبيعات السابقة (حتى 4)
+                    </div>
+                    <div class="card-body">
+                        <div id="previousSalesInputsContainer">
+                            <div class="previous-sale-input-group row mb-3">
+                                <label class="form-label col-12">البيع 1:</label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 23rd.com">
+                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previous-sale-input-group row mb-3">
+                                <label class="form-label col-12">البيع 2:</label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 22nd.com">
+                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previous-sale-input-group row mb-3">
+                                <label class="form-label col-12">البيع 3:</label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 9ine.com">
+                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previous-sale-input-group row mb-3">
+                                <label class="form-label col-12">البيع 4:</label>
+                                <div class="col-8">
+                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 7eth.com">
+                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4 mb-5">
+                    <button id="submitBtn" class="btn btn-primary btn-lg">إرسال وتنزيل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Instructions -->
+    <div class="modal fade" dir="rtl" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #5f92c9;">
+                    <h5 class="modal-title text-white" id="instructionsModalLabel">إنشاء رابط نموذج جوجل</h5>
+                    <div style="flex-grow: 1;"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+
+                </div>
+                <div class="modal-body">
+                    <p>أولاً، انتقل إلى <a href="https://mail.google.com" style="color: #6c757d;" target="_blank">mail.google.com</a> وتأكد من تسجيل الدخول بحساب Gmail الخاص بك.</p>
+                    <ul>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 1: إنشاء نسخة من النموذج.</strong></p>
+                            <p>انتقل إلى هذا الرابط: <a href="https://drive.google.com/drive/u/0/folders/1TiOgtk_dRhdU5vDp4dZksdUnuTstNrDZ" target="_blank">مجلد Google Drive</a>. انقر على النقاط الثلاث في ملف النموذج وحدد <strong>إنشاء نسخة</strong>.
+                            <div class="text-center bg-light p-3 border rounded-3 my-3"><img style="height: auto; width: 100%;" src="https://barmga.com/images/editor-step1.PNG"></div>
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 2: العثور على النموذج المنسوخ.</strong></p>
+                            <p>انتقل إلى <a href="https://drive.google.com/drive/u/0/home" target="_blank">drive.google.com/drive</a> وانقر نقرًا مزدوجًا على النموذج المنسوخ لفتحه. عادةً، ستجده تحت اسم: <strong>نسخة من تقرير مبيعات النطاق</strong>. يمكنك أيضًا فتحه من خلال قائمة النقاط الثلاث كما هو موضح في الصورة.
+                            <div class="text-center bg-light p-3 border rounded-3 my-3"><img style="height: auto; width: 100%;" src="https://barmga.com/images/editor-step2.PNG"></div>
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 3: تفعيل الردود.</strong></p>
+                            <p>في الجزء العلوي من النموذج، انقر على <strong>الردود</strong> وتأكد من تفعيل <strong>قبول الردود</strong>.
+                            <div class="text-center bg-light p-3 border rounded-3 my-3"><img style="height: auto; width: 100%;" src="https://barmga.com/images/editor-step3.PNG"></div>
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 4: ربط ورقة جوجل.</strong></p>
+                            <p>انقر على زر <strong>الردود</strong>. انقر على <strong>الربط بالجداول</strong> ثم زر الإنشاء. انسخ واحفظ رابط الورقة من شريط URL.
+                            <div class="text-center bg-light p-3 border rounded-3 my-3"><img style="height: auto; width: 100%;" src="https://barmga.com/images/editor-step4.PNG"></div>
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 5: نسخ الرابط القابل للمشاركة.</strong></p>
+                            <p>انقر على زر <strong>مشاركة</strong>، ثم تأكد من أن الرابط عام. انقر على <strong>نسخ رابط الرد</strong>.
+                            <div class="text-center bg-light p-3 border rounded-3 my-3"><img style="height: auto; width: 100%;" src="https://barmga.com/images/editor-step5.PNG"></div>
+                            </p>
+                        </li>
+                        <hr>
+                        <li>
+                            <p><strong style="font-size: 110%;">الخطوة 6: لصق الرابط.</strong></p>
+                            <p>عد إلى هذه الصفحة والصق الرابط الذي نسخته للتو في حقل إدخال رابط نموذج جوجل.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const templateUpload = document.getElementById('templateUpload');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const domainNameInput = document.getElementById('domainName');
+        const checkoutLinkInput = document.getElementById('checkoutLink');
+        const googleFormLinkInput = document.getElementById('googleFormLink');
+        const enableFlashSaleCheckbox = document.getElementById('enableFlashSale');
+        const flashSaleInputsDiv = document.getElementById('flashSaleInputs');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const originalPriceInput = document.getElementById('originalPrice');
+        const saleEndDateInput = document.getElementById('saleEndDate');
+        const minOfferValueInput = document.getElementById('minOfferValue');
+        const buyNowPriceInput = document.getElementById('buyNowPrice'); // New input
+        const featureInputs = document.querySelectorAll('.feature-input');
+        const previousSaleDomains = document.querySelectorAll('.previous-sale-domain');
+        const previousSalePrices = document.querySelectorAll('.previous-sale-price');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // New radio button elements
+        const editFullTemplateRadio = document.getElementById('editFullTemplate');
+        const updateCheckoutLinkOnlyRadio = document.getElementById('updateCheckoutLinkOnly');
+
+        // References to the parent divs/cards that need to be toggled
+        const generalDomainInfoCard = document.getElementById('generalDomainInfoCard');
+        const domainNameDiv = document.getElementById('domainNameDiv');
+        const googleFormLinkDiv = document.getElementById('googleFormLinkDiv');
+        const flashSaleSettingsCard = document.getElementById('flashSaleSettingsCard');
+        const pricingOfferSettingsCard = document.getElementById('pricingOfferSettingsCard');
+        const domainFeaturesCard = document.getElementById('domainFeaturesCard');
+        const previousSalesCard = document.getElementById('previousSalesCard');
+
+
+        let uploadedTemplateHtml = '';
+
+        // --- Helper Functions for Validation ---
+
+        /**
+         * Removes all validation feedback from the form.
+         */
+        function clearValidationErrors() {
+            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.invalid-feedback').forEach(el => el.style.display = 'none');
+        }
+
+        /**
+         * Applies validation feedback to a given input element.
+         * @param {HTMLElement} element - The form control element to highlight.
+         * @param {string} message - The validation message to display.
+         */
+        function showValidationError(element, message) {
+            element.classList.add('is-invalid');
+            const feedbackEl = document.getElementById(`${element.id}-feedback`);
+            if (feedbackEl) {
+                feedbackEl.textContent = message;
+                feedbackEl.style.display = 'block'; // Ensure feedback is visible
+            }
+        }
+
+        // --- Event Listeners ---
+        templateUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    uploadedTemplateHtml = e.target.result;
+                    uploadStatus.textContent = `تم تحميل الملف "${file.name}" بنجاح.`; // Translated
+                    uploadStatus.classList.remove('text-danger');
+                    uploadStatus.classList.add('text-success');
+                    // Automatically clear validation if a file is uploaded after an error
+                    templateUpload.classList.remove('is-invalid');
+                    document.getElementById('templateUpload-feedback').style.display = 'none';
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'خطأ في قراءة الملف.'; // Translated
+                    uploadStatus.classList.remove('text-success');
+                    uploadStatus.classList.add('text-danger');
+                };
+                reader.readAsText(file);
+            } else {
+                uploadedTemplateHtml = '';
+                uploadStatus.textContent = '';
+            }
+            // Reset the value of the file input to ensure the 'change' event fires on re-upload of the same file.
+            event.target.value = '';
+        });
+
+        // Toggle flash sale inputs visibility
+        enableFlashSaleCheckbox.addEventListener('change', () => {
+            flashSaleInputsDiv.style.display = enableFlashSaleCheckbox.checked ? 'block' : 'none';
+            // Clear validation for flash sale inputs if unchecked
+            if (!enableFlashSaleCheckbox.checked) {
+                [finalPriceInput, originalPriceInput, saleEndDateInput].forEach(input => {
+                    input.value = '';
+                    input.classList.remove('is-invalid');
+                    const feedbackEl = document.getElementById(`${input.id}-feedback`);
+                    if (feedbackEl) feedbackEl.style.display = 'none';
+                });
+            }
+        });
+
+        // Format domain name on blur
+        domainNameInput.addEventListener('blur', () => {
+            const value = domainNameInput.value.trim();
+            if (value) {
+                domainNameInput.value = value.charAt(0).toUpperCase() + value.slice(1);
+            }
+        });
+
+        // Handle Submit/Download button logic
+        submitBtn.addEventListener('click', () => {
+            clearValidationErrors();
+
+            if (!validateForm()) {
+                return;
+            }
+
+            const editedHtml = generateEditedHtml();
+            downloadHtmlFile(editedHtml, 'index.html');
+        });
+
+        /**
+         * Toggles the visibility and required status of input fields based on the selected editing mode.
+         */
+        function toggleInputVisibility() {
+            const isFullEditMode = editFullTemplateRadio.checked;
+
+            // Elements to hide/show for full edit mode
+            const elementsToToggle = [
+                generalDomainInfoCard,
+                flashSaleSettingsCard,
+                pricingOfferSettingsCard,
+                domainFeaturesCard,
+                previousSalesCard
+            ];
+
+            // Specific divs within generalDomainInfoCard to toggle
+            const generalDomainInfoDivsToToggle = [
+                domainNameDiv,
+                googleFormLinkDiv
+            ];
+
+
+            // Inputs that are relevant only in full edit mode
+            const inputsToClearAndValidateConditionally = [
+                domainNameInput,
+                googleFormLinkInput,
+                finalPriceInput,
+                originalPriceInput,
+                saleEndDateInput,
+                minOfferValueInput,
+                buyNowPriceInput,
+                ...featureInputs,
+                ...previousSaleDomains,
+                ...previousSalePrices
+            ];
+
+            elementsToToggle.forEach(el => {
+                if (el.id !== 'generalDomainInfoCard') { // Handle generalDomainInfoCard separately
+                    el.style.display = isFullEditMode ? 'block' : 'none';
+                }
+            });
+
+            generalDomainInfoDivsToToggle.forEach(el => {
+                el.style.display = isFullEditMode ? 'block' : 'none';
+            });
+
+            // Ensure generalDomainInfoCard is visible if in full edit mode, or only contains checkout link in checkout mode
+            if (isFullEditMode) {
+                generalDomainInfoCard.style.display = 'block';
+            } else {
+                // In checkout-only mode, ensure generalDomainInfoCard is visible to show the checkout link
+                generalDomainInfoCard.style.display = 'block';
+            }
+
+
+            inputsToClearAndValidateConditionally.forEach(input => {
+                if (!isFullEditMode) {
+                    // Clear value and remove validation for hidden fields
+                    input.value = '';
+                    input.classList.remove('is-invalid');
+                    const feedbackEl = document.getElementById(`${input.id}-feedback`);
+                    if (feedbackEl) feedbackEl.style.display = 'none'; // Hide feedback
+
+                    // Special handling for previous sales inputs as their feedback is structured differently
+                    if (input.classList.contains('previous-sale-domain') || input.classList.contains('previous-sale-price')) {
+                        const parentGroup = input.closest('.previous-sale-input-group');
+                        if (parentGroup) {
+                            const feedback = parentGroup.querySelector('.invalid-feedback');
+                            if (feedback) feedback.style.display = 'none';
+                        }
+                    }
+                } else {
+                    // In full edit mode, ensure no lingering invalid states from previous mode
+                    input.classList.remove('is-invalid');
+                    const feedbackEl = document.getElementById(`${input.id}-feedback`);
+                    if (feedbackEl) feedbackEl.style.display = 'none';
+                    if (input.classList.contains('previous-sale-domain') || input.classList.contains('previous-sale-price')) {
+                        const parentGroup = input.closest('.previous-sale-input-group');
+                        if (parentGroup) {
+                            const feedback = parentGroup.querySelector('.invalid-feedback');
+                            if (feedback) feedback.style.display = 'none';
+                        }
+                    }
+                }
+            });
+
+            // Ensure flash sale inputs are hidden if flash sale is disabled, even in full edit mode
+            if (isFullEditMode && !enableFlashSaleCheckbox.checked) {
+                flashSaleInputsDiv.style.display = 'none';
+            }
+        }
+
+        // Initial call to set correct state on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleInputVisibility();
+        });
+
+        // Add event listeners to radio buttons
+        editFullTemplateRadio.addEventListener('change', toggleInputVisibility);
+        updateCheckoutLinkOnlyRadio.addEventListener('change', toggleInputVisibility);
+
+
+        // --- Functions ---
+
+        /**
+         * Validates the form inputs before generating the HTML.
+         * @returns {boolean} True if all required fields are filled, false otherwise.
+         */
+        function validateForm() {
+            let isValid = true;
+            let firstInvalidField = null;
+
+            const editMode = document.querySelector('input[name="editMode"]:checked').value;
+
+            // Always validate file upload
+            if (!uploadedTemplateHtml) {
+                showValidationError(templateUpload, 'الرجاء تحميل قالب HTML أولاً.'); // Translated
+                isValid = false;
+                if (!firstInvalidField) firstInvalidField = templateUpload;
+            }
+
+            if (editMode === 'full') {
+                // Full template editing mode
+                if (!domainNameInput.value.trim()) {
+                    showValidationError(domainNameInput, 'هذا الحقل مطلوب.'); // Translated
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = domainNameInput;
+                }
+                if (!checkoutLinkInput.value.trim()) {
+                    showValidationError(checkoutLinkInput, 'هذا الحقل مطلوب.'); // Translated
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = checkoutLinkInput;
+                }
+                // New validation for the Google Form link
+                if (!googleFormLinkInput.value.trim()) {
+                    showValidationError(googleFormLinkInput, 'هذا الحقل مطلوب.'); // Translated
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = googleFormLinkInput;
+                }
+
+                // Validate flash sale inputs if enabled
+                if (enableFlashSaleCheckbox.checked) {
+                    if (!finalPriceInput.value) {
+                        showValidationError(finalPriceInput, 'هذا الحقل مطلوب.'); // Translated
+                        isValid = false;
+                        if (!firstInvalidField) firstInvalidField = finalPriceInput;
+                    }
+                    if (!originalPriceInput.value) {
+                        showValidationError(originalPriceInput, 'هذا الحقل مطلوب.'); // Translated
+                        isValid = false;
+                        if (!firstInvalidField) firstInvalidField = originalPriceInput;
+                    }
+                    if (!saleEndDateInput.value) {
+                        showValidationError(saleEndDateInput, 'هذا الحقل مطلوب.'); // Translated
+                        isValid = false;
+                        if (!firstInvalidField) firstInvalidField = saleEndDateInput;
+                    }
+                }
+
+                // Validate Buy Now Price input
+                if (buyNowPriceInput && !buyNowPriceInput.value.trim()) {
+                    showValidationError(buyNowPriceInput, 'هذا الحقل مطلوب.'); // Translated
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = buyNowPriceInput;
+                }
+
+                // Validate previous sales fields
+                for (let i = 0; i < previousSaleDomains.length; i++) {
+                    const domain = previousSaleDomains[i].value.trim();
+                    const price = previousSalePrices[i].value.trim();
+                    if ((domain && !price) || (!domain && price)) {
+                        // Highlight both the domain and price fields
+                        previousSaleDomains[i].classList.add('is-invalid');
+                        previousSalePrices[i].classList.add('is-invalid');
+
+                        const feedbackEl = previousSaleDomains[i].nextElementSibling;
+                        if (feedbackEl) {
+                            feedbackEl.textContent = 'اسم النطاق والسعر مطلوبان.'; // Translated
+                            feedbackEl.style.display = 'block';
+                        }
+
+                        isValid = false;
+                        if (!firstInvalidField) firstInvalidField = previousSaleDomains[i];
+                    }
+                }
+            } else if (editMode === 'checkout') {
+                // Update checkout link only mode
+                if (!checkoutLinkInput.value.trim()) {
+                    showValidationError(checkoutLinkInput, 'هذا الحقل مطلوب.'); // Translated
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = checkoutLinkInput;
+                }
+            }
+
+            // Scroll to the first invalid field and focus it if it exists
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+                firstInvalidField.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+
+            return isValid;
+        }
+
+/**
+ * Generates the edited HTML string based on form inputs and editing mode.
+ * @returns {string} The modified HTML content.
+ */
+function generateEditedHtml() {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(uploadedTemplateHtml, 'text/html');
+    const editMode = document.querySelector('input[name="editMode"]:checked').value;
+    const checkoutLink = checkoutLinkInput.value.trim();
+
+    // Always update checkout links regardless of the editing mode.
+    doc.querySelectorAll('a[href*="checkoutlink.godaddy.com"]').forEach(link => {
+        link.href = checkoutLink;
+    });
+
+    if (editMode === 'full') {
+        const domain = domainNameInput.value.trim();
+        const googleFormLink = googleFormLinkInput.value.trim();
+        const enableFlashSale = enableFlashSaleCheckbox.checked;
+        const flashSaleFinalPrice = finalPriceInput.value;
+        const originalPrice = originalPriceInput.value;
+        const saleEndDate = saleEndDateInput.value;
+        const minOfferValue = minOfferValueInput.value.trim();
+        const buyNowPrice = buyNowPriceInput.value.trim();
+
+        // Update Domain Name
+        doc.querySelectorAll('.domainhere').forEach(el => {
+            el.textContent = domain;
+        });
+        const titleElement = doc.querySelector('title');
+        if (titleElement) {
+            titleElement.textContent = domain + ' - Premium Domain for Sale';
+        }
+
+        // Update Google Form Link if provided
+        const googleFormElement = doc.getElementById('googleForm');
+        if (googleFormElement && googleFormLink) {
+            const match = googleFormLink.match(/\/e\/([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                const formId = match[1];
+                googleFormElement.action = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
+            } else {
+                console.error('Could not extract Google Form ID from the provided URL.');
+            }
+        }
+
+        // Update Flash Sale Bar
+        const flashSaleBar = doc.getElementById('flashSaleBar');
+        if (flashSaleBar) {
+            if (enableFlashSale) {
+                flashSaleBar.style.display = 'block';
+                const finalPriceSpan = flashSaleBar.querySelector('.finalprice');
+                if (finalPriceSpan) finalPriceSpan.textContent = `$${flashSaleFinalPrice}`;
+                const originalPriceSpan = flashSaleBar.querySelector('.originalprice');
+                if (originalPriceSpan) originalPriceSpan.textContent = `$${originalPrice}`;
+
+                const endDateDiv = doc.getElementById('endDate');
+                if (endDateDiv) {
+                    const date = new Date(saleEndDate);
+                    const options = {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    };
+                    const formattedDate = date.toLocaleDateString('en-US', options);
+                    endDateDiv.textContent = `${formattedDate} 23:59:59`;
+                }
+            } else {
+                flashSaleBar.style.display = 'none';
+            }
+        }
+
+        // Update Buy Now Price and Minimum Offer Placeholder
+        if (buyNowPrice) {
+            const buyNowPriceSpans = doc.querySelectorAll('.finalprice');
+            buyNowPriceSpans.forEach(span => {
+                span.textContent = `$${buyNowPrice}`;
+            });
+        }
+        const offerInput = doc.getElementById('offer');
+        if (offerInput) {
+            offerInput.placeholder = minOfferValue ? `Min ${minOfferValue}$` : '$';
+        }
+
+        // Update Features
+        const featureSpans = doc.querySelectorAll('#Feautures-section span');
+        featureInputs.forEach((input, index) => {
+            if (featureSpans[index]) {
+                const textContent = input.value.trim();
+                const svgElement = featureSpans[index].querySelector('svg');
+                if (textContent) {
+                    featureSpans[index].innerHTML = '';
+                    if (svgElement) {
+                        featureSpans[index].appendChild(svgElement.cloneNode(true));
+                    }
+                    featureSpans[index].appendChild(doc.createTextNode(` ${textContent}`));
+                    featureSpans[index].style.display = 'flex';
+                } else {
+                    featureSpans[index].style.display = 'none';
+                }
+            }
+        });
+
+        // Update Previous Sales section
+        const prevSaleSection1 = doc.querySelector('#similarDomains2');
+        const prevSaleSection = doc.querySelector('.similarDomains2');
+        const prevSaleDivs = doc.querySelectorAll('#similarDomains2 > div');
+        let hasPreviousSales = false;
+
+        prevSaleDivs.forEach(div => div.style.display = 'none');
+
+        previousSaleDomains.forEach((domainInput, index) => {
+            const priceInput = previousSalePrices[index];
+            if (domainInput.value.trim() && priceInput.value.trim()) {
+                hasPreviousSales = true;
+                const currentDiv = prevSaleDivs[index];
+                if (currentDiv) {
+                    const h3Element = currentDiv.querySelector('h3');
+                    const pElement = currentDiv.querySelector('p');
+                    const spanElement = pElement.querySelector('span');
+                    if (h3Element) h3Element.textContent = domainInput.value.trim();
+                    if (spanElement) spanElement.textContent = `$${priceInput.value.trim()}`;
+                    currentDiv.style.display = 'flex';
+                }
+            }
+        });
+
+        if (prevSaleSection) {
+            prevSaleSection.style.display = hasPreviousSales ? 'block' : 'none';
+            prevSaleSection1.style.display = hasPreviousSales ? 'block' : 'none';
+        }
+
+    } else { // editMode === 'checkout'
+        // In this mode, no other changes are made, so we just let the checkout link update stand.
+    }
+
+    return '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+}
+        function downloadHtmlFile(content, filename) {
+            const blob = new Blob([content], {
+                type: 'text/html'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الأعمال</strong></h5>
+
+                </div>
+
+           <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
+                        <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
+                        <i class="fa fa-group"></i>&nbsp;&nbsp;أداة فرز جهات الإتصال
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في تصفية ارقام التواصل المختلفة والايميلات من مجموعة ملفات ثم تقسيمها لاعتمادها بالحملات بشكل سهل ومرتب.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
+                        <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
+                <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+            </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات البريد الإلكتروني</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer-ar" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | مرسل البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">أرسل بشكل آلى إلى مجموعة من عناوين البريد الإلكتروني من خلال حساب قوقل، تستخدم هذه الأداة مع متصفح مايكروسوفت آدج على الكمبيوتر</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">حول عناوين البريد الإلكتروني إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق جيميل الجوال في بضع نقرات</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الواتساب</strong></h5>
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | مرسل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">ارسل رسائل واتساب تلقائية إلى مجموعة من الأرقام بشكل آلى، تستخدم هذه الأداة مع متصفح كروم على الكمبيوتر</p>
+                    <img src="img/bot.png" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط رسائل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">حول أرقام واتساب إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق واتساب في بضع نقرات</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">لطلب الدعم</h5>
+                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                    <a class="btn btn-linkx" href="#contact">اتصل بنا</a>
+                    <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">برمجة</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar">الرئيسية</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#about">من نحن</a>
+                    <a class="btn btn-linkx" href="https://mostaql.com/u/barmga/reviews" target="_blank">تقييمات العملاء</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/faq-ar">الأسئلة الشائعة</a>
+                    <a class="btn btn-linkx" data-bs-toggle="modal" data-bs-target="#termsModal">سياسة الموقع</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">نشاطنا</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
+                    <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
+                    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
+                    <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">النشرة البريدية</h5>
+                    <p>اشترك الآن واحصل على أحدث العروض والأدوات المميزة.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="البريد الالكتروني" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="https://barmga.com/ar">Barmga 2025</a>, جميع الحقوق محفوظة.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script>
+        function showonly(classname) {
+            if (classname == 'all') {
+                var wapart = $('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+                var mailpart = $('#optionsmodalemail .modal-body')[0].innerHTML
+                var otherpart = $('#optionsmodalother .modal-body')[0].innerHTML
+                $('#optionsmodal .modal-body')[0].innerHTML = wapart + "<hr>" + mailpart
+                $('#optionsmodal').modal('show')
+            } else {
+                $('#optionsmodal' + classname).modal('show')
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+
+</body>
+
+</html>
