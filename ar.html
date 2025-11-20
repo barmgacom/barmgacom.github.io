@@ -372,8 +372,9 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
   }
 }
+
 * {
-  scroll-margin-top: 55px;
+  scroll-margin-top: 25px;
 }
 .loader {
   position: absolute;
@@ -454,16 +455,9 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                     <div class="navbar-collapse collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#tools">برامج وقوالب</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl" >
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#about">من نحن</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
                         </ul>
@@ -491,8 +485,8 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                             <p class="text-white pb-3 animated zoomIn"  dir="rtl">
                                 نساعد المؤسسات في جمع البيانات وأتمتة الأعمال بطريقة سريعة ومبتكرة. نقدم حلولا تقنية للإنجاز بشكل اسرع، وخفض تكاليف اليد العاملة من خلال اتمتة المهام المتكررة والخدمات التقنية التي تحتاج السرعة والدقة.<br>نقدم تشكيلة منوعة من قواعد البيانات لحصر اكبر قدر من العملاء والمنتجات ولتحليل السوق.
                             </p>
-                            <a href="#services" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;خدماتنا&nbsp;</a>
-                            <a onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;منتجاتنا&nbsp;</a>
+                            <a onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft border-3">&nbsp;قواعد بيانات&nbsp;</a>
+                            <a  href="#tools" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;برامج وقوالب&nbsp;</a>
                         </div>                        
                         
                         <div class="col-lg-6 text-center text-lg-start">
@@ -556,7 +550,57 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
     </div>
 </div>
 <!-- نهاية عن الشركة -->
+<!-- Templates & Tools Start -->
+<div class="container-fluid mt-5 py-1" style="background-color: #F3F6FF;" id="tools">
+    <div class="container px-lg-2">
+        <div class="section-title position-relative text-center mb-5 pb-3" data-wow-delay="0.1s">
+            <br><br>
+            <h6 class="position-relative d-inline text-primary ps-4">برامجنا</h6>
+            <h2 class="mt-2 fepro">قوالب وأدوات</h2>
+        </div>
+    </div>
+</div>
+<!-- Templates & Tools End -->
 
+<!-- Tool Categories Filter -->
+<div dir="rtl" class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;" id="tools-filter">
+                <div class="text-center mt-2 pt-2 filter justify-content-center">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <div class="dropdown d-inline-block">
+                    <button  dir="rtl" class="btn btn-outline-primary bg-white dropdown-toggle toolCategoryButton" type="button" id="dropdownMenuButtonTools" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 250px;">
+                        التصنيف
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonTools" dir="rtl" style="text-align: right;">
+                        <li><a class="dropdown-item" id="all-tools" onclick="filterToolCat(this.id)">جميع الفئات</a></li>
+                        <li><a class="dropdown-item" id="whatsapp-tools" onclick="filterToolCat(this.id)">التسويق عبر واتساب</a></li>
+                        <li><a class="dropdown-item" id="email-tools" onclick="filterToolCat(this.id)">التسويق عبر البريد الإلكتروني</a></li>
+                        <li><a class="dropdown-item" id="business-tools" onclick="filterToolCat(this.id)">أدوات الأعمال</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5 px-lg-5">
+        <div class="container px-lg-5">
+            <br>
+            <div class="row g-4 alltools-container">
+                <!-- Tool cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Tool Categories Filter -->
+
+<!-- More Tools Button -->
+<div class="container-fluid py-1" style="max-width: 200px;">
+    <div class="container px-lg-2">
+        <div class="position-relative text-center mt-4 pb-3">
+            <a class="btn btn-primary rounded-pill px-4 shadowmex moretools" onclick="for(let el of document.querySelectorAll('.itemhere.toolhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';resetProductCategoryFilter();propagateproductsx(allproducts);document.querySelector('.moreproducts').parentElement.parentElement.parentElement.style.display='block'">عرض المزيد</a>
+        </div>
+    </div>
+</div>
+<!-- End More Tools Button -->
 
 
 
@@ -682,7 +726,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                     <div class="row justify-content-center">
                         <div class="col-auto">
                             <div class="dropdown d-inline-block">
-                                <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" dir="rtl">
+                                <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 250px;" dir="rtl">
                                     التصنيف
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" dir="rtl" style="text-align: right;">
@@ -720,7 +764,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
         <div class="container-fluid  py-1"style="background-color: #F3F6FF;">
             <div class="container px-lg-2">
                 <div class="position-relative text-center mt-4 mb-4 pb-3" >
-                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';" >شاهد المزيد</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere:not(.toolhere)')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';resetToolCategoryFilter();propagateTools(alltools);document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display='block'"  >شاهد المزيد</a>
                 </div>
                
             </div>
@@ -898,9 +942,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                         <h5 class="text-white mb-4">نشاطنا</h5>
                        <a class="btn btn-linkx" href="#services">خدماتنا</a>
                        <a class="btn btn-linkx" onclick="document.querySelector('.selectedproduct').style.display='none'"  href="#products">قواعد البيانات</a>
-                       <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
-			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
-                <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+                <a class="btn btn-linkx" href="#tools">أدوات الأعمال</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1035,7 +1077,7 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header" dir="rtl">
-                    <h5 class="modal-title" id="termsModalLabel">سياسة الاستخدام</h5>
+                    <h5 class="modal-title" id="termsModalLabel">سياسة الخدمة</h5>
                     <div style="flex-grow: 1;"></div>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   
@@ -1104,6 +1146,20 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                 </div>
     
                 <div class="modal-body scrollable-body text-center">
+                    
+                    
+
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
+
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
                             <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
@@ -1111,7 +1167,6 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                     </div>
                     <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
                     <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
-                    
                     <hr>
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
@@ -1393,13 +1448,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'الجمعيات',3);
         dicta=movelPos(dicta,'منتجات العطور',4);
         dicta=movelPos(dicta,'منتجات الصيدلية',5);
-    }else if (['منتجات السوبرماركت','supermarket products'].includes(productname.toLowerCase().replace(/-/g,' '))){
+    }else if (['منتجات السوبرماركت','supermarket products','food products','بيانات المنتجات الغذائية'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
         dicta=movelPos(dicta,'منتجات الصيدلية',3);
 	    dicta=movelPos(dicta,'منتجات السوبرماركت',4);
-        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',5);
-        dicta=movelPos(dicta,'المطاعم والمقاهي',6);
+        dicta=movelPos(dicta,'المطاعم والمقاهي',5);
+        dicta=movelPos(dicta,'المخابز ومحلات الحلويات',6);
         dicta=movelPos(dicta,'الفنادق والشقق',7);
         dicta=movelPos(dicta,'شركات النقل',8);
     }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
@@ -1573,6 +1628,7 @@ var disc={
 }
 var allnames={
     //addDictItemHere2
+"بيانات-المنتجات-الغذائية":"food-products",
         "محلات-قطع-غيار-السيارات": "car-parts-stores",
     "ورش-السيارات": "car-repair-stores",
     "معارض-السيارات": "car-exhibitions",
@@ -1690,21 +1746,21 @@ var allproducts={    "معارض السيارات": {
         "reviews": "https://mostaql.com/u/barmga/reviews/7031296"
     },    "الشركات العقارية": {
     "id": "sa-realestate-brokers",
-    "info": "ملفات اكسل فيها بيانات 21,000 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عند عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.",
-    "feature1": "21,000 رقم جوال",
+    "info": "ملفات اكسل فيها بيانات 28,200 ألف شركة ومكتب وساطة عقارية مرخص تم جمعها من منصة ايجار و هيئة العقار. البيانات تفيد المسوقين العقاريين في التعاون مع اكبر قدر من الوسطاء. إذا عند عقار للبيع والايجار يمكن ارسال العرض لجميع المكاتب الموجودة بمنطقتك.",
+    "feature1": "28,200 رقم جوال",
     "feature2": "14,400 عنوان بريد إلكتروني",
     "feature3": "2 ملفات اكسل",
     "gift": "",
     "category": "جهات إتصال",
-    "samplelink": "https://barmga.com/samples/عينة-2-Sheets-الشركات-العقارية.xlsx",
+    "samplelink": "https://barmga.com/samples/عينة-2-Sheets-الشركات-العقارية-sa.xlsx",
     "family": "العقار",
     "subtitle": "قاعدة بيانات",
     "source": "منصة ايجار والهيئة العامة للعقار",
     "originalprice": "89$",
     "price": "65$",
     "productlink": "https://pay.hotmart.com/W96101861T?off=zxwjt86z",
-    "videolink": "https://player.vimeo.com/video/1109604643?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-    "date": "2024 - 2025",
+    "videolink": "https://player.vimeo.com/video/1138073335?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
     "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
 },"محلات الزهور والمشاتل": {
         "info": "ملف اكسل فيه 3,400 جهة اتصال لمحلات بيع المشاتل والزهور من خرائط قوقل.",
@@ -2123,24 +2179,24 @@ var allproducts={    "معارض السيارات": {
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "منتجات العطور": {
-        "info": "ملف اكسل فيه 1,700 منتج للعطور المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر. ",
-        "feature2": "",
-        "feature1": "1,700 سطر",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-perfumes",
-        "gift": "",
-        "originalprice": "",
-        "price": "39$",
-        "category": "بضائع",
-        "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
-        "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-العطور.xlsx",
-        "family": "تجارة, الصحة",
-        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
+    "id": "sa-perfumes",
+    "info": "ملف اكسل فيه 2,200 منتج للعطور المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر.",
+    "feature1": "2,200 سطر",
+    "feature2": "1,800 باركود",
+    "feature3": "1 ملف اكسل",
+    "gift": "",
+    "category": "بضائع",
+    "samplelink": "https://barmga.com/samples/عينة-منتجات-العطور-sa.xlsx",
+    "family": "تجارة",
+    "subtitle": "قاعدة بيانات",
+    "source": "متجر نايس وان",
+    "originalprice": "",
+    "price": "49$",
+    "productlink": "https://pay.hotmart.com/A95513166C?off=8j0p5fzl",
+    "videolink": "https://player.vimeo.com/video/1138227803?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+},
     "متاجر العطور": {
         "info": "ملف اكسل فيه أكثر من  7,000آلاف جهة اتصال لمحلات ومتاجر بيع العطور في السعودية. تفيد تسويق منتجات العود والعطور بالجملة.",
         "feature2": "4,600 عنوان بريد الكتروني",
@@ -2349,8 +2405,28 @@ var allproducts={    "معارض السيارات": {
         "source": "موقع عقار",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     }
-    //addDictItemHere1
+    ,"بيانات المنتجات الغذائية": {
+    "id": "sa-sfda-food",
+    "info": "ملف إكسل يحتوي على تفاصيل أكثر من 500 ألف منتج غذائي من الهيئة العامة للغذاء والدواء (SFDA). يشمل الملف بشكل أساسي الباركود، وتفاصيل أخرى مثل الاسم، والعلامة التجارية، والوزن، ومدة الصلاحية، والمكونات، والمزيد! يمكن استخدامه لتعزيز محركات البحث (SEO) لمتجرك الإلكتروني في المملكة العربية السعودية.",
+    "feature1": "954,000 سطر",
+    "feature2": "515,000 باركود",
+    "feature3": "1 ملف اكسل",
+    "gift": "",
+    "category": "بضائع",
+    "samplelink": "https://barmga.com/samples/عينة-بيانات-المنتجات-الغذائية-sa.xlsx",
+    "family": "مطاعم",
+    "subtitle": "قاعدة بيانات",
+    "source": "هيئة الغذاء والدواء",
+    "originalprice": "120$",
+    "price": "85$",
+    "productlink": "https://pay.hotmart.com/I102786971I",
+    "videolink": "https://player.vimeo.com/video/1133911644?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
 }
+//addDictItemHere1
+}
+
 
 
 //if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
@@ -2710,17 +2786,6 @@ function selectedproduct2(curr) {
     propagateproducts()}else{document.querySelector('.downel').setAttribute('style',"display: block;")}
     
 }
-var elix=false
-if (window.location.href.includes('product=')){
-    let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true;document.querySelector('.theprodprice').style.display="none";}else{productname=productname.replace(/-/g,' ');}
-    selectedproduct2(productname);
-    //if (elix){document.querySelector('div:has(>#selectedprodprice)').style.display="none";}
-}
-if (window.location.href.includes('#products')){
-    document.querySelector('.moreproducts').click()
-}
-if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 
 
 function subdow(){
@@ -2789,6 +2854,7 @@ menuItems.forEach(function(item) {
 function moveright(){
     const modalBody = document.querySelector('#filemodal .modal-body'); modalBody.scrollLeft += 100;
 }
+
 </script>  
 
     
@@ -2996,10 +3062,8 @@ function moveright(){
 
         }
     }
-</script>
-<script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
-<script>
-    function showOnScrollOrClick() {
+if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}
+function showOnScrollOrClick() {
     var element=document.querySelector('.theprodprice');
     if (!element) {
         return;
@@ -3030,9 +3094,275 @@ function showonlyx(classname){
     $('#optionsmodal').modal('show')}
     else{$('#optionsmodal'+classname).modal('show')}
 }
+    // Define the alltools dictionary here
+    var alltools = {
+        "مواقع الكترونية للشركات": {
+            "info": "احصل الآن على موقع الكتروني احترافي لشركتك.",
+            "icon": "companywebsite.webp", // Font Awesome icon class
+            "id": "company-website", // Unique identifier for the tool
+            "url": "https://barmga.com/company-website-ar",
+            "subtitle": "قوالب مواقع إلكترونية",
+            "category": "أدوات الأعمال",
+            "videolink": "", // If there's a video for this tool
+            "features": ["سهل الاستخدام", "إعداد سريع", "لا يتطلب برمجة"],
+            "price": "<i class='fa fa-star'></i>",
+            "originalprice": "",
+            "gift": "نعم",
+            "trial": "حملة مجانية"
+        },
+        "WABarmga | رسائل آلية": {
+            "info": "أرسل رسائل واتساب آلية باستخدام وابارمج. يمكن استخدام هذه الأداة مع متصفح كروم على الكمبيوتر.",
+            "icon": "wabarmga.webp",
+            "id": "wabarmga-whatsapp-sender",
+            "url": "https://barmga.com/wabarmga-whatsapp-sender-ar",
+            "subtitle": "أداة تسويق",
+            "category": "التسويق عبر واتساب",
+            "videolink": "",
+            "features": ["رسائل آلية", "إضافة كروم", "متوافق مع الكمبيوتر"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": "مميز"
+        },
+        "مولد روابط رسائل واتساب": {
+            "info": "حوّل أرقام هواتف واتساب إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق واتساب ببضع نقرات!",
+            "icon": "bulkwhatsapplinks.webp",
+            "id": "bulk-whatsapp-links",
+            "url": "https://barmga.com/bulk-whatsapp-links-ar",
+            "subtitle": "أداة تسويق",
+            "category": "التسويق عبر واتساب",
+            "videolink": "",
+            "features": ["متوافق مع الجوال", "روابط سريعة", "متوافق مع تطبيق واتساب"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        },"فرز جهات الاتصال": {
+            "info": "استخرج عناوين البريد الإلكتروني وأرقام الهواتف من عدة ملفات، ثم قسّمها إلى أجزاء متعددة قبل إطلاق حملاتك التسويقية!",
+            "icon": "contactsmanager.webp",
+            "id": "contacts-manager",
+            "url": "https://tools.barmga.com/contacts-manager-ar",
+            "subtitle": "أداة معالجة بيانات",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": ["استخراج جهات اتصال بالجملة", "تجزئة البيانات", "جاهز للحملات"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        },
+        "مستخرج اسماء المدن": {
+            "info": "استخرج أسماء المدن من عناوين خرائط جوجل ثم أضف عمود اسم المدينة إلى ملف الإكسل الخاص بك!",
+            "icon": "cityextractor.webp",
+            "id": "city-extractor",
+            "url": "https://tools.barmga.com/city-extractor-ar",
+            "subtitle": "أداة معالجة بيانات",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": ["استخراج آلي", "تكامل إكسل", "بيانات الموقع"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        },       "صانع رمز الإستجابة السريع": {
+            "info": "!",
+            "icon": "qrcodegenerator.webp",
+            "id": "bulk-email-validator",
+            "url": "https://barmga.com/qr-code-generator-ar",
+            "subtitle": "تحويل روابط الى رموز QR",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": [],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        },
+        "Barmga Mailer | رسائل آلية": {
+            "info": "أرسل رسائل فردية تلقائيًا إلى عناوين بريد إلكتروني متعددة باستخدام حساب Gmail الخاص بك. تعمل هذه الأداة مع متصفح Microsoft Edge على جهاز الكمبيوتر.",
+            "icon": "barmgamailer.webp",
+            "id": "barmga-mailer",
+            "url": "https://barmga.com/barmga-mailer-ar",
+            "subtitle": "أداة تسويق",
+            "category": "التسويق عبر البريد الإلكتروني",
+            "videolink": "",
+            "features": ["إرسال آلي", "تكامل Gmail", "تطبيق سطح المكتب"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        },
+        "مولد روابط رسائل إيميل": {
+            "info": "حوّل عناوين البريد الإلكتروني إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق Gmail للجوال ببضع نقرات!",
+            "icon": "bulkemaillinks.webp",
+            "id": "bulk-email-links",
+            "url": "https://barmga.com/bulk-email-links-ar",
+            "subtitle": "أداة تسويق",
+            "category": "التسويق عبر البريد الإلكتروني",
+            "videolink": "",
+            "features": ["متوافق مع الجوال", "روابط سريعة", "متوافق مع تطبيق Gmail"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        }
+    };
+trash={      "مدقق البريد الإلكتروني": {
+            "info": "نظّف قوائم بريدك الإلكتروني من عناوين البريد الإلكتروني التجارية غير النشطة، لتحسين معدل تسليم البريد الإلكتروني!",
+            "icon": "emailvalidator.webp",
+            "id": "bulk-email-validator",
+            "url": "https://barmga.com/bulk-email-validator-ar",
+            "subtitle": "أداة معالجة بيانات",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": ["تحسين قابلية التسليم", "تنظيف القوائم", "يقلل من معدل الارتداد"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
+        }} 
+    // New HTML template for tool cards - onclick opens new tab
+    var toolhtml = `<div id="toolidhere" class="col-lg-3 col-md-6 itemhere toolhere" style="display: block;" onclick="window.open(this.querySelector('a').href, '_blank');">
+        <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
+            <div class="service-iconx flex-shrink-0">
+                <img src="logos/iconhere" style="width:auto; height:75px">
+            </div>
+            <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: #cb9910;">pricehere</div>
+            <h5 class="mb-3">tooltitlehere</h5>
+            <div class="text-center"><div class="badge" style="background-color: white; color: rgb(1, 106, 226); border: 1px solid rgb(1, 106, 226);" >toolcategory</div></div>
+            <p class="px-3 mt-3 mx-auto">toolsubhere</p>
+            <a class="btn-primary rounded-pill px-3 shadowmex text-center mt-2 mx-auto" style="padding:7px;" href="toolurlhere" target="_blank">
+                <i class="fa fa-external-link"></i>&nbsp;عرض التفاصيل
+            </a>
+            <div class="badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem;background-color: #05bda8; font-size:90%; display:none;">samplehere</div>
+            <div class="discountbadge position-absolute text-white" style="bottom: 0.5rem; right: 0.5rem ;background-image: url('img/discountbadge.png'); width:60px; padding-left:20px;padding-top:4px;padding-bottom:-4px;font-size:80%;display:none;">discounthere</div>
+            <div class="position-absolute gifthere" style="display:none; bottom: 0.5rem; left: 0.5rem;">
+                <img src="images/gift.webp" alt="gift" width="30" height="30">
+            </div>
+        </div>
+    </div>`;
+
+    function calcdisc2(originalPrice, finalPrice) {
+        // Ensure the inputs are numbers
+        originalPrice = parseFloat(originalPrice.split('/')[0].trim().replace('$',''));
+        finalPrice = parseFloat(finalPrice.split('/')[0].trim().replace('$',''));
+
+        // Calculate the discount percentage
+        let discount = ((originalPrice - finalPrice) / originalPrice) * 100;
+
+        // Truncate to integer
+        discount = Math.floor(discount);
+
+        // Return the formatted string
+        return `-${discount}%`;
+    }
+
+    // Function to propagate tool cards
+    function propagateTools(toolsDict) {
+        let ix = 0;
+        let display = "block";
+        document.querySelector('.alltools-container').innerHTML = ''; // Clear existing tools
+
+        for (let title in toolsDict) {
+            let tool = toolsDict[title];
+            ix++;
+            if (ix > 4) { // Only show first 4 by default, then hide the rest
+                display = "none";
+            } else {
+                display = "block";
+            }
+            let currentToolHtml = String(toolhtml);
+            currentToolHtml = currentToolHtml
+                .replace(/tooltitlehere/g, title)
+                .replace(/toolidhere/g, tool.id)
+                .replace(/toolsubhere/g, tool.subtitle)
+                .replace(/toolcategory/g, tool.category)
+                .replace(/iconhere/g, tool.icon)
+                .replace(/toolurlhere/g, tool.url)
+                .replace('display: block;', `display: ${display};`)
+                .replace(/pricehere/g, tool.price)
+                .replace(/display:none;">discounthere/g, tool.originalprice ? 'display:block;">'+calcdisc2(tool.originalprice,tool.price) : 'display:none;">discounthere')
+                .replace(/display:none;">samplehere/g, tool.trial ? 'display:block;">'+tool.trial : 'display:none;">samplehere')
+                .replace(/gifthere" style="display:none;/g, tool.gift ? 'gifthere" style="display:block;' : 'gifthere" style="display:none;')
+
+            if(tool.price=="مجاني"){currentToolHtml=currentToolHtml.replace('background-color: #cb9910','background-color: rgb(5, 158, 189)')}
+            document.querySelector('.alltools-container').innerHTML += currentToolHtml;
+        }
+        
+        // Show/hide "More Tools" button
+        if (Object.keys(toolsDict).length > 4) {
+            document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display = 'block';
+        } else {
+            document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display = 'none';
+        }
+    }
+
+    // New function to filter tool categories
+    function filterToolCat(categoryId) {
+        let filteredTools = {};
+        let categoryMap = {
+            'all-tools': 'جميع الفئات',
+            'whatsapp-tools': 'التسويق عبر واتساب',
+            'email-tools': 'التسويق عبر البريد الإلكتروني',
+            'business-tools': 'أدوات الأعمال'
+        };
+
+        if (categoryId === 'all-tools') {
+            filteredTools = alltools;
+        } else {
+            const targetCategoryArabic = categoryMap[categoryId];
+            if (targetCategoryArabic) {
+                for (let toolName in alltools) {
+                    if (alltools[toolName].category === targetCategoryArabic) {
+                        filteredTools[toolName] = alltools[toolName];
+                    }
+                }
+            }
+        }
+        propagateTools(filteredTools);
+        document.querySelector('.toolCategoryButton').textContent = document.querySelector('#' + categoryId).textContent;
+        document.querySelector('#tools').scrollIntoView(); // Scroll to tools section
+    }
+
+    // Initial propagation of products and tools
+    propagateTools(alltools); // New: Propagate all tools initially
+
+    function resetToolCategoryFilter() {
+        document.querySelector('.toolCategoryButton').textContent = 'التصنيف'; // Reset button text
+        // Scroll to the tools section
+    }
+    function resetProductCategoryFilter() {
+        // This function seems to be for another section, keeping it as is based on original
+        document.querySelector('.categoryButton').textContent = 'التصنيف'; // Reset the button text
+        // Scroll back to the products section
+    }
+var elix=false
+if (window.location.href.includes('product=')){
+    let productname=decodeURIComponent(window.location.href).split('product=')[1].split('&')[0].split('#')[0]
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname='null'};updateURL('product',productname.replace(/ /g,'-').toLowerCase());elix=true;document.querySelector('.theprodprice').style.display="none";}else{productname=productname.replace(/-/g,' ');}
+    selectedproduct2(productname);
+    //if (elix){document.querySelector('div:has(>#selectedprodprice)').style.display="none";}
+}
+if (window.location.href.includes('#products')){
+    document.querySelector('.moreproducts').click()
+}
+if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 
 </script>
 <script>if(window.location.href.includes('?cat=products')){document.querySelector('[id="بضائع"]').click();document.querySelector('#products').scrollIntoView()}</script>
+<script>if (window.location.href.includes('?email')) {
+  // Create a new img element
+  const trackingPixel = document.createElement('img');
+
+  // Set its style to be hidden
+  trackingPixel.style.display = 'none';
+
+  // Set the source URL for the tracking pixel
+  trackingPixel.src = 'https://bit.ly/email-track-barmga-ar';
+
+  // Add the image to the page to trigger the request
+  document.body.appendChild(trackingPixel);
+} </script>
 
   
 </body>

@@ -56,6 +56,7 @@
 <script>
     var namesdict={
         //addDictItemHere2
+"food-products":"بيانات-المنتجات-الغذائية",
         "car-parts-stores": "محلات-قطع-غيار-السيارات",
     "car-repair-stores": "ورش-السيارات",
     "car-exhibitions": "معارض-السيارات",
@@ -156,7 +157,7 @@
       overflow: auto; /* Enable scroll if needed */
     }
     * {
-  scroll-margin-top: 55px;
+  scroll-margin-top: 25px;
 }
 
 .container{
@@ -424,16 +425,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     <div class="navbar-collapse collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#tools">Templates & Tools</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">Databases</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#services">Services</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products">Products</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">Whatsapp Marketing</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">Email Marketing</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('other')">Business Tools</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#about">About</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">Contact</a></li>
                         </ul>
@@ -458,8 +452,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="text-white mb-4 animated zoomIn">Barmga For Business Automation</h1>
                             <p class="text-white pb-3 animated zoomIn">We are dedicated to transforming the way businesses collect their data and automate their processes. Our products & services are designed to boost efficiency and accelerate task completion, all while significantly reducing costs compared to manual processes.</p>
-                            <a onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;Products&nbsp;</a>
-                            <a href="#services" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;Services&nbsp;</a>
+                            <a  href="#tools" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;Web Tools&nbsp;</a>
+                            <a onclick="document.querySelector('.selectedproduct').style.display='none'" href="#products" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight border-3">&nbsp;Databases&nbsp;</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
                             <img class="img-fluid topim" src="images/hero.webp" alt=barmga"">
@@ -522,6 +516,59 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- About End -->
 
 
+<!-- Templates & Tools Start -->
+<div class="container-fluid mt-5 py-1" style="background-color: #F3F6FF;" id="tools">
+    <div class="container px-lg-2">
+        <div class="section-title position-relative text-center mb-5 pb-3 wow fadeInUp" data-wow-delay="0.1s">
+            <br><br>
+            <h6 class="position-relative d-inline text-primary ps-4">Our Web Tools</h6>
+            <h2 class="mt-2 fepro">Templates & Tools</h2>
+        </div>
+    </div>
+</div>
+<!-- Templates & Tools End -->
+
+<!-- Tool Categories Filter -->
+<div class="container-fluid bg-primary testimonial py-1 my-1" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;" id="tools-filter">
+    <div class="text-center mt-2 pt-2 filter justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-primary bg-white dropdown-toggle toolCategoryButton" type="button" id="dropdownMenuButtonTools" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 250px;">
+                        Categories
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonTools">
+                        <li><a class="dropdown-item" id="all-tools" onclick="filterToolCat(this.id)">All Categories</a></li>
+                        <li><a class="dropdown-item" id="whatsapp-tools" onclick="filterToolCat(this.id)">Whatsapp Marketing</a></li>
+                        <li><a class="dropdown-item" id="email-tools" onclick="filterToolCat(this.id)">Email Marketing</a></li>
+                        <li><a class="dropdown-item" id="business-tools" onclick="filterToolCat(this.id)">Business Tools</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5 px-lg-5">
+        <div class="container px-lg-5">
+            <br>
+            <div class="row g-4 alltools-container">
+                <!-- Tool cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Tool Categories Filter -->
+
+<!-- More Tools Button -->
+        <div class="container-fluid  py-1"style=" max-width: 200px;">
+            <div class="container px-lg-2">
+                <div class="position-relative text-center mt-4 pb-3">
+                    <a class="btn btn-primary rounded-pill px-4 shadowmex moretools"  onclick="for(let el of document.querySelectorAll('.itemhere.toolhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';resetProductCategoryFilter();propagateproductsx(allproducts);document.querySelector('.moreproducts').parentElement.parentElement.parentElement.style.display='block'" >More Tools</a>
+                </div>
+               
+            </div>
+            
+        </div>
+<!-- End More Tools Button -->
 
         <!-- Portfolio Start -->
         <div class="container-fluid mt-5 py-1"style="background-color: #F3F6FF;" id="products">
@@ -573,7 +620,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <a id="share" onclick="sharePost(document.querySelector('.selectedproduct').querySelector('h2').textContent)" class="btn btn-outline-primary btn-square me-3"> <i class="fa fa-share" style="font-size: 80%;"></i></a>
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-3 barmgareviews" style="font-size: 90%;"  href="https://mostaql.com/u/barmga" id="clientsreviews" target="_blank"><i class="fa fa-star"></i>&nbsp;Reviews</a>
                         </div>
-                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">service policy.</a> <a class="text-muted" > Payment is powered by <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> Hotmart.</a></a></span></div>
+                        <div class="d-flex align-items-end"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>By purchasing this item you accept our <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">use policy.</a> <a class="text-muted" > Payment is powered by <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> Hotmart.</a></a></span></div>
                         <div class="d-flex align-items-end mt-3 mobilebloc" style="display: none;">
                             <a class="btn btn-outline-primary rounded-pill py-sm-2 px-sm-3 me-1 mt-2" href="https://t.me/bigdata_shop" target="_blank" style="font-size: 85%;">
                                 <i class="fa fa-telegram btn-outline-primary" style="font-size: 120%; margin-right: 4px;"></i>Telegram
@@ -623,13 +670,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <div class="dropdown d-inline-block">
-                            <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 150px;" >
+                            <button class="btn btn-outline-primary bg-white dropdown-toggle categoryButton" type="button" id="dropdownMenuButtonx" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 250px;" >
                                 Categories
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonx" >
                                 <li><a class="dropdown-item" id="all" onclick="filterCat(this.id)">All Categories</a></li>
                                 <li><a class="dropdown-item" id="realestate" onclick="filterCat(this.id)">Real Estate</a></li>
-                                <li><a class="dropdown-item" id="health" onclick="filterCat(this.id)">Transport & Cars</a></li>
+                                <li><a class="dropdown-item" id="transport" onclick="filterCat(this.id)">Transport & Cars</a></li>
                                 <li><a class="dropdown-item" id="commerce" onclick="filterCat(this.id)">Commerce</a></li>
                                 <li><a class="dropdown-item" id="health" onclick="filterCat(this.id)">Health & Beauty</a></li>
                                 <li><a class="dropdown-item" id="food" onclick="filterCat(this.id)">Food & Hotels</a></li>
@@ -662,7 +709,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="container-fluid  py-1"style="background-color: #F3F6FF;">
             <div class="container px-lg-2">
                 <div class="position-relative text-center mt-4 mb-4 pb-3" >
-                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';" >More Products</a>
+                    <a class="btn btn-primary rounded-pill px-4 me-3 shadowmex moreproducts"  onclick="for(let el of document.querySelectorAll('.itemhere:not(.toolhere)')){el.style='display:block;'};this.parentElement.parentElement.parentElement.style.display='none';resetToolCategoryFilter();propagateTools(alltools);document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display='block'" >More Products</a>
                 </div>
                
             </div>
@@ -840,9 +887,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <h5 class="text-white mb-4">Our Activities</h5>
                         <a class="btn btn-link" href="#services">Services</a>
                         <a class="btn btn-link"onclick="document.querySelector('.selectedproduct').style.display='none'"   href="#products">Products</a>
-                        <a class="btn btn-link" onclick="showonly('whatsapp')">Whatsapp Marketing Tools</a>
-                        <a class="btn btn-link" onclick="showonly('email')">Email Marketing Tools</a>
-                        <a class="btn btn-link" onclick="showonly('other')">Business Tools</a>
+                        <a class="btn btn-link" href="#tools">Business Tools</a>
                      </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Newsletter</h5>
@@ -1157,7 +1202,22 @@ function validateEmail(email) {
                     <div style="flex-grow: 1;"></div>
     
                 </div>
+                
                 <div class="modal-body scrollable-body text-center">
+                     
+
+                    
+<!-- ADDTOOLSEN -->
+<div class="d-flex justify-content-center mt-4 mb-3 emailx">
+    <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor" target="_blank">
+        <i class="fa fa-edit"></i>&nbsp;&nbsp;Website Template Editor
+    </a>
+</div>
+<p class="emailx">Edit & update your web templates in few clicks! Upload your company & products information in few clicks.</p>
+<i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto; font-weight: 600;"></i>
+<hr>
+
+
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor" target="_blank">
                             <i class="fa fa-map-marker"></i>&nbsp;&nbsp;City Extractor Tool
@@ -1473,6 +1533,7 @@ var disc={
 }
 var allnames={
     //addDictItemHere2
+"food-products":"بيانات-المنتجات-الغذائية",
     "car-parts-stores": "محلات-قطع-غيار-السيارات",
     "car-repair-stores": "ورش-السيارات",
     "car-exhibitions": "معارض-السيارات",
@@ -1555,8 +1616,8 @@ var allproducts ={
 
     "Real Estate Companies": {
     "id": "sa-realestate-brokers",
-    "info": "Excel files containing data for 21,000 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
-    "feature1": "21,000 Mobile Numbers",
+    "info": "Excel files containing data for 28,200 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
+    "feature1": "28,200 Mobile Numbers",
     "feature2": "14,400 Email Addresses",
     "feature3": "2 Sheets | Excel Files",
     "gift": "",
@@ -1564,11 +1625,11 @@ var allproducts ={
     "price": "65$",
     "category": "B2B Listing",
     "productlink": "https://pay.hotmart.com/W96101861T?off=zxwjt86z",
-    "samplelink": "https://barmga.com/samples/Sample-2-Sheets-Real-Estate-Companies.xlsx",
+    "samplelink": "https://barmga.com/samples/Sample-2-Sheets-Real-Estate-Companies-sa.xlsx",
     "family": "realestate",
-    "videolink": "https://player.vimeo.com/video/1109604643?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "videolink": "https://player.vimeo.com/video/1138073335?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
     "subtitle": "Database",
-    "date": "2024 - 2025",
+    "date": "2025",
     "source": "Ejar & Rega (Authorities)",
     "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
 },
@@ -1971,24 +2032,24 @@ var allproducts ={
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "Perfume Products": {
-        "info": "Excel file containing 1,700 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
-        "feature2": "",
-        "feature1": "1,700 Rows",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-perfumes",
-        "gift": "",
-        "originalprice": "",
-        "price": "39$",
-        "category": "Products",
-        "productlink": "https://pay.hotmart.com/A95513166C?off=nrnv9w36",
-        "samplelink": "https://barmga.com/samples/SA-Sample-Perfume-Products.xlsx",
-        "family": "commerce, health",
-        "videolink": "https://player.vimeo.com/video/1032665997?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2024",
-        "source": "",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
+    "id": "sa-perfumes",
+    "info": "Excel file containing 2,200 perfumes products in saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Upload products to an online store easily and quickly from a ready-made Excel file.",
+    "feature1": "2,200 Rows",
+    "feature2": "1,800 Barcodes",
+    "feature3": "1 Sheet | Excel File",
+    "gift": "",
+    "originalprice": "",
+    "price": "49$",
+    "category": "Products",
+    "productlink": "https://pay.hotmart.com/A95513166C?off=8j0p5fzl",
+    "samplelink": "https://barmga.com/samples/Sample-Perfume-Products-sa.xlsx",
+    "family": "commerce",
+    "videolink": "https://player.vimeo.com/video/1138227803?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025",
+    "source": "Niceone Shop",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+},
     "Perfumes Stores": {
         "info": "Excel file containing over 7,000 contact details for perfumes stores, in Saudi Arabia. This data is useful for wholesale perfumes suppliers.",
         "feature2": "4,600 Email Addresses",
@@ -2252,10 +2313,32 @@ var allproducts ={
         "date": "2025",
         "source": "Google Maps",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    }//addDictItemHere1
+    },"Food Products": {
+    "id": "sa-sfda-food",
+    "info": "Excel file containing over 500K records for food products from SFDA. It includes barcodes mainly, and other details like name, brand, weight, durability, ingredients and more! It can be used to boost SEO for your e-commerce store in Saudi Arabia.",
+    "feature1": "954,000 Rows",
+    "feature2": "515,000 Barcodes",
+    "feature3": "1 Sheet | Excel File",
+    "gift": "",
+    "originalprice": "120$",
+    "price": "85$",
+    "category": "Products",
+    "productlink": "https://pay.hotmart.com/I102786971I",
+    "samplelink": "https://barmga.com/samples/Sample-Food-Products-sa.xlsx",
+    "family": "food",
+    "videolink": "https://player.vimeo.com/video/1133911644?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025",
+    "source": "SFDA",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+//addDictItemHere1
 }
 
 
+
+
+var allproductsx=[allproducts][0]
 
 
 //if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['Perfume Products']}
@@ -2324,6 +2407,7 @@ discount = Math.floor(discount);
 // Return the formatted string
 return `-${discount}%`;
 }
+
 function filterCatx(family){
          var newdict={}
          console.log(family)
@@ -2348,6 +2432,8 @@ function filterCont(family){
      if(family.toLowerCase()=="products"){family="productsx"}
      document.querySelector('.countryButton').textContent=document.querySelector('#'+family).textContent
 }
+
+
 function propagateproductsx(allproductsx) {
     let ix = 0;
     let display = "block";
@@ -2556,16 +2642,8 @@ function selectedproduct2(curr) {
     };allproducts=movel(allproducts,"Organisations");allproducts=suggestMe(curr,allproducts);propagateproducts();}else{document.querySelector('.downel').setAttribute('style',"display: block;");}
     
 }
-if (window.location.href.includes('product=')){
-    let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0]
-    console.log(productname)
-    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
-    selectedproduct2(capT(productname).replace(' And '," and "))
-}
-if (window.location.href.includes('#products')){
-    document.querySelector('.moreproducts').click()
-}
-if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
+
+//if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
 function showpaymentnote(name){
     document.querySelector('.offlinepayment').style.display='block';
     document.querySelector('#your-subject-input').value="Product: "+name
@@ -2849,12 +2927,436 @@ menuItems.forEach(function(item) {
     $('#optionsmodal').modal('show')}
     else{$('#optionsmodal'+classname).modal('show')}
 }
+
+if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}
+
+var alltools =  {
+
+    "Company Websites": {
+
+      "info": "Get a professional website for your company now.",
+
+      "icon": "companywebsite.webp",
+
+      "id": "company-website",
+
+      "url": "https://barmga.com/company-website",
+
+      "subtitle": "Website Templates",
+
+      "category": "Business Tools",
+
+      "videolink": "",
+
+      "features": [
+
+        "Easy to use",
+
+        "Quick setup",
+
+        "No programming required"
+
+      ],
+
+      "price": "<i class='fa fa-star'></i>",
+
+      "originalprice": "",
+
+      "gift": "Yes",
+
+      "trial": "Free campaign"
+
+    },
+
+    "WABarmga | Automated Messages": {
+
+      "info": "Send automated WhatsApp messages using WABarmga. This tool can be used with the Chrome browser on a computer.",
+
+      "icon": "wabarmga.webp",
+
+      "id": "wabarmga-whatsapp-sender",
+
+      "url": "https://barmga.com/wabarmga-whatsapp-sender",
+
+      "subtitle": "Marketing Tool",
+
+      "category": "WhatsApp Marketing",
+
+      "videolink": "",
+
+      "features": [
+
+        "Automated messages",
+
+        "Chrome extension",
+
+        "Computer compatible"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": "Premium"
+
+    },
+
+    "WhatsApp Link Generator": {
+
+      "info": "Convert WhatsApp phone numbers into links and send messages easily from your mobile browser and the WhatsApp app with a few clicks!",
+
+      "icon": "bulkwhatsapplinks.webp",
+
+      "id": "bulk-whatsapp-links",
+
+      "url": "https://barmga.com/bulk-whatsapp-links",
+
+      "subtitle": "Marketing Tool",
+
+      "category": "WhatsApp Marketing",
+
+      "videolink": "",
+
+      "features": [
+
+        "Mobile compatible",
+
+        "Quick links",
+
+        "WhatsApp app compatible"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    },
+
+    "Contacts Manager": {
+
+      "info": "Extract email addresses and phone numbers from multiple files, then divide them into multiple parts before launching your marketing campaigns!",
+
+      "icon": "contactsmanager.webp",
+
+      "id": "contacts-manager",
+
+      "url": "https://tools.barmga.com/contacts-manager",
+
+      "subtitle": "Data Processing Tool",
+
+      "category": "Business Tools",
+
+      "videolink": "",
+
+      "features": [
+
+        "Bulk contact extraction",
+
+        "Data segmentation",
+
+        "Campaign ready"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    },"QR Code Generator": {
+    "info": "!",
+    "icon": "qrcodegenerator.webp",
+    "id": "bulk-email-validator",
+    "url": "https://barmga.com/qr-code-generator",
+    "subtitle": "Convert links to QR codes",
+    "category": "Business Tools",
+    "videolink": "",
+    "features": [],
+    "price": "Free",
+    "originalprice": "",
+    "gift": "",
+    "trial": ""
+},
+
+    "City Name Extractor": {
+
+      "info": "Extract city names from Google Maps addresses and then add the city name column to your Excel file!",
+
+      "icon": "cityextractor.webp",
+
+      "id": "city-extractor",
+
+      "url": "https://tools.barmga.com/city-extractor",
+
+      "subtitle": "Data Processing Tool",
+
+      "category": "Business Tools",
+
+      "videolink": "",
+
+      "features": [
+
+        "Automated extraction",
+
+        "Excel integration",
+
+        "Location data"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    },
+
+    "Barmga Mailer | Automated Messages": {
+
+      "info": "Automatically send individual messages to multiple email addresses using your Gmail account. This tool works with the Microsoft Edge browser on your computer.",
+
+      "icon": "barmgamailer.webp",
+
+      "id": "barmga-mailer",
+
+      "url": "https://barmga.com/barmga-mailer",
+
+      "subtitle": "Marketing Tool",
+
+      "category": "Email Marketing",
+
+      "videolink": "",
+
+      "features": [
+
+        "Automated sending",
+
+        "Gmail integration",
+
+        "Desktop application"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    },
+
+    "Email Link Generator": {
+
+      "info": "Convert email addresses into links and send messages easily from your mobile browser and the Gmail mobile app with a few clicks!",
+
+      "icon": "bulkemaillinks.webp",
+
+      "id": "bulk-email-links",
+
+      "url": "https://barmga.com/bulk-email-links",
+
+      "subtitle": "Marketing Tool",
+
+      "category": "Email Marketing",
+
+      "videolink": "",
+
+      "features": [
+
+        "Mobile compatible",
+
+        "Quick links",
+
+        "Gmail app compatible"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    }
+
+  }
+
+trash={
+    "Email Validator": {
+
+      "info": "Clean your email lists of inactive business email addresses to improve your email delivery rate!",
+
+      "icon": "emailvalidator.webp",
+
+      "id": "bulk-email-validator",
+
+      "url": "https://barmga.com/bulk-email-validator",
+
+      "subtitle": "Data Processing Tool",
+
+      "category": "Business Tools",
+
+      "videolink": "",
+
+      "features": [
+
+        "Improve deliverability",
+
+        "List cleaning",
+
+        "Reduces bounce rate"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    }}
+    // New HTML template for tool cards - onclick opens new tab
+    var toolhtml = `<div id="toolidhere" class="col-lg-3 col-md-6 itemhere toolhere" style="display: block;" onclick="window.open(this.querySelector('a').href, '_blank');">
+        <div class="service-itemx d-flex flex-column justify-content-center text-center rounded">
+            <div class="service-iconx flex-shrink-0">
+                <img src="logos/iconhere" style="width:auto; height:75px">
+
+            </div>
+            <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem;background-color: #cb9910;">pricehere</div>
+            <h5 class="mb-3">tooltitlehere</h5>
+            <div class="text-center"><div class="badge" style="background-color: white; color: rgb(1, 106, 226); border: 1px solid rgb(1, 106, 226);" >toolcategory</div></div>
+            <p class="px-3 mt-3 mx-auto">toolsubhere</p>
+            <a class="btn-primary rounded-pill px-3 shadowmex text-center mt-2 mx-auto" style="padding:7px;" href="toolurlhere" target="_blank">
+                <i class="fa fa-external-link"></i>&nbsp;View Item
+            </a>
+
+<div class="badge text-white position-absolute" style="top: 0.5rem; left: 0.5rem;background-color: #05bda8; font-size:90%; display:none;">samplehere</div>
+        <div class="discountbadge position-absolute text-white" style="bottom: 0.5rem; right: 0.5rem ;background-image: url('img/discountbadge.png'); width:60px; padding-left:20px;padding-top:4px;padding-bottom:-4px;font-size:80%;display:none;">discounthere</div>
+        <div class="position-absolute gifthere" style="display:none; bottom: 0.5rem; left: 0.5rem;">
+           <img src="images/gift.webp" alt="gift" width="30" height="30">
+        </div>
+        </div>
+
+    </div>`;
+function calcdisc2(originalPrice, finalPrice) {
+
+// Ensure the inputs are numbers
+originalPrice = parseFloat(originalPrice.split('/')[0].trim().replace('$',''));
+finalPrice = parseFloat(finalPrice.split('/')[0].trim().replace('$',''));
+
+// Calculate the discount percentage
+let discount = ((originalPrice - finalPrice) / originalPrice) * 100;
+
+// Truncate to integer
+discount = Math.floor(discount);
+
+// Return the formatted string
+return `-${discount}%`;
+}
+
+    // Function to propagate tool cards
+    function propagateTools(toolsDict) {
+        let ix = 0;
+        let display = "block";
+        document.querySelector('.alltools-container').innerHTML = ''; // Clear existing tools
+
+        for (let title in toolsDict) {
+            let tool = toolsDict[title];
+            ix++;
+            if (ix > 4) { // Only show first 4 by default, then hide the rest
+                display = "none";
+            } else {
+                display = "block";
+            }
+            let disc='display:none;">discounthere'
+            let gift='gifthere" style="display:none;'
+            let currentToolHtml = String(toolhtml);
+            currentToolHtml = currentToolHtml
+                .replace(/tooltitlehere/g, title)
+                .replace(/toolidhere/g, tool.id)
+                .replace(/toolsubhere/g, tool.subtitle)
+                .replace(/toolcategory/g, tool.category)
+                .replace(/iconhere/g, tool.icon)
+                .replace(/toolurlhere/g, tool.url)
+                .replace('display: block;', `display: ${display};`)
+                .replace(/pricehere/g, tool.price)
+                .replace(/display:none;">discounthere/g, tool.originalprice ? 'display:block;">'+calcdisc2(tool.originalprice,tool.price) : 'display:none;">discounthere')
+                .replace(/display:none;">samplehere/g, tool.trial ? 'display:block;">'+tool.trial : 'display:none;">samplehere')
+                .replace(/gifthere" style="display:none;/g, tool.gift ? 'gifthere" style="display:block;' : 'gifthere" style="display:none;')
+            if(tool.price=="Free"){currentToolHtml=currentToolHtml.replace('background-color: #cb9910','background-color: rgb(5, 158, 189)')}
+                document.querySelector('.alltools-container').innerHTML += currentToolHtml;
+        }
+        
+        // Show/hide "More Tools" button
+        if (Object.keys(toolsDict).length > 4) {
+            document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display = 'block';
+        } else {
+            document.querySelector('.moretools').parentElement.parentElement.parentElement.style.display = 'none';
+        }
+    }
+
+    // New function to filter tool categories
+    function filterToolCat(categoryId) {
+        let filteredTools = {};
+        if (categoryId === 'all-tools') {
+            filteredTools = alltools;
+        } else {
+            const categoryName = categoryId.replace('-tools', '').replace('-', ' ');
+            for (let toolName in alltools) {
+                if (alltools[toolName].category.toLowerCase().includes(categoryName)) {
+                    filteredTools[toolName] = alltools[toolName];
+                }
+            }
+        }
+        propagateTools(filteredTools);
+        document.querySelector('.toolCategoryButton').textContent = document.querySelector('#' + categoryId).textContent;
+        document.querySelector('#tools').scrollIntoView(); // Scroll to tools section
+    }
+
+    // Initial propagation of products and tools
+    propagateTools(alltools); // New: Propagate all tools initially
+
+
+        function resetToolCategoryFilter() {
+        document.querySelector('.toolCategoryButton').textContent = 'Categories'; // Reset button text
+         // Scroll to the tools section
+    }
+        function resetProductCategoryFilter() {
+        document.querySelector('.categoryButton').textContent = 'Categories'; // Reset the button text
+         // Scroll back to the products section
+    }
+if (window.location.href.includes('product=')){
+    let productname=window.location.href.split('product=')[1].split('&')[0].split('#')[0]
+    console.log(productname)
+    if (productname.startsWith('sa-')){productname=findProductName(allproducts,productname);if(productname==''){productname="null"};updateURL('product',productname.replace(/ /g,'-').toLowerCase())}else{productname=productname.replace(/-/g,' ')}
+    selectedproduct2(capT(productname).replace(' And '," and "))
+}
+if (window.location.href.includes('#products')){
+    document.querySelector('.moreproducts').click()
+}
 </script>
-<script>if(window.location.href.includes('tgapp')){document.querySelector('#dowsample').style.display="none"}</script>
-<script>if(window.location.href.includes('?cat=products')){document.querySelector('[id="productsx"]').click();document.querySelector('#products').scrollIntoView()}</script>
+    <script>if(window.location.href.includes('?cat=products')){document.querySelector('[id="productsx"]').click();document.querySelector('#products').scrollIntoView()}</script>
 
-
-    
 </body>
 
 </html>
