@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Invoice Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet --> 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Custom styles from your existing page to maintain consistency -->
+    <style>
+        
+                .hidden{display: none !important;}
+
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        .how-it-works {
+
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Gabriela', serif !important;
+        }
+
+        .tool>*,.lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            li+li.nav-item.dropdown {
+                margin-right: 15px;
+            }
+
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'Gabriela', serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Blue */
+            --secondary-color: #1f2937; /* Dark Gray */
+            --white: #ffffff;
+            --dark-gray: #4b5563;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+@media (max-width: 992px) {        .zoom-out,#invoice-preview,.ad-horizontal {
+  transform: scale(0.95); 
+  /* transform-origin: top left; */ 
+}}
+@media (max-width: 756px) {.ad-horizontal p, .ad-horizontal .cta-ad-button{ font-size: 93% !important; } 
+ .hero h1{ font-size: 1.8rem !important; }
+ }
+@media (max-width: 500px) {
+        /* 1. Hide the large icon to save vertical space */
+        .ad-horizontal .cta-ad-icon {
+            display: none;
+        }
+
+        /* 2. Configure the Card Layout */
+        .cta-ad-card {
+            flex-direction: column !important; /* Stack items vertically */
+            text-align: center !important;     /* Center the text */
+            padding: 20px 15px !important;     /* Comfortable padding */
+            align-items: center;
+            gap: 15px; /* Space between text and button */
+        }
+
+        /* 3. Text Styling */
+        .cta-ad-content {
+            width: 100%;
+        }
+
+        .cta-ad-content h4 {
+            font-size: 1.3rem; /* Slightly larger title */
+            margin-bottom: 8px !important;
+        }
+
+        .cta-ad-content p {
+            font-size: 0.95rem !important;
+            margin: 0 !important;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        /* 4. The Button: Full Width & Professional */
+        .cta-ad-button {
+            max-width: 250px;
+            width: 100%;          /* Stretch button across the card */
+            justify-content: center; /* Center text inside button */
+            margin: 0;
+            padding: 12px !important; /* Taller button for easier tapping */
+            font-size: 1.8rem !important;
+            border-radius: 8px;   /* Softer corners */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle lift */
+        }
+    }
+
+        /* New Ad-Related CSS */
+        .page-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            padding: 35px 20px 0 20px; 
+            gap: 20px; /* Space between ads and main content */
+        }
+        .main-content { 
+            flex-grow: 1; 
+            max-width: 960px; /* Maximum width for the main area */
+        }
+        .ad-vertical { 
+            width: 160px; 
+            flex-shrink: 0; 
+            margin-top: 2rem; 
+        }
+        /* Position fixed for larger screens, absolute/static otherwise */
+        @media (min-width: 1330px) { 
+
+            .ad-vertical.left-ad { left: 35px; }
+            .ad-vertical.right-ad { right: 35px; }
+        }
+        @media (max-width: 1200px) { 
+            .ad-vertical { 
+                display: none; /* Hide vertical ads on smaller screens */
+            } 
+        }
+
+        /* Vertical Ad Card Styles */
+        .vertical-ad-card { 
+            padding: 20px 15px; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--box-shadow); 
+            text-align: center; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .vertical-ad-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+        }
+        .vertical-ad-card .ad-icon { margin-bottom: 12px; }
+        .vertical-ad-card .ad-icon svg { width: 40px; height: 40px; }
+        .vertical-ad-card h5 { margin: 0 0 8px 0; font-size: 1rem; line-height: 1.3; }
+        .vertical-ad-card p { font-size: 0.75rem; line-height: 1.4; margin: 0 0 15px 0; opacity: 0.9; }
+        .vertical-ad-card .ad-cta { 
+            display: inline-block; 
+            padding: 8px 12px; 
+            border-radius: 5px; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            transition: background-color 0.3s ease; 
+        }
+        .ad-vertical a { text-decoration: none; }
+        .barmga-db-ad { 
+            background: linear-gradient(145deg, #2c3e50, #34495e); 
+            color: var(--white); 
+            border: 1px solid #4a6278; 
+        }
+        .barmga-db-ad .ad-icon svg { fill: #3498db; }
+        .barmga-db-ad .ad-cta { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+        }
+        .barmga-db-ad:hover .ad-cta { background-color: #2980b9; }
+        .wabarmga-wa-ad { 
+            background: linear-gradient(145deg, #E8F5E9, #FFFFFF); 
+            color: #1E8E3E; 
+            border: 1px solid #A5D6A7; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .wabarmga-wa-ad h5 { color: #1B5E20; }
+        .wabarmga-wa-ad p { color: #388E3C; }
+        .wabarmga-wa-ad .ad-icon svg { fill: #25D366; }
+        .wabarmga-wa-ad .ad-cta { 
+            background-color: #4CAF50; 
+            color: var(--white); 
+        }
+        .wabarmga-wa-ad:hover .ad-cta { background-color: #43A047; }
+        .wabarmga-wa-ad .ad-badge { 
+            position: absolute; 
+            top: -1px; 
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 3px 10px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+        }
+        [dir="ltr"] .wabarmga-wa-ad .ad-badge { right: -1px; border-radius: 0 8px 0 8px; }
+        [dir="rtl"] .wabarmga-wa-ad .ad-badge { left: -1px; right: auto; border-radius: 0 0 8px 0; }
+        
+        /* Horizontal Ad Card Styles */
+        .ad-horizontal { max-width: 728px; margin: 1rem auto; }
+        .main-content > .ad-horizontal:first-of-type { max-width: 860px; }
+        #ad-horizontal-2 { display: block; } /* Changed to 'block' for this implementation, adjust based on your original logic */
+
+        .cta-ad-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 1.5rem; 
+            padding: 1.5rem 2rem; 
+            background: var(--white); 
+            color: var(--dark-gray); 
+            border-radius: var(--border-radius); 
+            text-decoration: none; 
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+            box-shadow: var(--box-shadow); 
+            border: 1px solid #e1e8ed; 
+        }
+        .cta-ad-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .cta-ad-icon svg { width: 48px; height: 48px; fill: var(--primary-color); }
+        .cta-ad-content { flex-grow: 1; }
+        [dir="ltr"] .cta-ad-content { text-align: left; }
+        [dir="rtl"] .cta-ad-content { text-align: right; }
+        .cta-ad-content h4 { margin: 0 0 0.25rem 0; font-size: 1.4rem; color: var(--secondary-color); }
+        .cta-ad-content p { margin: 0; font-size: 0.95rem; opacity: 0.9; }
+        .cta-ad-button { 
+            flex-shrink: 0; 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: background-color 0.3s; 
+            text-align: center; 
+            white-space: nowrap; 
+        }
+        .cta-ad-card:hover .cta-ad-button { background-color: #2980b9; }
+        .cta-ad-card.reversed-colors { 
+            background: linear-gradient(135deg, #3498db, #2980b9); 
+            color: var(--white); 
+            border: none; 
+        }
+        .cta-ad-card.reversed-colors .cta-ad-icon svg { fill: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content h4 { color: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content p { color: var(--white); opacity: 0.9; }
+        .cta-ad-card.reversed-colors .cta-ad-button { 
+            background-color: var(--white); 
+            color: var(--primary-color); 
+        }
+.cta-ad-card.reversed-colors:hover .cta-ad-button {
+    background-color: #f0f0f0;
+}
+
+/* Existing Styles */
+.parent-container {
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center;    /* Centers items vertically (if the parent has a defined height) */
+}
+
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+/* Existing Styles for Invoice Preview */
+#invoice-preview {
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 1000px; /* <--- THIS IS THE CULPRIT! */
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; 
+}
+/* Ensure the body and html have no default margins/padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Enhanced cleanup for PDF export mode */
+/* Enhanced cleanup for PDF export mode */
+.pdf-export-mode {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    min-height: 0 !important;
+    width: 100% !important; 
+    max-width: none !important; /* <--- KEEP THIS! */
+    background-color: transparent !important;
+}
+
+        /* Logo and Header Bar Controls */
+        .invoice-logo {
+            max-height: 50px;
+            width: auto;
+            border-radius: 4px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        .invoice-header-bar { display: none; } /* Used for T2 and T3 */
+        .invoice-metadata-flex { display: none; } /* Used for T4 metadata layout */
+        .header-title-container { display: flex; align-items: center; } /* Container for logo and title */
+
+
+        /* --- Template Card Styles --- */
+        .template-card {
+            transition: all 0.2s;
+            cursor: pointer;
+            border-width: 2px !important;
+            border-color: transparent !important; /* Default transparent border */
+            
+        }
+        
+        .template-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+        }
+        .template-card.active {
+            border-color: #3b82f6 !important; /* Active blue border */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5) !important;
+        }
+
+.preview-box {
+    height: 150px !important;
+    width: auto;
+    background-color: #f8f9fa;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    overflow: hidden;
+    position: relative;
+    /* Add this to ensure no external CSS interferes: */
+    box-sizing: border-box; 
+}
+        .preview-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        /* Visual cues for each template */
+        .preview-box-1::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #1e3a8a; /* T1 Deep Blue Accent */
+        }
+        .preview-box-2 {
+            background-color: #e0f2f1; /* T2 Light Teal Block */
+        }
+        .preview-box-2::before {
+            content: ' ';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: #0d9488; /* T2 Teal Header */
+        }
+        .preview-box-3::before {
+            content: ' ';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); /* T3 Blue Gradient */
+            opacity: 0.3;
+        }
+        .preview-box-4 {
+            background-color: #1f2937; /* T4 Dark Footer Focus */
+        }
+        .preview-box-4::before {
+            content: ' ';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 40%;
+            height: 10px;
+            background-color: #34d399; /* T4 Green Total */
+        }
+        /* --- End Template Card Styles --- */
+
+
+        /* --- Template 1: Classic Professional (Clean, Structural) --- */
+        .invoice-template-1 { border: 1px solid #e0e0e0; padding: 50px !important; }
+        .invoice-template-1 .header-title {
+            color: #1e3a8a; /* Deep Blue */
+            border-bottom: 4px solid #1e3a8a; /* Thicker line */
+            padding-bottom: 15px;
+            margin-bottom: 2rem !important;
+            font-size: 2.5rem;
+        }
+        .invoice-template-1 .table th { background-color: #f2f2f7; color: #495057; border-bottom: 2px solid #dee2e6; }
+        .invoice-template-1 .table tbody tr:nth-child(even) { background-color: #fafafa; }
+        .invoice-template-1 .total-summary-box { border: 1px solid #ced4da; }
+        .invoice-template-1 .total-summary-box .h4 { color: #1e3a8a !important; }
+        .invoice-template-1 .table { border: 1px solid #dee2e6; }
+
+
+        /* --- Template 2: Modern Block (Teal Blocks & Zebra Stripe) --- */
+        .invoice-template-2 .header-title { display: none; } /* Hide generic title */
+        .invoice-template-2 .invoice-header-bar {
+            display: block;
+            background-color: #0d9488; /* Teal */
+            color: white;
+            padding: 20px 30px;
+            margin: -30px -30px 30px -30px; /* Extends to container edge */
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .invoice-template-2 .address-section {
+            padding: 15px;
+            background-color: #e0f2f1; /* Light Teal background */
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .invoice-template-2 .address-section h6, .invoice-template-2 .address-section small { color: #0d9488; }
+        .invoice-template-2 .table th { background-color: #0d9488; color: white; border-color: #0d9488; }
+        .invoice-template-2 .table tbody tr:nth-child(even) { background-color: #f0fdfa; }
+        .invoice-template-2 .total-summary-box {
+            border-left: 5px solid #0d9488;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Template 3: Corporate Gradient (Sophisticated, Framed) --- */
+        .invoice-template-3 { border: 1px solid #ced4da; border-radius: 12px; }
+        .invoice-template-3 .header-title { display: none; } /* Hide generic title */
+        .invoice-template-3 .invoice-header-bar {
+            display: block;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); /* Blue Gradient */
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px 12px 0 0;
+            margin: -30px -30px 30px -30px; /* Extends to container edge */
+            font-size: 2.2rem;
+        }
+        .invoice-template-3 .table { border: none; }
+        .invoice-template-3 .table th { background-color: transparent; border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .invoice-template-3 .table td { border-top: 1px solid #e0e0e0; }
+        .invoice-template-3 .total-summary-box {
+            border: 3px solid #3b82f6;
+            background-color: #f7faff;
+            border-radius: 12px;
+        }
+        .invoice-template-3 .notes-section {
+            padding-top: 20px;
+            border-top: 1px dashed #ced4da;
+        }
+
+        /* --- Template 4: Financial Focus (Totals Dominant, Minimalist Lines) --- */
+        .invoice-template-4 { background-color: #f4f4f4; }
+        /* T4 Title: Make it visible but simple */
+        .invoice-template-4 .header-title { 
+            display: inline-block !important; /* Show title by default */
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: #000;
+            border-bottom: none !important; 
+            padding-bottom: 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .invoice-template-4 .invoice-header-bar { display: none !important; }
+        .invoice-template-4 .invoice-metadata-inline { display: none; } /* Hide T1/T2/T3 metadata block */
+        .invoice-template-4 .invoice-metadata-flex { 
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #adb5bd;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .invoice-template-4 .metadata-item {
+            display: block;
+            width: 33%;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .invoice-template-4 .metadata-item .fw-bold { color: #000; font-size: 1.1rem; }
+        .invoice-template-4 .table { border: none; }
+        .invoice-template-4 .table th { background-color: transparent; color: #495057; border-bottom: 2px solid #000; }
+        .invoice-template-4 .table td { border-top: none; border-bottom: 1px dashed #ced4da; }
+        .invoice-template-4 .total-summary-box {
+            background-color: #1f2937; /* Dark Gray */
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .invoice-template-4 .total-summary-box span, .invoice-template-4 .total-summary-box hr { color: white !important; border-top-color: rgba(255, 255, 255, 0.2) !important; }
+        .invoice-template-4 .total-summary-box .h4 { font-size: 1.8rem; color: #34d399 !important; } /* Highlight total in bright green/teal */
+
+        /* === Custom Changes for Invoice Items Table === */
+        #itemTable th:nth-child(4), /* Line Total Header */
+        #itemTable td:nth-child(4) { /* Line Total Cells */
+            display: none;
+        }
+
+        #itemTable th:nth-child(1) { /* Description Header */
+            width: auto; /* Allow it to grow */
+        }
+        #itemTable td:nth-child(1) { /* Description Cells */
+            width: 50%; /* Set a large width for description cell */
+        }
+        /* ============================================== */
+
+        /* Print/PDF-specific styles - Ensures generator is hidden when exporting */
+@media print {
+    /* 1. Hiding UI elements */
+    .generator-ui, 
+    .no-print, 
+    .ad-vertical, 
+    .ad-horizontal,
+    .btn,
+    .navbar, 
+    .footer { 
+        display: none !important; 
+    }
+
+    /* 2. CRITICAL FIX: Force Background Colors & Gradients */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* 3. Page Setup */
+    @page {
+        margin: 0; /* Removes default browser margin */
+        size: auto;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: white !important;
+    }
+
+    /* 4. Invoice Layout Corrections for Print */
+    .page-wrapper { 
+        padding: 0 !important; 
+        display: block !important; /* Disables flexbox to avoid layout breaks */
+    }
+
+    .main-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    #invoice-preview {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10mm !important; /* Add padding so text doesn't touch edges */
+        box-shadow: none !important; 
+        border: none !important; 
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* 5. Ensure Grid system works in print (Bootstrap fix) */
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        float: left !important;
+    }
+    .col-sm-12 { width: 100%; }
+    .col-sm-6 { width: 50%; }
+}
+/* =========================================
+           MODERN UI UPGRADE (Add this to your CSS)
+           ========================================= */
+
+        /* 1. Global Page Background & Typography */
+        body {
+            background-color: #f0f2f5; /* Softer, modern gray-blue background */
+            color: #344767; /* Soft black for better readability */
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 2. Modern Header Styling */
+        .header-bg {
+            background: linear-gradient(135deg, #1e6b9d 0%, #3395d7 100%);
+            color: white;
+            margin-bottom: -60px; /* Pull content up to overlap header */
+            padding-bottom: 80px !important; /* Extra padding for overlap */
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        /* 3. Card & Container Refinements */
+        .card {
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05); /* Soft, diffuse shadow */
+            transition: transform 0.3s ease;
+        }
+
+        /* Make the "Choose a Template" section pop out */
+        .generator-ui.card.zoom-out {
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* 4. Modern Form Inputs */
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #67748e;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control, .form-select {
+            background-color: #f8f9fa; /* Light gray background default */
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+            color: #495057;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); /* Soft focus ring */
+            transform: translateY(-1px);
+        }
+
+        /* Specific tweak for the input inside the table */
+        #itemTable .form-control {
+            padding: 8px;
+            font-size: 0.9rem;
+            background-color: transparent; /* Blend into table */
+            border: 1px solid transparent; /* Invisible border until hover */
+        }
+        #itemTable .form-control:hover {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        #itemTable .form-control:focus {
+            background-color: #fff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        /* 5. Buttons styling */
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 10px 20px;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary {
+            border-width: 2px;
+        }
+        
+        .btn-outline-danger {
+            border-width: 1px;
+            border-radius: 6px;
+            padding: 4px 10px;
+        }
+
+        .btn-lg.shadow-lg {
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.292) !important; 
+            border: none;
+        }
+        .btn-lg.shadow-lg:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.389) !important;
+        }
+
+        /* 6. Table Styling in Generator */
+        .table thead th {
+            background-color: #f1f4f8;
+            color: #344767;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-bottom: none;
+            text-transform: uppercase;
+            padding: 12px 8px;
+            border-radius: 4px;
+        }
+        
+        .table td {
+            border-bottom: 1px solid #f1f4f8;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        /* 7. Template Selector Cards Upgrade */
+        .template-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        
+.template-card h6 {
+    margin-top: 5px;           /* Reduced from 10px */
+    margin-bottom: 5px;        /* Reduced from 10px */
+    font-size: 0.9rem;
+    color: #555;
+    font-family: 'Inter', sans-serif !important; /* Overrides Gabriela to match AR compactness */
+    line-height: 1.2;          /* Forces a tighter vertical rhythm */
+}
+
+        .template-card.active {
+            background-color: #eef2ff; /* Very light blue bg */
+            border-color: #3b82f6 !important;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(59, 130, 246, 0.15) !important;
+        }
+        
+        .template-card:not(.active):hover {
+            transform: translateY(-3px);
+            background-color: #f8f9fa;
+        }
+
+        /* 8. Scrollbar Polish (Webkit only) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+        /* =========================================
+   HEADER COMPACT ADJUSTMENTS
+   ========================================= */
+
+.header-bg {
+    text-align: center !important;   /* Center the text */
+    padding-top: 30px !important;    /* Reduce top space (overrides py-5) */
+    padding-bottom: 80px !important; /* Keep bottom padding for the overlap effect */
+}
+
+.header-bg h1 {
+    margin-top: 10px !important;     /* Remove large top gap (overrides mt-5) */
+    font-size: 2.5rem;    /* Make the main title smaller */
+}
+
+.header-bg p {
+    font-size: 1rem !important;      /* Make the subtitle smaller */
+    margin-bottom: 0 !important;
+    opacity: 0.9;
+}        
+/* Force a light border on inputs and textareas inside the item table */
+#itemTable .form-control {
+    border: 1px solid #dee2e6 !important; /* Standard light gray border */
+    background-color: #ffffff; /* Ensures the background is white */
+}
+
+/* Optional: Make the border slightly darker when you hover over it */
+#itemTable .form-control:hover {
+    border-color: #bec2c6 !important;
+}
+    </style>
+</head>
+<body>
+        <div class="loaderx fullscreen generator-ui">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0 generator-ui no-print">
+        <!-- Navbar Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/?lang=en">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en">Home</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#tools">Templates & Tools</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#products">Databases</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#services">Services</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#contact">Contact</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/gb.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">English</a></li>
+                                    <li><a class="dropdown-item" href="https://barmga.com/invoice-generator-ar">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+        <div class="hero container-fluid py-5 header-bg mb-5 mt-5 generator-ui no-print">
+        <h1 class="display-4 fw-bold text-white mt-5">Invoice Generator</h1>
+        <p class="lead">Choose your prefered template, fill out invoice details then download or print the generated file!</p>
+    </div>
+
+    <div class="container-fluid"><div class="mt-5 text-center">
+        <h2 class="text-center generator-ui">Choose a Template</h2>
+</div>
+        
+        <div class="generator-ui card p-3 mb-4 bg-white zoom-out">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0 w-100">
+                    <label class="form-label fw-bold mb-2">Select Template:</label>
+                    <div class="row g-2">
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-1 p-2 border rounded shadow-sm text-center active" onclick="switchTemplate('1')" data-template-id="1">
+                                <h6 class="mb-1 fw-bold text-dark">Classic</h6>
+                                <div class="preview-box"><img src="images/template1.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-2 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('2')" data-template-id="2">
+                                <h6 class="mb-1 fw-bold text-dark">Modern</h6>
+                                <div class="preview-box"><img src="images/template2.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-3 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('3')" data-template-id="3">
+                                <h6 class="mb-1 fw-bold text-dark">Gradient</h6>
+                                <div class="preview-box"><img src="images/template3.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-4 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('4')" data-template-id="4">
+                                <h6 class="mb-1 fw-bold text-dark">Professional</h6>
+                                <div class="preview-box"><img src="images/template4.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button style="display: none;" class="btn btn-lg btn-success shadow-lg mt-3 mt-md-0 ms-md-3" onclick="document.querySelector('.ad-horizontal').scrollIntoView({ behavior: 'smooth' });">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+</svg>
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+<div class="container-fluid py-2 text-center"><h2 class="text-center generator-ui">Enter Invoice Details</h2>
+        <small class="text-center generator-ui">You can keep Unnecessary fields empty. </small>
+</div>
+
+    <main class="page-wrapper">
+
+        <aside class="ad-vertical left-ad me-4 no-print" data-nosnippet>
+            <a href="https://barmga.com/#products" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card barmga-db-ad">
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H19V8H5M5,14V18H19V14H5Z" /></svg>
+                    </div>
+                    <h5 style="color: white !important;">E-commerce & B2B Databases</h5>
+                    <p>Power your business with ready-to-use product & marketing data.</p>
+                    <span class="ad-cta">Explore Now</span>
+                </div>
+            </a>
+        </aside>
+
+        <div class="main-content">
+            
+            <div class="generator-ui container-fluid">
+                <div class="row gx-4">
+                <div class="col-lg-5">
+                    <div class="card p-4">
+                        <h5 class="card-title text-primary mb-3">Invoice Details</h5>
+
+                        <div class="mb-3">
+                            <label for="invoiceNumber" class="form-label">Invoice Number</label>
+                            <input type="text" class="form-control" id="invoiceNumber" value="" oninput="updateInvoice()">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="issueDate" class="form-label">Issue Date</label>
+                                <input type="date" class="form-control" id="issueDate" oninput="updateInvoice()">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dueDate" class="form-label">Due Date</label>
+                                <input type="date" class="form-control" id="dueDate" oninput="updateInvoice()">
+                            </div>
+                        </div>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">Business Details (Sender)</h5>
+                        <div class="mb-3">
+                            <input type="text" class="form-control mb-2" id="senderName" placeholder="Company Name" value="" oninput="updateInvoice()">
+                            <textarea class="form-control mb-2" id="senderAddress" placeholder="Address" rows="2" oninput="updateInvoice()"></textarea>
+                            <input type="email" class="form-control mb-2" id="senderEmail" placeholder="Email" value="" oninput="updateInvoice()">
+                            <input type="tel" class="form-control mb-2" id="senderPhone" placeholder="Phone" value="" oninput="updateInvoice()">
+                            
+                            <input type="text" class="form-control mb-2" id="senderVat" placeholder="VAT/Tax ID (Optional)" oninput="updateInvoice()">
+
+                            <label for="senderLogoFile" class="form-label mt-2">Company Logo (Upload Image)</label>
+                            <input type="file" class="form-control" id="senderLogoFile" accept="image/*" onchange="handleLogoUpload(this)">
+                        </div>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">Client Details (Recipient)</h5>
+                        <div class="mb-3">
+                            <input type="text" class="form-control mb-2" id="clientName" placeholder="Client Name" value="" oninput="updateInvoice()">
+                            <textarea class="form-control mb-2" id="clientAddress" placeholder="Address" rows="2" oninput="updateInvoice()"></textarea>
+                            <input type="email" class="form-control mb-2" id="clientEmail" placeholder="Email" value="" oninput="updateInvoice()">
+                        </div>
+                        
+                        <h5 class="card-title text-primary mt-3 mb-3">Invoice Notes/Terms</h5>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="invoiceNotes" placeholder="Payment terms, special instructions, etc." rows="3" oninput="updateInvoice()"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="card p-4">
+                        <h5 class="card-title text-primary mb-3">Invoice Items</h5>
+                        <table class="table align-middle" id="itemTable">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th style="width: auto;">Description</th>
+                                    <th style="width: 100px;">Qty</th>
+                                    <th style="width: 120px;">Unit Price</th>
+                                    <th style="width: 1px; display: none;">Line Total</th>
+                                    <th style="width: 50px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceItemRows">
+                                <tr class="invoice-item-row">
+                                    <td style="width: 50%;"><textarea class="form-control item-description" rows="1" placeholder="Product Name" oninput="updateInvoice()"></textarea></td>
+                                    <td><input type="number" class="form-control item-qty" value="1" min="1" oninput="calculateTotal()"></td>
+                                    <td><input type="number" class="form-control item-price" value="" placeholder="0" min="0.00" step="0.10" oninput="calculateTotal()"></td>
+                                    <td class="item-line-total fw-bold" style="display: none;">0</td>
+                                    <td><button class="btn btn-sm btn-outline-danger remove-item-btn" onclick="removeItem(this)">X</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <button class="btn btn-outline-primary w-100 mb-4" onclick="addItemRow()">+ Add Item</button>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">Financials</h5>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="currencySymbol" class="form-label">Currency Symbol/Text</label>
+                                <input type="text" class="form-control" id="currencySymbol" value="$" oninput="calculateTotal()">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="taxValue" class="form-label">Tax Value</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="taxValue" value="0" min="0" step="0.01" oninput="calculateTotal()">
+                                    <select class="form-select w-auto" id="taxMode" onchange="calculateTotal()">
+                                        <option value="rate">%</option>
+                                        <option value="fixed">Fixed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="discountValue" class="form-label">Discount Value</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="discountValue" value="0" min="0" step="0.01" oninput="calculateTotal()">
+                                    <select class="form-select w-auto" id="discountMode" onchange="calculateTotal()">
+                                        <option value="rate">%</option>
+                                        <option value="fixed">Fixed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="parent-container mt-1 mb-4 no-print generator-ui">
+    <div class="row w-100 justify-content-center g-2">
+        <div class="col-12 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-primary shadow-lg no-print w-100" onclick="exportToPdf()">
+                Download Invoice (PDF)
+            </button>
+        </div>
+    </div>
+</div>
+            <hr class="my-2 generator-ui">
+
+            <div class="ad-horizontal generator-ui zoom-out mt-4" id="ad-horizontal-2">
+                <a href="https://barmga.com/company-website" target="_blank" rel="noopener noreferrer" class="cta-ad-card reversed-colors">
+                    <div class="cta-ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z" /></svg>
+                    </div>
+                    <div class="cta-ad-content">
+                        <h4>Need a website?</h4>
+                        <p class="mt-3">Give your company a strong digital presence!</p>
+                    </div>
+                    <div class="cta-ad-button">
+                        Get a Website
+                    </div>
+                </a>
+            </div>
+            <div id="invoice-preview" class="invoice-template-1">
+                
+                <div id="preview-header-bar" class="invoice-header-bar">
+                    INVOICE
+                </div>
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-sm-6">
+                        <img id="preview-logo" src="" alt="Company Logo" class="invoice-logo mb-3" style="display: none;" onerror="this.style.display='none'">
+                        
+                        <h1 id="preview-invoice-title" class="header-title mb-4">INVOICE</h1>
+                        
+                        <div class="invoice-metadata-inline">
+                            <div class="text-muted">
+                                Invoice N°: <span id="preview-invoice-number" class="fw-bold">INV-2025-001</span><br>
+                                Issue Date: <span id="preview-issue-date"></span><br>
+                                Due Date: <span id="preview-due-date"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                        <div class="header-block address-section">
+                            <h5 class="fw-bold mb-1" id="preview-sender-name">Apex Solutions LLC</h5>
+                            <small id="preview-sender-address" class="d-block">123 Tech Park, Silicon Valley, CA</small>
+                            <small id="preview-sender-vat" class="d-block fw-bold mt-1 text-muted" style="display: none;"></small>
+                            <small id="preview-sender-email" class="d-block"></small>
+                            <small id="preview-sender-phone" class="d-block"></small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="invoice-metadata-flex">
+                    <div class="metadata-item">
+                        Invoice #<br><span id="preview-invoice-number-flex" class="fw-bold">INV-2025-001</span>
+                    </div>
+                    <div class="metadata-item">
+                        Issue Date<br><span id="preview-issue-date-flex" class="fw-bold"></span>
+                    </div>
+                    <div class="metadata-item">
+                        Due Date<br><span id="preview-due-date-flex" class="fw-bold"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <p class="mb-1 text-muted fw-bold">BILL TO:</p>
+                        <h6 class="fw-bold" id="preview-client-name">Global Corp Inc.</h6>
+                        <small id="preview-client-address" class="d-block">456 Enterprise Way, New York, NY</small>
+                        <small id="preview-client-email" class="d-block">billing@globalcorp.com</small>
+                    </div>
+                </div>
+
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead class="bg-light">
+                            <tr>
+                                <th style="width: 50%;">Description</th>
+                                <th class="text-center">Qty</th>
+                                <th class="text-center">Unit Price</th>
+                                <th class="text-center">Line Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewItemRows">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-lg-5 col-md-7">
+                        <div class="total-summary-box p-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <span class="fw-bold" id="preview-subtotal">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Discount:</span> 
+                                <span class="text-danger" id="preview-discount">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tax:</span>
+                                <span class="text-success" id="preview-tax">$0.00</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between h4 mb-0 text-primary">
+                                <span>TOTAL DUE:</span>
+                                <span class="fw-bold" id="preview-total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notes-section mt-5 text-muted">
+                    <p class="fw-bold mb-1">Notes & Terms:</p>
+                    <p id="preview-notes">Payment is due within 7 days of the issue date. Thank you for choosing Apex Solutions.</p>
+                </div>
+
+<div class="parent-container mt-5 no-print generator-ui">
+    <div class="row w-100 justify-content-center g-2">
+        <div class="col-12 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-success shadow-lg no-print w-100" onclick="exportToPdf()">
+                Download Invoice (PDF)
+            </button>
+        </div>
+
+        <div class="col-12 mt-3 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-outline-success shadow-lg **mt-2** no-print w-100" onclick="document.querySelector('#invoice-preview .col-lg-5.col-md-7').setAttribute('class','col-5 togetback');window.print();  document.querySelector('#invoice-preview .col-5.togetback').setAttribute('class','col-lg-5 col-md-7');">
+                <i class="bi bi-print me-2"></i>
+                Print Invoice
+            </button>
+        </div>
+    </div>
+</div>
+            </div>
+            </div>
+        <aside class="ad-vertical right-ad ms-4 no-print" data-nosnippet>
+            <a href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card wabarmga-wa-ad">
+                    <div class="ad-badge">FREE</div>
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" /></svg>
+                    </div>
+                    <h5>Free WhatsApp Automation</h5>
+                    <p>Send bulk messages directly from your PC. No limits, completely free!</p>
+                    <span class="ad-cta">Download Now</span>
+                </div>
+            </a>
+        </aside>
+
+    </main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('issueDate').value = today;
+
+        const nextWeek = new Date();
+        nextWeek.setDate(nextWeek.getDate());
+        document.getElementById('dueDate').value = nextWeek.toISOString().split('T')[0];
+
+        updateInvoice();
+        calculateTotal();
+        switchTemplate('1'); // Initialize template 1 and set active card
+    });
+
+    /**
+     * Converts the uploaded logo image file into a Base64 URL and updates the preview.
+     * @param {HTMLInputElement} input - The file input element.
+     */
+    function handleLogoUpload(input) {
+        const logoEl = document.getElementById('preview-logo');
+        logoEl.style.display = 'none';
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                logoEl.src = e.target.result;
+                logoEl.style.display = 'inline-block';
+                updateInvoice(); // Trigger update for Template 4 logic
+            };
+            reader.onerror = function() {
+                logoEl.src = '';
+                logoEl.style.display = 'none';
+                updateInvoice();
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            logoEl.src = '';
+            logoEl.style.display = 'none';
+            updateInvoice();
+        }
+    }
+
+    /**
+     * Clones the last item row and appends it to the table.
+     */
+    function addItemRow() {
+        const tableBody = document.getElementById('invoiceItemRows');
+        // Clone the last existing row 
+        const existingRows = tableBody.querySelectorAll('.invoice-item-row');
+        if (existingRows.length === 0) return; // Should not happen if initialized correctly
+
+        const templateRow = existingRows[existingRows.length - 1];
+        
+        const newRow = templateRow.cloneNode(true);
+        newRow.classList.remove('d-none');
+        
+        // Clear inputs in the new row
+        newRow.querySelector('.item-description').value = '';
+        newRow.querySelector('.item-qty').value = 1;
+        newRow.querySelector('.item-price').value = 0.00;
+        newRow.querySelector('.item-line-total').textContent = '0.00';
+        
+        // Re-attach event listeners to the new row inputs
+        newRow.querySelectorAll('.item-price,.item-qty').forEach(input => {
+            input.oninput = calculateTotal;
+        });
+        newRow.querySelectorAll('.item-description').forEach(input => {
+            input.oninput = updateInvoice;
+        });
+        tableBody.appendChild(newRow);
+        calculateTotal();
+    }
+
+    /**
+     * Removes the parent row of the clicked button.
+     * @param {HTMLElement} btn - The remove button element.
+     */
+    function removeItem(btn) {
+        const row = btn.closest('.invoice-item-row');
+        if (document.querySelectorAll('.invoice-item-row').length > 1) {
+            row.remove();
+            calculateTotal();
+        } else {
+            console.warn("Cannot remove the last item row.");
+        }
+    }
+
+    /**
+     * Handles all real-time calculations (line totals, subtotal, tax, and grand total) 
+     * with support for fixed or rate-based tax/discount.
+     */
+    function calculateTotal() {
+        const itemRows = document.querySelectorAll('#invoiceItemRows .invoice-item-row');
+        let subtotal = 0;
+        const previewRowsContainer = document.getElementById('previewItemRows');
+        previewRowsContainer.innerHTML = '';
+
+        itemRows.forEach(row => {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            const descInput = row.querySelector('.item-description');
+            
+            const qty = parseFloat(qtyInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+
+            // 1. Calculate Line Total
+            const lineTotal = qty * price;
+            subtotal += lineTotal;
+
+            row.querySelector('.item-line-total').textContent = lineTotal.toFixed(2);
+
+            // 2. Update Invoice Preview Item Rows
+            const previewRow = document.createElement('tr');
+            previewRow.innerHTML = `
+                <td>${descInput.value || 'N/A'}</td>
+                <td class="text-center">${qty}</td>
+                <td class="text-center">${document.getElementById('currencySymbol').value}${price.toFixed(2)}</td>
+                <td class="text-center fw-bold">${document.getElementById('currencySymbol').value}${lineTotal.toFixed(2)}</td>
+            `;
+            previewRowsContainer.appendChild(previewRow);
+        });
+
+        // --- New Financial Variable Setup ---
+        const currency = document.getElementById('currencySymbol').value || '$';
+        const taxValue = parseFloat(document.getElementById('taxValue').value) || 0;
+        const taxMode = document.getElementById('taxMode').value; // 'rate' or 'fixed'
+        const discountValue = parseFloat(document.getElementById('discountValue').value) || 0;
+        const discountMode = document.getElementById('discountMode').value; // 'rate' or 'fixed'
+        
+        const totalSummaryBox = document.querySelector('.total-summary-box');
+
+        // 3. Apply Discount
+        let discountAmount = 0;
+        let discountDisplayLabel;
+
+        if (discountMode === 'rate') {
+            discountAmount = subtotal * (discountValue / 100);
+            discountDisplayLabel = `Discount (${discountValue}%)`;
+        } else { // fixed
+            discountAmount = discountValue;
+            discountDisplayLabel = 'Discount (Fixed)';
+        }
+        discountAmount = Math.min(discountAmount, subtotal); // Cap discount at subtotal
+
+        const afterDiscount = subtotal - discountAmount;
+
+        // 4. Apply Tax
+        let taxAmount = 0;
+        let taxDisplayLabel;
+
+        if (taxMode === 'rate') {
+            // Tax applied to the subtotal *after* discount
+            taxAmount = afterDiscount * (taxValue / 100);
+            taxDisplayLabel = `Tax (${taxValue}%)`;
+        } else { // fixed
+            taxAmount = taxValue;
+            taxDisplayLabel = 'Tax (Fixed)';
+        }
+        
+        const grandTotal = afterDiscount + taxAmount;
+
+        // 5. Update Preview Totals (using currency symbol)
+        document.getElementById('preview-subtotal').textContent = `${currency}${subtotal.toFixed(2)}`;
+        
+        // Update Discount Display Label
+        totalSummaryBox.querySelector('.d-flex:nth-child(2) span:first-child').innerHTML = discountDisplayLabel;
+        document.getElementById('preview-discount').textContent = `-${currency}${discountAmount.toFixed(2)}`;
+        
+        // Update Tax Display Label
+        totalSummaryBox.querySelector('.d-flex:nth-child(3) span:first-child').innerHTML = taxDisplayLabel;
+        document.getElementById('preview-tax').textContent = `${currency}${taxAmount.toFixed(2)}`;
+        
+        document.getElementById('preview-total').textContent = `${currency}${grandTotal.toFixed(2)}`;
+    }
+
+    /**
+     * Binds all input fields from Generator UI to the Invoice Preview.
+     */
+    function updateInvoice() {
+        const invoiceNumber = document.getElementById('invoiceNumber').value;
+        
+        const formatDate = (dateInputId) => {
+            const dateVal = document.getElementById(dateInputId).value;
+            if (!dateVal) return 'N/A';
+            const dateObj = new Date(dateVal + 'T00:00:00'); 
+            return dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        };
+
+        const issueDateFormatted = formatDate('issueDate');
+        const dueDateFormatted = formatDate('dueDate');
+
+        // --- Update Metadata ---
+        document.getElementById('preview-invoice-number').textContent = invoiceNumber;
+        document.getElementById('preview-issue-date').textContent = issueDateFormatted;
+        document.getElementById('preview-due-date').textContent = dueDateFormatted;
+        
+        // For Template 4 flex layout
+        document.getElementById('preview-invoice-number-flex').textContent = invoiceNumber;
+        document.getElementById('preview-issue-date-flex').textContent = issueDateFormatted;
+        document.getElementById('preview-due-date-flex').textContent = dueDateFormatted;
+
+        // --- Update Sender Details ---
+        const senderNameEl = document.getElementById('preview-sender-name');
+        const logoEl = document.getElementById('preview-logo');
+        const vatEl = document.getElementById('preview-sender-vat');
+        const senderVatVal = document.getElementById('senderVat').value;
+        const senderEmailVal = document.getElementById('senderEmail').value; // New
+        const senderPhoneVal = document.getElementById('senderPhone').value; // New
+        const previewSenderEmailEl = document.getElementById('preview-sender-email'); // New
+        const previewSenderPhoneEl = document.getElementById('preview-sender-phone'); // New
+
+        // Logo Visibility check (since it's now handled by file input, we check if it has a src)
+        const isLogoVisible = logoEl.src && logoEl.style.display !== 'none';
+
+        // VAT Number Update
+        if (senderVatVal) {
+            vatEl.innerHTML = `VAT/Tax ID: ${senderVatVal}`;
+            vatEl.style.display = 'block';
+        } else {
+            vatEl.innerHTML = '';
+            vatEl.style.display = 'none';
+        }
+
+        senderNameEl.textContent = document.getElementById('senderName').value;
+        document.getElementById('preview-sender-address').innerHTML = document.getElementById('senderAddress').value.replace(/\n/g, '<br>');
+        
+        // Conditional Sender Email Display (Modified)
+        if (senderEmailVal.trim()) {
+            previewSenderEmailEl.textContent = 'Email: ' + senderEmailVal;
+            previewSenderEmailEl.style.display = 'block';
+        } else {
+            previewSenderEmailEl.textContent = '';
+            previewSenderEmailEl.style.display = 'none';
+        }
+
+        // Conditional Sender Phone Display (Modified)
+        if (senderPhoneVal.trim()) {
+            previewSenderPhoneEl.textContent = 'Phone: ' + senderPhoneVal;
+            previewSenderPhoneEl.style.display = 'block';
+        } else {
+            previewSenderPhoneEl.textContent = '';
+            previewSenderPhoneEl.style.display = 'none';
+        }
+
+
+        // --- Update Client Details ---
+        document.getElementById('preview-client-name').textContent = document.getElementById('clientName').value;
+        document.getElementById('preview-client-address').innerHTML = document.getElementById('clientAddress').value.replace(/\n/g, '<br>');
+        document.getElementById('preview-client-email').textContent = document.getElementById('clientEmail').value;
+        
+        // --- Update Notes/Terms (Modified to hide container if empty) ---
+        const notesVal = document.getElementById('invoiceNotes').value.trim();
+        const notesContainer = document.querySelector('.notes-section');
+        const previewNotesEl = document.getElementById('preview-notes');
+
+        if (notesVal) {
+            notesContainer.style.display = 'block';
+            previewNotesEl.textContent = notesVal;
+        } else {
+            notesContainer.style.display = 'none';
+            previewNotesEl.textContent = '';
+        }
+
+        // --- Template 1 & 4 Title/Logo Visibility Logic ---
+        const currentTemplate = document.querySelector('.template-card.active').getAttribute('data-template-id');
+        const titleEl = document.getElementById('preview-invoice-title');
+        
+        if ((currentTemplate === '4' || currentTemplate === '1') && isLogoVisible) {
+            // Templates 1 and 4: Hide title if logo is present
+            titleEl.style.display = 'none';
+        } else if (currentTemplate === '2' || currentTemplate === '3') {
+            // Templates 2 and 3: Always hide this title (they use the full-width bar title)
+            titleEl.style.display = 'none';
+        } else {
+            // Default: Show the title. This covers T1/T4 when no logo is present.
+            titleEl.style.display = 'inline-block';
+        }
+
+        calculateTotal(); // Recalculate and refresh item rows
+    }
+
+    /**
+     * Switches the CSS class on the invoice preview container to change the template style.
+     * Also handles setting the active state on the template selector cards.
+     * @param {string} templateId - The ID of the template to activate (1, 2, 3, or 4).
+     */
+    function switchTemplate(templateId) {
+        const preview = document.getElementById('invoice-preview');
+        // Remove existing template classes
+        preview.className = ''; 
+        preview.classList.add('invoice-template-' + templateId);
+        
+        // --- Update Card Active State ---
+        document.querySelectorAll('.template-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        const activeCard = document.querySelector(`.template-card[data-template-id="${templateId}"]`);
+        if (activeCard) {
+            activeCard.classList.add('active');
+        }
+        // ---------------------------------
+
+        // Toggle visibility for T4 metadata layout
+        const isFlexVisible = templateId === '4';
+        document.querySelector('.invoice-metadata-flex').style.display = isFlexVisible ? 'flex' : 'none';
+        document.querySelector('.invoice-metadata-inline').style.display = isFlexVisible ? 'none' : 'block';
+
+        // Ensure consistent padding and run update to apply T4 specific logic
+        preview.classList.remove('p-3', 'p-md-5', 'p-5');
+        preview.classList.add('p-5'); 
+        
+        updateInvoice();
+    }
+function cleanContainer(container) {
+
+
+    if (!container) {
+        console.error(`Element with selector "${selector}" not found.`);
+        return;
+    }
+
+    // 2. Select all matching elements
+    // querySelectorAll returns a static NodeList, so it is safe to loop through it while removing items.
+    const elementsToRemove = container.querySelectorAll('.generator-ui, .no-print');
+
+    // 3. Iterate using a standard for loop
+    for (let i = 0; i < elementsToRemove.length; i++) {
+        elementsToRemove[i].remove();
+    }
+    return container;
+}
+function removeStyles(element) {
+  if (!element) return;
+  // Save current styles so we can restore later
+  element.dataset.originalBorderRadius = element.style.borderRadius || '';
+  element.dataset.originalBoxShadow = element.style.boxShadow || '';
+
+  // Remove styles
+  element.style.borderRadius = '0';
+  element.style.boxShadow = 'none';
+}
+
+// Function to restore styles
+function restoreStyles(element) {
+  if (!element) return;
+  element.style.borderRadius = element.dataset.originalBorderRadius || '8px';
+  element.style.boxShadow = element.dataset.originalBoxShadow || '0 0 20px rgba(0, 0, 0, 0.1)';
+}
+async function exportToPdf() {
+  const element = document.querySelector("#invoice-preview");
+  if (!element) {
+    console.error("Element #invoice-preview not found");
+    return;
+  }
+
+  // Save original styles
+  const originalWidth = element.style.width;
+  const originalMaxWidth = element.style.maxWidth;
+
+  // Force element to render at 1100px width
+  element.style.width = "800px";
+  element.style.maxWidth = "800px";
+  element.querySelector('[class="col-lg-5 col-md-7"]').setAttribute('class','col-5 togetback');
+  element.querySelectorAll('.generator-ui, .ad-vertical, .ad-horizontal, .no-print').forEach(el => {
+        el.style.display = 'none';
+    });
+    removeStyles(element)
+    // Remove border and background before capture
+element.dataset.originalBorder = element.style.border || '';
+element.dataset.originalBackground = element.style.background || '';
+
+element.style.border = 'none';
+element.style.background = '#ffffff'; // or transparent if you want no background
+
+  // Capture with html2canvas
+  const canvas = await html2canvas(element, {
+    scale: 2,
+    useCORS: true
+  });
+element.style.border = element.dataset.originalBorder || 'none';
+element.style.background = element.dataset.originalBackground || '#ffffff';
+
+  // Restore original styles
+  element.style.width = originalWidth;
+  element.style.maxWidth = originalMaxWidth;
+  element.querySelector('[class="col-5 togetback"]').setAttribute('class','col-lg-5 col-md-7')
+  element.querySelectorAll('.generator-ui, .ad-vertical, .ad-horizontal, .no-print').forEach(el => {
+        el.style.display = 'block';
+    });
+    restoreStyles(element)
+  const imgData = canvas.toDataURL("image/png");
+  !location.hostname.includes("\x62\x61\x72\x6d\x67\x61\x2e\x63\x6f\x6d") ? (document.body.innerHTML="",location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x62\x61\x72\x6d\x67\x61\x2e\x63\x6f\x6d",FAIL) : 0;  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const imgWidth = pageWidth;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  if (imgHeight > pageHeight) {
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    while (heightLeft > 0) {
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      if (heightLeft > 0) {
+        pdf.addPage();
+        position = -(imgHeight - heightLeft);
+      }
+    }
+  } else {
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+  }
+
+  pdf.save("invoice.pdf");
+}
+
+
+</script>
+
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body scrollable-body">
+                    <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com/?lang=en">barmga.com</a>.</p>
+
+                    <h3>1. Introduction</h3>
+                    <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+                    <h3>2. Intellectual Property Rights</h3>
+                    <p>Unless otherwise stated, Barmga and/or its licensors own the intellectual property rights for all material on Barmga. All intellectual property rights are reserved. You may access this from Barmga for your own personal use subjected to restrictions set in these terms and conditions.</p>
+
+                    <h3>3. Restrictions</h3>
+                    <p>You are specifically restricted from all of the following:</p>
+                    <ul>
+                        <li>Publishing any website material in any other media;</li>
+                        <li>Selling, sublicensing, and/or otherwise commercializing any website material;</li>
+                        <li>Publicly performing and/or showing any website material;</li>
+                        <li>Using this website in any way that is or may be damaging to this website;</li>
+                        <li>Using this website in any way that impacts user access to this website;</li>
+                        <li>Using this website contrary to applicable laws and regulations, or in any way may cause harm to the website, or to any person or business entity;</li>
+                        <li>Engaging in any data mining, data harvesting, data extracting, or any other similar activity in relation to this website;</li>
+                        <li>Using our free or paid products in any political activity or promoting content that contradicts Islamic laws and regulations.</li>
+                    </ul>
+
+                    <h3>4. Your Privacy</h3>
+                    <p>All your information are neither sold nor shared with thirdparties. All your information is collected through our platform or hotmart.</p>
+
+                    <h3>5. No warranties</h3>
+                    <p>This website is provided "as is," with all faults, and Barmga express no representations or warranties, of any kind related to this website or the materials contained on this website. Also, nothing contained on this website shall be interpreted as advising you.</p>
+
+                    <h3>6. Limitation of liability</h3>
+                    <p>In no event shall Barmga, nor any of its officers, directors, and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Barmga, including its officers, directors, and employees shall not be held liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p>
+
+                    <h3>7. Indemnification</h3>
+                    <p>You hereby indemnify to the fullest extent Barmga from and against any and/or all liabilities, costs, demands, causes of action, damages, and expenses arising in any way related to your breach of any of the provisions of these terms.</p>
+
+                    <h3>8. Severability</h3>
+                    <p>If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+
+                    <h3>9. Variation of Terms</h3>
+                    <p>Barmga is permitted to revise these terms at any time as it sees fit, and by using this website you are expected to review these terms on a regular basis.</p>
+
+                    <h3>10. Assignment</h3>
+                    <p>The Barmga is allowed to assign, transfer, and subcontract its rights and/or obligations under these terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these terms.</p>
+
+                    <h3>11. Entire Agreement</h3>
+                    <p>These terms constitute the entire agreement between Barmga and you in relation to your use of this website and supersede all prior agreements and understandings.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Business Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+
+                    <!-- ADDTOOLSEN -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;Website Template Editor
+                        </a>
+                    </div>
+                    <p class="emailx">Edit & update your web templates in few clicks! Upload your company & products information in few clicks.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto; font-weight: 600;"></i>
+                    <hr>
+
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor" target="_blank">
+                            <i class="fa fa-map-marker"></i>&nbsp;&nbsp;City Extractor Tool
+                        </a>
+                    </div>
+                    <p class="emailx">Extract city names from google maps addresses then add a city name column to your excel file!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager" target="_blank">
+                            <i class="fa fa-group"></i>&nbsp;&nbsp;Contacts Manager
+                        </a>
+                    </div>
+                    <p class="emailx">Extract email addresses & phone numbers from several files, then split them to multiple parts before launching your marketing campaigns!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;Bulk Email Validator
+                        </a>
+                    </div>
+                    <p class="emailx">Clean your email lists from inactive business email addresses, for a better email deliverability rate!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | Gmail Sender
+                        </a>
+                    </div>
+                    <p class="emailx">Automatically send individual messages to bulk email addresses using your Gmail account. This tool works with the Microsoft Edge browser on a computer.</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Email Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="emailx">Turn Email addresses to links and send messages easily from Mobile browser & Gmail mobile app in few clicks!</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | Whatsapp Sender
+                        </a>
+                    </div>
+                    <p class="whatsappx">Send automated Whatsapp messages using Wabarmga. This tool can be used with chrome browser on PC.</p>
+                    <img src="img/bot.webp" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4一层层px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Whatsapp Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="whatsappx">Turn Whatsapp phone numbers to links and send messages easily from Mobile browser & Whatsapp app in few clicks!</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+            <!-- Contact Start -->
+        <div class="container-fluid py-4 no-print generator-ui" id="contact">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-title position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                            <h6 class="position-relative d-inline text-primary ps-4">Contact Us</h6>
+                            <h2 class="mt-2">Contact For Any Query</h2>
+                            <br>
+                        </div>
+                        <div class="wow fadeInUp card p-4" data-wow-delay="0.2s">
+                            <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">We accept offline payments through western union, stc pay, bank transfer and usdt.</small>
+                            <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
+                            <form id="your-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-name-input" placeholder="Your Name">
+                                            <label for="name">Your Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="your-email-input" placeholder="Your Email">
+                                            <label for="email">Your Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-phone-input" placeholder="Phone">
+                                            <label for="phone">Phone</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-subject-input" placeholder="Subject">
+                                            <label for="subject">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a message here" id="your-message-input" style="height: 150px"></textarea>
+                                            <label for="message">Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" id="submit" type="submit">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+    <!-- Footer Start -->
+    <div class="no-print generator-ui container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Get In Touch</h5>
+                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                                <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                    <a class="btn btn-link" href="https://barmga.com/#contact">Contact Us</a>
+                    <p><i class="fa fa-envelope me-3"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Our Company</h5>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en">Home</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#about">About Us</a>
+                    <a class="btn btn-link" href="https://barmga.com/faq">FAQ</a>
+                    <a class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Our Activities</h5>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#services">Services</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#products">Databases</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#tools">Business Tools</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter for lastest offers & updates.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="https://barmga.com/?lang=en">Barmga 2025</a>, All Right Reserved.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script>
+        function showonly(classname) {
+            if (classname == 'all') {
+                var wapart = $('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+                var mailpart = $('#optionsmodalemail .modal-body')[0].innerHTML
+                var otherpart = $('#optionsmodalother .modal-body')[0].innerHTML
+                $('#optionsmodal .modal-body')[0].innerHTML = wapart + "<hr>" + mailpart
+                $('#optionsmodal').modal('show')
+            } else {
+                $('#optionsmodal' + classname).modal('show')
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+</body>
+</html>

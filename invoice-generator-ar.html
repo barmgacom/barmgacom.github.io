@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد الفواتير المجاني</title>
+    <!-- Standard Bootstrap (Not RTL build, per request) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    <style>
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+
+        .how-it-works {
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+
+        <style>
+             .hidden{display: none !important;}
+        .tool>*,
+        .lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                direction: rtl;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'El Messiri', sans-serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+
+        /*** Section Title ***/
+        .section-title-right::before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 4px;
+            bottom: 0;
+            right: 0;
+            background: var(--dark);
+        }
+
+        .section-title-right::after {
+            position: absolute;
+            content: "";
+            width: 4px;
+            height: 4px;
+            bottom: 0;
+            right: 50px;
+            background: var(--dark);
+        }
+
+        .section-title-right.text-center::before {
+            right: 50%;
+            margin-right: -25px;
+        }
+
+        .section-title-right.text-center::after {
+            right: 50%;
+            margin-right: 25px;
+        }
+
+        .section-title-right h6::before,
+        .section-title-right h6::after {
+            position: absolute;
+            content: "";
+            width: 10px;
+            height: 10px;
+            top: 2px;
+            right: 0;
+            background: rgba(33, 110, 177, 0.5);
+        }
+
+        .section-title-right h6::after {
+            top: 5px;
+            right: 3px;
+        }
+
+        .footer .btn.btn-linkx {
+            display: block;
+            margin-bottom: 10px;
+            padding: 0;
+            text-align: right;
+            color: var(--light);
+            font-weight: normal;
+            transition: .3s;
+        }
+
+        .footer .btn.btn-linkx::before {
+            position: relative;
+            content: "•";
+            font-family: "Font Awesome 4 Free";
+            font-weight: 900;
+            margin-left: 10px;
+        }
+
+        .footer .btn.btn-linkx:hover {
+            letter-spacing: 1px;
+            box-shadow: none;
+        }
+
+        input[type="text"]:-moz-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]:-ms-input-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]::-webkit-input-placeholder {
+            text-align: right !important;
+        }
+
+        h1,h2,h3,h4,.h4,body{
+            font-family: 'El Messiri', sans-serif !important;
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Blue */
+            --secondary-color: #1f2937; /* Dark Gray */
+            --white: #ffffff;
+            --dark-gray: #4b5563;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Global Font & Direction Update for Arabic */
+        body {
+            background-color: #f8f9fa;
+            text-align: right; /* Force right alignment */
+        }
+
+        /* --- RTL Overrides for Standard Bootstrap --- */
+        
+        /* Fix Input Groups (Rounded corners are wrong in RTL with standard BS) */
+        .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: var(--bs-border-radius);
+            border-bottom-left-radius: var(--bs-border-radius);
+            margin-left: 0;
+            margin-right: -1px;
+        }
+        .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu), 
+        .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: var(--bs-border-radius);
+            border-bottom-right-radius: var(--bs-border-radius);
+        }
+
+        /* Fix Table Headers */
+        .table th, .table td {
+            text-align: right;
+        }
+        .table th.text-center, .table td.text-center {
+            text-align: center;
+        }
+        .table th.text-end, .table td.text-end {
+            text-align: left; /* In RTL, 'end' alignment visually means Left */
+        }
+
+        /* Custom Margins for RTL */
+        .ms-3 { margin-right: 1rem !important; margin-left: 0 !important; }
+        .me-3 { margin-left: 1rem !important; margin-right: 0 !important; }
+        .ms-4 { margin-right: 1.5rem !important; margin-left: 0 !important; }
+        .me-4 { margin-left: 1.5rem !important; margin-right: 0 !important; }
+        
+        /* -------------------------------------------- */
+
+@media (max-width: 992px) {        .zoom-out,#invoice-preview,.ad-horizontal {
+  transform: scale(0.9); 
+  /* transform-origin: top left; */ 
+}}
+@media (max-width: 756px) { .ad-horizontal p, .ad-horizontal .cta-ad-button{ font-size: 95% !important; } 
+ .hero h1{ font-size: 1.8rem !important; }
+ }
+@media (max-width: 500px) {
+        /* 1. Hide the large icon to save vertical space */
+        .ad-horizontal .cta-ad-icon {
+            display: none;
+        }
+
+        /* 2. Configure the Card Layout */
+        .cta-ad-card {
+            flex-direction: column !important; /* Stack items vertically */
+            text-align: center !important;     /* Center the text */
+            padding: 20px 15px !important;     /* Comfortable padding */
+            align-items: center;
+            gap: 15px; /* Space between text and button */
+        }
+
+        /* 3. Text Styling */
+        .cta-ad-content {
+            width: 100%;
+        }
+
+        .cta-ad-content h4 {
+            font-size: 1.3rem; /* Slightly larger title */
+            margin-bottom: 8px !important;
+        }
+
+        .cta-ad-content p {
+            font-size: 0.95rem !important;
+            margin: 0 !important;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        /* 4. The Button: Full Width & Professional */
+        .cta-ad-button {
+            max-width: 250px;
+            width: 100%;          /* Stretch button across the card */
+            justify-content: center; /* Center text inside button */
+            margin: 0;
+            padding: 12px !important; /* Taller button for easier tapping */
+            font-size: 1.8rem !important;
+            border-radius: 8px;   /* Softer corners */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle lift */
+        }
+    }
+
+        /* Ad-Related CSS */
+        .page-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            padding: 35px 20px 0 20px; 
+            gap: 20px; 
+        }
+        .main-content { 
+            flex-grow: 1; 
+            max-width: 960px; 
+        }
+        .ad-vertical { 
+            width: 160px; 
+            flex-shrink: 0; 
+            margin-top: 2rem; 
+        }
+        
+        /* Position fixed for larger screens - Physically swap Left/Right for RTL */
+        @media (min-width: 1330px) { 
+            .ad-vertical.left-ad { right: 35px; left: auto; } 
+            .ad-vertical.right-ad { left: 35px; right: auto; }
+        }
+        
+        @media (max-width: 1200px) { 
+            .ad-vertical { 
+                display: none; 
+            } 
+        }
+
+        /* Vertical Ad Card Styles */
+        .vertical-ad-card { 
+            padding: 20px 15px; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--box-shadow); 
+            text-align: center; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .vertical-ad-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+        }
+        .vertical-ad-card .ad-icon { margin-bottom: 12px; }
+        .vertical-ad-card .ad-icon svg { width: 40px; height: 40px; }
+        .vertical-ad-card h5 { margin: 0 0 8px 0; font-size: 1rem; line-height: 1.3; }
+        .vertical-ad-card p { font-size: 0.75rem; line-height: 1.4; margin: 0 0 15px 0; opacity: 0.9; }
+        .vertical-ad-card .ad-cta { 
+            display: inline-block; 
+            padding: 8px 12px; 
+            border-radius: 5px; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            transition: background-color 0.3s ease; 
+        }
+        .ad-vertical a { text-decoration: none; }
+        .barmga-db-ad { 
+            background: linear-gradient(145deg, #2c3e50, #34495e); 
+            color: var(--white); 
+            border: 1px solid #4a6278; 
+        }
+        .barmga-db-ad .ad-icon svg { fill: #3498db; }
+        .barmga-db-ad .ad-cta { 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+        }
+        .barmga-db-ad:hover .ad-cta { background-color: #2980b9; }
+        .wabarmga-wa-ad { 
+            background: linear-gradient(145deg, #E8F5E9, #FFFFFF); 
+            color: #1E8E3E; 
+            border: 1px solid #A5D6A7; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .wabarmga-wa-ad h5 { color: #1B5E20; }
+        .wabarmga-wa-ad p { color: #388E3C; }
+        .wabarmga-wa-ad .ad-icon svg { fill: #25D366; }
+        .wabarmga-wa-ad .ad-cta { 
+            background-color: #4CAF50; 
+            color: var(--white); 
+        }
+        .wabarmga-wa-ad:hover .ad-cta { background-color: #43A047; }
+        .wabarmga-wa-ad .ad-badge { 
+            position: absolute; 
+            top: -1px; 
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 3px 10px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+        }
+        /* Adjusted for RTL */
+        [dir="rtl"] .wabarmga-wa-ad .ad-badge { right: -1px; left: auto; border-radius: 0 0 0 8px; }
+        
+        /* Horizontal Ad Card Styles */
+        .ad-horizontal { max-width: 728px; margin: 1rem auto; }
+        .main-content > .ad-horizontal:first-of-type { max-width: 860px; }
+        #ad-horizontal-2 { display: block; } 
+
+        .cta-ad-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 1.5rem; 
+            padding: 1.5rem 2rem; 
+            background: var(--white); 
+            color: var(--dark-gray); 
+            border-radius: var(--border-radius); 
+            text-decoration: none; 
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+            box-shadow: var(--box-shadow); 
+            border: 1px solid #e1e8ed; 
+        }
+        .cta-ad-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .cta-ad-icon svg { width: 48px; height: 48px; fill: var(--primary-color); }
+        .cta-ad-content { flex-grow: 1; }
+        
+        [dir="rtl"] .cta-ad-content { text-align: right; }
+
+        .cta-ad-content h4 { margin: 0 0 0.25rem 0; font-size: 1.4rem; color: var(--secondary-color); }
+        .cta-ad-content p { margin: 0; font-size: 0.95rem; opacity: 0.9; }
+        .cta-ad-button { 
+            flex-shrink: 0; 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: background-color 0.3s; 
+            text-align: center; 
+            white-space: nowrap; 
+        }
+        .cta-ad-card:hover .cta-ad-button { background-color: #2980b9; }
+        .cta-ad-card.reversed-colors { 
+            background: linear-gradient(135deg, #3498db, #2980b9); 
+            color: var(--white); 
+            border: none; 
+        }
+        .cta-ad-card.reversed-colors .cta-ad-icon svg { fill: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content h4 { color: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content p { color: var(--white); opacity: 0.9; }
+        .cta-ad-card.reversed-colors .cta-ad-button { 
+            background-color: var(--white); 
+            color: var(--primary-color); 
+        }
+        .cta-ad-card.reversed-colors:hover .cta-ad-button {
+            background-color: #f0f0f0;
+        }
+
+        .parent-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;   
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        /* Invoice Preview Styles */
+        #invoice-preview {
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 1123px; 
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out; 
+            text-align: right;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+
+        .pdf-export-mode {
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 auto !important;
+            min-height: 0 !important;
+            width: 100% !important; 
+            max-width: none !important; 
+            background-color: transparent !important;
+            direction: rtl !important; /* Enforce RTL in PDF */
+            text-align: right !important;
+        }
+
+        .invoice-logo {
+            max-height: 50px;
+            width: auto;
+            border-radius: 4px;
+            margin-left: 15px; /* Adjusted for RTL */
+            vertical-align: middle;
+        }
+        
+        .invoice-header-bar { display: none; } 
+        .invoice-metadata-flex { display: none; } 
+        .header-title-container { display: flex; align-items: center; } 
+
+        /* --- Template Card Styles --- */
+        .template-card {
+            transition: all 0.2s;
+            cursor: pointer;
+            border-width: 2px !important;
+            border-color: transparent !important; 
+        }
+        
+        .template-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+        }
+        .template-card.active {
+            border-color: #3b82f6 !important; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5) !important;
+        }
+
+        .preview-box {
+            height:  150px !important;
+            width: auto;
+            background-color: #f8f9fa;
+            margin: 0 auto;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            overflow: hidden;
+            position: relative;
+        }
+        .preview-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* Template Preview Visuals - Mirrored */
+        .preview-box-1::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; /* RTL */
+            width: 100%;
+            height: 5px;
+            background-color: #1e3a8a; 
+        }
+        .preview-box-2 {
+            background-color: #e0f2f1; 
+        }
+        .preview-box-2::before {
+            content: ' ';
+            position: absolute;
+            top: 0; right: 0; 
+            width: 100%;
+            height: 8px;
+            background-color: #0d9488; 
+        }
+        .preview-box-3::before {
+            content: ' ';
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(225deg, #3b82f6 0%, #60a5fa 100%); /* RTL Gradient Angle */
+            opacity: 0.3;
+        }
+        .preview-box-4 {
+            background-color: #1f2937; 
+        }
+        .preview-box-4::before {
+            content: ' ';
+            position: absolute;
+            bottom: 0; left: 0; /* RTL */
+            width: 40%;
+            height: 10px;
+            background-color: #34d399; 
+        }
+
+
+        /* --- Template 1: Classic Professional --- */
+        .invoice-template-1 { border: 1px solid #e0e0e0; padding: 50px !important; }
+        .invoice-template-1 .header-title {
+            color: #1e3a8a; 
+            border-bottom: 4px solid #1e3a8a; 
+            padding-bottom: 15px;
+            margin-bottom: 2rem !important;
+            font-size: 2.5rem;
+        }
+        .invoice-template-1 .table th { background-color: #f2f2f7; color: #495057; border-bottom: 2px solid #dee2e6; }
+        .invoice-template-1 .table tbody tr:nth-child(even) { background-color: #fafafa; }
+        .invoice-template-1 .total-summary-box { border: 1px solid #ced4da; }
+        .invoice-template-1 .total-summary-box .h4 { color: #1e3a8a !important; }
+        .invoice-template-1 .table { border: 1px solid #dee2e6; }
+
+
+        /* --- Template 2: Modern Block --- */
+        .invoice-template-2 .header-title { display: none; } 
+        .invoice-template-2 .invoice-header-bar {
+            display: block;
+            background-color: #0d9488; 
+            color: white;
+            padding: 20px 30px;
+            margin: -30px -30px 30px -30px; 
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .invoice-template-2 .address-section {
+            padding: 15px;
+            background-color: #e0f2f1; 
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .invoice-template-2 .address-section h6, .invoice-template-2 .address-section small { color: #0d9488; }
+        .invoice-template-2 .table th { background-color: #0d9488; color: white; border-color: #0d9488; }
+        .invoice-template-2 .table tbody tr:nth-child(even) { background-color: #f0fdfa; }
+        .invoice-template-2 .total-summary-box {
+            border-right: 5px solid #0d9488; /* RTL Border */
+            border-left: none;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Template 3: Corporate Gradient --- */
+        .invoice-template-3 { border: 1px solid #ced4da; border-radius: 12px; }
+        .invoice-template-3 .header-title { display: none; } 
+        .invoice-template-3 .invoice-header-bar {
+            display: block;
+            background: linear-gradient(225deg, #3b82f6 0%, #60a5fa 100%); /* RTL Gradient */
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px 12px 0 0;
+            margin: -30px -30px 30px -30px; 
+            font-size: 2.2rem;
+        }
+        .invoice-template-3 .table { border: none; }
+        .invoice-template-3 .table th { background-color: transparent; border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .invoice-template-3 .table td { border-top: 1px solid #e0e0e0; }
+        .invoice-template-3 .total-summary-box {
+            border: 3px solid #3b82f6;
+            background-color: #f7faff;
+            border-radius: 12px;
+        }
+        .invoice-template-3 .notes-section {
+            padding-top: 20px;
+            border-top: 1px dashed #ced4da;
+        }
+
+        /* --- Template 4: Financial Focus --- */
+        .invoice-template-4 { background-color: #f4f4f4; }
+        .invoice-template-4 .header-title { 
+            display: inline-block !important; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: #000;
+            border-bottom: none !important; 
+            padding-bottom: 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .invoice-template-4 .invoice-header-bar { display: none !important; }
+        .invoice-template-4 .invoice-metadata-inline { display: none; } 
+        .invoice-template-4 .invoice-metadata-flex { 
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #adb5bd;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .invoice-template-4 .metadata-item {
+            display: block;
+            width: 33%;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .invoice-template-4 .metadata-item .fw-bold { color: #000; font-size: 1.1rem; }
+        .invoice-template-4 .table { border: none; }
+        .invoice-template-4 .table th { background-color: transparent; color: #495057; border-bottom: 2px solid #000; }
+        .invoice-template-4 .table td { border-top: none; border-bottom: 1px dashed #ced4da; }
+        .invoice-template-4 .total-summary-box {
+            background-color: #1f2937; 
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .invoice-template-4 .total-summary-box span, .invoice-template-4 .total-summary-box hr { color: white !important; border-top-color: rgba(255, 255, 255, 0.2) !important; }
+        .invoice-template-4 .total-summary-box .h4 { font-size: 1.8rem; color: #34d399 !important; } 
+
+        /* === Custom Changes for Invoice Items Table === */
+        #itemTable th:nth-child(4), 
+        #itemTable td:nth-child(4) { 
+            display: none;
+        }
+
+        #itemTable th:nth-child(1) { 
+            width: auto; 
+        }
+        #itemTable td:nth-child(1) { 
+            width: 50%; 
+        }
+        
+@media print {
+    /* 1. Hiding UI elements */
+    .generator-ui, 
+    .no-print, 
+    .ad-vertical, 
+    .ad-horizontal,
+    .btn,
+    .navbar, 
+    .footer { 
+        display: none !important; 
+    }
+
+    /* 2. CRITICAL FIX: Force Background Colors & Gradients */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* 3. Page Setup */
+    @page {
+        margin: 0; /* Removes default browser margin */
+        size: auto;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: white !important;
+    }
+
+    /* 4. Invoice Layout Corrections for Print */
+    .page-wrapper { 
+        padding: 0 !important; 
+        display: block !important; /* Disables flexbox to avoid layout breaks */
+    }
+
+    .main-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    #invoice-preview {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10mm !important; /* Add padding so text doesn't touch edges */
+        box-shadow: none !important; 
+        border: none !important; 
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* 5. Ensure Grid system works in print (Bootstrap fix) */
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        float: left !important;
+    }
+    .col-sm-12 { width: 100%; }
+    .col-sm-6 { width: 50%; }
+}
+        /* Modern UI Upgrade */
+        body {
+            background-color: #f0f2f5; 
+            color: #344767; 
+        }
+
+        .header-bg {
+            background: linear-gradient(225deg, #1e6b9d 0%, #3395d7 100%); /* RTL Gradient */
+            color: white;
+            margin-bottom: -60px; 
+            padding-bottom: 80px !important; 
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05); 
+            transition: transform 0.3s ease;
+        }
+
+        .generator-ui.card.zoom-out {
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #67748e;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control, .form-select {
+            background-color: #f8f9fa; 
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+            color: #495057;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); 
+            transform: translateY(-1px);
+        }
+
+        #itemTable .form-control {
+            padding: 8px;
+            font-size: 0.9rem;
+            background-color: transparent; 
+            border: 1px solid transparent; 
+        }
+        #itemTable .form-control:hover {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        #itemTable .form-control:focus {
+            background-color: #fff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 10px 20px;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary {
+            border-width: 2px;
+        }
+        
+        .btn-outline-danger {
+            border-width: 1px;
+            border-radius: 6px;
+            padding: 4px 10px;
+        }
+
+        .btn-lg.shadow-lg {
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.292) !important; 
+            border: none;
+        }
+        .btn-lg.shadow-lg:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.389) !important;
+        }
+
+        .table thead th {
+            background-color: #f1f4f8;
+            color: #344767;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-bottom: none;
+            padding: 12px 8px;
+            border-radius: 4px;
+        }
+        
+        .table td {
+            border-bottom: 1px solid #f1f4f8;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .template-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .template-card h6 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .template-card.active {
+            background-color: #eef2ff; 
+            border-color: #3b82f6 !important;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(59, 130, 246, 0.15) !important;
+        }
+        
+        .template-card:not(.active):hover {
+            transform: translateY(-3px);
+            background-color: #f8f9fa;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+
+        .header-bg {
+            text-align: center !important;   
+            padding-top: 30px !important;    
+            padding-bottom: 80px !important; 
+        }
+
+        .header-bg h1 {
+            margin-top: 10px !important;     
+            font-size: 2.5rem;    
+        }
+
+        .header-bg p {
+            font-size: 1rem !important;      
+            margin-bottom: 0 !important;
+            opacity: 0.9;
+        }   
+        /* --- Add this to your main <style> block --- */
+
+/* Force text in the summary box to stay on one line */
+.total-summary-box span {
+    white-space: nowrap !important;
+}
+
+/* Ensure flex containers inside the summary box don't stack vertically */
+.total-summary-box .d-flex {
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+/* Fix font weights for PDF */
+.fw-bold {
+    font-weight: 700 !important;
+}   
+/* Force a light border on inputs and textareas inside the item table */
+#itemTable .form-control {
+    border: 1px solid #dee2e6 !important; /* Standard light gray border */
+    background-color: #ffffff; /* Ensures the background is white */
+}
+
+/* Optional: Make the border slightly darker when you hover over it */
+#itemTable .form-control:hover {
+    border-color: #bec2c6 !important;
+}  
+    </style>
+</head>
+
+<body>
+    <div class="loaderx fullscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0 generator-ui no-print">
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <input id="fileUploadx" style="display: none;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav" dir="ltr">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/ar">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://barmga.com/invoice-generator">English</a></li>
+                                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+        <!-- Navbar & Hero End -->
+    </div>
+ 
+    <div class="container-fluid py-5 header-bg mb-5 mt-5 generator-ui" dir="rtl">
+        <h1 class="display-4 fw-bold text-white mt-5">مولد الفواتير</h1>
+        <p class="lead">اختر القالب المفضل لديك، املأ تفاصيل الفاتورة ثم قم بتحميل أو طباعة الملف!</p>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mt-5 text-center">
+            <h2 class="text-center generator-ui mb-4">اختر قالباً</h2>
+        </div>
+        
+        <div class="generator-ui card p-3 mb-4 bg-white zoom-out">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0 w-100">
+
+                    <div class="row g-2">
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-1 p-2 border rounded shadow-sm text-center active" onclick="switchTemplate('1')" data-template-id="1">
+                                <h6 class="mb-1 fw-bold text-dark">كلاسيكي</h6>
+                                <div class="preview-box"><img src="images/template1ar.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-2 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('2')" data-template-id="2">
+                                <h6 class="mb-1 fw-bold text-dark">عصري</h6>
+                                <div class="preview-box"><img src="images/template2ar.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-3 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('3')" data-template-id="3">
+                                <h6 class="mb-1 fw-bold text-dark">ملون</h6>
+                                <div class="preview-box"><img src="images/template3ar.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="template-card template-card-4 p-2 border rounded shadow-sm text-center" onclick="switchTemplate('4')" data-template-id="4">
+                                <h6 class="mb-1 fw-bold text-dark">احترافي</h6>
+                                <div class="preview-box"><img src="images/template4ar.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button style="display: none;" class="btn btn-lg btn-success shadow-lg mt-3 mt-md-0 ms-md-3" onclick="document.querySelector('.ad-horizontal').scrollIntoView({ behavior: 'smooth' });">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+</svg>
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-2 text-center mb-1 mt-5" dir="rtl">
+        <h2 class="text-center generator-ui">أدخل تفاصيل الفاتورة</h2>
+        <small class="text-center generator-ui">يمكنك ترك الحقول غير الضرورية فارغة.</small>
+    </div>
+
+    <main class="page-wrapper">
+
+        <aside class="ad-vertical left-ad me-4 no-print" data-nosnippet  dir="rtl">
+            <a href="https://barmga.com/#products" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card barmga-db-ad">
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H19V8H5M5,14V18H19V14H5Z" /></svg>
+                    </div>
+                    <h5 style="color: white !important;">قواعد بيانات التجارة الإلكترونية و B2B</h5>
+                    <p>عزز أعمالك ببيانات المنتجات والتسويق الجاهزة للاستخدام.</p>
+                    <span class="ad-cta">استكشف الآن</span>
+                </div>
+            </a>
+        </aside>
+
+        <div class="main-content"  dir="rtl">
+            
+            <div class="generator-ui container-fluid">
+                <div class="row gx-4">
+                <div class="col-lg-5">
+                    <div class="card p-4">
+                        <h5 class="card-title text-primary mb-3">تفاصيل الفاتورة</h5>
+
+                        <div class="mb-3">
+                            <label for="invoiceNumber" class="form-label">رقم الفاتورة</label>
+                            <input type="text" class="form-control" id="invoiceNumber" value="" placeholder="مثال: 001" oninput="updateInvoice()">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="issueDate" class="form-label">تاريخ الإصدار</label>
+                                <input type="date" class="form-control" id="issueDate" oninput="updateInvoice()" style="text-align:right;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dueDate" class="form-label">تاريخ الاستحقاق</label>
+                                <input type="date" class="form-control" id="dueDate" oninput="updateInvoice()" style="text-align:right;">
+                            </div>
+                        </div>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">تفاصيل الشركة (المرسل)</h5>
+                        <div class="mb-3">
+                            <input type="text" class="form-control mb-2" id="senderName" placeholder="اسم الشركة" value="" oninput="updateInvoice()">
+                            <textarea class="form-control mb-2" id="senderAddress" placeholder="العنوان" rows="2" oninput="updateInvoice()"></textarea>
+                            <input type="email" class="form-control mb-2" id="senderEmail" placeholder="البريد الإلكتروني" value="" oninput="updateInvoice()">
+                            <input type="tel" class="form-control mb-2" style="text-align: right;" id="senderPhone" placeholder="رقم الهاتف" value="" oninput="updateInvoice()">
+                            
+                            <input type="text" class="form-control mb-2" id="senderVat" placeholder="الرقم الضريبي (اختياري)" oninput="updateInvoice()">
+
+                            <label for="senderLogoFile" class="form-label mt-2">شعار الشركة (تحميل صورة)</label>
+                            <input type="file" class="form-control" id="senderLogoFile" accept="image/*" onchange="handleLogoUpload(this)">
+                        </div>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">تفاصيل العميل (المستلم)</h5>
+                        <div class="mb-3">
+                            <input type="text" class="form-control mb-2" id="clientName" placeholder="اسم العميل" value="" oninput="updateInvoice()">
+                            <textarea class="form-control mb-2" id="clientAddress" placeholder="العنوان" rows="2" oninput="updateInvoice()"></textarea>
+                            <input type="text" dir="ltr" style="text-align: right;" class="form-control mb-2" id="clientEmail" placeholder="بيانات التواصل" value="" oninput="updateInvoice()">
+                        </div>
+                        
+                        <h5 class="card-title text-primary mt-3 mb-3">ملاحظات / شروط</h5>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="invoiceNotes" placeholder="شروط الدفع، تعليمات خاصة، إلخ." rows="3" oninput="updateInvoice()"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="card p-4">
+                        <h5 class="card-title text-primary mb-3">عناصر الفاتورة</h5>
+                        <table class="table align-middle" id="itemTable">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th style="width: auto;">الوصف</th>
+                                    <th style="width: 100px;">الكمية</th>
+                                    <th style="width: 120px;">سعر الوحدة</th>
+                                    <th style="width: 1px; display: none;">الإجمالي</th>
+                                    <th style="width: 50px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceItemRows">
+                                <tr class="invoice-item-row">
+                                    <td style="width: 50%;"><textarea class="form-control item-description" rows="1" placeholder="اسم المنتج" oninput="updateInvoice()"></textarea></td>
+                                    <td><input type="number" class="form-control item-qty" value="1" min="1" oninput="calculateTotal()"></td>
+                                    <td><input type="number" class="form-control item-price"  placeholder="0" value="" min="0.00" step="0.1" oninput="calculateTotal()"></td>
+                                    <td class="item-line-total fw-bold" style="display: none;">0</td>
+                                    <td><button class="btn btn-sm btn-outline-danger remove-item-btn" onclick="removeItem(this)">X</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <button class="btn btn-outline-primary w-100 mb-4" onclick="addItemRow()">+ إضافة عنصر</button>
+
+                        <h5 class="card-title text-primary mt-3 mb-3">البيانات المالية</h5>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="currencySymbol" class="form-label">رمز العملة</label>
+                                <input type="text" class="form-control" id="currencySymbol" value="" placeholder="مثال: ر.س" oninput="calculateTotal()">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="taxValue" class="form-label">قيمة الضريبة</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="taxValue" value="0" min="0" step="0.01" oninput="calculateTotal()">
+                                    <select dir="ltr" class="form-select w-auto" id="taxMode" oninput="calculateTotal()">
+                                        <option value="rate">%</option>
+                                        <option value="fixed">ثابت</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="discountValue" class="form-label">قيمة الخصم</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="discountValue" value="0" min="0" step="0.01" oninput="calculateTotal()">
+                                    <select dir="ltr" class="form-select w-auto" id="discountMode" oninput="calculateTotal()">
+                                        <option value="rate">%</option>
+                                        <option value="fixed">ثابت</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+<div class="parent-container mt-1 mb-4 no-print generator-ui">
+    <div class="row w-100 justify-content-center g-2">
+        <div class="col-12 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-primary shadow-lg no-print w-100" onclick="exportToPdf()">
+                حمل الفاتورة (PDF)
+            </button>
+        </div>
+    </div>
+</div>
+            <hr class="my-2 generator-ui">
+
+            <div class="ad-horizontal generator-ui mt-4" id="ad-horizontal-2">
+                <a href="https://barmga.com/company-website-ar" target="_blank" rel="noopener noreferrer" class="cta-ad-card reversed-colors">
+                    <div class="cta-ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z" /></svg>
+                    </div>
+                    <div class="cta-ad-content">
+                        <h4>تحتاج إلى موقع الكتروني؟</h4>
+                        <p class="mt-3"> امنح شركتك واجهة احترافية تبني ثقة العملاء!</p>
+                    </div>
+                    <div class="cta-ad-button">
+                        احصل على موقع
+                    </div>
+                </a>
+            </div>
+            <div id="invoice-preview" class="invoice-template-1">
+                
+                <div id="preview-header-bar" class="invoice-header-bar" style="text-align: right;" dir="rtl">
+                    فاتورة
+                </div>
+
+                <div class="row mb-5 align-items-center">
+                    <div class="col-sm-6">
+                        <img id="preview-logo" src="" alt="شعار الشركة" class="invoice-logo mb-3" style="display: none;" onerror="this.style.display='none'">
+                        
+                        <h1 id="preview-invoice-title" class="header-title mb-4"  style="text-align: right;" dir="rtl">فاتورة</h1>
+                        
+                        <div class="invoice-metadata-inline">
+                            <div class="text-muted">
+                                رقم الفاتورة<span>:&nbsp;</span><span id="preview-invoice-number" class="fw-bold">INV-001</span><br>
+                                تاريخ الإصدار<span id="preview-issue-date"></span><br>
+                                تاريخ الاستحقاق<span id="preview-due-date"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-md-start mt-3 mt-sm-0">
+                        <div class="header-block address-section">
+                            <h5 class="fw-bold mb-2" id="preview-sender-name">اسم الشركة هنا</h5>
+                            <small id="preview-sender-address" class="d-block">عنوان الشركة، المدينة، الدولة</small>
+                            <small id="preview-sender-vat" class="d-block fw-bold mt-1 text-muted" style="display: none;"></small>
+                            <small id="preview-sender-email" class="d-block"></small>
+                            <small id="preview-sender-phone" class="d-block"></small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="invoice-metadata-flex">
+                    <div class="metadata-item">
+                        رقم الفاتورة<br><span id="preview-invoice-number-flex" class="fw-bold">INV-001</span>
+                    </div>
+                    <div class="metadata-item">
+                        تاريخ الإصدار<br><span id="preview-issue-date-flex" class="fw-bold"></span>
+                    </div>
+                    <div class="metadata-item">
+                        تاريخ الاستحقاق<br><span id="preview-due-date-flex" class="fw-bold"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <p class="mb-1 text-muted fw-bold">فاتورة إلى:</p>
+                        <h6 class="fw-bold" id="preview-client-name">اسم العميل</h6>
+                        <small id="preview-client-address" class="d-block">عنوان العميل، المدينة</small>
+                        <small dir="ltr" style="text-align: right;"  id="preview-client-email" class="d-block">email@example.com</small>
+                    </div>
+                </div>
+
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead class="bg-light">
+                            <tr>
+                                <th style="width: 50%;">الوصف</th>
+                                <th class="text-center">الكمية</th>
+                                <th class="text-center">سعر الوحدة</th>
+                                <th class="text-center">الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewItemRows">
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-lg-5 col-md-7">
+                        <div class="total-summary-box p-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>المجموع&nbsp;الفرعي</span>
+                                <span class="fw-bold" id="preview-subtotal">0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>الخصم</span> 
+                                <span class="text-danger" id="preview-discount">0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>الضريبة</span>
+                                <span class="text-success" id="preview-tax">0.00</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between h4 mb-0 text-primary">
+                                <span>الإجمالي</span>
+                                <span class="fw-bold" id="preview-total">0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notes-section mt-5 text-muted">
+                    <p class="fw-bold mb-1">ملاحظات وشروط:</p>
+                    <p id="preview-notes">الدفع مستحق خلال 7 أيام من تاريخ الإصدار. شكراً لتعاملكم معنا.</p>
+                </div>
+
+<div class="parent-container mt-5 no-print generator-ui">
+    <div class="row w-100 justify-content-center g-2">
+        <div class="col-12 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-success shadow-lg no-print w-100" onclick="exportToPdf()">
+                تحميل الفاتورة (PDF)
+            </button>
+        </div>
+
+        <div class="col-12 mt-3 d-flex justify-content-center">
+            <button style="max-width: 300px;" class="btn btn-lg btn-outline-success shadow-lg **mt-2** no-print w-100" onclick="document.querySelector('#invoice-preview .col-lg-5.col-md-7').setAttribute('class','col-5 togetback');window.print();  document.querySelector('#invoice-preview .col-5.togetback').setAttribute('class','col-lg-5 col-md-7');">
+                <i class="bi bi-print me-2"></i>
+                طباعة الفاتورة
+            </button>
+        </div>
+    </div>
+</div>
+            </div>
+            </div>
+        <aside class="ad-vertical right-ad ms-4 no-print" data-nosnippet  dir="rtl">
+            <a href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card wabarmga-wa-ad">
+                    <div class="ad-badge">مجاني</div>
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" /></svg>
+                    </div>
+                    <h5>أتمتة واتساب مجانية</h5>
+                    <p>أرسل رسائل جماعية مباشرة من جهاز الكمبيوتر الخاص بك. بلا حدود، مجاني تماماً!</p>
+                    <span class="ad-cta">حمل الآن</span>
+                </div>
+            </a>
+        </aside>
+
+    </main>
+<script>
+    function convertSpacesToNbsp(element) {
+    // 1. Find all sub-elements (descendants)
+    const allSubElements = element.querySelectorAll('*');
+
+    allSubElements.forEach(subEl => {
+        // 2. We check if the element has NO element children (leaf nodes).
+        // We do this to ensure we don't accidentally wipe out inner HTML tags 
+        // (like <b> or <span>) when replacing the text.
+        if (subEl.children.length === 0) {
+            
+            // 3. Extract text content
+            const text = subEl.textContent;
+
+            // 4. Check if text is non-empty when trimmed
+            if (text && text.trim().length > 0) {
+                
+                // 5. Trim the text and replace spaces with Unicode Non-Breaking Space (\u00A0)
+                const newText = text.trim().replace(/ /g, '\u00A0');
+
+                // 6. Update the textContent
+                subEl.textContent = newText;
+            }
+        }
+    });
+
+    // 7. Return the updated main element
+    return element;
+}
+    document.addEventListener('DOMContentLoaded', () => {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('issueDate').value = today;
+
+        const nextWeek = new Date();
+        nextWeek.setDate(nextWeek.getDate());
+        document.getElementById('dueDate').value = nextWeek.toISOString().split('T')[0];
+
+        updateInvoice();
+        calculateTotal();
+        switchTemplate('1'); 
+    });
+
+    function handleLogoUpload(input) {
+        const logoEl = document.getElementById('preview-logo');
+        logoEl.style.display = 'none';
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                logoEl.src = e.target.result;
+                logoEl.style.display = 'inline-block';
+                updateInvoice(); 
+            };
+            reader.onerror = function() {
+                logoEl.src = '';
+                logoEl.style.display = 'none';
+                updateInvoice();
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            logoEl.src = '';
+            logoEl.style.display = 'none';
+            updateInvoice();
+        }
+    }
+
+    function addItemRow() {
+        const tableBody = document.getElementById('invoiceItemRows');
+        const existingRows = tableBody.querySelectorAll('.invoice-item-row');
+        if (existingRows.length === 0) return; 
+
+        const templateRow = existingRows[existingRows.length - 1];
+        
+        const newRow = templateRow.cloneNode(true);
+        newRow.classList.remove('d-none');
+        
+        newRow.querySelector('.item-description').value = '';
+        newRow.querySelector('.item-qty').value = 1;
+        newRow.querySelector('.item-price').value = 0.00;
+        newRow.querySelector('.item-line-total').textContent = '0.00';
+        
+        newRow.querySelectorAll('.item-price,.item-qty').forEach(input => {
+            input.oninput = calculateTotal;
+        });
+        newRow.querySelectorAll('.item-description').forEach(input => {
+            input.oninput = updateInvoice;
+        });
+
+        tableBody.appendChild(newRow);
+        calculateTotal();
+    }
+
+    function removeItem(btn) {
+        const row = btn.closest('.invoice-item-row');
+        if (document.querySelectorAll('.invoice-item-row').length > 1) {
+            row.remove();
+            calculateTotal();
+        } else {
+            console.warn("Cannot remove the last item row.");
+        }
+    }
+
+    function calculateTotal() {
+        const itemRows = document.querySelectorAll('#invoiceItemRows .invoice-item-row');
+        let subtotal = 0;
+        const previewRowsContainer = document.getElementById('previewItemRows');
+        previewRowsContainer.innerHTML = '';
+
+        itemRows.forEach(row => {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            const descInput = row.querySelector('.item-description');
+            
+            const qty = parseFloat(qtyInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+
+            const lineTotal = qty * price;
+            subtotal += lineTotal;
+
+            row.querySelector('.item-line-total').textContent = lineTotal.toFixed(2);
+
+            const previewRow = document.createElement('tr');
+            previewRow.innerHTML = `
+                <td>${descInput.value || '---'}</td>
+                <td class="text-center">${qty}</td>
+                <td class="text-center">${price.toFixed(2)} ${document.getElementById('currencySymbol').value}</td>
+                <td class="text-center fw-bold">${lineTotal.toFixed(2)} ${document.getElementById('currencySymbol').value}</td>
+            `;
+            previewRowsContainer.appendChild(previewRow);
+        });
+
+        const currency = document.getElementById('currencySymbol').value || 'ر.س';
+        const taxValue = parseFloat(document.getElementById('taxValue').value) || 0;
+        const taxMode = document.getElementById('taxMode').value; 
+        const discountValue = parseFloat(document.getElementById('discountValue').value) || 0;
+        const discountMode = document.getElementById('discountMode').value; 
+        
+        const totalSummaryBox = document.querySelector('.total-summary-box');
+
+        // Apply Discount
+        let discountAmount = 0;
+        let discountDisplayLabel;
+
+        if (discountMode === 'rate') {
+            discountAmount = subtotal * (discountValue / 100);
+            discountDisplayLabel = `الخصم (${discountValue}%)`;
+        } else { 
+            discountAmount = discountValue;
+            discountDisplayLabel = 'الخصم (ثابت)';
+        }
+        discountAmount = Math.min(discountAmount, subtotal); 
+
+        const afterDiscount = subtotal - discountAmount;
+
+        // Apply Tax
+        let taxAmount = 0;
+        let taxDisplayLabel;
+
+        if (taxMode === 'rate') {
+            taxAmount = afterDiscount * (taxValue / 100);
+            taxDisplayLabel = `الضريبة (${taxValue}%)`;
+        } else { 
+            taxAmount = taxValue;
+            taxDisplayLabel = 'الضريبة (ثابت)';
+        }
+        
+        const grandTotal = afterDiscount + taxAmount;
+
+        document.getElementById('preview-subtotal').textContent = `${subtotal.toFixed(2)} ${currency}`;
+        
+        totalSummaryBox.querySelector('.d-flex:nth-child(2) span:first-child').innerHTML = discountDisplayLabel;
+        document.getElementById('preview-discount').textContent = `-${discountAmount.toFixed(2)} ${currency}`;
+        
+        totalSummaryBox.querySelector('.d-flex:nth-child(3) span:first-child').innerHTML = taxDisplayLabel;
+        document.getElementById('preview-tax').textContent = `${taxAmount.toFixed(2)} ${currency}`;
+        
+        document.getElementById('preview-total').textContent = `${grandTotal.toFixed(2)} ${currency}`;
+    }
+
+    function updateInvoice() {
+        const invoiceNumber = document.getElementById('invoiceNumber').value;
+        
+const formatDate = (dateInputId) => {
+    const dateVal = document.getElementById(dateInputId).value;
+    if (!dateVal) return '---';
+    
+    // Create the date object (handling time to prevent timezone shifts)
+    const dateObj = new Date(dateVal + 'T00:00:00'); 
+
+    // OPTION 1: Add '-u-nu-latn' to the locale string
+    // 'u' = Unicode extension, 'nu' = numbering system, 'latn' = Latin digits
+    return dateObj.toLocaleDateString('ar-EG-u-nu-latn', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+};
+const arabicMonths = [
+    "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+    "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+];
+
+// Create a Regex that looks like: (يناير|فبراير|مارس|...)
+// 'g' flag means "global" (find all occurrences)
+const monthRegex = new RegExp(`(${arabicMonths.join('|')})`, 'g');
+const addSpaceAfterMonth = (text) => {
+    // Replace [FoundMonth] with [FoundMonth + " "]
+    return text.replace(monthRegex, '$1 ');
+};
+        const issueDateFormatted = formatDate('issueDate');
+        const dueDateFormatted = formatDate('dueDate');
+
+        document.getElementById('preview-invoice-number').textContent = invoiceNumber;
+        document.getElementById('preview-issue-date').textContent = ': '+addSpaceAfterMonth(issueDateFormatted);
+        document.getElementById('preview-due-date').textContent = ': '+addSpaceAfterMonth(dueDateFormatted);
+        
+        document.getElementById('preview-invoice-number-flex').textContent = invoiceNumber;
+        document.getElementById('preview-issue-date-flex').textContent = addSpaceAfterMonth(issueDateFormatted);
+        document.getElementById('preview-due-date-flex').textContent = addSpaceAfterMonth(dueDateFormatted);
+
+        const senderNameEl = document.getElementById('preview-sender-name');
+        const logoEl = document.getElementById('preview-logo');
+        const vatEl = document.getElementById('preview-sender-vat');
+        const senderVatVal = document.getElementById('senderVat').value;
+        const senderEmailVal = document.getElementById('senderEmail').value; 
+        const senderPhoneVal = document.getElementById('senderPhone').value; 
+
+        const previewSenderEmailEl = document.getElementById('preview-sender-email'); 
+        const previewSenderPhoneEl = document.getElementById('preview-sender-phone'); 
+
+        const isLogoVisible = logoEl.src && logoEl.style.display !== 'none';
+
+        if (senderVatVal) {
+            vatEl.innerHTML = `الرقم الضريبي: ${senderVatVal}`;
+            vatEl.style.display = 'block';
+        } else {
+            vatEl.innerHTML ='';
+            vatEl.style.display = 'none';
+        }
+
+        senderNameEl.textContent = document.getElementById('senderName').value;
+        document.getElementById('preview-sender-address').innerHTML = document.getElementById('senderAddress').value.replace(/\n/g, '<br>');
+        
+        if (senderEmailVal.trim()) {
+            previewSenderEmailEl.textContent = 'البريد: ' + senderEmailVal;
+            previewSenderEmailEl.style.display = 'block';
+        } else {
+            previewSenderEmailEl.textContent = '';
+            previewSenderEmailEl.style.display = 'none';
+        }
+
+        if (senderPhoneVal.trim()) {
+            previewSenderPhoneEl.innerHTML ='الهاتف: '+ '<span dir="ltr" style="text-align: right;">'+senderPhoneVal+'</span>';
+            previewSenderPhoneEl.style.display = 'block';
+        } else {
+             previewSenderPhoneEl.innerHTML = '';
+            previewSenderPhoneEl.style.display = 'none';
+        }
+
+        document.getElementById('preview-client-name').textContent = document.getElementById('clientName').value;
+        document.getElementById('preview-client-address').innerHTML = document.getElementById('clientAddress').value.replace(/\n/g, '<br>');
+        document.getElementById('preview-client-email').textContent = document.getElementById('clientEmail').value;
+        
+        const notesVal = document.getElementById('invoiceNotes').value.trim();
+        const notesContainer = document.querySelector('.notes-section');
+        const previewNotesEl = document.getElementById('preview-notes');
+
+        if (notesVal) {
+            notesContainer.style.display = 'block';
+            previewNotesEl.textContent = notesVal;
+        } else {
+            notesContainer.style.display = 'none';
+            previewNotesEl.textContent = '';
+        }
+
+        const currentTemplate = document.querySelector('.template-card.active').getAttribute('data-template-id');
+        const titleEl = document.getElementById('preview-invoice-title');
+        
+        if ((currentTemplate === '4' || currentTemplate === '1') && isLogoVisible) {
+            titleEl.style.display = 'none';
+        } else if (currentTemplate === '2' || currentTemplate === '3') {
+            titleEl.style.display = 'none';
+        } else {
+            titleEl.style.display = 'inline-block';
+        }
+
+        calculateTotal(); 
+    }
+
+    function switchTemplate(templateId) {
+        const preview = document.getElementById('invoice-preview');
+        preview.className = ''; 
+        preview.classList.add('invoice-template-' + templateId);
+        
+        document.querySelectorAll('.template-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        const activeCard = document.querySelector(`.template-card[data-template-id="${templateId}"]`);
+        if (activeCard) {
+            activeCard.classList.add('active');
+        }
+
+        const isFlexVisible = templateId === '4';
+        document.querySelector('.invoice-metadata-flex').style.display = isFlexVisible ? 'flex' : 'none';
+        document.querySelector('.invoice-metadata-inline').style.display = isFlexVisible ? 'none' : 'block';
+
+        preview.classList.remove('p-3', 'p-md-5', 'p-5');
+        preview.classList.add('p-5'); 
+        
+        updateInvoice();
+    }
+
+
+function removeStyles(element) {
+  if (!element) return;
+  // Save current styles so we can restore later
+  element.dataset.originalBorderRadius = element.style.borderRadius || '';
+  element.dataset.originalBoxShadow = element.style.boxShadow || '';
+
+  // Remove styles
+  element.style.borderRadius = '0';
+  element.style.boxShadow = 'none';
+}
+
+// Function to restore styles
+function restoreStyles(element) {
+  if (!element) return;
+  element.style.borderRadius = element.dataset.originalBorderRadius || '8px';
+  element.style.boxShadow = element.dataset.originalBoxShadow || '0 0 20px rgba(0, 0, 0, 0.1)';
+}
+
+
+
+async function exportToPdf() {
+  const element = document.querySelector("#invoice-preview");
+  if (!element) {
+    console.error("Element #invoice-preview not found");
+    return;
+  }
+
+  // Save original styles
+  const originalWidth = element.style.width;
+  const originalMaxWidth = element.style.maxWidth;
+
+  // Force element to render at 1100px width
+  element.style.width = "800px";
+  element.style.maxWidth = "800px";
+  element.querySelector('[class="col-lg-5 col-md-7"]').setAttribute('class','col-5 togetback');
+  element.querySelectorAll('.generator-ui, .ad-vertical, .ad-horizontal, .no-print').forEach(el => {
+        el.style.display = 'none';
+    });
+    removeStyles(element)
+    // Remove border and background before capture
+element.dataset.originalBorder = element.style.border || '';
+element.dataset.originalBackground = element.style.background || '';
+
+element.style.border = 'none';
+element.style.background = '#ffffff'; // or transparent if you want no background
+
+  // Capture with html2canvas
+  const canvas = await html2canvas(element, {
+    scale: 2,
+    useCORS: true
+  });
+element.style.border = element.dataset.originalBorder || 'none';
+element.style.background = element.dataset.originalBackground || '#ffffff';
+
+  // Restore original styles
+  element.style.width = originalWidth;
+  element.style.maxWidth = originalMaxWidth;
+  element.querySelector('[class="col-5 togetback"]').setAttribute('class','col-lg-5 col-md-7')
+  element.querySelectorAll('.generator-ui, .ad-vertical, .ad-horizontal, .no-print').forEach(el => {
+        el.style.display = 'block';
+    });
+    restoreStyles(element)
+  const imgData = canvas.toDataURL("image/png");
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const imgWidth = pageWidth;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  !location.hostname.includes("\x62\x61\x72\x6d\x67\x61\x2e\x63\x6f\x6d") ? (document.body.innerHTML="",location.href="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x62\x61\x72\x6d\x67\x61\x2e\x63\x6f\x6d",FAIL) : 0;  if (imgHeight > pageHeight) {
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    while (heightLeft > 0) {
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      if (heightLeft > 0) {
+        pdf.addPage();
+        position = -(imgHeight - heightLeft);
+      }
+    }
+  } else {
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+  }
+
+  pdf.save("invoice.pdf");
+}
+
+
+
+
+
+</script>
+
+   <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الأعمال</strong></h5>
+
+                </div>
+
+           <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
+                        <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
+                        <i class="fa fa-group"></i>&nbsp;&nbsp;أداة فرز جهات الإتصال
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في تصفية ارقام التواصل المختلفة والايميلات من مجموعة ملفات ثم تقسيمها لاعتمادها بالحملات بشكل سهل ومرتب.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
+                        <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
+                <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+            </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات البريد الإلكتروني</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer-ar" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | مرسل البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">أرسل بشكل آلى إلى مجموعة من عناوين البريد الإلكتروني من خلال حساب قوقل، تستخدم هذه الأداة مع متصفح مايكروسوفت آدج على الكمبيوتر</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">حول عناوين البريد الإلكتروني إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق جيميل الجوال في بضع نقرات</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الواتساب</strong></h5>
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | مرسل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">ارسل رسائل واتساب تلقائية إلى مجموعة من الأرقام بشكل آلى، تستخدم هذه الأداة مع متصفح كروم على الكمبيوتر</p>
+                    <img src="img/bot.png" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط رسائل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">حول أرقام واتساب إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق واتساب في بضع نقرات</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- Contact Start -->
+        <div class="container-fluid py-4 no-print generator-ui" id="contact">
+            <div class="container px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-title-right position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s" dir="rtl">
+                            <h6 class="position-relative d-inline text-primary ps-4" style="padding-right: 20px;">اتصل بنا</h6>
+                            <h2 class="mt-2">من أجل أي استفسار</h2>
+                            <br>
+                        </div>
+                        <div class="wow fadeInUp card p-4" data-wow-delay="0.2s">
+                            <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">نقبل الحوالات المباشرة عن طريق وسترن يونيون، اس تي سي باي، تحويل بنكي، عملات رقمية</small>
+                            <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
+                            <form id="your-form" dir="rtl" style="text-align: right;">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating right">
+                                            <input type="text" class="form-control right" id="your-name-input" placeholder="الاسم">
+                                            <label for="name">الاسم</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="your-email-input" placeholder="البريد الالكتروني">
+                                            <label for="email">البريد الالكتروني</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-phone-input" placeholder="رقم الجوال">
+                                            <label for="phone">رقم الجوال</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="your-subject-input" placeholder="الموضوع">
+                                            <label for="subject">الموضوع</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="الرسالة" id="your-message-input" style="height: 150px"></textarea>
+                                            <label for="message">الرسالة</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" id="submit" type="submit">أرسل الآن</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+    <!-- Footer Start -->
+    <div class="no-print generator-ui container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">لطلب الدعم</h5>
+                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#contact">اتصل بنا</a>
+                    <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">برمجة</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar">الرئيسية</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#about">من نحن</a>
+                    <a class="btn btn-linkx" href="https://mostaql.com/u/barmga/reviews" target="_blank">تقييمات العملاء</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/faq-ar">الأسئلة الشائعة</a>
+                    <a class="btn btn-linkx" data-bs-toggle="modal" data-bs-target="#termsModal">سياسة الموقع</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">نشاطنا</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">النشرة البريدية</h5>
+                    <p>اشترك الآن واحصل على أحدث العروض والأدوات المميزة.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="البريد الالكتروني" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" style="color: white !important;" href="https://barmga.com/ar">Barmga 2025</a>, جميع الحقوق محفوظة.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script>
+        function showonly(classname) {
+            if (classname == 'all') {
+                var wapart = $('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+                var mailpart = $('#optionsmodalemail .modal-body')[0].innerHTML
+                var otherpart = $('#optionsmodalother .modal-body')[0].innerHTML
+                $('#optionsmodal .modal-body')[0].innerHTML = wapart + "<hr>" + mailpart
+                $('#optionsmodal').modal('show')
+            } else {
+                $('#optionsmodal' + classname).modal('show')
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

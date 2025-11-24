@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+        <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet --> 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Custom styles from your existing page to maintain consistency -->
+    <style>
+            .ad-vertical.left-ad {
+        /* This pins the left ad to the calculated left edge */
+        left: 35px;
+    }
+
+    .ad-vertical.right-ad {
+        /* This pins the right ad to the calculated right edge */
+        right: 35px;
+    }
+.ad-vertical {
+            position: absolute !important;
+        }
+    @media (max-width: 930px) {
+        .ad-vertical {
+            display: none !important;
+        }
+    }
+
+    /* --- Ensure your main .ad-vertical rule has position: fixed --- */
+    .ad-vertical {
+
+        top: 85px;
+        /* Adjust as needed */
+        width: 160px;
+        flex-shrink: 0;
+        margin-top: 2rem;
+    }
+
+    .ad-vertical a {
+        text-decoration: none;
+    }
+
+    /* --- NEW: CUSTOM VERTICAL AD STYLES --- */
+    .vertical-ad-card {
+        padding: 20px 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .vertical-ad-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .vertical-ad-card .ad-icon {
+        margin-bottom: 12px;
+    }
+
+    .vertical-ad-card .ad-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .vertical-ad-card h5 {
+        margin: 0 0 8px 0;
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .vertical-ad-card p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin: 0 0 15px 0;
+        opacity: 0.9;
+    }
+
+    .vertical-ad-card .ad-cta {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Ad 1: Barmga Databases */
+    .barmga-db-ad {
+        background: linear-gradient(145deg, #2c3e50, #34495e);
+        color: #ffffff;
+        border: 1px solid #4a6278;
+    }
+
+    .barmga-db-ad .ad-icon svg {
+        fill: #3498db;
+    }
+
+    .barmga-db-ad .ad-cta {
+        background-color: #3498db;
+        color: #ffffff;
+    }
+
+    .barmga-db-ad:hover .ad-cta {
+        background-color: #2980b9;
+    }
+
+    /* Ad 2: WaBarmga WhatsApp Tool */
+    .wabarmga-wa-ad {
+        background: linear-gradient(145deg, #E8F5E9, #FFFFFF);
+        color: #1E8E3E;
+        border: 1px solid #A5D6A7;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .wabarmga-wa-ad .ad-badge {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        /* Adjusted for RTL */
+        right: auto;
+        background-color: #4CAF50;
+        color: white;
+        padding: 3px 10px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border-radius: 0 0 8px 0;
+        /* Adjusted for RTL */
+    }
+
+    .wabarmga-wa-ad h5 {
+        color: #1B5E20;
+    }
+
+    .wabarmga-wa-ad p {
+        color: #388E3C;
+    }
+
+    .wabarmga-wa-ad .ad-icon svg {
+        fill: #25D366;
+    }
+
+    .wabarmga-wa-ad .ad-cta {
+        background-color: #4CAF50;
+        color: #ffffff;
+    }
+
+    .wabarmga-wa-ad:hover .ad-cta {
+        background-color: #43A047;
+    }
+
+
+    .ad-horizontal {
+        max-width: 728px;
+        margin: 2rem auto;
+
+    }
+
+    /* --- NEW: Make first ad larger --- */
+    .main-content .ad-horizontal:first-of-type {
+        max-width: 860px;
+    }
+
+
+    /* --- CTA Ad Card (Default/First) --- */
+    /* This class is on the <a> tag, and `display: flex` makes the entire area clickable */
+    .cta-ad-card {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+        background: #ffffff;
+        color: #34495e;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e1e8ed;
+    }
+
+    .cta-ad-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cta-ad-icon svg {
+        width: 48px;
+        height: 48px;
+        fill: #3498db;
+    }
+
+    .cta-ad-content {
+        flex-grow: 1;
+        text-align: left;
+        /* Changed for RTL */
+    }
+
+    .cta-ad-content h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.4rem;
+        color: #2c3e50;
+    }
+
+    .cta-ad-content p {
+        margin: 0;
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    .cta-ad-button {
+        flex-shrink: 0;
+        background-color: #ffffff !important;
+        color: #3498db !important;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .cta-ad-card:hover .cta-ad-button {
+        background-color: #2980b9;
+    }
+
+    /* --- CTA Ad Card (Second - Reversed Colors) --- */
+    .cta-ad-card.reversed-colors {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        /* Blue gradient background */
+        color: #ffffff;
+        /* White text */
+        border: none;
+        /* No border for a cleaner look */
+    }
+
+    .cta-ad-card.reversed-colors .cta-ad-icon svg {
+        fill: #ffffff;
+        /* White icon */
+    }
+
+    .cta-ad-card.reversed-colors .cta-ad-content h4 {
+        color: #ffffff;
+        /* White heading */
+    }
+
+    .cta-ad-card.reversed-colors .cta-ad-content p {
+        color: #ffffff;
+        /* White paragraph text */
+        opacity: 0.9;
+    }
+
+    .cta-ad-card.reversed-colors .cta-ad-button {
+        background-color: #ffffff;
+        /* White button */
+        color: #3498db;
+        /* Primary color text for button */
+    }
+
+    .cta-ad-card.reversed-colors:hover .cta-ad-button {
+        background-color: #f0f0f0;
+        /* Slightly darker white on hover */
+    }
+               /* Horizontal Ad Card Styles */
+        .ad-horizontal { max-width: 728px; margin: 1rem auto; }
+        .main-content > .ad-horizontal:first-of-type { max-width: 860px; }
+        #ad-horizontal-2 { display: block; } /* Changed to 'block' for this implementation, adjust based on your original logic */
+
+        .cta-ad-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 1.5rem; 
+            padding: 1.5rem 2rem; 
+            background: var(--white); 
+            color: var(--dark-gray); 
+            border-radius: var(--border-radius); 
+            text-decoration: none; 
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+            box-shadow: var(--box-shadow); 
+            border: 1px solid #e1e8ed; 
+        }
+        .cta-ad-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .cta-ad-icon svg { width: 48px; height: 48px; fill: var(--white); }
+        .cta-ad-content { flex-grow: 1; }
+        [dir="ltr"] .cta-ad-content { text-align: left; }
+        [dir="rtl"] .cta-ad-content { text-align: right; }
+        .cta-ad-content h4 { margin: 0 0 0.25rem 0; font-size: 1.4rem; color: var(--secondary-color); }
+        .cta-ad-content p { margin: 0; font-size: 0.95rem; opacity: 0.9; }
+        .cta-ad-button { 
+            flex-shrink: 0; 
+            background-color: var(--white); 
+            color: var(--primary-color); 
+            padding: 0.8rem 1rem; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: background-color 0.3s; 
+            text-align: center; 
+            white-space: nowrap; 
+        }
+        .cta-ad-card:hover .cta-ad-button { background-color: #5d8dad; }
+        .cta-ad-card.reversed-colors { 
+            background: linear-gradient(135deg, #3498db, #2980b9); 
+            color: var(--white); 
+            border: none; 
+        }
+        .cta-ad-card.reversed-colors .cta-ad-icon svg { fill: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content h4 { color: var(--white); }
+        .cta-ad-card.reversed-colors .cta-ad-content p { color: var(--white); opacity: 0.9; }
+        .cta-ad-card.reversed-colors .cta-ad-button { 
+            background-color: var(--white); 
+            color: var(--primary-color); 
+        }
+.cta-ad-card.reversed-colors:hover .cta-ad-button {
+    background-color: #f0f0f0;
+}
+
+/* Existing Styles */
+.parent-container {
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center;    /* Centers items vertically (if the parent has a defined height) */
+}
+        @media (max-width: 500px) {
+        /* 1. Hide the large icon to save vertical space */
+        .ad-horizontal .cta-ad-icon {
+            display: none;
+        }
+        input {
+  font-size: 18px !important;
+}
+        .cta-ad-button{scale: 70% !important;}
+        /* 2. Configure the Card Layout */
+        .cta-ad-card {
+            flex-direction: column !important; /* Stack items vertically */
+            text-align: center !important;     /* Center the text */
+            padding: 20px 15px !important;     /* Comfortable padding */
+            align-items: center;
+            gap: 15px; /* Space between text and button */
+        }
+
+        /* 3. Text Styling */
+        .cta-ad-content {
+            width: 100%;
+        }
+
+        .cta-ad-content h4 {
+            font-size: 1.3rem; /* Slightly larger title */
+            margin-bottom: 8px !important;
+        }
+
+        .cta-ad-content p {
+            font-size: 0.95rem !important;
+            margin: 0 !important;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        /* 4. The Button: Full Width & Professional */
+        .cta-ad-button {
+            max-width: 250px;
+            width: 100%;          /* Stretch button across the card */
+            justify-content: center; /* Center text inside button */
+            margin: 0;
+            padding: 12px !important; /* Taller button for easier tapping */
+            font-size: 1.8rem !important;
+            border-radius: 8px;   /* Softer corners */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle lift */
+        }
+    }
+                .hidden{display: none !important;}
+
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        .how-it-works {
+
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Gabriela', serif !important;
+        }
+
+        .tool>*,.lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            li+li.nav-item.dropdown {
+                margin-right: 15px;
+            }
+
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'Gabriela', serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+
+    <style>
+        /* Custom styles for a clean, modern look, adapted for Bootstrap */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        .container-main {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .ad-horizontal {
+            color: white !important;
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="loaderx fullscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0">
+        <!-- Navbar Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/?lang=en">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en">Home</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#tools">Templates & Tools</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#products">Databases</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#services">Services</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#contact">Contact</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/gb.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">English</a></li>
+                                    <li><a class="dropdown-item" href="https://barmga.com/qr-code-generator-ar">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-main">
+                <aside class="ad-vertical left-ad me-4 no-print" data-nosnippet>
+            <a href="https://barmga.com/#products" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card barmga-db-ad">
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H19V8H5M5,14V18H19V14H5Z" /></svg>
+                    </div>
+                    <h5 style="color: white !important;">E-commerce & B2B Databases</h5>
+                    <p>Power your business with ready-to-use product & marketing data.</p>
+                    <span class="ad-cta">Explore Now</span>
+                </div>
+            </a>
+        </aside>
+                <aside class="ad-vertical right-ad ms-4 no-print" data-nosnippet>
+            <a href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" rel="noopener noreferrer">
+                <div class="vertical-ad-card wabarmga-wa-ad">
+                    <div class="ad-badge">FREE</div>
+                    <div class="ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" /></svg>
+                    </div>
+                    <h5>Free WhatsApp Automation</h5>
+                    <p>Send bulk messages directly from your PC. No limits, completely free!</p>
+                    <span class="ad-cta">Download Now</span>
+                </div>
+            </a>
+        </aside>
+        <div class="card p-4 p-md-5 shadow-lg border-0 rounded-4 text-center mt-5" style="max-width: 550px;">
+            <h1 class="mb-4 fw-bold text-dark mb-2">QR Code Generator</h1>
+            <p class="text-secondary mb-4">Enter a URL below to generate a high-resolution QR code.</p>
+
+            <div class="mb-4">
+                <input type="text" id="url-input" placeholder="e.g., https://www.example.com" required
+                       class="form-control form-control-lg rounded-3 py-3 px-4 transition">
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary btn-lg fw-bold w-100 rounded-3 shadow-sm mb-4">
+                Generate QR Code
+            </button>
+
+            <div id="message-box" class="alert alert-danger d-none text-sm" role="alert"></div>
+
+            <div id="qr-result" class="text-center d-none">
+                <img id="qr-code-image" alt="Generated QR Code" class="img-fluid my-4" style="display: none;">
+                
+                <a id="download-btn" href="#" download="qrcode.png"
+                   class="btn btn-success btn-lg fw-bold w-100 rounded-3 shadow-sm mt-3">
+                    Download QR Code
+                </a>
+            </div>
+            
+            <div id="qr-code-container" class="d-none"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const urlInput = document.getElementById('url-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const messageBox = document.getElementById('message-box');
+        const qrCodeContainer = document.getElementById('qr-code-container');
+        const qrCodeImage = document.getElementById('qr-code-image');
+        const qrResult = document.getElementById('qr-result');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Function to show a temporary message to the user
+        function showMessage(message, type = 'danger') {
+            messageBox.textContent = message;
+            messageBox.classList.remove('d-none', 'alert-danger', 'alert-success');
+            messageBox.classList.add('alert-' + type);
+        }
+
+        // Handle the button click event
+        generateBtn.addEventListener('click', () => {
+            let url = urlInput.value.trim();
+
+            // Clear previous output and messages
+            qrCodeImage.style.display = 'none';
+            qrResult.classList.add('d-none');
+            qrCodeContainer.innerHTML = '';
+            messageBox.classList.add('d-none');
+            
+            if (url) {
+                // Check if the URL already has a protocol. If not, add https:// to ensure it's
+                // recognized as a link by most QR code scanners.
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
+
+                // Temporarily disable the button to prevent multiple clicks
+                generateBtn.disabled = true;
+                generateBtn.textContent = 'Generating...';
+
+                // Use the QRCode.js library to generate the QR code as a canvas
+                // It's important to set the width and height here to get the high-res output
+                const qrcode = new QRCode(qrCodeContainer, {
+                    text: url,
+                    width: 1000,
+                    height: 1000,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H // High error correction level
+                });
+
+                // Wait for a small moment to ensure the canvas is fully rendered
+                setTimeout(() => {
+                    // Get the canvas element created by the library
+                    const originalCanvas = qrCodeContainer.querySelector('canvas');
+                    if (originalCanvas) {
+                        // Create a new canvas to draw the QR code with a border
+                        const newCanvasSize = 1200; // 1000px QR code + 10% (100px) border on each side
+                        const borderedCanvas = document.createElement('canvas');
+                        borderedCanvas.width = newCanvasSize;
+                        borderedCanvas.height = newCanvasSize;
+                        const ctx = borderedCanvas.getContext('2d');
+
+                        // Fill the entire new canvas with white color
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, newCanvasSize, newCanvasSize);
+
+                        // Draw the original QR code canvas onto the new canvas with a 10% border
+                        const borderSize = 100;
+                        ctx.drawImage(originalCanvas, borderSize, borderSize);
+
+                        // Convert the new canvas content to a data URL (PNG)
+                        const dataURL = borderedCanvas.toDataURL("image/png");
+                        
+                        // Set the src of the image and the download button's href
+                        qrCodeImage.src = dataURL;
+                        qrCodeImage.style.display = 'block';
+                        downloadBtn.href = dataURL;
+                        
+                        // Show the result container
+                        qrResult.classList.remove('d-none');
+
+                        // Restore button state
+                        generateBtn.disabled = false;
+                        generateBtn.textContent = 'Generate QR Code';
+                        
+                        showMessage('QR Code generated successfully!', 'success');
+                    } else {
+                        showMessage('An error occurred during QR code generation. Please try again.', 'danger');
+                        generateBtn.disabled = false;
+                        generateBtn.textContent = 'Generate QR Code';
+                    }
+                }, 500); // A small delay to ensure the canvas is ready
+            } else {
+                showMessage('Please enter a valid URL.', 'danger');
+            }
+        });
+    </script>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body scrollable-body">
+                    <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com/?lang=en">barmga.com</a>.</p>
+
+                    <h3>1. Introduction</h3>
+                    <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+                    <h3>2. Intellectual Property Rights</h3>
+                    <p>Unless otherwise stated, Barmga and/or its licensors own the intellectual property rights for all material on Barmga. All intellectual property rights are reserved. You may access this from Barmga for your own personal use subjected to restrictions set in these terms and conditions.</p>
+
+                    <h3>3. Restrictions</h3>
+                    <p>You are specifically restricted from all of the following:</p>
+                    <ul>
+                        <li>Publishing any website material in any other media;</li>
+                        <li>Selling, sublicensing, and/or otherwise commercializing any website material;</li>
+                        <li>Publicly performing and/or showing any website material;</li>
+                        <li>Using this website in any way that is or may be damaging to this website;</li>
+                        <li>Using this website in any way that impacts user access to this website;</li>
+                        <li>Using this website contrary to applicable laws and regulations, or in any way may cause harm to the website, or to any person or business entity;</li>
+                        <li>Engaging in any data mining, data harvesting, data extracting, or any other similar activity in relation to this website;</li>
+                        <li>Using our free or paid products in any political activity or promoting content that contradicts Islamic laws and regulations.</li>
+                    </ul>
+
+                    <h3>4. Your Privacy</h3>
+                    <p>All your information are neither sold nor shared with thirdparties. All your information is collected through our platform or hotmart.</p>
+
+                    <h3>5. No warranties</h3>
+                    <p>This website is provided "as is," with all faults, and Barmga express no representations or warranties, of any kind related to this website or the materials contained on this website. Also, nothing contained on this website shall be interpreted as advising you.</p>
+
+                    <h3>6. Limitation of liability</h3>
+                    <p>In no event shall Barmga, nor any of its officers, directors, and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Barmga, including its officers, directors, and employees shall not be held liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p>
+
+                    <h3>7. Indemnification</h3>
+                    <p>You hereby indemnify to the fullest extent Barmga from and against any and/or all liabilities, costs, demands, causes of action, damages, and expenses arising in any way related to your breach of any of the provisions of these terms.</p>
+
+                    <h3>8. Severability</h3>
+                    <p>If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+
+                    <h3>9. Variation of Terms</h3>
+                    <p>Barmga is permitted to revise these terms at any time as it sees fit, and by using this website you are expected to review these terms on a regular basis.</p>
+
+                    <h3>10. Assignment</h3>
+                    <p>The Barmga is allowed to assign, transfer, and subcontract its rights and/or obligations under these terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these terms.</p>
+
+                    <h3>11. Entire Agreement</h3>
+                    <p>These terms constitute the entire agreement between Barmga and you in relation to your use of this website and supersede all prior agreements and understandings.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Business Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+
+                    <!-- ADDTOOLSEN -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;Website Template Editor
+                        </a>
+                    </div>
+                    <p class="emailx">Edit & update your web templates in few clicks! Upload your company & products information in few clicks.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto; font-weight: 600;"></i>
+                    <hr>
+
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor" target="_blank">
+                            <i class="fa fa-map-marker"></i>&nbsp;&nbsp;City Extractor Tool
+                        </a>
+                    </div>
+                    <p class="emailx">Extract city names from google maps addresses then add a city name column to your excel file!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager" target="_blank">
+                            <i class="fa fa-group"></i>&nbsp;&nbsp;Contacts Manager
+                        </a>
+                    </div>
+                    <p class="emailx">Extract email addresses & phone numbers from several files, then split them to multiple parts before launching your marketing campaigns!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;Bulk Email Validator
+                        </a>
+                    </div>
+                    <p class="emailx">Clean your email lists from inactive business email addresses, for a better email deliverability rate!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | Gmail Sender
+                        </a>
+                    </div>
+                    <p class="emailx">Automatically send individual messages to bulk email addresses using your Gmail account. This tool works with the Microsoft Edge browser on a computer.</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Email Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="emailx">Turn Email addresses to links and send messages easily from Mobile browser & Gmail mobile app in few clicks!</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Tools</h5>
+                    <div style="flex-grow: 1;"></div>
+
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | Whatsapp Sender
+                        </a>
+                    </div>
+                    <p class="whatsappx">Send automated Whatsapp messages using Wabarmga. This tool can be used with chrome browser on PC.</p>
+                    <img src="img/bot.webp" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4一层层px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;Whatsapp Bulk Links Generator
+                        </a>
+                    </div>
+                    <p class="whatsappx">Turn Whatsapp phone numbers to links and send messages easily from Mobile browser & Whatsapp app in few clicks!</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+                <div class="ad-horizontal zoom-out" id="ad-horizontal-2">
+                <a href="https://barmga.com/company-website" target="_blank" rel="noopener noreferrer" class="cta-ad-card reversed-colors">
+                    <div class="cta-ad-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.9L16.2,16.2Z" /></svg>
+                    </div>
+                    <div class="cta-ad-content text-center">
+                        <h4>Need a website?</h4>
+                        <p class="mt-3">Give your company a strong digital presence!</p>
+                    </div>
+                    <div class="cta-ad-button">
+                        Get a Website
+                    </div>
+                </a>
+            </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Get In Touch</h5>
+                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                                <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                    <a class="btn btn-link" href="https://barmga.com/#contact">Contact Us</a>
+                    <p><i class="fa fa-envelope me-3"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Our Company</h5>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en">Home</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#about">About Us</a>
+                    <a class="btn btn-link" href="https://barmga.com/faq">FAQ</a>
+                    <a class="btn btn-link" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Our Activities</h5>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#services">Services</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#products">Databases</a>
+                    <a class="btn btn-link" href="https://barmga.com/?lang=en#tools">Business Tools</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter for lastest offers & updates.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="https://barmga.com/?lang=en">Barmga 2025</a>, All Right Reserved.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script>
+        function showonly(classname) {
+            if (classname == 'all') {
+                var wapart = $('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+                var mailpart = $('#optionsmodalemail .modal-body')[0].innerHTML
+                var otherpart = $('#optionsmodalother .modal-body')[0].innerHTML
+                $('#optionsmodal .modal-body')[0].innerHTML = wapart + "<hr>" + mailpart
+                $('#optionsmodal').modal('show')
+            } else {
+                $('#optionsmodal' + classname).modal('show')
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+</body>
+</html>
