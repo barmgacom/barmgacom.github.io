@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <title>قوالب صفحات بيع للنطاقات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="قوالب صفحات الهبوط للنطاقات, قوالب الويب, قالب نطاق للبيع, قالب HTML, قالب متجاوب, تصميم ويب ممتاز">
+    <meta name="description" content="اكتشف واشترِ قوالب صفحات هبوط النطاقات الاحترافية والمتجاوبة. مثالية لبيع نطاقاتك المميزة بتصميم جذاب وعصري.">
+
+    <meta property="og:title" content="قوالب صفحات البيع المميزة للنطاقات">
+    <meta property="og:description" content="اكتشف واشترِ قوالب صفحات هبوط النطاقات الاحترافية والمتجاوبة. مثالية لبيع نطاقاتك المميزة بتصميم جذاب وعصري.">
+    <meta property="og:image" content="images/template-hero-preview.png">
+    <meta property="og:url" content="https://barmga.com/web-template-sale">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+        <style>
+                      .noticeme {
+            background: linear-gradient(270deg, #ffffff, #fdfeff, #bfe2fd, #ffffff, #ffffff);
+            color: #2780B7; /* Original text color */
+            animation: gradientAnimation 5s ease infinite, shadowAnimation 3s ease infinite, textColorAnimation 5s ease infinite; /* Added shadow and text color animations */
+            background-size: 1200% 1200%;
+        }
+        
+        @keyframes shadowAnimation {
+            0%, 100% { box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+            50% { box-shadow: 0 0 10px 7px rgba(201, 220, 231, 0.5); } /* Darker shadow */
+        }
+        
+        @keyframes textColorAnimation {
+            0%, 100% { color: #1b9fad; }
+            25% { color: #1A5E89; } /* Darker shade */
+            50% { color: #0090dd; }
+            75% { color: #025d8f; } /* Darker shade */
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        .how-it-works {
+
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        .image-zoom-container {
+            width: 100%;
+            /* or fixed width */
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+            /* optional */
+        }
+
+        .zoomed-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.7);
+            /* Zoom to show 70% */
+            transform-origin: top center;
+            /* Focus on top part */
+            transition: transform 0.3s ease;
+        }
+
+        accordion-item {
+            background-color: #fefefe !important;
+            color: #452d8c !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .header-bg {
+            background: linear-gradient(90deg, #2b6cb0 0%, #91acc9 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .btn-primary {
+            background-color: #2b6cb0;
+            border-color: #2b6cb0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #3580cf;
+            border-color: #3580cf;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .owl-carousel .item img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .how-it-works .steps .step-number {
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+        }
+
+        .owl-carousel .owl-nav button.owl-prev,
+        .owl-carousel .owl-nav button.owl-next {
+            font-size: 3rem;
+            color: #2780B7;
+            background: none;
+            border: none;
+        }
+
+        .owl-carousel .owl-nav button.owl-prev {
+            left: -50px;
+        }
+
+        .owl-carousel .owl-nav button.owl-next {
+            right: -50px;
+        }
+
+        @media (max-width: 767.98px) {
+            .owl-carousel .owl-nav button.owl-prev {
+                left: -10px;
+            }
+
+            .owl-carousel .owl-nav button.owl-next {
+                right: -10px;
+            }
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .accordion-item {
+            border: 1px solid rgba(0, 0, 0, .125);
+            margin-bottom: 10px;
+            border-radius: .25rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #fff;
+            background-color: #2b6cb0;
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 .25rem rgba(43, 108, 176, .25);
+        }
+
+        /* Styles for the main template display images (both mobile and desktop versions) */
+        #selectedTemplateImageMobile,
+        #selectedTemplateImageDesktop {
+            max-height: 450px;
+            /* Adjust as needed for the main preview image */
+            width: auto;
+            /* Maintain aspect ratio */
+            object-fit: contain;
+            /* Ensure the entire image is visible */
+            display: block;
+            /* Remove extra space below image */
+            margin: 0 auto;
+            /* Center the image */
+        }
+
+        /* Styles for the feature list items */
+        #selectedTemplateFeatures li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            display: flex;
+            /* Align icon and text */
+            align-items: flex-start;
+            /* Align to top if text wraps */
+        }
+
+        #selectedTemplateFeatures li i {
+            margin-left: 10px;
+            color: #2780B7;
+            /* Use your primary color for icons */
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+
+        /* Styles for the template radio cards */
+        .template-radio-card {
+            border: 2px solid #e9ecef;
+            /* Light border */
+            border-radius: 15px;
+            /* Rounded corners */
+            transition: all 0.3s ease;
+            /* Smooth transitions for hover/active states */
+            cursor: pointer;
+            /* Indicate interactivity */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Push button to bottom */
+            height: 100%;
+            /* Ensure cards in a row have equal height */
+        }
+
+        .template-radio-card:hover {
+            border-color: #2b6cb0;
+            /* Highlight border on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            /* Lift effect on hover */
+            transform: translateY(-5px);
+            /* Slight lift */
+        }
+
+        /* Style for the actively selected template card */
+        .template-radio-card.active-template-selection {
+            border-color: #2b6cb0;
+            /* Stronger border for active state */
+            box-shadow: 0 0 0 0.25rem rgba(43, 108, 176, 0.25);
+            /* Bootstrap-like focus ring */
+            background-color: #f0f7ff;
+            /* Light background for active state */
+        }
+
+        /* Thumbnail image within the radio card */
+        .template-thumb {
+            max-height: 150px;
+            /* Control thumbnail size */
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Adjust button spacing for responsiveness */
+        @media (max-width: 767.98px) {
+            .d-flex.flex-column.flex-md-row>.btn {
+                width: 100%;
+                /* Full width buttons on small screens */
+            }
+
+            .d-flex.flex-column.flex-md-row>.btn:not(:last-child) {
+                margin-bottom: 15px;
+                /* Space between buttons on small screens */
+            }
+        }
+                .how-it-works {
+
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+        <style>
+        .shadowmex{
+    box-shadow: 0 3px 3px 0 rgba(86, 86, 0, 0.196), 0 3px 3px 0 rgba(86, 86, 0, 0.196);
+}
+        .accordion-button{text-align: right !important;}
+        .tool>*,
+        .lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                direction: rtl;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'El Messiri', sans-serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+
+        /*** Section Title ***/
+        .section-title-right::before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 4px;
+            bottom: 0;
+            right: 0;
+            background: var(--dark);
+        }
+
+        .section-title-right::after {
+            position: absolute;
+            content: "";
+            width: 4px;
+            height: 4px;
+            bottom: 0;
+            right: 50px;
+            background: var(--dark);
+        }
+
+        .section-title-right.text-center::before {
+            right: 50%;
+            margin-right: -25px;
+        }
+
+        .section-title-right.text-center::after {
+            right: 50%;
+            margin-right: 25px;
+        }
+
+        .section-title-right h6::before,
+        .section-title-right h6::after {
+            position: absolute;
+            content: "";
+            width: 10px;
+            height: 10px;
+            top: 2px;
+            right: 0;
+            background: rgba(33, 110, 177, 0.5);
+        }
+
+        .section-title-right h6::after {
+            top: 5px;
+            right: 3px;
+        }
+
+        .footer .btn.btn-linkx {
+            display: block;
+            margin-bottom: 10px;
+            padding: 0;
+            text-align: right;
+            color: var(--light);
+            font-weight: normal;
+            transition: .3s;
+        }
+
+        .footer .btn.btn-linkx::before {
+            position: relative;
+            content: "•";
+            font-family: "Font Awesome 4 Free";
+            font-weight: 900;
+            margin-left: 10px;
+        }
+
+        .footer .btn.btn-linkx:hover {
+            letter-spacing: 1px;
+            box-shadow: none;
+        }
+
+        input[type="text"]:-moz-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]:-ms-input-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]::-webkit-input-placeholder {
+            text-align: right !important;
+        }
+
+        body {
+            font-family: 'El Messiri', sans-serif !important;
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+
+        .badge-sm {
+            font-size: 0.9rem;
+            padding: 0.4em 0.7em;
+        }
+
+        .bg-golden {
+            background-color: #FFD700;
+            color: #333;
+        }
+    </style>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+</head>
+<body id="home">
+    <div class="loaderx fullscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0">
+        <div class="container-fluid position-relative p-0">
+            <input id="fileUploadx" style="display: none;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/ar">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://barmga.com/domain-landing-page-editor">English</a></li>
+                                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5 header-bg">
+        <div class="container mt-5 pb-5">
+            <h1 class="display-4 fw-bold text-white mt-5">قوالب صفحات بيع للنطاقات</h1>
+            <p class="lead" style="color: #ffffffd5;" dir="rtl">قوالب مصممة باحترافية لمساعدتك على بيع نطاقاتك المميزة بشكل أسرع.</p>
+            <div class="mt-4">
+                <a onclick="document.querySelector('#how-it-works').scrollIntoView()" class="shadowmex btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInLeft border-3">كيف تعمل</a>
+                <a onclick="document.querySelector('#select-template').scrollIntoView()" class="shadowmex btn btn-light py-sm-3 px-sm-5 rounded-pill ms-3 animated slideInRight">عرض القوالب</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="wow fadeInUp bg-white" data-wow-delay="0.1s" id="templates" dir="rtl" style="text-align: right;">
+        <div class="container">
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h3 class="display-6 mb-3 text-primary text-center mb-5 mb-md-4 text-md-end" id="selectedTemplateTitle"></h3>
+
+                    <div class="text-center mb-4 d-lg-none">
+                        <img src="" class="img-fluid rounded-3 shadow-lg" alt="معاينة القالب" id="selectedTemplateImageMobile">
+                    </div>
+
+                    <p class="lead mb-4" id="selectedTemplateDescription" dir="rtl"></p>
+                    <ul class="list-unstyled mb-4" id="selectedTemplateFeatures" style="margin-right: -30px">
+                        </ul>
+                    <div class="d-flex flex-column flex-md-row justify-content-end align-items-center" dir="ltr">
+                        <a href="#" target="_blank" class="noticeme shadowmex btn btn-outline-primary rounded-pill btn-lg me-md-3 mb-3 mb-md-0" id="livePreviewBtn">معاينة مباشرة</a>
+                        <a href="#" class="btn btn-primary btn-lg shadowmex" id="buyNowBtn">&nbsp;&nbsp;إشتري الآن&nbsp;&nbsp;</a>
+                    </div>
+                                            <div class="d-flex align-items-end" style="pointer-events: auto !important;"><span class="text-muted" style="font-size: 80%; align-items: center;"><br>عند طلب هذا المنتج أنت توافق على <a class="underline" data-bs-toggle="modal" data-bs-target="#termsUseModal" style="cursor: pointer;">شروط الخدمة.</a>
+                            <a class="text-muted" > البيع يتم بوساطة <a id="hotmart"  data-bs-toggle="modal" data-bs-target="#hotmartmodal" style="color: #2780B7; cursor: pointer;"> هوت مارت.</a></a></span></div>
+                </div>
+                <div class="col-lg-6 text-center d-none d-lg-block">
+                    <img src="" class="img-fluid rounded-3 shadow-lg" alt="معاينة القالب" id="selectedTemplateImageDesktop">
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-center pb-4 pt-4 bg-light" id="select-template">اختر قالبًا</h2>
+        <div class="container-fluid bg-primary testimonial pb-4 pt-4">
+            <div class="row g-4 pe-4 ps-4 justify-content-center" id="templateSelectionRadios">
+                </div>
+        </div>
+    </div>
+    <div class="pb-3 pt-5" style="background-color: #f4f6fb;" id="how-it-works">
+        <div class="text-center">
+            <h2>كيف تعمل</h2>
+        </div>
+    </div>
+    <div class="container-fluid py-5 bg-light wow fadeIn" data-wow-delay="0.1s" id="how-it-works" dir="rtl">
+        <div class="container">
+
+            <div class="row g-5">
+                <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                    <div class="video-container">
+                        <iframe id="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=G-YdG8H_u4f_a-wA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <h5 class="step-title mt-3">اختر قالبًا</h5>
+                            <p class="step-description">تصفح مجموعتنا من القوالب الاحترافية واختر الأنسب لنطاقك.</p>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <h5 class="step-title mt-3">خصّص باستخدام أداة التعديل المجانية</h5>
+                            <p class="step-description">استخدم <a onclick="showonly('modaltool')" style="color:#2780B7; text-decoration: underline;">أداة التعديل المجانية</a> سهل الاستخدام لإضافة اسم نطاقك وسعره وميزاته وروابطه دون لمس أي تعليمات برمجية.</p>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <h5 class="step-title mt-3">حمّل وادخل حيز التنفيذ</h5>
+                            <p class="step-description">حمّل ملف HTML المخصص على الفور وارفعه إلى استضافتك. صفحة الهبوط الجديدة جاهزة!</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pe-4 ps-4 py-5 wow fadeInUp bg-white" data-wow-delay="0.1s" dir="rtl">
+        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <h2 class="mt-2">الميزات الرئيسية</h2>
+            <p class="lead" dir="rtl">قوالبنا أكثر من مجرد صفحات جميلة. إنها مبنية للأداء والنتائج.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="feature-box p-4 rounded-3 h-100 shadow-sm" style="background-color: #fdfdfd;">
+                    <div class="feature-icon mb-3">
+                        <i class="fa fa-paint-brush fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="fw-bold">تصميم عصري</h5>
+                    <p class="text-muted mb-0">تخطيطات جذابة ونظيفة بصريًا لجذب انتباه المشتري.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="feature-box p-4 rounded-3 h-100 shadow-sm" style="background-color: #fdfdfd;">
+                    <div class="feature-icon mb-3">
+                        <i class="fa fa-mobile fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="fw-bold">متجاوب بالكامل</h5>
+                    <p class="text-muted mb-0">تبدو مثالية على أي جهاز، من أجهزة الكمبيوتر المكتبية إلى الهواتف المحمولة.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="feature-box p-4 rounded-3 h-100 shadow-sm" style="background-color: #fdfdfd;">
+                    <div class="feature-icon mb-3">
+                        <i class="fa fa-dollar fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="fw-bold">تفاعلي</h5>
+                    <p class="text-muted mb-0">مصممة لتوجيه الزوار نحو إتمام عملية شراء أو تقديم عرض.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="feature-box p-4 rounded-3 h-100 shadow-sm" style="background-color: #fdfdfd;">
+                    <div class="feature-icon mb-3">
+                        <i class="fa fa-shield fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="fw-bold">المصداقية</h5>
+                    <p class="text-muted mb-0">تبني ثقة الزوار من خلال عرض تقييمات العملاء لمنصة البيع.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5 wow fadeIn testimonial" dir="rtl" data-wow-delay="0.1s" style="background-color: #cddaf0;">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                <h2 class="display-5 mb-4">الأسئلة المتكررة</h2>
+            </div>
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq-heading-1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-1" aria-expanded="false" aria-controls="faq-collapse-1">
+                            كيف أقوم بإدراج بياناتي وعروضي في القالب؟
+                        </button>
+                    </h2>
+                    <div id="faq-collapse-1" class="accordion-collapse collapse" aria-labelledby="faq-heading-1" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يمكنك استخدام <a onclick="showonly('modaltool')" style="color:#2780B7; text-decoration: underline;">أداة التعديل المجانية</a> لإدراج اسم نطاقك وسعره وروابط الشراء وتفاصيل أخرى بسهولة، دون الحاجة لأي خبرة برمجية.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq-heading-2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-2" aria-expanded="false" aria-controls="faq-collapse-2">
+                            كيف أحول القالب المعدل إلى موقع إلكتروني؟
+                        </button>
+                    </h2>
+                    <div id="faq-collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-heading-2" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            بعد تعديل القالب، ستقوم بتحميل ملف HTML الخاص بك. يمكنك رفعه إلى استضافة مجانية مثل Cloudflare Pages. لمزيد من التفاصيل، يمكنك مشاهدة الفيديو في الأعلى الذي يشرح كيفية ربط النطاق الخاص بك.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq-heading-3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-3" aria-expanded="false" aria-controls="faq-collapse-3">
+                            هل يمكنني استخدام قالب واحد لنطاقات متعددة؟
+                        </button>
+                    </h2>
+                    <div id="faq-collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-heading-3" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            نعم، إذا اخترت القالب أحادي النطاق، يمكنك استخدام القالب الأصلي لصناعة صفحات هبوط متعددة لكل نطاق على حدة. أما إذا اخترت القالب متعدد النطاقات، فيمكنك عرض جميع نطاقاتك في صفحة واحدة.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq-heading-4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-4" aria-expanded="false" aria-controls="faq-collapse-4">
+                            ماذا لو احتجت لتصميم خاص للقالب؟
+                        </button>
+                    </h2>
+                    <div id="faq-collapse-4" class="accordion-collapse collapse" aria-labelledby="faq-heading-4" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            تساعدك <a onclick="showonly('modaltool')">أداة التعديل المجانية</a> في تعديل النصوص والروابط الموجودة في القالب. لكن إذا كنت تحتاج إلى تصميم مخصص بالكامل، فنحن نقدم خدمات تصميم المواقع الإلكترونية. لا تتردد في التواصل معنا لمناقشة متطلباتك.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a  style="display: none;" id="video-link" href="#" class="btn btn-primary mt-4" target="_blank">شاهد الفيديو</a>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5 bg-primary testimonial text-white wow fadeInUp" data-wow-delay="0.1s" id="buy-now">
+        <div class="container text-center">
+            <h2 class="display-5 mb-4 text-white">هل أنت جاهز لبيع نطاقك؟</h2>
+            <a href="#templates" style="background-color: #e7e7f3 !important;" class="btn btn-secondary btn-lg">ابدأ الآن</a>
+        </div>
+
+    </div>
+
+    <div class="container-fluid py-4" id="contact">
+        <div class="container px-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="section-title-right position-relative text-center mb-5 mt-5 pb-2 wow fadeInUp" data-wow-delay="0.1s" dir="rtl">
+                        <h6 class="position-relative d-inline text-primary ps-4" style="padding-right: 20px;">اتصل بنا</h6>
+                        <h2 class="mt-2">من أجل أي استفسار</h2>
+                        <br>
+                    </div>
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <small class="position-relative text-center offlinepayment" style="align-items: center; display: none;">نقبل الحوالات المباشرة عن طريق وسترن يونيون، اس تي سي باي، تحويل بنكي، عملات رقمية</small>
+                        <p class="position-relative text-center" id="submitted" style="align-items: center; color: green;"></p>
+                        <form id="your-form" dir="rtl" style="text-align: right;">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating right">
+                                        <input type="text" class="form-control right" id="your-name-input" placeholder="الاسم">
+                                        <label for="name">الاسم</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="your-email-input" placeholder="البريد الالكتروني">
+                                        <label for="email">البريد الالكتروني</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="your-phone-input" placeholder="رقم الجوال">
+                                        <label for="phone">رقم الجوال</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="your-subject-input" placeholder="الموضوع">
+                                        <label for="subject">الموضوع</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="الرسالة" id="your-message-input" style="height: 150px"></textarea>
+                                        <label for="message">الرسالة</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" id="submit" type="submit">أرسل الآن</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal fade" id="hotmartmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 50px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close closeme" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel"></h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body text-center scrollable-body">
+                    <div id="mb-4">
+                        <div class="mb-3" dir="rtl">
+                            <a href="" class="clickmart" style="display: none;"></a>
+                            <p style="font-size: 120%;" >
+                            <strong>منصة هوت مارت للمنتجات الرقمية</strong></p>
+                            <div> 
+                                منصة <a style="color: #2780B7; text-decoration: underline;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart','https://go.hotmart'))">هوت مارت</a> تجمع بين مقدمي المنتجات الرقمية وعملائها وهي عبارة عن وسيط بيع. جميع منتجاتنا الرقمية تم مراجعتها من فريق عمل الموقع ويتم شراؤها واستلامها من نفس المنصة.<br> يمكنك أيضا اتمام الشراء من خلال ارسال حوالة سريعة بالعملة المحلية لبلدك 
+                                <a style="color: #2780B7; text-decoration: underline;"  href="#contact" onclick="document.querySelector('.closeme').click()">تواصل معنا</a>. 
+                            </div>
+                            
+                        </div>
+                        <a onclick="document.querySelector('.closeme').click();document.querySelector('#buyNowBtn').click();" class="btn btn-primary" style="margin-bottom: 20px;">اشتري الآن</a>
+                        <div class="mt-2 mb-2">
+                        <img src="img/paypal.webp" ></div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+              <div class="modal fade" id="termsUseModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="z-index: 9999;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" dir="rtl">
+                    <h5 class="modal-title" id="termsModalLabel">سياسة الخدمة</h5>
+                    <div style="flex-grow: 1;"></div>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  
+                </div>
+                <div class="modal-body scrollable-body" dir="rtl">
+                    <p>مرحبًا بكم في Barmga! هذه الشروط والأحكام تحدد القواعد واللوائح لاستخدام منتجات موقع Barmga.</p>
+                
+                    <h3>1.حدود الاستخدام</h3>
+                    <ul>
+                    <li>يستخدم هذا القالب في عرض اسماء الدومين الخاصة بالمشتري. </li>
+                    <li> يمنع اعادة بيع اوتداول الملفات الخاصة بالقالب مع أطراف ثالثة.</li>
+                    </ul>
+                    <h3>2. شروط الاستخدام</h3>
+                    <p> يلتزم المشتري:</p>
+                    <ul>
+                        <li>بعدم استخدام هذا المنتج في تسويق محتوى مخالف للشريعة الاسلامية.</li>
+                        <li>بعدم احتواء اسواء الدومين على كلمات خادشة للحياء أو توحي بمعاملات غير قانونية او مضرة أومحرمة في الشريعة الاسلامية.</li>
+                        <li>بأن لا تكون اسماء الدومين مخصصة لتطبيقات المواعدة اوالمعاملات الربوية اوخدمات التأمين أوالسياسة أوالدين.</li>                    </ul>
+                
+                    <h3>3. التحديثات</h3>
+                    <p>في حال تم اصدار اي نسخ جديدة مطورة لنفس القالب يمكن للمشتري الحصول عليها مجانا.</p>
+                    <h3>4. الاستلام</h3>
+                    <p>يتم استلام الملفات المشتراه على عنوان البريد الالكتروني الذي حدده العميل في بوابة الدفع.</p>
+                    
+                
+                </div>
+                
+                <div class="modal-footer">
+                  <a  id="confirmButton" class="btn amhere" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">موافق</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">لطلب الدعم</h5>
+                    <a class="btn btn-linkx" href="#contact">اتصل بنا</a>
+                    <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">برمجة</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar">الرئيسية</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#about">من نحن</a>
+                    <a class="btn btn-linkx" href="https://mostaql.com/u/barmga/reviews" target="_blank">تقييمات العملاء</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/faq-ar">الأسئلة الشائعة</a>
+                    <a class="btn btn-linkx" data-bs-toggle="modal" data-bs-target="#termsModal">سياسة الموقع</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">نشاطنا</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                                        <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">النشرة البريدية</h5>
+                    <p>اشترك الآن واحصل على أحدث العروض والأدوات المميزة.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="البريد الالكتروني" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="https://barmga.com/ar">Barmga 2025</a>, جميع الحقوق محفوظة.
+
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">الشروط والأحكام</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body scrollable-body">
+                    <p>مرحباً بكم في بارمجا! تحدد هذه الشروط والأحكام القواعد واللوائح الخاصة باستخدام موقع بارمجا، الموجود على <a href="https://barmga.com/?lang=ar">barmga.com</a>.</p>
+                    <h3>1. مقدمة</h3>
+                    <p>من خلال الوصول إلى هذا الموقع، نفترض أنك تقبل هذه الشروط والأحكام. لا تستمر في استخدام بارمجا إذا كنت لا توافق على قبول جميع الشروط والأحكام المذكورة في هذه الصفحة.</p>
+                    <h3>2. حقوق الملكية الفكرية</h3>
+                    <p>ما لم يُذكر خلاف ذلك، تمتلك بارمجا و/أو مرخصوها حقوق الملكية الفكرية لجميع المواد الموجودة على بارمجا. جميع حقوق الملكية الفكرية محفوظة. يمكنك الوصول إلى هذه المواد من بارمجا لاستخدامك الشخصي فقط وفقًا للقيود المنصوص عليها في هذه الشروط والأحكام.</p>
+                    <h3>3. القيود</h3>
+                    <p>يُحظر عليك بشكل خاص ما يلي:</p>
+                    <ul>
+                        <li>نشر أي مادة من الموقع في أي وسائط أخرى؛</li>
+                        <li>بيع، ترخيص فرعي، و/أو تسويق أي مادة من الموقع بأي طريقة أخرى؛</li>
+                        <li>الأداء العام و/أو عرض أي مادة من الموقع؛</li>
+                        <li>استخدام هذا الموقع بأي طريقة تضر أو قد تضر بهذا الموقع؛</li>
+                        <li>استخدام هذا الموقع بأي طريقة تؤثر على وصول المستخدم إلى هذا الموقع؛</li>
+                        <li>استخدام هذا الموقع بطريقة تتعارض مع القوانين واللوائح المعمول بها، أو بأي طريقة قد تسبب ضررًا للموقع، أو لأي شخص أو كيان تجاري؛</li>
+                        <li>الانخراط في أي تعدين بيانات، جمع بيانات، استخراج بيانات، أو أي نشاط مشابه آخر فيما يتعلق بهذا الموقع؛</li>
+                        <li>استخدام منتجاتنا المجانية أو المدفوعة في أي نشاط سياسي أو ترويج محتوى يتعارض مع الشريعة الإسلامية واللوائح.</li>
+                    </ul>
+                    <h3>4. خصوصيتك</h3>
+                    <p>جميع معلوماتك لا تُباع ولا تُشارك مع أطراف ثالثة. يتم جمع جميع معلوماتك من خلال منصتنا أو Hotmart.</p>
+                    <h3>5. لا توجد ضمانات</h3>
+                    <p>يُقدم هذا الموقع "كما هو"، بكل عيوبه، وبارمجا لا تعبر عن أي إقرارات أو ضمانات من أي نوع تتعلق بهذا الموقع أو المواد الموجودة فيه. كما أن لا شيء وارد في هذا الموقع يُفسر على أنه يقدم لك نصيحة.</p>
+                    <h3>6. تحديد المسؤولية</h3>
+                    <p>لن تكون بارمجا، ولا أي من مسؤوليها، مديريها، وموظفيها، مسؤولين عن أي شيء ينشأ عن أو يرتبط بأي شكل من الأشكال باستخدامك لهذا الموقع سواء كانت هذه المسؤولية بموجب عقد. لن تكون بارمجا، بما في ذلك مسؤوليها، مديريها، وموظفيها، مسؤولة عن أي مسؤولية غير مباشرة، تبعية، أو خاصة تنشأ عن أو ترتبط بأي شكل من الأشكال باستخدامك لهذا الموقع.</p>
+                    <h3>7. التعويض</h3>
+                    <p>بموجب هذا، فإنك تعوض بارمجا بالكامل عن وعن جميع الالتزامات والتكاليف والمطالبات وأسباب الدعوى والأضرار والمصاريف التي تنشأ بأي شكل من الأشكال فيما يتعلق بخرقك لأي من أحكام هذه الشروط.</p>
+                    <h3>8. قابلية الفصل</h3>
+                    <p>إذا وُجد أي بند من هذه الشروط غير صالح بموجب أي قانون معمول به، فسيتم حذف هذه البنود دون التأثير على البنود المتبقية هنا.</p>
+                    <h3>9. تعديل الشروط</h3>
+                    <p>يُسمح لبارمجا بمراجعة هذه الشروط في أي وقت حسبما تراه مناسبًا، ومن خلال استخدام هذا الموقع يُتوقع منك مراجعة هذه الشروط بانتظام.</p>
+                    <h3>10. التنازل</h3>
+                    <p>يُسمح لبارمجا بتعيين حقوقها و/أو التزاماتها بموجب هذه الشروط ونقلها والتعاقد عليها من الباطن دون أي إخطار. ومع ذلك، لا يُسمح لك بتعيين أو نقل أو التعاقد من الباطن على أي من حقوقك و/أو التزاماتك بموجب هذه الشروط.</p>
+                    <h3>11. الاتفاق الكامل</h3>
+                    <p>تشكل هذه الشروط الاتفاق الكامل بين بارمجا وبينك فيما يتعلق باستخدامك لهذا الموقع وتحل محل جميع الاتفاقيات والتفاهمات السابقة.</p>
+                </div>
+                <div class="modal-footer">
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">تأكيد</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modaltool" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;إختر الأداة المناسبة</h5>
+                    
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                                        <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #5ecdec; color: rgb(14, 10, 62); box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/domain-landing-page-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل القوالب أحادية النطاق
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">عدّل وحدث صفحة هبوط لكل دومين عندك عن طريق هذه الأداة!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto; font-weight: 600;"></i>
+                    <hr>
+
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #7cbdf6; color: rgb(17, 7, 42); box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/domain-portfolio-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل القوالب متعددة النطاقات
+                        </a>
+                    </div>
+                    <p  dir="rtl" class="emailx">قم بادراج معلومات جميع النطاقات التي تمتلكها انطلاقا من ملف اكسل عن طريق هذه الأداة!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;أدوات الأعمال</h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;محرر قوالب المواقع
+                        </a>
+                    </div>
+                    <p class="emailx">عدّل وحدث قوالب الويب الخاصة بك ببضع نقرات! حمل معلومات شركتك ومنتجاتك ببضع نقرات.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto; font-weight: 600;"></i>
+                    <hr>
+
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor" target="_blank">
+                            <i class="fa fa-map-marker"></i>&nbsp;&nbsp;أداة استخراج المدن
+                        </a>
+                    </div>
+                    <p class="emailx">استخرج أسماء المدن من عناوين خرائط جوجل ثم أضف عمود اسم المدينة إلى ملف Excel الخاص بك!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager" target="_blank">
+                            <i class="fa fa-group"></i>&nbsp;&nbsp;مدير جهات الاتصال
+                        </a>
+                    </div>
+                    <p class="emailx">استخرج عناوين البريد الإلكتروني وأرقام الهواتف من عدة ملفات، ثم قم بتقسيمها إلى أجزاء متعددة قبل إطلاق حملاتك التسويقية!</p>
+                    <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator" target="_blank">
+                            <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني الجماعي
+                        </a>
+                    </div>
+                    <p class="emailx">نظّف قوائم بريدك الإلكتروني من عناوين البريد الإلكتروني غير النشطة للشركات، لمعدل تسليم بريد إلكتروني أفضل!</p>
+                    <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;أدوات البريد الإلكتروني</h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;برمجة البريد | مرسل Gmail
+                        </a>
+                    </div>
+                    <p class="emailx">أرسل رسائل فردية تلقائيًا إلى عناوين بريد إلكتروني بالجملة باستخدام حساب Gmail الخاص بك. تعمل هذه الأداة مع متصفح Microsoft Edge على الكمبيوتر.</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="روبوت" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني الجماعية
+                        </a>
+                    </div>
+                    <p class="emailx">حوّل عناوين البريد الإلكتروني إلى روابط وأرسل الرسائل بسهولة من متصفح الهاتف وتطبيق Gmail للهاتف ببضع نقرات!</p>
+                    <img src="img/click.png" alt="يدوي" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;أدوات واتساب</h5>
+                    <div style="flex-grow: 1;"></div>
+                </div>
+                <div class="modal-body scrollable-body text-center mt-2">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | مرسل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">أرسل رسائل واتساب تلقائية باستخدام Wabarmga. يمكن استخدام هذه الأداة مع متصفح Chrome على الكمبيوتر.</p>
+                    <img src="img/bot.webp" alt="روبوت" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط واتساب الجماعية
+                        </a>
+                    </div>
+                    <p class="whatsappx">حوّل أرقام هواتف واتساب إلى روابط وأرسل الرسائل بسهولة من متصفح الهاتف وتطبيق واتساب ببضع نقرات!</p>
+                    <img src="img/click.webp" alt="يدوي" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Define your template data here, similar to your 'allproducts' dictionary.
+        // Each key is a unique ID for the template (e.g., 'modern-clean', 'elegant-professional').
+const templatesData = {
+    "domain-landing-page-model-1": {
+        id: "01",
+        title: "صفحة هبوط للنطاق نموذج 1",
+        description: "قالب احترافي ونظيف يسمح للمشترين المحتملين بتقديم عرض أو شراء النطاق مباشرة. يتضمن قسمًا لتسليط الضوء على النطاقات المماثلة التي تم بيعها، مما يساعد على تبرير قيمة أصولك.",
+        features: ["أداة تعديل مجانية", "فيديو شرح التعديل والاستضافة", "استخدام روابط دفع خاصة", "استلام العروض عبر نموذج الاتصال"],
+        image: "templates/domain-template1.jpg",
+        livePreviewUrl: "https://templates.barmga.com/domain-template1",
+        buyNowUrl: "https://pay.hotmart.com/C103204352L?off=pwxmhkei",
+        price: 99,
+        videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=G-YdG8H_u4f_a-wA"
+    },
+    "domain-landing-page-model-2": {
+        id: "02",
+        title: "صفحة هبوط للنطاق نموذج 2",
+        description: "يقدم هذا القالب طريقة مباشرة وسهلة لبيع نطاقك. يعرض بوضوح السعر الثابت وخيار 'تقديم عرض'، مع تضمين قسم مخصص لعرض المبيعات السابقة، مما يعزز من قيمة النطاق.",
+        features: ["أداة تعديل مجانية", "فيديو شرح التعديل والاستضافة", "استخدام روابط دفع خاصة", "استلام العروض عبر نموذج الاتصال"],
+        image: "templates/domain-template2.jpg",
+        livePreviewUrl: "https://templates.barmga.com/domain-template2",
+        buyNowUrl: "https://pay.hotmart.com/P103204928P?off=kz3fkyst",
+        price: 99,
+        videoLink: "https://www.youtube.com/embed/z9wY8G9x-aE?si=Hq1z-D3R_h-K_s5F"
+    },
+    "Domains-portfolio-light": {
+        id: "03",
+        title: "كاتالوج نطاقات - فاتح",
+        description: "قالب لكاتالوج نطاقات أنيق ومتعدد النطاقات بتصميم فاتح واحترافي. إنه مثالي لعرض عدة نطاقات مميزة، لكل منها قسم مخصص لخيارات اشترِ الآن وقدم عرضًا.",
+        features: ["أداة تعديل مجانية", "فيديو شرح التعديل والاستضافة", "استخدام روابط دفع خاصة", "استلام العروض عبر نموذج الاتصال"],
+        image: "templates/domain-template3.jpg",
+        livePreviewUrl: "https://templates.barmga.com/domain-template3",
+        buyNowUrl: "https://pay.hotmart.com/D103205077T?off=rtdfzqln",
+        price: 150,
+        videoLink: "https://www.youtube.com/embed/3yH0F6s8v40?si=Fw1J8K9-Q5n1eYpP"
+    },
+    "Domains-portfolio-dark": {
+        id: "04",
+        title: "كاتالوج نطاقات - غامق",
+        description: "قالب لكاتالوج نطاقات عصري وأنيق بتصميم داكن، مصمم لعرض عدة نطاقات. يبرز التصميم كل نطاق بوصف احترافي وعبارات واضحة تحث على اتخاذ إجراء سواء للشراء أو تقديم عرض.",
+        features: ["أداة تعديل مجانية", "فيديو شرح التعديل والاستضافة", "استخدام روابط دفع خاصة", "استلام العروض عبر نموذج الاتصال"],
+        image: "templates/domain-template4.jpg",
+        livePreviewUrl: "https://templates.barmga.com/domain-template4",
+        buyNowUrl: "https://pay.hotmart.com/C103205008A?off=f851zcxq",
+        price: 150,
+        videoLink: "https://www.youtube.com/embed/G_8BfWqJzFw?si=Uv7v1d8Qp0mR_y6W"
+    }
+};
+
+        /**
+         * Finds a template object by its ID.
+         * @param {string} id - The ID of the template to find.
+         * @returns {object|null} The template object if found, otherwise null.
+         */
+        function findTemplateById(id) {
+            for (const key in templatesData) {
+                if (templatesData[key].id === id) {
+                    return templatesData[key];
+                }
+            }
+            return null;
+        }
+
+        /**
+         * Updates the main display area with details of the selected template.
+         * @param {string} templateId - The unique ID of the template to display.
+         */
+        function displayTemplateDetails(templateId) {
+            const template = findTemplateById(templateId);
+            if (!template) {
+                console.error(`Template with ID "${templateId}" not found.`);
+                return;
+            }
+
+            // Update main display elements
+            document.getElementById('selectedTemplateTitle').textContent = template.title;
+            document.getElementById('selectedTemplateDescription').textContent = template.description;
+
+            // Update both image elements
+            const mobileImage = document.getElementById('selectedTemplateImageMobile');
+            if (mobileImage) {
+                mobileImage.src = template.image;
+            }
+            const desktopImage = document.getElementById('selectedTemplateImageDesktop');
+            if (desktopImage) {
+                desktopImage.src = template.image;
+            }
+
+            // Update the main video source
+            const mainVideo = document.getElementById('mainVideo');
+            if (mainVideo) {
+                mainVideo.src = template.videoLink;
+            }
+
+            document.getElementById('livePreviewBtn').href = template.livePreviewUrl;
+            
+            // Update buy/download button text based on price
+            const buyNowBtn = document.getElementById('buyNowBtn');
+            if (template.price === 0) {
+                buyNowBtn.textContent = ' تحميل ';
+            } else {
+                buyNowBtn.innerHTML = '&nbsp;&nbsp;إشتري الآن&nbsp;&nbsp;';
+            }
+            buyNowBtn.href = template.buyNowUrl;
+
+
+            // Update features list
+            const featuresList = document.getElementById('selectedTemplateFeatures');
+            featuresList.innerHTML = ''; // Clear existing features
+            if (template.features && Array.isArray(template.features)) {
+                template.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fa fa-check text-primary me-2"></i>${feature}`;
+                    featuresList.appendChild(li);
+                });
+            } else {
+                console.warn(`Template "${template.title}" has no features or features are not an array.`);
+            }
+
+            // Update active state for the radio card selections
+            document.querySelectorAll('.template-radio-card').forEach(card => {
+                card.classList.remove('active-template-selection');
+            });
+            const selectedRadioInput = document.getElementById(`template-${template.id}`);
+            if (selectedRadioInput) {
+                selectedRadioInput.closest('.template-radio-card').classList.add('active-template-selection');
+            }
+        }
+
+        /**
+         * Dynamically generates the radio button cards for template selection.
+         */
+        function generateTemplateSelection() {
+            const container = document.getElementById('templateSelectionRadios');
+            const initialUrlParams = new URLSearchParams(window.location.search);
+            const initialId = initialUrlParams.get('id');
+            let firstTemplateId = Object.values(templatesData)[0].id; // Default to the first ID
+
+            for (const key in templatesData) {
+                const template = templatesData[key];
+                const colDiv = document.createElement('div');
+                colDiv.className = 'col-lg-3 col-md-6 col-12';
+
+                colDiv.innerHTML = `
+                    <label for="template-${template.id}" class="template-radio-card card h-100 p-3 position-relative">
+                        <input type="radio" name="selectedTemplate" id="template-${template.id}" value="${template.id}" class="d-none">
+                        <div class="position-absolute top-0 end-0 mt-2 me-2 badge rounded-pill badge-sm ${template.price === 0 ? 'bg-success' : 'bg-dark'}" style="z-index: 10;">
+                            ${template.price === 0 ? "مجاني" : `$${template.price}`}
+                        </div>
+                        <div class="text-center image-zoom-container mb-3">
+                            <img src="${template.image}" class="zoomed-image img-fluid rounded-3 template-thumb" alt="${template.title} Thumbnail">
+                        </div>
+                        <h5 class="card-title text-center text-primary">${template.title}</h5>
+                        <p class="card-text text-center text-muted small">${template.description.substring(0, 70)}...</p>
+                        <div class="text-center">
+                            <span class="btn btn-primary rounded-pill shadowmex">اختر القالب</span>
+                        </div>
+                    </label>
+                `;
+                container.appendChild(colDiv);
+
+                // Add event listener to the radio input
+                colDiv.querySelector(`#template-${template.id}`).addEventListener('change', (event) => {
+                    if (event.target.checked) {
+                        displayTemplateDetails(event.target.value);
+                        // Update URL without reloading the page
+                        history.pushState(null, '', `?id=${event.target.value}`);
+                    }
+                });
+            }
+
+            // Set the initial selection based on the URL or default to the first template
+            const selectedTemplateId = initialUrlParams.get('id');
+            const initialTemplate = findTemplateById(selectedTemplateId);
+            const finalSelectionId = (initialTemplate) ? selectedTemplateId : firstTemplateId;
+
+            const initialRadio = document.getElementById(`template-${finalSelectionId}`);
+            if (initialRadio) {
+                initialRadio.checked = true;
+                displayTemplateDetails(finalSelectionId);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', generateTemplateSelection);
+
+        // Listen for back/forward navigation to update the UI
+        window.addEventListener('popstate', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const templateExists = id && findTemplateById(id);
+            const targetId = templateExists ? id : Object.values(templatesData)[0].id;
+            
+            const radioInput = document.getElementById(`template-${targetId}`);
+            if (radioInput) {
+                radioInput.checked = true;
+                displayTemplateDetails(targetId);
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('your-form');
+            const submittedMessage = document.getElementById('submitted');
+
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    const nameInput = document.getElementById('your-name-input');
+                    const emailInput = document.getElementById('your-email-input');
+                    const phoneInput = document.getElementById('your-phone-input');
+                    const subjectInput = document.getElementById('your-subject-input');
+                    const messageInput = document.getElementById('your-message-input');
+
+                    // Simple validation
+                    let isValid = true;
+                    if (!nameInput.value.trim()) {
+                        nameInput.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        nameInput.classList.remove('is-invalid');
+                    }
+
+                    if (!emailInput.value.trim() || !isValidEmail(emailInput.value.trim())) {
+                        emailInput.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        emailInput.classList.remove('is-invalid');
+                    }
+
+                    // Phone, Subject, and Message are optional in your original form,
+                    // so no 'is-invalid' class is added for empty values.
+                    // If you want them required, add similar validation.
+
+                    if (isValid) {
+                        // In a real application, you would send this data to a server
+                        // using fetch() or XMLHttpRequest.
+                        // For demonstration, we'll just show a success message.
+                        console.log('Form data:', {
+                            name: nameInput.value.trim(),
+                            email: emailInput.value.trim(),
+                            phone: phoneInput.value.trim(),
+                            subject: subjectInput.value.trim(),
+                            message: messageInput.value.trim()
+                        });
+
+                        submittedMessage.textContent = 'تم إرسال رسالتك بنجاح!';
+                        submittedMessage.style.display = 'block';
+                        form.reset(); // Clear the form
+
+                        // Hide message after a few seconds
+                        setTimeout(() => {
+                            submittedMessage.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        submittedMessage.textContent = 'الرجاء ملء جميع الحقول المطلوبة بشكل صحيح.';
+                        submittedMessage.style.color = 'red';
+                        submittedMessage.style.display = 'block';
+                    }
+                });
+            }
+
+            function isValidEmail(email) {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+        });
+
+        function showonly(classname) {
+            if (classname=="modaltool") {$('#' + classname).modal('show');return;}
+            if (classname == 'all') {
+                var wapart = document.querySelector('#optionsmodalwhatsapp .modal-body').innerHTML;
+                var mailpart = document.querySelector('#optionsmodalemail .modal-body').innerHTML;
+                var otherpart = document.querySelector('#optionsmodalother .modal-body').innerHTML;
+                document.querySelector('#optionsmodal .modal-body').innerHTML = wapart + "<hr>" + mailpart + "<hr>" + otherpart;
+                $('#optionsmodal').modal('show');
+            } else {
+                $('#optionsmodal' + classname).modal('show');
+            }
+        }
+        // WOW.js initialization if you plan to use animations
+        new WOW().init();
+        const templateSelectionRadios = document.getElementById('templateSelectionRadios');
+
+// Get the target element to scroll to
+const templatesSection = document.getElementById('templates');
+
+// Add a click event listener to the parent
+templateSelectionRadios.addEventListener('click', (event) => {
+    // Find the closest ancestor with the .template-radio-card class
+    const clickedCard = event.target.closest('.template-radio-card');
+
+    // If a card was clicked, calculate the new scroll position and scroll
+    if (clickedCard) {
+        // Get the element's position relative to the viewport
+        const elementPosition = templatesSection.getBoundingClientRect().top;
+        
+        // Calculate the target scroll position with a 50px offset
+        const offsetPosition = window.pageYOffset + elementPosition - 50;
+        
+        // Scroll to the new position
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+});
+    </script>
+        <script>
+        // Function to check screen width and update the element
+function setTargetBlankOnLargeScreen() {
+  // 1. Get the screen width in pixels
+  const screenWidth = window.innerWidth;
+
+  // 2. Select the button element by its ID
+  const buyNowButton = document.getElementById('buyNowBtn');
+
+  // Check if the element exists and the screen width is above 1200px
+  if (buyNowButton && screenWidth > 1200) {
+    // 3. If the conditions are met, set the target attribute
+    buyNowButton.setAttribute('target', '_blank');
+    console.log('Screen width is > 1200px. Target set to "_blank".');
+  }
+}
+
+// Run the function when the page loads
+setTargetBlankOnLargeScreen();
+    </script>
+</body>
+</html>

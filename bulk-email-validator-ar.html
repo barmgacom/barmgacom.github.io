@@ -493,20 +493,12 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;"  dir="rtl">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
-
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto" style="display: block;">
                             <li class="nav-item dropdown">
@@ -530,7 +522,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                     <div class="row g-5 py-5">
                         <div class="col-lg-6 text-center text-lg-end" >
                             <h1 class="text-white mb-4 animated zoomIn">مدقق البريد الإلكتروني</h1>
-                            <p class="text-white pb-3 animated zoomIn" dir="rtl">تصبح بعض عناوين البريد الإلكتروني غير فعالة مع مرور الوقت بسبب النطاقات غير المتجددة. هذه الأداة تساعدك في التحقق من صحة عناوين البريد الإلكتروني التجارية من خلال تصفية النطاقات القابلة لاستقبال الرسائل! يساعدك هذا في استبعاد معظم عناوين البريد الإلكتروني غير النشطة.</p>
+                            <p class="text-white pb-3 animated zoomIn" dir="rtl">تصبح بعض عناوين البريد الإلكتروني غير نشطة مع مرور الوقت بسبب اسماء الدومين غير المتجددة. الأداة تساعدك في استبعاد هذه العناوين في حال وجودها لتعزيز معدل وصول رسائل الإيميل.</p>
                             <a href="https://barmga.com/ar" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">&nbsp;الرئيسية&nbsp;</a>
                             <a href="#tool" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">&nbsp;&nbsp;أبدأ الآن&nbsp;&nbsp;</a>
                         </div>
@@ -546,7 +538,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
             <div class="container mt-5">
                 <div class="card p-4 tool">
                     <h3 class="card-title">مدقق البريد الإلكتروني</h3>
-                    <small>تساعد هذا الأداة في استبعاد نسبة جيدة من الإيميلات التجارية الغير نشطة، بناءا على معيار فعالية إسم الدومين (النطاق) الخاص بالإيميل من عدمه.</small>
+                    <small> هذه الأداة تحذف عناوين بريد الكتروني متصلة بأسماء دومين منتهية الصلاحية في حال وجودها.</small>
                     <div class="form-group">
                         <label for="phoneNumbers" class="lab">عناوين البريد الإلكتروني (ايميل بكل سطر)</label>
                         <textarea class="form-control" id="phoneNumbers" rows="5"></textarea>
@@ -712,9 +704,9 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <h5 class="text-white mb-4">نشاطنا</h5>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
-                       <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
-			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
-                <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+                <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                                    <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1083,6 +1075,17 @@ async function autoclick(){
             </div>
 
             <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
                 <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                     <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
                         <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين

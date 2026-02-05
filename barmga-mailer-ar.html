@@ -499,20 +499,12 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3"  href="https://barmga.com/ar#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أدوات</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
-
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto" style="display: block;">
                             <li class="nav-item dropdown" dir="rtl">
@@ -575,7 +567,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                                 <li>
                                     <span class="step-number">4.</span>
                                     <h3 class="step-title">اكتب الرسالة وأرسلها</h3>
-                                    <p class="step-description">أدخل موضوع البريد الإلكتروني، المحتوى، وقائمة عناوين البريد الإلكتروني المستلمين (مفصولة بفواصل أو مسافات أو أسطر جديدة). انقر على بدء.<br><strong>اضبط لغة حسابك الى العربية او الانجليزية قبل استخدام الأداة.حافظ على متصفحك نشطًا وتجنب التبديل إلى نوافذ أخرى عند الإرسال.</strong></p>
+                                    <p class="step-description">أدخل موضوع البريد الإلكتروني، المحتوى، وقائمة عناوين البريد الإلكتروني المستلمين (مفصولة بفواصل أو مسافات أو أسطر جديدة). انقر على بدء.<br><strong>حافظ على متصفحك نشطًا وتجنب التبديل إلى نوافذ أخرى عند الإرسال.</strong></p>
                                 </li>
                             </ul>
                         </div>
@@ -742,9 +734,9 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <h5 class="text-white mb-4">نشاطنا</h5>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
-                       <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
-			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
-                <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+                <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                                    <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1282,6 +1274,17 @@ document.querySelector("#tool").scrollIntoView({ behavior: 'smooth' });
             </div>
 
             <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
                 <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                     <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
                         <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
@@ -1396,4 +1399,3 @@ if (window.location.href.includes('?tg')){document.querySelector('img.trackemail
 </body>
 
 </html>
-

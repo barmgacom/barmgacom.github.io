@@ -498,21 +498,13 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <i class="fa fa-th-list" style="color:#2780B7;"></i>
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0" >
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar">الرئيسية</a></li>
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3"  href="https://barmga.com/ar#products">منتجاتنا</a></li>
-                            <li class="nav-item dropdown" style="margin-right: 15px;" dir="rtl" >
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >أدوات</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" dir="rtl" style="text-align: right;">
-                                    <li><a class="dropdown-item" onclick="showonly('whatsapp')">التسويق على الواتساب</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('email')">التسويق على الإيميل</a></li>
-                                    <li><a class="dropdown-item" onclick="showonly('other')">أدوات الأعمال</a></li>
-                                </ul>
-                            </li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
-
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto" style="display: block;" >
                             <li class="nav-item dropdown" dir="rtl">
@@ -635,6 +627,7 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                     حاليًا، نقدم 3 أدوات مجانية:
                     <ul>
                       <li><a href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" >WABarmga لإرسال رسائل واتساب:</a><br>أرسل رسائل واتساب آلية باستخدام Wabarmga. يمكن استخدام هذه الأداة مع متصفح كروم على الكمبيوتر الشخصي.</li>
+                      <li><a href="https://barmga.com/barmga-mailer-ar" target="_blank" >Barmga Mailer لإرسال رسائل ايميل:</a><br>أرسل رسائل ايميل آلية باستخدام Barmga Mailer. يمكن استخدام هذه الأداة مع متصفح ادج على الكمبيوتر الشخصي.</li>
                       <li><a href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank" >مولد روابط واتساب:</a><br>حوّل أرقام الهواتف إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق واتساب ببضع نقرات!</li>
                       <li><a href="https://barmga.com/bulk-email-links-ar" target="_blank" >مولد روابط البريد الإلكتروني:</a><br>حوّل عناوين البريد الإلكتروني إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق جيميل ببضع نقرات!</li>
                     </ul>
@@ -794,9 +787,9 @@ body{ font-family: 'El Messiri', sans-serif !important;}
                         <h5 class="text-white mb-4">نشاطنا</h5>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                        <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
-                       <a class="btn btn-linkx" onclick="showonly('whatsapp')">أدوات التسويق على الواتساب</a>
-			    <a class="btn btn-linkx" onclick="showonly('email')">أدوات التسويق على الايميل</a>
-          <a class="btn btn-linkx" onclick="showonly('other')">أدوات الأعمال</a>
+          <a class="btn btn-link" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                              <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -996,32 +989,43 @@ body{ font-family: 'El Messiri', sans-serif !important;}
               
           </div>
 
-          <div class="modal-body scrollable-body text-center">
-              <div class="d-flex justify-content-center mt-4 mb-3 emailx">
-                  <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
-                      <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
-                  </a>
-              </div>
-              <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
-              <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
-              
-              <hr>
-              <div class="d-flex justify-content-center mt-4 mb-3 emailx">
-                  <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
-                      <i class="fa fa-group"></i>&nbsp;&nbsp;أداة فرز جهات الإتصال
-                  </a>
-              </div>
-              <p class="emailx" dir="rtl">أداة تساعدك في تصفية ارقام التواصل المختلفة والايميلات من مجموعة ملفات ثم تقسيمها لاعتمادها بالحملات بشكل سهل ومرتب.</p>
-              <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
-              <hr>
-              <div class="d-flex justify-content-center mt-4 mb-3 emailx">
-                  <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
-                      <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
-                  </a>
-              </div>
-              <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
-              <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
-          </div>
+           <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
+                        <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
+                        <i class="fa fa-group"></i>&nbsp;&nbsp;أداة فرز جهات الإتصال
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في تصفية ارقام التواصل المختلفة والايميلات من مجموعة ملفات ثم تقسيمها لاعتمادها بالحملات بشكل سهل ومرتب.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
+                        <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
+                <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+            </div>
           <div class="modal-footer">
               <div style="flex-grow: 1;"></div>
               <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>

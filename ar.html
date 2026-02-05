@@ -943,6 +943,8 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                        <a class="btn btn-linkx" href="#services">خدماتنا</a>
                        <a class="btn btn-linkx" onclick="document.querySelector('.selectedproduct').style.display='none'"  href="#products">قواعد البيانات</a>
                 <a class="btn btn-linkx" href="#tools">أدوات الأعمال</a>
+                                    <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1271,10 +1273,8 @@ h6{ font-family: 'El Messiri', sans-serif !important; font-weight: 600 !importan
                             <p style="font-size: 120%;" >
                             <strong>منصة هوت مارت للمنتجات الرقمية</strong></p>
                             <div> 
-                                منصة <a style="color: #2780B7; text-decoration: underline;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart','https://go.hotmart'))">هوت مارت</a> تجمع بين مقدمي المنتجات الرقمية وعملائها وهي عبارة عن وسيط بيع. جميع منتجاتنا الرقمية تم مراجعتها من فريق عمل الموقع ويتم شراؤها واستلامها من نفس المنصة.<br> يمكنك أيضا طلب البيانات من خلال منصة 
-                                <a style="color: #2780B7; text-decoration: underline;" target="_blank" href="https://mostaql.com/u/barmga">مستقل للأعمال الحرة</a> 
-                                اوعن طريق 
-                                <a style="color: #2780B7; text-decoration: underline;"  href="#contact" onclick="document.querySelector('.closeme').click()">التواصل معنا</a>. 
+                                منصة <a style="color: #2780B7; text-decoration: underline;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart','https://go.hotmart'))">هوت مارت</a> تجمع بين مقدمي المنتجات الرقمية وعملائها وهي عبارة عن وسيط بيع. جميع منتجاتنا الرقمية تم مراجعتها من فريق عمل الموقع ويتم شراؤها واستلامها من نفس المنصة.<br> يمكنك أيضا اتمام الشراء من خلال ارسال حوالة سريعة بالعملة المحلية لبلدك 
+                                <a style="color: #2780B7; text-decoration: underline;"  href="#contact" onclick="document.querySelector('.closeme').click()">تواصل معنا</a>. 
                             </div>
                             
                         </div>
@@ -1443,11 +1443,13 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'مراكز التجميل واللياقة',9);
         dicta=movelPos(dicta,'شركات التنظيف والمغاسل',10);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'منتجات التجميل',1);
-        dicta=movelPos(dicta,'منتجات السوبرماركت',2);
-        dicta=movelPos(dicta,'الجمعيات',3);
+        dicta=movelPos(dicta,'متاجر المجوهرات',1);
+        dicta=movelPos(dicta,'منتجات الصيدلية',2);
+        dicta=movelPos(dicta,'هئية الغذاء والدواء',3);
         dicta=movelPos(dicta,'منتجات العطور',4);
-        dicta=movelPos(dicta,'منتجات الصيدلية',5);
+        dicta=movelPos(dicta,'مراكز التجميل واللياقة',5);
+        dicta=movelPos(dicta,'منتجات السوبرماركت',6);
+        dicta=movelPos(dicta,'المراكز الطبية',7);
     }else if (['منتجات السوبرماركت','supermarket products','food products','بيانات المنتجات الغذائية'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'محلات الأغذية الطبيعية',1);
         dicta=movelPos(dicta,'محلات البقالة والسوبرماركت',2);
@@ -1628,6 +1630,9 @@ var disc={
 }
 var allnames={
     //addDictItemHere2
+"متاجر-المجوهرات":"jewelry-stores",
+"المنتجات-الإلكترونية":"electronic-products",
+"منتجات-القرطاسيات-والألعاب":"school-supplies-and-toys",
 "بيانات-المنتجات-الغذائية":"food-products",
         "محلات-قطع-غيار-السيارات": "car-parts-stores",
     "ورش-السيارات": "car-repair-stores",
@@ -1756,9 +1761,9 @@ var allproducts={    "معارض السيارات": {
     "family": "العقار",
     "subtitle": "قاعدة بيانات",
     "source": "منصة ايجار والهيئة العامة للعقار",
-    "originalprice": "89$",
-    "price": "65$",
-    "productlink": "https://pay.hotmart.com/W96101861T?off=zxwjt86z",
+    "originalprice": "99$",
+    "price": "79$",
+    "productlink": "https://pay.hotmart.com/W96101861T?off=4sf0cn9g",
     "videolink": "https://player.vimeo.com/video/1138073335?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
     "date": "2025",
     "reviews": "https://mostaql.com/u/barmga/reviews/7982725"
@@ -1837,24 +1842,24 @@ var allproducts={    "معارض السيارات": {
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },
     "شركات المقاولات": {
-        "info": "ملفات اكسل فيها بيانات اكثر من 20,000 ألف شركة مقاولات بالسعودية يمكن الافادة منها في حملات التسويق (مواد بناء - معدات وآلات) او حملة طلب تسعير مشاريع المقاولات والعثور على افضل سعر وخدمة بشكل سريع وعملي. ",
-        "feature2": "20,000 عنوان بريد الكتروني",
-        "feature1": "11,000 رقم جوال",
-        "feature3": "2 ملفات إكسل",
-        "id": "sa-contractors",
-        "gift": "1200 جهة إتصال لشركات ومكاتب التطوير العقاري (إضافة مجانية) ",
-        "originalprice": "",
-        "price": "55$",
-        "category": "جهات إتصال",
-        "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
-        "samplelink": "https://barmga.com/samples/2-Sheets-SA-عينة-شركات-مقاولات.xlsx",
-        "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1062962778?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2025 - 2022",
-        "source": "الهيئة العامة للمقاولين",
-        "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
-    },
+    "id": "sa-contractors",
+    "info": "ملفات اكسل فيها بيانات اكثر من 41,600 ألف شركة مقاولات بالسعودية يمكن الافادة منها في حملات التسويق (مواد بناء - معدات وآلات) او حملة طلب تسعير مشاريع المقاولات والعثور على افضل سعر وخدمة بشكل سريع وعملي.",
+    "feature1": "15,000 رقم جوال",
+    "feature2": "41,600 عنوان بريد إلكتروني",
+    "feature3": "3 ملفات اكسل",
+    "gift": "1400 جهة إتصال لشركات ومكاتب التطوير العقاري (إضافة مجانية)",
+    "category": "جهات إتصال",
+    "samplelink": "https://barmga.com/samples/عينة-3-Sheets-شركات-المقاولات-sa.xlsx",
+    "family": "العقار",
+    "subtitle": "قاعدة بيانات",
+    "source": "الهيئة العامة للمقاولين وخرائط قوقل",
+    "originalprice": "",
+    "price": "65$",
+    "productlink": "https://pay.hotmart.com/C96101913P?off=yag8ryql",
+    "videolink": "https://player.vimeo.com/video/1138227711?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025 - 2022",
+    "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
+},
     "المكاتب الهندسية": {
         "info": "ملف اكسل فيه اكثر من 3,800 جهة اتصال لمكاتب هندسية بالسعودية. تفيد شركات المقاولات للعثور على مكاتب متعاونة لجلب المشاريع.",
         "feature2": "3,300 عنوان بريد الكتروني",
@@ -2064,25 +2069,6 @@ var allproducts={    "معارض السيارات": {
     "date": "2025",
     "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
 },
-    "منتجات التجميل": {
-        "info": "ملف اكسل يحتوي على 3,200 سطر بيانات منتجات التجميل في السوق السعودي. جميع المنتجات مرفقة بصور وتشمل تفاصيل مثل الاسم والسعر والوصف حسب التوفر. أرقام الباركود متوفرة لمعظم المنتجات.",
-        "feature2": "3,000 باركود",
-        "feature1": "3,200 سطر",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-makeup-products",
-        "gift": "",
-        "originalprice": "",
-        "price": "45$",
-        "category": "بضائع",
-        "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
-        "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-التجميل.xlsx",
-        "family": "الصحة, تجارة",
-        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
     "منتجات الصيدلية": {
         "info": "ملف اكسل فيه 8,400 آلاف منتج للصيدلية في السوق السعودي. تحتوي على معلومات الادوية ومنتجات العناية والمكملات الغذائية والمكياج ومستلزمات الام والطفل. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر. ارقام الباركود متاحة لمعظم المنتجات.",
         "feature2": "7,500 باركود",
@@ -2180,7 +2166,7 @@ var allproducts={    "معارض السيارات": {
     },
     "منتجات العطور": {
     "id": "sa-perfumes",
-    "info": "ملف اكسل فيه 2,200 منتج للعطور المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف ان توفر.",
+    "info": "ملف اكسل فيه بيانات 2,200 منتج للعطور العالمية والمحلية المعروضة بالسوق السعودي. بيانات المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والبراند والباركود والوصف، حسب التوفر من متجر نايس ون.",
     "feature1": "2,200 سطر",
     "feature2": "1,800 باركود",
     "feature3": "1 ملف اكسل",
@@ -2254,25 +2240,7 @@ var allproducts={    "معارض السيارات": {
         "source": "خرائط قوقل ودلائل مدارس",
         "reviews": "https://mostaql.com/u/barmga/reviews/8302098"
     },
-    "اعلانات واظائف": {
-        "info": "ملف اكسل خاص بإعلانات الوظائف المنشورة على قروبات التلجرام. تفيد الباحثين عن وظائف.",
-        "feature2": "ألفين عنوان بريد الكتروني",
-        "feature1": "5,000 اعلان",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-job-ads",
-        "gift": "",
-        "originalprice": "",
-        "price": "مجاني",
-        "category": "إعلانات",
-        "productlink": "https://barmga.com/samples/SA-اعلانات-وظائف-تلجرام.xlsx",
-        "samplelink": "",
-        "family": "التعليم",
-        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2024",
-        "source": "تلجرام",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
+
     "شركات التنظيف والمغاسل": {
         "info": "ملف اكسل فيه  7,000 جهة اتصال لشركات التنظيف ومغاسل الملابس والسيارات في السعودية. تفيد تسويق منتجات التنظيف بالجملة.",
         "feature2": "",
@@ -2386,24 +2354,6 @@ var allproducts={    "معارض السيارات": {
         "date": "2025",
         "source": "هيئة الغذاء والدواء",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },    "إعلانات عقارية بالرياض": {
-        "info": "ملف اكسل يحتوي على 40,000 ألف عرض عقاري بالرياض من موقع عقار فيها  كافة التفاصيل المتاحة لكل إعلان. تساعد البيانات في تحليل السوق العقاري وفلترة المعلومات والوصول إلى العروض المطلوبة بسهولة تامة.",
-        "feature2": "",
-        "feature1": "40,000 إعلان",
-        "feature3": "1 ملف إكسل",
-        "id": "sa-aqar-riyadh",
-        "gift": "",
-        "originalprice": "99$",
-        "price": "65$",
-        "category": "إعلانات",
-        "productlink": "https://pay.hotmart.com/I98976213O",
-        "samplelink": "https://barmga.com/samples/SA-عينة-اعلانات-عقار-الرياض.xlsx",
-        "family": "العقار",
-        "videolink": "https://player.vimeo.com/video/1071150086?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "قاعدة بيانات",
-        "date": "2025 - تم نسخ الاعلانات بين 23 و26 مارس",
-        "source": "موقع عقار",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     }
     ,"بيانات المنتجات الغذائية": {
     "id": "sa-sfda-food",
@@ -2424,10 +2374,122 @@ var allproducts={    "معارض السيارات": {
     "date": "2025",
     "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
 }
+,"منتجات القرطاسيات والألعاب": {
+    "id": "sa-school-supplies",
+    "info": "ملف اكسل فيه 19,600 منتج للأدوات المكتبية والمدرسية ومعدات الرسم والألعاب المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف وتفاصيل ثانية.",
+    "feature1": "19,600 سطر",
+    "feature2": "19,600 باركود",
+    "feature3": "1 ملف اكسل",
+    "gift": "",
+    "category": "بضائع",
+    "samplelink": "https://barmga.com/samples/عينة-منتجات-القرطاسيات-والألعاب-sa.xlsx",
+    "family": "التعليم",
+    "subtitle": "قاعدة بيانات",
+    "source": "مكتبة جرير",
+    "originalprice": "150$",
+    "price": "99$",
+    "productlink": "https://pay.hotmart.com/M103038485J",
+    "videolink": "https://player.vimeo.com/video/1138073439?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+,"المنتجات الإلكترونية": {
+    "id": "sa-electronic-products",
+    "info": "ملف اكسل فيه 10,600 منتج للالكترونيات المعروضة بالسوق السعودي. جميع المنتجات مرفقة معها الصور وفيها تفاصيل مثل الاسم والسعر والوصف والباركود ومعلومات ثانية.",
+    "feature1": "10,600 سطر",
+    "feature2": "10,400 باركود",
+    "feature3": "1 ملف اكسل",
+    "gift": "",
+    "category": "بضائع",
+    "samplelink": "https://barmga.com/samples/عينة-المنتجات-الإلكترونية-sa.xlsx",
+    "family": "تجارة",
+    "subtitle": "قاعدة بيانات",
+    "source": "مكتبة جرير",
+    "originalprice": "",
+    "price": "85$",
+    "productlink": "https://pay.hotmart.com/I103038645K",
+    "videolink": "https://player.vimeo.com/video/1138073379?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+,"متاجر المجوهرات": {
+    "id": "sa-jewelry-stores",
+    "info": "قاعدة بيانات تحتوى على 1,900 جهة اتصال لمتاجر المجوهرات.",
+    "feature1": "1,300 رقم جوال",
+    "feature2": "",
+    "feature3": "1 ملف اكسل",
+    "gift": "",
+    "category": "جهات إتصال",
+    "samplelink": "",
+    "family": "تجارة",
+    "subtitle": "قاعدة بيانات",
+    "source": "خرائط قوقل",
+    "originalprice": "",
+    "price": "مجاني",
+    "productlink": "https://barmga.com/samples/متاجر-المجوهرات.xlsx",
+    "videolink": "https://player.vimeo.com/video/1138227648?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "date": "2025",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
 //addDictItemHere1
 }
 
-
+var dropped={    "اعلانات واظائف": {
+        "info": "ملف اكسل خاص بإعلانات الوظائف المنشورة على قروبات التلجرام. تفيد الباحثين عن وظائف.",
+        "feature2": "ألفين عنوان بريد الكتروني",
+        "feature1": "5,000 اعلان",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-job-ads",
+        "gift": "",
+        "originalprice": "",
+        "price": "مجاني",
+        "category": "إعلانات",
+        "productlink": "https://barmga.com/samples/SA-اعلانات-وظائف-تلجرام.xlsx",
+        "samplelink": "",
+        "family": "التعليم",
+        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "تلجرام",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },    "إعلانات عقارية بالرياض": {
+        "info": "ملف اكسل يحتوي على 40,000 ألف عرض عقاري بالرياض من موقع عقار فيها  كافة التفاصيل المتاحة لكل إعلان. تساعد البيانات في تحليل السوق العقاري وفلترة المعلومات والوصول إلى العروض المطلوبة بسهولة تامة.",
+        "feature2": "",
+        "feature1": "40,000 إعلان",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-aqar-riyadh",
+        "gift": "",
+        "originalprice": "99$",
+        "price": "65$",
+        "category": "إعلانات",
+        "productlink": "https://pay.hotmart.com/I98976213O",
+        "samplelink": "https://barmga.com/samples/SA-عينة-اعلانات-عقار-الرياض.xlsx",
+        "family": "العقار",
+        "videolink": "https://player.vimeo.com/video/1071150086?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2025 - تم نسخ الاعلانات بين 23 و26 مارس",
+        "source": "موقع عقار",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "منتجات التجميل": {
+        "info": "ملف اكسل يحتوي على 3,200 سطر بيانات منتجات التجميل في السوق السعودي. جميع المنتجات مرفقة بصور وتشمل تفاصيل مثل الاسم والسعر والوصف حسب التوفر. أرقام الباركود متوفرة لمعظم المنتجات.",
+        "feature2": "3,000 باركود",
+        "feature1": "3,200 سطر",
+        "feature3": "1 ملف إكسل",
+        "id": "sa-makeup-products",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "بضائع",
+        "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
+        "samplelink": "https://barmga.com/samples/SA-عينة-منتجات-التجميل.xlsx",
+        "family": "الصحة, تجارة",
+        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "قاعدة بيانات",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    }}
 
 //if (!window.location.href.includes('=sa-perfumes') || window.location.href.includes('=sa-perfumes-stores')){delete allproducts['منتجات العطور']}
 
@@ -3123,6 +3185,32 @@ function showonlyx(classname){
             "originalprice": "",
             "gift": "",
             "trial": "مميز"
+        },"مولد الفواتير": {
+            "info": "أنشئ فواتير احترافية لعملائك مجانًا وبسهولة. قم بإضافة الشعار، وحساب الضرائب تلقائيًا، ثم حمل الفاتورة بصيغة PDF.",
+            "icon": "invoice-generator.webp",
+            "id": "invoice-generator",
+            "url": "https://tools.barmga.com/invoice-generator-ar",
+            "subtitle": "أداة إنشاء فواتير PDF",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": ["تصدير PDF", "حساب تلقائي", "داعم للعربية"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": "جديد"
+        },"فرز جهات الاتصال": {
+            "info": "استخرج عناوين البريد الإلكتروني وأرقام الهواتف من عدة ملفات، ثم قسّمها إلى أجزاء متعددة قبل إطلاق حملاتك التسويقية!",
+            "icon": "contactsmanager.webp",
+            "id": "contacts-manager",
+            "url": "https://tools.barmga.com/contacts-manager-ar",
+            "subtitle": "أداة معالجة بيانات",
+            "category": "أدوات الأعمال",
+            "videolink": "",
+            "features": ["استخراج جهات اتصال بالجملة", "تجزئة البيانات", "جاهز للحملات"],
+            "price": "مجاني",
+            "originalprice": "",
+            "gift": "",
+            "trial": ""
         },
         "مولد روابط رسائل واتساب": {
             "info": "حوّل أرقام هواتف واتساب إلى روابط وأرسل الرسائل بسهولة من متصفح الجوال وتطبيق واتساب ببضع نقرات!",
@@ -3133,19 +3221,6 @@ function showonlyx(classname){
             "category": "التسويق عبر واتساب",
             "videolink": "",
             "features": ["متوافق مع الجوال", "روابط سريعة", "متوافق مع تطبيق واتساب"],
-            "price": "مجاني",
-            "originalprice": "",
-            "gift": "",
-            "trial": ""
-        },"فرز جهات الاتصال": {
-            "info": "استخرج عناوين البريد الإلكتروني وأرقام الهواتف من عدة ملفات، ثم قسّمها إلى أجزاء متعددة قبل إطلاق حملاتك التسويقية!",
-            "icon": "contactsmanager.webp",
-            "id": "contacts-manager",
-            "url": "https://tools.barmga.com/contacts-manager-ar",
-            "subtitle": "أداة معالجة بيانات",
-            "category": "أدوات الأعمال",
-            "videolink": "",
-            "features": ["استخراج جهات اتصال بالجملة", "تجزئة البيانات", "جاهز للحملات"],
             "price": "مجاني",
             "originalprice": "",
             "gift": "",
@@ -3347,6 +3422,7 @@ if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
 }
 if(window.location.href.includes('&h=1')||window.location.href.endsWith('&h=')||window.location.href.endsWith('&h')){document.querySelector('.selectedproduct').style.display = "none";document.querySelector("#products").scrollIntoView()}
+
 
 </script>
 <script>if(window.location.href.includes('?cat=products')){document.querySelector('[id="بضائع"]').click();document.querySelector('#products').scrollIntoView()}</script>

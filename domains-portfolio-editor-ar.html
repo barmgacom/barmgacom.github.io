@@ -3,18 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>محرر صفحة بيع النطاق - خصص صفحة البيع الخاصة بك</title>
+    <title>أداة تعديل صفحة بيع دومينات</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="نطاق للبيع, شراء نطاق, محرر صفحة بيع النطاق, منشئ صفحات الهبوط, قوالب نطاقات مخصصة, نطاقات مميزة, أصول رقمية">
-    <meta name="description" content="قم بتحرير وتخصيص قوالب صفحات هبوط بيع النطاقات الاحترافية بسهولة. روّج لنطاقك بفعالية واجذب المشترين المحتملين بقوائم جذابة.">
+<meta name="keywords" content="أداة تحرير المواقع، محرر قوالب، تعديل موقع إلكتروني، تصميم صفحات الهبوط، محفظة نطاقات">
+<meta name="description" content="قم بتحرير وإدارة محفظة نطاقاتك المميزة بسهولة باستخدام محرر قوالب HTML عبر الإنترنت. قم بتحميل نطاقاتك وتحديث تفاصيلها وتنزيل موقعك المخصص على الفور.">
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="محرر صفحة بيع النطاق - خصص صفحة هبوط نطاقك">
-    <meta property="og:description" content="أنشئ وحرر صفحة هبوط بيع نطاقك بسهولة لتعزيز الرؤية وجذب المشترين. مثالي لعرض النطاقات المميزة.">
-    <meta property="og:image" content="images/domain-sale-preview.png"> <!-- Update to a relevant preview image -->
-    <meta property="og:url" content="https://barmga.com/domain-landing-page-editor-ar">
+<meta property="og:title" content="أداة تعديل قوالب النطاقات المميزة">
+<meta property="og:description" content="قم بتحرير وإدارة محفظة نطاقاتك المميزة بسهولة باستخدام محرر قوالب HTML عبر الإنترنت. قم بتحميل نطاقاتك وتحديث تفاصيلها وتنزيل موقعك المخصص على الفور.">
+<meta property="og:image" content="images/tool-preview.png">
+<meta property="og:url" content="https://barmga.com/web-template-editor-ar">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 
     <!-- Favicon -->
@@ -712,229 +711,133 @@
         <!-- Navbar & Hero End -->
     </div>
     <div class="container-fluid py-5 header-bg">
-        <h1 class="display-4 fw-bold text-white mt-5">محرر صفحة بيع النطاق</h1>
+        <h1 class="display-4 fw-bold text-white mt-5">أداة تعديل بورتفوليو دومينات</h1>
         <p class="lead">قم بتحميل قالبك، خصص التفاصيل، وقم بتنزيل HTML المحدث!</p>
     </div>
 
-    <div class="container mt-5" dir="rtl">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header">
-                        تحميل القالب
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="templateUpload" class="form-label">قم بتحميل ملف القالب الخاص بك:</label>
-                            <input class="form-control" type="file" id="templateUpload" accept=".html, .zip" required>
-                            <div id="uploadStatus" class="small-text mt-2"></div>
-                            <!-- Validation message placeholder for template upload -->
-                            <div class="invalid-feedback" id="templateUpload-feedback">هذا الحقل مطلوب.</div>
-                        </div>
-                    </div>
+    <div class="container-fluid mx-auto px-4 mt-5" style="max-width: 900px;" dir="rtl">
+
+        <div class="card bg-white p-6 mb-8">
+            <div class="card-header">
+                رفع القالب 📄
+            </div>
+            <div class="card-body p-6">
+                <div class="mb-4">
+                    <label for="templateUpload" class="block text-gray-700 text-lg font-medium mb-2">ارفع ملف القالب الخاص بك (.html أو .zip):</label>
+                    <input type="file" id="templateUpload" accept=".html,.zip" class="form-control w-full" dir="rtl">
+                    <div id="templateUpload-feedback" class="invalid-feedback">الرجاء رفع ملف قالب.</div>
+                    <p id="uploadStatus" class="text-sm mt-2 text-gray-500"></p>
                 </div>
+            </div>
+        </div>
 
-                <!-- New Editing Mode Section -->
-                <div class="card mt-4">
-                    <div class="card-header">
-                        وضع التحرير
-                    </div>
-                    <div class="card-body">
-<div class="form-check" style="position: relative;">
-  <input class="form-check-input" type="radio" name="editMode" id="editFullTemplate" value="full" checked
-         style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
-  <label class="form-check-label" for="editFullTemplate" style="padding-right: 30px; padding-top: 10px;">
-    تحرير القالب بالكامل
-  </label>
-</div>
-
-<div class="form-check mt-2" style="position: relative;">
-  <input class="form-check-input" type="radio" name="editMode" id="updateCheckoutLinkOnly" value="checkout"
-         style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
-  <label class="form-check-label" for="updateCheckoutLinkOnly" style="padding-right: 30px; padding-top: 10px;">
-    تحديث رابط الدفع فقط
-  </label>
-</div>
-
-                    </div>
+        <div class="card bg-white p-6 mb-8">
+            <div class="card-header">
+                وضع التحرير ✍️
+            </div>
+            <div class="card-body p-6">
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" id="updateDomainsOnly" class="form-checkbox h-5 w-5 text-amber-500 rounded focus:ring-amber-400" dir="rtl">
+                    <label for="updateDomainsOnly" class="mr-2 text-gray-700 text-lg">تحديث النطاقات فقط</label>
                 </div>
-                <!-- End New Editing Mode Section -->
+                <p class="text-sm text-gray-500">ضع علامة هنا إذا كنت ترغب في تحديث قسم النطاقات فقط والإبقاء على الأجزاء الأخرى من القالب كما هي.</p>
+            </div>
+        </div>
 
-                <div class="card" id="generalDomainInfoCard">
-                    <div class="card-header">
-                        معلومات النطاق العامة
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3" id="domainNameDiv">
-                            <label for="domainName" class="form-label">اسم النطاق (مثال: yourdomain.com):</label>
-                            <input type="text" class="form-control" id="domainName" placeholder="مثال: yourdomain.com">
-                            <div class="invalid-feedback" id="domainName-feedback">هذا الحقل مطلوب.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="checkoutLink" class="form-label">رابط الدفع GoDaddy:</label>
-                            <input type="url" class="form-control" id="checkoutLink" placeholder="مثال: https://checkoutlink.godaddy.com/" required>
-                            <div class="invalid-feedback" id="checkoutLink-feedback">هذا الحقل مطلوب.</div>
-                        </div>
-                        <!-- New input for Google Form Link -->
-                        <div class="mb-3" id="googleFormLinkDiv">
-                            <label for="googleFormLink" class="form-label">رابط نموذج جوجل:</label>
-                            <input type="url" class="form-control" id="googleFormLink" placeholder="مثال: https://docs.google.com/forms/d/e/12345/viewform">
-                            <div class="invalid-feedback" id="googleFormLink-feedback">هذا الحقل مطلوب.</div>
+        <div class="card bg-white p-6 mb-8" id="generalInfoCard">
+            <div class="card-header">
+                المعلومات العامة للموقع 🌐
+            </div>
+            <div class="card-body p-6">
+                <div class="mb-4">
+                    <label for="websiteName" class="block text-gray-700 text-lg font-medium mb-2">اسم الموقع (مثال: Digital Rarity):</label>
+                    <input type="text" id="websiteName" placeholder="مثال: Digital Rarity" class="form-control w-full" dir="rtl">
+                    <div id="websiteName-feedback" class="invalid-feedback">هذا الحقل مطلوب.</div>
+                </div>
+                <div class="mb-4">
+                    <label for="googleFormLink" class="block text-gray-700 text-lg font-medium mb-2">رابط نموذج جوجل:</label>
+                    <input type="url" id="googleFormLink" placeholder="مثال: https://docs.google.com/forms/d/e/12345/viewform" class="form-control w-full" dir="rtl">
+                    <div id="googleFormLink-feedback" class="invalid-feedback">الرجاء إدخال رابط نموذج جوجل صالح.</div>
                             <div class="small-text">
                                 لإنشاء رابط نموذج، <a href="#" data-bs-toggle="modal" data-bs-target="#instructionsModal">اتبع هذه التعليمات</a>.
                             </div>
-                        </div>
-                    </div>
                 </div>
+<div>
+    <label for="aboutSectionContent" class="block text-gray-700 text-lg font-medium mb-2">محتوى قسم "من نحن":</label>
+    <textarea id="aboutSectionContent" style="text-align: right;" rows="5" placeholder="أدخل الوصف التفصيلي لقسم "من نحن"..." class="textarea w-full form-control" dir="rtl"></textarea>
+    <div id="aboutSectionContent-feedback" class="invalid-feedback">هذا الحقل مطلوب.</div>
+</div>
+            </div>
+        </div>
 
-                <div class="card" id="flashSaleSettingsCard">
-                    <div class="card-header">
-                        إعدادات عروض الفلاش
-                    </div>
-                    <div class="card-body">
-                        <div class="form-check mb-3" style="position: relative;">
-                            <input class="form-check-input border-3" id="enableFlashSale" type="checkbox" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
-                            <label class="form-check-label" for="enableFlashSale" style="padding-right: 30px;padding-top: 10px;">
-                                تفعيل عرض الفلاش
-                            </label>
-                        </div>
-
-                        <div id="flashSaleInputs" style="display: none;">
-                            <div class="mb-3">
-                                <label for="finalPrice" class="form-label">السعر النهائي ($):</label>
-                                <input type="number" class="form-control" id="finalPrice" min="0" step="1" placeholder="مثال: 1999">
-                                <div class="invalid-feedback" id="finalPrice-feedback">هذا الحقل مطلوب.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="originalPrice" class="form-label">السعر الأصلي ($):</label>
-                                <input type="number" class="form-control" id="originalPrice" min="0" step="1" placeholder="مثال: 2900">
-                                <div class="invalid-feedback" id="originalPrice-feedback">هذا الحقل مطلوب.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="saleEndDate" class="form-label">تاريخ انتهاء العرض:</label>
-                                <input type="date" class="form-control" id="saleEndDate">
-                                <div class="invalid-feedback" id="saleEndDate-feedback">هذا الحقل مطلوب.</div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- NEW: Social Media Links Section -->
+        <div class="card bg-white p-6 mb-8" id="socialMediaCard">
+            <div class="card-header">
+                روابط التواصل الاجتماعي 🔗
+            </div>
+            <div class="card-body p-6">
+                <p class="text-sm text-gray-500 mb-4">اترك الحقل فارغاً لإخفاء أيقونة التواصل الاجتماعي المقابلة على موقع الويب الخاص بك.</p>
+                <div class="mb-4">
+                    <label for="whatsappNumber" class="block text-gray-700 text-lg font-medium mb-2">رقم هاتف واتساب:</label>
+                    <input type="text" id="whatsappNumber" placeholder="مثال: +1234567890" class="form-control w-full" style="direction: ltr; text-align: left;">
+                    <div id="whatsappNumber-feedback" class="invalid-feedback">الرجاء إدخال رقم واتساب صالح يبدأ بـ '+'.</div>
                 </div>
-
-                <div class="card" id="pricingOfferSettingsCard">
-                    <div class="card-header">
-                        إعدادات التسعير والعرض
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3" id="minOfferValueDiv">
-                            <label for="minOfferValue" class="form-label">الحد الأدنى لقيمة العرض ($):</label>
-                            <input type="number" class="form-control" id="minOfferValue" min="0" step="1" placeholder="مثال: 500">
-                            <div class="invalid-feedback" id="minOfferValue-feedback">هذا الحقل مطلوب.</div>
-                            <div class="small-text">
-                                سيحدد هذا قيمة العنصر النائب لحقل إدخال العرض في القالب.
-                            </div>
-                        </div>
-                        <div class="mb-3" id="buyNowPriceDiv">
-                            <label for="buyNowPrice" class="form-label">سعر الشراء الآن ($):</label>
-                            <input type="number" class="form-control" id="buyNowPrice" min="0" step="1" placeholder="مثال: 2900">
-                            <div class="invalid-feedback" id="buyNowPrice-feedback">هذا الحقل مطلوب.</div>
-                            <div class="small-text">
-                                سيقوم هذا بتحديث سعر "اشتر الآن" في القالب.
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <label for="telegramUsername" class="block text-gray-700 text-lg font-medium mb-2">اسم مستخدم تيليجرام:</label>
+                    <input type="text" id="telegramUsername" placeholder="مثال: your_telegram_username" class="form-control w-full" dir="rtl">
+                    <div id="telegramUsername-feedback" class="invalid-feedback"></div>
                 </div>
-
-                <div class="card" id="domainFeaturesCard">
-                    <div class="card-header">
-                        ميزات النطاق (حتى 4)
-                    </div>
-                    <div class="card-body">
-                        <div id="featureInputsContainer">
-                            <div class="feature-input-group mb-3">
-                                <label for="feature1" class="form-label">الميزة 1:</label>
-                                <input type="text" class="form-control feature-input" id="feature1" placeholder="مثال: نطاق قصير وقابل للتسويق">
-                            </div>
-                            <div class="feature-input-group mb-3">
-                                <label for="feature2" class="form-label">الميزة 2:</label>
-                                <input type="text" class="form-control feature-input" id="feature2" placeholder="مثال: سهل الحفظ">
-                            </div>
-                            <div class="feature-input-group mb-3">
-                                <label for="feature3" class="form-label">الميزة 3:</label>
-                                <input type="text" class="form-control feature-input" id="feature3" placeholder="مثال: متعدد الاستخدامات لمختلف الصناعات">
-                            </div>
-                            <div class="feature-input-group mb-3">
-                                <label for="feature4" class="form-label">الميزة 4:</label>
-                                <input type="text" class="form-control feature-input" id="feature4" placeholder="مثال: إمكانات استثمار عالية">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" id="previousSalesCard">
-                    <div class="card-header">
-                        المبيعات السابقة (حتى 4)
-                    </div>
-                    <div class="card-body">
-                        <div id="previousSalesInputsContainer">
-                            <div class="previous-sale-input-group row mb-3">
-                                <label class="form-label col-12">البيع 1:</label>
-                                <div class="col-8">
-                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 23rd.com">
-                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-
-                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="previous-sale-input-group row mb-3">
-                                <label class="form-label col-12">البيع 2:</label>
-                                <div class="col-8">
-                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 22nd.com">
-                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="previous-sale-input-group row mb-3">
-                                <label class="form-label col-12">البيع 3:</label>
-                                <div class="col-8">
-                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 9ine.com">
-                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-
-                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="previous-sale-input-group row mb-3">
-                                <label class="form-label col-12">البيع 4:</label>
-                                <div class="col-8">
-                                    <input type="text" class="form-control previous-sale-domain" placeholder="النطاق مثال: 7eth.com">
-                                    <div class="invalid-feedback">اسم النطاق والسعر مطلوبان.</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-
-                                        <input type="number" class="form-control previous-sale-price" min="0" step="1" placeholder="$ السعر">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-center mt-4 mb-5">
-                    <button id="submitBtn" class="btn btn-primary btn-lg">إرسال وتنزيل</button>
+                <div class="mb-4">
+                    <label for="emailAddress" class="block text-gray-700 text-lg font-medium mb-2">عنوان البريد الإلكتروني:</label>
+                    <input type="email" id="emailAddress" placeholder="مثال: info@example.com" class="form-control w-full" dir="rtl">
+                    <div id="emailAddress-feedback" class="invalid-feedback">الرجاء إدخال عنوان بريد إلكتروني صالح.</div>
                 </div>
             </div>
+        </div>
+        <!-- END NEW: Social Media Links Section -->
+
+        <div class="card bg-white p-6 mb-8" id="domainsUpdateCard">
+            <div class="card-header">
+                تحديث محفظة النطاقات 📋
+            </div>
+            <div class="card-body p-6">
+                <div class="mb-4">
+                    <label for="domainsXLSXUpload" class="block text-gray-700 text-lg font-medium mb-2">ارفع ملف النطاقات الخاص بك (.xlsx):</label>
+                    <input type="file" id="domainsXLSXUpload" accept=".xlsx" class="form-control w-full" dir="rtl">
+                    <div id="domainsXLSXUpload-feedback" class="invalid-feedback">الرجاء رفع ملف XLSX.</div>
+                    <p id="domainsUploadStatus" class="text-sm mt-2 text-gray-500"></p>
+                </div>
+
+                <div id="columnMappingSection" class="hidden">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">ربط أعمدة الإكسل:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="domainNameCol" class="block text-gray-700 text-base font-medium mb-1">عمود اسم النطاق:</label>
+                            <select id="domainNameCol" class="form-select w-full" dir="rtl"></select>
+                            <div id="domainNameCol-feedback" class="invalid-feedback">الرجاء تحديد عمود.</div>
+                        </div>
+                        <div>
+                            <label for="domainDescCol" class="block text-gray-700 text-base font-medium mb-1">عمود الوصف:</label>
+                            <select id="domainDescCol" class="form-select w-full" dir="rtl"></select>
+                            <div id="domainDescCol-feedback" class="invalid-feedback">الرجاء تحديد عمود.</div>
+                        </div>
+                        <div>
+                            <label for="domainPriceCol" class="block text-gray-700 text-base font-medium mb-1">عمود السعر:</label>
+                            <select id="domainPriceCol" class="form-select w-full" dir="rtl"></select>
+                            <div id="domainPriceCol-feedback" class="invalid-feedback">الرجاء تحديد عمود.</div>
+                        </div>
+                        <div>
+                            <label for="domainLinkCol" class="block text-gray-700 text-base font-medium mb-1">عمود رابط الدفع:</label>
+                            <select id="domainLinkCol" class="form-select w-full" dir="rtl"></select>
+                            <div id="domainLinkCol-feedback" class="invalid-feedback">الرجاء تحديد عمود.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button id="submitBtn" class="btn-primary">إنشاء وتنزيل الملف المحدث</button>
         </div>
     </div>
 
@@ -1223,634 +1126,560 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="lib/wow/wow.min.js"></script>
-<script>    const templateUpload = document.getElementById('templateUpload');
-    const uploadStatus = document.getElementById('uploadStatus');
-    const domainNameInput = document.getElementById('domainName');
-    const checkoutLinkInput = document.getElementById('checkoutLink');
-    const googleFormLinkInput = document.getElementById('googleFormLink');
-    const enableFlashSaleCheckbox = document.getElementById('enableFlashSale');
-    const flashSaleInputsDiv = document.getElementById('flashSaleInputs');
-    const finalPriceInput = document.getElementById('finalPrice');
-    const originalPriceInput = document.getElementById('originalPrice');
-    const saleEndDateInput = document.getElementById('saleEndDate');
-    const minOfferValueInput = document.getElementById('minOfferValue');
-    const buyNowPriceInput = document.getElementById('buyNowPrice');
-    // Convert NodeLists to Arrays immediately for easier use of array methods
-    const featureInputs = Array.from(document.querySelectorAll('.feature-input'));
-    const previousSaleDomains = Array.from(document.querySelectorAll('.previous-sale-domain'));
-    const previousSalePrices = Array.from(document.querySelectorAll('.previous-sale-price'));
-    const submitBtn = document.getElementById('submitBtn');
 
-    const editFullTemplateRadio = document.getElementById('editFullTemplate');
-    const updateCheckoutLinkOnlyRadio = document.getElementById('updateCheckoutLinkOnly');
+    <script>
+        // Global variables for template and XLSX data
+        let uploadedTemplateHtml = '';
+        let originalZipFile = null;
+        let originalFileType = 'html'; // 'html' or 'zip'
+        let parsedXLSXData = [];
+        let excelColumnHeaders = [];
 
-    const generalDomainInfoCard = document.getElementById('generalDomainInfoCard');
-    const domainNameDiv = document.getElementById('domainNameDiv');
-    const googleFormLinkDiv = document.getElementById('googleFormLinkDiv');
-    const flashSaleSettingsCard = document.getElementById('flashSaleSettingsCard');
-    const pricingOfferSettingsCard = document.getElementById('pricingOfferSettingsCard');
-    const domainFeaturesCard = document.getElementById('domainFeaturesCard');
-    const previousSalesCard = document.getElementById('previousSalesCard');
+        // DOM elements
+        const loaderOverlay = document.getElementById('loaderOverlay');
+        const templateUploadInput = document.getElementById('templateUpload');
+        const uploadStatusText = document.getElementById('uploadStatus');
+        const updateDomainsOnlyCheckbox = document.getElementById('updateDomainsOnly');
+        const generalInfoCard = document.getElementById('generalInfoCard');
+        const websiteNameInput = document.getElementById('websiteName');
+        const googleFormLinkInput = document.getElementById('googleFormLink');
+        const aboutSectionContentTextarea = document.getElementById('aboutSectionContent');
+        const domainsUpdateCard = document.getElementById('domainsUpdateCard');
+        const domainsXLSXUploadInput = document.getElementById('domainsXLSXUpload');
+        const domainsUploadStatusText = document.getElementById('domainsUploadStatus');
+        const columnMappingSection = document.getElementById('columnMappingSection');
+        const domainNameColSelect = document.getElementById('domainNameCol');
+        const domainDescColSelect = document.getElementById('domainDescCol');
+        const domainPriceColSelect = document.getElementById('domainPriceCol');
+        const domainLinkColSelect = document.getElementById('domainLinkCol');
+        const submitBtn = document.getElementById('submitBtn');
 
-    // Global variables to store original zip and its type
-    let uploadedTemplateHtml = '';
-    let originalZipFile = null; // Stores the original JSZip object if a zip was uploaded
-    let originalFileType = 'html'; // 'html' or 'zip'
+        // NEW: Social Media DOM elements
+        const socialMediaCard = document.getElementById('socialMediaCard');
+        const whatsappNumberInput = document.getElementById('whatsappNumber');
+        const telegramUsernameInput = document.getElementById('telegramUsername');
+        const emailAddressInput = document.getElementById('emailAddress');
 
 
-    function clearValidationErrors() {
-        document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-        document.querySelectorAll('.invalid-feedback').forEach(el => el.style.display = 'none');
-    }
-
-    function showValidationError(element, message) {
-        element.classList.add('is-invalid');
-        const feedbackEl = document.getElementById(`${element.id}-feedback`);
-        if (feedbackEl) {
-            feedbackEl.textContent = message;
-            feedbackEl.style.display = 'block';
-        }
-    }
-
-    templateUpload.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            uploadedTemplateHtml = '';
-            originalZipFile = null;
-            originalFileType = 'html';
-            uploadStatus.textContent = '';
-            return;
+        // Helper to show/hide loader
+        function toggleLoader(show) {
+            if (show) {
+                loaderOverlay.classList.remove('hidden');
+            } else {
+                loaderOverlay.classList.add('hidden');
+            }
         }
 
-        uploadStatus.textContent = 'جاري تحميل الملف...'; // Translated
-        uploadStatus.classList.remove('text-danger', 'text-success');
+        // Helper to clear all validation errors
+        function clearValidationErrors() {
+            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.invalid-feedback').forEach(el => el.style.display = 'none');
+        }
 
-        if (file.type === 'text/html') {
-            originalFileType = 'html';
-            originalZipFile = null; // Clear any previous zip data
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                uploadedTemplateHtml = e.target.result;
-                uploadStatus.textContent = `تم تحميل الملف "${file.name}" بنجاح.`; // Translated
-                uploadStatus.classList.add('text-success');
-                templateUpload.classList.remove('is-invalid');
-                document.getElementById('templateUpload-feedback').style.display = 'none';
-            };
-            reader.onerror = () => {
-                uploadStatus.textContent = 'خطأ في قراءة ملف HTML.'; // Translated
-                uploadStatus.classList.add('text-danger');
-            };
-            reader.readAsText(file);
-        } else if (file.type === 'application/zip' || file.type === 'application/x-zip-compressed' || file.name.endsWith('.zip')) {
-            originalFileType = 'zip';
-            JSZip.loadAsync(file)
-                .then(function(zip) {
-                    originalZipFile = zip; // Store the entire zip object
-                    const indexHtmlFile = zip.file('index.html');
-                    if (indexHtmlFile) {
-                        return indexHtmlFile.async('text');
-                    } else {
-                        throw new Error('لم يتم العثور على index.html في ملف ZIP.'); // Translated
-                    }
-                })
-                .then(function(content) {
-                    uploadedTemplateHtml = content;
-                    uploadStatus.textContent = `تم تحميل ملف ZIP "${file.name}". تم استخراج index.html.`; // Translated
-                    uploadStatus.classList.add('text-success');
-                    templateUpload.classList.remove('is-invalid');
-                    document.getElementById('templateUpload-feedback').style.display = 'none';
-                })
-                .catch(function(error) {
-                    uploadedTemplateHtml = '';
-                    originalZipFile = null;
-                    originalFileType = 'html'; // Reset type if error
-                    uploadStatus.textContent = `خطأ في تحميل ملف ZIP: ${error.message}`; // Translated
-                    uploadStatus.classList.add('text-danger');
-                    templateUpload.classList.add('is-invalid');
-                    document.getElementById('templateUpload-feedback').style.display = 'block';
+        // Helper to show a specific validation error
+        function showValidationError(element, message) {
+            element.classList.add('is-invalid');
+            const feedbackEl = document.getElementById(`${element.id}-feedback`);
+            if (feedbackEl) {
+                feedbackEl.textContent = message;
+                feedbackEl.style.display = 'block';
+            }
+        }
+
+        // Toggle visibility of input sections based on 'Update Domains Only' checkbox
+        function toggleSectionVisibility() {
+            const isDomainsOnlyMode = updateDomainsOnlyCheckbox.checked; // Corrected ID usage
+
+            generalInfoCard.classList.toggle('hidden', isDomainsOnlyMode);
+            socialMediaCard.classList.toggle('hidden', isDomainsOnlyMode); // NEW: Toggle social media card
+
+            // Manage 'required' attributes based on visibility
+            websiteNameInput.required = !isDomainsOnlyMode;
+            googleFormLinkInput.required = !isDomainsOnlyMode;
+            aboutSectionContentTextarea.required = !isDomainsOnlyMode;
+
+            // NEW: Social media inputs are always optional, so no 'required' attribute changes needed
+
+            // Clear validation errors when visibility changes
+            clearValidationErrors();
+        }
+
+        // Populate dropdowns with Excel column headers
+        function populateColumnHeaders(headers) {
+            [domainNameColSelect, domainDescColSelect, domainPriceColSelect, domainLinkColSelect].forEach(select => {
+                select.innerHTML = '<option value="">-- اختر العمود --</option>'; // Reset dropdowns
+                headers.forEach(header => {
+                    const option = document.createElement('option');
+                    option.value = header;
+                    option.textContent = header;
+                    select.appendChild(option);
                 });
-        } else {
-            uploadedTemplateHtml = '';
-            originalZipFile = null;
-            originalFileType = 'html';
-            uploadStatus.textContent = 'نوع الملف غير مدعوم. الرجاء تحميل ملف HTML أو ZIP.'; // Translated
-            uploadStatus.classList.add('text-danger');
-            templateUpload.classList.add('is-invalid');
-            document.getElementById('templateUpload-feedback').style.display = 'block';
-        }
-        // Reset the value of the file input to ensure the 'change' event fires on re-upload of the same file.
-        event.target.value = '';
-    });
-
-    enableFlashSaleCheckbox.addEventListener('change', () => {
-        flashSaleInputsDiv.style.display = enableFlashSaleCheckbox.checked ? 'block' : 'none';
-        if (!enableFlashSaleCheckbox.checked) {
-            [finalPriceInput, originalPriceInput, saleEndDateInput].forEach(input => {
-                input.value = '';
-                input.classList.remove('is-invalid');
-                const feedbackEl = document.getElementById(`${input.id}-feedback`);
-                if (feedbackEl) feedbackEl.style.display = 'none';
             });
-        }
-        // Re-run visibility toggle to update required attributes based on new checkbox state
-        toggleInputVisibility();
-    });
-
-    domainNameInput.addEventListener('blur', () => {
-        const value = domainNameInput.value.trim();
-        if (value) {
-            domainNameInput.value = value.charAt(0).toUpperCase() + value.slice(1);
-        }
-    });
-
-    submitBtn.addEventListener('click', () => {
-        clearValidationErrors();
-
-        if (!validateForm()) {
-            return;
+            columnMappingSection.classList.remove('hidden');
         }
 
-        const editedHtml = generateEditedHtml();
-
-        if (originalFileType === 'zip' && originalZipFile) {
-            // If original was a zip, recreate the zip with modified index.html
-            recreateAndDownloadZip(editedHtml);
-        } else {
-            // Otherwise, download as HTML
-            downloadHtmlFile(editedHtml, 'index.html');
-        }
-    });
-
-    /**
-     * Toggles the visibility and required status of input fields based on the selected editing mode.
-     * This function now only manages display and required attributes, it does NOT clear input values.
-     */
-    function toggleInputVisibility() {
-        const isFullEditMode = editFullTemplateRadio.checked;
-        const isCheckoutOnlyMode = updateCheckoutLinkOnlyRadio.checked;
-
-        // Always show the General Domain Information card, as it contains the checkout link
-        generalDomainInfoCard.style.display = 'block';
-
-        // Only hide specific elements within the General Domain Info card if not in full edit mode
-        domainNameDiv.style.display = isFullEditMode ? 'block' : 'none';
-        googleFormLinkDiv.style.display = isFullEditMode ? 'block' : 'none';
-
-        // Flash Sale Settings Card
-        flashSaleSettingsCard.style.display = (isFullEditMode || isCheckoutOnlyMode) ? 'block' : 'none';
-        flashSaleInputsDiv.style.display = (enableFlashSaleCheckbox.checked && (isFullEditMode || isCheckoutOnlyMode)) ? 'block' : 'none';
-
-        // Pricing & Offer Settings Card
-        pricingOfferSettingsCard.style.display = (isFullEditMode || isCheckoutOnlyMode) ? 'block' : 'none';
-
-        // Domain Features Card
-        domainFeaturesCard.style.display = isFullEditMode ? 'block' : 'none';
-
-        // Previous Sales Card
-        previousSalesCard.style.display = isFullEditMode ? 'block' : 'none';
-
-        // --- Manage 'required' attribute and clear validation styles only ---
-        const allInputs = [
-            templateUpload,
-            checkoutLinkInput,
-            domainNameInput,
-            googleFormLinkInput,
-            finalPriceInput,
-            originalPriceInput,
-            saleEndDateInput,
-            minOfferValueInput,
-            buyNowPriceInput,
-            ...featureInputs,
-            ...previousSaleDomains,
-            ...previousSalePrices
-        ];
-
-        allInputs.forEach(input => {
-            if (!input) return; // Skip if element doesn't exist
-
-            // Clear validation styles for all inputs whenever mode changes
-            input.classList.remove('is-invalid');
-            const feedbackEl = document.getElementById(`${input.id}-feedback`);
-            if (feedbackEl) feedbackEl.style.display = 'none';
-
-            // Special handling for previous sales inputs feedback (as their feedback is structured differently)
-            if (input.classList.contains('previous-sale-domain') || input.classList.contains('previous-sale-price')) {
-                const parentGroup = input.closest('.previous-sale-input-group');
-                if (parentGroup) {
-                    const feedback = parentGroup.querySelector('.invalid-feedback');
-                    if (feedback) feedback.style.display = 'none';
-                }
+        // Event Listener for Template Upload
+        templateUploadInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                uploadedTemplateHtml = '';
+                originalZipFile = null;
+                originalFileType = 'html';
+                uploadStatusText.textContent = '';
+                clearValidationErrors(); // Clear validation on no file
+                return;
             }
 
-            // Set 'required' attribute based on visibility and mode
-            if (input === templateUpload || input === checkoutLinkInput) {
-                input.required = true; // Always required in both modes
-            } else if (isFullEditMode) {
-                // In full edit mode, specific fields are required
-                if (input === domainNameInput || input === googleFormLinkInput || input === minOfferValueInput || input === buyNowPriceInput) {
-                    input.required = true;
-                } else if ((input === finalPriceInput || input === originalPriceInput || input === saleEndDateInput) && enableFlashSaleCheckbox.checked) {
-                    input.required = true;
-                } else {
-                    input.required = false;
-                }
-            } else if (isCheckoutOnlyMode) {
-                // In checkout only mode, only flash sale and pricing are conditionally required
-                if ((input === finalPriceInput || input === originalPriceInput || input === saleEndDateInput) && enableFlashSaleCheckbox.checked) {
-                    input.required = true;
-                } else if (input === minOfferValueInput || input === buyNowPriceInput) {
-                    input.required = true;
-                } else {
-                    input.required = false;
-                }
-            } else {
-                input.required = false; // Default for other cases (e.g., feature inputs, previous sales inputs in checkout mode)
-            }
-        });
-    }
+            uploadStatusText.textContent = 'جاري تحميل الملف...';
+            uploadStatusText.className = 'text-sm mt-2 text-gray-500'; // Reset styling
 
-    document.addEventListener('DOMContentLoaded', () => {
-        toggleInputVisibility();
-    });
-
-    editFullTemplateRadio.addEventListener('change', toggleInputVisibility);
-    updateCheckoutLinkOnlyRadio.addEventListener('change', toggleInputVisibility);
-    enableFlashSaleCheckbox.addEventListener('change', toggleInputVisibility);
-
-
-    /**
-     * Validates the form inputs before generating the HTML.
-     * Relies on the 'required' attributes set by toggleInputVisibility.
-     * @returns {boolean} True if all required fields are filled, false otherwise.
-     */
-    function validateForm() {
-        let isValid = true;
-        let firstInvalidField = null;
-
-        // Validate file upload first
-        if (!uploadedTemplateHtml) {
-            showValidationError(templateUpload, 'الرجاء تحميل قالب HTML أولاً.'); // Translated
-            isValid = false;
-            if (!firstInvalidField) firstInvalidField = templateUpload;
-        }
-
-        // Iterate over all form controls that are currently visible and required
-        document.querySelectorAll('input, select, textarea').forEach(input => {
-            // Check if the element is visible and has the 'required' attribute
-            // Also, ensure it's not the file upload which is handled separately
-            if (input.offsetParent !== null && input.required && input.id !== 'templateUpload') {
-                if (!input.value.trim()) {
-                    showValidationError(input, 'هذا الحقل مطلوب.'); // Translated
-                    isValid = false;
-                    if (!firstInvalidField) firstInvalidField = input;
-                } else if (input.type === 'url' && !input.value.startsWith('http')) {
-                    // Basic URL validation
-                    showValidationError(input, 'الرجاء إدخال عنوان URL صالح (على سبيل المثال، https://...).'); // Translated
-                    isValid = false;
-                    if (!firstInvalidField) firstInvalidField = input;
-                }
-            }
-        });
-
-        // Special validation for previous sales pairs (domain and price must both be present if one is)
-        document.querySelectorAll('.previous-sale-input-group').forEach(group => {
-            // Only validate if the group itself is visible (i.e., in full edit mode)
-            if (group.offsetParent !== null) {
-                const domainInput = group.querySelector('.previous-sale-domain');
-                const priceInput = group.querySelector('.previous-sale-price');
-
-                if (domainInput && priceInput) {
-                    const domain = domainInput.value.trim();
-                    const price = priceInput.value.trim();
-
-                    if ((domain && !price) || (!domain && price)) {
-                        domainInput.classList.add('is-invalid');
-                        priceInput.classList.add('is-invalid');
-                        const feedbackEl = domainInput.nextElementSibling; // Feedback is next to domain input
-                        if (feedbackEl) {
-                            feedbackEl.textContent = 'يتطلب كل من النطاق والسعر.'; // Translated
-                            feedbackEl.style.display = 'block';
-                        }
-                        isValid = false;
-                        if (!firstInvalidField) firstInvalidField = domainInput;
-                    }
-                }
-            }
-        });
-
-
-        if (firstInvalidField) {
-            firstInvalidField.focus();
-            firstInvalidField.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }
-
-        return isValid;
-    }
-function commadd(inputNumber) {
-    // Convert the input to a string, remove any existing commas,
-    // and then parse it as a floating-point number.
-    // This handles cases where the input might already have commas or be a string.
-    const numericValue = parseFloat(String(inputNumber).replace(/,/g, ''));
-
-    // Check if the parsed value is a valid number.
-    if (isNaN(numericValue)) {
-        return ''; // Return an empty string or handle as an error if the input isn't a valid number.
-    }
-
-    // Use toLocaleString to format the number with locale-specific thousands separators.
-    // 'en-US' is typically used for commas, but you can change it for other locales.
-    return numericValue.toLocaleString('en-US');
-}
-    /**
-     * Generates the edited HTML string based on form inputs and editing mode.
-     * @returns {string} The modified HTML content.
-     */
-    function generateEditedHtml() {
-        const parser = new DOMParser();
-        // Use the uploaded HTML content, which is either from a direct HTML file or extracted from a zip.
-        const doc = parser.parseFromString(uploadedTemplateHtml, 'text/html');
-        const editMode = document.querySelector('input[name="editMode"]:checked').value;
-        const checkoutLink = checkoutLinkInput.value.trim();
-
-        // Always update checkout links regardless of the editing mode.
-        doc.querySelectorAll('a[href*="checkoutlink.godaddy.com"]').forEach(link => {
-            link.href = checkoutLink;
-        });
-
-        const enableFlashSale = enableFlashSaleCheckbox.checked;
-        const flashSaleFinalPrice = finalPriceInput.value;
-        const originalPrice = originalPriceInput.value;
-        const saleEndDate = saleEndDateInput.value;
-        const minOfferValue = minOfferValueInput.value.trim();
-        const buyNowPrice = buyNowPriceInput.value.trim();
-
-        const flashSaleBar = doc.getElementById('flashSaleBar');
-        if (flashSaleBar) {
-            if (enableFlashSale) {
-                flashSaleBar.style.display = 'block';
-                const finalPriceSpan = flashSaleBar.querySelector('.finalprice');
-                if (finalPriceSpan) finalPriceSpan.textContent = `$${commadd(flashSaleFinalPrice)}`;
-                const originalPriceSpan = flashSaleBar.querySelector('.originalprice');
-                if (originalPriceSpan) originalPriceSpan.textContent = `$${commadd(originalPrice)}`;
-
-                const endDateDiv = doc.getElementById('endDate');
-                if (endDateDiv) {
-                    const date = new Date(saleEndDate);
-                    const options = {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    };
-                    const formattedDate = date.toLocaleDateString('en-US', options);
-                    endDateDiv.textContent = `${formattedDate} 23:59:59`;
-                }
-            } else {
-flashSaleBar.style.display = 'none';
-
-const endDateDiv = doc.getElementById('endDate');
-if (endDateDiv) {
-    const fallbackDate = new Date('2000-01-01T23:59:59');
-    const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    const formattedFallbackDate = fallbackDate.toLocaleDateString('en-US', options);
-    endDateDiv.textContent = `${formattedFallbackDate} 23:59:59`;
-            }
-            }
-        }
-
-        // Update Buy Now Price and Minimum Offer Placeholder
-        const buyNowPriceSpans = doc.querySelectorAll('.finalprice');
-        buyNowPriceSpans.forEach(span => {
-            const isFlashSaleSpan = span.closest('#flashSaleBar');
-            // Only update if not an active flash sale span, or if flash sale is not enabled
-            if (!isFlashSaleSpan || !enableFlashSale) {
-                if (buyNowPrice) {
-                    span.textContent = `$${commadd(buyNowPrice)}`;
-                } else {
-                    // If buyNowPrice is empty, leave the original content untouched.
-                    // This ensures fields not explicitly updated retain their template value.
-                }
-            }
-        });
-
-        const offerInput = doc.getElementById('offer');
-        if (offerInput) {
-            if (minOfferValue) { // Only update if minOfferValue is provided
-                offerInput.placeholder = `Min ${commadd(minOfferValue)}$`;
-            } else {
-                // If minOfferValue is empty, leave the original placeholder untouched.
-            }
-        }
-
-
-        if (editMode === 'full') {
-            const domain = domainNameInput.value.trim();
-            const googleFormLink = googleFormLinkInput.value.trim();
-
-            doc.querySelectorAll('.domainhere').forEach(el => {
-                el.textContent = domain;
-            });
-            const titleElement = doc.querySelector('title');
-            if (titleElement) {
-                titleElement.textContent = domain + ' - Premium Domain for Sale';
-            }
-
-            const googleFormElement = doc.getElementById('googleForm'); // This is the form element
-            if (googleFormElement && googleFormLink) {
-                const match = googleFormLink.match(/\/e\/([a-zA-Z0-9_-]+)/);
-                if (match && match[1]) {
-                    const formId = match[1];
-                    googleFormElement.action = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
-                } else {
-                    console.error('تعذر استخراج معرف نموذج Google من عنوان URL المقدم.'); // Translated
-                }
-            }
-
-            const featureSpans = doc.querySelectorAll('#Feautures-section span');
-            featureInputs.forEach((input, index) => {
-                if (featureSpans[index]) {
-                    const textContent = input.value.trim();
-                    const svgElement = featureSpans[index].querySelector('svg');
-                    if (textContent) {
-                        featureSpans[index].innerHTML = '';
-                        if (svgElement) {
-                            featureSpans[index].appendChild(svgElement.cloneNode(true));
-                        }
-                        featureSpans[index].appendChild(doc.createTextNode(` ${textContent}`));
-                        featureSpans[index].style.display = 'flex';
+            try {
+                toggleLoader(true);
+                if (file.type === 'text/html') {
+                    originalFileType = 'html';
+                    originalZipFile = null;
+                    uploadedTemplateHtml = await file.text();
+                    uploadStatusText.textContent = `تم تحميل الملف "${file.name}" بنجاح.`;
+                    uploadStatusText.classList.add('text-green-600');
+                } else if (file.type === 'application/zip' || file.name.endsWith('.zip')) {
+                    originalFileType = 'zip';
+                    originalZipFile = await JSZip.loadAsync(file);
+                    const indexHtmlFile = originalZipFile.file('index.html');
+                    if (indexHtmlFile) {
+                        uploadedTemplateHtml = await indexHtmlFile.async('text');
+                        uploadStatusText.textContent = `تم تحميل الملف المضغوط "${file.name}". تم استخراج index.html.`;
+                        uploadStatusText.classList.add('text-green-600');
                     } else {
-                        featureSpans[index].style.display = 'none';
+                        throw new Error('لم يتم العثور على index.html في الملف المضغوط. يرجى التأكد من أن ملف ZIP الخاص بالقالب يحتوي على ملف index.html.');
+                    }
+                } else {
+                    throw new Error('نوع الملف غير مدعوم. يرجى رفع ملف HTML أو ZIP.');
+                }
+                templateUploadInput.classList.remove('is-invalid');
+                document.getElementById('templateUpload-feedback').style.display = 'none';
+            } catch (error) {
+                uploadedTemplateHtml = '';
+                originalZipFile = null;
+                originalFileType = 'html';
+                uploadStatusText.textContent = `خطأ: ${error.message}`;
+                uploadStatusText.classList.add('text-red-600');
+                templateUploadInput.classList.add('is-invalid');
+                document.getElementById('templateUpload-feedback').style.display = 'block';
+                console.error('Template upload error:', error);
+            } finally {
+                toggleLoader(false);
+                // Clear file input value to allow re-uploading the same file
+                event.target.value = '';
+            }
+        });
+
+        // Event Listener for Domains XLSX Upload
+        domainsXLSXUploadInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                parsedXLSXData = [];
+                excelColumnHeaders = [];
+                domainsUploadStatusText.textContent = '';
+                columnMappingSection.classList.add('hidden');
+                clearValidationErrors();
+                return;
+            }
+
+            domainsUploadStatusText.textContent = 'جاري تحليل ملف الإكسل...';
+            domainsUploadStatusText.className = 'text-sm mt-2 text-gray-500'; // Reset styling
+
+            try {
+                toggleLoader(true);
+                const data = await file.arrayBuffer();
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+
+                // Get header row and then the data
+                const headerRow = XLSX.utils.sheet_to_json(worksheet, { header: 1 })[0];
+                if (!headerRow || headerRow.length === 0) {
+                    throw new Error('ملف الإكسل فارغ أو لا يحتوي على رؤوس أعمدة. يرجى التأكد من أن الصف الأول يحتوي على رؤوس الأعمدة.');
+                }
+                excelColumnHeaders = headerRow.map(h => String(h).trim()); // Convert headers to strings and trim
+                parsedXLSXData = XLSX.utils.sheet_to_json(worksheet, { header: excelColumnHeaders, range: 1 }); // Read data starting from second row, using custom headers
+
+                if (parsedXLSXData.length === 0) {
+                    throw new Error('لم يتم العثور على صفوف بيانات في ملف الإكسل بعد رؤوس الأعمدة. يرجى التحقق من بياناتك.');
+                }
+
+                domainsUploadStatusText.textContent = `تم تحليل الملف "${file.name}" بنجاح. تم العثور على ${parsedXLSXData.length} صفوف.`;
+                domainsUploadStatusText.classList.add('text-green-600');
+                populateColumnHeaders(excelColumnHeaders);
+                domainsXLSXUploadInput.classList.remove('is-invalid');
+                document.getElementById('domainsXLSXUpload-feedback').style.display = 'none';
+            } catch (error) {
+                parsedXLSXData = [];
+                excelColumnHeaders = [];
+                domainsUploadStatusText.textContent = `خطأ: ${error.message}`;
+                domainsUploadStatusText.classList.add('text-red-600');
+                domainsXLSXUploadInput.classList.add('is-invalid');
+                document.getElementById('domainsXLSXUpload-feedback').style.display = 'block';
+                columnMappingSection.classList.add('hidden');
+                console.error('XLSX upload error:', error);
+            } finally {
+                toggleLoader(false);
+                event.target.value = ''; // Clear file input value
+            }
+        });
+
+        // Event listener for editing mode checkbox
+        updateDomainsOnlyCheckbox.addEventListener('change', toggleSectionVisibility);
+
+        // Main validation function
+        function validateForm() {
+            let isValid = true;
+            let firstInvalidField = null;
+
+            clearValidationErrors(); // Clear previous errors
+
+            // 1. Validate template upload
+            if (!uploadedTemplateHtml) {
+                showValidationError(templateUploadInput, 'الرجاء رفع قالب HTML أولاً.');
+                isValid = false;
+                if (!firstInvalidField) firstInvalidField = templateUploadInput;
+            }
+
+            const isDomainsOnlyMode = updateDomainsOnlyCheckbox.checked;
+
+            // 2. Validate General Website Information (if not in domains only mode)
+            if (!isDomainsOnlyMode) {
+                if (!websiteNameInput.value.trim()) {
+                    showValidationError(websiteNameInput, 'اسم الموقع مطلوب.');
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = websiteNameInput;
+                }
+                if (!googleFormLinkInput.value.trim() || !googleFormLinkInput.value.startsWith('http')) {
+                    showValidationError(googleFormLinkInput, 'الرجاء إدخال رابط نموذج جوجل صالح (مثال: https://...).');
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = googleFormLinkInput;
+                }
+                if (!aboutSectionContentTextarea.value.trim()) {
+                    showValidationError(aboutSectionContentTextarea, 'محتوى قسم "من نحن" مطلوب.');
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = aboutSectionContentTextarea;
+                }
+
+                // NEW: Validate Social Media (WhatsApp specifically)
+                const whatsappNumber = whatsappNumberInput.value.trim();
+                if (whatsappNumber !== '' && !whatsappNumber.startsWith('+')) {
+                    showValidationError(whatsappNumberInput, "يجب أن يبدأ رقم الواتساب بـ '+'.");
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = whatsappNumberInput;
+                }
+                const emailAddress = emailAddressInput.value.trim();
+                if (emailAddress !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) {
+                    showValidationError(emailAddressInput, 'الرجاء إدخال عنوان بريد إلكتروني صالح إذا تم توفيره.');
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = emailAddressInput;
+                }
+            }
+
+            // 3. Validate Domains Portfolio Update
+            if (parsedXLSXData.length === 0) {
+                showValidationError(domainsXLSXUploadInput, 'الرجاء رفع ملف XLSX صالح للنطاقات.');
+                isValid = false;
+                if (!firstInvalidField) firstInvalidField = domainsXLSXUploadInput;
+            } else {
+                const columnSelectors = [domainNameColSelect, domainDescColSelect, domainPriceColSelect, domainLinkColSelect];
+                columnSelectors.forEach(select => {
+                    if (!select.value) {
+                        showValidationError(select, 'الرجاء تحديد عمود لهذا الحقل.');
+                        isValid = false;
+                        if (!firstInvalidField) firstInvalidField = select;
+                    }
+                });
+
+                // Check for duplicate column selections, excluding the "-- Select Column --" placeholder
+                const selectedValues = columnSelectors.map(select => select.value).filter(val => val !== "");
+                const uniqueValues = new Set(selectedValues);
+                if (selectedValues.length !== uniqueValues.size) {
+                    columnSelectors.forEach(select => {
+                        if (selectedValues.filter(v => v === select.value).length > 1 && select.value !== "") {
+                            showValidationError(select, 'تم تحديد عمود مكرر. يجب أن يستخدم كل ربط عموداً فريداً.');
+                        }
+                    });
+                    isValid = false;
+                    if (!firstInvalidField) firstInvalidField = columnMappingSection; // General error for mapping
+                }
+            }
+
+
+            if (firstInvalidField) {
+                firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            return isValid;
+        }
+
+        // Generate the edited HTML content
+        function generateEditedHtml() {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(uploadedTemplateHtml, 'text/html');
+            const isDomainsOnlyMode = updateDomainsOnlyCheckbox.checked;
+
+            // --- Section 1: Website Name Everywhere (if not domains only mode) ---
+            if (!isDomainsOnlyMode) {
+                const newWebsiteName = websiteNameInput.value.trim();
+                if (newWebsiteName) {
+                    // Update Title tag
+                    const titleElement = doc.querySelector('title');
+                    if (titleElement) {
+                        titleElement.textContent = `${newWebsiteName} - محفظة نطاقات مميزة`;
+                    }
+
+                    // Update Navbar Brand
+                    const navBrand = doc.querySelector('header .text-amber-400');
+                    if (navBrand && navBrand.textContent.includes('Digital Rarity')) {
+                        navBrand.textContent = newWebsiteName;
+                    }
+
+                    // Update Secure Purchase Section text if it contains the old name or is default
+                    const securePurchaseDomainText = doc.getElementById('securePurchaseDomainText');
+                    if (securePurchaseDomainText && (securePurchaseDomainText.textContent.includes('Digital Rarity') || securePurchaseDomainText.textContent.includes('premium domains'))) {
+                        securePurchaseDomainText.textContent = `${newWebsiteName}`;
+                    }
+
+                    // Update Footer Copyright
+                    const copyrightText = doc.querySelector('.copyrighttext');
+                    if (copyrightText && copyrightText.textContent.includes('Digital Rarity')) {
+                        copyrightText.textContent = `© 2025 ${newWebsiteName}. جميع الحقوق محفوظة.`;
+                    }
+                }
+            }
+
+            // --- Section 2: Google Form Link (if not domains only mode) ---
+            if (!isDomainsOnlyMode) {
+                const newGoogleFormLink = googleFormLinkInput.value.trim();
+                const googleContactForm = doc.getElementById('google-contact-form');
+                if (googleContactForm && newGoogleFormLink) {
+                    const match = newGoogleFormLink.match(/\/e\/([a-zA-Z0-9_-]+)/);
+                    if (match && match[1]) {
+                        const formId = match[1];
+                        googleContactForm.action = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
+                    } else {
+                        console.warn('تعذر استخراج معرف نموذج جوجل من الرابط المقدم. لن يتم تحديث إجراء النموذج.');
+                    }
+                }
+            }
+
+            // --- Section 3: About Section Content (if not domains only mode) ---
+            if (!isDomainsOnlyMode) {
+                const newAboutContent = aboutSectionContentTextarea.value.trim();
+                const aboutSection = doc.getElementById('about');
+                if (aboutSection && newAboutContent) {
+                    const formattedContent = newAboutContent.replace(/\n/g, '<br>');
+                    const paragraphs = aboutSection.querySelectorAll('p');
+                    if (paragraphs.length > 0) {
+                        paragraphs[0].innerHTML = formattedContent;
+                        for (let i = 1; i < paragraphs.length; i++) {
+                            paragraphs[i].remove();
+                        }
+                    } else {
+                        const newP = doc.createElement('p');
+                        newP.classList.add('text-lg', 'text-gray-300', 'leading-relaxed', 'mb-6');
+                        newP.innerHTML = formattedContent;
+                        aboutSection.appendChild(newP);
+                    }
+                }
+            }
+
+            // NEW: Section 5: Social Media Links (if not domains only mode)
+            if (!isDomainsOnlyMode) {
+                const whatsappLinkElement = doc.getElementById('whatsapp');
+                const telegramLinkElement = doc.getElementById('telegram');
+                const emailLinkElement = doc.getElementById('emailel');
+
+                const whatsappNumber = whatsappNumberInput.value.trim();
+                const telegramUsername = telegramUsernameInput.value.trim();
+                const emailAddress = emailAddressInput.value.trim();
+
+                if (whatsappLinkElement) {
+                    if (whatsappNumber) {
+                        // For wa.me links, the '+' should typically be removed from the number, as per WhatsApp's documentation.
+                        whatsappLinkElement.href = `https://wa.me/${whatsappNumber.replace('+', '')}`;
+                        whatsappLinkElement.style.display = ''; // Show the element
+                    } else {
+                        whatsappLinkElement.style.display = 'none'; // Hide the element
+                    }
+                }
+
+                if (telegramLinkElement) {
+                    if (telegramUsername) {
+                        telegramLinkElement.href = `https://t.me/${telegramUsername}`;
+                        telegramLinkElement.style.display = ''; // Show the element
+                    } else {
+                        telegramLinkElement.style.display = 'none'; // Hide the element
+                    }
+                }
+
+                if (emailLinkElement) {
+                    if (emailAddress) {
+                        emailLinkElement.href = `mailto:${emailAddress}`;
+                        emailLinkElement.style.display = ''; // Show the element
+                    } else {
+                        emailLinkElement.style.display = 'none'; // Hide the element
+                    }
+                }
+            }
+
+            // --- Section 4: Domains Portfolio Update (always applied if XLSX uploaded) ---
+            // Start with the current state of the DOM and then apply string replacements for the JS array
+            let finalHtmlContent = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+
+            if (parsedXLSXData.length > 0 && domainNameColSelect.value && domainDescColSelect.value && domainPriceColSelect.value && domainLinkColSelect.value) {
+                const domainsArray = [];
+                parsedXLSXData.forEach(rowData => {
+                    const domainName = rowData[domainNameColSelect.value];
+                    const domainDescription = rowData[domainDescColSelect.value];
+                    const domainPrice = rowData[domainPriceColSelect.value];
+                    const domainBuyLink = rowData[domainLinkColSelect.value];
+
+                    if (domainName && domainPrice && domainBuyLink) {
+                        domainsArray.push({
+                            name: domainName,
+                            shortDescription: domainDescription || '',
+                            price: String(domainPrice).startsWith('$') || String(domainPrice).endsWith('$') ? domainPrice : '$' + domainPrice,
+                            buyLink: domainBuyLink
+                        });
+                    }
+                });
+
+                // Convert the new domains array to a JSON string
+                const newDomainsString = JSON.stringify(domainsArray, null, 1);
+                const newDomainsCode = `const domains = ${newDomainsString};`;
+
+                // Replace the old domains array code with the new one using string replacement on the full HTML
+                const regex = /\/\/\s*dictStartHere[\s\S]*?\/\/\s*dictEndHere/;
+                const replacement = `//dictStartHere\n\t\t\t${newDomainsCode}\n\t\t\t//dictEndHere`;
+                finalHtmlContent = finalHtmlContent.replace(regex, replacement);
+
+                // IMPORTANT: The domain cards HTML within the template is dynamically generated by the template's JS.
+                // However, if the template does NOT dynamically generate them from the `domains` array on load,
+                // and instead relies on static HTML, we should also update the static HTML here.
+                // The current template DOES dynamically generate, so this block is for robustness/futureproofing.
+                // To keep the template's JS responsible for rendering, we'd typically skip direct manipulation of #domain-cards-container here
+                // if the template itself handles rendering from the 'domains' array.
+                // But if it's a static placeholder that needs updating, uncomment and adjust:
+
+                const tempContainer = doc.createElement('div');
+                domainsArray.forEach(domain => {
+                    tempContainer.innerHTML += `
+                                <div class="domain-card bg-gray-900 rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-transform duration-300 border border-gray-700">
+                                    <h3 class="text-2xl font-bold text-white mb-3 break-words">${domain.name}</h3>
+                                    <p class="text-gray-400 mb-6 text-lg">${domain.shortDescription}</p>
+                                    <div class="flex items-center justify-between mb-6">
+                                        <span class="text-amber-400 text-2xl font-semibold">${domain.price}</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <a href="${domain.buyLink}" target="_blank" class="buy-now-btn flex-1 text-center bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+                                            اشتر الآن
+                                        </a>
+                                        <button class="make-offer-btn flex-1 border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-gray-900 font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300" data-domain="${domain.name}">
+                                            تقديم عرض
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                });
+                // Find the original domain cards container in the parsed DOM
+                const oldDomainCardsContainer = doc.getElementById('domain-cards-container');
+                if (oldDomainCardsContainer) {
+                    // Replace its content with the newly generated cards
+                    oldDomainCardsContainer.innerHTML = tempContainer.innerHTML;
+                }
+            }
+            // Return the final HTML content after all DOM and string replacements
+            return finalHtmlContent;
+        }
+
+        // Download HTML file
+        function downloadHtmlFile(content, filename) {
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Recreate and download ZIP file
+        async function recreateAndDownloadZip(modifiedHtmlContent) {
+            if (!originalZipFile) {
+                console.error("Original zip file not found. Cannot recreate zip.");
+                uploadStatusText.textContent = 'خطأ: لم يتم العثور على ملف ZIP الأصلي لإعادة الإنشاء.';
+                uploadStatusText.classList.add('text-red-600');
+                return;
+            }
+
+            const newZip = new JSZip();
+
+            originalZipFile.forEach(function(relativePath, zipEntry) {
+                if (relativePath !== 'index.html') {
+                    if (!zipEntry.dir) {
+                        newZip.file(relativePath, zipEntry.async('arraybuffer'), { binary: true });
                     }
                 }
             });
 
-// Inside the generateEditedHtml function
+            newZip.file('index.html', modifiedHtmlContent);
 
-// ... (previous code)
-
-const prevSaleSectionTitle = doc.querySelector('.similarDomains2');
-const prevSaleSection = doc.querySelector('#similarDomains2');
-const prevSaleDivs = doc.querySelectorAll('#similarDomains2 > div');
-let hasPreviousSales = false;
-
-// First, hide all existing divs and remove any conflicting inline styles
-prevSaleDivs.forEach(div => {
-    div.style.removeProperty('display'); // This is the key fix
-    div.classList.add('hidden'); // Use a class for toggling visibility
-});
-
-previousSaleDomains.forEach((domainInput, index) => {
-    const priceInput = previousSalePrices[index];
-    if (domainInput.value.trim() && priceInput.value.trim()) {
-        hasPreviousSales = true;
-        const currentDiv = prevSaleDivs[index];
-        if (currentDiv) {
-            const h3Element = currentDiv.querySelector('h3');
-            const pElement = currentDiv.querySelector('p');
-            const spanElement = pElement.querySelector('span');
-            
-            if (h3Element) h3Element.textContent = domainInput.value.trim();
-            if (spanElement) spanElement.textContent = `$${commadd(priceInput.value.trim())}`;
-            
-            // Re-show the div by removing the 'hidden' class
-            currentDiv.classList.remove('hidden'); 
-        }
-    }
-});
-
-// Use a class to toggle the visibility of the whole section.
-if (prevSaleSectionTitle && prevSaleSection) {
-    if (hasPreviousSales) {
-        prevSaleSectionTitle.classList.remove('hidden');
-        prevSaleSection.classList.remove('hidden');
-    } else {
-        prevSaleSectionTitle.classList.add('hidden');
-        prevSaleSection.classList.add('hidden');
-    }
-    
-    // Crucially, remove any conflicting inline styles that might be there from the original template
-    prevSaleSectionTitle.style.removeProperty('display');
-    prevSaleSection.style.removeProperty('display');
-}
-
-
-
-        } else { // editMode === 'checkout'
-            // In this mode, we only update the checkout link, flash sale, and pricing/offer.
-            // All other elements should remain as they were in the original uploaded template.
-            // Therefore, we explicitly DO NOT clear or modify content or visibility for fields not in these sections.
-        }
-
-        return '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
-    }
-
-    /**
-     * Downloads the generated HTML content as a file.
-     * @param {string} content - The HTML content to download.
-     * @param {string} filename - The name of the file.
-     */
-    function downloadHtmlFile(content, filename) {
-        const blob = new Blob([content], {
-            type: 'text/html'
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
-    /**
-     * Recreates the original zip file with the modified index.html and downloads it.
-     * @param {string} modifiedHtmlContent - The updated HTML content for index.html.
-     */
-    async function recreateAndDownloadZip(modifiedHtmlContent) {
-        if (!originalZipFile) {
-            console.error("Original zip file not found. Cannot recreate zip.");
-            uploadStatus.textContent = 'خطأ: لم يتم العثور على ملف ZIP الأصلي لإعادة الإنشاء.'; // Translated
-            uploadStatus.classList.add('text-danger');
-            return;
-        }
-
-        const newZip = new JSZip();
-
-        // Iterate over original files and add them to the new zip
-        originalZipFile.forEach(function(relativePath, zipEntry) {
-            if (relativePath !== 'index.html') { // Exclude the old index.html
-                if (!zipEntry.dir) { // Only add files, not directories themselves
-                    newZip.file(relativePath, zipEntry.async('arraybuffer'), { binary: true });
-                }
-            }
-        });
-
-        // Add the modified index.html
-        newZip.file('index.html', modifiedHtmlContent);
-
-        // Generate and download the new zip file
-        newZip.generateAsync({ type: "blob" })
-            .then(function(content) {
+            try {
+                const content = await newZip.generateAsync({ type: "blob" });
                 const url = URL.createObjectURL(content);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = String(document.getElementById('domainName').value)+'.zip'; // You might want to keep the original zip name if available
+                a.download = `${websiteNameInput.value.trim().replace(/\s/g, '-') || 'updated-portfolio'}.zip`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                uploadStatus.textContent = 'تم تحميل ملف ZIP المحدث بنجاح!'; // Translated
-                uploadStatus.classList.add('text-success');
-            })
-            .catch(function(error) {
+                uploadStatusText.textContent = 'تم تنزيل ملف ZIP المحدث بنجاح!';
+                uploadStatusText.classList.remove('text-red-600');
+                uploadStatusText.classList.add('text-green-600');
+            } catch (error) {
                 console.error("Error generating zip file:", error);
-                uploadStatus.textContent = `خطأ في إنشاء ملف ZIP: ${error.message}`; // Translated
-                uploadStatus.classList.add('text-danger');
-            });
-    }
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Select all number inputs
-  const numberInputs = document.querySelectorAll('input[type="number"]');
+                uploadStatusText.textContent = `خطأ في إنشاء ملف ZIP: ${error.message}`;
+                uploadStatusText.classList.add('text-red-600');
+            }
+        }
 
-  numberInputs.forEach(input => {
-    // Create a shadow input to display formatted value
-    const formattedInput = document.createElement('input');
-    formattedInput.type = 'text';
-    formattedInput.placeholder = input.placeholder;
-    formattedInput.className = input.className;
-    formattedInput.style.cssText = input.style.cssText;
-    formattedInput.setAttribute('inputmode', 'numeric');
+        // Submit Button Click Handler
+        submitBtn.addEventListener('click', async () => {
+            if (!validateForm()) {
+                return;
+            }
 
-    // Hide original input but keep its value
-    input.style.display = 'none';
-    input.parentNode.insertBefore(formattedInput, input);
+            toggleLoader(true);
+            try {
+                const editedHtml = generateEditedHtml();
 
-    // Sync formatted input with original
-    const formatNumber = (value) => {
-      const num = parseFloat(value.replace(/,/g, ''));
-      return isNaN(num) ? '' : num.toLocaleString('en-US');
-    };
+                if (originalFileType === 'zip' && originalZipFile) {
+                    await recreateAndDownloadZip(editedHtml);
+                } else {
+                    downloadHtmlFile(editedHtml, 'index.html');
+                }
+            } catch (error) {
+                console.error("Error during HTML generation or download:", error);
+                uploadStatusText.textContent = `حدث خطأ غير متوقع: ${error.message}`;
+                uploadStatusText.classList.add('text-red-600');
+            } finally {
+                toggleLoader(false);
+            }
+        });
 
-    formattedInput.addEventListener('input', () => {
-      const raw = formattedInput.value.replace(/,/g, '');
-      input.value = raw;
-      formattedInput.value = formatNumber(raw);
-    });
-
-    // Initialize with existing value
-    formattedInput.value = formatNumber(input.value);
-  });
-});
-</script>
+        // Initial setup on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleSectionVisibility(); // Set initial visibility
+        });
+    </script>
 
 </body>
 

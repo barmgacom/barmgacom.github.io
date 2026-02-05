@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرر قائمة المطعم</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+<style>
+
+        #loadingOverlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            gap: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        #loadingOverlay.hidden {
+            display: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Example to show/hide the spinner */
+        .show-btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .show-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <style>
+                #editorForm>div:has( .section-titlex){background-color: #fbfbfe;}
+        .text-green-500{color: #28a745 !important;}
+        .text-red-500{color: #dc3545 !important;}
+         .hidden{display: none !important;}
+        [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
+            max-height: calc(100vh - 140px);
+            /* Adjust based on your header and footer height */
+            overflow-y: auto;
+            padding-bottom: 70px;
+            /* Adjust the value as needed */
+            padding-top: 20px;
+            /* Adjust the value as needed */
+
+        }
+
+
+        [aria-labelledby="termsModalLabel"] .modal-header {
+            position: sticky;
+            background-color: inherit;
+            z-index: 1055;
+        }
+
+        [aria-labelledby="termsModalLabel"] .modal-footer {
+            position: absolute;
+            bottom: 0;
+            background-color: inherit;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        textarea {
+            direction: ltr;
+        }
+
+        .how-it-works {
+            padding: 40px 0;
+        }
+
+        .steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            margin-bottom: 30px;
+        }
+
+        .steps .step-number {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background: linear-gradient(135deg, #87CEFA, #1E90FF);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+
+        .steps .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .steps .step-description {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+
+        <style>
+        .tool>*,
+        .lab {
+            margin-top: 10px;
+            /* Adjust the value as needed */
+            margin-bottom: 10px;
+            /* Adjust the value as needed */
+        }
+
+        #fixed_button {
+            position: fixed;
+            bottom: 65px;
+            /* Space from the bottom */
+            right: 35px;
+            /* Space from the right */
+            width: 45px;
+            /* Slightly larger for a modern look */
+            height: 45px;
+            /* Slightly larger for a modern look */
+            border-radius: 50%;
+            /* Rounded button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100000;
+            /* Ensure it stays above other content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* Smooth transition */
+        }
+
+        #fixed_button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Enhanced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .btn-custom {
+            max-width: 250px;
+            /* Adjust the width as needed */
+            min-width: 150px;
+            /* Adjust the width as needed */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+
+        .container {
+            width: 100%;
+        }
+
+        [onclick] {
+            cursor: pointer;
+        }
+
+        :target {
+            padding-top: 70px;
+            /* height of your navbar */
+            margin-top: -70px;
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                height: 60px;
+            }
+
+            .navbar .dropdown-menu {
+                margin-top: 0px;
+            }
+
+            .navbar-nav {
+                direction: rtl;
+                font-weight: bold;
+            }
+
+            .navbar-nav .nav-link {
+                font-weight: 500;
+            }
+        }
+
+        .navbar-nav .nav-link:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+            color: rgb(1, 106, 226) !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: rgb(11, 3, 112) !important;
+        }
+
+
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            z-index: 1020;
+            /* Bootstrap's z-index for sticky navbar */
+        }
+
+        .navbar {
+            top: 0;
+            z-index: 100;
+            background-color: white;
+            font-family: 'El Messiri', sans-serif !important;
+
+        }
+
+        .nav-item {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .nav-item:hover {
+
+            background-color: rgb(218, 226, 235);
+            border-radius: 30px;
+            padding: 0px 10px;
+            /* Adjust as needed */
+
+        }
+
+        @media (max-width: 992px) {
+            /* Adjust as per your navbar's collapsing breakpoint */
+            .navbar-nav .nav-item.dropdown:hover {
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+
+            .navbar-nav .dropdown-menu {
+                text-align: center;
+                position: static;
+                float: none;
+                width: 100%;
+                background-color: rgb(218, 226, 235);
+                border-color: rgba(240, 248, 255, 0);
+                /* Adjust as per your requirement */
+                border-radius: 30px;
+            }
+        }
+
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 35%;
+            font-size: 200%;
+            /* Increase size */
+            font-weight: bold;
+            /* Make thicker */
+            z-index: 10;
+            color: white;
+        }
+
+        .owl-prev {
+            left: -5%;
+        }
+
+        .owl-next {
+            right: -5%;
+        }
+
+        .owl-dots {
+            text-align: center;
+            /* Center the dots */
+            padding-top: 30px;
+            /* Add space above the dots */
+        }
+
+        .owl-dots .owl-dot {
+
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #cccccc;
+            border-radius: 50%;
+        }
+
+        .owl-dots .owl-dot.active {
+            background-color: #978e8e;
+        }
+
+        .text-primary {
+            color: #2780B7;
+        }
+
+        .shadowed {
+            color: #452d8c;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Modern shadow effect */
+        }
+
+        #instructionsModal a {
+            text-decoration: underline;
+            text-transform: lowercase;
+        }
+
+        /*** Section Title ***/
+        .section-title-right::before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 4px;
+            bottom: 0;
+            right: 0;
+            background: var(--dark);
+        }
+
+        .section-title-right::after {
+            position: absolute;
+            content: "";
+            width: 4px;
+            height: 4px;
+            bottom: 0;
+            right: 50px;
+            background: var(--dark);
+        }
+
+        .section-title-right.text-center::before {
+            right: 50%;
+            margin-right: -25px;
+        }
+
+        .section-title-right.text-center::after {
+            right: 50%;
+            margin-right: 25px;
+        }
+
+        .section-title-right h6::before,
+        .section-title-right h6::after {
+            position: absolute;
+            content: "";
+            width: 10px;
+            height: 10px;
+            top: 2px;
+            right: 0;
+            background: rgba(33, 110, 177, 0.5);
+        }
+
+        .section-title-right h6::after {
+            top: 5px;
+            right: 3px;
+        }
+
+        .footer .btn.btn-linkx {
+            display: block;
+            margin-bottom: 10px;
+            padding: 0;
+            text-align: right;
+            color: var(--light);
+            font-weight: normal;
+            transition: .3s;
+        }
+
+        .footer .btn.btn-linkx::before {
+            position: relative;
+            content: "•";
+            font-family: "Font Awesome 4 Free";
+            font-weight: 900;
+            margin-left: 10px;
+        }
+
+        .footer .btn.btn-linkx:hover {
+            letter-spacing: 1px;
+            box-shadow: none;
+        }
+
+        input[type="text"]:-moz-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]:-ms-input-placeholder {
+            text-align: right !important;
+        }
+
+        input[type="text"]::-webkit-input-placeholder {
+            text-align: right !important;
+        }
+
+        body {
+            font-family: 'El Messiri', sans-serif !important;
+        }
+
+        .loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+        }
+
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader:before {
+            animation: before 2s infinite;
+        }
+
+        .loader:after {
+            animation: after 2s infinite;
+        }
+
+        @keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+        }
+
+        @keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+        }
+
+        .loader {
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
+        }
+
+        .loaderx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loaderx.fade-out {
+            opacity: 0;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var loader = document.querySelector('.loaderx');
+            loader.style.display = "block";
+
+            window.addEventListener('load', function() {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 1000); // Matches the transition duration
+            });
+        });
+    </script>
+
+
+
+</head>
+<body>
+        <div class="loaderx fullscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container-fluid bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <input id="fileUploadx" style="display: none;">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav" dir="ltr">
+                <div class="container px-5">
+                    <a class="navbar-brand fw-bold" href="https://barmga.com/ar">
+                        <img src="images/barmga-logo.png" alt="Logo" style="max-height:35px;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-th-list" style="color:#2780B7;"></i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#home">الرئيسية</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" onclick="document.querySelector('.selectedproduct').style.display='none'" href="https://barmga.com/ar#products">قواعد بيانات</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto" style="display: block;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <img src="images/sa.png" style="max-height: 17px; max-width: 23px;">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://barmga.com/restaurant-menu-editor">English</a></li>
+                                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+        </div>
+        <!-- Navbar & Hero End -->
+    </div>
+<div class="container my-5" style="max-width: 950px;">
+    
+    <h1 class="text-center mb-4 text-primary fw-bold"><br>محرر قائمة المطعم</h1>
+    <form id="editorForm" class="row g-4">
+
+        <div class="col-12 p-4 border rounded-3 shadow-sm">
+            <h2 class="section-titlex h5 mb-3">تحميل القالب <i class="bi bi-folder-zip text-secondary me-2"></i></h2>
+            <div class="mb-3">
+                <label for="templateZip" class="form-label">تحميل ملف قالب مضغوط (.zip):</label>
+                <input type="file" class="form-control" id="templateZip" accept=".zip" required>
+            </div>
+            <div id="zipUploadStatus" class="form-text text-green-500"></div>
+        </div>
+        
+<div class="col-12 p-4 border rounded-3 shadow-sm">
+    <h2 class="section-titlex h5 mb-3">خيارات التحديث <i class="bi bi-pencil-square text-secondary me-2"></i></h2>
+    <div class="form-check form-switch mb-3 text-start d-flex justify-content-start">
+       <input class="form-check-input" style="margin-left: 15px;" type="checkbox" id="updateMenu" checked>
+        <label class="form-check-label" for="updateMenu">تحديث معلومات القائمة</label>
+        
+    </div>
+    <div class="form-check form-switch text-start d-flex justify-content-start">
+        <input class="form-check-input" style="margin-left: 15px;" type="checkbox" id="updateRestaurantInfo" checked>
+        <label class="form-check-label" for="updateRestaurantInfo">تحديث معلومات المطعم</label>
+        
+    </div>
+</div>
+
+        <div id="languageSelectionContainer" class="col-12 p-4 border rounded-3 shadow-sm">
+            <h2 class="section-titlex h5 mb-3">اختيار اللغة <i class="bi bi-translate text-secondary me-2"></i></h2>
+            <div class="mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="languageOption" id="oneLanguageRadio" value="one" checked>
+                    <label class="form-check-label" for="oneLanguageRadio">لغة واحدة</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="languageOption" id="twoLanguagesRadio" value="two">
+                    <label class="form-check-label" for="twoLanguagesRadio">لغتان</label>
+                </div>
+            </div>
+
+            <div id="oneLanguageSection">
+                <div class="mb-3">
+                    <label for="mainLanguage" class="form-label">اختر اللغة:</label>
+                    <select id="mainLanguage" class="form-select"></select>
+                </div>
+            </div>
+
+            <div id="twoLanguagesSection" class="hidden">
+                <div class="mb-3">
+                    <label for="primaryLanguage" class="form-label">اختر اللغة الأساسية:</label>
+                    <select id="primaryLanguage" class="form-select"></select>
+                </div>
+                <div class="mb-3">
+                    <label for="secondaryLanguage" class="form-label">اختر اللغة الثانوية:</label>
+                    <select id="secondaryLanguage" class="form-select"></select>
+                </div>
+            </div>
+        </div>
+
+        <div id="restaurantInfoSection" class="col-12 p-4 border rounded-3 shadow-sm">
+            <h2 class="section-titlex h5 mb-3">معلومات المطعم <i class="bi bi-info-circle text-secondary me-2"></i></h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="restoName" class="form-label">اسم المطعم:</label>
+                    <input type="text" class="form-control" id="restoName" placeholder="مثال: مطعم التميز">
+                    <input type="text" class="form-control mt-3 hidden" id="restoNameSecondary" placeholder="اسم باللغة الثانوية">
+                </div>
+                <div class="col-md-6">
+                    <label for="restoDescription" class="form-label">الوصف:</label>
+                    <textarea style="text-align: right;" class="form-control" id="restoDescription" placeholder="مثال: استمتع بالمأكولات العالمية..."></textarea>
+                    <textarea style="text-align: right;" class="form-control mt-3 hidden" id="restoDescriptionSecondary" placeholder="وصف باللغة الثانوية"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label for="restoPhone" class="form-label">الهاتف:</label>
+                    <input type="tel" class="form-control" id="restoPhone">
+                </div>
+                <div class="col-md-6">
+                    <label for="restoEmail" class="form-label">البريد الإلكتروني:</label>
+                    <input type="email" class="form-control" id="restoEmail">
+                </div>
+                <div class="col-md-6">
+                    <label for="restoAddress" class="form-label">العنوان:</label>
+                    <input type="text" class="form-control" id="restoAddress" placeholder="مثال: 123 الشارع الرئيسي، المدينة">
+                    <input type="text" class="form-control mt-3 hidden" id="restoAddressSecondary" placeholder="عنوان باللغة الثانوية">
+                </div>
+                <div class="col-md-6">
+                    <label for="restoColor" class="form-label">لون الواجهة:</label>
+                    <select id="restoColor" class="form-select">
+                        <option value="yellow">أصفر</option>
+                        <option value="blue">أزرق</option>
+                        <option value="red">أحمر</option>
+                        <option value="green">أخضر</option>
+                        <option value="black">أسود</option>
+                        <option value="orange">برتقالي</option>
+                        <option value="purple">بنفسجي</option>
+                        <option value="brown">بني</option>
+                        <option value="pink">وردي</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 p-4 border rounded-3 shadow-sm">
+            <h2 class="section-titlex h5 mb-3">تحميل الصور <i class="bi bi-image text-secondary me-2"></i></h2>
+            <div class="mb-3">
+                <label for="logoImage" class="form-label">تحميل صورة الشعار (.png, .jpg, .jpeg, .gif, .webp):</label>
+                <input type="file" class="form-control" id="logoImage" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
+            </div>
+            <div id="mainImageUploadSection" class="mb-3 hidden">
+                <label for="mainImage" class="form-label">تحميل الصورة الرئيسية (.png, .jpg, .jpeg, .gif, .webp):</label>
+                <input type="file" class="form-control" id="mainImage" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
+            </div>
+            <div id="foodImagesUploadSection" class="mb-3 hidden">
+                <label for="foodImages" class="form-label">تحميل صور الطعام (متعددة، .png, .jpg, .jpeg, .gif, .webp):</label>
+                <input type="file" class="form-control" id="foodImages" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp" multiple>
+            </div>
+        </div>
+
+        <div id="menuSection" class="col-12 p-4 border rounded-3 shadow-sm">
+            <h2 class="section-titlex h5 mb-3">معلومات القائمة <i class="bi bi-book text-secondary me-2"></i></h2>
+            <p class="mb-3">قم بتنزيل وتعديل <a href="https://barmga.com/menu-example.xlsx" class="link-primary">ملف إكسل القائمة</a> التالي، باللغات التي اخترتها. لا تقم بتغيير أسماء الأعمدة.</p>
+
+            <div id="menuUploadOneLang">
+                <div class="mb-3">
+                    <label for="menuExcelFile" class="form-label">تحميل ملف إكسل القائمة (.xlsx):</label>
+                    <input type="file" class="form-control" id="menuExcelFile" accept=".xlsx">
+                </div>
+            </div>
+            <div id="menuUploadTwoLang" class="hidden">
+                <div class="mb-3">
+                    <label for="menuExcelFilePrimary" class="form-label">تحميل ملف إكسل القائمة للغة الأساسية (.xlsx):</label>
+                    <input type="file" class="form-control" id="menuExcelFilePrimary" accept=".xlsx">
+                </div>
+                <div class="mb-3">
+                    <label for="menuExcelFileSecondary" class="form-label">تحميل ملف إكسل القائمة للغة الثانوية (.xlsx):</label>
+                    <input type="file" class="form-control" id="menuExcelFileSecondary" accept=".xlsx">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center buttonpart">
+            <button style="max-width: 190px;" type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center flex-row-reverse gap-2">
+                <i class="bi bi-gear-fill"></i> إنشاء قالب محدث
+            </button>
+        </div>
+        <div class="col-12">
+            <div id="message" class="alert d-none"></div>
+        </div>
+    </form>
+
+    <div id="downloadSection" class="hidden mt-5 p-4 border rounded-3 shadow-sm text-center">
+        <h2 class="section-titlex h5 mb-3">تحميل قالبك <i class="bi bi-download text-secondary me-2"></i></h2>
+        <a id="downloadLink" href="#" class="btn btn-primary d-inline-flex align-items-center justify-content-center flex-row-reverse gap-2" download="updated_restaurant_template_ar.zip">
+            <i class="bi bi-file-earmark-zip-fill"></i> تحميل الملف المحدث
+        </a>
+    </div>
+</div>
+
+    <!-- Loading Overlay HTML -->
+    <div id="loadingOverlay" class="hidden">
+        <div class="spinner"></div>
+        <p>جارٍ معالجة الملفات، يرجى الانتظار...</p>
+    </div>
+
+    <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الأعمال</strong></h5>
+
+                </div>
+
+           <div class="modal-body scrollable-body text-center">
+                
+<!-- ADDTOOLSAR -->
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
+                            <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
+                        </a>
+                    </div>
+                    <p class="emailx" dir="rtl">أداة تساعدك في إدراج معلومات منتجاتك وأعمالك بسهولة في قوالب مواقع الكترونية جاهزة.</p>
+                    <i class="mb-4 emailx fa fa-code" style="max-width: 28px; height: auto;font-weight: 600;"></i>
+                    <hr>
+
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c7c; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/city-extractor-ar" target="_blank">
+                        <i class="fa fa-map-marker"></i>&nbsp;&nbsp;استخراج أسماء المدن من العناوين
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">هذه الأداة تستخرج أسماء المدن من عناوين منسوخة من خرائط قوقل، ثم تضيف عمود أسماء المدن في ملف اكسل.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #d43776; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/contacts-manager-ar" target="_blank">
+                        <i class="fa fa-group"></i>&nbsp;&nbsp;أداة فرز جهات الإتصال
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في تصفية ارقام التواصل المختلفة والايميلات من مجموعة ملفات ثم تقسيمها لاعتمادها بالحملات بشكل سهل ومرتب.</p>
+                <i class="mb-4 emailx fa fa-cogs" style="max-width: 28px; height: auto;"></i>
+                <hr>
+                <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                    <a type="button" class="btn d-flex align-items-center" style="background-color: #f67c9a; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-validator-ar" target="_blank">
+                        <i class="fa fa-id-card-o"></i>&nbsp;&nbsp;مدقق البريد الإلكتروني
+                    </a>
+                </div>
+                <p class="emailx" dir="rtl">أداة تساعدك في استبعاد معظم عنواين البريد الإلكتروني التجارية الغير نشطة، لتحسين معدل وصول البريد الإلكتروني!</p>
+                <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
+            </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات البريد الإلكتروني</strong></h5>
+
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #d45137; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/barmga-mailer-ar" target="_blank">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;Barmga Mailer | مرسل البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">أرسل بشكل آلى إلى مجموعة من عناوين البريد الإلكتروني من خلال حساب قوقل، تستخدم هذه الأداة مع متصفح مايكروسوفت آدج على الكمبيوتر</p>
+                    <img src="img/bot.webp" class="mb-4 emailx" alt="Bot" style="max-width: 28px; height: auto;">
+                    <hr>
+                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+                        <a type="button" class="btn d-flex align-items-center" style="background-color: #e27c49; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/bulk-email-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط البريد الإلكتروني
+                        </a>
+                    </div>
+                    <p class="emailx">حول عناوين البريد الإلكتروني إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق جيميل الجوال في بضع نقرات</p>
+                    <img src="img/click.webp" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
+        <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
+            <div class="modal-content">
+                <div class="modal-header fixed-top">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div style="flex-grow: 1;"></div>
+                    <h5 class="modal-title" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات الواتساب</strong></h5>
+                </div>
+                <div class="modal-body scrollable-body text-center">
+                    <div class="d-flex justify-content-center mb-3 whatsappx">
+                        <a type="button" class="btn btn-primary d-flex align-items-center" href="https://barmga.com/wabarmga-whatsapp-sender-ar" target="_blank" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);">
+                            <i class="fa fa-laptop"></i>&nbsp;&nbsp;WABarmga | مرسل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">ارسل رسائل واتساب تلقائية إلى مجموعة من الأرقام بشكل آلى، تستخدم هذه الأداة مع متصفح كروم على الكمبيوتر</p>
+                    <img src="img/bot.png" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
+                    <hr class="whatsappx">
+                    <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links-ar" target="_blank">
+                            <i class="fa fa-mobile"></i>&nbsp;&nbsp;مولد روابط رسائل واتساب
+                        </a>
+                    </div>
+                    <p class="whatsappx">حول أرقام واتساب إلى روابط إرسال وأرسل بسهولة من متصفح الجوال وتطبيق واتساب في بضع نقرات</p>
+                    <img src="img/click.png" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
+                </div>
+                <div class="modal-footer">
+                    <div style="flex-grow: 1;"></div>
+                    <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">إغلاق</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">لطلب الدعم</h5>
+                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#contact">اتصل بنا</a>
+                    <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
+
+                        <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">برمجة</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar">الرئيسية</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#about">من نحن</a>
+                    <a class="btn btn-linkx" href="https://mostaql.com/u/barmga/reviews" target="_blank">تقييمات العملاء</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/faq-ar">الأسئلة الشائعة</a>
+                    <a class="btn btn-linkx" data-bs-toggle="modal" data-bs-target="#termsModal">سياسة الموقع</a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">نشاطنا</h5>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
+                    <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                                        <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="text-white mb-4">النشرة البريدية</h5>
+                    <p>اشترك الآن واحصل على أحدث العروض والأدوات المميزة.</p>
+                    <div class="position-relative w-100 mt-3">
+                        <input id="email-sub" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="البريد الالكتروني" style="height: 48px;">
+                        <button type="button" id="subscribe" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                    </div>
+                    <br>
+                    <p class="position-relative submitted" style="align-items: center; color: rgb(117, 247, 117);"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container px-lg-5">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" style="color: white !important;" href="https://barmga.com/ar">Barmga 2025</a>, جميع الحقوق محفوظة.
+
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    <script>
+        function showonly(classname) {
+            if (classname == 'all') {
+                var wapart = $('#optionsmodalwhatsapp .modal-body')[0].innerHTML
+                var mailpart = $('#optionsmodalemail .modal-body')[0].innerHTML
+                var otherpart = $('#optionsmodalother .modal-body')[0].innerHTML
+                $('#optionsmodal .modal-body')[0].innerHTML = wapart + "<hr>" + mailpart
+                $('#optionsmodal').modal('show')
+            } else {
+                $('#optionsmodal' + classname).modal('show')
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // --- DOM Element References ---
+        const editorForm = document.getElementById('editorForm');
+        const templateZipInput = document.getElementById('templateZip');
+        const zipUploadStatus = document.getElementById('zipUploadStatus');
+        const updateMenuCheckbox = document.getElementById('updateMenu');
+        const updateRestaurantInfoCheckbox = document.getElementById('updateRestaurantInfo');
+        const languageOptionRadios = document.querySelectorAll('input[name="languageOption"]');
+        const languageSelectionContainer = document.getElementById('languageSelectionContainer');
+        const oneLanguageSection = document.getElementById('oneLanguageSection');
+        const twoLanguagesSection = document.getElementById('twoLanguagesSection');
+        const mainLanguageSelect = document.getElementById('mainLanguage');
+        const primaryLanguageSelect = document.getElementById('primaryLanguage');
+        const secondaryLanguageSelect = document.getElementById('secondaryLanguage');
+        const restaurantInfoSection = document.getElementById('restaurantInfoSection');
+        const restoNameInput = document.getElementById('restoName');
+        const restoNameSecondaryInput = document.getElementById('restoNameSecondary');
+        const restoDescriptionTextarea = document.getElementById('restoDescription');
+        const restoDescriptionSecondaryTextarea = document.getElementById('restoDescriptionSecondary');
+        const restoPhoneInput = document.getElementById('restoPhone');
+        const restoEmailInput = document.getElementById('restoEmail');
+        const restoAddressInput = document.getElementById('restoAddress');
+        const restoAddressSecondaryInput = document.getElementById('restoAddressSecondary');
+        const restoColorSelect = document.getElementById('restoColor');
+
+        const logoImageInput = document.getElementById('logoImage');
+        const mainImageInput = document.getElementById('mainImage');
+        const mainImageUploadSection = document.getElementById('mainImageUploadSection');
+        const foodImagesInput = document.getElementById('foodImages');
+        const foodImagesUploadSection = document.getElementById('foodImagesUploadSection');
+
+        const menuSection = document.getElementById('menuSection');
+        const menuExcelFile = document.getElementById('menuExcelFile');
+        const menuUploadOneLang = document.getElementById('menuUploadOneLang');
+        const menuUploadTwoLang = document.getElementById('menuUploadTwoLang');
+        const menuExcelFilePrimary = document.getElementById('menuExcelFilePrimary');
+        const menuExcelFileSecondary = document.getElementById('menuExcelFileSecondary');
+        const messageDiv = document.getElementById('message');
+        const downloadSection = document.getElementById('downloadSection');
+        const downloadLink = document.getElementById('downloadLink');
+        const loadingOverlay = document.getElementById('loadingOverlay'); // Loading overlay element
+
+        // --- Global State Variables ---
+        let uploadedZipContent = null;
+        let initialInfoJsons = {};
+        let initialMenuJsons = {};
+        let extractedHtmlTemplates = {};
+
+        let hasMainPngInZip = false;
+        let hasDefaultPngInZip = false;
+
+        // Global variables to store the detected template languages from the zip
+        let detectedPrimaryTemplateLang = 'en';
+        let detectedSecondaryTemplateLang = '';
+
+        // --- Language Data ---
+        const languages = [
+            { name: "English", code: "en", flag: "🇺🇸" },
+            { name: "Arabic", code: "ar", flag: "🇸🇦" },
+            { name: "French", code: "fr", flag: "🇫🇷" },
+            { name: "Spanish", code: "es", flag: "🇪🇸" },
+            { name: "German", code: "de", flag: "🇩🇪" },
+            { name: "Chinese (Simplified)", code: "zh", flag: "🇨🇳" },
+            { name: "Hindi", code: "hi", flag: "🇮🇳" },
+            { name: "Portuguese", code: "pt", flag: "🇵🇹" },
+            { name: "Russian", code: "ru", flag: "🇷🇺" },
+            { name: "Japanese", code: "ja", flag: "🇯🇵" },
+            { name: "Italian", code: "it", flag: "🇮🇹" },
+            { name: "Indonesian", code: "id", flag: "🇮🇩" },
+            { name: "Urdu", code: "ur", flag: "🇵🇰" },
+            { name: "Bengali", code: "bn", flag: "🇧🇩" },
+            { name: "Turkish", code: "tr", flag: "🇹🇷" },
+            { name: "Persian", code: "fa", flag: "🇮🇷" },
+            { name: "Malay", code: "ms", flag: "🇲🇾" }
+        ];
+
+        // --- Translation Dictionaries ---
+        // Original phrases as they appear in the English (LTR) template
+        const ltrPhrasesInTemplate = {
+            "Welcome to": "Welcome to",
+            "Most Delicious Meals At": "Most Delicious Meals At",
+            "Verify your internet connection": "Verify your internet connection",
+            "The Most Delicious Meals": "The Most Delicious Meals",
+            "Our Menu": "Our Menu",
+            "Click here to refresh the page": "Click here to refresh the page",
+            "The Menu": "The Menu",
+            "No menu items found.": "No menu items found.",
+            "Error loading this page.": "Error loading this page.",
+            "Click here to refresh.": "Click here to refresh.",
+            "All Rights Reserved": "All Rights Reserved",
+            "info_en.json":"info_en.json", // Original key in template
+            "menu_en.json":"menu_en.json", // Original key in template
+            "lang=\"en\"": "lang=\"en\""
+        };
+
+        // Original phrases as they appear in the Arabic (RTL) template
+        const rtlPhrasesInTemplate = {
+            "مرحبا بك في ": "مرحبا بك في ",
+            "أشهى أصناف ": "أشهى أصناف ",
+            "الأصناف": "الأصناف", // Assuming this is "Our Menu" equivalent in RTL template
+            "أشهى الأطعمة في العالم": "أشهى الأطعمة في العالم", // Assuming this is "The Most Delicious Meals"
+            "جميع الحقوق محفوظة": "جميع الحقوق محفوظة", // Assuming "All Rights Reserved"
+            "القائمة": "القائمة", // Assuming "The Menu"
+            "قائمة الطعام": "قائمة الطعام", // Assuming this is "Our Menu" equivalent in RTL template
+            "أهلاً بك في ": "أهلاً بك في ", // Assuming "Welcome to" equivalent
+            "لم يتم العثور على أي عناصر في القائمة": "لم يتم العثور على أي عناصر في القائمة", // Assuming "No menu items found."
+            "خطأ في تحميل الصفحة": "خطأ في تحميل الصفحة", // Assuming "Error loading this page."
+            "اضغط هنا لتحديثها": "اضغط هنا لتحديثها", // Assuming "Click here to refresh the page"
+            "info_ar.json":"info_ar.json", // Original key in template
+            "menu_ar.json":"menu_ar.json", // Original key in template
+            "lang=\"ar\"": "lang=\"ar\""
+        };
+
+
+        const allTranslations = {
+            'en': { // English translations for phrases that might appear in either template (primarily LTR template)
+                ...ltrPhrasesInTemplate, // Include original phrases as they are for English
+                "تحقق من اتصالك بالإنترنت": "Verify your internet connection", // From RTL template
+                "اضغط هنا لتحديثها": "Click here to refresh the page", // From RTL template
+            },
+            'ar': { // Arabic translations for phrases that might appear in either template (primarily RTL template)
+                ...rtlPhrasesInTemplate, // Include original Arabic phrases for Arabic
+                // Translations for common English phrases that might appear if an English base template is used for Arabic
+                "Welcome to": "أهلاً بك في ",
+                "Most Delicious Meals At": "أشهى أصناف ",
+                "Verify your internet connection": "تأكد من اتصالك بالإنترنت",
+                "The Most Delicious Meals": "أشهى الأطعمة في العالم",
+                "Our Menu": "قائمة الطعام",
+                "Click here to refresh the page": "اضغط هنا لتحديث الصفحة",
+                "The Menu": "القائمة",
+                "No menu items found.": "لم يتم العثور على أي عناصر في القائمة.",
+                "Error loading this page.": "خطأ في تحميل هذه الصفحة.",
+                "Click here to refresh.": "اضغط هنا للتحديث.",
+                "All Rights Reserved": "جميع الحقوق محفوظة",
+                "info_en.json":"info_ar.json",
+                "menu_en.json":"menu_ar.json",
+                "lang=\"en\"": "lang=\"ar\""
+            },
+            'fr': {
+                "Welcome to": "Bienvenue chez",
+                "Most Delicious Meals At": "Les plats les plus délicieux chez",
+                "Verify your internet connection": "Vérifiez votre connexion internet",
+                "The Most Delicious Meals": "Les plats les plus délicieux",
+                "Our Menu": "Notre Menu",
+                "Click here to refresh the page": "Cliquez ici pour rafraîchir la page",
+                "The Menu": "Le Menu",
+                "No menu items found.": "Aucun élément de menu trouvé.",
+                "Error loading this page.": "Erreur de chargement de cette page.",
+                "Click here to refresh.": "Cliquez ici pour rafraîchir.",
+                "All Rights Reserved": "Tous droits réservés",
+                "info_en.json":"info_fr.json",
+                "menu_en.json":"menu_fr.json",
+                "lang=\"en\"": "lang=\"fr\"",
+                // Add similar mappings for RTL phrases if 'fr' template could be RTL (unlikely but for completeness)
+                "مرحبا بك في ": "Bienvenue chez ", // This won't be used if it's an LTR template
+            },
+            'es': {
+                "Welcome to": "Bienvenido a",
+                "Most Delicious Meals At": "Las comidas más deliciosas en",
+                "Verify your internet connection": "Verifique su conexión a internet",
+                "The Most Delicious Meals": "Las comidas más deliciosas",
+                "Our Menu": "Nuestro Menú",
+                "Click here to refresh the page": "Haga clic aquí para actualizar la página",
+                "The Menu": "El Menú",
+                "No menu items found.": "No se encontraron elementos del menú.",
+                "Error loading this page.": "Error al cargar esta página.",
+                "Click here to refresh.": "Haga clic aquí para actualizar.",
+                "All Rights Reserved": "Todos los derechos reservados",
+                "info_en.json":"info_es.json",
+                "menu_en.json":"menu_es.json",
+                "lang=\"en\"": "lang=\"es\""
+            },
+            'de': {
+                "Welcome to": "Willkommen bei",
+                "Most Delicious Meals At": "Die leckersten Gerichte bei",
+                "Verify your internet connection": "Überprüfen Sie Ihre Internetverbindung",
+                "The Most Delicious Meals": "Die leckersten Gerichte",
+                "Our Menu": "Unsere Speisekarte",
+                "Click here to refresh the page": "Klicken Sie hier, um die Seite zu aktualisieren",
+                "The Menu": "Die Speisekarte",
+                "No menu items found.": "Keine Menüpunkte gefunden.",
+                "Error loading this page.": "Fehler beim Laden dieser Seite.",
+                "Click here to refresh.": "Klicken Sie hier, um zu aktualisieren.",
+                "All Rights Reserved": "Alle Rechte vorbehalten",
+                "info_en.json":"info_de.json",
+                "menu_en.json":"menu_de.json",
+                "lang=\"en\"": "lang=\"de\""
+            },
+            'zh': {
+                "Welcome to": "欢迎来到",
+                "Most Delicious Meals At": "最美味的餐点在",
+                "Verify your internet connection": "请检查您的网络连接",
+                "The Most Delicious Meals": "最美味的餐点",
+                "Our Menu": "我们的菜单",
+                "Click here to refresh the page": "点击此处刷新页面",
+                "The Menu": "菜单",
+                "No menu items found.": "未找到菜单项。",
+                "Error loading this page.": "加载此页面时出错。",
+                "Click here to refresh.": "点击此处刷新。",
+                "All Rights Reserved": "版权所有",
+                "info_en.json":"info_zh.json",
+                "menu_en.json":"menu_zh.json",
+                "lang=\"en\"": "lang=\"zh\""
+            },
+            'hi': {
+                "Welcome to": "आपका स्वागत है",
+                "Most Delicious Meals At": "सबसे स्वादिष्ट भोजन पर",
+                "Verify your internet connection": "अपना इंटरनेट कनेक्शन जांचें",
+                "The Most Delicious Meals": "सबसे स्वादिष्ट भोजन",
+                "Our Menu": "हमारा मेनू",
+                "Click here to refresh the page": "पेज को रीफ्रेश करने के लिए यहां क्लिक करें",
+                "The Menu": "मेनू",
+                "No menu items found.": "कोई मेनू आइटम नहीं मिला।",
+                "Error loading this page.": "यह पेज लोड करने में त्रुटि。",
+                "Click here to refresh.": "रीफ्रेश करने के लिए यहां क्लिक करें。",
+                "All Rights Reserved": "सभी अधिकार सुरक्षित",
+                "info_en.json":"info_hi.json",
+                "menu_en.json":"menu_hi.json",
+                "lang=\"en\"": "lang=\"hi\""
+            },
+            'pt': {
+                "Welcome to": "Bem-vindo ao",
+                "Most Delicious Meals At": "As refeições mais deliciosas em",
+                "Verify your internet connection": "Verifique sua conexão com a internet",
+                "The Most Delicious Meals": "As refeições mais deliciosas",
+                "Our Menu": "Nosso Menu",
+                "Click here to refresh the page": "Clique aqui para atualizar a página",
+                "The Menu": "O Menu",
+                "No menu items found.": "Nenhum item de menu encontrado.",
+                "Error loading this page.": "Erro ao carregar esta página.",
+                "Click here to refresh.": "Clique aqui para actualizar.",
+                "All Rights Reserved": "Todos os derechos reservados",
+                "info_en.json":"info_pt.json",
+                "menu_en.json":"menu_pt.json",
+                "lang=\"en\"": "lang=\"pt\""
+            },
+            'ru': {
+                "Welcome to": "Добро пожаловать в",
+                "Most Delicious Meals At": "Самые вкусные блюда в",
+                "Verify your internet connection": "Проверьте ваше internet-соединение",
+                "The Most Delicious Meals": "Самые вкусные блюда",
+                "Our Menu": "Наше меню",
+                "Click here to refresh the page": "Нажмите здесь, чтобы обновить страницу",
+                "The Menu": "Меню",
+                "No menu items found.": "Пункты меню не найдены.",
+                "Error loading this page.": "Ошибка загрузки этой страницы.",
+                "Click here to refresh.": "Нажмите здесь, чтобы обновить.",
+                "All Rights Reserved": "Все права защищены",
+                "info_en.json":"info_ru.json",
+                "menu_en.json":"menu_ru.json",
+                "lang=\"en\"": "lang=\"ru\""
+            },
+            'ja': {
+                "Welcome to": "ようこそ",
+                "Most Delicious Meals At": "で最もおいしい料理",
+                "Verify your internet connection": "インターネット接続を確認してください",
+                "The Most Delicious Meals": "最もおいしい料理",
+                "Our Menu": "私たちのメニュー",
+                "Click here to refresh the page": "ページを更新するにはここをクリックしてください",
+                "The Menu": "メニュー",
+                "No menu items found.": "メニュー項目が見つかりませんでした。",
+                "Error loading this page.": "このページの読み込み中にエラーが発生しました。",
+                "Click here to refresh.": "ここをクリックして更新してください。",
+                "All Rights Reserved": "無断複写・転載を禁じます",
+                "info_en.json":"info_ja.json",
+                "menu_en.json":"menu_ja.json",
+                "lang=\"en\"": "lang=\"ja\""
+            },
+            'it': {
+                "Welcome to": "Benvenuti a",
+                "Most Delicious Meals At": "I piatti più deliziosi a",
+                "Verify your internet connection": "Verifica la tua connessione internet",
+                "The Most Delicious Meals": "I piatti più deliziosi",
+                "Our Menu": "Il Nostro Menù",
+                "Click here to refresh the page": "Clicca qui per aggiornare la pagina",
+                "The Menu": "Il Menù",
+                "No menu items found.": "Nessun elemento del menu trovato.",
+                "Error loading this page.": "Errore durante il caricamento di questa pagina.",
+                "Click here to refresh.": "Clicca qui per aggiornare.",
+                "All Rights Reserved": "Tutti i diritti riservati",
+                "info_en.json":"info_it.json",
+                "menu_en.json":"menu_it.json",
+                "lang=\"en\"": "lang=\"it\""
+            },
+            'id': {
+                "Welcome to": "Selamat datang di",
+                "Most Delicious Meals At": "Hidangan Terlezat di",
+                "Verify your internet connection": "Verifikasi koneksi internet Anda",
+                "The Most Delicious Meals": "Hidangan Terlezat",
+                "Our Menu": "Menu Kami",
+                "Click here to refresh the page": "Klik di sini untuk menyegarkan halaman",
+                "The Menu": "Menu",
+                "No menu items found.": "Tidak ada item menu yang ditemukan.",
+                "Error loading this page.": "Kesalahan memuat halaman ini.",
+                "Click here to refresh.": "Klik di sini untuk menyegarkan.",
+                "All Rights Reserved": "Hak Cipta Dilindungi",
+                "info_en.json":"info_id.json",
+                "menu_en.json":"menu_id.json",
+                "lang=\"en\"": "lang=\"id\""
+            },
+            'bn': {
+                "Welcome to": "স্বাগতম",
+                "Most Delicious Meals At": "সবচেয়ে সুস্বাদু খাবার",
+                "Verify your internet connection": "আপনার ইন্টারনেট সংযোগ যাচাই করুন",
+                "The Most Delicious Meals": "সবচেয়ে সুস্বাদু খাবার",
+                "Our Menu": "আমাদের মেনু",
+                "Click here to refresh the page": "পেজ রিফ্রেশ করতে এখানে ক্লিক করুন",
+                "The Menu": "মেনু",
+                "No menu items found.": "কোনো মেনু আইটেম পাওয়া যায়নি。",
+                "Error loading this page.": "এই পৃষ্ঠা লোড করতে ত্রুটি。",
+                "Click here to refresh.": "রিফ্রেশ করতে এখানে ক্লিক করুন。",
+                "All Rights Reserved": "সর্বস্বত্ব সংরক্ষিত",
+                "info_en.json":"info_bn.json",
+                "menu_en.json":"menu_bn.json",
+                "lang=\"en\"": "lang=\"bn\""
+            },
+            'tr': {
+                "Welcome to": "Hoş geldiniz",
+                "Most Delicious Meals At": "En Lezzetli Yemekler",
+                "Verify your internet connection": "İnternet bağlantınızı doğrulayın",
+                "The Most Delicious Meals": "En Lezzetli Yemekler",
+                "Our Menu": "Menümüz",
+                "Click here to refresh the page": "Sayfayı yenilemek için buraya tıklayın",
+                "The Menu": "Menü",
+                "No menu items found.": "Menü öğesi bulunamadı.",
+                "Error loading this page.": "Bu sayfa yüklenirken hata oluştu。",
+                "Click here to refresh.": "Yenilemek için buraya tıklayın。",
+                "All Rights Reserved": "Tüm Hakları Saklıdır",
+                "info_en.json":"info_tr.json",
+                "menu_en.json":"menu_tr.json",
+                "lang=\"en\"": "lang=\"tr\""
+            },
+            'ms': {
+                "Welcome to": "Selamat datang ke",
+                "Most Delicious Meals At": "Hidangan Paling Lazat di",
+                "Verify your internet connection": "Sahkan sambungan internet anda",
+                "The Most Delicious Meals": "Hidangan Paling Lazat",
+                "Our Menu": "Menu Kami",
+                "Click here to memuat semula halaman": "Klik di sini untuk memuat semula halaman",
+                "The Menu": "Menu",
+                "No menu items found.": "Tiada item menu ditemui.",
+                "Error loading this page.": "Ralat memuatkan halaman ini.",
+                "Click here to refresh.": "Klik di sini untuk memuat semula.",
+                "All Rights Reserved": "Hak Cipta Terpelihara",
+                "info_en.json":"info_ms.json",
+                "menu_en.json":"menu_ms.json",
+                "lang=\"en\"": "lang=\"ms\""
+            },
+            'fa': {
+                // Persian uses RTL template phrases. Mapping them to their values.
+                ...rtlPhrasesInTemplate,
+                "مرحبا بك في ": "خوش آمدید به ",
+                "أشهى أصناف ": "لذیذترین غذاهای ",
+                "تأكد من اتصالك بالإنترنت": "اتصال اینترنت خود را بررسی کنید",
+                "أشهى الأطعمة في العالم": "لذیذترین غذاها در جهان",
+                "قائمتنا": "منوی ما",
+                "اضغط هنا لتحديث الصفحة": "برای رفرش کردن صفحه اینجا کلیک کنید",
+                "القائمة": "منو",
+                "لم يتم العثور على أي عناصر في القائمة.": "هیچ مورد منویی یافت نشد",
+                "خطأ في تحميل هذه الصفحة.": "خطا در بارگذاری صفحه",
+                "اضغط هنا للتحديث.": "برای رفرش کردن اینجا کلیک کنید",
+                "جميع الحقوق محفوظة": "تمام حقوق محفوظ است",
+                "info_ar.json":"info_fa.json",
+                "menu_ar.json":"menu_fa.json",
+                "lang=\"ar\"": "lang=\"fa\""
+            },
+            'ur': {
+                // Urdu uses RTL template phrases. Mapping them to their values.
+                ...rtlPhrasesInTemplate,
+                "مرحبا بك في ": "خوش آمدید ",
+                "أشهى أصناف ": "بہترین پکوان ",
+                "تأكد من اتصالك بالإنترنت": "اپنی انٹرنیٹ کنکشن کی تصدیق کریں",
+                "أشهى الأطعمة في العالم": "دنیا کے سب سے لذیذ پکوان",
+                "قائمتنا": "ہمارا مینو",
+                "اضغط هنا لتحديث الصفحة": "صفحہ ریفریش کرنے کے لیے یہاں کلک کریں",
+                "القائمة": "مینو",
+                "لم يتم العثور على أي عناصر في القائمة": "کوئی مینو آئٹم نہیں ملا",
+                "خطأ في تحميل الصفحة": "صفحہ لوڈ کرنے میں خرابی",
+                "اضغط هنا لتحديثها": "ریفریش کرنے کے لیے یہاں کلک کریں",
+                "جميع الحقوق محفوظة": "تمام حقوق محفوظ ہیں",
+                "info_ar.json":"info_ur.json",
+                "menu_ar.json":"menu_ur.json",
+                "lang=\"ar\"": "lang=\"ur\""
+            }
+        };
+
+        // --- Helper Functions ---
+
+        /**
+         * Displays a message to the user.
+         * @param {string} msg - The message to display.
+         * @param {string} type - The type of message ('success' or 'error').
+         */
+function showMessage(msg, type = 'error') {
+    // Clear previous classes
+    messageDiv.className = 'alert flex items-center gap-3 flex-row-reverse';
+
+    // Add new classes and content
+    messageDiv.innerHTML = `<i class="bi ${type === 'success' ? 'bi-check-circle-fill text-green-500' : 'bi-exclamation-triangle-fill text-red-500'}"></i><span class="text-gray-800">${msg}</span>`;
+
+    if (type === 'success') {
+        messageDiv.classList.add('alert-success');
+    } else {
+        messageDiv.classList.add('alert-error');
+    }
+
+    messageDiv.classList.remove('hidden');
+}
+
+        /**
+         * Hides the message display.
+         */
+        function hideMessage() {
+            messageDiv.classList.add('hidden');
+        }
+
+        /**
+         * Shows the loading overlay.
+         */
+        function showLoading(message = "جارٍ المعالجة، يرجى الانتظار...") { // Translated loading message
+            loadingOverlay.querySelector('p').textContent = message;
+            loadingOverlay.classList.remove('hidden');
+        }
+
+        /**
+         * Hides the loading overlay.
+         */
+        function hideLoading() {
+            loadingOverlay.classList.add('hidden');
+        }
+
+        /**
+         * Populates a single language dropdown with available languages.
+         * @param {HTMLElement} selectElement - The select element to populate.
+         * @param {string[]} [excludeCodes=[]] - An array of language codes to exclude from the options.
+         */
+        function populateSingleLanguageDropdown(selectElement, excludeCodes = []) {
+            selectElement.innerHTML = ''; // Clear existing options
+            const filteredLanguages = languages.filter(lang => !excludeCodes.includes(lang.code));
+            filteredLanguages.forEach(lang => {
+                const option = document.createElement('option');
+                option.value = lang.code;
+                option.textContent = `${lang.flag} ${lang.name}`;
+                selectElement.appendChild(option);
+            });
+        }
+
+        /**
+         * Populates all initial language dropdowns (main and primary/secondary).
+         * This function is primarily for initial page load or when dropdowns need a full reset.
+         */
+        function populateAllLanguageDropdowns() {
+            populateSingleLanguageDropdown(mainLanguageSelect);
+            populateSingleLanguageDropdown(primaryLanguageSelect);
+            // Secondary language dropdown will be populated dynamically based on primary selection
+            filterAndPopulateSecondaryLanguageDropdown(); // Call to set initial state for secondary
+        }
+
+        /**
+         * Filters and populates the secondary language dropdown based on the primary language selection.
+         * Ensures the secondary language is different from the primary, and attempts to preserve
+         * a previously selected valid secondary language.
+         */
+        function filterAndPopulateSecondaryLanguageDropdown() {
+            const primarySelectedCode = primaryLanguageSelect.value;
+            const currentSecondaryValue = secondaryLanguageSelect.value; // Value before options are rebuilt
+
+            populateSingleLanguageDropdown(secondaryLanguageSelect, [primarySelectedCode]);
+
+            // Try to restore the previously selected secondary value if it's still valid
+            // and not the same as the new primary.
+            if (currentSecondaryValue && currentSecondaryValue !== primarySelectedCode && Array.from(secondaryLanguageSelect.options).some(option => option.value === currentSecondaryValue)) {
+                secondaryLanguageSelect.value = currentSecondaryValue;
+            } else {
+                // If the current secondary value is invalid (e.g., same as primary, or no longer an option),
+                // or if it was empty, default to the first available option.
+                if (secondaryLanguageSelect.options.length > 0) {
+                    secondaryLanguageSelect.value = secondaryLanguageSelect.options[0].value;
+                } else {
+                    // No options left (e.g., only one language available), ensure it's empty
+                    secondaryLanguageSelect.value = '';
+                }
+            }
+        }
+
+        /**
+         * Determines if a language code corresponds to a Right-To-Left language.
+         * @param {string} langCode - The language code (e.g., 'ar', 'en').
+         * @returns {boolean} True if RTL, false otherwise.
+         */
+        function isRTL(langCode) {
+            const rtlLanguages = ['ar', 'fa', 'ur'];
+            return rtlLanguages.includes(langCode);
+        }
+
+        /**
+         * Updates the visibility of language selection sections and sets default languages
+         * based on the "Update Options" checkboxes.
+         */
+        function updateLanguageSectionVisibility() {
+            const isUpdateRestaurantInfo = updateRestaurantInfoCheckbox.checked;
+            const isUpdateMenu = updateMenuCheckbox.checked;
+            let selectedLanguageOption = document.querySelector('input[name="languageOption"]:checked').value; // Get current radio selection
+
+            // The language selection UI is ONLY visible if BOTH update checkboxes are checked.
+            if (isUpdateRestaurantInfo && isUpdateMenu) {
+                languageSelectionContainer.classList.remove('hidden');
+                // Show/hide specific dropdowns based on radio selection
+                oneLanguageSection.classList.toggle('hidden', selectedLanguageOption === 'two');
+                twoLanguagesSection.classList.toggle('hidden', selectedLanguageOption === 'one');
+
+                // Adjust secondary language input visibility based on current radio selection
+                restoNameSecondaryInput.classList.toggle('hidden', selectedLanguageOption === 'one');
+                restoDescriptionSecondaryTextarea.classList.toggle('hidden', selectedLanguageOption === 'one');
+                restoAddressSecondaryInput.classList.toggle('hidden', selectedLanguageOption === 'one');
+
+                menuUploadOneLang.classList.toggle('hidden', selectedLanguageOption === 'two');
+                menuUploadTwoLang.classList.toggle('hidden', selectedLanguageOption === 'one');
+
+            } else {
+                // If ONLY ONE or NEITHER checkbox is checked, hide the entire language selection UI.
+                languageSelectionContainer.classList.add('hidden');
+
+                // When hidden, the language-specific input fields should only be visible
+                // if their respective update checkbox IS checked AND the zip file detected two languages.
+                const isDetectedTwoLanguages = !!detectedSecondaryTemplateLang;
+
+                restoNameSecondaryInput.classList.toggle('hidden', !isUpdateRestaurantInfo || !isDetectedTwoLanguages);
+                restoDescriptionSecondaryTextarea.classList.toggle('hidden', !isUpdateRestaurantInfo || !isDetectedTwoLanguages);
+                restoAddressSecondaryInput.classList.toggle('hidden', !isUpdateRestaurantInfo || !isDetectedTwoLanguages);
+
+                menuUploadOneLang.classList.toggle('hidden', !isUpdateMenu || isDetectedTwoLanguages); // Show one-lang upload if updateMenu and detected one lang
+                menuUploadTwoLang.classList.toggle('hidden', !isUpdateMenu || !isDetectedTwoLanguages); // Show two-lang upload if updateMenu and detected two langs
+            }
+            populateRestaurantInfoFields(); // Always repopulate fields after language visibility changes
+        }
+
+        /**
+         * Updates the visibility of the restaurant information and menu sections
+         * based on their respective checkboxes.
+         */
+        function updateSectionVisibility() {
+            restaurantInfoSection.classList.toggle('hidden', !updateRestaurantInfoCheckbox.checked);
+            menuSection.classList.toggle('hidden', !updateMenuCheckbox.checked);
+            // Re-evaluate language section visibility whenever update checkboxes change
+            updateLanguageSectionVisibility();
+        }
+
+        /**
+         * Updates the visibility of main and food image upload sections based on flags.
+         */
+        function updateImageUploadVisibility() {
+            if (hasMainPngInZip) {
+                mainImageUploadSection.classList.remove('hidden');
+            } else {
+                mainImageUploadSection.classList.add('hidden');
+            }
+
+            if (hasDefaultPngInZip) {
+                foodImagesUploadSection.classList.remove('hidden');
+            } else {
+                foodImagesUploadSection.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Parses an Excel file and returns its content as a JSON array.
+         * Validates required column names.
+         * @param {File} file - The Excel file to parse.
+         * @returns {Promise<Array<Object>>} A promise that resolves with the JSON data.
+         */
+        async function parseExcel(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const sheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[sheetName];
+                        const json = XLSX.utils.sheet_to_json(worksheet);
+
+                        // Validate required column names
+                        const requiredColumns = ["name", "description", "category", "subcategory", "price"];
+                        if (json.length > 0) {
+                            const actualColumns = Object.keys(json[0]).map(key => key.toLowerCase()); // Convert to lowercase for case-insensitive check
+                            const missingColumns = requiredColumns.filter(col => !actualColumns.includes(col));
+                            if (missingColumns.length > 0) {
+                                reject(new Error(`أعمدة الإكسل المطلوبة مفقودة: ${missingColumns.join(', ')}. يرجى التأكد من أن ملف الإكسل الخاص بك يحتوي على هذه الأعمدة.`));
+                                return;
+                            }
+                        } else {
+                             // If JSON is empty, it might still be a valid empty excel, but warn if columns are expected
+                             console.warn("ملف الإكسل فارغ أو لا يحتوي على صفوف بيانات.");
+                        }
+
+                        resolve(json);
+                    } catch (error) {
+                        reject(new Error("فشل في تحليل ملف الإكسل. تأكد من أنه بتنسيق .xlsx صالح ويحتوي على بنية بيانات صحيحة: " + error.message));
+                    }
+                };
+                reader.onerror = (error) => reject(new Error("خطأ في قراءة الملف: " + error.target.error));
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        /**
+         * Converts an image File to a PNG Blob, resizing if its height exceeds 300px.
+         * @param {File} imageFile - The image file to convert.
+         * @returns {Promise<Blob>} A promise that resolves with the PNG Blob.
+         */
+        async function imageToPng(imageFile) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const MAX_HEIGHT = 300;
+
+                    // Resize if height exceeds MAX_HEIGHT
+                    if (height > MAX_HEIGHT) {
+                        width = (MAX_HEIGHT / height) * width;
+                        height = MAX_HEIGHT;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height); // Draw with new dimensions
+                    canvas.toBlob(blob => {
+                        if (blob) {
+                            resolve(blob);
+                        } else {
+                            reject(new Error("فشل تحويل الصورة إلى PNG."));
+                        }
+                    }, 'image/png');
+                };
+                img.onerror = (error) => reject(new Error("خطأ في تحميل الصورة للتحويل: " + error));
+                img.src = URL.createObjectURL(imageFile);
+            });
+        }
+
+        /**
+         * Extracts initial data from the uploaded zip file, including JSONs and HTML templates,
+         * and checks for the presence of specific images for conditional UI visibility.
+         * @param {File} zipFile - The uploaded zip file.
+         */
+        async function extractInitialDataFromZip(zipFile) {
+            const zip = new JSZip();
+            initialInfoJsons = {}; // Clear previous data
+            initialMenuJsons = {}; // Clear previous data
+            extractedHtmlTemplates = {}; // Clear previous HTML templates
+            hasMainPngInZip = false; // Reset flags
+            hasDefaultPngInZip = false;
+            detectedPrimaryTemplateLang = 'en'; // Reset detected languages to a default fallback
+            detectedSecondaryTemplateLang = '';
+
+            try {
+                const content = await zip.loadAsync(zipFile);
+                uploadedZipContent = content; // Store the zip content globally
+
+                // Detect and parse all info_x.json files
+                const infoFiles = Object.keys(content.files).filter(path => path.startsWith('json/info_') && path.endsWith('.json'));
+                for (const filePath of infoFiles) {
+                    const langCode = filePath.replace('json/info_', '').replace('.json', '');
+                    const jsonString = await content.file(filePath).async('string');
+                    try {
+                        initialInfoJsons[langCode] = JSON.parse(jsonString);
+                    } catch (e) {
+                        console.warn(`تعذر تحليل ${filePath}:`, e);
+                    }
+                }
+
+                // Detect and parse all menu_x.json files
+                const menuFiles = Object.keys(content.files).filter(path => path.startsWith('json/menu_') && path.endsWith('.json'));
+                for (const filePath of menuFiles) {
+                    const langCode = filePath.replace('json/menu_', '').replace('.json', '');
+                    const jsonString = await content.file(filePath).async('string');
+                    try {
+                        initialMenuJsons[langCode] = JSON.parse(jsonString);
+                    } catch (e) {
+                        console.warn(`تعذر تحليل ${filePath}:`, e);
+                    }
+                }
+
+                // Also check for info.json and menu.json if they exist (legacy support)
+                // These are only for reading, never re-created.
+                if (content.file('json/info.json')) {
+                    const jsonString = await content.file('json/info.json').async('string');
+                    try {
+                        initialInfoJsons['legacy_info'] = JSON.parse(jsonString);
+                    } catch (e) {
+                        console.warn(`تعذر تحليل json/info.json:`, e);
+                    }
+                }
+                if (content.file('json/menu.json')) {
+                    const jsonString = await content.file('json/menu.json').async('string');
+                    try {
+                        initialMenuJsons['legacy_menu'] = JSON.parse(jsonString);
+                    } catch (e) {
+                        console.warn(`تعذر تحليل json/menu.json:`, e);
+                    }
+                }
+
+                // Check for specific image files to control UI visibility
+                if (content.file('images/main.png')) {
+                    hasMainPngInZip = true;
+                }
+                if (content.file('images/default.png')) {
+                    hasDefaultPngInZip = true;
+                }
+
+                // Read and decode HTML templates from libx folder (now correctly handling base64)
+                const ltrTemplateFile = content.file('libx/ltr.txt');
+                const rtlTemplateFile = content.file('libx/rtl.txt');
+
+                if (ltrTemplateFile) {
+                    const base64String = (await ltrTemplateFile.async('string')).trim().replace(/\s/g, '');
+                    extractedHtmlTemplates['ltr'] = new TextDecoder().decode(Uint8Array.from(atob(base64String), c => c.charCodeAt(0)));
+                } else {
+                    throw new Error("ملف القالب المطلوب 'libx/ltr.txt' غير موجود في الملف المضغوط. يرجى التأكد من أن الملف المضغوط للقالب يحتوي على هذا الملف.");
+                }
+
+                if (rtlTemplateFile) {
+                    const base64String = (await rtlTemplateFile.async('string')).trim().replace(/\s/g, '');
+                    extractedHtmlTemplates['rtl'] = new TextDecoder().decode(Uint8Array.from(atob(base64String), c => c.charCodeAt(0)));
+                } else {
+                    throw new Error("ملف القالب المطلوب 'libx/rtl.txt' غير موجود في الملف المضغوط. يرجى التأكد من أن الملف المضغوط للقالب يحتوي على هذا الملف.");
+                }
+
+
+                zipUploadStatus.textContent = "تم تحميل الملف المضغوط بنجاح.";
+                zipUploadStatus.classList.remove('text-red-500');
+                zipUploadStatus.classList.add('text-green-500');
+
+                // --- NEW: Auto-detect template languages and set internal state based on lang1/lang2 in info JSONs ---
+                let primaryDetectedFromZip = '';
+                let secondaryDetectedFromZip = '';
+                let foundFullLangConfig = false; // Flag to indicate if a full lang1/lang2 config was found
+
+                // Step 1: Look for an info JSON that explicitly defines both lang1 and lang2
+                for (const langCode in initialInfoJsons) {
+                    if (initialInfoJsons.hasOwnProperty(langCode) && langCode !== 'legacy_info') { // Exclude legacy for explicit lang detection
+                        const infoData = initialInfoJsons[langCode];
+                        if (infoData && infoData.lang1 && infoData.lang2) {
+                            primaryDetectedFromZip = infoData.lang1;
+                            secondaryDetectedFromZip = infoData.lang2;
+                            foundFullLangConfig = true;
+                            break; // Found the definitive two-language config, stop searching
+                        }
+                    }
+                }
+
+                // Step 2: If no two-language config found, look for a single primary language (lang1 only)
+                if (!foundFullLangConfig) {
+                    for (const langCode in initialInfoJsons) {
+                        if (initialInfoJsons.hasOwnProperty(langCode) && langCode !== 'legacy_info') {
+                            const infoData = initialInfoJsons[langCode];
+                            if (infoData && infoData.lang1) {
+                                primaryDetectedFromZip = infoData.lang1;
+                                secondaryDetectedFromZip = ''; // Explicitly set to empty for single language
+                                break; // Found a primary language, stop searching for primary
+                            }
+                        }
+                    }
+                }
+
+                // Step 3: Final fallback if no explicit lang1/lang2 found in any info_x.json
+                if (!primaryDetectedFromZip) {
+                    if (initialInfoJsons['legacy_info'] && initialInfoJsons['legacy_info'].lang1) {
+                        primaryDetectedFromZip = initialInfoJsons['legacy_info'].lang1;
+                        secondaryDetectedFromZip = initialInfoJsons['legacy_info'].lang2 || '';
+                    } else {
+                        primaryDetectedFromZip = 'en'; // Default to 'en' if absolutely nothing is detected
+                        secondaryDetectedFromZip = '';
+                    }
+                }
+
+                detectedPrimaryTemplateLang = primaryDetectedFromZip;
+                detectedSecondaryTemplateLang = secondaryDetectedFromZip;
+
+                // Detach listeners before programmatic setting
+                primaryLanguageSelect.removeEventListener('change', primaryLanguageChangeHandler);
+                secondaryLanguageSelect.removeEventListener('change', secondaryLanguageChangeHandler);
+                mainLanguageSelect.removeEventListener('change', mainLanguageChangeHandler);
+                languageOptionRadios.forEach(radio => radio.removeEventListener('change', updateLanguageSectionVisibility));
+
+
+                // Set radio buttons based on detected values
+                if (detectedSecondaryTemplateLang) {
+                    document.querySelector('input[name="languageOption"][value="two"]').checked = true;
+                    document.querySelector('input[name="languageOption"][value="one"]').checked = false; // Explicitly uncheck the other
+                } else {
+                    document.querySelector('input[name="languageOption"][value="one"]').checked = true;
+                    document.querySelector('input[name="languageOption"][value="two"]').checked = false; // Explicitly uncheck the other
+                }
+
+                // Populate all dropdowns with full options first
+                populateSingleLanguageDropdown(mainLanguageSelect);
+                populateSingleLanguageDropdown(primaryLanguageSelect);
+                populateSingleLanguageDropdown(secondaryLanguageSelect, [detectedPrimaryTemplateLang]); // Populate secondary already filtered
+
+                // Set the values based on detected languages from zip.
+                // These will NOT trigger change events because listeners are detached.
+                mainLanguageSelect.value = detectedPrimaryTemplateLang;
+                primaryLanguageSelect.value = detectedPrimaryTemplateLang;
+                // Only set secondary if it was detected, is valid, and not the same as primary.
+                if (detectedSecondaryTemplateLang && detectedSecondaryTemplateLang !== detectedPrimaryTemplateLang && Array.from(secondaryLanguageSelect.options).some(option => option.value === detectedSecondaryTemplateLang)) {
+                    secondaryLanguageSelect.value = detectedSecondaryTemplateLang;
+                } else {
+                    // If detected secondary is invalid (e.g., same as primary, or no longer an option),
+                    // or if it was empty, default to the first available option.
+                    if (secondaryLanguageSelect.options.length > 0) {
+                        secondaryLanguageSelect.value = secondaryLanguageSelect.options[0].value;
+                    } else {
+                        secondaryLanguageSelect.value = ''; // Ensure empty if no valid option can be set
+                    }
+                }
+
+                // Re-attach listeners after all programmatic settings are done
+                primaryLanguageSelect.addEventListener('change', primaryLanguageChangeHandler);
+                secondaryLanguageSelect.addEventListener('change', secondaryLanguageChangeHandler);
+                mainLanguageSelect.addEventListener('change', mainLanguageChangeHandler);
+                languageOptionRadios.forEach(radio => radio.addEventListener('change', updateLanguageSectionVisibility));
+
+                populateRestaurantInfoFields(); // Populate fields based on loaded data
+                updateImageUploadVisibility(); // Update visibility of image upload sections
+                updateLanguageSectionVisibility(); // Recalculate visibility based on new radio state
+                
+            } catch (error) {
+                console.error("خطأ في تحميل أو تحليل الملف المضغوط:", error);
+                zipUploadStatus.textContent = `خطأ في تحميل أو تحليل الملف المضغوط: ${error.message}`;
+                zipUploadStatus.classList.remove('text-green-500');
+                zipUploadStatus.classList.add('text-red-500');
+                uploadedZipContent = null; // Clear content on error
+                // Hide image upload sections if zip fails to load or parse
+                mainImageUploadSection.classList.add('hidden');
+                foodImagesUploadSection.classList.add('hidden');
+
+                // Ensure listeners are re-attached even on error, so user can try again
+                primaryLanguageSelect.addEventListener('change', primaryLanguageChangeHandler);
+                secondaryLanguageSelect.addEventListener('change', secondaryLanguageChangeHandler);
+                mainLanguageSelect.addEventListener('change', mainLanguageChangeHandler);
+                languageOptionRadios.forEach(radio => radio.addEventListener('change', updateLanguageSectionVisibility));
+            } finally {
+                // hideLoading(); // Removed from here
+            }
+        }
+
+        /**
+         * Populates the restaurant information fields with data from the detected JSONs.
+         */
+        function populateRestaurantInfoFields() {
+            const isUpdateRestaurantInfo = updateRestaurantInfoCheckbox.checked;
+            const isUpdateMenu = updateMenuCheckbox.checked;
+
+            const isOneLanguageUIActive = document.querySelector('input[name="languageOption"]:checked').value === 'one';
+
+            let effectivePrimaryLangCode;
+            let effectiveSecondaryLangCode;
+
+            // Determine effective languages based on the condition for UI visibility
+            // Use UI selections ONLY IF BOTH update info AND update menu are checked.
+            if (isUpdateRestaurantInfo && isUpdateMenu) {
+                effectivePrimaryLangCode = isOneLanguageUIActive ? mainLanguageSelect.value : primaryLanguageSelect.value;
+                effectiveSecondaryLangCode = isOneLanguageUIActive ? '' : secondaryLanguageSelect.value;
+            } else {
+                // If NOT both checked (i.e., only one is checked, or neither is checked),
+                // strictly use languages detected during zip upload.
+                effectivePrimaryLangCode = detectedPrimaryTemplateLang;
+                effectiveSecondaryLangCode = detectedSecondaryTemplateLang;
+            }
+
+            // Fetch primary info based on effectivePrimaryLangCode
+            let primaryInfo = initialInfoJsons[effectivePrimaryLangCode] || initialInfoJsons['legacy_info'] || {};
+            restoNameInput.value = primaryInfo.name || '';
+            restoDescriptionTextarea.value = primaryInfo.description || '';
+            restoPhoneInput.value = primaryInfo.phone || '';
+            restoEmailInput.value = primaryInfo.email || '';
+            restoAddressInput.value = primaryInfo.address || '';
+            restoColorSelect.value = primaryInfo.color || 'yellow';
+
+            // Fetch secondary info based on effectiveSecondaryLangCode
+            if (effectiveSecondaryLangCode) {
+                const secondaryInfo = initialInfoJsons[effectiveSecondaryLangCode] || {};
+                restoNameSecondaryInput.value = secondaryInfo.name || '';
+                restoDescriptionSecondaryTextarea.value = secondaryInfo.description || '';
+                restoAddressSecondaryInput.value = secondaryInfo.address || '';
+            } else {
+                // Clear secondary fields if no effective secondary language
+                restoNameSecondaryInput.value = '';
+                restoDescriptionSecondaryTextarea.value = '';
+                restoAddressSecondaryInput.value = '';
+            }
+
+            // Set default values if fields are still empty after loading JSON
+            if (restoNameInput.value === '') {
+                restoNameInput.value = "";
+            }
+            if (restoDescriptionTextarea.value === '') {
+                restoDescriptionTextarea.value = "";
+            }
+            if (restoPhoneInput.value === '') {
+                restoPhoneInput.value = "";
+            }
+            if (restoEmailInput.value === '') {
+                restoEmailInput.value = "";
+            }
+            if (restoAddressInput.value === '') {
+                restoAddressInput.value = "";
+            }
+
+            // These secondary defaults are now only applied if a secondary language is active
+            // and the corresponding data is missing from the JSON.
+            if (effectiveSecondaryLangCode && restoNameSecondaryInput.value === '') {
+                restoNameSecondaryInput.value = ""; // Generic placeholder
+            }
+            if (effectiveSecondaryLangCode && restoDescriptionSecondaryTextarea.value === '') {
+                restoDescriptionSecondaryTextarea.value = ""; // Generic placeholder
+            }
+            if (effectiveSecondaryLangCode && restoAddressSecondaryInput.value === '') {
+                restoAddressSecondaryInput.value = ""; // Generic placeholder
+            }
+        }
+
+        /**
+         * Helper function to escape regex special characters.
+         * @param {string} string - The string to escape.
+         * @returns {string} The escaped string.
+         */
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the matched substring
+        }
+
+        /**
+         * Generates the HTML content for a specific language, applying translations and JSON path adjustments.
+         * @param {string} targetLangCode - The language code for which to generate the HTML.
+         * @param {string} otherLangCode - The code of the other language (for two-language mode).
+         * @param {boolean} performTranslations - Whether to apply text translations from allTranslations.
+         * @returns {string} The generated HTML content.
+         */
+        const getHtmlContent = (targetLangCode, otherLangCode, performTranslations) => {
+            let baseHtmlKey = isRTL(targetLangCode) ? 'rtl' : 'ltr';
+
+            let htmlContent = extractedHtmlTemplates[baseHtmlKey];
+
+            // Determine which set of original phrases corresponds to the loaded HTML template
+            const phrasesInSourceTemplate = (baseHtmlKey === 'ltr') ? ltrPhrasesInTemplate : rtlPhrasesInTemplate;
+
+            // Translate specific phrases from the allTranslations dictionary, only if performTranslations is true
+            if (performTranslations) {
+                const targetTranslations = allTranslations[targetLangCode] || {};
+
+                // Iterate through all keys in the source template's phrase set (including JSON paths and HTML attributes)
+                for (const originalPhraseInTemplateKey of Object.keys(phrasesInSourceTemplate)) {
+                    // The phrase *as it appears in the template* (e.g., "Welcome to", "info_en.json", "lang="en"")
+                    const phraseToReplace = originalPhraseInTemplateKey;
+
+                    // The translated version of that phrase in the target language
+                    const translatedValue = targetTranslations[phraseToReplace];
+
+                    if (translatedValue !== undefined) {
+                        // Replace all occurrences of the exact original phrase in the HTML content
+                        // Ensure special characters in the phrase are escaped for RegExp
+                        htmlContent = htmlContent.replace(new RegExp(escapeRegExp(phraseToReplace), 'g'), translatedValue);
+                    }
+                }
+            }
+            // Manual replacement for info/menu JSON paths if otherLangCode is present, overriding general translation for these specific cases
+            if (otherLangCode) {
+                 // Replace the other language's info/menu JSON links in the HTML templates
+                 htmlContent = htmlContent.replace(new RegExp(escapeRegExp(`info_${isRTL(targetLangCode) ? detectedPrimaryTemplateLang : detectedPrimaryTemplateLang}.json`), 'g'), `info_${targetLangCode}.json`);
+                 htmlContent = htmlContent.replace(new RegExp(escapeRegExp(`menu_${isRTL(targetLangCode) ? detectedPrimaryTemplateLang : detectedPrimaryTemplateLang}.json`), 'g'), `menu_${targetLangCode}.json`);
+                 htmlContent = htmlContent.replace(new RegExp(escapeRegExp(`info_${isRTL(targetLangCode) ? detectedSecondaryTemplateLang : detectedSecondaryTemplateLang}.json`), 'g'), `info_${otherLangCode}.json`);
+                 htmlContent = htmlContent.replace(new RegExp(escapeRegExp(`menu_${isRTL(targetLangCode) ? detectedSecondaryTemplateLang : detectedSecondaryTemplateLang}.json`), 'g'), `menu_${otherLangCode}.json`);
+
+            } else {
+                // If only one language is active, ensure no secondary lang JSON links appear
+                htmlContent = htmlContent.replace(/validateJsonAndClean\(`\$\{getFullDomain\(\)\}json\/info_(en|ar)\.json`\);/g, ''); // Clear direct info_en/ar calls
+                htmlContent = htmlContent.replace(/validateJsonAndClean\(`\$\{getFullDomain\(\)\}json\/info_(.+?)\.json`\);/g, ''); // Generic for other lang codes
+                htmlContent = htmlContent.replace(/validateJsonAndClean\(`\$\{getFullDomain\(\)\}json\/menu_(en|ar)\.json`\);/g, '');
+                htmlContent = htmlContent.replace(/validateJsonAndClean\(`\$\{getFullDomain\(\)\}json\/menu_(.+?)\.json`\);/g, '');
+            }
+
+            // Handle secondary language link - this is still a programmatic replacement
+            let secondaryLangLinkHtml = '';
+            if (otherLangCode) {
+                const otherLangName = languages.find(lang => lang.code === otherLangCode)?.name;
+                if (otherLangName) {
+                    // Adjust "Version" based on target language
+                    const versionText = allTranslations[targetLangCode]?.[`Version`] || (isRTL(otherLangCode) ? 'نسخة' : 'Version'); // Fallback
+                    secondaryLangLinkHtml = `<a href="${otherLangCode}.html">${otherLangName} ${versionText}</a>`;
+                }
+            }
+            // Add "Version" to allTranslations for each language that needs it
+            allTranslations['en']['Version'] = 'Version';
+            allTranslations['ar']['Version'] = 'نسخة';
+            allTranslations['fr']['Version'] = 'Version';
+            allTranslations['es']['Version'] = 'Versión';
+            allTranslations['de']['Version'] = 'Version';
+            allTranslations['zh']['Version'] = '版本';
+            allTranslations['hi']['Version'] = 'संस्करण';
+            allTranslations['pt']['Version'] = 'Versão';
+            allTranslations['ru']['Version'] = 'Версия';
+            allTranslations['ja']['Version'] = 'バージョン';
+            allTranslations['it']['Version'] = 'Versione';
+            allTranslations['id']['Version'] = 'Versi';
+            allTranslations['bn']['Version'] = 'সংস্করণ';
+            allTranslations['tr']['Version'] = 'Sürüm';
+            allTranslations['ms']['Version'] = 'Versi';
+            allTranslations['fa']['Version'] = 'نسخه';
+            allTranslations['ur']['Version'] = 'ورژن';
+
+
+            htmlContent = htmlContent.replace(/{{SECONDARY_LANG_LINK}}/g, secondaryLangLinkHtml);
+
+            return htmlContent;
+        };
+
+
+        // --- Event Listeners ---
+
+        // Global event handlers (moved out for detach/attach)
+        function primaryLanguageChangeHandler() {
+            filterAndPopulateSecondaryLanguageDropdown();
+            populateRestaurantInfoFields(); // Also update fields based on new primary selection
+        }
+
+        function secondaryLanguageChangeHandler() {
+            populateRestaurantInfoFields();
+        }
+
+        function mainLanguageChangeHandler() {
+            populateRestaurantInfoFields();
+        }
+
+        editorForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMessage();
+            downloadSection.classList.add('hidden');
+            showLoading("جارٍ إنشاء القالب المحدث..."); // Translated loading message
+
+            if (!templateZipInput.files.length) {
+                showMessage("الرجاء تحميل ملف قالب مضغوط.", "error");
+                hideLoading();
+                return;
+            }
+
+            if (!uploadedZipContent) {
+                showMessage("لم تتم معالجة ملف قالب مضغوط. يرجى إعادة التحميل أو الانتظار حتى تتم المعالجة.", "error");
+                hideLoading();
+                return;
+            }
+
+            const isUpdateRestaurantInfo = updateRestaurantInfoCheckbox.checked;
+            const isUpdateMenu = updateMenuCheckbox.checked;
+            const isOneLanguageUISelected = document.querySelector('input[name="languageOption"]:checked').value === 'one';
+
+            let effectiveMainLangCode;
+            let effectivePrimaryLangCode;
+            let effectiveSecondaryLangCode;
+
+            // Determine effective languages based on UI visibility and selection
+            // Use UI selections ONLY IF BOTH update info AND update menu are checked.
+            if (isUpdateRestaurantInfo && isUpdateMenu) {
+                effectiveMainLangCode = isOneLanguageUISelected ? mainLanguageSelect.value : primaryLanguageSelect.value;
+                effectivePrimaryLangCode = isOneLanguageUISelected ? mainLanguageSelect.value : primaryLanguageSelect.value;
+                effectiveSecondaryLangCode = isOneLanguageUISelected ? '' : secondaryLanguageSelect.value;
+            } else {
+                // If NOT both checked (i.e., only one is checked, or neither is checked),
+                // strictly use languages detected during zip upload.
+                effectivePrimaryLangCode = detectedPrimaryTemplateLang;
+                effectiveSecondaryLangCode = detectedSecondaryTemplateLang;
+                effectiveMainLangCode = detectedPrimaryTemplateLang; // Keep main lang in sync for internal logic
+            }
+
+
+            const newZip = new JSZip();
+
+            // Step 1: Copy non-JSON and non-HTML files from the original zip
+            uploadedZipContent.forEach((relativePath, zipEntry) => {
+                // Skip JSON and HTML files, as these will be generated/re-added explicitly
+                if (!zipEntry.dir && !relativePath.startsWith('json/') && !(relativePath.endsWith('.html') || relativePath.endsWith('.htm') || relativePath.startsWith('libx/'))) { // Also skip libx folder
+                    newZip.file(relativePath, zipEntry.async('arraybuffer'));
+                }
+            });
+
+            // Re-add libx folder content (ltr.txt and rtl.txt)
+            if (uploadedZipContent.file('libx/ltr.txt')) {
+                newZip.file('libx/ltr.txt', uploadedZipContent.file('libx/ltr.txt').async('string'));
+            }
+            if (uploadedZipContent.file('libx/rtl.txt')) {
+                newZip.file('libx/rtl.txt', uploadedZipContent.file('libx/rtl.txt').async('string'));
+            }
+
+            // --- Image Processing (Logo, Main, Food) ---
+            try {
+                if (logoImageInput.files.length > 0) {
+                    showLoading("جارٍ تغيير حجم وإضافة صورة الشعار..."); // Translated
+                    const logoBlob = await imageToPng(logoImageInput.files[0]);
+                    newZip.file('images/logo.png', logoBlob);
+                }
+
+                if (hasMainPngInZip && mainImageInput.files.length > 0) {
+                    showLoading("جارٍ تغيير حجم وإضافة الصورة الرئيسية..."); // Translated
+                    const mainBlob = await imageToPng(mainImageInput.files[0]);
+                    newZip.file('images/main.png', mainBlob);
+                }
+
+                if (isUpdateMenu && hasDefaultPngInZip) {
+                    const uploadedFoodImageNames = new Set(Array.from(foodImagesInput.files).map(file => file.name));
+
+                    let allExpectedImageNames = new Set();
+                    // Determine which Excel file(s) to parse for image names based on UI selection or detected languages
+                    let menuFilesToParse = [];
+                    // Only parse if menu update is checked AND (both update checkboxes are checked OR language UI is hidden)
+                    if (isUpdateMenu) {
+                        if (isUpdateRestaurantInfo && isUpdateMenu) { // Both checked, use UI radio selection for excel input
+                            if (isOneLanguageUISelected) {
+                                if (menuExcelFile.files.length > 0) menuFilesToParse.push(menuExcelFile.files[0]);
+                            } else {
+                                if (menuExcelFilePrimary.files.length > 0) menuFilesToParse.push(menuExcelFilePrimary.files[0]);
+                                if (menuExcelFileSecondary.files.length > 0) menuFilesToParse.push(menuExcelFileSecondary.files[0]);
+                            }
+                        } else { // Only one of the update checkboxes is checked, use detected template languages for parsing existing excel
+                            if (detectedSecondaryTemplateLang) { // Two languages detected
+                                // Need to get the original menu JSONs if not uploading new excels
+                                if (uploadedZipContent.file(`json/menu_${detectedPrimaryTemplateLang}.json`)) {
+                                    const jsonString = await uploadedZipContent.file(`json/menu_${detectedPrimaryTemplateLang}.json`).async('string');
+                                    allExpectedImageNames = new Set([...allExpectedImageNames, ...JSON.parse(jsonString).flatMap(item => item.Images ? item.Images.split(',').map(name => name.trim()).filter(name => name) : [])]);
+                                }
+                                if (uploadedZipContent.file(`json/menu_${detectedSecondaryTemplateLang}.json`)) {
+                                    const jsonString = await uploadedZipContent.file(`json/menu_${detectedSecondaryTemplateLang}.json`).async('string');
+                                    allExpectedImageNames = new Set([...allExpectedImageNames, ...JSON.parse(jsonString).flatMap(item => item.Images ? item.Images.split(',').map(name => name.trim()).filter(name => name) : [])]);
+                                }
+                            } else { // One language detected
+                                if (uploadedZipContent.file(`json/menu_${detectedPrimaryTemplateLang}.json`)) {
+                                    const jsonString = await uploadedZipContent.file(`json/menu_${detectedPrimaryTemplateLang}.json`).async('string');
+                                    allExpectedImageNames = new Set([...allExpectedImageNames, ...JSON.parse(jsonString).flatMap(item => item.Images ? item.Images.split(',').map(name => name.trim()).filter(name => name) : [])]);
+                                }
+                            }
+                            // If new Excel files are provided, they override the original ones for image name checking
+                            if (menuExcelFile.files.length > 0) menuFilesToParse.push(menuExcelFile.files[0]);
+                            if (menuExcelFilePrimary.files.length > 0) menuFilesToParse.push(menuExcelFilePrimary.files[0]);
+                            if (menuExcelFileSecondary.files.length > 0) menuFilesToParse.push(menuExcelFileSecondary.files[0]);
+                        }
+                    }
+
+                    for (const file of menuFilesToParse) {
+                        showLoading(`جارٍ تحليل الإكسل لأسماء الصور: ${file.name}...`); // Translated
+                        const menuData = await parseExcel(file);
+                        menuData.forEach(item => {
+                            if (item.Images) {
+                                item.Images.split(',').map(name => name.trim()).filter(name => name).forEach(name => allExpectedImageNames.add(name));
+                            }
+                        });
+                    }
+
+                    if (allExpectedImageNames.size > 0 && uploadedFoodImageNames.size === 0) {
+                        showMessage("يحدد ملف (ملفات) الإكسل الخاص بك صورًا، ولكن لم يتم تحميل أي صور للطعام. يرجى تحميل الصور المحددة أو مسح عمود 'الصور' في ملف (ملفات) الإكسل الخاص بك.", "error"); // Translated
+                        hideLoading();
+                        return;
+                    }
+                    if (allExpectedImageNames.size === 0 && uploadedFoodImageNames.size > 0) {
+                        showMessage("لقد قمت بتحميل صور طعام، ولكن ملف (ملفات) الإكسل الخاص بك لا يحدد أي أسماء للصور. يرجى تحديث ملف (ملفات) الإكسل الخاص بك لتضمين أسماء هذه الصور في عمود 'الصور'، أو إزالة صور الطعام التي تم تحميلها.", "error"); // Translated
+                        hideLoading();
+                        return;
+                    }
+
+                    const missingInUpload = [...allExpectedImageNames].filter(name => !uploadedFoodImageNames.has(name));
+                    const unreferencedUploaded = [...uploadedFoodImageNames].filter(name => !allExpectedImageNames.has(name));
+
+                    if (missingInUpload.length > 0 || unreferencedUploaded.length > 0) {
+                        let errorMessage = "عدم تطابق بين أسماء صور الإكسل وصور الطعام التي تم تحميلها:"; // Translated
+                        if (missingInUpload.length > 0) {
+                            errorMessage += `\nصور في الإكسل ولكن لم يتم تحميلها: ${missingInUpload.join(', ')}`; // Translated
+                        }
+                        if (unreferencedUploaded.length > 0) {
+                            errorMessage += `\nصور تم تحميلها غير مشار إليها في الإكسل: ${unreferencedUploaded.join(', ')}`; // Translated
+                        }
+                        showMessage(errorMessage, "error");
+                        hideLoading();
+                        return;
+                    }
+                    showLoading("جارٍ إضافة وتغيير حجم صور الطعام..."); // Translated
+                    for (const file of foodImagesInput.files) {
+                        const foodBlob = await imageToPng(file);
+                        newZip.file(`images/${file.name}`, foodBlob);
+                    }
+                }
+            } catch (error) {
+                showMessage(`خطأ في معالجة الصور: ${error.message}`, "error"); // Translated
+                hideLoading();
+                return;
+            }
+
+            // --- Restaurant Info JSON Processing ---
+            if (isUpdateRestaurantInfo) {
+                let infoJsonPrimary = {
+                    name: restoNameInput.value.trim(),
+                    description: restoDescriptionTextarea.value.trim(),
+                    phone: restoPhoneInput.value.trim(),
+                    email: restoEmailInput.value.trim(),
+                    address: restoAddressInput.value.trim(),
+                    color: restoColorSelect.value,
+                };
+
+                if (!effectiveSecondaryLangCode) { // One language selected (either by UI or detected)
+                    infoJsonPrimary.lang1 = effectiveMainLangCode;
+                    infoJsonPrimary.lang2 = "";
+                    newZip.file(`json/info_${effectiveMainLangCode}.json`, JSON.stringify(infoJsonPrimary, null, 2));
+                } else { // Two languages selected (either by UI or detected)
+                    infoJsonPrimary.lang1 = effectivePrimaryLangCode;
+                    infoJsonPrimary.lang2 = effectiveSecondaryLangCode;
+                    newZip.file(`json/info_${effectivePrimaryLangCode}.json`, JSON.stringify(infoJsonPrimary, null, 2));
+
+                    let infoJsonSecondary = {
+                        name: restoNameSecondaryInput.value.trim(),
+                        description: restoDescriptionSecondaryTextarea.value.trim(),
+                        phone: restoPhoneInput.value.trim(),
+                        email: restoEmailInput.value.trim(),
+                        address: restoAddressSecondaryInput.value.trim(),
+                        color: restoColorSelect.value,
+                    };
+                    newZip.file(`json/info_${effectiveSecondaryLangCode}.json`, JSON.stringify(infoJsonSecondary, null, 2));
+                }
+            } else {
+                // If not updating restaurant info, re-add all original info_X.json files
+                for (const langCode in initialInfoJsons) {
+                    if (langCode !== 'legacy_info') { // Ensure we don't re-add legacy info.json
+                        const originalFilePath = `json/info_${langCode}.json`;
+                        if (uploadedZipContent.file(originalFilePath)) {
+                            newZip.file(originalFilePath, uploadedZipContent.file(originalFilePath).async('string'));
+                        }
+                    }
+                }
+            }
+
+            // --- Menu JSON Processing ---
+            if (isUpdateMenu) {
+                if (!effectiveSecondaryLangCode) { // One language selected (either by UI or detected)
+                    if (!menuExcelFile.files.length && !uploadedZipContent.file(`json/menu_${effectiveMainLangCode}.json`)) {
+                           showMessage("لم يتم تحميل ملف إكسل القائمة للغة الأساسية المحددة.", "error"); // Translated
+                           hideLoading();
+                           return;
+                    }
+                    try {
+                        let menuDataPrimary;
+                        if (menuExcelFile.files.length > 0) {
+                            showLoading("جارٍ تحليل ملف إكسل القائمة الأساسية..."); // Translated
+                            menuDataPrimary = await parseExcel(menuExcelFile.files[0]);
+                        } else {
+                            // If no new Excel, use the original JSON from the zip
+                            const jsonString = await uploadedZipContent.file(`json/menu_${effectiveMainLangCode}.json`).async('string');
+                            menuDataPrimary = JSON.parse(jsonString);
+                        }
+                        newZip.file(`json/menu_${effectiveMainLangCode}.json`, JSON.stringify(menuDataPrimary, null, 2));
+                    } catch (error) {
+                        showMessage(`خطأ في معالجة ملف إكسل القائمة الأساسية: ${error.message}`, "error"); // Translated
+                        hideLoading();
+                        return;
+                    }
+                } else { // Two languages selected (either by UI or detected)
+                    if ((!menuExcelFilePrimary.files.length && !uploadedZipContent.file(`json/menu_${effectivePrimaryLangCode}.json`)) ||
+                        (!menuExcelFileSecondary.files.length && !uploadedZipContent.file(`json/menu_${effectiveSecondaryLangCode}.json`))) {
+                        showMessage("الرجاء تحميل ملفات إكسل القائمة لكل من اللغتين الأساسية والثانوية.", "error"); // Translated
+                        hideLoading();
+                        return;
+                    }
+                    try {
+                        let menuDataPrimary;
+                        if (menuExcelFilePrimary.files.length > 0) {
+                            showLoading("جارٍ تحليل ملف إكسل القائمة الأساسية..."); // Translated
+                            menuDataPrimary = await parseExcel(menuExcelFilePrimary.files[0]);
+                        } else {
+                            const jsonString = await uploadedZipContent.file(`json/menu_${effectivePrimaryLangCode}.json`).async('string');
+                            menuDataPrimary = JSON.parse(jsonString);
+                        }
+                        newZip.file(`json/menu_${effectivePrimaryLangCode}.json`, JSON.stringify(menuDataPrimary, null, 2));
+
+                        let menuDataSecondary;
+                        if (menuExcelFileSecondary.files.length > 0) {
+                            showLoading("جارٍ تحليل ملف إكسل القائمة الثانوية..."); // Translated
+                            menuDataSecondary = await parseExcel(menuExcelFileSecondary.files[0]);
+                        } else {
+                            const jsonString = await uploadedZipContent.file(`json/menu_${effectiveSecondaryLangCode}.json`).async('string');
+                            menuDataSecondary = JSON.parse(jsonString);
+                        }
+                        newZip.file(`json/menu_${effectiveSecondaryLangCode}.json`, JSON.stringify(menuDataSecondary, null, 2));
+                    } catch (error) {
+                        showMessage(`خطأ في معالجة ملفات إكسل القائمة: ${error.message}`, "error"); // Translated
+                        hideLoading();
+                        return;
+                    }
+                }
+            } else {
+                // If not updating menu, re-add all original menu_X.json files
+                for (const langCode in initialMenuJsons) {
+                    if (langCode !== 'legacy_menu') { // Ensure we don't re-add legacy menu.json
+                        const originalFilePath = `json/menu_${langCode}.json`;
+                        if (uploadedZipContent.file(originalFilePath)) {
+                            newZip.file(originalFilePath, uploadedZipContent.file(originalFilePath).async('string'));
+                        }
+                    }
+                }
+            }
+
+            // --- HTML File Generation ---
+            // HTML files are regenerated only if there's a language change from the original zip,
+            // OR if both update checkboxes are checked (implying explicit language selection via UI).
+            const isLanguageConfigChanged = (effectivePrimaryLangCode !== detectedPrimaryTemplateLang) || (effectiveSecondaryLangCode !== detectedSecondaryTemplateLang);
+            const shouldRegenerateHtml = (isUpdateRestaurantInfo && isUpdateMenu) || isLanguageConfigChanged;
+
+
+            showLoading("جارٍ إنشاء ملفات HTML..."); // Translated
+            if (shouldRegenerateHtml) {
+                if (!effectiveSecondaryLangCode) { // One language template
+                    const htmlContent = getHtmlContent(effectiveMainLangCode, '', true); // Always perform translations if regenerating HTML
+                    newZip.file('index.html', htmlContent);
+                    newZip.file(`${effectiveMainLangCode}.html`, htmlContent);
+                } else { // Two language template
+                    const htmlContentPrimary = getHtmlContent(effectivePrimaryLangCode, effectiveSecondaryLangCode, true); // Always perform translations if regenerating HTML
+                    newZip.file('index.html', htmlContentPrimary);
+                    newZip.file(`${effectivePrimaryLangCode}.html`, htmlContentPrimary);
+
+                    const htmlContentSecondary = getHtmlContent(effectiveSecondaryLangCode, effectivePrimaryLangCode, true); // Always perform translations if regenerating HTML
+                    newZip.file(`${effectiveSecondaryLangCode}.html`, htmlContentSecondary);
+                }
+            } else {
+                // If no language change or explicit dual-update, copy original HTML files from the root
+                uploadedZipContent.forEach((relativePath, zipEntry) => {
+                    if (!zipEntry.dir && (relativePath.endsWith('.html') || relativePath.endsWith('.htm')) && !relativePath.startsWith('json/') && !relativePath.startsWith('libx/')) {
+                        newZip.file(relativePath, zipEntry.async('arraybuffer'));
+                    }
+                });
+            }
+
+            // Generate the zip file
+            newZip.generateAsync({ type: "blob" })
+                .then(function(content) {
+                    downloadLink.href = URL.createObjectURL(content);
+                    // Update download filename based on the primary language selected in UI if language options are active, otherwise, default.
+                    const finalDownloadFileName = (isUpdateRestaurantInfo && isUpdateMenu) && effectivePrimaryLangCode ? `updated_restaurant_template_${effectivePrimaryLangCode}.zip` : 'updated_restaurant_template.zip';
+                    downloadLink.setAttribute('download', finalDownloadFileName);
+                    downloadSection.classList.remove('hidden');
+                    showMessage("تم تحديث القالب بنجاح! انقر على 'تحميل الملف المضغوط' للحصول على قالبك الجديد.", "success"); // Translated
+                })
+                .catch(function(error) {
+                    showMessage(`خطأ في إنشاء الملف المضغوط: ${error.message}`, "error"); // Translated
+                })
+                .finally(() => {
+                    hideLoading();
+                });
+        });
+
+        // --- Initial Setup and Event Listener Assignments ---
+
+        // Event listener for zip file upload
+        templateZipInput.addEventListener('change', async function() {
+            if (this.files.length > 0) {
+                showLoading("جارٍ استخراج محتوى الملف المضغوط..."); // Translated loading message
+                try {
+                    await extractInitialDataFromZip(this.files[0]);
+                } catch (error) {
+                    // Error handling is already inside extractInitialDataFromZip
+                } finally {
+                    hideLoading(); // Hide loading after extraction attempt
+                }
+            } else {
+                zipUploadStatus.textContent = "";
+                uploadedZipContent = null;
+                initialInfoJsons = {};
+                initialMenuJsons = {};
+                extractedHtmlTemplates = {};
+                hasMainPngInZip = false;
+                hasDefaultPngInZip = false;
+                // Reset detected languages when zip is cleared
+                detectedPrimaryTemplateLang = 'en';
+                detectedSecondaryTemplateLang = '';
+                populateRestaurantInfoFields();
+                updateImageUploadVisibility();
+            }
+        });
+
+        // Initial setup on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial population of dropdowns when the page loads (before any zip is uploaded)
+            populateAllLanguageDropdowns();
+            updateLanguageSectionVisibility();
+            updateSectionVisibility();
+            populateRestaurantInfoFields();
+            updateImageUploadVisibility();
+
+            // Attach event listeners for user interactions
+            primaryLanguageSelect.addEventListener('change', primaryLanguageChangeHandler);
+            secondaryLanguageSelect.addEventListener('change', secondaryLanguageChangeHandler);
+            mainLanguageSelect.addEventListener('change', mainLanguageChangeHandler);
+
+            languageOptionRadios.forEach(radio => {
+                radio.addEventListener('change', updateLanguageSectionVisibility);
+            });
+            updateMenuCheckbox.addEventListener('change', updateSectionVisibility);
+            updateRestaurantInfoCheckbox.addEventListener('change', updateSectionVisibility);
+            // These two listeners also trigger updateLanguageSectionVisibility directly
+            updateMenuCheckbox.addEventListener('change', updateLanguageSectionVisibility);
+            updateRestaurantInfoCheckbox.addEventListener('change', updateLanguageSectionVisibility);
+        });
+    </script>
+</body>
+</html>

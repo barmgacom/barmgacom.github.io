@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-850CMRFY24"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-850CMRFY24');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>برمجة | تصميم مواقع احترافية للشركات</title>
     <meta name="description" content="شركة برمجة تقدم أفضل خدمات تصميم وتطوير المواقع الإلكترونية الاحترافية للشركات. نضمن لك موقع متوافق مع محركات البحث (SEO) لزيادة عملائك. اطلب عرض سعر الآن.">
     <meta property="og:type" content="website">
-<meta property="og:url" content="https://barmga.com/company-website-ar">
-<meta property="og:title" content="برمجة | أفضل شركة تصميم وتطوير مواقع احترافية وخدمات سيو">
-<meta property="og:description" content="شركة برمجة تقدم أفضل خدمات تصميم وتطوير المواقع الإلكترونية الاحترافية للشركات. نضمن لك موقع متوافق مع محركات البحث (SEO) لزيادة عملائك. اطلب عرض سعر الآن.">
-<meta property="og:image" content="https://barmga.com/templates/og-image.jpg">
-<meta property="og:locale" content="ar_AR">
+    <meta property="og:url" content="https://barmga.com/company-website-ar">
+    <meta property="og:title" content="برمجة | أفضل شركة تصميم وتطوير مواقع احترافية وخدمات سيو">
+    <meta property="og:description" content="شركة برمجة تقدم أفضل خدمات تصميم وتطوير المواقع الإلكترونية الاحترافية للشركات. نضمن لك موقع متوافق مع محركات البحث (SEO) لزيادة عملائك. اطلب عرض سعر الآن.">
+    <meta property="og:image" content="https://barmga.com/templates/og-image.jpg">
+    <meta property="og:locale" content="ar_AR">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://barmga.com/company-website-ar">
-<meta property="twitter:title" content="برمجة | أفضل شركة تصميم وتطوير مواقع احترافية وخدمات سيو">
-<meta property="twitter:description" content="شركة برمجة تقدم أفضل خدمات تصميم وتطوير المواقع الإلكترونية الاحترافية للشركات. نضمن لك موقع متوافق مع محركات البحث (SEO) لزيادة عملائك. اطلب عرض سعر الآن.">
-<meta property="twitter:image" content="https://barmga.com/templates/og-image.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://barmga.com/company-website-ar">
+    <meta property="twitter:title" content="برمجة | أفضل شركة تصميم وتطوير مواقع احترافية وخدمات سيو">
+    <meta property="twitter:description" content="شركة برمجة تقدم أفضل خدمات تصميم وتطوير المواقع الإلكترونية الاحترافية للشركات. نضمن لك موقع متوافق مع محركات البحث (SEO) لزيادة عملائك. اطلب عرض سعر الآن.">
+    <meta property="twitter:image" content="https://barmga.com/templates/og-image.jpg">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     
@@ -37,11 +45,153 @@
     <link href="css/style.css" rel="stylesheet">
     
     <style>
-        .portfolio-image img {
-  object-position: top;
+/* Style for the gray circle and question mark */
+.info-icon {
+  /* --- CRUCIAL CHANGE: Positioning Reference --- */
+  /* This allows the child tooltip-text to be positioned relative to the icon itself. */
+  position: relative; 
+  /* ------------------------------------------- */
+
+  /* Display as inline-block to allow setting dimensions */
+  display: inline-block;
+  
+  /* Circle dimensions */
+  width: 12px;
+  height: 12px;
+  
+  /* Make it a circle */
+  border-radius: 50%;
+  
+  /* Colors */
+  background-color: #ccc; /* Gray background */
+  color: #333; /* Darker text for the question mark */
+  
+  /* Center the question mark */
+  text-align: center;
+  line-height: 12px;
+  font-size: 8px;
+  font-weight: bold;
+  
+  /* Cursor to indicate interactivity */
+  cursor: pointer;
+  
+  /* Spacing */
+  top: -2px; /* A little vertical adjustment */
+  margin-left: 5px; /* Space between the list text and the icon */
 }
+
+/* Style for the hidden tooltip box */
+/* Update your existing .tooltip-text class with these properties */
+.tooltip-text {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  
+  /* --- THE FIXES --- */
+  width: 200px;            /* Default width */
+  max-width: 70vw;        /* Prevents it from being wider than 70% of the screen */
+  white-space: normal;    /* Forces text to wrap */
+  word-wrap: break-word;  /* Ensures long words don't break the box */
+  
+  /* --- BETTER CENTERING --- */
+  left: 50%;
+  bottom: 125%;           /* Positions it ABOVE the icon instead of the side */
+  transform: translateX(-50%); /* Centers it perfectly */
+  /* ------------------ */
+
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  z-index: 100000;
+  transition: opacity 0.3s;
+  line-height: 1.5;
+}
+
+/* Show the tooltip when hovering over the info-icon */
+.info-icon:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+        .contact-form {
+  scroll-margin-top: 100px;
+}
+        /* Fix for Checkboxes in RTL mode */
+.form-check {
+    padding-left: 0 !important;      /* Remove default left padding */
+    padding-right: 1.5em !important; /* Add padding to the right for the box */
+    text-align: right;               /* Ensure text aligns right */
+}
+
+.form-check .form-check-input {
+    float: right !important;         /* Float the box to the right */
+    margin-left: 0 !important;       /* Remove default left margin */
+    margin-right: -1.5em !important; /* Pull the box into the padding area */
+}
+        .selected-template-card {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa; /* Light background */
+            border-radius: 8px; /* Rounded corners */
+            padding: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        .selected-template-card img {
+            width: 100px; /* Fixed small width */
+            height: 75px; /* Fixed height */
+            object-fit: cover;
+            object-position: top; /* Ensures the top of the preview is shown */
+            margin-left: 15px; /* Changed to margin-left for RTL */
+            border-radius: 6px; /* Slightly rounded corners for image */
+            border: 1px solid #ccc;
+        }
+
+        .selected-template-info h6 {
+            font-weight: 600;
+            font-family: 'Cairo', sans-serif;
+            color: var(--dark-text);
+        }
+        
+        .form-check-input { border-width: 2px; float: right; margin-left: 10px;}
+        .form-check { padding-right: 1.5em; padding-left: 0; text-align: right; }
+        
+        h5 { font-weight: bold !important; }
+        
+        .portfolio-image img { object-position: top; }
         .hidden { display: none !important; }
 
+        /* Styling for the new Service Details Modal */
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-body {
+            max-height: calc(100vh - 200px); 
+            overflow-y: auto;
+        }
+
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-footer {
+            position: sticky;
+            bottom: 0;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            z-index: 1055;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse; /* For RTL button alignment */
+        }
+
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        /* Styling for Terms Modal */
         [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
             max-height: calc(100vh - 140px);
             overflow-y: auto;
@@ -98,7 +248,13 @@
             list-style: none;
             padding-right: 0;
         }
-
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-body {
+    max-height: calc(100vh - 200px); 
+    overflow-y: auto;        /* Allows vertical scrolling */
+    overflow-x: hidden;      /* Forces hidden horizontal scrollbar */
+}
+        .modal-body li {padding-right: 0;}
+         .list-group-flush {padding-right: 10px !important;}
         .steps li {
             margin-bottom: 30px;
         }
@@ -137,7 +293,7 @@
     </style>
     <style>
         /* Applying Arabic font */
-        body {
+        body, h1, h2, h3, h4, h5, h6 {
             font-family: 'Cairo', sans-serif !important;
         }
 
@@ -357,45 +513,17 @@
         }
 
         @keyframes before {
-            0% {
-                width: 0.5em;
-                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            35% {
-                width: 2.5em;
-                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            70% {
-                width: 0.5em;
-                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            100% {
-                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-            }
+            0% { width: 0.5em; box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75); }
+            35% { width: 2.5em; box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75); }
+            70% { width: 0.5em; box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75); }
+            100% { box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75); }
         }
 
         @keyframes after {
-            0% {
-                height: 0.5em;
-                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-            }
-
-            35% {
-                height: 2.5em;
-                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
-            }
-
-            70% {
-                height: 0.5em;
-                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
-            }
-
-            100% {
-                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-            }
+            0% { height: 0.5em; box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75); }
+            35% { height: 2.5em; box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75); }
+            70% { height: 0.5em; box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75); }
+            100% { box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75); }
         }
 
         .loader {
@@ -917,7 +1045,7 @@
         }
         
         .contact-section {
-            padding: 100px 0;
+            padding: 50px 0;
             background: white;
         }
         
@@ -1115,7 +1243,7 @@
         }
     </style>
 </head>
-<body>
+<body class="loaded">
     <div class="loaderx fullscreen">
         <div class="loader"></div>
     </div>
@@ -1130,7 +1258,7 @@
                     </button>
                     <div class="navbar-collapse collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#contact">اتصل بنا</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">اتصل بنا</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#about">من نحن</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#services">خدماتنا</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/ar#tools">برامج وقوالب</a></li>
@@ -1183,128 +1311,12 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="section-titlex mb-4 fade-in-up">إختر التصميم المناسب لشركتك</h2>
-<p class="section-subtitle fade-in-up">تصفح مجموعتنا من القوالب المصممة بإتقان، واختر التصميم الذي يناسب رؤيتك لنبني عليه موقعك الإلكتروني.</p>                </div>
+                    <p class="section-subtitle fade-in-up">تصفح مجموعتنا من القوالب المصممة بإتقان، واختر التصميم الذي يناسب رؤيتك لنبني عليه موقعك الإلكتروني.</p>
+                </div>
             </div>
             
-            <div class="row">
-                <div id="work-1" class="col-lg-4 col-md-6">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-1-arr.jpg" alt="قالب موقع لشركة مقاولات"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع مقاولات 1</h3>
-                            <p class="portfolio-description">تصميم موقع احترافي لشركات المقاولات، مثالي لشركة ناشئة.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/builder-1/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('1طلب مشابه: موقع شركة مقاولات')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row" id="portfolio-grid">
                 </div>
-                <div id="work-2" class="col-lg-4 col-md-6">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-2-arr.jpg" alt="قالب موقع لشركة مقاولات"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع مقاولات 2</h3>
-                            <p class="portfolio-description">تصميم موقع احترافي لشركات المقاولات، حديث وعصري يعكس خبرة الشركة.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/builder-2/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('2طلب مشابه: موقع شركة مقاولات')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-3" class="col-lg-4 col-md-6">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-3-ar.jpg" alt="قالب موقع لشركة مقاولات"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع مقاولات 3</h3>
-                            <p class="portfolio-description">تصميم موقع احترافي لشركات المقاولات، مثالي لعرض الخبرات، الخدمات، ومشاريع الشركة السابقة.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/builder-3/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('3طلب مشابه: موقع شركة مقاولات')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-4" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()" ><img src="templates/burj-al-jiwar-ar.jpg" alt="قالب موقع لشركة عقارية"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع عقاري</h3>
-                            <p class="portfolio-description">قالب موقع فاخر لمشروع عقاري، يعرض الوحدات المتاحة، معرض الصور، وتفاصيل المشروع بشكل جذاب.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/burj-al-jiwar/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('طلب مشابه: موقع مشروع عقاري')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-5" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/archi-ar.jpg" alt="قالب موقع لشركة خدمات هندسة معمارية"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع هندسي</h3>
-                            <p class="portfolio-description">إنشاء موقع إلكتروني لشركة هندسة معمارية وتصميم داخلي لعرض المشاريع والخدمات بطريقة إبداعية.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/archi/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('طلب مشابه: موقع خدمات معمارية')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-6" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/logi-ar.jpg" alt="تصميم موقع لشركة خدمات لوجستية"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع لوجستي</h3>
-                            <p class="portfolio-description">تطوير موقع لشركة خدمات لوجستية وسلاسل إمداد، يبرز التطور التكنولوجي والانتشار العالمي للشركة.</p>
-                            <div class="d-flex gap-2"> 
-                                <a href="https://templates.barmga.com/logi/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('طلب مشابه: موقع لوجستي')">اختر التصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="work-7" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/neologistics-ar.jpg" alt="تصميم منصة حلول لوجستية"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب منصة حلول لوجستية</h3>
-                            <p class="portfolio-description">تصميم عصري بوضع داكن لمنصات الخدمات اللوجستية، يركز على حلول الذكاء الاصطناعي والتكنولوجيا.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/neologistics/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('طلب مشابه: منصة تقنية/لوجستية')">اطلب تصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-8" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/stratagem-ar.jpg" alt="تصميم موقع استشارات أعمال"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">قالب موقع استشارات أعمال</h3>
-                            <p class="portfolio-description">تصميم موقع إلكتروني بسيط وأنيق لمستشاري الأعمال، يركز على الوضوح وتقديم الخدمات بشكل احترافي.</p>
-                            <div class="d-flex gap-2">
-                                <a href="https://templates.barmga.com/stratagem/ar" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
-                                <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('طلب مشابه: تصميم stratagem')">اطلب تصميم</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="work-9" class="col-lg-4 col-md-6 d-none">
-                    <div class="portfolio-itemx fade-in-up">
-                        <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/custom.jpg" alt="تصميم موقع استشارات أعمال"></div>
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title">احصل على تصميم مخصص</h3>
-                            <p class="portfolio-description">هل تبحث عن تصميم آخر؟ تواصل معنا الآن لمناقشة مشروعك.</p>
-                            <div class="d-flex gap-2">
-                                <a href="#contact" class="btn btn-primary-custom btn-sm" onclick="setContactSubject('طلب مشابه: تصميم خاص')">اطلب تصميم خاص</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <div class="row mt-4">
                 <div class="col text-center">
@@ -1382,8 +1394,28 @@
                 </div>
             </div>
             
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-5 col-md-6 mb-4">
+            <div class="row justify-content-center align-items-stretch">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card fade-in-up">
+                        <div class="pricing-header">
+                            <div class="pricing-amount">$199</div>
+                            <div class="pricing-discount"><del>$299</del> عرض خاص</div>
+                            <div class="pricing-period"><strong>باقة الشركات الناشئة</strong></div>
+                        </div>
+                        <ul class="pricing-features text-end">
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>اختر <a href="#portfolio" style="text-decoration: underline;">تصميم جاهز</a> لبناء موقعك</strong></li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> نعدل محتوى القالب بما يتناسب مع الشركة</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تهيئة أساسية لمحركات البحث (SEO)</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> استضافة سريعة على Cloudflare Pages</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> ربط مع إحصاءات جوجل (Analytics)</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i>دعم فني كامل الى غاية إطلاق موقعك</li>
+
+                        </ul>
+                        <a href="#portfolio" class="btn btn-outline-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: الباقة المبتدئة 199 دولارًا')">ابدأ الآن</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="pricing-card featured fade-in-up">
                         <div class="pricing-header">
                             <div class="pricing-amount">$299</div>
@@ -1391,21 +1423,23 @@
                             <div class="pricing-period"><strong>الباقة الأساسية</strong></div>
                         </div>
                         <ul class="pricing-features text-end">
-                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تصميم احترافي يعكس هويتك التجارية</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تصميم جديد مخصص بالكامل لشركتك</strong></li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> عرض معلومات الشركة، خدماتها وخبراتها</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تهيئة أساسية لمحركات البحث (SEO)</li>
-                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i> نماذج اتصال لجذب العملاء</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> استضافة سريعة على Cloudflare Pages</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> ربط مع إحصاءات جوجل (Analytics)</li>
+                            <li><i class="bi bi-check-circle-fill text-success ms-2"></i>دعم فني كامل الى غاية إطلاق موقعك</li>
+
                         </ul>
                         <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: الباقة الأساسية 299 دولارًا')">ابدأ الآن</a>
                     </div>
                 </div>
                 
-                <div class="col-lg-5 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="pricing-card fade-in-up">
+
                         <div class="pricing-amount">مخصص</div>
-                        <div class="pricing-discount">تختلف الأسعار بناءً على الميزات المطلوبة.</div>
+                        <div class="pricing-discount">يتم تحديد السعر بعد مناقشة المتطلبات</div>
                         <div class="pricing-period"><strong>باقة مخصصة</strong></div>
                         <ul class="pricing-features text-end">
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> كل شيء في الباقة الأساسية</li>
@@ -1415,7 +1449,7 @@
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> لوحة تحكم سهلة لإدارة المحتوى</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> حجز اسم النطاق (الدومين)</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: باقة الشركات المخصصة')">احصل على عرض</a>
+                        <a href="#contact" class="btn btn-outline-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: باقة الشركات المخصصة')">احصل على عرض</a>
                     </div>
                 </div>
             </div>
@@ -1468,18 +1502,18 @@
                         <div class="mb-4">
                             <h5>ما الذي ستحصل عليه:</h5>
                             <ul class="list-unstyled text-end">
-                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تصميم موقع احترافي ومخصص</li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تصميم موقع احترافي</li>
                                 <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تصميم متجاوب مع الجوال 100%</li>
                                 <li><i class="bi bi-check-circle-fill text-success ms-2"></i> تهيئة لمحركات البحث (SEO)</li>
                                 <li><i class="bi bi-check-circle-fill text-success ms-2"></i> حملة تسويق بريد إلكتروني مجانية</li>
-                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تبدأ الأسعار من 299 دولارًا فقط</strong></li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تبدأ الأسعار من 199 دولارًا فقط</strong></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-6">
-                    <div class="contact-form fade-in-up">
+                    <div class="contact-form">
                         <form id="contactForm">
                             <div class="mb-3">
                                 <label for="fullName" class="form-label">الاسم الكامل *</label>
@@ -1507,6 +1541,91 @@
         </div>
     </section>
 
+    <div class="modal fade" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #f8f9fa;">
+                                       <h5 class="modal-title" id="serviceDetailsModalLabel">تفاصيل الخدمة</h5>
+ <div style="flex-grow: 1;"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0; margin-right: auto;"></button>
+                                      
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-primary">القالب المختار</h5>
+                    <div class="selected-template-card mb-4">
+                        <img id="modal-template-image" src="" alt="صورة القالب المختار">
+                        <div class="selected-template-info">
+                            <p class="mb-0" id="modal-template-title" style="font-weight: 600 !important;"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 class="text-primary">ما الذي ستحصل عليه</h5>
+                    
+                    <ul class="list-group list-group-flush mb-4 text-end">
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تصميم مشابه للقالب</strong> الذي اخترته من معرض أعمالنا.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تخصيص كامل</strong> يشمل معلومات شركتك والمحتوى الخاص بك.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>استضافة عالية الأداء</strong> على Cloudflare Pages لسرعة وموثوقية عالية.&nbsp;<span class="info-icon">
+      ؟
+      <span class="tooltip-text">
+        الاستضافة مقدمة مجانا من منصة كلاود فلير.
+      </span>
+    </span></li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>ربط مع إحصاءات جوجل</strong> (Google Analytics) لمتابعة زوار موقعك.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>ربط مع بحث قوقل</strong> (Google Search Console) لظهور موقعك في نتائج البحث.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>دعم فني كامل</strong> حتى يتم إطلاق موقعك بنجاح.</li>
+                    </ul>
+
+                    <h5 class="text-primary">المعلومات المطلوبة</h5>
+                    <p>لبناء موقعك، يرجى إرسال التفاصيل التالية إلى <a href="mailto:info@barmga.com">info@barmga.com</a></p>
+                    <ul class="list-group list-group-flush mb-4 text-end">
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> اسم الشركة</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> نبذة مختصرة عن شركتك</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> نظرة عامة على منتجات وخدمات الشركة</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> إحصائيات وأرقام ان توفر (مثل: سنوات الخبرة، عدد المشاريع، العملاء)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> شعار الشركة (اللوجو) (إذا لم يتوفر، سنقوم بإنشاء شعار لكم)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> بيانات الاتصال التي تريد عرضها (إيميل، عنوان، هاتف، واتساب، رابط خرائط جوجل، إلخ)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> اللغة الأساسية للموقع</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> أي تفاصيل إضافية (الرؤية، الشعار اللفظي، صور، إلخ)</li>
+                    </ul>
+                    <p class="small"><strong>ملاحظة:</strong> إذا كان لديك ملف تعريف للشركة (PDF) أو صفحة LinkedIn تحتوي على هذه المعلومات، يمكنك إرسالها مباشرة وسنقوم بجمع المعلومات اللازمة منها.</p>
+
+                    <h5 class="text-primary mt-4">سياسة الخدمة والقيود</h5>
+                    <ul class="list-group list-group-flush mb-4 text-end">
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: rgb(164, 10, 10);"></i> هذه الخدمة لا تدعم الأعمال التي تبيع مواد محرمة شرعًا (مثل التبغ، الكحول، القمار).</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: rgb(164, 10, 10);"></i> لا نقوم بإدراج صور لشخصيات سياسية، دينية، أو نساء (إلا بحجاب شرعي كامل).</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: rgb(164, 10, 10);"></i> لا نقوم بإدراج أي محتوى نصي أو مرئي يروج لمفاهيم سياسية أو دينية محددة.</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: rgb(164, 10, 10);"></i> إذا كان نشاطك التجاري في مجال المال، الملابس، الأغذية، أو الفنادق خارج السعودية، يرجى <a onclick="document.querySelector('#serviceDetailsModal .btn-close').click();document.querySelector('.contact-form').scrollIntoView()" style="color: #1877d6;">التواصل معنا</a> أولاً للتأكد من توافق نشاطك مع سياسة الخدمة لدينا.</li>
+                    </ul>
+
+                    <h5 class="text-primary mt-4">إضافات اختيارية</h5>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="11" id="check-domain">
+                        <label class="form-check-label" for="check-domain">
+                            <strong>حجز اسم نطاق com. (تسجيل لأول سنة)</strong>
+                            <span class="text-success fw-bold me-2" dir="ltr">+$11.00</span>
+                        </label>
+                        <div class="form-text mt-1 me-1">سنقوم بإرشادك حول كيفية تجديد اشتراك النطاق.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="99" id="check-language">
+                        <label class="form-check-label" for="check-language">
+                            <strong>إضافة لغة ثانية للموقع (بالإضافة للغة الأساسية)</strong>
+                            <span class="text-success fw-bold me-2" dir="ltr">+$99.00</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="buy-now-button" class="btn btn-primary-custom btn-lg">
+                        اشترِ الآن
+                    </a>
+                    <div class="fw-bold fs-5">
+                        الإجمالي: <span id="subtotal-price" class="text-primary" dir="ltr">$199.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
@@ -1515,7 +1634,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div style="flex-grow: 1;"></div>
                     <h5 class="modal-title bold" id="termsModalLabel"><strong>&nbsp;&nbsp;&nbsp;&nbsp;أدوات التسويق</strong></h5>
-
                 </div>
                 <div class="modal-body scrollable-body text-center">
                 </div>
@@ -1538,8 +1656,7 @@
             <img style="display: none;" src="https://bit.ly/barmga-website-ar">
            <div class="modal-body scrollable-body text-center">
                 
-<!-- ADDTOOLSAR -->
-                    <div class="d-flex justify-content-center mt-4 mb-3 emailx">
+<div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor-ar" target="_blank">
                             <i class="fa fa-edit"></i>&nbsp;&nbsp;أداة تعديل المواقع الإلكترونية
                         </a>
@@ -1645,22 +1762,18 @@
             </div>
         </div>
     </div>
-    <!-- Footer Start -->
+
     <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5 px-lg-5" dir="rtl" style="text-align: right;">
             <div class="row g-5">
                 <div class="col-md-6 col-lg-3">
                     <h5 class="text-white mb-4">لطلب الدعم</h5>
-                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
                     <a class="btn btn-linkx" href="https://barmga.com/ar#contact">اتصل بنا</a>
                     <p><i class="fa fa-envelope me-3" style="padding-left: 10px;"></i>info@barmga.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
-
                         <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
                         <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
-
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -1676,6 +1789,8 @@
                     <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                     <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
                     <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
+                                        <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <h5 class="text-white mb-4">النشرة البريدية</h5>
@@ -1694,17 +1809,12 @@
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" style="color: white !important;" href="https://barmga.com/ar">Barmga 2025</a>, جميع الحقوق محفوظة.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+
     <script>
         function showonly(classname) {
             if (classname == 'all') {
@@ -1722,10 +1832,244 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="lib/wow/wow.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-    
     <script>
+        const templatesData = [
+            {
+                id: 'work-1',
+                title: 'قالب موقع مقاولات 1',
+                description: 'تصميم موقع احترافي لشركات المقاولات، مثالي لشركة ناشئة.',
+                imageUrl: '/templates/builder-1-arr.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-1/ar',
+                altText: 'قالب موقع لشركة مقاولات',
+                hidden: false,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/A103175874Q?off=se8k0zwr', // $199
+                    domain: 'https://pay.hotmart.com/A103175874Q?off=lev22ghr', // $199 + $11
+                    language: 'https://pay.hotmart.com/A103175874Q?off=1gjhfr6s', // $199 + $99 //49 https://pay.hotmart.com/A103175874Q?off=ctsiav0b
+                    both: 'https://pay.hotmart.com/A103175874Q?off=5xu0tdvx' // $199 + $11 + $99 //49 https://pay.hotmart.com/A103175874Q?off=1w2n73hr
+                }
+            },
+            {
+                id: 'work-2',
+                title: 'قالب موقع مقاولات 2',
+                description: 'تصميم موقع احترافي لشركات المقاولات، حديث وعصري يعكس خبرة الشركة.',
+                imageUrl: '/templates/builder-2-arr.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-2/ar',
+                altText: 'قالب موقع لشركة مقاولات',
+                hidden: false,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/C103193802N?off=blmpmpkw', // $199
+                    domain: 'https://pay.hotmart.com/C103193802N?off=i1b5e9mi', // $199 + $11
+                    language: 'https://pay.hotmart.com/C103193802N?off=ugtzffah', // $199 + $99 //49 https://pay.hotmart.com/C103193802N?off=9fsnudlt
+                    both: 'https://pay.hotmart.com/C103193802N?off=egjrs9af' // $199 + $11 + $99 //49 https://pay.hotmart.com/C103193802N?off=cohcg44h
+                }
+            },
+            {
+                id: 'work-3',
+                title: 'قالب موقع مقاولات 3',
+                description: 'تصميم موقع احترافي لشركات المقاولات، مثالي لعرض الخبرات، الخدمات، ومشاريع الشركة السابقة.',
+                imageUrl: '/templates/builder-3-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-3/ar',
+                altText: 'قالب موقع لشركة مقاولات',
+                hidden: false,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/S103194208P?off=5brr9kq6', // $199
+            domain: 'https://pay.hotmart.com/S103194208P?off=4whiygph', // $199 + $11
+            language: 'https://pay.hotmart.com/S103194208P?off=4dvfggyz', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/S103194208P?off=883as7r6', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-4',
+                title: 'قالب موقع عقاري',
+                description: 'قالب موقع فاخر لمشروع عقاري، يعرض الوحدات المتاحة، معرض الصور، وتفاصيل المشروع بشكل جذاب.',
+                imageUrl: '/templates/burj-al-jiwar-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/burj-al-jiwar/ar',
+                altText: 'قالب موقع لشركة عقارية',
+                hidden: true,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/I103201430C?off=rv1s0gfo', // $199
+            domain: 'https://pay.hotmart.com/I103201430C?off=dpxzdam9', // $199 + $11
+            language: 'https://pay.hotmart.com/I103201430C?off=oaih8rvr', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/I103201430C?off=2rxe2zpv', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-5',
+                title: 'قالب موقع هندسي',
+                description: 'إنشاء موقع إلكتروني لشركة هندسة معمارية وتصميم داخلي لعرض المشاريع والخدمات بطريقة إبداعية.',
+                imageUrl: '/templates/archi-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/archi/ar',
+                altText: 'قالب موقع لشركة خدمات هندسة معمارية',
+                hidden: true,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/R103201597O?off=im8hhfvy', // $199
+            domain: 'https://pay.hotmart.com/R103201597O?off=lk2obdo1', // $199 + $11
+            language: 'https://pay.hotmart.com/R103201597O?off=hs3bs7ek', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/R103201597O?off=1t5spmox', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-6',
+                title: 'قالب موقع لوجستي',
+                description: 'تطوير موقع لشركة خدمات لوجستية وسلاسل إمداد، يبرز التطور التكنولوجي والانتشار العالمي للشركة.',
+                imageUrl: '/templates/logi-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/logi/ar',
+                altText: 'تصميم موقع لشركة خدمات لوجستية',
+                hidden: true,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/I103201726X?off=9z7i986t', // $199
+            domain: 'https://pay.hotmart.com/I103201726X?off=tq7rk8o4', // $199 + $11
+            language: 'https://pay.hotmart.com/I103201726X?off=138cvli1', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/I103201726X?off=o1s41348', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-7',
+                title: 'قالب منصة حلول تقنية',
+                description: 'تصميم عصري بوضع داكن لمنصات الخدمات اللوجستية، يركز على حلول الذكاء الاصطناعي والتكنولوجيا.',
+                imageUrl: '/templates/neologistics-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/neologistics/ar',
+                altText: 'تصميم منصة حلول لوجستية',
+                hidden: true,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/F103201913M?off=39vekqm3', // $199
+            domain: 'https://pay.hotmart.com/F103201913M?off=npe57cgk', // $199 + $11
+            language: 'https://pay.hotmart.com/F103201913M?off=m53lzyt0', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/F103201913M?off=8p2if5o6', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-8',
+                title: 'قالب موقع خدمات',
+                description: 'تصميم موقع إلكتروني بسيط وأنيق لمستشاري الأعمال، يركز على الوضوح وتقديم الخدمات بشكل احترافي.',
+                imageUrl: '/templates/stratagem-ar.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/stratagem/ar',
+                altText: 'تصميم موقع استشارات أعمال',
+                hidden: true,
+                priceLinks: {
+            base: 'https://pay.hotmart.com/B103203035X?off=d2765rgn', // $199
+            domain: 'https://pay.hotmart.com/B103203035X?off=d57d24t0', // $199 + $11
+            language: 'https://pay.hotmart.com/B103203035X?off=ejtc1xcy', // $199 + $99 //+49$ instead 99$ https://pay.hotmart.com/C103193802N?off=9fsnudlt
+            both: 'https://pay.hotmart.com/B103203035X?off=8bwtmv1r', // $199 + $11 + $99 //+49$ instead 99$  https://pay.hotmart.com/C103193802N?off=cohcg44h
+            }
+            },
+            {
+                id: 'work-9',
+                title: 'احصل على تصميم مخصص',
+                description: 'هل تبحث عن تصميم آخر؟ تواصل معنا الآن لمناقشة مشروعك.',
+                imageUrl: '/templates/custom.jpg',
+                liveSiteUrl: null,
+                altText: 'طلب تصميم خاص',
+                hidden: true,
+                isCustom: true
+            }
+        ];
+
+        let currentTemplate = null;
+        let serviceDetailsModal = null;
+        const basePrice = 199;
+        const domainPrice = 11;
+        const languagePrice = 99;
+
+        function generatePortfolioCards() {
+            const grid = document.getElementById('portfolio-grid');
+            if (!grid) return;
+            
+            let gridHTML = '';
+
+            templatesData.forEach(template => {
+                const isHidden = template.hidden ? 'd-none' : '';
+                
+                if (template.isCustom) {
+                    gridHTML += `
+                        <div id="${template.id}" class="col-lg-4 col-md-6 ${isHidden}">
+                            <div class="portfolio-itemx fade-in-up">
+                                <div class="portfolio-image" style="cursor:default;">
+                                    <img src="${template.imageUrl}" alt="${template.altText}">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">${template.title}</h3>
+                                    <p class="portfolio-description">${template.description}</p>
+                                    <div class="d-flex gap-2">
+                                        <a href="#contact" class="btn btn-primary-custom btn-sm" onclick="setContactSubject('طلب مشابه: تصميم خاص')">اطلب تصميم خاص</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    gridHTML += `
+                        <div id="${template.id}" class="col-lg-4 col-md-6 ${isHidden}">
+                            <div class="portfolio-itemx fade-in-up">
+                                <div class="portfolio-image" onclick="window.open('${template.liveSiteUrl}', '_blank')">
+                                    <img src="${template.imageUrl}" alt="${template.altText}">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">${template.title}</h3>
+                                    <p class="portfolio-description">${template.description}</p>
+                                    <div class="d-flex gap-2">
+                                        <a href="${template.liveSiteUrl}" class="btn btn-primary-custom btn-sm" target="_blank">عرض الموقع</a>
+                                        <button class="btn btn-outline-custom btn-sm" onclick="openServiceModal('${template.id}')">اختر هذا التصميم</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            grid.innerHTML = gridHTML;
+            revealOnScroll();
+        }
+
+        function openServiceModal(templateId) {
+            currentTemplate = templatesData.find(t => t.id === templateId);
+            if (!currentTemplate) return;
+
+            document.getElementById('modal-template-image').src = currentTemplate.imageUrl;
+            document.getElementById('modal-template-title').textContent = 'تصميم '+ currentTemplate.title;
+
+            // Reset checkboxes
+            document.getElementById('check-domain').checked = false;
+            document.getElementById('check-language').checked = false;
+
+            updatePriceAndLink();
+
+            if (!serviceDetailsModal) {
+                serviceDetailsModal = new bootstrap.Modal(document.getElementById('serviceDetailsModal'));
+            }
+            serviceDetailsModal.show();
+        }
+
+        function updatePriceAndLink() {
+            if (!currentTemplate) return;
+
+            const domainChecked = document.getElementById('check-domain').checked;
+            const languageChecked = document.getElementById('check-language').checked;
+            const subtotalPriceEl = document.getElementById('subtotal-price');
+            const buyNowButton = document.getElementById('buy-now-button');
+
+            let total = basePrice;
+            let link = currentTemplate.priceLinks.base;
+
+            if (domainChecked && languageChecked) {
+                total += domainPrice + languagePrice;
+                link = currentTemplate.priceLinks.both;
+            } else if (domainChecked) {
+                total += domainPrice;
+                link = currentTemplate.priceLinks.domain;
+            } else if (languageChecked) {
+                total += languagePrice;
+                link = currentTemplate.priceLinks.language;
+            }
+
+            subtotalPriceEl.textContent = `$${total.toFixed(2)}`;
+            buyNowButton.href = link;
+        }
+
         function setContactSubject(subject) {
             const subjectInput = document.getElementById('contactSubject');
             if (subjectInput) {
@@ -1734,8 +2078,15 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            generatePortfolioCards();
+
+            // Modal listeners
+            document.getElementById('check-domain').addEventListener('change', updatePriceAndLink);
+            document.getElementById('check-language').addEventListener('change', updatePriceAndLink);
+
             const body = document.body;
             const navbar = document.querySelector('.navbar');
+            
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
@@ -1744,11 +2095,15 @@
                 }
             });
 
+            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const href = this.getAttribute('href');
+                    if(href === '#' || this.dataset.bsToggle) return;
+
+                    const target = document.querySelector(href);
                     if (target) {
+                        e.preventDefault();
                         const offsetTop = target.offsetTop - 80;
                         window.scrollTo({
                             top: offsetTop,
@@ -1758,100 +2113,101 @@
                 });
             });
 
-            function revealOnScroll() {
-                const reveals = document.querySelectorAll('.fade-in-up:not(.animate)');
-                reveals.forEach(element => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 100;
-                    if (elementTop < windowHeight - elementVisible) {
-                        element.classList.add('animate');
-                    }
-                });
-            }
-            window.addEventListener('scroll', revealOnScroll);
-            
+            // Toggle show more
             const toggleBtn = document.getElementById('togglePortfolio');
             if(toggleBtn) {
                 toggleBtn.addEventListener('click', function(e) {
-                    document.querySelector('#work-4').classList.toggle('d-none');
-                    document.querySelector('#work-5').classList.toggle('d-none');
-                    document.querySelector('#work-6').classList.toggle('d-none');
-                    document.querySelector('#work-7').classList.toggle('d-none');
-                    document.querySelector('#work-8').classList.toggle('d-none');
-                    document.querySelector('#work-9').classList.toggle('d-none');
+                    const hiddenItems = document.querySelectorAll('#portfolio-grid .col-lg-4.d-none');
+                    hiddenItems.forEach(item => {
+                        item.classList.remove('d-none');
+                    });
                     toggleBtn.style.display = 'none';
+                    revealOnScroll();
                 });
             }
 
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const fullName = document.getElementById('fullName').value;
-                const phone = document.getElementById('phone').value;
-                const email = document.getElementById('email').value;
-                if (!fullName || !phone || !email) {
-                    alert('يرجى تعبئة جميع الحقول المطلوبة.');
-                    return;
-                }
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('يرجى إدخال بريد إلكتروني صحيح.');
-                    return;
-                }
-            });
+            revealOnScroll();
         });
 
-</script>
-    <script>
-        document.querySelector('form').addEventListener('submit', async function(event) {
-    // Prevent form from submitting normally
-    event.preventDefault();
-
-    // Get form elements
-    var nameInput = document.querySelector('#fullName');
-    var emailInput = document.querySelector('#email');
-    var messageInput = document.querySelector('#project');
-    var phone= document.querySelector('#phone');
-    var subject= document.querySelector('#contactSubject');
-
-
-    // Create a new FormData object
-    var formData = {
-        'entry.1466964258': String(theip),
-        'entry.2005620554': nameInput.value,
-        'entry.1045781291': emailInput.value,
-        'entry.1166974658': phone.value,
-        'entry.1065046570': subject.value,
-        'entry.839337160': messageInput.value,
-    };
-    var isonline = await isInternetFunctional()
-    // Create a new script element
-    if( nameInput.value && emailInput.value && phone.value && messageInput.value && isonline){
-    var script = document.createElement('script');
-    script.src = 'https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse?callback=callbackFunction&' + 
-        Object.keys(formData).map(function(key) {
-            return key + '=' + encodeURIComponent(formData[key]);
-        }).join('&');
-    document.body.appendChild(script);
-    loadScript("js/callbackFunction2.js")}
-});
-function callbackFunction2() {
-
-    // Empty the inputs
-    document.querySelector('#fullName').value = '';
-    document.querySelector('#email').value = '';
-    document.querySelector('#phone').value = '';
-    document.querySelector('#contactSubject').value = '';
-    document.querySelector('#project').value = '';
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.fade-in-up:not(.animate)');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
     
+    <script>
+        document.querySelector('#contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-    // Display a "Comment submitted" message above the form
-    var message=document.querySelector("#submitted")
-    message.textContent = 'تم الإرسال! سنتواصل معكم في أقرب وقت.';
+            var nameInput = document.querySelector('#fullName');
+            var emailInput = document.querySelector('#email');
+            var messageInput = document.querySelector('#project');
+            var phone= document.querySelector('#phone');
+            var subject= document.querySelector('#contactSubject');
 
-    // Scroll to the message
-    message.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
+            var formData = {
+                'entry.1466964258': typeof theip !== 'undefined' ? String(theip) : 'IP_NOT_FOUND',
+                'entry.2005620554': nameInput.value,
+                'entry.1045781291': emailInput.value,
+                'entry.1166974658': phone.value,
+                'entry.1065046570': subject.value,
+                'entry.839337160': messageInput.value,
+            };
+            
+            // Mock internet check if function missing
+            var isonline = typeof isInternetFunctional === 'function' ? await isInternetFunctional() : true;
+
+            if( nameInput.value && emailInput.value && phone.value && messageInput.value && isonline){
+                var script = document.createElement('script');
+                script.src = 'https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse?callback=callbackFunction2&' + 
+                    Object.keys(formData).map(function(key) {
+                        return key + '=' + encodeURIComponent(formData[key]);
+                    }).join('&');
+                document.body.appendChild(script);
+            }
+        });
+
+        function callbackFunction2() {
+            document.querySelector('#fullName').value = '';
+            document.querySelector('#email').value = '';
+            document.querySelector('#phone').value = '';
+            document.querySelector('#contactSubject').value = '';
+            document.querySelector('#project').value = '';
+            
+            var message=document.querySelector("#submitted")
+            if(message) {
+                message.textContent = 'تم الإرسال! سنتواصل معكم في أقرب وقت.';
+                message.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+        <script>
+        // Function to check screen width and update the element
+function setTargetBlankOnLargeScreen() {
+  // 1. Get the screen width in pixels
+  const screenWidth = window.innerWidth;
+
+  // 2. Select the button element by its ID
+  const buyNowButton = document.getElementById('buy-now-button');
+
+  // Check if the element exists and the screen width is above 1200px
+  if (buyNowButton && screenWidth > 1200) {
+    // 3. If the conditions are met, set the target attribute
+    buyNowButton.setAttribute('target', '_blank');
+    console.log('Screen width is > 1200px. Target set to "_blank".');
+  }
 }
+
+// Run the function when the page loads
+setTargetBlankOnLargeScreen();
     </script>
 </body>
 </html>
