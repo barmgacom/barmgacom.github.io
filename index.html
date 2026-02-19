@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+ 
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-850CMRFY24"></script>
 <script>
@@ -56,6 +56,9 @@
 <script>
     var namesdict={
         //addDictItemHere2
+"jewelry-stores":"متاجر-المجوهرات",
+"electronic-products":"المنتجات-الإلكترونية",
+"school-supplies-and-toys":"منتجات-القرطاسيات-والألعاب",
 "food-products":"بيانات-المنتجات-الغذائية",
         "car-parts-stores": "محلات-قطع-غيار-السيارات",
     "car-repair-stores": "ورش-السيارات",
@@ -389,6 +392,18 @@ img.topim{max-height: 400px;}
   z-index: 1055;
   width: 100%;
 }
+#productSearch:focus {
+    box-shadow: none;
+    border-color: #023957;
+}
+#productSearch::placeholder {
+    font-size: 0.9rem;
+    color: #999;
+}
+/* Ensure search results are visible and clear */
+.allproducts .itemhere {
+    transition: opacity 0.3s ease;
+}
   </style>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -696,8 +711,20 @@ document.addEventListener("DOMContentLoaded", function() {
                         </div>
                     </div>
                 </div>
+                <div class="container mt-3 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="input-group shadow-sm">
+                <input type="text" id="productSearch" class="form-control py-2" placeholder="Search database..." style="border: 1px solid #2780B7; border-radius: 25px 0 0 25px;">
+                <span class="input-group-text bg-white" id="searchBtn" style="border: 1px solid #2780B7; border-left: none; border-radius: 0 25px 25px 0; cursor: pointer;">
+                    <i class="fa fa-search text-primary"></i>
+                </span>
             </div>
-            <div class="container py-5 px-lg-5">
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="container py-1 px-lg-5">
             <div class="container px-lg-5">
               <br>
               <div class="row g-4 allproducts">
@@ -888,6 +915,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <a class="btn btn-link" href="#services">Services</a>
                         <a class="btn btn-link"onclick="document.querySelector('.selectedproduct').style.display='none'"   href="#products">Products</a>
                         <a class="btn btn-link" href="#tools">Business Tools</a>
+                        <a class="btn btn-link" href="https://barmga.com/blog">Blog</a>
                      </div>
                     <div class="col-md-6 col-lg-3">
                         <h5 class="text-white mb-4">Newsletter</h5>
@@ -1077,10 +1105,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             <p style="font-size: 120%;">
                                 <strong>Hotmart Marketplace</strong></p>
                             <div>
-                                <a style="color: #2780B7;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart', 'https://go.hotmart'))">Hotmart</a> platform connects digital product providers with their customers, acting as a sales intermediary. All our digital products are reviewed & delivered by Hotmart.<br> You can also request this product through  
-                                <a style="color: #2780B7;" target="_blank" href="https://mostaql.com/u/barmga">Mostaql (freelance platform)</a> 
-                                or by 
-                                <a style="color: #2780B7;" href="#contact" onclick="document.querySelector('.closeme').click()">contacting us</a>.
+                                <a style="color: #2780B7;" onclick="openUrl(document.querySelector('#productlink').href.replace('https://pay.hotmart', 'https://go.hotmart'))">Hotmart</a> platform connects digital product providers with their customers, acting as a sales intermediary. All our digital products are reviewed & delivered by Hotmart.<br>For offline payment, you can also request this product through  
+
+                                <a style="color: #2780B7;" href="#contact" onclick="document.querySelector('.closeme').click()">contacting us directly</a>.
                             </div>
                         </div>
                         <a onclick="document.querySelector('#productlink').click();document.querySelector('.closeme').click()" class="btn btn-primary" style="margin-bottom: 20px;">Buy Now</a>
@@ -1430,11 +1457,10 @@ function suggestMe(productname,dicta){
         dicta=movelPos(dicta,'Transport Companies',5);
         dicta=movelPos(dicta,'Medical Centers',6);
     }else if (['منتجات العطور','perfume products'].includes(productname.toLowerCase().replace(/-/g,' '))){
-        dicta=movelPos(dicta,'Makeup Products',1);
+        dicta=movelPos(dicta,'Pharmaceutical Products',1);
         dicta=movelPos(dicta,'Supermarket Products',2);
-        dicta=movelPos(dicta,'Organisations',3);
+        dicta=movelPos(dicta,'Jewelry Stores',3);
         dicta=movelPos(dicta,'Perfume Products',4);
-        dicta=movelPos(dicta,'Pharmaceutical Products',5);
     }else if (['الشركات العقارية','realestate companies'].includes(productname.toLowerCase().replace(/-/g,' '))){
         dicta=movelPos(dicta,'Real Estate Advertisements',1);
         dicta=movelPos(dicta,'Transport Companies',2);
@@ -1533,6 +1559,9 @@ var disc={
 }
 var allnames={
     //addDictItemHere2
+"jewelry-stores":"متاجر-المجوهرات",
+"electronic-products":"المنتجات-الإلكترونية",
+"school-supplies-and-toys":"منتجات-القرطاسيات-والألعاب",
 "food-products":"بيانات-المنتجات-الغذائية",
     "car-parts-stores": "محلات-قطع-غيار-السيارات",
     "car-repair-stores": "ورش-السيارات",
@@ -1574,7 +1603,63 @@ var allnames={
     "natural-food-stores": "محلات-الأغذية-الطبيعية",
     "heavy-equipments-companies":"شركات-المعدات-الثقيلة"
 }
-
+var dropped={    
+    "Job Advertisements": {
+        "info": "Excel file dedicated to job advertisements posted on Telegram groups. Useful for job seekers.",
+        "feature2": "2,000 Email Addresses",
+        "feature1": "5,000 ADs",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-job-ads",
+        "gift": "",
+        "originalprice": "",
+        "price": "Free",
+        "category": "Ads",
+        "productlink": "https://barmga.com/samples/SA-Telegram-Job-Ads.xlsx",
+        "samplelink": "",
+        "family": "education",
+        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "Telegram Groups & Channels",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },"Riyadh Realestate Ads": {
+        "info": "Excel file containing 40,000 real estate listings in Riyadh from AQAR website, including all available details for each listing. The data helps analyze the real estate market, filter information, and easily access the desired offers.",
+        "feature2": "",
+        "feature1": "40,000 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-aqar-riyadh",
+        "gift": "",
+        "originalprice": "99$",
+        "price": "65$",
+        "category": "Ads",
+        "productlink": "https://pay.hotmart.com/I98976213O",
+        "samplelink": "https://barmga.com/samples/Sample-SA-Riyadh-AQAR.xlsx",
+        "family": "realestate",
+        "videolink": "https://player.vimeo.com/video/1071150086?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2025 (23-26 march)",
+        "source": "AQAR",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    },
+    "MakeUp Products": {
+        "info": "Excel file containing 3,200 makeup & beauty products records in the Saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
+        "feature2": "3000 barcode",
+        "feature1": "3200 Rows",
+        "feature3": "1 Sheet | Excel File",
+        "id": "sa-makeup-products",
+        "gift": "",
+        "originalprice": "",
+        "price": "45$",
+        "category": "Products",
+        "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
+        "samplelink": "https://barmga.com/samples/SA-Sample-Makeup-Products.xlsx",
+        "family": "health, commerce",
+        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+        "subtitle": "Database",
+        "date": "2024",
+        "source": "",
+        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+    }}
 var allproducts ={
     "Travel Agencies": {
         "info": "Excel file containing 1,900 contact details for Travel Agencies in Saudi Arabia.",
@@ -1616,15 +1701,15 @@ var allproducts ={
 
     "Real Estate Companies": {
     "id": "sa-realestate-brokers",
-    "info": "Excel files containing data for 28,200 licensed real estate brokerage offices collected from the Ejar platform and the Real Estate Authority. This data is useful for real estate marketers to collaborate with the largest number of offices. If you have a property for sale or rent, you can send the offer to all offices in your area!",
+    "info": "Excel files containing +28,200 records for licensed real estate brokerage offices across Saudi Arabia. Extracted from official Ejar and Real Estate General Authority, this dataset is the ultimate tool for real estate professionals looking to dominate the market.",
     "feature1": "28,200 Mobile Numbers",
     "feature2": "14,400 Email Addresses",
     "feature3": "2 Sheets | Excel Files",
     "gift": "",
-    "originalprice": "89$",
-    "price": "65$",
+    "originalprice": "99$",
+    "price": "79$",
     "category": "B2B Listing",
-    "productlink": "https://pay.hotmart.com/W96101861T?off=zxwjt86z",
+    "productlink": "https://pay.hotmart.com/W96101861T?off=4sf0cn9g",
     "samplelink": "https://barmga.com/samples/Sample-2-Sheets-Real-Estate-Companies-sa.xlsx",
     "family": "realestate",
     "videolink": "https://player.vimeo.com/video/1138073335?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
@@ -1689,24 +1774,24 @@ var allproducts ={
         "reviews": "https://mostaql.com/u/barmga/reviews/5167207"
     },
     "Construction Companies": {
-        "info": "Excel files containing data for over 20,000 contact details for construction companies, in Saudi Arabia. This data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
-        "feature2": "20,000 Email Addresses",
-        "feature1": "11,000 Mobile Numbers",
-        "feature3": "2 Sheets | Excel Files",
-        "id": "sa-contractors",
-        "gift": "1,200 Records for real estate development companies (Free)",
-        "originalprice": "",
-        "price": "55$",
-        "category": "B2B Listing",
-        "productlink": "https://pay.hotmart.com/C96101913P?off=kn3gacxe",
-        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Contractors.xlsx",
-        "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1062962778?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2025 - 2022",
-        "source": "Muqawil (Authority)",
-        "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
-    },
+    "id": "sa-contractors",
+    "info": "Excel files containing data for over 41,600 contact details for construction companies, in Saudi Arabia.\nThis data can be used for marketing campaigns (building materials, equipment and machinery) or to request quotations for contracting projects and find the best price and service quickly and practically.",
+    "feature1": "15,000 Mobile Numbers",
+    "feature2": "41,600 Email Addresses",
+    "feature3": "3 Sheets | Excel Files",
+    "gift": "1,400 Records for real estate development companies (Free)",
+    "originalprice": "",
+    "price": "65$",
+    "category": "B2B Listing",
+    "productlink": "https://pay.hotmart.com/C96101913P?off=yag8ryql",
+    "samplelink": "https://barmga.com/samples/Sample-3-Sheets-Construction-Companies-sa.xlsx",
+    "family": "realestate",
+    "videolink": "https://player.vimeo.com/video/1138227711?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025 - 2022",
+    "source": "Muqawil (Authority) & Google Maps",
+    "reviews": "https://mostaql.com/u/barmga/reviews/7173606"
+},
     "Engineering Offices": {
         "info": "Excel file containing over 3,800 contact details for engineering offices, in Saudi Arabia. This data is useful for contracting companies to find cooperative offices to bring in projects.",
         "feature2": "3,300 Email Addresses",
@@ -1737,7 +1822,7 @@ var allproducts ={
         "price": "55$",
         "category": "B2B Listing",
         "productlink": "https://pay.hotmart.com/V96103440J?off=optpmhgm",
-        "samplelink": "https://barmga.com/samples/SA-Sample-Building-Materials-Suppliers.xlsx",
+        "samplelink": "https://barmga.com/samples/2-Sheets-Sample-SA-Building-Materials-Suppliers.xlsx",
         "family": "realestate, commerce",
         "videolink": "https://player.vimeo.com/video/1032666017?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
         "subtitle": "Database",
@@ -1898,25 +1983,6 @@ var allproducts ={
     "source": "Google Maps",
     "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
 },
-    "MakeUp Products": {
-        "info": "Excel file containing 3,200 makeup & beauty products records in the Saudi market. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
-        "feature2": "3000 barcode",
-        "feature1": "3200 Rows",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-makeup-products",
-        "gift": "",
-        "originalprice": "",
-        "price": "45$",
-        "category": "Products",
-        "productlink": "https://pay.hotmart.com/X96560134P?off=nbks0k50",
-        "samplelink": "https://barmga.com/samples/SA-Sample-Makeup-Products.xlsx",
-        "family": "health, commerce",
-        "videolink": "https://player.vimeo.com/video/1032665964?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2024",
-        "source": "",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
     "Pharmaceutical Products": {
         "info": "Excel file containing 8,400 pharmacy products records in the Saudi market. Contains information on medicines, care products, dietary supplements, makeup, and mother and child supplies. All products are accompanied by images and include details such as name, price, and description, if available. Barcode numbers are available for most products.",
         "feature2": "",
@@ -2080,7 +2146,7 @@ var allproducts ={
     "price": "85$",
     "category": "Products",
     "productlink": "https://pay.hotmart.com/G96523641C?off=qqvaonti",
-    "samplelink": "https://barmga.com/samples/_Sample-Supermarket-Products-sa.xlsx",
+    "samplelink": "https://barmga.com/samples/Sample-Supermarket-Products-sa.xlsx",
     "family": "commerce, food",
     "videolink": "https://player.vimeo.com/video/1110512087?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
     "subtitle": "Database",
@@ -2088,25 +2154,6 @@ var allproducts ={
     "source": "Altamimi Store",
     "reviews": "https://mostaql.com/u/barmga/reviews/7367510"
 },
-    "Job Advertisements": {
-        "info": "Excel file dedicated to job advertisements posted on Telegram groups. Useful for job seekers.",
-        "feature2": "2,000 Email Addresses",
-        "feature1": "5,000 ADs",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-job-ads",
-        "gift": "",
-        "originalprice": "",
-        "price": "Free",
-        "category": "Ads",
-        "productlink": "https://barmga.com/samples/SA-Telegram-Job-Ads.xlsx",
-        "samplelink": "",
-        "family": "education",
-        "videolink": "https://player.vimeo.com/video/1032585423?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2024",
-        "source": "Telegram Groups & Channels",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },
     "Schools": {
         "info": "Excel files containing over 8,000 contact details for schools, kindergartens, and educational centers. Can be used to market anything that benefits children and the education sector.",
         "feature2": "1,800 Email Addresses",
@@ -2239,24 +2286,6 @@ var allproducts ={
         "date": "2025",
         "source": "SFDA",
         "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
-    },    "Riyadh Realestate Ads": {
-        "info": "Excel file containing 40,000 real estate listings in Riyadh from AQAR website, including all available details for each listing. The data helps analyze the real estate market, filter information, and easily access the desired offers.",
-        "feature2": "",
-        "feature1": "40,000 Rows",
-        "feature3": "1 Sheet | Excel File",
-        "id": "sa-aqar-riyadh",
-        "gift": "",
-        "originalprice": "99$",
-        "price": "65$",
-        "category": "Ads",
-        "productlink": "https://pay.hotmart.com/I98976213O",
-        "samplelink": "https://barmga.com/samples/Sample-SA-Riyadh-AQAR.xlsx",
-        "family": "realestate",
-        "videolink": "https://player.vimeo.com/video/1071150086?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
-        "subtitle": "Database",
-        "date": "2025 (23-26 march)",
-        "source": "AQAR",
-        "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
     },    "Car Parts Stores": {
         "info": "Excel file containing 5,000 contact details for car parts companies & stores in Saudi Arabia. Useful for wholesale suppliers for car parts.",
         "feature2": "",
@@ -2330,6 +2359,63 @@ var allproducts ={
     "subtitle": "Database",
     "date": "2025",
     "source": "SFDA",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+,"School Supplies and Toys": {
+    "id": "sa-school-supplies",
+    "info": "A single Excel file contains 19,600 products for office and school supplies, drawing equipment, and toys offered in the Saudi market. All products are accompanied by images and include details such as name, price, description, and other specifications.",
+    "feature1": "19,600 Rows",
+    "feature2": "19,600 Barcodes",
+    "feature3": "1 Sheet | Excel File",
+    "gift": "",
+    "originalprice": "150$",
+    "price": "99$",
+    "category": "Products",
+    "productlink": "https://pay.hotmart.com/M103038485J",
+    "samplelink": "https://barmga.com/samples/Sample-School-Supplies-And-Toys-sa.xlsx",
+    "family": "education",
+    "videolink": "https://player.vimeo.com/video/1138073439?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025",
+    "source": "Jarir Library",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+,"Electronic Products": {
+    "id": "sa-electronic-products",
+    "info": "An Excel file contains 10,600 electronics products offered in the Saudi market. All products are accompanied by images and include details such as name, price, description, barcode and other specifications.",
+    "feature1": "10,600 Rows",
+    "feature2": "10,400 Barcodes",
+    "feature3": "1 Sheet | Excel File",
+    "gift": "",
+    "originalprice": "",
+    "price": "85$",
+    "category": "Products",
+    "productlink": "https://pay.hotmart.com/I103038645K",
+    "samplelink": "https://barmga.com/samples/Sample-Electronic-Products-sa.xlsx",
+    "family": "commerce",
+    "videolink": "https://player.vimeo.com/video/1138073379?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025",
+    "source": "Jarir Library",
+    "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
+}
+,"Jewelry Stores": {
+    "id": "sa-jewelry-stores",
+    "info": "Excel files containing 1,900 contact contact records for jewelry stores.",
+    "feature1": "1,300 Mobile Numbers",
+    "feature2": "",
+    "feature3": "1 Sheet | Excel File",
+    "gift": "",
+    "originalprice": "",
+    "price": "Free",
+    "category": "B2B Listing",
+    "productlink": "https://barmga.com/samples/jewelry-stores.xlsx",
+    "samplelink": "",
+    "family": "commerce",
+    "videolink": "https://player.vimeo.com/video/1138227648?badge=0&autopause=0&player_id=0&byline=0&title=0&quality=720p&portrait=0",
+    "subtitle": "Database",
+    "date": "2025",
+    "source": "Google Maps",
     "reviews": "https://mostaql.com/u/barmga#profile-sidebar"
 }
 //addDictItemHere1
@@ -3002,43 +3088,20 @@ var alltools =  {
 
       "trial": "Premium"
 
-    },
-
-    "WhatsApp Link Generator": {
-
-      "info": "Convert WhatsApp phone numbers into links and send messages easily from your mobile browser and the WhatsApp app with a few clicks!",
-
-      "icon": "bulkwhatsapplinks.webp",
-
-      "id": "bulk-whatsapp-links",
-
-      "url": "https://barmga.com/bulk-whatsapp-links",
-
-      "subtitle": "Marketing Tool",
-
-      "category": "WhatsApp Marketing",
-
-      "videolink": "",
-
-      "features": [
-
-        "Mobile compatible",
-
-        "Quick links",
-
-        "WhatsApp app compatible"
-
-      ],
-
-      "price": "Free",
-
-      "originalprice": "",
-
-      "gift": "",
-
-      "trial": ""
-
-    },
+    },"Invoice Generator": {
+            "info": "Create professional invoices for your clients easily and for free. Add your logo, auto-calculate taxes, and download the invoice as a PDF.",
+            "icon": "invoice-generator.webp",
+            "id": "invoice-generator",
+            "url": "https://tools.barmga.com/invoice-generator",
+            "subtitle": "PDF Invoice Creator",
+            "category": "Business Tools",
+            "videolink": "",
+            "features": ["PDF Export", "Auto Calculation", "Arabic Support"],
+            "price": "Free",
+            "originalprice": "",
+            "gift": "",
+            "trial": "New"
+        },
 
     "Contacts Manager": {
 
@@ -3074,7 +3137,43 @@ var alltools =  {
 
       "trial": ""
 
-    },"QR Code Generator": {
+    },    "WhatsApp Link Generator": {
+
+      "info": "Convert WhatsApp phone numbers into links and send messages easily from your mobile browser and the WhatsApp app with a few clicks!",
+
+      "icon": "bulkwhatsapplinks.webp",
+
+      "id": "bulk-whatsapp-links",
+
+      "url": "https://barmga.com/bulk-whatsapp-links",
+
+      "subtitle": "Marketing Tool",
+
+      "category": "WhatsApp Marketing",
+
+      "videolink": "",
+
+      "features": [
+
+        "Mobile compatible",
+
+        "Quick links",
+
+        "WhatsApp app compatible"
+
+      ],
+
+      "price": "Free",
+
+      "originalprice": "",
+
+      "gift": "",
+
+      "trial": ""
+
+    },
+
+"QR Code Generator": {
     "info": "!",
     "icon": "qrcodegenerator.webp",
     "id": "bulk-email-validator",
@@ -3354,8 +3453,121 @@ if (window.location.href.includes('product=')){
 if (window.location.href.includes('#products')){
     document.querySelector('.moreproducts').click()
 }
+document.addEventListener('input', function (e) {
+    if (e.target && e.target.id === 'productSearch') {
+        const searchInput = e.target;
+        const rawValue = searchInput.value.trim().toLowerCase();
+        const container = document.querySelector('.allproducts');
+        const moreBtnContainer = document.querySelector('.moreproducts')?.parentElement?.parentElement?.parentElement;
+
+        // 1. Reset View if input is empty
+        if (rawValue === "") {
+            propagateproducts(); 
+            if (moreBtnContainer) moreBtnContainer.style.display = 'block';
+            return;
+        }
+
+        // Hide "Show More" button to display all results
+        if (moreBtnContainer) moreBtnContainer.style.display = 'none';
+
+        const getCleanKeywords = (text) => {
+            if (!text) return "";
+            const forbidden = ["the", "and", "for", "with", "saudi", "database", "listing", "products"];
+            return text.toString().toLowerCase()
+                .replace(/[^a-z0-9\s]/g, " ") 
+                .split(/\s+/)
+                .filter(w => w && !forbidden.includes(w))
+                .join(" ")
+                .trim();
+        };
+
+        const query = getCleanKeywords(rawValue);
+        const searchQuery = rawValue.length < 3 ? rawValue : query;
+
+        container.innerHTML = ''; 
+        let matchCount = 0;
+
+        for (let title in allproducts) {
+            const product = allproducts[title];
+            const source = product.source || "";
+            const info = product.info || "";
+
+            const cleanTitle = getCleanKeywords(title);
+            const cleanSource = getCleanKeywords(source);
+
+            if (cleanTitle.includes(searchQuery) || 
+                cleanSource.includes(searchQuery) || 
+                title.toLowerCase().includes(rawValue) ||
+                info.toLowerCase().includes(searchQuery)) {
+                
+                matchCount++;
+
+                // Build HTML
+                let cardHtml = aroducthtml
+                    .replace(/titlehere/g, title)
+                    .replace(/idhere/g, product.id)
+                    .replace(/subhere/g, product.subtitle)
+                    .replace('price', product.price)
+                    .replace('category', product.category)
+                    // Fix 1: Ensure visibility while keeping existing classes
+                    .replace('style="display: block;"', 'style="display: block !important;"')
+                    .replace('imagehere', product.id.replace(/-/g,''))
+                    .replace('rgb(22, 100, 52)', colorbycategory[product.category]);
+
+                // Apply Badges & Fix Positions
+                if(product.originalprice) {
+                    cardHtml = cardHtml.replace('display:none;">discounthere', '">'+calcdisc(product.originalprice, product.price));
+                }
+                
+                if(product.samplelink) {
+                    // Fix 2: Keep the classes so it stays top-left
+                    cardHtml = cardHtml.replace('display:none;">samplehere', 'display:block;">+Free Sample');
+                }
+                
+                if(product.gift) {
+                    // Fix 3: KEY FIX - Keep the "gifthere" class so position:absolute works
+                    cardHtml = cardHtml.replace('gifthere" style="display:none;', 'gifthere" style="display:block;');
+                }
+                
+                if(product.price === "Free") {
+                    cardHtml = cardHtml.replace('background-color: #cb9910', 'background-color: rgb(5, 158, 189)');
+                }
+
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            }
+        }
+
+        if (matchCount === 0) {
+            container.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <h5 class="text-white">No results found for "${rawValue}"</h5>
+                </div>`;
+        }
+    }
+});
 </script>
     <script>if(window.location.href.includes('?cat=products')){document.querySelector('[id="productsx"]').click();document.querySelector('#products').scrollIntoView()}</script>
+<img style="display: none;" data-ref="track" src="">
+<script>
+    // 1. Get the query parameters from the current URL
+const urlParams = new URLSearchParams(window.location.search);
+var imagelinks = {
+  '01': 'https://bit.ly/qiita-img',
+  '02': 'https://bit.ly/testbook-img'
+};
+// 2. Check if the parameter 'a' has the value '01'
+if (['01', '02'].includes(urlParams.get('a'))) {
+  
+  // 3. Find the specific image element
+  const targetImg = document.querySelector('img[data-ref="track"]');
+  
+  // 4. Update the src attribute if the element exists
+  if (targetImg) {
+    targetImg.src = imagelinks[urlParams.get('a')];
+  }
+}
+</script>
+
 
 </body>
 
