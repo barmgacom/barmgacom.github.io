@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword Intel Dashboard | KSA & Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .gold-nugget { border: 2px solid #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); }
+        .loader { border-top-color: #3b82f6; animation: spinner 1.5s linear infinite; }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                Keyword Intelligence Reporter
+            </h1>
+            <p class="text-slate-400 mb-8">Uncover high-volume, low-competition "Gold Nuggets" in the Gulf & Beyond.</p>
+            
+            <div class="glass p-6 rounded-2xl flex flex-col md:flex-row gap-4 items-center">
+                <select id="countrySelect" class="bg-slate-800 border-none rounded-lg p-3 w-full md:w-48 text-white focus:ring-2 focus:ring-blue-500">
+                    <option value="sa">🇸🇦 Saudi Arabia</option>
+                    <option value="ae">🇦🇪 UAE</option>
+                    <option value="qa">🇶🇦 Qatar</option>
+                    <option value="tn">🇹🇳 Tunisia</option>
+                    <option value="us">🇺🇸 USA</option>
+                    <option value="gb">🇬🇧 UK</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Enter seed keyword (e.g. 'how to...')" 
+                       class="flex-1 bg-slate-800 border-none rounded-lg p-3 w-full text-white focus:ring-2 focus:ring-blue-500">
+                <button onclick="fetchData()" class="bg-blue-600 hover:bg-blue-500 transition px-8 py-3 rounded-lg font-bold w-full md:w-auto">
+                    Analyze Market
+                </button>
+            </div>
+        </header>
+
+        <div id="loader" class="hidden flex justify-center my-10">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-slate-700 h-12 w-12"></div>
+        </div>
+
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </div>
+
+    <script>
+        const SUBTYPE_MAP = {
+            512: { label: "Standard Query", desc: "Easy to rank with text/articles.", icon: "📝" },
+            433: { label: "Entity/Brand", desc: "Hard competition. Major brand or movie recognized.", icon: "🏢" },
+            131: { label: "Rich Media", desc: "Triggers videos/images. High visual intent.", icon: "🎬" },
+            650: { label: "Navigational", desc: "User wants a specific site (Facebook, Gmail, etc).", icon: "🔗" },
+            22:  { label: "Local Intent", desc: "Triggers Maps. Perfect for physical business leads.", icon: "📍" }
+        };
+
+        async function fetchData() {
+            const query = document.getElementById('searchInput').value;
+            const country = document.getElementById('countrySelect').value;
+            const grid = document.getElementById('resultsGrid');
+            const loader = document.getElementById('loader');
+
+            if (!query) return alert("Please enter a keyword!");
+
+            grid.innerHTML = "";
+            loader.classList.remove('hidden');
+
+            try {
+                // Using a proxy to avoid CORS issues if testing locally
+                const proxy = "https://api.allorigins.win/get?url=";
+                const target = `https://suggestqueries.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}&gl=${country}&hl=en`;
+                
+                const response = await fetch(proxy + encodeURIComponent(target));
+                const rawData = await response.json();
+                const data = JSON.parse(rawData.contents);
+
+                const suggestions = data[1];
+                const relevance = data[4]["google:suggestrelevance"];
+                const subtypes = data[4]["google:suggestsubtypes"];
+
+                loader.classList.add('hidden');
+
+                suggestions.forEach((term, i) => {
+                    const score = relevance[i];
+                    const codes = subtypes[i] || [512];
+                    renderCard(term, score, codes);
+                });
+
+            } catch (error) {
+                console.error(error);
+                loader.classList.add('hidden');
+                alert("Error fetching data. Try a different keyword.");
+            }
+        }
+
+        function renderCard(term, score, codes) {
+            const grid = document.getElementById('resultsGrid');
+            
+            // Logic for "Gold Nugget" status
+            const isStandard = codes.length === 1 && codes.includes(512);
+            const isHighVolume = score > 580;
+            const isGold = isStandard && isHighVolume;
+
+            const card = document.createElement('div');
+            card.className = `glass p-6 rounded-2xl transition hover:scale-105 ${isGold ? 'gold-nugget' : ''}`;
+            
+            const typeInfo = codes.map(c => SUBTYPE_MAP[c] || {label: "Unknown", desc: "General search", icon: "❓"});
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-xs font-bold px-2 py-1 rounded bg-blue-500/20 text-blue-400">Score: ${score}</span>
+                    ${isGold ? '<span class="text-xs font-bold px-2 py-1 rounded bg-amber-500 text-black">💰 GOLD NUGGET</span>' : ''}
+                </div>
+                <h3 class="text-xl font-bold mb-2">${term}</h3>
+                <div class="space-y-3 mt-4">
+                    ${typeInfo.map(t => `
+                        <div class="flex items-start gap-3 text-sm">
+                            <span class="text-xl">${t.icon}</span>
+                            <div>
+                                <p class="font-bold text-slate-200">${t.label}</p>
+                                <p class="text-slate-400 text-xs">${t.desc}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/10">
+                    <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Recommended Strategy</p>
+                    <p class="text-sm text-emerald-400 mt-1">${isGold ? 'Dominate this niche with an SEO blog post.' : 'Analyze competitor site authority before entry.'}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+        }
+    </script>
+</body>
+</html>
