@@ -45,6 +45,9 @@
     <link href="css/style.css" rel="stylesheet">
     
     <style>
+        #submitted {
+    scroll-margin-bottom: 100px;
+}
 /* Style for the gray circle and question mark */
 .info-icon {
   /* --- CRUCIAL CHANGE: Positioning Reference --- */
@@ -1183,64 +1186,6 @@
         body.loaded * {
             animation-play-state: running;
         }
-        
-        @media (max-width: 992px) {
-            .pricing-card.featured {
-                transform: none;
-            }
-        }
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            .contact-form {
-                padding: 25px;
-            }
-            .pricing-amount {
-                font-size: 2.8rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            .btn-primary-custom, .btn-accent {
-                padding: 10px 25px;
-                font-size: 0.95rem;
-            }
-            .pricing-amount {
-                font-size: 2.5rem;
-            }
-
-            .portfolio-content .d-flex {
-                flex-direction: column;
-            }
-            
-            .hero-cta .btn {
-                padding: 12px 28px;
-                font-size: 1rem;
-            }
-
-            .portfolio-content .d-flex .btn-sm {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            .portfolio-content .d-flex .btn-primary-custom.btn-sm {
-                border: 2px solid transparent;
-            }
-        }
-        
-        * {
-            animation-play-state: paused;
-        }
-        
-        body.loaded * {
-            animation-play-state: running;
-        }
     </style>
 </head>
 <body class="loaded">
@@ -1409,7 +1354,6 @@
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> استضافة سريعة على Cloudflare Pages</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> ربط مع إحصاءات جوجل (Analytics)</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i>دعم فني كامل الى غاية إطلاق موقعك</li>
-
                         </ul>
                         <a href="#portfolio" class="btn btn-outline-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: الباقة المبتدئة 199 دولارًا')">ابدأ الآن</a>
                     </div>
@@ -1429,7 +1373,6 @@
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> استضافة سريعة على Cloudflare Pages</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i> ربط مع إحصاءات جوجل (Analytics)</li>
                             <li><i class="bi bi-check-circle-fill text-success ms-2"></i>دعم فني كامل الى غاية إطلاق موقعك</li>
-
                         </ul>
                         <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('التسعير: الباقة الأساسية 299 دولارًا')">ابدأ الآن</a>
                     </div>
@@ -1437,7 +1380,6 @@
                 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="pricing-card fade-in-up">
-
                         <div class="pricing-amount">مخصص</div>
                         <div class="pricing-discount">يتم تحديد السعر بعد مناقشة المتطلبات</div>
                         <div class="pricing-period"><strong>باقة مخصصة</strong></div>
@@ -1514,26 +1456,28 @@
                 
                 <div class="col-lg-6">
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse" target="hidden_iframe">
                             <div class="mb-3">
-                                <label for="fullName" class="form-label">الاسم الكامل *</label>
-                                <input type="text" class="form-control" id="fullName" required>
+                                <label class="form-label">الاسم الكامل *</label>
+                                <input type="text" class="form-control" name="entry.2005620554" id="fullName" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">رقم الجوال *</label>
-                                <input type="text" class="form-control" id="phone" required>
+                                <label class="form-label">رقم الجوال *</label>
+                                <input type="text" class="form-control" name="entry.1166974658" id="phone" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">البريد الإلكتروني *</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <label class="form-label">البريد الإلكتروني *</label>
+                                <input type="email" class="form-control" name="entry.1045781291" id="email" required>
                             </div>
                             <div class="mb-4">
-                                <label for="project" class="form-label">أخبرنا عن مشروعك</label>
-                                <textarea class="form-control" id="project" rows="4" placeholder="صف طبيعة عملك وما تحتاجه في الموقع الإلكتروني..."></textarea>
+                                <label class="form-label">أخبرنا عن مشروعك</label>
+                                <textarea class="form-control" name="entry.839337160" id="project" rows="4" placeholder="صف طبيعة عملك وما تحتاجه في الموقع الإلكتروني..."></textarea>
                             </div>
-                            <input type="hidden" id="contactSubject" name="subject">
+                            <input type="hidden" name="entry.1466964258" id="ipInput" value="IP_NOT_FOUND">
+                            <input type="hidden" name="entry.1065046570" id="contactSubject">
+                            
                             <button type="submit" class="btn btn-primary-custom w-100 btn-lg mb-3">إرسال الطلب</button>
-                            <small class="position-relative mt-2" id="submitted" style="align-items: center; color: rgb(43, 143, 43);"></small>
+                            <small class="position-relative mt-2 d-block text-center" id="submitted" style="font-weight: 600; font-size: 1rem;"></small>
                         </form>
                     </div>
                 </div>
@@ -1541,14 +1485,16 @@
         </div>
     </section>
 
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submittedForm) { handleFormSuccess(); }"></iframe>
+
     <div class="modal fade" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #f8f9fa;">
-                                       <h5 class="modal-title" id="serviceDetailsModalLabel">تفاصيل الخدمة</h5>
+                                                                       <h5 class="modal-title" id="serviceDetailsModalLabel">تفاصيل الخدمة</h5>
  <div style="flex-grow: 1;"></div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0; margin-right: auto;"></button>
-                                      
+                                                                      
                 </div>
                 <div class="modal-body">
                     <h5 class="text-primary">القالب المختار</h5>
@@ -1565,7 +1511,7 @@
                         <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تصميم مشابه للقالب</strong> الذي اخترته من معرض أعمالنا.</li>
                         <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>تخصيص كامل</strong> يشمل معلومات شركتك والمحتوى الخاص بك.</li>
                         <li class="list-group-item"><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>استضافة عالية الأداء</strong> على Cloudflare Pages لسرعة وموثوقية عالية.&nbsp;<span class="info-icon">
-      ؟
+       ؟
       <span class="tooltip-text">
         الاستضافة مقدمة مجانا من منصة كلاود فلير.
       </span>
@@ -1576,7 +1522,7 @@
                     </ul>
 
                     <h5 class="text-primary">المعلومات المطلوبة</h5>
-                    <p>لبناء موقعك، يرجى إرسال التفاصيل التالية إلى <a href="mailto:info@barmga.com">info@barmga.com</a></p>
+                    <p>لبناء موقعك, يرجى إرسال التفاصيل التالية إلى <a href="mailto:info@barmga.com">info@barmga.com</a></p>
                     <ul class="list-group list-group-flush mb-4 text-end">
                         <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> اسم الشركة</li>
                         <li class="list-group-item"><i class="fa fa-dot-circle-o ms-2" style="color: #2e91cf;"></i> نبذة مختصرة عن شركتك</li>
@@ -1789,7 +1735,7 @@
                     <a class="btn btn-linkx" href="https://barmga.com/ar#services">خدماتنا</a>
                     <a class="btn btn-linkx" href="https://barmga.com/ar#products">قواعد البيانات</a>
                     <a class="btn btn-linkx" href="https://barmga.com/ar#tools">أدوات الأعمال</a>
-                                        <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
+                                                        <a class="btn btn-linkx" href="https://barmga.com/blog-ar">المدونة</a>
 
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -2144,52 +2090,61 @@
     </script>
     
     <script>
-        document.querySelector('#contactForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+        // متغيرات للتحكم بحالة إرسال الـ iframe والنموذج لمنع التعليق
+        var submittedForm = false;
 
+        // تحديث حقل الـ IP المخصص إذا كان متوفراً بالصفحة
+        if (typeof theip !== 'undefined') {
+            document.getElementById('ipInput').value = String(theip);
+        }
+
+        document.querySelector('#contactForm').addEventListener('submit', function(event) {
             var nameInput = document.querySelector('#fullName');
             var emailInput = document.querySelector('#email');
-            var messageInput = document.querySelector('#project');
-            var phone= document.querySelector('#phone');
-            var subject= document.querySelector('#contactSubject');
+            var phone = document.querySelector('#phone');
+            var submitButton = this.querySelector('button[type="submit"]');
 
-            var formData = {
-                'entry.1466964258': typeof theip !== 'undefined' ? String(theip) : 'IP_NOT_FOUND',
-                'entry.2005620554': nameInput.value,
-                'entry.1045781291': emailInput.value,
-                'entry.1166974658': phone.value,
-                'entry.1065046570': subject.value,
-                'entry.839337160': messageInput.value,
-            };
-            
-            // Mock internet check if function missing
-            var isonline = typeof isInternetFunctional === 'function' ? await isInternetFunctional() : true;
-
-            if( nameInput.value && emailInput.value && phone.value && messageInput.value && isonline){
-                var script = document.createElement('script');
-                script.src = 'https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse?callback=callbackFunction2&' + 
-                    Object.keys(formData).map(function(key) {
-                        return key + '=' + encodeURIComponent(formData[key]);
-                    }).join('&');
-                document.body.appendChild(script);
+            if (nameInput.value && emailInput.value && phone.value) {
+                // تفعيل حالة التحميل وتغيير نص الزر مباشرة لحماية البيانات من التكرار
+                submittedForm = true;
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'جاري إرسال الطلب...';
+                }
+            } else {
+                event.preventDefault();
             }
         });
 
-        function callbackFunction2() {
+        // دالة النجاح المستدعاة فور اكتمال معالجة الـ iframe خلف الكواليس
+        function handleFormSuccess() {
+            // تفريغ حقول الإدخال
             document.querySelector('#fullName').value = '';
             document.querySelector('#email').value = '';
             document.querySelector('#phone').value = '';
             document.querySelector('#contactSubject').value = '';
             document.querySelector('#project').value = '';
             
-            var message=document.querySelector("#submitted")
-            if(message) {
-                message.textContent = 'تم الإرسال! سنتواصل معكم في أقرب وقت.';
-                message.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
+            // إعادة تفعيل زر الإرسال
+            var submitButton = document.querySelector('#contactForm button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'إرسال الطلب';
             }
+            
+            // إظهار رسالة النجاح الخضراء للمستخدم ومحاذاتها عند حافة الصفحة السفلية
+            var message = document.querySelector("#submitted");
+            if (message) {
+                message.style.color = 'rgb(43, 143, 43)';
+                message.textContent = 'تم الإرسال بنجاح! سنتواصل معكم في أقرب وقت.';
+                message.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            
+            // إعادة تصفير حالة النموذج
+            submittedForm = false;
         }
     </script>
-        <script>
+    <script>
         // Function to check screen width and update the element
 function setTargetBlankOnLargeScreen() {
   // 1. Get the screen width in pixels

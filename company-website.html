@@ -1,57 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-850CMRFY24"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-850CMRFY24');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barmga - Professional Website Development | Get Online Today</title>
     <meta name="description" content="Barmga builds professional, SEO-ready websites that grow your business 24/7. Get a free quote today!">
     <meta property="og:type" content="website">
-<meta property="og:url" content="https://barmga.com/company-website">
-<meta property="og:title" content="Barmga - Professional Website Development | Get Online Today">
-<meta property="og:description" content="Barmga builds professional, SEO-ready websites that establish your credibility, attract new clients, and grow your business 24/7. Get a free quote today!">
-<meta property="og:image" content="https://barmga.com/templates/og-image.jpg">
-<meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://barmga.com/company-website">
+    <meta property="og:title" content="Barmga - Professional Website Development | Get Online Today">
+    <meta property="og:description" content="Barmga builds professional, SEO-ready websites that establish your credibility, attract new clients, and grow your business 24/7. Get a free quote today!">
+    <meta property="og:image" content="https://barmga.com/templates/og-image.jpg">
+    <meta property="og:locale" content="en_US">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://barmga.com/company-website">
-<meta property="twitter:title" content="Barmga - Professional Website Development | Get Online Today">
-<meta property="twitter:description" content="Barmga builds professional, SEO-ready websites that establish your credibility, attract new clients, and grow your business 24/7. Get a free quote today!">
-<meta property="twitter:image" content="https://barmga.com/templates/og-image.jpg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://barmga.com/company-website">
+    <meta property="twitter:title" content="Barmga - Professional Website Development | Get Online Today">
+    <meta property="twitter:description" content="Barmga builds professional, SEO-ready websites that establish your credibility, attract new clients, and grow your business 24/7. Get a free quote today!">
+    <meta property="twitter:image" content="https://barmga.com/templates/og-image.jpg">
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="images/logo.png" />
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet --> 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     
-    <!-- Custom styles from your existing page to maintain consistency -->
     <style>
-                .portfolio-image img {
+/* Style for the gray circle and question mark */
+.info-icon {
+  /* --- CRUCIAL CHANGE: Positioning Reference --- */
+  /* This allows the child tooltip-text to be positioned relative to the icon itself. */
+  position: relative; 
+  /* ------------------------------------------- */
+
+  /* Display as inline-block to allow setting dimensions */
+  display: inline-block;
+  
+  /* Circle dimensions */
+  width: 12px;
+  height: 12px;
+  
+  /* Make it a circle */
+  border-radius: 50%;
+  
+  /* Colors */
+  background-color: #ccc; /* Gray background */
+  color: #333; /* Darker text for the question mark */
+  
+  /* Center the question mark */
+  text-align: center;
+  line-height: 12px;
+  font-size: 8px;
+  font-weight: bold;
+  
+  /* Cursor to indicate interactivity */
+  cursor: pointer;
+  
+  /* Spacing */
+  top: -2px; /* A little vertical adjustment */
+  margin-left: 5px; /* Space between the list text and the icon */
+}
+
+/* Style for the hidden tooltip box */
+.tooltip-text {
+  /* --- CRUCIAL CHANGE: Absolute Positioning --- */
+  position: absolute;
+  /* ------------------------------------------ */
+  
+  /* Initially hidden */
+  visibility: hidden;
+  opacity: 0;
+  
+  /* Box styling */
+  width: 200px;
+  background-color: #555; /* Dark background */
+  color: #fff; /* White text */
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  
+  /* Placement (to the right of the circle) */
+  left: 100%; /* Start just past the circle's right edge */
+  top: 50%;
+  
+  /* Adjustments */
+  margin-left: 10px; /* Space between the circle and the box */
+  transform: translateY(-50%); /* Vertical centering */
+  line-height: 1.5;
+  z-index: 10000; /* Make sure it appears above other content */
+  transition: opacity 0.3s;
+}
+
+/* Show the tooltip when hovering over the info-icon */
+.info-icon:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+        .contact-form {
+  scroll-margin-top: 100px;
+}
+        .selected-template-card {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.selected-template-card img {
+    width: 100px; /* Fixed small width */
+    height: 75px; /* Fixed height */
+    object-fit: cover;
+    object-position: top; /* Ensures the top of the preview is shown */
+    border-radius: 6px; /* Slightly rounded corners for image */
+    margin-right: 15px;
+    border: 1px solid #ccc;
+}
+
+.selected-template-info h6 {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+}
+        .form-check-input{border-width: 2px;}
+        h5{font-weight:bold !important;}
+            .portfolio-image img {
   object-position: top;
 }
-                .hidden{display: none !important;}
+            .hidden{display: none !important;}
 
+        /* Styling for the new Service Details Modal */
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-body {
+            max-height: calc(100vh - 200px); /* Adjust based on header/footer */
+            overflow-y: auto;
+        }
+
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-footer {
+            position: sticky;
+            bottom: 0;
+            background-color: #f8f9fa; /* Light background for footer */
+            border-top: 1px solid #dee2e6;
+            z-index: 1055;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        [aria-labelledby="serviceDetailsModalLabel"] .modal-header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff; /* White background for header */
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1055;
+            width: 100%;
+        }
+
+        /* Styling for Terms Modal */
         [aria-labelledby="termsModalLabel"] .modal-body.scrollable-body {
             max-height: calc(100vh - 140px);
             /* Adjust based on your header and footer height */
@@ -60,9 +188,7 @@
             /* Adjust the value as needed */
             padding-top: 20px;
             /* Adjust the value as needed */
-
         }
-
 
         [aria-labelledby="termsModalLabel"] .modal-header {
             position: sticky;
@@ -81,11 +207,9 @@
         .shadowed {
             color: #452d8c;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Modern shadow effect */
         }
 
         .how-it-works {
-
             padding: 40px 0;
         }
 
@@ -114,7 +238,7 @@
             font-weight: bold;
         }
 
-
+.bold{font-weight: bold;}
         .steps .step-title {
             font-size: 1.2rem;
             margin-bottom: 5px;
@@ -130,54 +254,45 @@
             height: auto;
             border-radius: 10px;
         }
+
+        /* ✨ FIX: Apply scroll margin bottom for success message space ✨ */
+        #submitted {
+            scroll-margin-bottom: 100px;
+        }
     </style>
     <style>
-        body {
+        body,h4,h5 {
             font-family: 'Gabriela', serif !important;
         }
 
-        .tool>*,.lab {
+        .tool>*, .lab {
             margin-top: 10px;
-            /* Adjust the value as needed */
             margin-bottom: 10px;
-            /* Adjust the value as needed */
         }
 
         #fixed_button {
             position: fixed;
             bottom: 65px;
-            /* Space from the bottom */
             right: 35px;
-            /* Space from the right */
             width: 45px;
-            /* Slightly larger for a modern look */
             height: 45px;
-            /* Slightly larger for a modern look */
             border-radius: 50%;
-            /* Rounded button */
             color: white;
             border: none;
             cursor: pointer;
             z-index: 100000;
-            /* Ensure it stays above other content */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Modern shadow effect */
             transition: box-shadow 0.3s ease, transform 0.3s ease;
-            /* Smooth transition */
         }
 
         #fixed_button:hover {
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            /* Enhanced shadow on hover */
             transform: translateY(-2px);
-            /* Slight lift effect on hover */
         }
 
         .btn-custom {
             max-width: 250px;
-            /* Adjust the width as needed */
             min-width: 150px;
-            /* Adjust the width as needed */
         }
 
         .card {
@@ -194,7 +309,6 @@
             border-color: var(--secondary);
         }
 
-
         .container {
             width: 100%;
         }
@@ -205,7 +319,6 @@
 
         :target {
             padding-top: 70px;
-            /* height of your navbar */
             margin-top: -70px;
         }
 
@@ -245,12 +358,10 @@
             color: rgb(11, 3, 112) !important;
         }
 
-
         .navbar {
             position: fixed !important;
             top: 0;
             z-index: 1020;
-            /* Bootstrap's z-index for sticky navbar */
         }
 
         .navbar {
@@ -258,7 +369,6 @@
             z-index: 100;
             background-color: white;
             font-family: 'Gabriela', serif !important;
-
         }
 
         .nav-item {
@@ -267,24 +377,17 @@
         }
 
         .nav-item:hover {
-
             background-color: rgb(218, 226, 235);
             border-radius: 30px;
             padding: 0px 10px;
-            /* Adjust as needed */
-
         }
 
         @media (max-width: 992px) {
-
-            /* Adjust as per your navbar's collapsing breakpoint */
             .navbar-nav .nav-item.dropdown:hover {
                 position: static;
                 float: none;
                 width: 100%;
                 background-color: rgb(218, 226, 235);
-                border-color: rgba(240, 248, 255, 0);
-                /* Adjust as per your requirement */
                 border-radius: 30px;
             }
 
@@ -294,8 +397,6 @@
                 float: none;
                 width: 100%;
                 background-color: rgb(218, 226, 235);
-                border-color: rgba(240, 248, 255, 0);
-                /* Adjust as per your requirement */
                 border-radius: 30px;
             }
         }
@@ -305,9 +406,7 @@
             position: absolute;
             top: 35%;
             font-size: 200%;
-            /* Increase size */
             font-weight: bold;
-            /* Make thicker */
             z-index: 10;
             color: white;
         }
@@ -322,13 +421,10 @@
 
         .owl-dots {
             text-align: center;
-            /* Center the dots */
             padding-top: 30px;
-            /* Add space above the dots */
         }
 
         .owl-dots .owl-dot {
-
             display: inline-block;
             width: 10px;
             height: 10px;
@@ -348,7 +444,6 @@
         .shadowed {
             color: #452d8c;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Modern shadow effect */
         }
 
         .loader {
@@ -380,45 +475,17 @@
         }
 
         @keyframes before {
-            0% {
-                width: 0.5em;
-                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            35% {
-                width: 2.5em;
-                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            70% {
-                width: 0.5em;
-                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
-            }
-
-            100% {
-                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-            }
+            0% { width: 0.5em; box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75); }
+            35% { width: 2.5em; box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75); }
+            70% { width: 0.5em; box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75); }
+            100% { box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75); }
         }
 
         @keyframes after {
-            0% {
-                height: 0.5em;
-                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-            }
-
-            35% {
-                height: 2.5em;
-                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
-            }
-
-            70% {
-                height: 0.5em;
-                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
-            }
-
-            100% {
-                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-            }
+            0% { height: 0.5em; box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75); }
+            35% { height: 2.5em; box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75); }
+            70% { height: 0.5em; box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75); }
+            100% { box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75); }
         }
 
         .loader {
@@ -469,7 +536,6 @@
     height: 100%;
     object-fit: cover;
 }
-        /* Custom CSS Variables */
         :root {
             --primary-color: #2780b7;
             --primary-colorx: #38a1e2;
@@ -484,7 +550,6 @@
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Base Typography */
         body {
             font-family: 'Lato', sans-serif;
             line-height: 1.6;
@@ -509,7 +574,6 @@
             margin-bottom: 4rem;
         }
 
-        /* Custom Button Styles */
         .btn-outline-custom {
             background-color: white;
             color: var(--primary-color);
@@ -636,7 +700,6 @@
             left: 100%;
         }
         
-        /* Navigation */
         .navbar {
             transition: all 0.3s ease-in-out;
         }
@@ -663,15 +726,14 @@
             color: var(--primary-color) !important;
         }
         
-        /* === MODIFIED HERO SECTION === */
         .hero-section {
-            background: #496684; /* Changed background to dark */
+            background: #496684;
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            color: white; /* Changed default text color to light */
+            color: white;
         }
                 
         .hero-content {
@@ -684,29 +746,28 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            color: white; /* Changed text color */
+            color: white;
         }
         
         .hero-subtitle {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8); /* Changed text color */
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2.5rem;
             max-width: 600px;
         }
         
         .learn-more-link {
-            color: rgba(255, 255, 255, 0.7); /* Changed text color */
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
         }
         
         .learn-more-link:hover {
-            color: white; /* Changed hover color */
+            color: white;
             text-decoration: underline;
         }
 
-        /* === MODIFIED HERO SECTION BACKGROUND ANIMATION === */
         .hero-bg-animation {
             position: absolute;
             top: 0;
@@ -720,11 +781,10 @@
             position: absolute;
             display: block;
             list-style: none;
-            background: rgba(255, 255, 255, 0.1); /* Changed squares to be lighter */
+            background: rgba(255, 255, 255, 0.1);
             animation: animate-shapes 10s linear infinite;
             bottom: -180px;
         }
-        /* Applied negative animation-delay to start animation mid-way */
         .hero-bg-animation span:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: -3s; }
         .hero-bg-animation span:nth-child(2) { left: 10%; width: 30px; height: 30px; animation-delay: -1s; animation-duration: 12s; }
         .hero-bg-animation span:nth-child(3) { left: 70%; width: 30px; height: 30px; animation-delay: -0s; }
@@ -738,8 +798,6 @@
             100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; }
         }
 
-        /* Staggered Hero Content Animation */
-
         body.loaded .hero-title, body.loaded .hero-subtitle, body.loaded .hero-cta, body.loaded .learn-more-link {
             animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -751,7 +809,6 @@
         body.loaded .hero-cta { transform: translateY(30px); animation-delay: 0.6s; }
         body.loaded .learn-more-link { transform: translateY(30px); animation-delay: 0.8s; }
         
-        /* Portfolio Section */
         .portfolio-section {
             padding: 100px 0;
             background: white;
@@ -816,7 +873,6 @@
             margin-bottom: 1.5rem;
         }
         
-        /* Features Section */
         .features-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -857,20 +913,15 @@
             font-weight: 600;
             margin-bottom: 1rem;
         }
-        /* Special Offer Section */
         .special-offerx {
             background: var(--bg-pattern);
-
             color: white;
             overflow: hidden;
         }
         
         .special-offerx::before {
-
             background: rgba(0,0,0,0.2);
-
-        }       
-        /* Special Offer Section */
+        }        
         .special-offer {
             background: var(--bg-pattern);
             padding: 80px 0;
@@ -913,7 +964,6 @@
                 .offer-contentx {
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
-        /* Process Section */
         .process-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -957,9 +1007,8 @@
             margin-bottom: 1rem;
         }
         
-        /* Contact Section */
         .contact-section {
-            padding: 100px 0;
+            padding: 50px 0;
             background: white;
         }
         
@@ -983,7 +1032,6 @@
             box-shadow: 0 0 0 0.2rem rgba(39, 128, 183, 0.25);
         }
         
-        /* Pricing Section */
         .pricing-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
@@ -1026,12 +1074,11 @@
             margin-bottom: 0.25rem;
         }
 
-        /* NEW: Pricing Discount Style */
         .pricing-discount {
             font-size: 0.95rem;
             color: var(--light-text);
             margin-bottom: 1rem;
-            min-height: 22px; /* Reserve space to prevent layout shift */
+            min-height: 22px; 
         }
         .pricing-discount del {
             margin-right: 8px;
@@ -1054,7 +1101,6 @@
             border: 3px solid var(--primary-color);
             transform: scale(1.05);
             position: relative;
-            padding-top: 20px;
         }
         
         .pricing-card.featured::after {
@@ -1080,17 +1126,12 @@
             border-bottom: none;
         }
         
-
-        
-
-        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         
-        /* Animation Classes */
         .fade-in-up {
             opacity: 0;
             transform: translateY(50px);
@@ -1106,7 +1147,6 @@
             animation-play-state: running;
         }
         
-        /* Responsive Design */
         @media (max-width: 992px) {
             .pricing-card.featured {
                 transform: none;
@@ -1143,20 +1183,16 @@
                 flex-direction: column;
             }
             
-            /* === NEW FIX: HERO BUTTON SIZE === */
             .hero-cta .btn {
                 padding: 12px 28px;
                 font-size: 1rem;
             }
 
-            /* === NEW FIX: PORTFOLIO BUTTONS HEIGHT === */
             .portfolio-content .d-flex .btn-sm {
-                /* Unify vertical padding for both buttons */
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
             .portfolio-content .d-flex .btn-primary-custom.btn-sm {
-                /* Add a transparent border to match the outline button's border thickness, ensuring identical heights */
                 border: 2px solid transparent;
             }
         }
@@ -1169,16 +1205,12 @@
             animation-play-state: running;
         }
     </style>
-
 </head>
-<body>
-
-
-    <div class="loaderx fullscreen">
+<body class="loaded">
+    <div class="loaderx fullscreen" style="display: none;">
         <div class="loader"></div>
     </div>
     <div class="container-fluid bg-white p-0">
-        <!-- Navbar Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
                 <div class="container px-5">
@@ -1195,7 +1227,7 @@
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#products">Databases</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#services">Services</a></li>
                             <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#about">About</a></li>
-                            <li class="nav-item"><a class="nav-link me-lg-3" href="https://barmga.com/?lang=en#contact">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link me-lg-3" href="#contact">Contact</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item dropdown">
@@ -1224,7 +1256,7 @@
                         <h1 class="hero-title section-titlex mb-4 mt-5">Your Competitors Are Online. Where Are You?</h1>
                         <p class="hero-subtitle mx-auto offer-contentx">Barmga builds powerful, professional websites that establish your credibility, attract new clients, and grow your business 24/7.</p>
                         <div class="hero-cta">
-                            <a href="#portfolio" class="btn btn-primary-customx btn-lg me-3 mb-3" onclick="setContactSubject('Header CTA')">Get Your Professional Website</a>
+                            <a href="#portfolio" class="btn btn-primary-customx btn-lg me-3 mb-3">Get Your Professional Website</a>
                         </div>
                         <div class="mt-4">
                             <a href="#features" class="learn-more-link">Learn More <i class="bi bi-arrow-down"></i></a>
@@ -1244,123 +1276,7 @@
             </div>
         </div>
         
-        <div class="row">
-            <div id="work-1" class="col-lg-4 col-md-6">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-1-enn.jpg" alt="Construction Company Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Construction Template 1</h3>
-                        <p class="portfolio-description">A professional website design for construction companies, perfect for a new startup.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/builder-1/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Select Design: Construction Template 1')">Select Design</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-2" class="col-lg-4 col-md-6">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-2-enn.jpg" alt="Construction Company Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Construction Template 2</h3>
-                        <p class="portfolio-description">A modern and professional template for construction firms that reflects the company's expertise.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/builder-2/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Select Design: Construction Template 2')">Select Design</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-3" class="col-lg-4 col-md-6">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/builder-3-en.jpg" alt="Construction Company Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Construction Template 3</h3>
-                        <p class="portfolio-description">Ideal for displaying experience, services, and project portfolios for established construction companies.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/builder-3/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Select Design: Construction Template 3')">Select Design</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-4" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/burj-al-jiwar-en.jpg" alt="Real Estate Project Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Modern Real Estate Website</h3>
-                        <p class="portfolio-description">Elegant and luxurious design for a real estate project, featuring a gallery, location details, and unit information.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/burj-al-jiwar/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Request Similar: Real Estate Project Website')">Request Similar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-5" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/archi-en.jpg" alt="Architecture Firm Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Architecture Services Website</h3>
-                        <p class="portfolio-description">A visually stunning template for architecture and interior design firms, designed to showcase projects and services.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/archi/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-primary-custom btn-sm" onclick="setContactSubject('Request Similar: Architecture Services Website')">Request Similar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-6" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/logi-en.jpg" alt="Logistics Company Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Logistics Website</h3>
-                        <p class="portfolio-description">Sleek and modern template for logistics and supply chain companies, highlighting technology and global reach.</p>
-                        <div class="d-flex gap-2"> 
-                            <a href="https://templates.barmga.com/logi/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Request Similar: Logistics Website')">Request Similar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-7" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/neologistics-en.jpg" alt="Logistics Technology Platform Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Logistics Solutions Platform</h3>
-                        <p class="portfolio-description">Futuristic dark-mode design for tech-forward logistics platforms, featuring animated backgrounds and a focus on AI solutions.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/neologistics/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Request Similar: Tech/Logistics Platform Website')">Request Similar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="work-8" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/stratagem-en.jpg" alt="Business Consulting Website Template"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Business Consulting Website</h3>
-                        <p class="portfolio-description">Minimalist and clean template for business consultants and strategists, focusing on clarity and actionable insights.</p>
-                        <div class="d-flex gap-2">
-                            <a href="https://templates.barmga.com/stratagem/en" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
-                            <a href="#contact" class="btn btn-outline-custom btn-sm" onclick="setContactSubject('Request Similar: Business Consulting Website')">Request Similar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <div id="work-9" class="col-lg-4 col-md-6 d-none">
-                <div class="portfolio-itemx fade-in-up">
-                    <div class="portfolio-image" onclick="this.parentElement.querySelector('.btn-primary-custom').click()"><img src="templates/custom.jpg" alt="Request a custom website design"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Get a Custom Design</h3>
-                        <p class="portfolio-description">Looking for something different? Contact us now to discuss your unique project requirements.</p>
-                        <div class="d-flex gap-2">
-                            <a href="#contact" class="btn btn-primary-custom btn-sm" onclick="setContactSubject('Request: Custom Website Design')">Request a Custom Design</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="row" id="portfolio-grid">
         </div>
         
         <div class="row mt-4">
@@ -1376,7 +1292,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="section-titlex mb-4 fade-in-up">Your New Website: Your #1 Business Asset</h2>
-                     <p class="section-subtitle fade-in-up">A professional website isn't just an expense—it's an investment that works for you 24/7.</p>
+                       <p class="section-subtitle fade-in-up">A professional website isn't just an expense—it's an investment that works for you 24/7.</p>
                 </div>
             </div>
             
@@ -1418,12 +1334,11 @@
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
         <div class="container">
-            
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="offer-content text-center fade-in-up">
                         <h3 class="offer-title">Limited Time Offer: Get a FREE 5,000 Email Marketing Campaign!</h3>
-                        <p class="mb-4">Sign up for a new website this month and we'll launch your first email marketing campaign to 5,000 targeted entities, absolutely free.</p>
+                        <p class="mb-4">Sign up for a new website this month and we'll launch your first email marketing campaign to 5,000 targeted entities, absolutely FREE.</p>
                         <a href="#contact" class="btn btn-accent btn-lg" onclick="setContactSubject('Limited Offer CTA: Claim My Free Gift')">Claim My Free Gift</a>
                     </div>
                 </div>
@@ -1435,45 +1350,62 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="section-titlex mb-4 fade-in-up">Professional Websites That Fit Your Budget</h2>
+                    <h2 class="section-titlex mb-4 fade-in-up">Budget Friendly Prices</h2>
                     <p class="section-subtitle fade-in-up">Transparent pricing with no hidden fees. Choose the plan that's right for you.</p>
                 </div>
             </div>
             
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-5 col-md-6 mb-4">
-                    <div class="pricing-card featured fade-in-up">
-                         <div class="pricing-header">
-                             <div class="pricing-amount">$299</div>
-                             <div class="pricing-discount"><del>$499</del> Limited Time Offer</div>
-                             <div class="pricing-period">Starter Package</div>
-                         </div>
+            <div class="row justify-content-center align-items-stretch">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card fade-in-up">
+                        <div class="pricing-header">
+                            <div class="pricing-amount">$199</div>
+                            <div class="pricing-discount"><del>$299</del> Launch Offer</div>
+                            <div class="pricing-period bold">Starter Package</div>
+                        </div>
                         <ul class="pricing-features">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom Professional Design</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Company Profile Showcase</li>                               
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Contact Forms & Lead Capture</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong><a href="#portfolio">Template-Based</a> Website Design</strong></li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Customized with Company's Details</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> Hosted On Cloudflare Pages</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> Connected With Google Analytics</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Technical Support For Website Launch</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('Pricing: $299 Starter Package')">Get Started</a>
+                        <a href="#portfolio" class="btn btn-outline-custom btn-lg w-100 mt-auto">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="pricing-header">
+                            <div class="pricing-amount">$299</div>
+                            <div class="pricing-discount"><del>$499</del> Limited Time Offer</div>
+                            <div class="pricing-period bold">Basic Package</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>New Custom Professional Design</strong></li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Company Profile Showcase</li>                             
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Hosted On Cloudflare Pages</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Connected With Google Analytics</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Technical Support For Website Launch</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('Pricing: $299 Basic Package')">Get Started</a>
                     </div>
                 </div>
                 
-                <div class="col-lg-5 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="pricing-card fade-in-up">
                         <div class="pricing-amount">Custom</div>
-                                         <div class="pricing-discount">Prices vary based on requested features.</div>
-
-<div class="pricing-period">Enterprise Package</div>
+                        <div class="pricing-discount">Prices vary based on requirements</div>
+                        <div class="pricing-period bold">Enterprise Package</div>
                         <ul class="pricing-features">
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Everything in Starter Package</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Everything in Basic Package</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> API Integrations</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom Functionality</li>
-                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Multi Languages</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Multi-Lingual Support</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom Dashboard for Editing</li>
                             <li><i class="bi bi-check-circle-fill text-success me-2"></i> Domain Name Registration</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary-custom btn-lg w-100 mt-auto" onclick="setContactSubject('Pricing: Custom Enterprise Package')">Get Custom Quote</a>
+                        <a href="#contact" class="btn btn-outline-custom btn-lg w-100 mt-auto" onclick="setContactSubject('Pricing: Custom Enterprise Package')">Get Custom Quote</a>
                     </div>
                 </div>
             </div>
@@ -1481,7 +1413,6 @@
     </section>
 
     <section id="process" class="process-section">
-
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
@@ -1522,50 +1453,137 @@
                 <div class="col-lg-6">
                     <div class="fade-in-up mb-4 mb-lg-0">
                         <h2>Ready to Grow Your Business?</h2>
-                        <p class="lead mb-4">Let's talk. Fill out the form for a free, no-obligation quote and claim your free gift.</p>
+                        <p class="lead mb-4">Let's talk. Fill out the form for a free, no-obligation quote and claim your gift.</p>
                         
                         <div class="mb-4">
                             <h5>What You'll Get:</h5>
                             <ul class="list-unstyled">
                                 <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom website design</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> Mobile-responsive layout</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> SEO optimization</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> FREE email marketing campaign</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Starting at just $299</strong></li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> Mobile-responsive layout</li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> SEO optimization</li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> FREE email marketing campaign</li>
+                                <li><i class="bi bi-check-circle-fill text-success ms-2"></i> <strong>Starting at just $199</strong></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-6">
-                    <div class="contact-form fade-in-up">
-                        <form id="contactForm">
+                    <div class="contact-form">
+                        <form id="contactForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse" target="hidden_iframe">
                             <div class="mb-3">
-                                <label for="fullName" class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" id="fullName" required>
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" name="entry.2005620554" id="fullName" required>
                             </div>
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Mobile Number *</label>
-                                <input type="text" class="form-control" id="phone" required>
+                                <label class="form-label">Mobile Number *</label>
+                                <input type="text" class="form-control" name="entry.1166974658" id="phone" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email *</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" name="entry.1045781291" id="email" required>
                             </div>
                             <div class="mb-4">
-                                <label for="project" class="form-label">Tell us about your project</label>
-                                <textarea class="form-control" id="project" rows="4" placeholder="Describe your business and what you're looking for..."></textarea>
+                                <label class="form-label">Tell us about your project</label>
+                                <textarea class="form-control" name="entry.839337160" id="project" rows="4" placeholder="Describe your business and what you're looking for..."></textarea>
                             </div>
-                            <input type="hidden" id="contactSubject" name="subject">
+                            <input type="hidden" name="entry.1466964258" id="ipInput" value="IP_NOT_FOUND">
+                            <input type="hidden" name="entry.1065046570" id="contactSubject">
+                            
                             <button type="submit" class="btn btn-primary-custom w-100 btn-lg mb-3">Submit</button>
-                                                <small class="position-relative mt-2" id="submitted" style="align-items: center; color: rgb(43, 143, 43);"></small>
-
+                            <small class="position-relative mt-2 d-block text-center" id="submitted" style="font-weight: 600; font-size: 1rem;"></small>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submittedForm) { handleFormSuccess(); }"></iframe>
+
+    <div class="modal fade" id="serviceDetailsModal" tabindex="-1" aria-labelledby="serviceDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #f8f9fa;">
+                    <h5 class="modal-title" id="serviceDetailsModalLabel">Service Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-primary">Selected Template</h5>
+                    <div class="selected-template-card mb-4">
+                        <img id="modal-template-image" src="" alt="Selected Template Preview">
+                        <div class="selected-template-info">
+                            <p class="mb-0" id="modal-template-title" style="font-weight: 600 !important;"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 class="text-primary">What You Get</h5>
+                    
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Template-Based Website Design</strong> from our portfolio.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Customization</strong> with your company's name, logo, and content.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>High-Performance Hosting</strong> on Cloudflare Pages for speed and reliability.<span class="info-icon">
+        ?
+      <span class="tooltip-text">
+        Free hosting offered by Cloudflare.
+      </span>
+    </span></li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Google Analytics</strong> integration to track your visitors.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Google Search</strong> integration to appear in search results.</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i> <strong>Full Technical Support</strong> to get your website launched.</li>
+                    </ul>
+
+                    <h5 class="text-primary">Required Information</h5>
+                    <p>To build your website, please send the following details to <a href="mailto:info@barmga.com">info@barmga.com</a>:</p>
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Company's Name</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> A brief description of your company</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Overview of your company's products & services</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Key statistics & numbers if available (e.g., years of experience, number of projects, clients)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Your company Logo (if not available, we will create one)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Contact details you want to display (email, address, phone, WhatsApp, Google Maps link, etc.)</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> The main language for your website</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: #2e91cf;"></i> Any additional details (vision, motto, images, etc.)</li>
+                    </ul>
+                    <p class="small"><strong>Note:</strong> If you have a PDF company profile or a LinkedIn page that includes this information, you can send it directly. We will collect the needed information from it.</p>
+
+                    <h5 class="text-primary mt-4">Service Policy & Limits</h5>
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: rgb(164, 10, 10);"></i> This service does not support businesses that sell materials legally or religiously forbidden in the Islamic faith (e.g., tobacco, alcohol, gambling, Netflix subscriptions).</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: rgb(164, 10, 10);"></i> We do not include images of political figures, religious figures, or women (except with full hijab).</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: rgb(164, 10, 10);"></i> We do not include any textual or visual content that promotes specific political or religious concepts (e.g., national events).</li>
+                        <li class="list-group-item"><i class="fa fa-dot-circle-o me-2" style="color: rgb(164, 10, 10);"></i> If your business operates in the field of finance, food, clothes or hotels outside of Saudi Arabia, please <a onclick="document.querySelector('#serviceDetailsModal .btn-close').click();document.querySelector('.contact-form').scrollIntoView()" style="color: #1877d6;">contact us</a> first to ensure your business complies with our service policy.</li>
+                    </ul>
+
+                    <h5 class="text-primary mt-4">Additional Products</h5>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="11" id="check-domain">
+                        <label class="form-check-label" for="check-domain">
+                            <strong>Register a .com domain name (First-year registration)</strong>
+                            <span class="text-success fw-bold ms-2">+$11.00</span>
+                        </label>
+                        <div class="form-text mt-1">We will guide you on how to renew your domain subscription in the future.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="99" id="check-language">
+                        <label class="form-check-label" for="check-language">
+                            <strong>Add a second language to the website (in addition to the main one)</strong>
+                            <span class="text-success fw-bold ms-2">+$99.00</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="fw-bold fs-5">
+                        Subtotal: <span id="subtotal-price" class="text-primary">$199.00</span>
+                    </div>
+                    <a href="#" id="buy-now-button" class="btn btn-primary-custom btn-lg">
+                        Buy Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -1576,13 +1594,10 @@
                 </div>
                 <div class="modal-body scrollable-body">
                     <p>Welcome to Barmga! These terms and conditions outline the rules and regulations for the use of Barmga's Website, located at <a href="https://barmga.com/?lang=en">barmga.com</a>.</p>
-
                     <h3>1. Introduction</h3>
                     <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Barmga if you do not agree to take all of the terms and conditions stated on this page.</p>
-
                     <h3>2. Intellectual Property Rights</h3>
                     <p>Unless otherwise stated, Barmga and/or its licensors own the intellectual property rights for all material on Barmga. All intellectual property rights are reserved. You may access this from Barmga for your own personal use subjected to restrictions set in these terms and conditions.</p>
-
                     <h3>3. Restrictions</h3>
                     <p>You are specifically restricted from all of the following:</p>
                     <ul>
@@ -1595,31 +1610,22 @@
                         <li>Engaging in any data mining, data harvesting, data extracting, or any other similar activity in relation to this website;</li>
                         <li>Using our free or paid products in any political activity or promoting content that contradicts Islamic laws and regulations.</li>
                     </ul>
-
                     <h3>4. Your Privacy</h3>
                     <p>All your information are neither sold nor shared with thirdparties. All your information is collected through our platform or hotmart.</p>
-
                     <h3>5. No warranties</h3>
                     <p>This website is provided "as is," with all faults, and Barmga express no representations or warranties, of any kind related to this website or the materials contained on this website. Also, nothing contained on this website shall be interpreted as advising you.</p>
-
                     <h3>6. Limitation of liability</h3>
                     <p>In no event shall Barmga, nor any of its officers, directors, and employees, be held liable for anything arising out of or in any way connected with your use of this website whether such liability is under contract. Barmga, including its officers, directors, and employees shall not be held liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p>
-
                     <h3>7. Indemnification</h3>
                     <p>You hereby indemnify to the fullest extent Barmga from and against any and/or all liabilities, costs, demands, causes of action, damages, and expenses arising in any way related to your breach of any of the provisions of these terms.</p>
-
                     <h3>8. Severability</h3>
                     <p>If any provision of these terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
-
                     <h3>9. Variation of Terms</h3>
                     <p>Barmga is permitted to revise these terms at any time as it sees fit, and by using this website you are expected to review these terms on a regular basis.</p>
-
                     <h3>10. Assignment</h3>
                     <p>The Barmga is allowed to assign, transfer, and subcontract its rights and/or obligations under these terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these terms.</p>
-
                     <h3>11. Entire Agreement</h3>
                     <p>These terms constitute the entire agreement between Barmga and you in relation to your use of this website and supersede all prior agreements and understandings.</p>
-
                 </div>
                 <div class="modal-footer">
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 156, 95); color: rgb(253, 249, 249);">confirm</a>
@@ -1627,6 +1633,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="optionsmodal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
             <div class="modal-content">
@@ -1634,20 +1641,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Marketing Tools</h5>
                     <div style="flex-grow: 1;"></div>
-
                 </div>
                 <div class="modal-body scrollable-body text-center mt-2">
-
                 </div>
-
                 <div class="modal-footer">
                     <div style="flex-grow: 1;"></div>
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
                 </div>
             </div>
         </div>
-
     </div>
+    
     <div class="modal fade" id="optionsmodalother" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
             <div class="modal-content">
@@ -1655,11 +1659,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Business Tools</h5>
                     <div style="flex-grow: 1;"></div>
-
                 </div>
                 <div class="modal-body scrollable-body text-center">
-
-                    <!-- ADDTOOLSEN -->
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
                         <a type="button" class="btn d-flex align-items-center" style="background-color: #ec5e76; color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" href="https://barmga.com/web-template-editor" target="_blank">
                             <i class="fa fa-edit"></i>&nbsp;&nbsp;Website Template Editor
@@ -1693,15 +1694,14 @@
                     <p class="emailx">Clean your email lists from inactive business email addresses, for a better email deliverability rate!</p>
                     <i class="mb-4 emailx fa fa-envelope" style="max-width: 28px; height: auto;"></i>
                 </div>
-
                 <div class="modal-footer">
                     <div style="flex-grow: 1;"></div>
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
                 </div>
             </div>
         </div>
-
     </div>
+    
     <div class="modal fade" id="optionsmodalemail" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
             <div class="modal-content">
@@ -1709,7 +1709,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Email Tools</h5>
                     <div style="flex-grow: 1;"></div>
-
                 </div>
                 <div class="modal-body scrollable-body text-center mt-2">
                     <div class="d-flex justify-content-center mt-4 mb-3 emailx">
@@ -1727,17 +1726,15 @@
                     </div>
                     <p class="emailx">Turn Email addresses to links and send messages easily from Mobile browser & Gmail mobile app in few clicks!</p>
                     <img src="img/click.png" alt="Manual" class="mb-4 emailx" style="min-width: 35px; height: auto;">
-
                 </div>
-
                 <div class="modal-footer">
                     <div style="flex-grow: 1;"></div>
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
                 </div>
             </div>
         </div>
-
     </div>
+    
     <div class="modal fade" id="optionsmodalwhatsapp" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" style="margin-top: 20px;">
         <div class="modal-dialog" style="height: 100%; margin-top: 0; margin-bottom: 0;">
             <div class="modal-content">
@@ -1745,7 +1742,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <h5 class="modal-title" id="termsModalLabel">&nbsp;&nbsp;&nbsp;&nbsp;Whatsapp Tools</h5>
                     <div style="flex-grow: 1;"></div>
-
                 </div>
                 <div class="modal-body scrollable-body text-center mt-2">
                     <div class="d-flex justify-content-center mb-3 whatsappx">
@@ -1757,38 +1753,32 @@
                     <img src="img/bot.webp" alt="Bot" class="mb-4 whatsappx" style="max-width: 28px; height: auto;">
                     <hr class="whatsappx">
                     <div class="d-flex justify-content-center mt-4 mb-3 whatsappx">
-                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4一层层px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
+                        <a type="button" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.19);" class="btn btn-secondary d-flex align-items-center" href="https://barmga.com/bulk-whatsapp-links" target="_blank">
                             <i class="fa fa-mobile"></i>&nbsp;&nbsp;Whatsapp Bulk Links Generator
                         </a>
                     </div>
                     <p class="whatsappx">Turn Whatsapp phone numbers to links and send messages easily from Mobile browser & Whatsapp app in few clicks!</p>
                     <img src="img/click.webp" alt="Manual" class="mb-4 whatsappx" style="min-width: 35px; height: auto;">
                 </div>
-
                 <div class="modal-footer">
                     <div style="flex-grow: 1;"></div>
                     <a id="confirmButton" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color: rgb(95, 116, 156); color: rgb(253, 249, 249);">Close</a>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- Footer Start -->
+    
     <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5 px-lg-5">
             <div class="row g-5">
                 <div class="col-md-6 col-lg-3">
                     <h5 class="text-white mb-4">Get In Touch</h5>
-                    <!--<p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                                <p><i class="fa fa-phone-alt me-3"></i>+216 345 67890</p>-->
                     <a class="btn btn-link" href="https://barmga.com/#contact">Contact Us</a>
                     <p><i class="fa fa-envelope me-3"></i>info@barmga.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href="https://t.me/bigdata_shop" target="_blank"><i class="fa fa-paper-plane"></i></a>
-
                         <a class="btn btn-outline-light btn-social" href="https://mostaql.com/u/barmga" target="_blank"><i class="fa fa-circle-o" style="font-size: 150%; font-weight: 200%;"></i></a>
                         <a class="btn btn-outline-light btn-social" href="mailto:info@barmga.com" target="_blank"><i class="fa fa-envelope"></i></a>
-
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -1821,17 +1811,12 @@
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" href="https://barmga.com/?lang=en">Barmga 2025</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        <div style="display: none;">Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                            <br>Distributed By: <a class="border-bottom" style="display: none;" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+
     <script>
         function showonly(classname) {
             if (classname == 'all') {
@@ -1847,15 +1832,246 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/main.js"></script>
     <script src="lib/wow/wow.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Function to set the subject in the contact form
+        const templatesData = [
+            {
+                id: 'work-1',
+                title: 'Construction Website 1',
+                description: 'A professional website design for construction companies, modern & simple. Perfect for a new startup.',
+                imageUrl: '/templates/builder-1-enn.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-1/en',
+                altText: 'Construction Company Website Template',
+                hidden: false,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/A103175874Q?off=se8k0zwr', // $199
+                    domain: 'https://pay.hotmart.com/A103175874Q?off=lev22ghr', // $199 + $11
+                    language: 'https://pay.hotmart.com/A103175874Q?off=1gjhfr6s', // $199 + $99
+                    both: 'https://pay.hotmart.com/A103175874Q?off=5xu0tdvx' // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-2',
+                title: 'Construction Website 2',
+                description: 'A modern and professional template for construction firms that reflects the company\'s expertise.',
+                imageUrl: '/templates/builder-2-enn.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-2/en',
+                altText: 'Construction Company Website Template',
+                hidden: false,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/C103193802N?off=blmpmpkw', // $199
+                    domain: 'https://pay.hotmart.com/C103193802N?off=i1b5e9mi', // $199 + $11
+                    language: 'https://pay.hotmart.com/C103193802N?off=ugtzffah', // $199 + $99
+                    both: 'https://pay.hotmart.com/C103193802N?off=egjrs9af' // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-3',
+                title: 'Construction Website 3',
+                description: 'Ideal for displaying experience, services, and project portfolios for established construction companies.',
+                imageUrl: '/templates/builder-3-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/builder-3/en',
+                altText: 'Construction Company Website Template',
+                hidden: false,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/S103194208P?off=5brr9kq6', // $199
+                    domain: 'https://pay.hotmart.com/S103194208P?off=4whiygph', // $199 + $11
+                    language: 'https://pay.hotmart.com/S103194208P?off=4dvfggyz', // $199 + $99
+                    both: 'https://pay.hotmart.com/S103194208P?off=883as7r6', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-4',
+                title: 'Modern Real Estate Website',
+                description: 'Elegant and luxurious design for a real estate project, featuring a gallery, location details, and unit information.',
+                imageUrl: '/templates/burj-al-jiwar-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/burj-al-jiwar/en',
+                altText: 'Real Estate Project Website Template',
+                hidden: true,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/I103201430C?off=rv1s0gfo', // $199
+                    domain: 'https://pay.hotmart.com/I103201430C?off=dpxzdam9', // $199 + $11
+                    language: 'https://pay.hotmart.com/I103201430C?off=oaih8rvr', // $199 + $99
+                    both: 'https://pay.hotmart.com/I103201430C?off=2rxe2zpv', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-5',
+                title: 'Architecture Services Website',
+                description: 'A visually stunning template for architecture and interior design firms, designed to showcase projects and services.',
+                imageUrl: '/templates/archi-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/archi/en',
+                altText: 'Architecture Firm Website Template',
+                hidden: true,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/R103201597O?off=im8hhfvy', // $199
+                    domain: 'https://pay.hotmart.com/R103201597O?off=lk2obdo1', // $199 + $11
+                    language: 'https://pay.hotmart.com/R103201597O?off=hs3bs7ek', // $199 + $99
+                    both: 'https://pay.hotmart.com/R103201597O?off=1t5spmox', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-6',
+                title: 'Logistics Website',
+                description: 'Sleek and modern template for logistics and supply chain companies, highlighting technology and global reach.',
+                imageUrl: '/templates/logi-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/logi/en',
+                altText: 'Logistics Company Website Template',
+                hidden: true,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/I103201726X?off=9z7i986t', // $199
+                    domain: 'https://pay.hotmart.com/I103201726X?off=tq7rk8o4', // $199 + $11
+                    language: 'https://pay.hotmart.com/I103201726X?off=138cvli1', // $199 + $99
+                    both: 'https://pay.hotmart.com/I103201726X?off=o1s41348', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-7',
+                title: 'Technology Solutions Website',
+                description: 'Futuristic dark-mode design for tech-forward logistics platforms, featuring animated backgrounds and a focus on AI solutions.',
+                imageUrl: '/templates/neologistics-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/neologistics/en',
+                altText: 'Logistics Technology Platform Template',
+                hidden: true,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/F103201913M?off=39vekqm3', // $199
+                    domain: 'https://pay.hotmart.com/F103201913M?off=npe57cgk', // $199 + $11
+                    language: 'https://pay.hotmart.com/F103201913M?off=m53lzyt0', // $199 + $99
+                    both: 'https://pay.hotmart.com/F103201913M?off=8p2if5o6', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-8',
+                title: 'Services Website',
+                description: 'Minimalist and clean template for business consultants and strategists, focusing on clarity and actionable insights.',
+                imageUrl: '/templates/stratagem-en.jpg',
+                liveSiteUrl: 'https://templates.barmga.com/stratagem/en',
+                altText: 'Business Consulting Website Template',
+                hidden: true,
+                priceLinks: {
+                    base: 'https://pay.hotmart.com/B103203035X?off=d2765rgn', // $199
+                    domain: 'https://pay.hotmart.com/B103203035X?off=d57d24t0', // $199 + $11
+                    language: 'https://pay.hotmart.com/B103203035X?off=ejtc1xcy', // $199 + $99
+                    both: 'https://pay.hotmart.com/B103203035X?off=8bwtmv1r', // $199 + $11 + $99
+                }
+            },
+            {
+                id: 'work-9',
+                title: 'Get a Custom Design',
+                description: 'Looking for something different? Contact us now to discuss your unique project requirements.',
+                imageUrl: '/templates/custom.jpg',
+                liveSiteUrl: null,
+                altText: 'Request a custom website design',
+                hidden: true,
+                isCustom: true
+            }
+        ];
+
+        let currentTemplate = null;
+        let serviceDetailsModal = null;
+        const basePrice = 199;
+        const domainPrice = 11;
+        const languagePrice = 99;
+
+        function generatePortfolioCards() {
+            const grid = document.getElementById('portfolio-grid');
+            if (!grid) return;
+            
+            let gridHTML = '';
+
+            templatesData.forEach(template => {
+                const isHidden = template.hidden ? 'd-none' : '';
+                
+                if (template.isCustom) {
+                    gridHTML += `
+                        <div id="${template.id}" class="col-lg-4 col-md-6 ${isHidden}">
+                            <div class="portfolio-itemx fade-in-up">
+                                <div class="portfolio-image" style="cursor:default;">
+                                    <img src="${template.imageUrl}" alt="${template.altText}">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">${template.title}</h3>
+                                    <p class="portfolio-description">${template.description}</p>
+                                    <div class="d-flex gap-2">
+                                        <a href="#contact" class="btn btn-primary-custom btn-sm" onclick="setContactSubject('Request: Custom Website Design')">Request a Custom Design</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    gridHTML += `
+                        <div id="${template.id}" class="col-lg-4 col-md-6 ${isHidden}">
+                            <div class="portfolio-itemx fade-in-up">
+                                <div class="portfolio-image" onclick="window.open('${template.liveSiteUrl}', '_blank')">
+                                    <img src="${template.imageUrl}" alt="${template.altText}">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">${template.title}</h3>
+                                    <p class="portfolio-description">${template.description}</p>
+                                    <div class="d-flex gap-2">
+                                        <a href="${template.liveSiteUrl}" class="btn btn-primary-custom btn-sm" target="_blank">View Live Site</a>
+                                        <button class="btn btn-outline-custom btn-sm" onclick="openServiceModal('${template.id}')">Select Design</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            grid.innerHTML = gridHTML;
+            revealOnScroll();
+        }
+
+        function openServiceModal(templateId) {
+            currentTemplate = templatesData.find(t => t.id === templateId);
+            if (!currentTemplate) return;
+
+            document.getElementById('modal-template-image').src = currentTemplate.imageUrl;
+            document.getElementById('modal-template-title').textContent = currentTemplate.title+' Design';
+
+            document.getElementById('check-domain').checked = false;
+            document.getElementById('check-language').checked = false;
+
+            updatePriceAndLink();
+
+            if (!serviceDetailsModal) {
+                serviceDetailsModal = new bootstrap.Modal(document.getElementById('serviceDetailsModal'));
+            }
+            serviceDetailsModal.show();
+        }
+
+        function updatePriceAndLink() {
+            if (!currentTemplate) return;
+
+            const domainChecked = document.getElementById('check-domain').checked;
+            const languageChecked = document.getElementById('check-language').checked;
+            const subtotalPriceEl = document.getElementById('subtotal-price');
+            const buyNowButton = document.getElementById('buy-now-button');
+
+            let total = basePrice;
+            let link = currentTemplate.priceLinks.base;
+
+            if (domainChecked && languageChecked) {
+                total += domainPrice + languagePrice;
+                link = currentTemplate.priceLinks.both;
+            } else if (domainChecked) {
+                total += domainPrice;
+                link = currentTemplate.priceLinks.domain;
+            } else if (languageChecked) {
+                total += languagePrice;
+                link = currentTemplate.priceLinks.language;
+            }
+
+            subtotalPriceEl.textContent = `$${total.toFixed(2)}`;
+            buyNowButton.href = link;
+        }
+
         function setContactSubject(subject) {
             const subjectInput = document.getElementById('contactSubject');
             if (subjectInput) {
@@ -1864,9 +2080,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Page loading animation
-            const body = document.body;
-            // Add navbar background on scroll
+            generatePortfolioCards();
+
+            document.getElementById('check-domain').addEventListener('change', updatePriceAndLink);
+            document.getElementById('check-language').addEventListener('change', updatePriceAndLink);
+
             const navbar = document.querySelector('.navbar');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
@@ -1876,13 +2094,17 @@
                 }
             });
 
-            // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const href = this.getAttribute('href');
+                    if(href === '#' || this.dataset.bsToggle) {
+                        return;
+                    }
+
+                    const target = document.querySelector(href);
                     if (target) {
-                        const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                        e.preventDefault();
+                        const offsetTop = target.offsetTop - 80;
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth'
@@ -1891,111 +2113,99 @@
                 });
             });
 
-            // Fade-in animation on scroll
-            function revealOnScroll() {
-                const reveals = document.querySelectorAll('.fade-in-up:not(.animate)');
-                
-                reveals.forEach(element => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 100;
-                    
-                    if (elementTop < windowHeight - elementVisible) {
-                        element.classList.add('animate');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', revealOnScroll);
-            
-            // Portfolio show/hide toggle
             const toggleBtn = document.getElementById('togglePortfolio');
             if(toggleBtn) {
                 toggleBtn.addEventListener('click', function(e) {
-                    document.querySelector('#work-4').classList.toggle('d-none');
-                    document.querySelector('#work-5').classList.toggle('d-none');
-                    document.querySelector('#work-6').classList.toggle('d-none');
-                                        document.querySelector('#work-7').classList.toggle('d-none');
-                    document.querySelector('#work-8').classList.toggle('d-none');
-                    document.querySelector('#work-9').classList.toggle('d-none');
+                    const hiddenItems = document.querySelectorAll('#portfolio-grid .col-lg-4.d-none');
+                    hiddenItems.forEach(item => {
+                        item.classList.remove('d-none');
+                    });
                     toggleBtn.style.display = 'none';
+                    revealOnScroll();
                 });
             }
 
-            // Form handling
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const fullName = document.getElementById('fullName').value;
-                const companyName = document.getElementById('phone').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('contactSubject').value;
-                
-                if (!fullName || !companyName || !email) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-                
-
-            });
+            revealOnScroll();
         });
+
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.fade-in-up:not(.animate)');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
+
+    <script>
+        var submittedForm = false;
+
+        if (typeof theip !== 'undefined') {
+            document.getElementById('ipInput').value = String(theip);
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const submitButton = this.querySelector('button[type="submit"]');
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (fullName && phone && email && emailRegex.test(email)) {
+                // Prevent duplicate clicks and show sending animation status
+                submittedForm = true;
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending Request...';
+                }
+            } else {
+                e.preventDefault();
+            }
+        });
+
+        function handleFormSuccess() {
+            // Reset input values smoothly
+            document.querySelector('#fullName').value = '';
+            document.querySelector('#email').value = '';
+            document.querySelector('#phone').value = '';
+            document.querySelector('#contactSubject').value = '';
+            document.querySelector('#project').value = '';
+            
+            // Restore submit button interface state
+            var submitButton = document.querySelector('#contactForm button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit';
+            }
+            
+            // Print out the green responsive text UI element
+            var message = document.querySelector("#submitted");
+            if (message) {
+                message.style.color = 'rgb(43, 143, 43)';
+                message.textContent = 'Message received! We will get back to you shortly.';
+                
+                // Pure CSS align context scroll targeting the viewport bottom securely
+                message.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            
+            submittedForm = false;
+        }
     </script>
     <script>
-        document.querySelector('form').addEventListener('submit', async function(event) {
-    // Prevent form from submitting normally
-    event.preventDefault();
-
-    // Get form elements
-    var nameInput = document.querySelector('#fullName');
-    var emailInput = document.querySelector('#email');
-    var messageInput = document.querySelector('#project');
-    var phone= document.querySelector('#phone');
-    var subject= document.querySelector('#contactSubject');
-
-
-    // Create a new FormData object
-    var formData = {
-        'entry.1466964258': String(theip),
-        'entry.2005620554': nameInput.value,
-        'entry.1045781291': emailInput.value,
-        'entry.1166974658': phone.value,
-        'entry.1065046570': subject.value,
-        'entry.839337160': messageInput.value,
-    };
-    var isonline = await isInternetFunctional()
-    // Create a new script element
-    if( nameInput.value && emailInput.value && phone.value && messageInput.value && isonline){
-    var script = document.createElement('script');
-    script.src = 'https://docs.google.com/forms/d/e/1FAIpQLScQMW0I7bUE4IOkz02D2FjeHuyXX5tz5nqMs3_lJvRGdoOHDQ/formResponse?callback=callbackFunction&' + 
-        Object.keys(formData).map(function(key) {
-            return key + '=' + encodeURIComponent(formData[key]);
-        }).join('&');
-    document.body.appendChild(script);
-    loadScript("js/callbackFunction2.js")}
-});
-function callbackFunction2() {
-    console.log('Form submitted successfully!');
-
-    // Empty the inputs
-    document.querySelector('#fullName').value = '';
-    document.querySelector('#email').value = '';
-    document.querySelector('#phone').value = '';
-    document.querySelector('#contactSubject').value = '';
-    document.querySelector('#project').value = '';
-    
-
-    // Display a "Comment submitted" message above the form
-    var message=document.querySelector("#submitted")
-    message.textContent = 'Message received! We will get back to you shortly.';
-
-    // Scroll to the message
-    message.parentElement.parentElement.scrollIntoView({ behavior: 'smooth' });
-}
+        function setTargetBlankOnLargeScreen() {
+          const screenWidth = window.innerWidth;
+          const buyNowButton = document.getElementById('buy-now-button');
+          if (buyNowButton && screenWidth > 1200) {
+            buyNowButton.setAttribute('target', '_blank');
+          }
+        }
+        setTargetBlankOnLargeScreen();
     </script>
 </body>
 </html>

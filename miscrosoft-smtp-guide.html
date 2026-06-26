@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarmgaMailer - Microsoft 365 Delivery Provisioning Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <header class="bg-slate-900 text-white border-b border-slate-800 shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i data-lucide="shield-check" class="text-blue-400 w-8 h-8"></i>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">BarmgaMailer</h1>
+                    <p class="text-xs text-slate-400">Microsoft 365 Custom Domain & SMTP Provisioning Protocol</p>
+                </div>
+            </div>
+            <div class="text-xs bg-slate-800 px-3 py-1.5 rounded-md text-slate-300 font-mono border border-slate-700">
+                v1.0.0 &bull; Deployment Verified
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-10 space-y-8">
+        
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 flex gap-4 items-start shadow-sm">
+            <i data-lucide="info" class="text-blue-600 w-6 h-6 flex-shrink-0 mt-0.5"></i>
+            <div class="text-sm text-blue-900 space-y-1">
+                <p class="font-semibold">Deployment Infrastructure Map</p>
+                <p>This sequential guide configures your custom domain infrastructure inside Microsoft 365. Completing these phases ensures authentication tokens are accepted by your Cloudflare Worker script over port 587 without tripping security firewalls or throwing runtime socket faults.</p>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+
+            <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md">
+                <div class="p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold font-mono text-sm flex-shrink-0">01</div>
+                            <div>
+                                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">Domain Alignment & DKIM/MX Signing</h2>
+                                <p class="text-sm text-slate-500 mt-0.5">Authorize your custom domain to send mail on behalf of the Microsoft tenant infrastructure.</p>
+                            </div>
+                        </div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 cursor-pointer">
+                    </div>
+                    
+                    <div class="mt-4 ml-12 pl-2 border-l-2 border-slate-100 space-y-4 text-sm text-slate-600">
+                        <p>Before initializing transaction channels, your root or subdomain records must point explicitly to Microsoft's mail exchange endpoints inside your Cloudflare DNS zone dashboard.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <span class="text-xs font-mono font-bold uppercase text-slate-400 mt-0.5">MX Record:</span>
+                                <code class="text-xs font-mono text-slate-700 bg-white border px-1.5 py-0.5 rounded select-all">web-asweq-com.mail.protection.outlook.com</code>
+                            </div>
+                        </div>
+                        <p class="font-medium text-slate-800">To enable cryptographic DKIM signing keys:</p>
+                        <ol class="list-decimal list-inside space-y-1.5 pl-2 text-slate-600">
+                            <li>Go directly to the <strong>Microsoft Defender Protection Dashboard</strong>: <a href="https://security.microsoft.com/dkimv2" target="_blank" class="text-blue-600 hover:underline font-semibold inline-flex items-center gap-1">security.microsoft.com/dkimv2 <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                            <li>Select your custom domain (<code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">web.asweq.com</code>).</li>
+                            <li>Click <span class="font-semibold text-slate-800">Create DKIM keys</span>. Microsoft will provision two unique CNAME records.</li>
+                            <li>Add these CNAME records directly into your Cloudflare DNS zone, then click <span class="font-semibold text-slate-800">Enable</span> back in Microsoft.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md">
+                <div class="p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold font-mono text-sm flex-shrink-0">02</div>
+                            <div>
+                                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">Domain-Based Mailbox Creation</h2>
+                                <p class="text-sm text-slate-500 mt-0.5">Provision a domain-mapped mailbox instance inside your active enterprise workspace tenant.</p>
+                            </div>
+                        </div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 cursor-pointer">
+                    </div>
+                    
+                    <div class="mt-4 ml-12 pl-2 border-l-2 border-slate-100 space-y-3 text-sm text-slate-600">
+                        <ol class="list-decimal list-inside space-y-1.5 pl-2 text-slate-600">
+                            <li>Open the <strong>Microsoft 365 Active Users Panel</strong>: <a href="https://admin.cloud.microsoft/#/users" target="_blank" class="text-blue-600 hover:underline font-semibold inline-flex items-center gap-1">admin.cloud.microsoft/#/users <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                            <li>Click <span class="font-semibold text-slate-800">Add a user</span>.</li>
+                            <li>Under the domain identification inputs, assign your preferred prefix identifier name (<code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">info</code>) and select your customized domain extension from the context dropdown (<code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">@web.asweq.com</code>).</li>
+                            <li>Assign the required product license allocation checks (e.g., Business Basic) to instantiate a physical Exchange mailbox node container.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md">
+                <div class="p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold font-mono text-sm flex-shrink-0">03</div>
+                            <div>
+                                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">Manage Email Apps: Activate SMTP AUTH</h2>
+                                <p class="text-sm text-slate-500 mt-0.5">Explicitly unlock protocol connectivity flags for the designated mail node container.</p>
+                            </div>
+                        </div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 cursor-pointer">
+                    </div>
+                    
+                    <div class="mt-4 ml-12 pl-2 border-l-2 border-slate-100 space-y-3 text-sm text-slate-600">
+                        <p>Microsoft disables legacy application app layer access sequences universally across new users. This must be bypassed explicitly on the user record:</p>
+                        <ol class="list-decimal list-inside space-y-1.5 pl-2 text-slate-600">
+                            <li>Open your <strong>Active Users List</strong>: <a href="https://admin.cloud.microsoft/#/users" target="_blank" class="text-blue-600 hover:underline font-semibold inline-flex items-center gap-1">admin.cloud.microsoft/#/users <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                            <li>Click directly on the newly created <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">info@web.asweq.com</code> line to slide out the panel.</li>
+                            <li>On the configuration canvas that emerges, click on the center <span class="font-semibold text-slate-800">Mail</span> panel tab.</li>
+                            <li>Under the Email apps section title, click <span class="font-semibold text-slate-800">Manage email apps</span>.</li>
+                            <li>Scroll down, ensure the checkbox tracking <span class="font-semibold text-slate-900">Authenticated SMTP</span> is marked <strong>Checked (True)</strong>.</li>
+                            <li>Click <span class="font-semibold text-slate-800">Save changes</span>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md">
+                <div class="p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold font-mono text-sm flex-shrink-0">04</div>
+                            <div>
+                                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">Deactivate Global Security Defaults</h2>
+                                <p class="text-sm text-slate-500 mt-0.5">Unlock the tenant-wide default filters that drop legacy authentication handshakes.</p>
+                            </div>
+                        </div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 cursor-pointer">
+                    </div>
+                    
+                    <div class="mt-4 ml-12 pl-2 border-l-2 border-slate-100 space-y-4 text-sm text-slate-600">
+                        <p>Modern tenants execute a hidden rule mechanism called <span class="italic font-semibold text-slate-800">Security Defaults</span> that intercepts script requests and forces interactive multi-factor checks. To clear this via your portal settings:</p>
+                        
+                        <ol class="list-decimal list-inside space-y-1.5 pl-2 text-slate-600">
+                            <li>Open the <strong>Microsoft Entra Properties Dashboard</strong>: <a href="https://entra.microsoft.com/#view/Microsoft_AAD_IAM/TenantPropertiesBlade" target="_blank" class="text-blue-600 hover:underline font-semibold inline-flex items-center gap-1">entra.microsoft.com (Tenant Properties) <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                            <li>Scroll all the way down to the bottom of the properties page.</li>
+                            <li>Click the text link layout option at the base of the section: <span class="font-semibold text-slate-800">Manage security defaults</span>.</li>
+                            <li>Flip the toggle switch parameters cleanly to <span class="font-semibold text-rose-600">Disabled</span>. Mark any reason checkbox and click Save.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md">
+                <div class="p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold font-mono text-sm flex-shrink-0">05</div>
+                            <div>
+                                <h2 class="font-bold text-slate-900 text-lg flex items-center gap-2">Elevate Custom Domain Address as Primary UPN Identity</h2>
+                                <p class="text-sm text-slate-500 mt-0.5">Map your master login credential tracking string explicitly to your custom domain suffix footprint.</p>
+                            </div>
+                        </div>
+                        <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 mt-1 cursor-pointer">
+                    </div>
+                    
+                    <div class="mt-4 ml-12 pl-2 border-l-2 border-slate-100 space-y-4 text-sm text-slate-600">
+                        <p>If you connect to port 587 using <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">info@web.asweq.com</code> while your tenant profile lists your primary login identifier string as <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">web@asweq.onmicrosoft.com</code>, Microsoft will drop the connection request with an authentication error.</p>
+                        <ol class="list-decimal list-inside space-y-1.5 pl-2 text-slate-600">
+                            <li>Open the <strong>Microsoft 365 Active Users Center</strong>: <a href="https://admin.cloud.microsoft/#/users" target="_blank" class="text-blue-600 hover:underline font-semibold inline-flex items-center gap-1">admin.cloud.microsoft/#/users <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+                            <li>Open your user profile line card, and under the Account tab click <span class="font-semibold text-slate-800">Manage username and email</span>.</li>
+                            <li>Click the dropdown next to your user ID text field string, choose your verified domain (<code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">web.asweq.com</code>), and adjust your string prefix cleanly to match your custom design identity.</li>
+                            <li>Alternatively, find <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-xs">info@web.asweq.com</code> under the aliases array stack, click the three dots (...), and choose <span class="font-semibold text-slate-900">Set as primary email</span>.</li>
+                            <li>Click Save changes.</li>
+                        </ol>
+                        
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-amber-900 flex gap-2 items-start text-xs">
+                            <i data-lucide="clock" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Propagation Hold Notice:</strong> Microsoft takes up to 15–30 minutes to push identity credential shifts down to legacy Exchange SMTP edge nodes globally. Allow this time window to elapse completely before launching your production automation loops inside BarmgaMailer.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <section class="bg-slate-900 text-slate-300 rounded-xl border border-slate-800 p-6 shadow-xl space-y-4">
+            <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> BarmgaMailer Live Dashboard Config Targets
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
+                    <span class="text-slate-500 block mb-1">SMTP SERVER HOST</span>
+                    <span class="text-slate-200 font-bold">smtp.office365.com</span>
+                </div>
+                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
+                    <span class="text-slate-500 block mb-1">PORT CONNECTION</span>
+                    <span class="text-amber-400 font-bold">587</span>
+                </div>
+                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
+                    <span class="text-slate-500 block mb-1">AUTHENTICATION USERNAME</span>
+                    <span class="text-slate-200">info@web.asweq.com</span>
+                </div>
+                <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
+                    <span class="text-slate-500 block mb-1">AUTHENTICATION PASSWORD</span>
+                    <span class="text-emerald-400 italic">Your Ordinary Account Password</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 border-t border-slate-200 bg-white py-6 mt-12">
+        Barmga Automation Frameworks System Layout Engine &bull; All Rights Reserved.
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
