@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Mailer Dashboard</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head><body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+
+    <div class="flex h-screen overflow-hidden">
+        <nav class="w-64 bg-slate-900 text-white flex flex-col justify-between p-4 flex-shrink-0">
+            <div>
+                <div class="flex items-center gap-3 px-2 py-4 border-b border-slate-800 mb-6">
+                    <i data-lucide="mail" class="text-blue-400 w-8 h-8"></i>
+                    <span class="text-xl font-bold tracking-wide">BarmgaMailer</span>
+                </div>
+                <div class="space-y-2">
+                    <button onclick="switchTab('send-tab')" id="btn-send-tab" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-600 text-white font-medium transition">
+                        <i data-lucide="send" class="w-5 h-5"></i> Send Campaign
+                    </button>
+                    <button onclick="switchTab('templates-tab')" id="btn-templates-tab" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white font-medium transition">
+                        <i data-lucide="layout" class="w-5 h-5"></i> Templates
+                    </button>
+                    <button onclick="switchTab('settings-tab')" id="btn-settings-tab" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white font-medium transition">
+                        <i data-lucide="settings" class="w-5 h-5"></i> SMTP Settings
+                    </button>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 text-center border-t border-slate-800 pt-4">
+                v1.0.0 &bull; High Deliverability Suite
+            </div>
+        </nav>
+
+        <main class="flex-1 overflow-y-auto p-8 bg-gray-50">
+            
+            <section id="send-tab" class="tab-content space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Campaign Dispatch</h1>
+                        <p class="text-sm text-gray-500">Configure targets, review layouts, and monitor dispatch status.</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white p-2 rounded-lg border shadow-sm">
+                        <i data-lucide="folder-open" class="text-gray-400 w-5 h-5"></i>
+                        <select id="load-campaign-select" class="bg-transparent text-sm font-medium text-gray-700 focus:outline-none max-w-xs">
+                            <option value="">Load Saved Campaign...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+                        <h2 class="text-lg font-semibold flex items-center gap-2"><i data-lucide="users" class="text-blue-500"></i> Recipients</h2>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email List (One per line)</label>
+                            <textarea id="recipient-list" rows="8" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono" placeholder="user1@example.com&#10;user2@example.com"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Select Template</label>
+                            <select id="campaign-template-select" onchange="syncTemplateToEditor()" class="w-full border border-gray-300 rounded-lg p-2.5 bg-white text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="">Select a template...</option>
+                            </select>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex gap-2">
+                            <button onclick="saveCurrentCampaign()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+                                <i data-lucide="save" class="w-4 h-4"></i> Save Progress
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                            <div class="bg-gray-50 px-4 py-3 border-b flex justify-between items-center">
+                                <span class="font-semibold text-sm text-gray-700 flex items-center gap-2"><i data-lucide="eye" class="text-gray-400"></i> Active Layout Preview</span>
+                            </div>
+                            <div class="p-4 bg-gray-100 min-h-[150px]">
+                                <div id="live-subject-preview" class="bg-white p-3 border-b font-medium text-sm text-gray-800 rounded-t-lg">Subject: <span class="text-gray-500 italic">No template selected</span></div>
+                                <div id="live-body-preview" class="bg-white p-4 min-h-[120px] text-sm text-gray-600 rounded-b-lg overflow-y-auto">Select a template to view layout.</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-wrap gap-3 items-center justify-between">
+                            <div class="flex gap-2">
+                                <button id="btn-start" onclick="startCampaign()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg text-sm flex items-center gap-2 shadow-sm transition">
+                                    <i data-lucide="play" class="w-4 h-4"></i> Start Sending
+                                </button>
+                                <button id="btn-stop" onclick="stopCampaign()" disabled class="bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white font-semibold py-2.5 px-6 rounded-lg text-sm flex items-center gap-2 shadow-sm transition">
+                                    <i data-lucide="pause" class="w-4 h-4"></i> Pause
+                                </button>
+                            </div>
+                            <div id="campaign-status-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-600">Status: Idle</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="p-5 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Live Campaign Analytics</h3>
+                            <p class="text-xs text-gray-500">Real-time performance metrics and delivery mapping.</p>
+                        </div>
+                        <button onclick="downloadExcelReport()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg text-sm flex items-center gap-2 transition">
+                            <i data-lucide="download" class="w-4 h-4"></i> Export Report (.xlsx)
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-b text-center divide-x divide-gray-100">
+                        <div class="p-4"><p class="text-xs font-medium text-gray-400 uppercase">Total</p><p id="count-total" class="text-2xl font-bold text-gray-700">0</p></div>
+                        <div class="p-4"><p class="text-xs font-medium text-gray-400 uppercase">Pending</p><p id="count-pending" class="text-2xl font-bold text-blue-600">0</p></div>
+                        <div class="p-4"><p class="text-xs font-medium text-emerald-600 uppercase">Success</p><p id="count-success" class="text-2xl font-bold text-emerald-600">0</p></div>
+                        <div class="p-4"><p class="text-xs font-medium text-rose-600 uppercase">Failed</p><p id="count-fail" class="text-2xl font-bold text-rose-600">0</p></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200 max-h-72 overflow-y-auto">
+                        <div class="p-4">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-3 flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4"></i> Delivered Log</h4>
+                            <div id="log-success" class="space-y-1 font-mono text-xs text-gray-600"></div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-rose-600 mb-3 flex items-center gap-1.5"><i data-lucide="x-circle" class="w-4 h-4"></i> Bounced / Delayed Log</h4>
+                            <div id="log-fail" class="space-y-1 font-mono text-xs text-gray-600"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="templates-tab" class="tab-content hidden space-y-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">Email Template Forge</h1>
+                    <p class="text-sm text-gray-500">Design your structural emails. Paste clean HTML or use standard styling formatting blocks.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Template Name identifier</label>
+                            <input type="text" id="template-name" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="e.g., June Newsletter, Cold Outreach V1">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subject Line</label>
+                            <input type="text" id="template-subject" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter enticing email subject line">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Design Body Content</label>
+                            <div class="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+                                <div class="bg-gray-50 border-b p-2 flex flex-wrap gap-1 items-center bg-white text-gray-600">
+                                    <button onclick="execEditorCmd('bold')" class="p-1.5 hover:bg-gray-200 rounded text-sm font-bold w-8 h-8" title="Bold">B</button>
+                                    <button onclick="execEditorCmd('italic')" class="p-1.5 hover:bg-gray-200 rounded text-sm italic w-8 h-8" title="Italic">I</button>
+                                    <button onclick="execEditorCmd('underline')" class="p-1.5 hover:bg-gray-200 rounded text-sm underline w-8 h-8" title="Underline">U</button>
+                                    <div class="h-6 w-[1px] bg-gray-300 mx-1"></div>
+                                    <button onclick="execEditorCmd('justifyLeft')" class="p-1.5 hover:bg-gray-200 rounded flex items-center justify-center w-8 h-8" title="Align Left"><i data-lucide="align-left" class="w-4 h-4"></i></button>
+                                    <button onclick="execEditorCmd('justifyCenter')" class="p-1.5 hover:bg-gray-200 rounded flex items-center justify-center w-8 h-8" title="Align Center"><i data-lucide="align-center" class="w-4 h-4"></i></button>
+                                    <button onclick="execEditorCmd('createLink', prompt('Enter URL:'))" class="p-1.5 hover:bg-gray-200 rounded flex items-center justify-center w-8 h-8" title="Insert Link"><i data-lucide="link" class="w-4 h-4"></i></button>
+                                    <div class="h-6 w-[1px] bg-gray-300 mx-1"></div>
+                                    <button onclick="toggleRawHtmlMode()" class="px-2 py-1 text-xs font-semibold tracking-wider uppercase border border-gray-300 hover:bg-gray-100 rounded ml-auto flex items-center gap-1"><i data-lucide="code" class="w-3 h-3"></i> Pure HTML Source</button>
+                                </div>
+                                <div id="rich-editor" contenteditable="true" class="p-4 min-h-[250px] max-h-[400px] overflow-y-auto bg-white text-sm focus:outline-none"></div>
+                                <textarea id="html-editor" class="w-full p-4 min-h-[250px] font-mono text-xs text-gray-700 bg-slate-900 text-slate-100 hidden focus:outline-none" placeholder="<p>Paste clean production ready template blocks raw HTML here...</p>"></textarea>
+                            </div>
+                        </div>
+                        <button onclick="saveTemplate()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg text-sm flex items-center gap-2 transition ml-auto">
+                            <i data-lucide="save-all" class="w-4 h-4"></i> Save System Template
+                        </button>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+                        <h3 class="text-lg font-semibold flex items-center gap-2"><i data-lucide="folder" class="text-blue-500"></i> Saved Library</h3>
+                        <div id="templates-list-container" class="space-y-2 max-h-[450px] overflow-y-auto pr-1">
+                            <p class="text-xs text-gray-400 italic">No templates designed yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings-tab" class="tab-content hidden space-y-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">SMTP Infrastructures & Routing</h1>
+                    <p class="text-sm text-gray-500">Configure global sender identities and multiple authenticated SMTP pathways to bypass daily provider restrictions.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+                        <h3 class="text-lg font-semibold flex items-center gap-2"><i data-lucide="user-check" class="text-blue-500"></i> Sender Identity</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Global Display / From Name</label>
+                            <input type="text" id="global-from-name" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="e.g., Amal | Barmga CEO">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Global Return / Reply Email Address</label>
+                            <input type="email" id="global-from-email" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="e.g., mail@barmga.com">
+                        </div>
+                        <button onclick="saveSenderIdentity()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-medium py-2 px-4 rounded-lg text-sm transition">
+                            Save Global Identity Header
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+                            <h3 class="text-lg font-semibold flex items-center gap-2"><i data-lucide="plus-circle" class="text-emerald-500"></i> Provision SMTP Relay Pathway</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">SMTP Server Host</label>
+                                    <input type="text" id="smtp-host" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="smtp.mailgun.org">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Port Connection</label>
+                                    <input type="number" id="smtp-port" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="587" value="587">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Authentication Login / Username</label>
+                                    <input type="text" id="smtp-username" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="postmaster@yourdomain.com">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Authentication Secure Password Key</label>
+                                    <input type="password" id="smtp-password" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="••••••••••••">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Maximum Safe Threshold Per 24 Hours</label>
+                                    <input type="number" id="smtp-quota" class="w-full border border-gray-300 rounded-lg p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="500" value="500">
+                                </div>
+                            </div>
+                            <button onclick="addSmtpProfile()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg text-sm transition flex items-center gap-2 ml-auto">
+                                <i data-lucide="plus" class="w-4 h-4"></i> Append Route Entry
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                            <div class="p-4 bg-gray-50 border-b">
+                                <h3 class="text-sm font-bold uppercase tracking-wider text-gray-600">Active Node Rotator Stack</h3>
+                            </div>
+                            <div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-sm">
+    <thead>
+        <tr class="bg-gray-100/70 border-b text-gray-500 font-medium text-xs uppercase">
+            <th class="p-3">Host Node Address</th>
+            <th class="p-3">Username Login Identifier</th>
+            <th class="p-3">24h Quota Limit</th>
+            <th class="p-3">Status</th>
+            <th class="p-3 text-right">Actions</th>
+        </tr>
+    </thead>
+    <tbody id="smtp-table-body" class="divide-y divide-gray-100">
+        </tbody>
+</table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<script>
+        // System Global Memory Cache Data State Arrays
+        let smtpProfiles = [];
+        let emailTemplates = [];
+        let savedCampaigns = [];
+
+        // Engine Live Execution Core Tracking State Variables
+        let activeCampaignQueue = [];
+        let campaignReports = [];
+        let isCampaignRunning = false;
+        let currentSmtpIndex = 0;
+        let smtpUsageTracker = {}; // Total 24h counter per index
+        let executionPointerIndex = 0;
+
+        // Custom Hourly Rotation State Trackers
+        let smtpHourlyTracker = {};     // Tracks current hour message volume per node index
+        let smtpHourlyWindowStart = {}; // Tracks timestamps for when an hourly window opened
+        let smtpHourlyCeiling = {};     // Tracks the random choice between 40-50 for Google profiles
+        let countdownIntervalId = null;
+
+        // Dynamic Rolling 24-Hour Timestamp Tracker
+        let smtpDailyWindowStart = {};  // Tracks timestamps for when the 24h window opened per node index
+
+        // Tracking text memory to verify changes accurately across page refreshes
+        let lastProcessedRecipientText = "";
+
+        // Init System Window Event Hook Up
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            loadStateFromLocalStorage();
+            evaluateTimeAbsenceResets(); // Evaluates absences immediately on page boot
+            renderSmtpTable();
+            updateTemplateDropdowns();
+            renderTemplatesLibrary();
+            populateCampaignSelector();
+        });
+
+        // Tab Window Management Navigation Switching Controls Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('text-slate-400');
+            });
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('bg-blue-600', 'text-white');
+            document.getElementById('btn-' + tabId).classList.remove('text-slate-400');
+        }
+
+        // WYSIWYG Editor Action Handlers Elements Integration
+        let isRawHtmlMode = false;
+        function execEditorCmd(cmd, arg = null) {
+            document.execCommand(cmd, false, arg);
+        }
+        function toggleRawHtmlMode() {
+            const richEd = document.getElementById('rich-editor');
+            const htmlEd = document.getElementById('html-editor');
+            if (!isRawHtmlMode) {
+                htmlEd.value = richEd.innerHTML;
+                richEd.classList.add('hidden');
+                htmlEd.classList.remove('hidden');
+                isRawHtmlMode = true;
+            } else {
+                richEd.innerHTML = htmlEd.value;
+                htmlEd.classList.add('hidden');
+                richEd.classList.remove('hidden');
+                isRawHtmlMode = false;
+            }
+        }
+
+        // --- SMART TIME ABSENCE EVALUATOR ---
+        function evaluateTimeAbsenceResets() {
+            const now = Date.now();
+            const oneHourInMs = 60 * 60 * 1000;       // 3,600,000 ms
+            const oneDayInMs = 24 * 60 * 60 * 1000;   // 86,400,000 ms
+
+            smtpProfiles.forEach((_, idx) => {
+                // 1. Evaluate Daily Quota Expirations based on timestamp history
+                if (smtpDailyWindowStart[idx] && smtpDailyWindowStart[idx] > 0) {
+                    if (now - smtpDailyWindowStart[idx] >= oneDayInMs) {
+                        smtpUsageTracker[idx] = 0;
+                        smtpDailyWindowStart[idx] = now; // Open a fresh 24h calculation window
+                    }
+                } else {
+                    smtpDailyWindowStart[idx] = now; // Initialize if empty
+                }
+
+                // 2. Evaluate Hourly Limit Expirations based on timestamp history
+                if (smtpHourlyWindowStart[idx] && smtpHourlyWindowStart[idx] > 0) {
+                    if (now - smtpHourlyWindowStart[idx] >= oneHourInMs) {
+                        smtpHourlyTracker[idx] = 0;
+                        smtpHourlyWindowStart[idx] = now; // Open a fresh 1h calculation window
+                        smtpHourlyCeiling[idx] = generateRandomGoogleLimit();
+                    }
+                } else {
+                    smtpHourlyWindowStart[idx] = now; // Initialize if empty
+                }
+
+                // Safe fallbacks for data schemas
+                if (smtpUsageTracker[idx] === undefined) smtpUsageTracker[idx] = 0;
+                if (smtpHourlyTracker[idx] === undefined) smtpHourlyTracker[idx] = 0;
+                if (smtpHourlyCeiling[idx] === undefined || smtpHourlyCeiling[idx] === 0) smtpHourlyCeiling[idx] = generateRandomGoogleLimit();
+            });
+            saveStateToLocalStorage();
+        }
+
+        // --- SMTP Management Logic Module ---
+        function addSmtpProfile() {
+            const host = document.getElementById('smtp-host').value.trim();
+            const port = document.getElementById('smtp-port').value.trim();
+            const user = document.getElementById('smtp-username').value.trim();
+            const pass = document.getElementById('smtp-password').value.trim();
+            const quota = parseInt(document.getElementById('smtp-quota').value) || 500;
+
+            if(!host || !user || !pass) return alert("Please fill out all required SMTP host and credential data fields.");
+
+            smtpProfiles.push({ id: Date.now(), host, port, user, pass, quota, isPaused: false });
+            
+            // Assign initial rolling timestamps to the newly added profile
+            const idx = smtpProfiles.length - 1;
+            smtpUsageTracker[idx] = 0;
+            smtpHourlyTracker[idx] = 0;
+            smtpHourlyWindowStart[idx] = Date.now();
+            smtpDailyWindowStart[idx] = Date.now();
+            smtpHourlyCeiling[idx] = generateRandomGoogleLimit();
+
+            saveStateToLocalStorage();
+            renderSmtpTable();
+            
+            // Clear Input Form Elements
+            document.getElementById('smtp-host').value = '';
+            document.getElementById('smtp-username').value = '';
+            document.getElementById('smtp-password').value = '';
+        }
+
+        function removeSmtpProfile(id) {
+            smtpProfiles = smtpProfiles.filter(p => p.id !== id);
+            saveStateToLocalStorage();
+            renderSmtpTable();
+        }
+
+        function toggleSmtpPauseState(id) {
+            const targetNode = smtpProfiles.find(p => p.id === id);
+            if(targetNode) {
+                targetNode.isPaused = !targetNode.isPaused;
+                saveStateToLocalStorage();
+                renderSmtpTable();
+            }
+        }
+
+        function renderSmtpTable() {
+            const container = document.getElementById('smtp-table-body');
+            if (smtpProfiles.length === 0) {
+                container.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-xs italic text-gray-400">No active SMTP server entries mounted in rotation pipeline.</td></tr>`;
+                return;
+            }
+            container.innerHTML = smtpProfiles.map(p => {
+                const rowOpacityClass = p.isPaused ? "opacity-50 bg-gray-50/70" : "hover:bg-gray-50/50";
+                const statusBadge = p.isPaused 
+                    ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Paused</span>`
+                    : `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Active</span>`;
+                
+                const pauseToggleIcon = p.isPaused ? "play" : "pause";
+                const pauseToggleColor = p.isPaused ? "text-emerald-600 hover:text-emerald-900" : "text-amber-600 hover:text-amber-900";
+                const pauseTooltip = p.isPaused ? "Unpause / Enable Route" : "Pause / Disable Route";
+
+                return `
+                    <tr class="${rowOpacityClass} transition-opacity">
+                        <td class="p-3 font-mono text-xs text-gray-700">${p.host}:${p.port}</td>
+                        <td class="p-3 text-gray-600">${p.user}</td>
+                        <td class="p-3 font-semibold text-gray-600">${p.quota} <span class="text-xs text-gray-400 font-normal">emails/24h</span></td>
+                        <td class="p-3">${statusBadge}</td>
+                        <td class="p-3 text-right flex justify-end gap-3 items-center">
+                            <button onclick="toggleSmtpPauseState(${p.id})" class="${pauseToggleColor} transition" title="${pauseTooltip}">
+                                <i data-lucide="${pauseToggleIcon}" class="w-4 h-4 inline"></i>
+                            </button>
+                            <button onclick="removeSmtpProfile(${p.id})" class="text-rose-600 hover:text-rose-900 transition" title="Delete Profile">
+                                <i data-lucide="trash-2" class="w-4 h-4 inline"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function saveSenderIdentity() {
+            localStorage.setItem('bm_from_name', document.getElementById('global-from-name').value.trim());
+            localStorage.setItem('bm_from_email', document.getElementById('global-from-email').value.trim());
+            alert('Identity headers committed successfully.');
+        }
+
+        // --- Template Manager Business Rules Block ---
+        function saveTemplate() {
+            const name = document.getElementById('template-name').value.trim();
+            const subject = document.getElementById('template-subject').value.trim();
+            let body = isRawHtmlMode ? document.getElementById('html-editor').value : document.getElementById('rich-editor').innerHTML;
+
+            if(!name || !subject || !body) return alert("All profile parameters (Name, Subject, Design Body) are strict requirements.");
+
+            emailTemplates.push({ id: Date.now(), name, subject, body });
+            saveStateToLocalStorage();
+            updateTemplateDropdowns();
+            renderTemplatesLibrary();
+
+            document.getElementById('template-name').value = '';
+            document.getElementById('template-subject').value = '';
+            document.getElementById('rich-editor').innerHTML = '';
+            document.getElementById('html-editor').value = '';
+            alert('Template appended safely into cloud system directory store.');
+        }
+
+        function removeTemplate(id) {
+            emailTemplates = emailTemplates.filter(t => t.id !== id);
+            saveStateToLocalStorage();
+            updateTemplateDropdowns();
+            renderTemplatesLibrary();
+        }
+
+        // --- Template Sync & Dropdown Handlers ---
+        function renderTemplatesLibrary() {
+            const container = document.getElementById('templates-list-container');
+            if(emailTemplates.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 italic">No structured data layouts crafted.</p>`;
+                return;
+            }
+            container.innerHTML = emailTemplates.map(t => `
+                <div class="p-3 border rounded-lg bg-gray-50 flex justify-between items-center group">
+                    <div class="truncate max-w-[80%]">
+                        <p class="font-semibold text-sm text-gray-800 truncate">${t.name}</p>
+                        <p class="text-xs text-gray-400 truncate">Sub: ${t.subject}</p>
+                    </div>
+                    <button onclick="removeTemplate(${t.id})" class="text-gray-400 hover:text-rose-600 transition"><i data-lucide="trash" class="w-4 h-4"></i></button>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function updateTemplateDropdowns() {
+            const select = document.getElementById('campaign-template-select');
+            select.innerHTML = '<option value="">Select a template...</option>' + 
+                emailTemplates.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+        }
+
+        function syncTemplateToEditor() {
+            const id = document.getElementById('campaign-template-select').value;
+            const subFrame = document.getElementById('live-subject-preview');
+            const bodyFrame = document.getElementById('live-body-preview');
+            
+            if(!id) {
+                subFrame.innerHTML = `Subject: <span class="text-gray-500 italic">No template selected</span>`;
+                bodyFrame.innerHTML = "Select a template to view layout.";
+                return;
+            }
+            const template = emailTemplates.find(t => t.id == id);
+            if(template) {
+                subFrame.textContent = "Subject: " + template.subject;
+                bodyFrame.innerHTML = template.body;
+            }
+        }
+
+        // Generates a random threshold limit between 40 and 50 per hour
+        function generateRandomGoogleLimit() {
+            return Math.floor(Math.random() * (50 - 40 + 1)) + 40;
+        }
+
+        function isGoogleSmtp(hostStr) {
+            if (!hostStr) return false;
+            return hostStr.toLowerCase().includes('gmail') || hostStr.toLowerCase().includes('google');
+        }
+
+        function isGmailAddress(emailStr) {
+            if (!emailStr) return false;
+            return emailStr.toLowerCase().trim().endsWith('@gmail.com');
+        }
+
+        // --- Core Delivery Engine Processing Loops ---
+        function startCampaign() {
+            if(isCampaignRunning) return;
+            
+            const unpausedNodesCount = smtpProfiles.filter(p => !p.isPaused).length;
+            if(smtpProfiles.length === 0 || unpausedNodesCount === 0) {
+                return alert("Operation Halted: Hook up or unpause at least one verified active SMTP Node route before running live campaigns.");
+            }
+
+            const text = document.getElementById('recipient-list').value.trim();
+            if(!text) return alert("Provide a target list of recipient emails.");
+            
+            const tempId = document.getElementById('campaign-template-select').value;
+            if(!tempId) return alert("Assign an identity message payload template script from your library.");
+
+            const rawEmails = text.split('\n').map(e => e.trim()).filter(e => e.length > 0);
+
+            // FIXED EXTRA-SECURE RESET CHECK: 
+            if (text !== lastProcessedRecipientText || executionPointerIndex >= rawEmails.length) {
+                executionPointerIndex = 0;
+                campaignReports = [];
+                document.getElementById('log-success').innerHTML = '';
+                document.getElementById('log-fail').innerHTML = '';
+            }
+
+            lastProcessedRecipientText = text;
+            activeCampaignQueue = rawEmails.map(email => ({ email: email, templateId: tempId }));
+
+            // Force dynamic presence evaluation parameters to update immediately
+            evaluateTimeAbsenceResets();
+
+            isCampaignRunning = true;
+            document.getElementById('btn-start').disabled = true;
+            document.getElementById('btn-stop').disabled = false;
+            updateCampaignUIStateMetrics("Processing Campaign Dispatches");
+
+            // Fire background processing execution thread loop
+            processNextQueueItem();
+        }
+
+        function stopCampaign() {
+            isCampaignRunning = false;
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+            }
+            document.getElementById('btn-start').disabled = false;
+            document.getElementById('btn-stop').disabled = true;
+            updateCampaignUIStateMetrics("Paused");
+            saveStateToLocalStorage();
+        }
+
+        function processNextQueueItem() {
+            if(!isCampaignRunning) return;
+
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+            }
+
+            if(executionPointerIndex >= activeCampaignQueue.length) {
+                finalizeCampaignProcessingRunState();
+                return;
+            }
+
+            // Continuously verify and purge expired rollover limitations in real-time mid-run
+            evaluateTimeAbsenceResets();
+
+            let currentJobItem = activeCampaignQueue[executionPointerIndex];
+            let targetRecipientEmail = currentJobItem.email;
+            let targetIsGmail = isGmailAddress(targetRecipientEmail);
+
+            const globalFromEmail = localStorage.getItem('bm_from_email') || "";
+
+            let totalNodes = smtpProfiles.length;
+            let targetNodeIndex = -1;
+            let minimumWaitTimeRemaining = Infinity;
+            let nonGmailTargetAllowedSmtp = false;
+            let unpausedNodesExist = false;
+            const now = Date.now();
+
+            // Run structural scan loop over stack nodes to find the first usable candidate
+            for (let i = 0; i < totalNodes; i++) {
+                let checkIdx = (currentSmtpIndex + i) % totalNodes;
+                let candidateSmtp = smtpProfiles[checkIdx];
+
+                if (candidateSmtp.isPaused) {
+                    continue; 
+                }
+
+                unpausedNodesExist = true;
+
+                // UPDATED FEATURE LOGIC: Resolve the specific sender identification used for this node.
+                // If the setting configuration is blank, it falls back straight to candidateSmtp.user
+                let resolvedSenderEmail = globalFromEmail.trim() || candidateSmtp.user;
+                let senderIsGmail = isGmailAddress(resolvedSenderEmail);
+
+//  PASTE THIS NEW BLOCK INSTEAD:
+// If the active SMTP node is a Google profile, restrict its outbound traffic to Gmail targets only
+if (senderIsGmail && !targetIsGmail) {
+    campaignReports.push({ 
+        email: targetRecipientEmail, 
+        status: "Failed", 
+        reason: "Routing Blocked: Gmail profiles are strictly restricted to @gmail.com destinations." 
+    });
+    logToTerminalFeed("log-fail", `✕ ${targetRecipientEmail} - Reason: Gmail node cannot send to custom domains.`);
+    stepAndContinueExecutionPointer();
+    return;
+}
+
+                if (senderIsGmail) {
+                    nonGmailTargetAllowedSmtp = true;
+                }
+
+                // 1. Enforce strict 24-hour total quota limitation bounds
+                if (smtpUsageTracker[checkIdx] >= candidateSmtp.quota) {
+                    let msRemainingDaily = 86400000 - (now - smtpDailyWindowStart[checkIdx]);
+                    if (msRemainingDaily < minimumWaitTimeRemaining && msRemainingDaily > 0) {
+                        minimumWaitTimeRemaining = msRemainingDaily;
+                    }
+                    continue; 
+                }
+
+                // 2. Evaluate hourly window tracking state contexts
+                if (isGoogleSmtp(candidateSmtp.host)) {
+                    if (smtpHourlyTracker[checkIdx] >= smtpHourlyCeiling[checkIdx]) {
+                        let msPassed = now - smtpHourlyWindowStart[checkIdx];
+                        let msRemaining = 3600000 - msPassed;
+                        if (msRemaining < minimumWaitTimeRemaining && msRemaining > 0) {
+                            minimumWaitTimeRemaining = msRemaining;
+                        }
+                        continue; 
+                    }
+                }
+
+                targetNodeIndex = checkIdx;
+                break;
+            }
+
+            // Fallback Logic Boundary Checklist: If no usable sending nodes exist
+            if (targetNodeIndex === -1) {
+                if (!unpausedNodesExist) {
+                    isCampaignRunning = false;
+                    document.getElementById('btn-start').disabled = false;
+                    document.getElementById('btn-stop').disabled = true;
+                    updateCampaignUIStateMetrics("Aborted - No Active Nodes");
+                    saveStateToLocalStorage();
+                    return alert("Campaign Aborted: Every configured SMTP profile is currently set to Paused.");
+                }
+
+                if (!targetIsGmail && !nonGmailTargetAllowedSmtp) {
+                    campaignReports.push({ email: targetRecipientEmail, status: "Failed", reason: "Routing Blocked: Missing active configuration utilizing an @gmail.com identity to route outside Google networks." });
+                    logToTerminalFeed("log-fail", `✕ ${targetRecipientEmail} - Reason: No universal SMTP route identity configured.`);
+                    stepAndContinueExecutionPointer();
+                    return;
+                }
+
+                let overallExhausted = smtpProfiles.every((p, idx) => p.isPaused || smtpUsageTracker[idx] >= p.quota);
+                if (overallExhausted) {
+                    executeHourlyCountDownLock(minimumWaitTimeRemaining);
+                    return;
+                }
+
+                executeHourlyCountDownLock(minimumWaitTimeRemaining);
+                return;
+            }
+
+            currentSmtpIndex = targetNodeIndex;
+            let activeSmtp = smtpProfiles[currentSmtpIndex];
+            
+            sendEmailViaAPI(activeSmtp, targetRecipientEmail, expressionDataPayloadTemplate(currentJobItem.templateId))
+                .then((response) => {
+                    // Instantly lock timestamps when fresh counters trigger
+                    if(smtpUsageTracker[currentSmtpIndex] === 0) {
+                        smtpDailyWindowStart[currentSmtpIndex] = Date.now();
+                    }
+                    if(smtpHourlyTracker[currentSmtpIndex] === 0) {
+                        smtpHourlyWindowStart[currentSmtpIndex] = Date.now();
+                    }
+
+                    smtpUsageTracker[currentSmtpIndex]++;
+                    smtpHourlyTracker[currentSmtpIndex]++;
+                    
+                    campaignReports.push({ email: targetRecipientEmail, status: "Success", reason: "Delivered via node user: " + activeSmtp.user });
+//  PASTE THIS INSTEAD:
+// Determine if we should print the hourly metric based on the host type
+let hourlyLogSuffix = "";
+if (isGoogleSmtp(activeSmtp.host)) {
+    hourlyLogSuffix = ` [Hr: ${smtpHourlyTracker[currentSmtpIndex]}/${smtpHourlyCeiling[currentSmtpIndex]}]`;
+}
+
+logToTerminalFeed("log-success", `✓ ${targetRecipientEmail} (Sender Node User: ${activeSmtp.user})${hourlyLogSuffix}`);
+                    stepAndContinueExecutionPointer();
+                })
+                .catch((errReason) => {
+                    campaignReports.push({ email: targetRecipientEmail, status: "Failed", reason: errReason });
+                    logToTerminalFeed("log-fail", `✕ ${targetRecipientEmail} - Reason: ${errReason}`);
+                    stepAndContinueExecutionPointer();
+                });
+        }
+
+        function executeHourlyCountDownLock(totalMsToWait) {
+            if (totalMsToWait <= 0 || totalMsToWait === Infinity) totalMsToWait = 10000;
+            let targetWakeTime = Date.now() + totalMsToWait;
+
+            function renderTimerUpdate() {
+                let currentMsRemaining = targetWakeTime - Date.now();
+                if (currentMsRemaining <= 0) {
+                    clearInterval(countdownIntervalId);
+                    countdownIntervalId = null;
+                    
+                    evaluateTimeAbsenceResets();
+                    
+                    logToTerminalFeed("log-success", `[System Router] Wait window concluded. Recalculating rotation state metrics and resuming...`);
+                    updateCampaignUIStateMetrics("Processing Campaign Dispatches");
+                    processNextQueueItem();
+                    return;
+                }
+                let minutesLeft = Math.ceil(currentMsRemaining / 60000);
+                updateCampaignUIStateMetrics(`Throttled Waiting Mode (Resuming in ${minutesLeft} min)`);
+            }
+
+            renderTimerUpdate();
+            countdownIntervalId = setInterval(renderTimerUpdate, 10000); 
+        }
+
+        function stepAndContinueExecutionPointer() {
+            executionPointerIndex++;
+            updateLiveMetricsCountersDisplay();
+            saveStateToLocalStorage(); // Automatically logs markers securely down into device storage pipelines
+            
+            let humanJitterDelay = Math.floor(Math.random() * (6000 - 4000 + 1)) + 4000;
+            setTimeout(processNextQueueItem, humanJitterDelay);
+        }
+
+        function expressionDataPayloadTemplate(id) {
+            return emailTemplates.find(t => t.id == id) || { subject: "No Subject", body: "" };
+        }
+
+        // --- Network Communication Dispatch Layer ---
+        function sendEmailViaAPI(smtp, targetEmail, template) {
+            const fromName = localStorage.getItem('bm_from_name') || "Sender";
+            // UPDATED: If global settings sender email is empty, fallback to smtp.user credentials dynamically
+            const fromEmail = (localStorage.getItem('bm_from_email') || "").trim() || smtp.user;
+
+            if (smtp.pass.startsWith("xkeysib-") || smtp.host.includes("api.brevo.com")) {
+                return fetch('https://api.brevo.com/v3/smtp/email', {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'api-key': smtp.pass,
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sender: { name: fromName, email: fromEmail },
+                        to: [{ email: targetEmail }],
+                        subject: template.subject,
+                        htmlContent: template.body
+                    })
+                })
+                .then(async (response) => {
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.message || `Brevo Error (${response.status})`);
+                    return data;
+                });
+            }
+            else {
+                const workerUrl = 'https://barmga-mailer-api.barmga.com'; 
+
+                return fetch(workerUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Host: smtp.host,
+                        Port: smtp.port,
+                        Username: smtp.user,
+                        Password: smtp.pass,
+                        To: targetEmail,
+                        From: `${fromName} <${fromEmail}>`,
+                        Subject: template.subject,
+                        Body: template.body
+                    })
+                })
+                .then(async (response) => {
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.message || `Relay Error (${response.status})`);
+                    }
+                    if (data.status !== "OK") {
+                        throw new Error(data.message || "SMTP Authentication Rejected");
+                    }
+                    return { success: true };
+                });
+            }
+        }
+        
+        function bulkFailRemainingQueue(failureReasonText) {
+            while(executionPointerIndex < activeCampaignQueue.length) {
+                let item = activeCampaignQueue[executionPointerIndex];
+                campaignReports.push({ email: item.email, status: "Failed", reason: failureReasonText });
+                logToTerminalFeed("log-fail", `✕ ${item.email} - System Error: ${failureReasonText}`);
+                executionPointerIndex++;
+            }
+            updateLiveMetricsCountersDisplay();
+            finalizeCampaignProcessingRunState();
+        }
+
+        function finalizeCampaignProcessingRunState() {
+            isCampaignRunning = false;
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+            }
+            document.getElementById('btn-start').disabled = false;
+            document.getElementById('btn-stop').disabled = true;
+            updateCampaignUIStateMetrics("Finished Execution Run");
+            
+            // Clean up text memory on finish so next campaign registers as brand new
+            lastProcessedRecipientText = ""; 
+            saveStateToLocalStorage();
+            alert("Campaign delivery tracking sequence has reached termination state loop.");
+        }
+
+        // --- Progress Persistence and Loading Logic (Campaign Saving) ---
+        function saveCurrentCampaign() {
+            const name = prompt("Enter a unique tracking name for this campaign layout run state snapshot:");
+            if(!name) return;
+
+            const text = document.getElementById('recipient-list').value.trim();
+            const tempId = document.getElementById('campaign-template-select').value;
+
+            const campaignPayload = {
+                id: Date.now(),
+                name: name,
+                recipientRawText: text,
+                templateId: tempId,
+                queue: activeCampaignQueue,
+                reports: campaignReports,
+                pointer: executionPointerIndex,
+                smtpIndex: currentSmtpIndex,
+                usageTracker: smtpUsageTracker
+            };
+
+            savedCampaigns.push(campaignPayload);
+            localStorage.setItem('bm_saved_campaigns', JSON.stringify(savedCampaigns));
+            populateCampaignSelector();
+            alert("Campaign state snapshot committed to LocalStorage successfully.");
+        }
+
+        function populateCampaignSelector() {
+            const select = document.getElementById('load-campaign-select');
+            select.innerHTML = '<option value="">Load Saved Campaign...</option>' +
+                savedCampaigns.map(c => `<option value="${c.id}">${c.name} (${c.pointer}/${c.queue.length || 0})</option>`).join('');
+            
+            select.onchange = (e) => {
+                const val = e.target.value;
+                if(!val) return;
+                const campaign = savedCampaigns.find(c => c.id == val);
+                if(campaign) {
+                    document.getElementById('recipient-list').value = campaign.recipientRawText || '';
+                    document.getElementById('campaign-template-select').value = campaign.templateId || '';
+                    syncTemplateToEditor();
+
+                    activeCampaignQueue = campaign.queue || [];
+                    campaignReports = campaign.reports || [];
+                    executionPointerIndex = campaign.pointer || 0;
+                    currentSmtpIndex = campaign.smtpIndex || 0;
+                    smtpUsageTracker = campaign.usageTracker || {};
+                    lastProcessedRecipientText = campaign.recipientRawText || '';
+
+                    document.getElementById('log-success').innerHTML = '';
+                    document.getElementById('log-fail').innerHTML = '';
+                    
+                    campaignReports.forEach(r => {
+                        if(r.status === "Success") {
+                            logToTerminalFeed("log-success", `✓ ${r.email} (Restored View Log Record)`);
+                        } else {
+                            logToTerminalFeed("log-fail", `✕ ${r.email} - ${r.reason}`);
+                        }
+                    });
+
+                    updateLiveMetricsCountersDisplay();
+                    updateCampaignUIStateMetrics("State Session Loaded");
+                    saveStateToLocalStorage();
+                }
+            };
+        }
+
+        // --- Utilities and Formatting Helpers ---
+        function logToTerminalFeed(elementId, messageText) {
+            const container = document.getElementById(elementId);
+            const entry = document.createElement('div');
+            entry.className = "py-0.5 border-b border-gray-50 tracking-tight leading-relaxed font-mono";
+            entry.textContent = messageText;
+            container.appendChild(entry);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function updateLiveMetricsCountersDisplay() {
+            const total = activeCampaignQueue.length;
+            const success = campaignReports.filter(r => r.status === "Success").length;
+            const fail = campaignReports.filter(r => r.status === "Failed").length;
+            const pending = total - (success + fail);
+
+            document.getElementById('count-total').textContent = total;
+            document.getElementById('count-pending').textContent = Math.max(0, pending);
+            document.getElementById('count-success').textContent = success;
+            document.getElementById('count-fail').textContent = fail;
+        }
+
+        function updateCampaignUIStateMetrics(textValue) {
+            document.getElementById('campaign-status-badge').textContent = `Status: ${textValue}`;
+        }
+
+        function downloadExcelReport() {
+            if(campaignReports.length === 0) return alert("No tracking records to export. Run a campaign deployment sequence or load an existing session first.");
+
+            const worksheetData = [
+                ["Recipient Email Address Target", "Delivery Status Result Code", "Response Log Reason / Node Target Address Execution Routing Key"]
+            ];
+            
+            campaignReports.forEach(r => {
+                worksheetData.push([r.email, r.status, r.reason]);
+            });
+
+            const workbook = XLSX.utils.book_new();
+            const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+            
+            worksheet['!cols'] = [{ wch: 35 }, { wch: 15 }, { wch: 55 }];
+
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Campaign Execution Report");
+            XLSX.writeFile(workbook, `BarmgaMailer_Report_${Date.now()}.xlsx`);
+        }
+
+        function saveStateToLocalStorage() {
+            localStorage.setItem('bm_smtp_profiles', JSON.stringify(smtpProfiles));
+            localStorage.setItem('bm_email_templates', JSON.stringify(emailTemplates));
+            
+            // Sync values to localStorage sequentially
+            localStorage.setItem('bm_smtp_usage_tracker', JSON.stringify(smtpUsageTracker));
+            localStorage.setItem('bm_smtp_hourly_tracker', JSON.stringify(smtpHourlyTracker));
+            localStorage.setItem('bm_smtp_hourly_window_start', JSON.stringify(smtpHourlyWindowStart));
+            localStorage.setItem('bm_smtp_daily_window_start', JSON.stringify(smtpDailyWindowStart));
+            localStorage.setItem('bm_smtp_hourly_ceiling', JSON.stringify(smtpHourlyCeiling));
+            localStorage.setItem('bm_execution_pointer', executionPointerIndex.toString());
+            localStorage.setItem('bm_last_recipient_text', lastProcessedRecipientText);
+        }
+
+        function loadStateFromLocalStorage() {
+            const smtpData = localStorage.getItem('bm_smtp_profiles');
+            const templateData = localStorage.getItem('bm_email_templates');
+            const campaignData = localStorage.getItem('bm_saved_campaigns');
+
+            if(smtpData) smtpProfiles = JSON.parse(smtpData);
+            if(templateData) emailTemplates = JSON.parse(templateData);
+            if(campaignData) savedCampaigns = JSON.parse(campaignData);
+
+            // Rehydrate structural tracking logs and timestamps directly from browser storage
+            const savedUsage = localStorage.getItem('bm_smtp_usage_tracker');
+            const savedHourly = localStorage.getItem('bm_smtp_hourly_tracker');
+            const savedWindow = localStorage.getItem('bm_smtp_hourly_window_start');
+            const savedDailyWindow = localStorage.getItem('bm_smtp_daily_window_start');
+            const savedCeiling = localStorage.getItem('bm_smtp_hourly_ceiling');
+            const savedPointer = localStorage.getItem('bm_execution_pointer');
+            const savedText = localStorage.getItem('bm_last_recipient_text');
+
+            smtpUsageTracker = savedUsage ? JSON.parse(savedUsage) : {};
+            smtpHourlyTracker = savedHourly ? JSON.parse(savedHourly) : {};
+            smtpHourlyWindowStart = savedWindow ? JSON.parse(savedWindow) : {};
+            smtpDailyWindowStart = savedDailyWindow ? JSON.parse(savedDailyWindow) : {};
+            smtpHourlyCeiling = savedCeiling ? JSON.parse(savedCeiling) : {};
+            executionPointerIndex = savedPointer ? parseInt(savedPointer) : 0;
+            lastProcessedRecipientText = savedText ? savedText : "";
+
+            smtpProfiles.forEach(p => { if(p.isPaused === undefined) p.isPaused = false; });
+
+            if(localStorage.getItem('bm_from_name')) document.getElementById('global-from-name').value = localStorage.getItem('bm_from_name');
+            if(localStorage.getItem('bm_from_email')) document.getElementById('global-from-email').value = localStorage.getItem('bm_from_email');
+        }
+</script>
+</body>
+</html>
