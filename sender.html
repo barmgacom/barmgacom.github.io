@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -621,10 +620,18 @@
                 let resolvedSenderEmail = globalFromEmail.trim() || candidateSmtp.user;
                 let senderIsGmail = isGmailAddress(resolvedSenderEmail);
 
-                // DYNAMIC ROUTING RULES: If sender is not gmail, it can only target gmail destinations
-                if (!senderIsGmail && !targetIsGmail) {
-                    continue; 
-                }
+//  PASTE THIS NEW BLOCK INSTEAD:
+// If the active SMTP node is a Google profile, restrict its outbound traffic to Gmail targets only
+if (senderIsGmail && !targetIsGmail) {
+    campaignReports.push({ 
+        email: targetRecipientEmail, 
+        status: "Failed", 
+        reason: "Routing Blocked: Gmail profiles are strictly restricted to @gmail.com destinations." 
+    });
+    logToTerminalFeed("log-fail", `✕ ${targetRecipientEmail} - Reason: Gmail node cannot send to custom domains.`);
+    stepAndContinueExecutionPointer();
+    return;
+}
 
                 if (senderIsGmail) {
                     nonGmailTargetAllowedSmtp = true;
@@ -700,7 +707,14 @@
                     smtpHourlyTracker[currentSmtpIndex]++;
                     
                     campaignReports.push({ email: targetRecipientEmail, status: "Success", reason: "Delivered via node user: " + activeSmtp.user });
-                    logToTerminalFeed("log-success", `✓ ${targetRecipientEmail} (Sender Node User: ${activeSmtp.user}) [Hr: ${smtpHourlyTracker[currentSmtpIndex]}/${smtpHourlyCeiling[currentSmtpIndex]}]`);
+//  PASTE THIS INSTEAD:
+// Determine if we should print the hourly metric based on the host type
+let hourlyLogSuffix = "";
+if (isGoogleSmtp(activeSmtp.host)) {
+    hourlyLogSuffix = ` [Hr: ${smtpHourlyTracker[currentSmtpIndex]}/${smtpHourlyCeiling[currentSmtpIndex]}]`;
+}
+
+logToTerminalFeed("log-success", `✓ ${targetRecipientEmail} (Sender Node User: ${activeSmtp.user})${hourlyLogSuffix}`);
                     stepAndContinueExecutionPointer();
                 })
                 .catch((errReason) => {
@@ -991,6 +1005,5 @@
             if(localStorage.getItem('bm_from_email')) document.getElementById('global-from-email').value = localStorage.getItem('bm_from_email');
         }
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"486f0be23a4e499ba04d4670c5d226c9","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
