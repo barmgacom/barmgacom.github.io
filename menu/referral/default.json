@@ -1,0 +1,72 @@
+{
+  "USD": {
+    "bank": {
+      "ar": {
+        "bank_name": "مصرف الراجحي",
+        "user_name": "تركي ماهر البلوي",
+        "iban": "SA9880000445608016068416"
+      },
+      "en": {
+        "bank_name": "Al Rajhi Bank",
+        "user_name": "Turki Maher Albalawi",
+        "iban": "SA9880000445608016068416"
+      }
+    },
+    "payment-service": "Freemius",
+    "payment-service-link": "https://freemius.com",
+    "payment-service-description": "Freemius provides secure global payment processing, automated invoicing, license management, and support for major international credit cards and PayPal.",
+    "payment-service-logo": "images/freemius.png",
+    "links": {
+      "70_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "70_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "650_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "650_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "900_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "900_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "600_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "600_noauto": "https://checkout.freemius.com/template/19632/plan/32524/"
+    }
+  },
+  "SAR": {
+    "bank": {
+      "ar": {
+        "bank_name": "مصرف الراجحي",
+        "user_name": "تركي ماهر البلوي",
+        "iban": "SA9880000445608016068416"
+      },
+      "en": {
+        "bank_name": "Al Rajhi Bank",
+        "user_name": "Turki Maher Albalawi",
+        "iban": "SA9880000445608016068416"
+      }
+    },
+    "links": {
+      "250_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "250_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "2500_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "2500_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "3500_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "3500_noauto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "2200_auto": "https://checkout.freemius.com/template/19632/plan/32524/",
+      "2200_noauto": "https://checkout.freemius.com/template/19632/plan/32524/"
+    },
+    "payment-service": "Freemius",
+    "payment-service-link": "",
+    "payment-service-description": "Leading platform for payment solutions for SaaS projects.",
+    "payment-service-logo": "images/freemius.png"
+  },
+  "responsible-ar": {
+    "companyname": "مؤسسة أسواق لتقنية المعلومات",
+    "crnumber": "1010123456",
+    "responsiblename": "تركي البلوي",
+    "phone": "+966540040645",
+    "email": "info@web.asweq.com"
+  },
+  "responsible-en": {
+    "companyname": "Asweq Web Est.",
+    "crnumber": "1010123456",
+    "responsiblename": "Turki Albalawi",
+    "phone": "+966540040645",
+    "email": "info@web.asweq.com"
+  }
+}

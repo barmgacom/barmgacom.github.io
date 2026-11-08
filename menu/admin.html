@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | User Management</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+  :root { --bg: #f3f4f6; --primary: #0F6E64; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: #111827; }
+  .modal-transition { transition: all 0.2s ease-in-out; }
+</style>
+</head>
+<body class="p-4 sm:p-8">
+
+  <!-- Authentication Wrapper -->
+  <div id="auth-wrapper" class="max-w-md mx-auto mt-20 bg-white p-8 rounded-2xl shadow-xl">
+    <h1 class="text-2xl font-extrabold mb-2">Admin Access</h1>
+    <p class="text-sm text-gray-500 mb-6">Please enter the master admin key to view user tables.</p>
+    <input type="password" id="adminKeyInput" class="w-full border border-gray-300 rounded-xl px-4 py-3 mb-4 outline-none focus:border-black" placeholder="Admin Key">
+    <button onclick="loginAdmin()" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-xl transition">Unlock Panel</button>
+  </div>
+
+  <!-- Main Admin Interface -->
+  <div id="admin-ui" class="hidden max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl font-extrabold">User Management</h1>
+        <p class="text-gray-500 text-sm mt-1">Manage accounts and JSON detailed schemas</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="exportAllUsersBackup()" class="bg-[var(--primary)] hover:bg-[#0c5850] text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center gap-2">
+          <i class="bi bi-download"></i>
+          <span>Export Backup JSON</span>
+        </button>
+        <button onclick="logoutAdmin()" class="text-red-600 font-bold hover:underline px-3 py-2 text-sm">Exit Admin</button>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+      <table class="w-full text-left text-sm whitespace-nowrap">
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-4 font-bold text-gray-600">ID</th>
+            <th class="px-6 py-4 font-bold text-gray-600">Name</th>
+            <th class="px-6 py-4 font-bold text-gray-600">Email</th>
+            <th class="px-6 py-4 font-bold text-gray-600">Phone</th>
+            <th class="px-6 py-4 font-bold text-gray-600">Password</th>
+            <th class="px-6 py-4 font-bold text-gray-600 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="users-table-body" class="divide-y divide-gray-200">
+          <!-- Rows injected via JS -->
+        </tbody>
+      </table>
+</div>
+
+    <!-- Allowed Domains Management Section -->
+    <div class="mt-8 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-gray-100">
+        <div>
+          <h2 class="text-lg font-extrabold text-gray-900 flex items-center gap-2">
+            <i class="bi bi-shield-check text-[var(--primary)] text-xl"></i> Allowed Domains (CORS Policy)
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">Enter user custom domains allowed to access Worker APIs (one per line or comma-separated).</p>
+        </div>
+        <button onclick="saveAllowedDomains()" id="btn-save-domains" class="bg-[var(--primary)] hover:bg-[#0c5850] text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center gap-2">
+          <i class="bi bi-check2-circle"></i> Save Domains
+        </button>
+      </div>
+
+      <div>
+        <textarea id="admin-allowed-domains-input" rows="4" class="w-full border border-gray-300 rounded-xl p-3 text-xs sm:text-sm font-mono outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 bg-gray-50" placeholder="example.com&#10;menu.clientrestaurant.com"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Management Modal -->
+  <div id="details-modal" class="fixed inset-0 bg-black/60 hidden z-50 modal-transition opacity-0 flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-4 p-6 transform scale-95 modal-transition flex flex-col max-h-[95vh]">
+      
+      <div class="flex justify-between items-center border-b pb-4 mb-4">
+        <h3 class="text-lg font-bold text-gray-900">Manage User: <span id="modal-user-name" class="text-gray-500"></span></h3>
+        <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-700"><i class="bi bi-x-lg text-xl"></i></button>
+      </div>
+
+      <div class="flex-grow overflow-y-auto mb-4 pr-2 space-y-5">
+        
+        <!-- Standard Account Fields -->
+        <div class="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-500">Name</label>
+            <input type="text" id="edit-name" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900">
+          </div>
+<div>
+            <label class="block text-xs font-bold mb-1 text-gray-500">Email (Changing auto-forces logout)</label>
+            <input type="email" id="edit-email" autocomplete="off" name="no-autofill-user-email" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900">
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-500">Phone</label>
+            <input type="tel" id="edit-phone" autocomplete="off" name="no-autofill-user-phone" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900">
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-1 text-[var(--primary)]">User Password</label>
+            <div class="relative flex items-center">
+              <input type="password" id="edit-password" autocomplete="new-password" name="no-autofill-user-pass" class="w-full border border-[var(--primary)] rounded-lg px-3 py-2 pr-10 text-sm outline-none focus:ring focus:ring-emerald-100">              
+              <button type="button" onclick="togglePasswordView()" class="absolute right-3 text-gray-500 hover:text-gray-800">
+                <i id="eye-icon" class="bi bi-eye-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+<!-- Template Switcher for Paid Members -->
+<div class="bg-amber-50/60 border border-amber-200 rounded-xl p-4 space-y-3">
+  <div class="flex justify-between items-center border-b border-amber-100 pb-2">
+    <div>
+      <h4 class="text-xs font-extrabold text-amber-900 uppercase tracking-wider">Change Live Template</h4>
+      <p class="text-[11px] text-gray-500">Redeploys clean starter files from GitHub without changing membership or renewal dates.</p>
+    </div>
+    <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Git Deployment</span>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <select id="admin-target-template" class="flex-grow border border-gray-300 rounded-lg px-3 py-2 text-xs font-bold outline-none bg-white">
+      <option value="resto-1">resto-1 (Modern Menu Design)</option>
+      <option value="resto-2">resto-2 (Elegant Menu Design)</option>
+      <option value="resto-3">resto-3 (Smart App Menu)</option>
+      <option value="resto-4">resto-4 (Category Banner Menu)</option>
+      <option value="resto-5">resto-5 (Classic Luxury Booklet)</option>
+      <option value="resto-6">resto-6 (Minimalist Direct Menu)</option>
+      <option value="resto-7">resto-7 (Dark / Light with Images)</option>
+      <option value="resto-8">resto-8 (Desert Heritage Design)</option>
+      <option value="resto-9">resto-9 (Text-Only Luxury Menu)</option>
+    </select>
+    <button type="button" onclick="executeTemplateSwitch()" id="btn-admin-switch-template" class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition shadow-sm whitespace-nowrap">
+      Switch & Redeploy
+    </button>
+  </div>
+</div>
+        <!-- Custom Plans Pricing for this Specific User -->
+        <div class="bg-blue-50/50 border border-blue-200 rounded-xl p-4 space-y-3">
+          <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+            <div>
+              <h4 class="text-xs font-extrabold text-blue-900 uppercase tracking-wider">Custom Plan Prices & Default Selected Plan</h4>
+              <p class="text-[11px] text-gray-500">Pick the plan that will be automatically selected for this user.</p>
+            </div>
+            <span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-full">Per-User Rates</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <!-- Monthly -->
+            <div id="admin-plan-card-monthly" onclick="selectAdminDefaultPlan('monthly')" class="cursor-pointer bg-white p-3 rounded-xl border-2 border-gray-200 transition space-y-2 relative hover:border-gray-300">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-gray-800">Monthly Plan</span>
+                <input type="radio" name="admin_default_plan" value="monthly" id="plan-radio-monthly" class="pointer-events-none accent-[#2780b7]">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Price & Currency</label>
+                <input type="text" id="user-cfg-price-monthly" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="250 SAR">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Frequency</label>
+                <input type="text" id="user-cfg-freq-monthly" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="month">
+              </div>
+            </div>
+
+            <!-- Annual -->
+            <div id="admin-plan-card-annual" onclick="selectAdminDefaultPlan('annual')" class="cursor-pointer bg-white p-3 rounded-xl border-2 border-gray-200 transition space-y-2 relative hover:border-gray-300">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-[#2780b7]">Professional Annual</span>
+                <input type="radio" name="admin_default_plan" value="annual" id="plan-radio-annual" class="pointer-events-none accent-[#2780b7]">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Price & Currency</label>
+                <input type="text" id="user-cfg-price-annual" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="2,500 SAR">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Frequency</label>
+                <input type="text" id="user-cfg-freq-annual" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="year">
+              </div>
+            </div>
+
+            <!-- Comprehensive -->
+            <div id="admin-plan-card-comprehensive" onclick="selectAdminDefaultPlan('comprehensive')" class="cursor-pointer bg-white p-3 rounded-xl border-2 border-gray-200 transition space-y-2 relative hover:border-gray-300">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-gray-800">Full Web Package</span>
+                <input type="radio" name="admin_default_plan" value="comprehensive" id="plan-radio-comprehensive" class="pointer-events-none accent-[#2780b7]">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Price & Currency</label>
+                <input type="text" id="user-cfg-price-comprehensive" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="3,500 SAR">
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-500 font-semibold mb-0.5">Frequency</label>
+                <input type="text" id="user-cfg-freq-comprehensive" onclick="event.stopPropagation()" class="w-full border border-gray-300 rounded-lg px-2.5 py-1.5 text-xs font-bold outline-none focus:border-gray-900" placeholder="1st year">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic JSON Schema Fields -->
+        <div>
+          <h4 class="text-sm font-bold text-gray-700 mb-3 flex justify-between items-center">
+            Database Details (JSON)
+            <button onclick="promptGlobalField()" class="text-[var(--primary)] font-bold text-xs hover:underline flex items-center gap-1">
+              <i class="bi bi-plus-circle-fill"></i> Add Global Key
+            </button>
+          </h4>
+          <div id="dynamic-fields-container" class="space-y-4">
+            <!-- Dynamically generated keys go here -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t pt-4 mt-2 flex justify-end gap-3">
+        <button onclick="closeDetailsModal()" class="px-5 py-2 text-gray-600 hover:bg-gray-100 font-bold rounded-xl transition text-sm">Cancel</button>
+        <button onclick="saveUserDetails()" id="saveDetailsBtn" class="bg-gray-900 hover:bg-black text-white px-6 py-2.5 rounded-xl font-bold transition text-sm shadow-sm">Save For This User</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Upgrade Order Viewer Modal -->
+  <div id="upgrade-order-modal" class="fixed inset-0 bg-black/70 hidden z-[90] modal-transition opacity-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-auto transform scale-95 modal-transition flex flex-col max-h-[90vh] overflow-hidden">
+      
+      <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+        <div>
+          <h3 class="text-base font-extrabold text-gray-900">Upgrade Order Details</h3>
+          <p class="text-xs text-gray-500 mt-0.5" id="order-modal-timestamp">Timestamp: -</p>
+        </div>
+        <button type="button" onclick="closeUpgradeOrderModal()" class="text-gray-400 hover:text-gray-700 text-lg p-1">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-5 text-sm">
+        <!-- Selected Plan & Template Box -->
+        <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-4 space-y-2">
+          <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Package</span>
+            <span class="font-extrabold text-blue-800" id="order-modal-plan">-</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-blue-100 pb-2">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Price</span>
+            <span class="font-bold text-gray-900" id="order-modal-price">-</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Template</span>
+            <span class="font-bold text-gray-900" id="order-modal-template">-</span>
+          </div>
+        </div>
+
+        <!-- Contact Details Box -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2.5">
+          <h4 class="text-xs font-extrabold text-gray-600 uppercase tracking-wider mb-2">Customer Submission</h4>
+          <div class="flex justify-between border-b border-gray-200/70 pb-1.5">
+            <span class="text-gray-500 text-xs">Contact Name:</span>
+            <span class="font-bold text-gray-900" id="order-modal-name">-</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200/70 pb-1.5">
+            <span class="text-gray-500 text-xs">Company / Restaurant:</span>
+            <span class="font-bold text-gray-900" id="order-modal-company">-</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200/70 pb-1.5">
+            <span class="text-gray-500 text-xs">Email:</span>
+            <span class="font-mono text-xs text-gray-800" id="order-modal-email">-</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200/70 pb-1.5">
+            <span class="text-gray-500 text-xs">Phone:</span>
+            <span class="font-mono text-xs text-gray-800" id="order-modal-phone" dir="ltr">-</span>
+          </div>
+          <div class="flex flex-col pt-1">
+            <span class="text-gray-500 text-xs mb-0.5">Address:</span>
+            <span class="font-medium text-gray-800 text-xs" id="order-modal-address">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-gray-200 bg-white flex justify-end">
+        <button type="button" onclick="closeUpgradeOrderModal()" class="bg-gray-900 hover:bg-black text-white px-5 py-2 rounded-xl text-xs font-bold transition">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Upgrade Membership Configuration Modal -->
+  <div id="membership-upgrade-modal" class="fixed inset-0 bg-black/70 hidden z-[95] modal-transition opacity-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-auto transform scale-95 modal-transition flex flex-col max-h-[90vh] overflow-hidden">
+      
+      <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+        <div>
+          <h3 class="text-base font-extrabold text-gray-900">Upgrade Membership Plan</h3>
+          <p class="text-xs text-gray-500 mt-0.5">Configure subscription details, renewal periods, and pricing</p>
+        </div>
+        <button type="button" onclick="closeMembershipUpgradeModal()" class="text-gray-400 hover:text-gray-700 text-lg p-1">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 text-sm">
+        <!-- Membership Tier Name -->
+        <div>
+          <label class="block text-xs font-bold mb-1 text-gray-600">Membership Name (Displays in profile & input)</label>
+          <input type="text" id="m-plan-name" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900" placeholder="e.g. Professional Annual, Premium Monthly">
+        </div>
+
+        <!-- Billing Rate -->
+        <div>
+          <label class="block text-xs font-bold mb-1 text-gray-600">Price Rate (Billing Period)</label>
+          <select id="m-plan-rate" onchange="autoCalculateNextRenewal()" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900 bg-white font-medium">
+            <option value="monthly">Monthly</option>
+            <option value="3_months">3 Months</option>
+            <option value="6_months">6 Months</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+
+        <!-- Renewal Calculation Mode & Date Input -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-600">Next Renewal Preset</label>
+            <select id="m-renewal-preset" onchange="applyRenewalPreset()" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900 bg-white font-medium">
+              <option value="auto">Auto (+ selected rate)</option>
+              <option value="+1m">+1 Month</option>
+              <option value="+3m">+3 Months</option>
+              <option value="+6m">+6 Months</option>
+              <option value="+1y">+1 Year</option>
+              <option value="custom">Manual Date</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-600">Renewal Date</label>
+            <input type="date" id="m-renewal-date" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900 bg-white">
+          </div>
+        </div>
+
+        <!-- Price & Currency -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-600">Price</label>
+            <input type="number" id="m-plan-price" step="any" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900" placeholder="2500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-1 text-gray-600">Currency</label>
+            <input type="text" id="m-plan-currency" value="SAR" class="w-full border border-gray-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gray-900 font-bold">
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-2.5">
+        <button type="button" onclick="closeMembershipUpgradeModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-200 font-bold rounded-xl text-xs transition">Cancel</button>
+        <button type="button" onclick="saveMembershipUpgradeModal()" class="bg-[#2780b7] hover:bg-[#1e6a9a] text-white px-5 py-2 font-bold rounded-xl text-xs transition shadow-sm">Apply & Save</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CUSTOM ALERT MODAL -->
+  <div id="alert-modal" class="fixed inset-0 bg-black/50 hidden z-[60] modal-transition opacity-0 flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 transform scale-95 modal-transition p-6 text-center">
+      <div id="alert-icon-container" class="mx-auto flex items-center justify-center h-14 w-14 rounded-full mb-4">
+        <i id="alert-icon" class="bi text-2xl font-bold"></i>
+      </div>
+      <h3 id="alert-title" class="text-lg font-bold mb-2 text-gray-900">Title</h3>
+      <p id="alert-message" class="text-gray-600 text-sm mb-6">Message</p>
+      <button onclick="closeAlertModal()" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-2.5 rounded-xl transition">OK</button>
+    </div>
+  </div>
+
+  <!-- CUSTOM PROMPT MODAL -->
+  <div id="prompt-modal" class="fixed inset-0 bg-black/50 hidden z-[60] modal-transition opacity-0 flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 transform scale-95 modal-transition p-6">
+      <h3 class="text-lg font-bold mb-2 text-gray-900" id="prompt-title">Title</h3>
+      <p id="prompt-msg" class="text-gray-600 text-sm mb-4">Message</p>
+      <input type="text" id="prompt-val" class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm outline-none focus:border-[var(--primary)] mb-6 shadow-sm">
+      <div class="flex justify-end gap-3">
+        <button onclick="cancelPrompt()" class="px-5 py-2 text-gray-600 hover:bg-gray-100 font-bold rounded-xl transition text-sm">Cancel</button>
+        <button onclick="submitPrompt()" class="bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white px-6 py-2 rounded-xl font-bold transition text-sm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CONFIRM MODAL -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black/50 hidden z-[60] modal-transition opacity-0 flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 transform scale-95 modal-transition p-6 text-center">
+      <div class="mx-auto flex items-center justify-center h-14 w-14 rounded-full mb-4 bg-red-100 text-red-600">
+        <i class="bi bi-exclamation-triangle-fill text-2xl font-bold"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2 text-gray-900">Are you sure?</h3>
+      <p id="confirm-msg" class="text-gray-600 text-sm mb-6">Message</p>
+      <div class="flex justify-center gap-3 w-full">
+        <button onclick="cancelConfirm()" class="flex-1 px-5 py-2.5 text-gray-600 bg-gray-100 hover:bg-gray-200 font-bold rounded-xl transition text-sm">Cancel</button>
+        <button onclick="submitConfirm()" class="flex-1 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl font-bold transition text-sm">Yes, proceed</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+  let globalAdminKey = "";
+  let rawUsersData = [];
+  let masterSchemaKeys = [];
+  let currentEditingUser = null;
+  let adminTouchedLogout = false;
+  let currentMembershipDetails = null;
+
+  // --- Auth & Setup ---
+  let selectedAdminPlanId = 'annual';
+const ACTIVATION_WORKER_URL = "https://barmga-1004.asweqofficial.workers.dev";
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+function safeParseDetails(raw) {
+  if (!raw) return {};
+  let current = raw;
+  while (typeof current === "string") {
+    const trimmed = current.trim();
+    if (!trimmed || trimmed === "[object Object]") return {};
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (typeof parsed !== "object" || parsed === null) return {};
+      current = parsed;
+    } catch (_) {
+      return {};
+    }
+  }
+  return (typeof current === "object" && current !== null && !Array.isArray(current)) ? current : {};
+}
+
+function exportAllUsersBackup() {
+    if (!rawUsersData || rawUsersData.length === 0) {
+      showAlert("No Data", "There are no users to export.", "error");
+      return;
+    }
+
+    // 1. Structure detailed data with fully parsed JSON objects
+    const exportData = rawUsersData.map(u => {
+      let parsedDetails = {};
+      try {
+        parsedDetails = safeParseDetails(u.details);
+      } catch (_) {
+        parsedDetails = u.details;
+      }
+
+      return {
+        id: u.id,
+        name: u.name,
+        email: u.email,
+        phone: u.phone,
+        plain_password: u.plain_password || null,
+        details: parsedDetails
+      };
+    });
+
+    const backupPayload = {
+      exported_at: new Date().toISOString(),
+      total_users: exportData.length,
+      users: exportData
+    };
+
+    // 2. Trigger browser download of formatted JSON
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
+    const downloadAnchor = document.createElement('a');
+    const filenameDate = new Date().toISOString().split('T')[0];
+
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `barmga_users_verified_${filenameDate}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    showAlert("Backup Created", `Successfully exported ${exportData.length} user records with full details.`, "success");
+  }
+// Helper for AsweqVault-compatible encryption in admin.html
+async function adminEncryptPayload(plainObj) {
+  const SECRET_KEY_STRING = "a57251e7037c91c2b0ae61f94587b1ea";
+  const encoder = new TextEncoder();
+  const keyMaterial = encoder.encode(SECRET_KEY_STRING.padEnd(32, '0').slice(0, 32));
+  const cryptoKey = await crypto.subtle.importKey('raw', keyMaterial, { name: 'AES-GCM' }, false, ['encrypt']);
+  
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const data = encoder.encode(JSON.stringify(plainObj));
+  const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, cryptoKey, data);
+  
+  const combined = new Uint8Array(iv.length + encrypted.byteLength);
+  combined.set(iv, 0);
+  combined.set(new Uint8Array(encrypted), iv.length);
+  
+  let bin = '';
+  for (let i = 0; i < combined.byteLength; i++) bin += String.fromCharCode(combined[i]);
+  return btoa(bin);
+}
+
+// admin.html
+async function executeTemplateSwitch() {
+  if (!currentEditingUser) return;
+
+  const targetTpl = document.getElementById('admin-target-template').value;
+  const confirmed = await showConfirmModal(
+    `Are you sure you want to change the template for ${currentEditingUser.name} to "${targetTpl}"?`
+  );
+  if (!confirmed) return;
+
+  const btn = document.getElementById('btn-admin-switch-template');
+  btn.disabled = true;
+  btn.textContent = "Deploying to GitHub...";
+
+  try {
+    const res = await fetch(`${API_BASE}/api/internal/switch_template`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        admin_key: globalAdminKey,
+        targetEmail: currentEditingUser.email,
+        templateId: targetTpl
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      throw new Error(data.error || data.message || "Failed to switch template.");
+    }
+
+    showAlert("Success", `Template successfully changed to ${targetTpl} and deployed to Pages!`, "success");
+    closeDetailsModal();
+    fetchUsers();
+  } catch (err) {
+    showAlert("Error", err.message, "error");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Switch & Redeploy";
+  }
+}
+function selectAdminDefaultPlan(planId) {
+    selectedAdminPlanId = planId;
+    ['monthly', 'annual', 'comprehensive'].forEach(id => {
+      const card = document.getElementById(`admin-plan-card-${id}`);
+      const radio = document.getElementById(`plan-radio-${id}`);
+      if (!card || !radio) return;
+
+      const isSelected = (id === planId);
+      radio.checked = isSelected;
+      card.classList.toggle('border-[#2780b7]', isSelected);
+      card.classList.toggle('bg-blue-50/40', isSelected);
+      card.classList.toggle('ring-2', isSelected);
+      card.classList.toggle('ring-blue-100', isSelected);
+      card.classList.toggle('border-gray-200', !isSelected);
+      card.classList.toggle('bg-white', !isSelected);
+    });
+  }
+
+  function loginAdmin() {
+    const key = document.getElementById('adminKeyInput').value.trim();
+    if (!key) return;
+    globalAdminKey = key;
+    document.getElementById('auth-wrapper').classList.add('hidden');
+    document.getElementById('admin-ui').classList.remove('hidden');
+    fetchUsers();
+    fetchAllowedDomains();
+  }
+
+  async function fetchAllowedDomains() {
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/get_settings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin_key: globalAdminKey })
+      });
+      const data = await res.json();
+      if (res.ok && data.allowed_domains) {
+        document.getElementById('admin-allowed-domains-input').value = data.allowed_domains.join('\n');
+      }
+    } catch (_) {}
+  }
+
+  async function saveAllowedDomains() {
+    const btn = document.getElementById('btn-save-domains');
+    btn.disabled = true;
+    btn.innerHTML = `<i class="bi bi-arrow-repeat animate-spin"></i> Saving...`;
+
+    const raw = document.getElementById('admin-allowed-domains-input').value;
+    const domains = raw
+      .split(/[\n,]/)
+      .map(d => d.trim().toLowerCase())
+      .filter(Boolean);
+
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/update_settings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin_key: globalAdminKey, allowed_domains: domains })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      showAlert("Domains Saved", "Allowed domains successfully updated in D1 database.", "success");
+    } catch (err) {
+      showAlert("Error", err.message, "error");
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="bi bi-check2-circle"></i> Save Domains`;
+    }
+  }
+
+  function logoutAdmin() {
+    globalAdminKey = "";
+    document.getElementById('adminKeyInput').value = "";
+    document.getElementById('auth-wrapper').classList.remove('hidden');
+    document.getElementById('admin-ui').classList.add('hidden');
+  }
+
+  // --- Table Data ---
+
+  async function fetchUsers() {
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin_key: globalAdminKey })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      // Sort ascending by ID (oldest registrants appear first)
+      rawUsersData = (data.users || []).sort((a, b) => Number(a.id) - Number(b.id));
+      calculateMasterSchema();
+      renderTable();
+    } catch (err) {
+      showAlert("Access Error", err.message, "error");
+      logoutAdmin();
+    }
+  }
+
+function calculateMasterSchema() {
+    let keySet = new Set(['logout', 'locked', 'membership', 'wk', 'pg', 'expires', 'link', 'redirect_link', 'notes']);
+    rawUsersData.forEach(user => {
+      try {
+        if (user.details) {
+          const dict = safeParseDetails(user.details);
+          Object.keys(dict).forEach(k => keySet.add(k));
+        }
+      } catch(e) {}
+    });
+    masterSchemaKeys = Array.from(keySet);
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('users-table-body');
+    tbody.innerHTML = '';
+    rawUsersData.forEach(u => {
+      const tr = document.createElement('tr');
+      
+      let locked = false;
+      try {
+        const d = safeParseDetails(u.details);
+        if (d.locked === true || String(d.locked) === "true") locked = true;
+      } catch(e) {}
+
+      const lockBadge = locked ? `<span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded-full font-bold ml-2">Locked</span>` : '';
+
+      const safeId = escapeHtml(u.id);
+      const safeName = escapeHtml(u.name);
+      const safeEmail = escapeHtml(u.email);
+      const safePhone = escapeHtml(u.phone);
+
+      tr.innerHTML = `
+        <td class="px-6 py-4 text-gray-500 font-mono text-xs">#${safeId}</td>
+        <td class="px-6 py-4 font-bold">${safeName} ${lockBadge}</td>
+        <td class="px-6 py-4 text-gray-500">${safeEmail}</td>
+        <td class="px-6 py-4 text-gray-500">${safePhone}</td>
+        <td class="px-6 py-4 text-gray-500 font-mono">********</td>
+        <td class="px-6 py-4 text-right">
+          <button onclick="fetchAndOpenDetails(${safeId})" class="inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-4 py-2 rounded-lg text-xs transition mr-2">
+             Manage Data
+          </button>
+          <button onclick="confirmDeleteUser(${safeId})" class="inline-block bg-red-50 hover:bg-red-200 text-red-700 font-bold px-4 py-2 rounded-lg text-xs transition">
+             Delete
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // --- Modal Logic & Data Fetching ---
+
+  async function fetchAndOpenDetails(userId) {
+    await fetchUsers();
+    openDetailsModal(userId);
+  }
+
+  function togglePasswordView() {
+    const pwdInput = document.getElementById('edit-password');
+    const eyeIcon = document.getElementById('eye-icon');
+    if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        eyeIcon.classList.remove('bi-eye-fill');
+        eyeIcon.classList.add('bi-eye-slash-fill');
+    } else {
+        pwdInput.type = 'password';
+        eyeIcon.classList.remove('bi-eye-slash-fill');
+        eyeIcon.classList.add('bi-eye-fill');
+    }
+  }
+
+  function openDetailsModal(userId) {
+    currentEditingUser = rawUsersData.find(u => u.id === userId);
+    adminTouchedLogout = false;
+    
+    document.getElementById('modal-user-name').textContent = currentEditingUser.name;
+    document.getElementById('edit-name').value = currentEditingUser.name;
+    document.getElementById('edit-email').value = currentEditingUser.email;
+    document.getElementById('edit-phone').value = currentEditingUser.phone;
+    
+    const pwdInput = document.getElementById('edit-password');
+    pwdInput.value = currentEditingUser.plain_password || "";
+    pwdInput.type = "password"; 
+    document.getElementById('eye-icon').className = 'bi bi-eye-fill';
+
+    let userDetails = safeParseDetails(currentEditingUser.details);
+
+    currentMembershipDetails = userDetails.membership_details || null;
+
+    // Harmonize expires and renewal_date so both hold the exact same date on load
+    const activeRenewal = currentMembershipDetails?.renewal_date || userDetails.expires || '';
+    if (activeRenewal) {
+      userDetails.expires = activeRenewal;
+      if (!currentMembershipDetails) {
+        currentMembershipDetails = {};
+      }
+      currentMembershipDetails.renewal_date = activeRenewal;
+    }
+const targetTemplateSelect = document.getElementById('admin-target-template');
+if (targetTemplateSelect) {
+  targetTemplateSelect.value = userDetails.template_id || 'resto-2';
+}
+    // Populate user-specific custom plan pricing inputs
+    const userCustomPlans = userDetails.custom_plans || {};
+    document.getElementById('user-cfg-price-monthly').value = userCustomPlans.monthly?.price || '250 SAR';
+    document.getElementById('user-cfg-freq-monthly').value = userCustomPlans.monthly?.frequency || 'month';
+
+    document.getElementById('user-cfg-price-annual').value = userCustomPlans.annual?.price || '2,500 SAR';
+    document.getElementById('user-cfg-freq-annual').value = userCustomPlans.annual?.frequency || 'year';
+
+    document.getElementById('user-cfg-price-comprehensive').value = userCustomPlans.comprehensive?.price || '3,500 SAR';
+    document.getElementById('user-cfg-freq-comprehensive').value = userCustomPlans.comprehensive?.frequency || '1st year';
+
+    // Read saved plan (or default to annual) and highlight it
+    const activeDefaultPlan = userDetails.assigned_plan_id || userDetails.membership_details?.plan_id || 'annual';
+    selectAdminDefaultPlan(activeDefaultPlan);
+    const container = document.getElementById('dynamic-fields-container');
+    container.innerHTML = '';
+
+    masterSchemaKeys.forEach(key => {
+      // 1. Skip redirect_link here because it renders side-by-side with 'link'
+      if (key === 'redirect_link') return;
+
+      const rawVal = userDetails[key] !== undefined ? userDetails[key] : '';
+      const isObject = (typeof rawVal === 'object' && rawVal !== null);
+      const div = document.createElement('div');
+      div.className = "flex gap-3 items-end";
+      
+      let inputElement = '';
+      
+      if (key === 'link') {
+        const redirectVal = userDetails['redirect_link'] !== undefined ? userDetails['redirect_link'] : '';
+        const safeLink = String(rawVal).replace(/"/g, '&quot;');
+        const safeRedirect = String(redirectVal).replace(/"/g, '&quot;');
+
+        div.innerHTML = `
+          <div class="flex-grow grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+            <div>
+              <label class="block text-xs font-bold mb-1 text-gray-700">Production Link (Fetched & Published)</label>
+              <input type="text" data-key="link" class="detail-input w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900 bg-white" value="${safeLink}" placeholder="e.g. resto-prod.barmga.com">
+            </div>
+            <div>
+              <label class="block text-xs font-bold mb-1 text-[#2780b7]">Redirect Link (User Facing & QR Code)</label>
+              <input type="text" data-key="redirect_link" class="detail-input w-full border border-blue-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-600 bg-white font-medium" value="${safeRedirect}" placeholder="Leave empty to fallback to link">
+            </div>
+          </div>
+          <div class="w-10"></div>
+        `;
+        container.appendChild(div);
+        return;
+      } else if (key === 'logout') {
+        const isTrue = (rawVal === true || String(rawVal) === 'true');
+        inputElement = `
+          <select data-key="logout" onchange="adminTouchedLogout=true" class="detail-input w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900 bg-gray-50 font-bold">
+            <option value="false" ${!isTrue ? 'selected' : ''}>False (Session Active)</option>
+            <option value="true" ${isTrue ? 'selected' : ''} class="text-amber-600">True (Force Session End)</option>
+          </select>
+        `;
+      } else if (key === 'locked') {
+        const isTrue = (rawVal === true || String(rawVal) === 'true');
+        inputElement = `
+          <select data-key="locked" class="detail-input w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900 bg-gray-50 font-bold">
+            <option value="false" ${!isTrue ? 'selected' : ''}>False (Account Open)</option>
+            <option value="true" ${isTrue ? 'selected' : ''} class="text-red-600">True (Account Locked)</option>
+          </select>
+        `;
+      } else if (key === 'upgrade_order') {
+        let hasOrder = false;
+        let orderObj = null;
+        try {
+          orderObj = (typeof rawVal === 'string' && rawVal.startsWith('{')) ? JSON.parse(rawVal) : rawVal;
+          if (orderObj && typeof orderObj === 'object' && Object.keys(orderObj).length > 0) hasOrder = true;
+        } catch(e) {}
+
+        window._activeUserUpgradeOrder = orderObj;
+
+        const rawSummary = hasOrder
+          ? `${orderObj.plan_name || 'Plan Selected'} • ${orderObj.plan_price || ''} (Template: ${orderObj.template_name || orderObj.template_id || '-'})`
+          : 'No upgrade request submitted yet';
+        const summaryText = escapeHtml(rawSummary);
+
+        inputElement = `
+          <div class="flex items-center justify-between bg-blue-50/60 border border-blue-200 rounded-lg px-3.5 py-2.5 w-full">
+            <div class="truncate mr-3">
+              <span class="text-xs font-extrabold ${hasOrder ? 'text-blue-900' : 'text-gray-400'} block truncate">
+                ${summaryText}
+              </span>
+              ${hasOrder && orderObj.updated_at ? `<span class="text-[10px] text-gray-400 font-mono">${orderObj.updated_at}</span>` : ''}
+            </div>
+            ${hasOrder ? `
+              <button type="button" onclick="showUpgradeOrderModal()" class="shrink-0 bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs px-3.5 py-1.5 rounded-lg transition shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-eye-fill"></i> View Details
+              </button>
+            ` : '<span class="text-xs text-gray-400 font-bold italic shrink-0">None</span>'}
+          </div>
+        `;
+      } else if (key === 'membership') {
+        inputElement = `
+          <div class="flex gap-2">
+            <input type="text" data-key="membership" id="detail-input-membership" class="detail-input w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900 font-bold text-[#2780b7]" value="${rawVal || ''}">
+            <button type="button" onclick="openMembershipUpgradeModal()" class="shrink-0 bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs px-3.5 py-2 rounded-lg transition shadow-sm flex items-center gap-1.5" title="Configure Plan & Pricing">
+              <i class="bi bi-arrow-up-circle-fill"></i> Upgrade Plan
+            </button>
+          </div>
+        `;
+      } else if (isObject || key === 'email_send_counts') {
+        const formattedJson = JSON.stringify(rawVal, null, 2);
+        inputElement = `
+          <textarea data-key="${key}" data-type="json" rows="3" class="detail-input w-full border border-gray-300 rounded-lg p-2.5 font-mono text-xs outline-none focus:border-gray-900 bg-slate-50">${formattedJson}</textarea>
+        `;
+      } else {
+        const safeAttr = String(rawVal ?? '').replace(/"/g, '&quot;');
+        inputElement = `
+          <input type="text" data-key="${escapeHtml(key)}" class="detail-input w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-gray-900" value="${safeAttr}">
+        `;
+      }
+
+      const protectedKeys = ['logout', 'locked', 'membership', 'wk', 'pg', 'expires', 'link', 'redirect_link', 'notes', 'upgrade_order', 'membership_details', 'custom_plans'];
+      const deleteBtn = protectedKeys.includes(key)
+        ? `<div class="w-10"></div>` 
+        : `<button onclick="confirmDeleteField('${key}')" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg h-[38px] w-10 flex items-center justify-center transition" title="Delete from all users"><i class="bi bi-trash3-fill"></i></button>`;
+
+      div.innerHTML = `
+        <div class="flex-grow">
+          <label class="block text-xs font-bold mb-1 text-gray-500">${escapeHtml(key)}</label>
+          ${inputElement}
+        </div>
+        ${deleteBtn}
+      `;
+      container.appendChild(div);
+    });
+
+    // 2-Way strict realtime synchronization listeners
+    /*
+    
+    const mainMembershipInput = document.getElementById('detail-input-membership');
+    if (mainMembershipInput) {
+      mainMembershipInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const modalPlanName = document.getElementById('m-plan-name');
+        if (modalPlanName) modalPlanName.value = val;
+        if (currentMembershipDetails) currentMembershipDetails.name = val;
+      });
+    }
+
+    const modalPlanNameInput = document.getElementById('m-plan-name');
+    if (modalPlanNameInput) {
+      modalPlanNameInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (mainMembershipInput) mainMembershipInput.value = val;
+        if (currentMembershipDetails) currentMembershipDetails.name = val;
+      });
+    }
+      */
+
+    // 2-Way realtime sync: 'expires' input <-> modal 'Renewal Date'
+    const expiresInput = document.querySelector('input[data-key="expires"]');
+    const modalRenewalInput = document.getElementById('m-renewal-date');
+
+    if (expiresInput && modalRenewalInput) {
+      // Editing 'expires' updates modal renewal date
+      expiresInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        modalRenewalInput.value = val;
+        if (currentMembershipDetails) {
+          currentMembershipDetails.renewal_date = val;
+        }
+      });
+
+      // Editing modal renewal date updates 'expires' input
+      modalRenewalInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        expiresInput.value = val;
+        if (currentMembershipDetails) {
+          currentMembershipDetails.renewal_date = val;
+        }
+      });
+    }
+
+    const modal = document.getElementById('details-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      modal.children[0].classList.remove('scale-95');
+    }, 10);
+  }
+
+  function triggerAutoLogout() {
+    if (adminTouchedLogout) return; 
+    
+    const originalEmail = currentEditingUser.email;
+    const currentEmail = document.getElementById('edit-email').value;
+    const currentPass = document.getElementById('edit-password').value;
+    const originalPass = currentEditingUser.plain_password || "";
+    
+    if (currentEmail !== originalEmail || currentPass !== originalPass) {
+        const logoutSelect = document.querySelector('select[data-key="logout"]');
+        if (logoutSelect) logoutSelect.value = 'true';
+    } else {
+        let origDetails = {};
+        try { origDetails = JSON.parse(currentEditingUser.details || "{}"); } catch(e){}
+        const isOrigTrue = (origDetails.logout === true || String(origDetails.logout) === 'true');
+        const logoutSelect = document.querySelector('select[data-key="logout"]');
+        if (logoutSelect) logoutSelect.value = isOrigTrue ? 'true' : 'false';
+    }
+  }
+
+  function closeDetailsModal() {
+    const modal = document.getElementById('details-modal');
+    modal.classList.add('opacity-0');
+    modal.children[0].classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      currentEditingUser = null;
+      currentMembershipDetails = null;
+    }, 200);
+  }
+
+  // --- Membership Upgrade Logic ---
+
+  function openMembershipUpgradeModal() {
+    let details = {};
+    try { details = JSON.parse(currentEditingUser.details || "{}"); } catch(e) {}
+    
+    const membershipInputVal = document.getElementById('detail-input-membership')?.value || details.membership || '';
+    currentMembershipDetails = details.membership_details || null;
+
+    document.getElementById('m-plan-name').value = currentMembershipDetails?.name || membershipInputVal || 'Professional Annual';
+    document.getElementById('m-plan-rate').value = currentMembershipDetails?.rate || 'yearly';
+    document.getElementById('m-plan-price').value = currentMembershipDetails?.price !== undefined ? currentMembershipDetails.price : '2500';
+    document.getElementById('m-plan-currency').value = currentMembershipDetails?.currency || 'SAR';
+
+    if (currentMembershipDetails?.renewal_date) {
+      document.getElementById('m-renewal-date').value = currentMembershipDetails.renewal_date;
+      document.getElementById('m-renewal-preset').value = 'custom';
+    } else {
+      document.getElementById('m-renewal-preset').value = 'auto';
+      autoCalculateNextRenewal();
+    }
+
+    const modal = document.getElementById('membership-upgrade-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      modal.children[0].classList.remove('scale-95');
+    }, 10);
+  }
+
+  function closeMembershipUpgradeModal() {
+    const modal = document.getElementById('membership-upgrade-modal');
+    modal.classList.add('opacity-0');
+    modal.children[0].classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+  }
+
+  function autoCalculateNextRenewal() {
+    const rate = document.getElementById('m-plan-rate').value;
+    const now = new Date();
+    
+    if (rate === 'monthly') now.setMonth(now.getMonth() + 1);
+    else if (rate === '3_months') now.setMonth(now.getMonth() + 3);
+    else if (rate === '6_months') now.setMonth(now.getMonth() + 6);
+    else if (rate === 'yearly') now.setFullYear(now.getFullYear() + 1);
+
+    document.getElementById('m-renewal-date').value = now.toISOString().split('T')[0];
+  }
+
+  function applyRenewalPreset() {
+    const preset = document.getElementById('m-renewal-preset').value;
+    if (preset === 'auto') {
+      autoCalculateNextRenewal();
+      return;
+    }
+    if (preset === 'custom') return;
+
+    const now = new Date();
+    if (preset === '+1m') now.setMonth(now.getMonth() + 1);
+    else if (preset === '+3m') now.setMonth(now.getMonth() + 3);
+    else if (preset === '+6m') now.setMonth(now.getMonth() + 6);
+    else if (preset === '+1y') now.setFullYear(now.getFullYear() + 1);
+
+    document.getElementById('m-renewal-date').value = now.toISOString().split('T')[0];
+  }
+
+  function saveMembershipUpgradeModal() {
+    const planName = document.getElementById('m-plan-name').value.trim();
+    const rate = document.getElementById('m-plan-rate').value;
+    const renewalDate = document.getElementById('m-renewal-date').value;
+    const price = document.getElementById('m-plan-price').value.trim();
+    const currency = document.getElementById('m-plan-currency').value.trim() || 'SAR';
+
+    if (!planName) {
+      showAlert('Missing Field', 'Please enter a membership name.', 'error');
+      return;
+    }
+
+    // Strict sync across both inputs
+    //const membershipInput = document.getElementById('detail-input-membership');
+    //if (membershipInput) {
+      //membershipInput.value = planName;
+    //}
+    document.getElementById('m-plan-name').value = planName;
+
+    // Push the selected renewal date back to the main expires input field
+    const expiresInput = document.querySelector('input[data-key="expires"]');
+    if (expiresInput) {
+      expiresInput.value = renewalDate;
+    }
+
+    currentMembershipDetails = {
+      name: planName,
+      rate: rate,
+      renewal_date: renewalDate,
+      price: price,
+      currency: currency,
+      updated_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+    };
+
+    closeMembershipUpgradeModal();
+  }
+
+  // --- Upgrade Order Details Modal ---
+
+  function showUpgradeOrderModal() {
+    const order = window._activeUserUpgradeOrder;
+    if (!order) return;
+
+    document.getElementById('order-modal-timestamp').textContent = `Submitted: ${order.updated_at || 'Recently'}`;
+    document.getElementById('order-modal-plan').textContent = order.plan_name || order.plan_id || '-';
+    document.getElementById('order-modal-price').textContent = order.plan_price || '-';
+    document.getElementById('order-modal-template').textContent = `${order.template_name || ''} (${order.template_id || '-'})`;
+
+    const contact = order.contact || {};
+    document.getElementById('order-modal-name').textContent = contact.name || '-';
+    document.getElementById('order-modal-company').textContent = contact.company || '-';
+    document.getElementById('order-modal-email').textContent = contact.email || '-';
+    document.getElementById('order-modal-phone').textContent = contact.phone || '-';
+    document.getElementById('order-modal-address').textContent = contact.address || '-';
+
+    const modal = document.getElementById('upgrade-order-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      modal.children[0].classList.remove('scale-95');
+    }, 10);
+  }
+
+  function closeUpgradeOrderModal() {
+    const modal = document.getElementById('upgrade-order-modal');
+    modal.classList.add('opacity-0');
+    modal.children[0].classList.add('scale-95');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 200);
+  }
+
+  // --- API Sync Logic ---
+
+  async function saveUserDetails() {
+    const btn = document.getElementById('saveDetailsBtn');
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+
+    const newDetails = {};
+    document.querySelectorAll('.detail-input').forEach(input => {
+      const k = input.getAttribute('data-key');
+      let v = input.value.trim();
+
+      if (k === 'logout' || k === 'locked') {
+        v = (v === 'true');
+      } else if (input.getAttribute('data-type') === 'json' || (v.startsWith('{') && v.endsWith('}')) || (v.startsWith('[') && v.endsWith(']'))) {
+        try {
+          v = JSON.parse(v);
+        } catch (err) {}
+      }
+
+      newDetails[k] = v;
+    });
+
+let existingDetails = safeParseDetails(currentEditingUser.details);
+    
+    // Preserve upgrade order dictionary intact
+    if (existingDetails.upgrade_order !== undefined) {
+      newDetails.upgrade_order = existingDetails.upgrade_order;
+    }
+
+    // Strict sync: Ensure membership name & membership_details are locked together
+    /*if (newDetails.membership && currentMembershipDetails) {
+      currentMembershipDetails.name = newDetails.membership;
+      newDetails.membership_details = currentMembershipDetails;
+    } else if (newDetails.membership && existingDetails.membership_details) {
+      existingDetails.membership_details.name = newDetails.membership;
+      newDetails.membership_details = existingDetails.membership_details;
+    } else if (currentMembershipDetails) {
+      newDetails.membership_details = currentMembershipDetails;
+    }*/if (currentMembershipDetails) {
+      newDetails.membership_details = currentMembershipDetails;
+    } else if (existingDetails.membership_details) {
+      newDetails.membership_details = existingDetails.membership_details;
+    } // it was replaced with this
+
+    // Strict bidirectional inheritance: ensure expires and renewal_date are identical
+    const finalDate = (newDetails.expires || currentMembershipDetails?.renewal_date || existingDetails.expires || '').trim();
+    if (finalDate) {
+      newDetails.expires = finalDate;
+      if (currentMembershipDetails) {
+        currentMembershipDetails.renewal_date = finalDate;
+        newDetails.membership_details = currentMembershipDetails;
+      } else if (existingDetails.membership_details) {
+        existingDetails.membership_details.renewal_date = finalDate;
+        newDetails.membership_details = existingDetails.membership_details;
+      }
+    }
+
+    // Save selected default plan ID
+    newDetails.assigned_plan_id = selectedAdminPlanId;
+    if (newDetails.membership_details) {
+      newDetails.membership_details.plan_id = selectedAdminPlanId;
+    }
+
+    // Save user-specific custom plan pricing
+    newDetails.custom_plans = {
+      monthly: {
+        price: document.getElementById('user-cfg-price-monthly').value.trim() || '250 SAR',
+        frequency: document.getElementById('user-cfg-freq-monthly').value.trim() || 'month'
+      },
+      annual: {
+        price: document.getElementById('user-cfg-price-annual').value.trim() || '2,500 SAR',
+        frequency: document.getElementById('user-cfg-freq-annual').value.trim() || 'year'
+      },
+      comprehensive: {
+        price: document.getElementById('user-cfg-price-comprehensive').value.trim() || '3,500 SAR',
+        frequency: document.getElementById('user-cfg-freq-comprehensive').value.trim() || '1st year'
+      }
+    };
+
+    const payload = {
+      admin_key: globalAdminKey,
+      id: currentEditingUser.id,
+      name: document.getElementById('edit-name').value.trim(),
+      email: document.getElementById('edit-email').value.trim(),
+      phone: document.getElementById('edit-phone').value.trim(),
+      details: newDetails
+    };
+
+    const newPass = document.getElementById('edit-password').value;
+    if (newPass !== (currentEditingUser.plain_password || "")) {
+      payload.new_password = newPass;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/update_user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      closeDetailsModal();
+      fetchUsers(); 
+      showAlert("Success", "User updated successfully.", "success");
+    } catch (err) {
+      showAlert("Save Failed", err.message, "error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Save For This User";
+    }
+  }
+
+  async function promptGlobalField() {
+    const val = await showPromptModal("Add New Column", "Enter the new JSON key (No spaces recommended):");
+    if (!val || val.trim() === "") return;
+    const key = val.trim().replace(/\s+/g, '_');
+    
+    if (masterSchemaKeys.includes(key)) {
+      showAlert("Error", "This key already exists in the database.", "error");
+      return;
+    }
+
+    const confirmed = await showConfirmModal(`Add '${key}' column to ALL users?`);
+    if (confirmed) await updateSchema('add', key);
+  }
+
+  async function confirmDeleteField(key) {
+    if (key === 'logout' || key === 'locked') return;
+    const confirmed = await showConfirmModal(`Are you absolutely sure you want to permanently delete the '${key}' column for ALL users?`);
+    if (confirmed) await updateSchema('remove', key);
+  }
+
+async function confirmDeleteUser(userId) {
+    const targetUser = rawUsersData.find(u => Number(u.id) === Number(userId));
+    const userName = targetUser ? targetUser.name : `#${userId}`;
+    const confirmed = await showConfirmModal(`Are you sure you want to permanently delete user: ${userName}? This action cannot be undone.`);    if (confirmed) {
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/delete_user`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ admin_key: globalAdminKey, id: userId })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            
+            showAlert("Deleted", "User has been completely removed.", "success");
+            fetchUsers(); 
+        } catch (err) {
+            showAlert("Error", err.message, "error");
+        }
+    }
+  }
+
+  async function updateSchema(action, key) {
+    closeDetailsModal();
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/update_schema`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin_key: globalAdminKey, action: action, target_key: key })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      
+      fetchUsers(); 
+    } catch (err) {
+      showAlert("Sync Failed", err.message, "error");
+    }
+  }
+
+  // --- CUSTOM UI MODALS ---
+
+  function showAlert(title, message, type) {
+    const modal = document.getElementById('alert-modal');
+    document.getElementById('alert-title').textContent = title;
+    document.getElementById('alert-message').textContent = message;
+    const iconContainer = document.getElementById('alert-icon-container');
+    const icon = document.getElementById('alert-icon');
+    
+    if (type === 'success') {
+      iconContainer.className = 'mx-auto flex items-center justify-center h-14 w-14 rounded-full mb-4 bg-emerald-100 text-emerald-600';
+      icon.className = 'bi bi-check-lg text-2xl font-extrabold';
+    } else {
+      iconContainer.className = 'mx-auto flex items-center justify-center h-14 w-14 rounded-full mb-4 bg-red-100 text-red-600';
+      icon.className = 'bi bi-exclamation-triangle text-2xl font-bold';
+    }
+
+    modal.classList.remove('hidden');
+    setTimeout(() => { modal.classList.remove('opacity-0'); modal.children[0].classList.remove('scale-95'); }, 10);
+  }
+
+  function closeAlertModal() {
+    const modal = document.getElementById('alert-modal');
+    modal.classList.add('opacity-0'); modal.children[0].classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+  }
+
+  let promptRes = null;
+  function showPromptModal(title, msg) {
+    return new Promise((resolve) => {
+      promptRes = resolve;
+      const modal = document.getElementById('prompt-modal');
+      document.getElementById('prompt-title').textContent = title;
+      document.getElementById('prompt-msg').textContent = msg;
+      document.getElementById('prompt-val').value = '';
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0'); modal.children[0].classList.remove('scale-95');
+        document.getElementById('prompt-val').focus();
+      }, 10);
+    });
+  }
+  function submitPrompt() { promptRes(document.getElementById('prompt-val').value); hidePrompt(); }
+  function cancelPrompt() { promptRes(null); hidePrompt(); }
+  function hidePrompt() {
+    const modal = document.getElementById('prompt-modal');
+    modal.classList.add('opacity-0'); modal.children[0].classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+  }
+
+  let confirmRes = null;
+  function showConfirmModal(msg) {
+    return new Promise((resolve) => {
+      confirmRes = resolve;
+      document.getElementById('confirm-msg').textContent = msg;
+      const modal = document.getElementById('confirm-modal');
+      modal.classList.remove('hidden');
+      setTimeout(() => { modal.classList.remove('opacity-0'); modal.children[0].classList.remove('scale-95'); }, 10);
+    });
+  }
+  function submitConfirm() { confirmRes(true); hideConfirm(); }
+  function cancelConfirm() { confirmRes(false); hideConfirm(); }
+  function hideConfirm() {
+    const modal = document.getElementById('confirm-modal');
+    modal.classList.add('opacity-0'); modal.children[0].classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+  }
+
+  document.addEventListener('input', (e) => {
+  if (e.target && (e.target.type === 'email' || e.target.classList.contains('lowercase-email'))) {
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = e.target.value.toLowerCase();
+    e.target.setSelectionRange(start, end);
+  }
+});
+document.getElementById('edit-email').addEventListener('input', triggerAutoLogout);
+document.getElementById('edit-password').addEventListener('input', triggerAutoLogout);
+</script>
+<script>
+(function() {
+  // Comprehensive list of protected keys that must never be deleted or created manually
+  const EXTENDED_PROTECTED_KEYS = [
+    'logout', 'locked', 'membership', 'session_v', 'wk', 'pg',
+    'expires', 'link', 'redirect_link', 'notes', 'template_id',
+    'membership_details', 'custom_plans', 'email_verified', 'email_send_counts',
+    'upgrade_order', 'last_renewed_at', 'activated_at', 'activation_processing_at',
+    'has_chosen_template', 'published', 'cur', 'referral'
+  ];
+
+  // 1. Intercept promptGlobalField to block creating any protected key name
+  const originalPromptGlobalField = window.promptGlobalField;
+  window.promptGlobalField = async function() {
+    const val = await showPromptModal("Add New Column", "Enter the new JSON key (No spaces recommended):");
+    if (!val || val.trim() === "") return;
+    
+    const key = val.trim().replace(/\s+/g, '_');
+
+    // Block if it matches any protected system key
+    if (EXTENDED_PROTECTED_KEYS.includes(key)) {
+      showAlert("Blocked", `'${key}' is a reserved system key and cannot be created.`, "error");
+      return;
+    }
+
+    // Pass back to original logic for existence checks and modal confirmation
+    if (masterSchemaKeys.includes(key)) {
+      showAlert("Error", "This key already exists in the database.", "error");
+      return;
+    }
+
+    const confirmed = await showConfirmModal(`Add '${key}' column to ALL users?`);
+    if (confirmed) await updateSchema('add', key);
+  };
+
+  // 2. Intercept openDetailsModal to automatically hide delete buttons for protected keys
+  const originalOpenDetailsModal = window.openDetailsModal;
+  window.openDetailsModal = function(userId) {
+    if (typeof originalOpenDetailsModal === 'function') {
+      originalOpenDetailsModal.apply(this, arguments);
+    }
+
+    // Inspect rendered fields inside the dynamic container
+    const container = document.getElementById('dynamic-fields-container');
+    if (!container) return;
+
+    // Scan each row and remove delete buttons if the key is in EXTENDED_PROTECTED_KEYS
+    const fieldRows = container.querySelectorAll('.flex.gap-3.items-end');
+    fieldRows.forEach(row => {
+      const label = row.querySelector('label');
+      const deleteBtn = row.querySelector('button[onclick*="confirmDeleteField"]');
+      
+      if (label && deleteBtn) {
+        const keyName = label.textContent.trim();
+        if (EXTENDED_PROTECTED_KEYS.includes(keyName)) {
+          // Replace delete button with an empty spacer to keep grid alignment
+          const spacer = document.createElement('div');
+          spacer.className = 'w-10';
+          deleteBtn.replaceWith(spacer);
+        }
+      }
+    });
+  };
+
+  // 3. Extra Safety Guard: Block confirmDeleteField if called directly
+  const originalConfirmDeleteField = window.confirmDeleteField;
+  window.confirmDeleteField = async function(key) {
+    if (EXTENDED_PROTECTED_KEYS.includes(key)) {
+      showAlert("Action Blocked", `The key '${key}' is protected and cannot be deleted.`, "error");
+      return;
+    }
+    if (typeof originalConfirmDeleteField === 'function') {
+      return originalConfirmDeleteField.apply(this, arguments);
+    }
+  };
+})();
+</script>
+</body>
+
+</html>

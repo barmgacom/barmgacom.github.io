@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barmga Menu Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    const isDashboardAuthorized = localStorage.getItem('dashboard_access') === 'true';
+    const hasSessionToken = Boolean(localStorage.getItem('session_token'));
+    const accessGrant = sessionStorage.getItem('editor_access_grant');
+
+    if (!isDashboardAuthorized || !hasSessionToken) {
+      window.location.replace('dashboard.html');
+      return;
+    }
+
+    const grantTime = parseInt(accessGrant || '0', 10);
+    const isValidTransition = (Date.now() - grantTime) < 15000;
+
+    const isPageReload = window.performance && 
+      (performance.getEntriesByType('navigation')[0]?.type === 'reload' || performance.navigation?.type === 1);
+
+    if (!isValidTransition && !isPageReload) {
+      sessionStorage.removeItem('editor_access_grant');
+      window.location.replace('dashboard.html');
+      return;
+    }
+
+    sessionStorage.removeItem('editor_access_grant');
+  })();
+</script>
+    <style>
+        :root {
+            --bg: #F8F9FA;
+            --surface: #FFFFFF;
+            --primary: #2780B7;      
+            --primary-dark: #1E6A9A; 
+            --primary-light: #EBF3F8;
+            --accent: #FD7E14;
+            --accent-dark: #E6711A;
+            --accent-light: #FFF4EB;
+            --text: #333333;
+            --text-muted: #666666;
+            --border: #E9ECEF;
+            --danger: #D6534B;
+            --danger-light: #FBEAE8;
+        }
+html[lang="ar"] #default-lang-wrap,
+body.ar-mode #default-lang-wrap {
+    direction: rtl !important;
+}
+
+@media (min-width: 640px) {
+    html[lang="ar"] #default-lang-wrap,
+    body.ar-mode #default-lang-wrap {
+        border-left-width: 0 !important;
+        border-right-width: 1px !important;
+        padding-left: 0 !important;
+        padding-right: 0.75rem !important;
+        margin-left: 0 !important;
+        margin-right: 0.5rem !important;
+    }
+}
+        @media (max-width: 639px) {
+            h1 {
+                display: none !important;
+            }
+            button[onclick*="dashboard.html"] span.hidden {
+                display: inline !important;
+            }
+            .bg-\[var\(--primary\)\] {
+                justify-content: center !important;
+            }
+            .bg-\[var\(--primary\)\] > div.flex {
+                width: 100% !important;
+                justify-content: center !important;
+                gap: 0.5rem !important;
+            }
+            .bg-\[var\(--primary\)\] button {
+                padding: 0.5rem 0.65rem !important;
+                font-size: 0.75rem !important;
+                white-space: nowrap !important;
+            }
+        }
+        html[lang="ar"] #workspace > div.mb-6,
+        body.ar-mode #workspace > div.mb-6 {
+            direction: rtl !important;
+        }
+        html[lang="ar"] #workspace > div.mb-6 .lg\:border-l,
+        body.ar-mode #workspace > div.mb-6 .lg\:border-l {
+            border-left-width: 0 !important;
+            border-right-width: 1px !important;
+            padding-left: 0 !important;
+            padding-right: 1rem !important;
+        }
+        html { background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+        }
+        .rtl-content {
+            font-family: 'Cairo', 'Segoe UI', sans-serif !important;
+            direction: rtl !important;
+            text-align: right !important;
+        }
+        .cursor-move:active { cursor: grabbing !important; }
+        .sortable-fallback { opacity: 0.95 !important; cursor: grabbing !important; z-index: 99999 !important; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important; }
+        .sortable-ghost { opacity: 0.25 !important; background: var(--border) !important; border: 2px dashed var(--primary) !important; }
+        *:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+        }
+        .price-tag {
+            position: relative;
+            display: inline-block;
+            background: var(--accent);
+            color: #FFFFFF;
+            font-weight: 700;
+            padding-block: 4px;
+            padding-inline-start: 18px;
+            padding-inline-end: 10px;
+            border-radius: 4px 10px 10px 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        .price-tag::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 6px;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        .rtl-content .price-tag { border-radius: 10px 4px 4px 10px; }
+        .modal-backdrop { align-items: flex-end; }
+        @media (min-width: 640px) { .modal-backdrop { align-items: center; } }
+        .modal-panel { border-radius: 20px 20px 0 0; }
+        @media (min-width: 640px) { .modal-panel { border-radius: 24px; } }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        html[lang="ar"],
+        html[lang="ar"] body,
+        html[lang="ar"] *,
+        body[dir="rtl"],
+        body[dir="rtl"] * {
+            font-family: 'Cairo', 'Segoe UI', sans-serif !important;
+        }
+        @media (min-width: 640px) {
+            #cat-label,
+            #subcat-label {
+                display: inline-block !important;
+                position: relative !important;
+                text-align: left !important;
+                padding-bottom: 0.45rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            #cat-label::after,
+            #subcat-label::after {
+                content: '' !important;
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: auto !important;
+                transform: none !important;
+                width: 34px !important;
+                height: 3px !important;
+                border-radius: 9999px !important;
+                opacity: 0.9 !important;
+            }
+            #cat-label::after {
+                background-color: var(--primary) !important;
+            }
+            #subcat-label::after {
+                background-color: var(--accent) !important;
+            }
+            #workspace h2:not(#cat-label):not(#subcat-label)::after {
+                display: none !important;
+            }
+        }
+        @media (max-width: 639px) {
+            h2,
+            #cat-label,
+            #subcat-label {
+                text-align: center !important;
+                width: 100% !important;
+                position: relative !important;
+                margin-bottom: 1.25rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+            #subcat-label {
+                margin-top: 1rem !important;
+            }
+            h2::after,
+            #cat-label::after,
+            #subcat-label::after {
+                content: '' !important;
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 38px !important;
+                height: 3px !important;
+                background: var(--primary) !important;
+                border-radius: 9999px !important;
+                opacity: 0.85 !important;
+            }
+            #subcat-label::after {
+                background: var(--accent) !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="bg-[var(--primary)] text-white px-4 py-3 sm:px-6 sm:py-4 shadow-md sticky top-0 z-50 flex justify-between items-center gap-3">
+        <h1 class="text-base sm:text-2xl font-bold flex items-center gap-2 min-w-0">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            <span class="truncate">Barmga Menu Editor</span>
+        </h1>
+        <div class="flex gap-3 shrink-0">
+            <button type="button" onclick="toggleEditorLanguage()" id="editor-lang-btn" class="bg-white/15 hover:bg-white/25 text-white border border-white/20 px-3 py-2 sm:px-4 sm:py-2 rounded-lg font-bold text-sm sm:text-base transition-colors flex items-center gap-1.5">
+                <i class="bi bi-globe2"></i>
+                <span id="editor-lang-label">عربي</span>
+            </button>
+            <button onclick="window.location.href='dashboard.html'" class="bg-white text-[var(--primary)] border border-[var(--border)] px-3 py-2 sm:px-5 sm:py-2 rounded-lg shadow-sm font-bold text-sm sm:text-base hover:bg-[var(--primary-light)] transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <span class="hidden sm:inline">Dashboard</span>
+            </button>
+            <button id="publish-btn" onclick="publishEditions()" class="bg-[var(--accent)] text-white px-3 py-2 sm:px-5 sm:py-2 rounded-lg shadow font-bold text-sm sm:text-base hover:bg-[var(--accent-dark)] transition-colors hidden items-center gap-2">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                </svg>
+                <span>Publish Editions</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="loading-screen" class="flex flex-col items-center justify-center min-h-[80vh] px-4">
+        <div class="bg-[var(--surface)] p-6 sm:p-10 rounded-2xl shadow-xl border border-[var(--border)] text-center max-w-lg w-full">
+            <svg id="loading-spinner" class="animate-spin w-12 h-12 text-[var(--primary)] mx-auto mb-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--text)] mb-2">Loading Dashboard</h2>
+            <p id="loading-status" class="text-[var(--text-muted)] text-sm sm:text-base font-semibold">Fetching current configuration from server...</p>
+        </div>
+    </div>
+
+    <div id="workspace" class="p-4 sm:p-6 max-w-7xl mx-auto hidden">
+
+        <div class="mb-6 flex flex-col lg:flex-row justify-between gap-4 bg-[var(--surface)] p-4 rounded-xl shadow-sm border border-[var(--border)]">
+<div class="flex flex-wrap gap-3 items-center">
+                <span class="font-semibold text-[var(--text-muted)] text-sm sm:text-base">Menu Language:</span>
+                <button id="lang-ar" onclick="switchLang('ar')" class="px-4 py-1.5 rounded-full bg-[var(--primary)] text-white font-bold border border-[var(--primary)] text-sm sm:text-base transition-colors">Arabic</button>
+                <button id="lang-en" onclick="switchLang('en')" class="px-4 py-1.5 rounded-full bg-[var(--bg)] text-[var(--text-muted)] border border-[var(--border)] hover:bg-[var(--primary-light)] hover:text-[var(--primary)] text-sm sm:text-base transition-colors">English</button>
+
+                <!-- Default Language Selector -->
+<div id="default-lang-wrap" class="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-[var(--border)] sm:border-l sm:pl-3 sm:ml-2">
+                    <span id="lbl-default-menu-lang" class="font-semibold text-[var(--text-muted)] text-xs sm:text-sm whitespace-nowrap">Default Menu View:</span>
+                    <select id="default-menu-lang" class="px-2.5 py-1 rounded-lg border border-[var(--border)] bg-white text-xs sm:text-sm font-bold text-[var(--primary)] outline-none focus:border-[var(--primary)]">
+                        <option value="ar">Arabic (العربية)</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+            
+<div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 w-full sm:w-auto lg:border-l lg:border-[var(--border)] lg:pl-4">
+    <!-- Top divider visible only on mobile before the Excel buttons -->
+    <hr class="w-full border-t border-[var(--border)] my-1 sm:hidden">
+
+    <!-- Download DB & Import Excel -->
+    <button onclick="downloadSampleExcel()" class="flex-1 sm:flex-none px-4 py-1.5 rounded-full bg-[var(--surface)] text-[var(--primary)] font-bold border border-[var(--primary)]/30 hover:bg-[var(--primary-light)] transition-colors flex items-center justify-center gap-2 text-sm sm:text-base">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v6m0 0l-3-3m3 3l3-3"></path></svg>
+        Download DB
+    </button>
+    <label class="flex-1 sm:flex-none cursor-pointer px-4 py-1.5 rounded-full bg-[var(--accent-light)] text-[var(--accent-dark)] font-bold border border-[var(--accent)]/40 hover:bg-[#FFE8D6] transition-colors flex items-center justify-center gap-2 text-sm sm:text-base">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+        Import Excel
+        <input type="file" id="excel-upload" class="hidden" accept=".xlsx, .xls">
+    </label>
+
+    <!-- Middle divider visible only on mobile before Company Info -->
+    <hr class="w-full border-t border-[var(--border)] my-1 sm:hidden">
+
+    <!-- Company Info: Centered, max-w-[200px], preserving color palette -->
+<button type="button" onclick="openCompanyModal()" class="w-full max-w-[200px] sm:max-w-none sm:w-auto px-4 py-1.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-300 hover:bg-amber-100 transition-colors flex items-center justify-center gap-2 text-sm sm:text-base shadow-sm">
+    <i class="bi bi-pencil-square text-amber-600 text-xs sm:text-sm"></i>
+    <span>Company Info</span>
+</button>
+</div>
+        </div>
+
+        <div id="category-header-section" class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-5" dir="ltr">
+            <div class="w-full flex-1">
+                <h2 id="cat-label" class="text-xm sm:text-sm font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2 text-left">
+                    Select Category
+                </h2>
+                <div class="flex flex-wrap gap-2 items-center" dir="ltr">
+                    <div id="categories-bar" class="flex flex-wrap gap-2"></div>
+                    <button onclick="promptAddItem('cat')" class="px-4 py-2 bg-[var(--primary-light)] text-[var(--primary-dark)] hover:bg-[var(--primary)] hover:text-white rounded-full font-bold text-sm transition-colors shadow-sm whitespace-nowrap">+ Add Category</button>
+                </div>
+            </div>
+            <button onclick="openManageModal()" class="shrink-0 text-sm font-bold bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] px-5 py-2.5 rounded-xl hover:border-[var(--primary)] hover:text-[var(--primary)] flex items-center justify-center gap-2 shadow-sm transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Manage Categories
+            </button>
+        </div>
+
+        <div class="mb-8" id="subcat-header-wrap" dir="ltr">
+            <h2 id="subcat-label" class="text-xm sm:text-sm font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2 text-left">
+                Select Subcategory
+            </h2>
+            <div class="flex flex-wrap gap-2 items-center" dir="ltr">
+                <div id="subcategories-bar" class="flex flex-wrap gap-2"></div>
+                <button onclick="promptAddItem('subcat')" class="px-4 py-2 bg-[var(--accent-light)] text-[var(--accent-dark)] hover:bg-[var(--accent)] hover:text-white rounded-full font-bold text-sm transition-colors shadow-sm whitespace-nowrap">+ Add Subcategory</button>
+            </div>
+        </div>
+
+        <div id="products-section-container" class="bg-[var(--surface)] rounded-xl shadow-sm border border-[var(--border)] p-4 sm:p-6 mb-8">
+            <div id="products-header-wrap" class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 border-b border-[var(--border)] pb-4" dir="ltr">
+                <h2 class="text-lg sm:text-xl font-bold text-[var(--text)]">Menu Products</h2>
+                <button onclick="openAddModal()" class="bg-[var(--primary)] text-white px-5 py-2.5 rounded-xl hover:bg-[var(--primary-dark)] transition-colors flex items-center justify-center gap-2 shadow-sm font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Add Product
+                </button>
+            </div>
+
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" dir="ltr"></div>
+        </div>
+
+        <div id="special-item-section" class="bg-[var(--surface)] rounded-xl shadow-sm border border-[var(--border)] p-4 sm:p-6 hidden">
+            <h2 class="text-lg sm:text-xl font-bold text-[var(--text)] mb-4 border-b border-[var(--border)] pb-3">Special Item</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
+                <div>
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Mark / Badge</label>
+                    <textarea id="special-mark" rows="2" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Title</label>
+                    <input type="text" id="special-title" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Price</label>
+                    <input type="text" id="special-price" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Description</label>
+                <textarea id="special-desc" rows="2" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium resize-none"></textarea>
+            </div>
+            <div class="mt-5 flex justify-end">
+                <button onclick="saveSpecialItem()" class="px-5 py-2.5 bg-[var(--accent)] text-white rounded-xl hover:bg-[var(--accent-dark)] font-bold transition-colors shadow-sm">Save Special Item</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="merge-categories-modal" class="modal-backdrop fixed inset-0 bg-slate-900 bg-opacity-50 hidden flex justify-center z-[70] p-0 sm:p-4">
+        <div class="modal-panel bg-[var(--surface)] shadow-xl w-full sm:max-w-lg flex flex-col overflow-hidden">
+            <div class="bg-[var(--primary-light)] px-5 sm:px-6 py-4 border-b border-[var(--border)] flex justify-between items-center">
+                <h3 class="text-base sm:text-lg font-bold text-[var(--primary-dark)] flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    Merge Categories
+                </h3>
+            </div>
+            <div class="p-5 sm:p-6 space-y-4">
+                <p class="text-sm font-bold text-[var(--text)]">Your Excel file contains <span id="merge-cat-count" class="text-[var(--primary)]"></span> distinct categories. The system supports a maximum of 2 categories for this template.</p>
+                <p class="text-sm text-[var(--text-muted)]">Edit the fields below to merge them into 1 or 2 final categories.</p>
+                <div id="merge-categories-list" class="max-h-60 overflow-y-auto bg-[var(--bg)] border border-[var(--border)] rounded-lg p-3 space-y-2"></div>
+                <div id="merge-error" class="text-[var(--danger)] text-sm font-bold hidden bg-[var(--danger-light)] border border-[var(--danger)]/30 p-3 rounded-lg text-center mt-2">
+                    You still have more than 2 distinct categories. Please combine them further to proceed.
+                </div>
+            </div>
+            <div class="bg-[var(--bg)] px-5 sm:px-6 py-4 border-t border-[var(--border)] flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end">
+                <button onclick="closeMergeModal()" class="px-4 py-2.5 bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] rounded-xl hover:bg-[var(--bg)] font-semibold transition-colors">Cancel Import</button>
+                <button onclick="applyMergeCategories()" class="px-4 py-2.5 bg-[var(--primary)] text-white rounded-xl hover:bg-[var(--primary-dark)] font-bold shadow-sm transition-colors">Apply Mappings</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="manage-modal" class="modal-backdrop fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center z-[60] p-0 sm:p-4">
+        <div class="modal-panel bg-white shadow-2xl w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="bg-white px-5 sm:px-6 py-5 border-b border-[var(--border)] flex justify-between items-center shrink-0 z-10">
+                <h3 class="text-lg sm:text-xl font-bold text-[var(--text)] tracking-tight">Manage Categories</h3>
+                <button onclick="closeManageModal()" class="text-[var(--text-muted)] hover:text-[var(--text)] bg-[var(--bg)] hover:bg-[var(--border)] p-2 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="p-5 sm:p-6 space-y-6 overflow-y-auto flex-1 bg-[var(--bg)]" id="manage-modal-body"></div>
+            
+            <div class="bg-white px-5 sm:px-6 py-4 border-t border-[var(--border)] flex flex-col-reverse sm:flex-row gap-3 sm:justify-between sm:items-center shrink-0 z-10">
+                <button onclick="addManageCat()" id="btn-add-cat" class="px-5 py-2.5 bg-[var(--primary-light)] text-[var(--primary-dark)] rounded-xl hover:bg-[var(--primary)] hover:text-white transition-colors font-bold flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Add Category
+                </button>
+                <div class="flex flex-col-reverse sm:flex-row gap-2 sm:gap-3">
+                    <button onclick="closeManageModal()" class="px-5 py-2.5 bg-[var(--surface)] border border-[var(--border)] text-[var(--text-muted)] rounded-xl hover:bg-[var(--bg)] hover:text-[var(--text)] font-bold transition-colors">Cancel</button>
+                    <button onclick="saveManageModal()" class="px-5 py-2.5 bg-[var(--primary)] text-white rounded-xl hover:bg-[var(--primary-dark)] font-bold transition-colors shadow-sm">Save Structure</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal-backdrop fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center z-50 p-0 sm:p-4">
+        <div class="modal-panel bg-[var(--surface)] shadow-2xl w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="bg-white px-5 sm:px-6 py-5 border-b border-[var(--border)] flex justify-between items-center shrink-0">
+                <h3 id="modal-title" class="text-lg sm:text-xl font-bold text-[var(--text)] tracking-tight">Add New Product</h3>
+                <button onclick="closeModal()" class="text-[var(--text-muted)] bg-[var(--bg)] hover:bg-[var(--border)] p-2 rounded-lg transition-colors hover:text-[var(--text)]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1 bg-[var(--bg)]">
+                <input type="hidden" id="edit-index" value="-1">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5" id="cat-selection-container">
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Category</label>
+                        <select id="prod-cat" onchange="updateSubcatDropdown()" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-white shadow-sm font-medium"></select>
+                    </div>
+                    <div id="subcat-container">
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Subcategory</label>
+                        <select id="prod-subcat" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-white shadow-sm font-medium"></select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Product Name</label>
+                        <input type="text" id="prod-name" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-white shadow-sm font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Price</label>
+                        <input type="text" id="prod-price" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-white shadow-sm font-medium">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-white p-4 border border-[var(--border)] shadow-sm rounded-xl" id="meta-fields-container">
+                    <div id="wrap-badge">
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Badge</label>
+                        <input type="text" id="prod-badge" placeholder="e.g. Best Seller" class="w-full border border-[var(--border)] rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium text-sm">
+                    </div>
+                    <div id="wrap-calories">
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Calories</label>
+                        <input type="text" id="prod-calories" placeholder="e.g. 350" class="w-full border border-[var(--border)] rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium text-sm">
+                    </div>
+                    <div id="wrap-serves">
+                        <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Serves</label>
+                        <input type="text" id="prod-serves" placeholder="e.g. 2" class="w-full border border-[var(--border)] rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium text-sm">
+                    </div>
+                </div>
+
+                <div class="mb-5 bg-white p-4 border border-[var(--border)] shadow-sm rounded-xl" id="wrap-ingredients">
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Ingredients</label>
+                    <input type="text" id="prod-ingredients" placeholder="Comma separated..." class="w-full border border-[var(--border)] rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-[var(--bg)] shadow-sm font-medium text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Description</label>
+                    <textarea id="prod-desc" rows="3" class="w-full border border-[var(--border)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] bg-white shadow-sm font-medium resize-none"></textarea>
+                </div>
+
+                <div id="prod-image-container">
+                    <label class="block text-sm font-bold text-[var(--text-muted)] mb-1.5">Product Image</label>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-[var(--border)] rounded-xl p-3 bg-white shadow-sm">
+                        <img id="prod-image-preview" src="" class="w-16 h-16 object-cover rounded-lg shadow-sm border border-[var(--border)] bg-[var(--bg)] shrink-0">
+                        <div class="flex-1 min-w-0 w-full">
+                            <input type="file" id="prod-image-file" accept="image/*" class="w-full text-sm text-[var(--text-muted)] file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-[var(--primary-light)] file:text-[var(--primary-dark)] hover:file:bg-[var(--primary)] hover:file:text-white cursor-pointer transition-colors">
+                        </div>
+                    </div>
+                    <input type="hidden" id="prod-image-name">
+                </div>
+            </div>
+            <div class="bg-white px-5 sm:px-6 py-4 border-t border-[var(--border)] flex flex-col-reverse sm:flex-row gap-2 sm:gap-3 sm:justify-end shrink-0">
+                <button onclick="closeModal()" class="px-5 py-2.5 bg-white border border-[var(--border)] text-[var(--text-muted)] rounded-xl hover:bg-[var(--bg)] hover:text-[var(--text)] font-bold transition-colors">Cancel</button>
+                <button onclick="saveProduct()" class="px-5 py-2.5 bg-[var(--primary)] text-white rounded-xl hover:bg-[var(--primary-dark)] font-bold transition-colors shadow-sm">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-alert-modal" class="fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center items-center z-[9999] p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden">
+            <div class="p-6 text-center">
+                <h3 id="alert-title" class="text-xl font-bold text-[var(--text)] mb-2">Notification</h3>
+                <p id="alert-message" class="text-[var(--text-muted)] mb-6"></p>
+                <button onclick="closeAlert()" class="bg-[var(--primary)] text-white px-6 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-dark)] w-full transition-colors">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-confirm-modal" class="fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center items-center z-[9999] p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden">
+            <div class="p-6 text-center">
+                <h3 id="confirm-title" class="text-xl font-bold text-[var(--text)] mb-2">Confirm Action</h3>
+                <p id="confirm-message" class="text-[var(--text-muted)] mb-6"></p>
+                <div class="flex gap-3 justify-center">
+                    <button onclick="closeConfirm()" class="flex-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] px-5 py-2.5 rounded-xl font-bold hover:bg-[var(--border)] hover:text-[var(--text)] transition-colors">Cancel</button>
+                    <button id="confirm-yes-btn" class="flex-1 bg-[var(--danger)] text-white px-5 py-2.5 rounded-xl font-bold hover:bg-[#b0403a] transition-colors">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-item-modal" class="fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center items-center z-[9999] p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden">
+            <div class="p-6">
+                <h3 id="add-item-title" class="text-xl font-bold text-[var(--text)] mb-4">Add Item</h3>
+                <input type="text" id="add-item-input" class="w-full border border-[var(--border)] rounded-xl p-3 mb-6 focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] outline-none" placeholder="Enter name...">
+                <div class="flex gap-3 justify-end">
+                    <button onclick="closeAddItemModal()" class="flex-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] px-5 py-2.5 rounded-xl font-bold hover:bg-[var(--border)] hover:text-[var(--text)] transition-colors">Cancel</button>
+                    <button onclick="submitAddItem()" class="flex-1 bg-[var(--primary)] text-white px-5 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-dark)] transition-colors">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="publish-modal" class="fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center items-center z-[9999] p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden">
+            <div class="p-6 text-center" id="publish-modal-content"></div>
+        </div>
+    </div>
+<div id="company-modal" class="modal-backdrop fixed inset-0 bg-slate-900 bg-opacity-60 hidden flex justify-center z-[65] p-0 sm:p-4">
+    <div class="modal-panel bg-white shadow-2xl w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
+        <div class="bg-white px-5 sm:px-6 py-4 border-b border-[var(--border)] flex justify-between items-center shrink-0">
+            <h3 class="text-lg sm:text-xl font-bold text-[var(--text)] flex items-center gap-2">
+                <i class="bi bi-gem text-amber-500"></i>
+                <span id="company-modal-title">Edit Company Details</span>
+            </h3>
+            <button onclick="closeCompanyModal()" class="text-[var(--text-muted)] bg-[var(--bg)] hover:bg-[var(--border)] p-2 rounded-lg transition-colors">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        
+        <div class="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 bg-[var(--bg)]" id="company-modal-fields">
+            <!-- Logo Section -->
+            <div id="company-field-logo" class="bg-white p-4 rounded-xl border border-[var(--border)] shadow-sm">
+                <label class="block text-sm font-bold text-[var(--text-muted)] mb-2">Company Logo (PNG)</label>
+                <div class="flex items-center gap-4">
+                    <img id="company-logo-preview" src="images/logo.png" class="w-16 h-16 rounded-full object-cover border border-[var(--border)] bg-slate-50 shrink-0">
+                    <div class="flex-1">
+                        <input type="file" id="company-logo-input" accept="image/*" class="w-full text-sm text-[var(--text-muted)] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[var(--primary-light)] file:text-[var(--primary-dark)] hover:file:bg-[var(--primary)] hover:file:text-white cursor-pointer transition-colors">
+                        <p class="text-[11px] text-[var(--text-muted)] mt-1">Accepts any format (automatically resized & converted to PNG 512x512)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Name (Arabic & English) -->
+            <div id="company-field-name" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Company Name (Arabic)</label>
+                    <input type="text" id="comp-name-ar" dir="rtl" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-bold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Company Name (English)</label>
+                    <input type="text" id="comp-name-en" dir="ltr" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-bold">
+                </div>
+            </div>
+
+            <!-- Description / Subtitle (Arabic & English) -->
+            <div id="company-field-desc" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Tagline / Description (Arabic)</label>
+                    <textarea id="comp-desc-ar" dir="rtl" rows="2" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Tagline / Description (English)</label>
+                    <textarea id="comp-desc-en" dir="ltr" rows="2" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium resize-none"></textarea>
+                </div>
+            </div>
+
+            <!-- Phone & Email -->
+            <div id="company-field-contact" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div id="company-field-phone">
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Phone Number</label>
+                    <input type="text" id="comp-phone" dir="ltr" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-bold">
+                </div>
+                <div id="company-field-email">
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Email Address</label>
+                    <input type="email" id="comp-email" dir="ltr" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-bold">
+                </div>
+            </div>
+
+            <!-- Address (Arabic & English) -->
+            <div id="company-field-address" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Address (Arabic)</label>
+                    <input type="text" id="comp-address-ar" dir="rtl" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Address (English)</label>
+                    <input type="text" id="comp-address-en" dir="ltr" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium">
+                </div>
+            </div>
+
+            <!-- Working Hours (Arabic & English) -->
+            <div id="company-field-hours" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Working Hours (Arabic)</label>
+                    <input type="text" id="comp-hours-ar" dir="rtl" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[var(--text-muted)] mb-1">Working Hours (English)</label>
+                    <input type="text" id="comp-hours-en" dir="ltr" class="w-full border border-[var(--border)] rounded-xl p-2.5 text-sm bg-white font-medium">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white px-5 sm:px-6 py-3.5 border-t border-[var(--border)] flex flex-col-reverse sm:flex-row gap-2 sm:justify-end shrink-0">
+            <button onclick="closeCompanyModal()" class="px-5 py-2.5 bg-white border border-[var(--border)] text-[var(--text-muted)] rounded-xl hover:bg-[var(--bg)] font-bold transition-colors">Cancel</button>
+            <button onclick="saveCompanyDetails()" class="px-5 py-2.5 bg-amber-600 text-white rounded-xl hover:bg-amber-700 font-bold shadow-sm transition-colors">Save Details</button>
+        </div>
+    </div>
+</div>
+    <footer id="platform-footer" class="w-full bg-[#025885] text-white pt-12 pb-8 border-t border-[#2780b7]/20 relative overflow-hidden shadow-2xl">
+        <div class="absolute top-0 right-1/4 w-80 h-80 bg-[#2780b7]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#2780b7]/20">
+                <div class="md:col-span-5 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <img src="images/logo.png" alt="Barmga" class="w-9 h-9 object-contain brightness-0 invert" onerror="this.style.display='none';">
+                        <div>
+                            <span class="text-xl font-black text-white tracking-tight block">برمجة</span>
+                            <span class="text-[10px] text-blue-200/70 font-extrabold uppercase tracking-wider block">Smart Menu Platform</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-blue-100/70 leading-relaxed max-w-sm">
+                        All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-blue-100/70 font-medium">
+                        <li><a href="https://barmga.com" target="_blank" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="bi bi-box-arrow-up-right text-[10px]"></i> Main Website</a></li>
+                        <li><a href="dashboard.html" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="bi bi-sliders text-[11px]"></i>Dashboard</a></li>
+                        <li><a href="dashboard.html?plans=true" target="_blank" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="bi bi-gem text-[11px]"></i> Plans & Subscriptions</a></li>
+                        <li><a href="dashboard.html?templates=true" target="_blank" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="bi bi-grid-fill text-[10px]"></i> Browse Templates</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Customer Support</h4>
+                    <div class="space-y-2 text-xs text-blue-100/80">
+                        <a href="mailto:info@barmga.com" class="flex items-center gap-2.5 hover:text-white transition-colors">
+                            <div class="w-7 h-7 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5] shrink-0">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <span class="font-mono">info@barmga.com</span>
+                        </a>
+                        <a href="https://wa.me/21626373656" target="_blank" class="flex items-center gap-2.5 hover:text-white transition-colors">
+                            <div class="w-7 h-7 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5] shrink-0">
+                                <i class="bi bi-whatsapp"></i>
+                            </div>
+                            <span class="font-mono" dir="ltr">+216 26 373 656</span>
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-1 text-[11px] text-blue-200/60 font-semibold">
+                        <a href="https://barmga.com/menu/terms" target="_blank" class="hover:text-white transition-colors">Terms of Service</a>
+                        <span>•</span>
+                        <a href="https://barmga.com/menu/privacy" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-blue-200/60">
+                <p>&copy; 2026 <a href="https://barmga.com" target="_blank" class="text-white hover:underline font-bold">Barmga</a> All rights reserved.</p>
+                <p class="flex items-center gap-1.5">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Cloud Systems Operational
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/vault.js"></script>
+    <script>
+        let PAGES_URL = ""; 
+        let WORKER_URL = "";
+        const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+        const TRIAL_WORKER_URL = "https://barmga-1003.asweqofficial.workers.dev";
+        const savedUserObj = JSON.parse(localStorage.getItem('dashboard_user') || '{}');
+        const savedTemplateId = savedUserObj?.details?.template_id || localStorage.getItem('trial_template') || 'resto-2';
+        const BASE_DOMAIN = "https://barmga.com/menu";
+        const TRIAL_DEFAULT_TEMPLATE = `${BASE_DOMAIN}/trial/${savedTemplateId}/`;
+
+const membershipState = (localStorage.getItem('membership') || 'trial').toLowerCase();
+const isTrialMode = (membershipState === 'trial');
+
+
+function applyDefaultLanguageToTemplateHtml(html, targetLang) {
+    let out = html;
+    const isEn = (targetLang === 'en');
+    const oppositeLang = isEn ? 'ar' : 'en';
+
+    // 1. Root <html> tag dir and lang attributes
+    out = out.replace(/(<html[^>]*\blang=["'])(?:ar|en)(["'][^>]*>)/i, `$1${targetLang}$2`);
+    out = out.replace(/(<html[^>]*\bdir=["'])(?:rtl|ltr)(["'][^>]*>)/i, `$1${isEn ? 'ltr' : 'rtl'}$2`);
+
+    // 2. Direct currentLang declarations: let/var currentLang = 'ar' or 'en'
+    out = out.replace(/(let\s+currentLang\s*=\s*['"])(?:ar|en)(['"])/gi, `$1${targetLang}$2`);
+    out = out.replace(/(var\s+currentLang\s*=\s*['"])(?:ar|en)(['"])/gi, `$1${targetLang}$2`);
+
+    // 3. Fallbacks in getLangFromHash / getInitialLang functions:
+    // e.g., return h === '#en' ? 'en' : 'ar';  ->  return h === '#ar' ? 'ar' : 'en';
+    if (isEn) {
+        out = out.replace(/(return\s+(?:h|hash)\s*===\s*['"]#en['"]\s*\?\s*['"]en['"]\s*:\s*['"])ar(['"])/gi, `return (h || hash) === '#ar' ? 'ar' : 'en'$2`);
+        out = out.replace(/(return\s+window\.location\.hash\.toLowerCase\(\)\s*===\s*['"]#en['"]\s*\?\s*['"]en['"]\s*:\s*['"])ar(['"])/gi, `return window.location.hash.toLowerCase() === '#ar' ? 'ar' : 'en'$2`);
+    } else {
+        out = out.replace(/(return\s+\(?\s*(?:h|hash)\b[^?]+\?\s*['"]ar['"]\s*:\s*['"])en(['"])/gi, `return (h || hash) === '#en' ? 'en' : 'ar'$2`);
+        out = out.replace(/(return\s+window\.location\.hash\.toLowerCase\(\)\s*===\s*['"]#ar['"]\s*\?\s*['"]ar['"]\s*:\s*['"])en(['"])/gi, `return window.location.hash.toLowerCase() === '#en' ? 'en' : 'ar'$2`);
+    }
+
+    // 4. Default hash fallback at page initialization:
+    // e.g., window.location.hash = 'ar'  ->  window.location.hash = 'en'
+    // or: if (!window.location.hash) { window.location.hash = 'ar'; }
+    out = out.replace(/(if\s*\(!window\.location\.hash\)\s*\{\s*window\.location\.hash\s*=\s*['"])(?:ar|en)(['"])/gi, `$1${targetLang}$2`);
+
+    // Template 1 & 2 bottom else-fallback:
+    out = out.replace(/(else\s*\{\s*currentLang\s*=\s*['"])(?:ar|en)(['"];\s*window\.location\.hash\s*=\s*['"])(?:ar|en)(['"])/gi, `$1${targetLang}$2${targetLang}$3`);
+
+    // 5. Template 7 & 9 parseHash() fallback:
+    // e.g., else { currentLang = 'ar'; currentTheme = ... }
+    out = out.replace(/(else\s*\{\s*currentLang\s*=\s*['"])(?:ar|en)(['"];\s*currentTheme)/gi, `$1${targetLang}$2`);
+
+    return out;
+}
+const savedUser = JSON.parse(localStorage.getItem('dashboard_user') || '{}');
+let rawCandidate = savedUser?.id;
+
+if (!rawCandidate) {
+  const stored = localStorage.getItem('userid');
+  if (stored && !stored.startsWith('{') && /^\d+$/.test(stored.trim())) {
+    rawCandidate = stored.trim();
+  }
+}
+
+if (!rawCandidate && savedUser?.details?.link) {
+  const match = String(savedUser.details.link).match(/(?:\?id=|\/)([0-9]+)/);
+  if (match) rawCandidate = match[1];
+}
+
+const trialUserId = rawCandidate ? String(rawCandidate).trim() : null;
+if (trialUserId) {
+  localStorage.setItem('userid', trialUserId);
+}
+let pendingLogoBase64 = null; // Stores new converted logo.png if user uploaded one
+
+// Convert any uploaded logo into clean 512x512 PNG data
+async function convertFileToPng(file, maxDimension = 512) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+            const img = new Image();
+            img.src = e.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let { width, height } = img;
+                if (width > maxDimension || height > maxDimension) {
+                    if (width > height) {
+                        height = Math.round((height * maxDimension) / width);
+                        width = maxDimension;
+                    } else {
+                        width = Math.round((width * maxDimension) / height);
+                        height = maxDimension;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, width, height);
+                ctx.drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL('image/png'));
+            };
+        };
+    });
+}
+
+// Logo input listener
+document.addEventListener('DOMContentLoaded', () => {
+    const logoInput = document.getElementById('company-logo-input');
+    if (logoInput) {
+        logoInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const pngDataUrl = await convertFileToPng(file);
+            document.getElementById('company-logo-preview').src = pngDataUrl;
+            pendingLogoBase64 = pngDataUrl.split(',')[1];
+            objectUrls['logo.png'] = pngDataUrl;
+        });
+    }
+});
+
+function openCompanyModal() {
+    if (isTrialMode) {
+        showConfirm(
+            trText("Modifying restaurant name, logo, and contact info requires an active subscription. Would you like to view our plans?"), 
+            () => { window.location.href = "dashboard.html?plans=true"; }, 
+            trText("Premium Feature")
+        );
+        return;
+    }
+
+    const info = appData.info || {};
+    const ar = info.ar || {};
+    const en = info.en || {};
+
+    // Check presence of keys strictly from info
+    const hasField = (key) => key in ar || key in en;
+
+    const supportsName = hasField('name');
+    const supportsDesc = hasField('description');
+    const supportsPhone = hasField('phone');
+    const supportsEmail = hasField('email');
+    const supportsAddress = hasField('address');
+    const supportsHours = hasField('hours1') || hasField('hours2') || hasField('hours');
+
+    document.getElementById('company-field-name').style.display = supportsName ? 'grid' : 'none';
+    document.getElementById('company-field-desc').style.display = supportsDesc ? 'grid' : 'none';
+    document.getElementById('company-field-phone').style.display = supportsPhone ? 'block' : 'none';
+    document.getElementById('company-field-email').style.display = supportsEmail ? 'block' : 'none';
+    document.getElementById('company-field-contact').style.display = (supportsPhone || supportsEmail) ? 'grid' : 'none';
+    document.getElementById('company-field-address').style.display = supportsAddress ? 'grid' : 'none';
+    document.getElementById('company-field-hours').style.display = supportsHours ? 'grid' : 'none';
+
+    // Populate values directly from your dict
+    document.getElementById('comp-name-ar').value = (ar.name || "").replace(/<\/?em>/gi, '').trim();
+    document.getElementById('comp-name-en').value = (en.name || "").replace(/<\/?em>/gi, '').trim();
+    document.getElementById('comp-desc-ar').value = ar.description || "";
+    document.getElementById('comp-desc-en').value = en.description || "";
+    document.getElementById('comp-phone').value = ar.phone || en.phone || "";
+    document.getElementById('comp-email').value = ar.email || en.email || "";
+    document.getElementById('comp-address-ar').value = ar.address || "";
+    document.getElementById('comp-address-en').value = en.address || "";
+
+    // Join hours1 and hours2 with |
+    const formatHours = (node) => [node.hours1, node.hours2].filter(Boolean).join(' | ') || (node.hours || "");
+    document.getElementById('comp-hours-ar').value = formatHours(ar);
+    document.getElementById('comp-hours-en').value = formatHours(en);
+
+    const preview = document.getElementById('company-logo-preview');
+    if (objectUrls['logo.png']) {
+        preview.src = objectUrls['logo.png'];
+    } else {
+        preview.src = isTrialMode 
+            ? `${TRIAL_WORKER_URL}/trial_${trialUserId}/images/logo.png` 
+            : `${PAGES_URL}/images/logo.png`;
+        preview.onerror = () => { preview.src = "images/logo.png"; };
+    }
+
+    applyEditorTranslations(document.getElementById('company-modal'));
+    document.getElementById('company-modal').classList.remove('hidden');
+}
+function closeCompanyModal() {
+    document.getElementById('company-modal').classList.add('hidden');
+}
+function saveCompanyDetails() {
+    if (!appData.info) {
+        showAlert(trText("Current template does not support customizable company data."), trText("Notification"));
+        closeCompanyModal();
+        return;
+    }
+
+    if (!appData.info.ar) appData.info.ar = {};
+    if (!appData.info.en) appData.info.en = {};
+
+    const nameAr = document.getElementById('comp-name-ar').value.trim();
+    const nameEn = document.getElementById('comp-name-en').value.trim();
+    const descAr = document.getElementById('comp-desc-ar').value.trim();
+    const descEn = document.getElementById('comp-desc-en').value.trim();
+    const phone = document.getElementById('comp-phone').value.trim();
+    const email = document.getElementById('comp-email').value.trim();
+    const addressAr = document.getElementById('comp-address-ar').value.trim();
+    const addressEn = document.getElementById('comp-address-en').value.trim();
+    const hoursAr = document.getElementById('comp-hours-ar').value.trim();
+    const hoursEn = document.getElementById('comp-hours-en').value.trim();
+
+    ['ar', 'en'].forEach(lang => {
+        const isAr = lang === 'ar';
+        const node = appData.info[lang];
+        if (!node) return;
+
+        if ('name' in node) node.name = isAr ? nameAr : nameEn;
+        if ('description' in node) node.description = isAr ? descAr : descEn;
+        if ('phone' in node) node.phone = phone;
+        if ('email' in node) node.email = email;
+        if ('address' in node) node.address = isAr ? addressAr : addressEn;
+
+        const chosenHours = isAr ? hoursAr : hoursEn;
+        if ('hours1' in node || 'hours2' in node) {
+            if (chosenHours.includes('|')) {
+                const parts = chosenHours.split('|').map(s => s.trim());
+                node.hours1 = parts[0] || '';
+                node.hours2 = parts[1] || '';
+            } else {
+                node.hours1 = chosenHours;
+                if ('hours2' in node) node.hours2 = '';
+            }
+        } else if ('hours' in node) {
+            node.hours = chosenHours;
+        }
+    });
+
+    closeCompanyModal();
+    showAlert(trText("Company info updated successfully! Click 'Publish Editions' to deploy live."), trText("Success"));
+}
+function getNextAvailableImageName(prefix = "image-file-") {
+  const existingNames = new Set();
+
+  ['ar', 'en'].forEach(lang => {
+    if (appData?.menu?.[lang]) {
+      appData.menu[lang].forEach(item => {
+        if (item.image) {
+          const clean = item.image.replace(/^.*[\\\/]/, '').trim();
+          existingNames.add(clean);
+        }
+      });
+    }
+  });
+
+  ['ar', 'en'].forEach(lang => {
+    if (globalCategories?.[lang]) {
+      globalCategories[lang].forEach(cat => {
+        if (cat.image) {
+          const clean = cat.image.replace(/^.*[\\\/]/, '').trim();
+          existingNames.add(clean);
+        }
+      });
+    }
+  });
+
+  if (typeof objectUrls === 'object' && objectUrls !== null) {
+    Object.keys(objectUrls).forEach(k => existingNames.add(k));
+  }
+
+  let idx = 1;
+  while (existingNames.has(`${prefix}${idx}.jpg`)) {
+    idx++;
+  }
+  return `${prefix}${idx}.jpg`;
+}
+        function showAlert(msg, title = "Notification") { document.getElementById('alert-title').innerText = title; document.getElementById('alert-message').innerText = msg; document.getElementById('custom-alert-modal').classList.remove('hidden'); }
+        function closeAlert() { document.getElementById('custom-alert-modal').classList.add('hidden'); }
+        let confirmCallback = null;
+        function showConfirm(msg, callback, title = "Confirm Action") { document.getElementById('confirm-title').innerText = title; document.getElementById('confirm-message').innerText = msg; confirmCallback = callback; document.getElementById('custom-confirm-modal').classList.remove('hidden'); }
+        function closeConfirm() { document.getElementById('custom-confirm-modal').classList.add('hidden'); confirmCallback = null; }
+        document.getElementById('confirm-yes-btn').onclick = () => { if (confirmCallback) confirmCallback(); closeConfirm(); };
+
+        let publishQueueBatches = [];
+        let currentBatchIndex = 0;
+        let publishTimer = null;
+        let verifyTimer = null;
+        let currentTrackingId = null;
+
+        function closePublishModal() { 
+            document.getElementById('publish-modal').classList.add('hidden'); 
+            if (publishTimer) clearInterval(publishTimer);
+            if (verifyTimer) clearInterval(verifyTimer);
+        }
+
+        function setPublishModalState(state, data = {}) {
+            const modal = document.getElementById('publish-modal');
+            const content = document.getElementById('publish-modal-content');
+            modal.classList.remove('hidden');
+
+            if (state === 'loading') {
+                let msg = `Publishing Editions...`;
+                let subMsg = `Please wait while we update your repository.`;
+                let spinnerHtml = `<svg class="animate-spin w-12 h-12 text-[var(--primary)]" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>`;
+                
+                if (data.total > 1) {
+                    msg = `Publishing Batch ${data.current} of ${data.total}`;
+                }
+                if (data.waiting) {
+                    const mins = Math.floor(data.timeLeft / 60).toString().padStart(2, '0');
+                    const secs = (data.timeLeft % 60).toString().padStart(2, '0');
+                    subMsg = `To prevent API limits, waiting before next batch.<br><br><span class="text-3xl font-black text-[var(--primary)] mt-3 block">${mins}:${secs}</span>`;
+                    spinnerHtml = `<svg class="w-12 h-12 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                }
+
+                content.innerHTML = `
+                    <div class="flex justify-center mb-4">${spinnerHtml}</div>
+                    <h3 class="text-xl font-bold text-[var(--text)] mb-2">${msg}</h3>
+                    <p class="text-[var(--text-muted)] mb-6 text-sm font-medium">${subMsg}</p>
+                    <button onclick="closePublishModal()" class="bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] px-6 py-2.5 rounded-xl font-bold hover:bg-[var(--border)] hover:text-[var(--text)] w-full transition-colors">Cancel</button>
+                `;
+            } else if (state === 'verifying') {
+                content.innerHTML = `
+                    <div class="flex justify-center mb-4">
+                        <svg class="animate-spin w-12 h-12 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text)] mb-2">Verifying Deployment...</h3>
+                    <p class="text-[var(--text-muted)] mb-6 font-medium text-sm">Your editions were saved successfully. Waiting for the global network to update. This usually takes 1 to 3 minutes.</p>
+                `;
+            } else if (state === 'success') {
+                let userObj = {};
+                try { userObj = JSON.parse(localStorage.getItem('dashboard_user') || '{}'); } catch(e){}
+                const details = userObj.details || {};
+                let targetUrl = '';
+
+                if (isTrialMode) {
+                    const rawTrialLink = details.link || (TRIAL_DEFAULT_TEMPLATE ? `${TRIAL_DEFAULT_TEMPLATE.replace(/\/trial\/[^/]+\/$/, '/trial/')}?id=${trialUserId}` : '');
+                    targetUrl = rawTrialLink.startsWith('http') ? rawTrialLink : (rawTrialLink ? 'https://' + rawTrialLink : '');
+                } else {
+                    const customRedirect = (details.redirect_link && details.redirect_link.trim() !== '') ? details.redirect_link.trim() : (details.link || PAGES_URL || '');
+                    targetUrl = customRedirect.startsWith('http') ? customRedirect : (customRedirect ? 'https://' + customRedirect : PAGES_URL);
+                }
+
+                let viewBtn = targetUrl ? `<button onclick="window.open('${targetUrl}', '_blank')" class="flex-1 bg-[var(--surface)] text-[var(--primary)] border border-[var(--primary)] px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-light)] transition-colors shadow-sm">View Website</button>` : '';
+
+                content.innerHTML = `
+                    <div class="flex justify-center mb-4 text-[var(--primary)]">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text)] mb-2">Successfully Published!</h3>
+                    <p class="text-[var(--text-muted)] mb-6 font-medium text-sm">Your editions have been securely stored.<br><br><span class="text-[var(--accent-dark)] font-bold">Your live menu is now up to date.</span></p>
+                    <div class="flex gap-3">
+                        ${viewBtn}
+                        <button onclick="closePublishModal()" class="flex-1 bg-[var(--primary)] text-white px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-dark)] transition-colors shadow-sm">Close</button>
+                    </div>
+                `;
+            } else if (state === 'timeout') {
+                content.innerHTML = `
+                    <div class="flex justify-center mb-4 text-amber-500">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text)] mb-2">Verification Timeout</h3>
+                    <p class="text-gray-600 mb-6 font-medium text-sm break-words">We couldn't verify the live deployment within 5 minutes. It might still be processing, or there could be a network connection issue.</p>
+                    <div class="flex gap-3">
+                        <button onclick="closePublishModal()" class="flex-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--border)] transition-colors">Close</button>
+                        <button onclick="startVerificationLoop()" class="flex-1 bg-[var(--primary)] text-white px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-dark)] transition-colors shadow-sm">Check Again</button>
+                    </div>
+                `;
+            } else if (state === 'error') {
+                content.innerHTML = `
+                    <div class="flex justify-center mb-4 text-[var(--danger)]">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text)] mb-2">Publishing Failed</h3>
+                    <p class="text-[var(--danger)] mb-6 font-medium text-sm break-words">${data.errorMsg}</p>
+                    <div class="flex gap-3">
+                        <button onclick="closePublishModal()" class="flex-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--border)] hover:text-[var(--text)] transition-colors">Close</button>
+                        <button onclick="processPublishQueue()" class="flex-1 bg-[var(--primary)] text-white px-4 py-2.5 rounded-xl font-bold hover:bg-[var(--primary-dark)] transition-colors shadow-sm">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+
+        let originalHtml = "";
+        let objectUrls = {}; 
+
+        let activeLang = 'ar'; let activeCat = ''; let activeSubCat = '';
+        let globalCategories = { ar: [], en: [] }; let manageState = [];
+        let sortableCat, sortableSubcat, sortableProducts;
+        let pendingExcelData = []; let pendingMergeData = []; let pendingMergeCats = [];
+
+        let TPL_TYPE = 'appData'; let TPL_HAS_SUBCAT = true; let TPL_HAS_PROD_IMG = true; let TPL_HAS_CAT_IMG = false;
+        let TPL_HAS_BADGE = false; let TPL_HAS_CALORIES = false; let TPL_HAS_SERVES = false; let TPL_HAS_INGREDIENTS = false; let TPL_HAS_SITE_DICT = false;
+        let appData = { menu: { ar: [], en: [] } }; let rawAppData = null, rawMENU = null, rawTranslations = null, rawCategoryBanners = null, rawMenuData = null;
+
+        async function compressImageToJpeg(file, maxSizeKb = 100) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let { width, height } = img;
+                        const MAX_DIM = maxSizeKb > 100 ? 1200 : 800; 
+                        
+                        if (width > MAX_DIM || height > MAX_DIM) {
+                            if (width > height) { height *= MAX_DIM / width; width = MAX_DIM; }
+                            else { width *= MAX_DIM / height; height = MAX_DIM; }
+                        }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.fillRect(0, 0, width, height);
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        let quality = 0.9;
+                        let dataUrl = canvas.toDataURL('image/jpeg', quality);
+                        const maxBytes = maxSizeKb * 1370; 
+                        
+                        while (dataUrl.length > maxBytes && quality > 0.1) {
+                            quality -= 0.1;
+                            dataUrl = canvas.toDataURL('image/jpeg', quality);
+                        }
+                        resolve(dataUrl);
+                    };
+                };
+            });
+        }
+
+        function extractJSObject(html, marker) {
+            let startIdx = html.indexOf(marker); if (startIdx === -1) return null; startIdx += marker.length;
+            let braceStart = html.indexOf('{', startIdx); let bracketStart = html.indexOf('[', startIdx);
+            let startPos = -1, startChar = '', endChar = '';
+            if (braceStart !== -1 && (bracketStart === -1 || braceStart < bracketStart)) { startPos = braceStart; startChar = '{'; endChar = '}'; } else if (bracketStart !== -1) { startPos = bracketStart; startChar = '['; endChar = ']'; } else return null;
+            let count = 0; let endPos = -1;
+            for (let i = startPos; i < html.length; i++) { if (html[i] === startChar) count++; else if (html[i] === endChar) count--; if (count === 0) { endPos = i + 1; break; } }
+            if (endPos !== -1) { let str = html.substring(startPos, endPos); try { return { str, obj: eval("(" + str + ")") }; } catch(e) { return null; } } return null;
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const statusEl = document.getElementById('loading-status');
+            try {
+                if (isTrialMode) {
+                    statusEl.textContent = "Loading Data...";
+                    try {
+                        const r2res = await fetch(`${TRIAL_WORKER_URL}/api/trial/load?id=${trialUserId}`);
+                        const r2data = await r2res.json();
+                        
+                        if (r2data.found && r2data.html) {
+                            originalHtml = r2data.html;
+                        } else {
+                            const fallRes = await fetch(`${TRIAL_DEFAULT_TEMPLATE}index.html`);
+                            if (!fallRes.ok) throw new Error("Could not load default trial template.");
+                            originalHtml = await fallRes.text();
+                            originalHtml = originalHtml.replace(
+                                /src=["']images\/([^"']+)["']/g, 
+                                `src="${TRIAL_DEFAULT_TEMPLATE}images/$1"`
+                            );
+                        }
+                    } catch (e) {
+                        const fallRes = await fetch(`${TRIAL_DEFAULT_TEMPLATE}index.html`);
+                        if (!fallRes.ok) throw new Error("Could not load default trial template.");
+                        originalHtml = await fallRes.text();
+                    }
+                } else {
+                    statusEl.textContent = "Decrypting workspace keys...";
+                    const encWk = localStorage.getItem('editor_wk');
+                    const encPg = localStorage.getItem('editor_pg');
+                    
+                    if (!encWk || !encPg) throw new Error("Missing editor keys. Please return to dashboard.");
+                    
+                    WORKER_URL = await AsweqVault.decrypt(encWk);
+                    PAGES_URL = await AsweqVault.decrypt(encPg);
+
+                    statusEl.textContent = "Fetching configuration from server...";
+                    const response = await fetch(`${PAGES_URL}/index.html?t=${Date.now()}`, { cache: "no-store" });
+                    if (!response.ok) throw new Error("Failed to load template.");
+                    originalHtml = await response.text();
+                }
+
+                statusEl.textContent = "Parsing HTML structure...";
+                
+                rawAppData = extractJSObject(originalHtml, 'const appData =');
+                rawMENU = extractJSObject(originalHtml, 'const MENU =');
+                rawTranslations = extractJSObject(originalHtml, 'const TRANSLATIONS =');
+                rawCategoryBanners = extractJSObject(originalHtml, 'const CATEGORY_BANNERS =');
+                rawMenuData = extractJSObject(originalHtml, 'const menuData =');
+
+                TPL_HAS_BADGE = false; TPL_HAS_CALORIES = false; TPL_HAS_SERVES = false; TPL_HAS_INGREDIENTS = false; TPL_HAS_SITE_DICT = false;
+
+                if (rawAppData && !rawMENU) {
+                    TPL_TYPE = 'appData';
+                    if (rawAppData.obj.site) TPL_HAS_SITE_DICT = true;
+                    const firstItem = (rawAppData.obj.menu && rawAppData.obj.menu.en) ? (rawAppData.obj.menu.en[0] || rawAppData.obj.menu.ar[0]) : null;
+                    TPL_HAS_SUBCAT = firstItem ? firstItem.hasOwnProperty('subcategory') : true; 
+                    
+                    TPL_HAS_PROD_IMG = firstItem ? firstItem.hasOwnProperty('image') : true; 
+                    if (originalHtml.includes('item-dots')) {
+                        TPL_HAS_PROD_IMG = false;
+                    }
+                    
+                    TPL_HAS_CAT_IMG = rawCategoryBanners !== null; 
+                    appData = rawAppData.obj;
+
+                    ['en', 'ar'].forEach(lang => {
+                        if (appData.menu[lang]) {
+                            appData.menu[lang].forEach(item => {
+                                if (item.image && item.image.startsWith('images/')) {
+                                    item.image = item.image.replace('images/', '');
+                                }
+                            });
+                        }
+                    });
+                } else if (rawMENU) {
+                    TPL_TYPE = 'MENU'; TPL_HAS_SUBCAT = false; TPL_HAS_PROD_IMG = rawMENU.obj.length > 0 && rawMENU.obj[0].hasOwnProperty('img'); TPL_HAS_CAT_IMG = rawCategoryBanners !== null;
+                    appData = { menu: { ar: [], en: [] } };
+                    rawMENU.obj.forEach(item => {
+                        let catEn = rawTranslations.obj.en.categories[item.cat] || item.cat; let catAr = rawTranslations.obj.ar.categories[item.cat] || item.cat;
+                        let badgeEn = item.badge ? item.badge.en : ''; let badgeAr = item.badge ? item.badge.ar : '';
+                        let ingEn = item.i18n.en.ingredients || ''; if (Array.isArray(ingEn)) ingEn = ingEn.join(', ');
+                        let ingAr = item.i18n.ar.ingredients || ''; if (Array.isArray(ingAr)) ingAr = ingAr.join(', ');
+                        appData.menu.en.push({ category: catEn, name: item.i18n.en.title, price: item.price, description: item.i18n.en.desc, image: item.img ? item.img.replace('images/','') : '', badge: badgeEn, calories: item.cal || '', serves: item.serves || '', ingredients: ingEn, _raw: item, _rawCat: item.cat });
+                        appData.menu.ar.push({ category: catAr, name: item.i18n.ar.title, price: item.price, description: item.i18n.ar.desc, image: item.img ? item.img.replace('images/','') : '', badge: badgeAr, calories: item.cal || '', serves: item.serves || '', ingredients: ingAr, _raw: item, _rawCat: item.cat });
+                    });
+                } else if (rawMenuData) {
+                    TPL_TYPE = 'menuData'; TPL_HAS_SUBCAT = true; TPL_HAS_PROD_IMG = false; TPL_HAS_CAT_IMG = false;
+                    appData = { menu: { ar: [], en: [] } };
+                    ['en', 'ar'].forEach(lang => {
+                        const catNames = lang === 'ar' ? { menuSections: 'القائمة', drinksSections: 'المشروبات' } : { menuSections: 'Menu', drinksSections: 'Drinks' };
+                        ['menuSections', 'drinksSections'].forEach(secType => {
+                            if(rawMenuData.obj[lang][secType]) {
+                                rawMenuData.obj[lang][secType].forEach(sec => {
+                                    sec.dishes.forEach(dish => { appData.menu[lang].push({ category: catNames[secType], subcategory: sec.courseTitle, name: dish.name, price: dish.price, description: dish.desc, badge: dish.tag || '', _type: secType, _rawTag: dish.tag }); });
+                                });
+                            }
+                        });
+                    });
+                } else { throw new Error("Unrecognized template format."); }
+
+                ['en', 'ar'].forEach(lang => {
+                    if (appData.menu[lang]) {
+                        appData.menu[lang].forEach(item => {
+                            if (item.badge || item._rawTag || (item._raw && item._raw.badge)) TPL_HAS_BADGE = true;
+                            if (item.calories || item.cal || (item._raw && item._raw.cal)) TPL_HAS_CALORIES = true;
+                            if (item.serves || (item._raw && item._raw.serves)) TPL_HAS_SERVES = true;
+                            if (item.ingredients || (item._raw && item._raw.i18n && item._raw.i18n[lang] && item._raw.i18n[lang].ingredients)) TPL_HAS_INGREDIENTS = true;
+                        });
+                    }
+                });
+
+                document.getElementById('subcat-header-wrap').style.display = TPL_HAS_SUBCAT ? 'block' : 'none';
+                const isInitialAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+                document.getElementById('cat-label').innerText = isInitialAr 
+                    ? (TPL_HAS_SUBCAT ? 'اختر القسم الرئيسي' : 'اختر القسم الرئيسي') 
+                    : (TPL_HAS_SUBCAT ? 'Select Category' : 'Select Category');                
+                document.getElementById('subcat-container').style.display = TPL_HAS_SUBCAT ? 'block' : 'none'; 
+                document.getElementById('cat-selection-container').className = TPL_HAS_SUBCAT ? 'grid grid-cols-1 sm:grid-cols-2 gap-5' : 'grid grid-cols-1 gap-5';
+                document.getElementById('prod-image-container').style.display = TPL_HAS_PROD_IMG ? 'block' : 'none';
+                document.getElementById('special-item-section').style.display = TPL_HAS_SITE_DICT ? 'block' : 'none';
+                document.getElementById('wrap-badge').style.display = TPL_HAS_BADGE ? 'block' : 'none'; 
+                document.getElementById('wrap-calories').style.display = TPL_HAS_CALORIES ? 'block' : 'none';
+                document.getElementById('wrap-serves').style.display = TPL_HAS_SERVES ? 'block' : 'none'; 
+                document.getElementById('wrap-ingredients').style.display = TPL_HAS_INGREDIENTS ? 'block' : 'none';
+                document.getElementById('meta-fields-container').style.display = (TPL_HAS_BADGE || TPL_HAS_CALORIES || TPL_HAS_SERVES) ? 'grid' : 'none';
+
+                initGlobalCategories();
+                document.getElementById('loading-screen').classList.add('hidden'); 
+                document.getElementById('workspace').classList.remove('hidden');
+                document.getElementById('publish-btn').classList.remove('hidden'); 
+                document.getElementById('publish-btn').classList.add('flex');
+                
+               refreshUI();
+                loadSpecialItem();
+
+                // Detect current default language from HTML
+                try {
+                    let detectedLang = 'ar';
+                    // Check if current HTML sets en as default
+                    if (
+                        /let\s+currentLang\s*=\s*['"]en['"]/i.test(originalHtml) ||
+                        /var\s+currentLang\s*=\s*['"]en['"]/i.test(originalHtml) ||
+                        /return\s+(?:h|hash)\s*===\s*['"]#ar['"]\s*\?\s*['"]ar['"]\s*:\s*['"]en['"]/i.test(originalHtml) ||
+                        /return\s+window\.location\.hash\.toLowerCase\(\)\s*===\s*['"]#ar['"]\s*\?\s*['"]ar['"]\s*:\s*['"]en['"]/i.test(originalHtml)
+                    ) {
+                        detectedLang = 'en';
+                    }
+                    const defLangSelect = document.getElementById('default-menu-lang');
+                    if (defLangSelect) defLangSelect.value = detectedLang;
+                } catch (_) {}
+            } catch (err) {
+                statusEl.classList.remove('text-[var(--text-muted)]');
+                statusEl.classList.add('text-[var(--danger)]');
+                statusEl.textContent = "Error: " + err.message;
+                document.getElementById('loading-spinner').style.display = 'none';
+            }
+        });
+
+        function syncArrayOrder() {
+            const lang = activeLang;
+            const items = appData.menu[lang];
+            if(!items) return;
+            const newItems = [];
+            globalCategories[lang].forEach(cat => {
+                if (TPL_HAS_SUBCAT) { 
+                    cat.subcats.forEach(sub => { 
+                        const matchingItems = items.filter(i => i.category === cat.name && i.subcategory === sub.name); 
+                        newItems.push(...matchingItems); 
+                    }); 
+                } else { 
+                    const matchingItems = items.filter(i => i.category === cat.name); 
+                    newItems.push(...matchingItems); 
+                }
+            });
+            appData.menu[lang] = newItems;
+        }
+
+        function downloadSampleExcel() {
+            const items = appData.menu[activeLang] || [];
+            let data = items.map(item => {
+                let row = { Name: item.name || '', Description: item.description || '', Category: item.category || '', Price: item.price || '' };
+                if (TPL_HAS_SUBCAT) row.Subcategory = item.subcategory || ''; 
+                if (TPL_HAS_PROD_IMG) row.Image = item.image || '';
+                if (TPL_HAS_BADGE) row.Badge = item.badge || item._rawTag || ''; 
+                if (TPL_HAS_CALORIES) row.Calories = item.calories || item.cal || '';
+                if (TPL_HAS_SERVES) row.Serves = item.serves || ''; 
+                if (TPL_HAS_INGREDIENTS) row.Ingredients = Array.isArray(item.ingredients) ? item.ingredients.join(', ') : (item.ingredients || '');
+                return row;
+            });
+            if(data.length === 0) {
+                let sample = { Name: 'Sample Product', Description: 'A brief description of the item.', Category: 'Sample Cat', Price: '10.00' };
+                if (TPL_HAS_SUBCAT) sample.Subcategory = 'Sample Sub'; 
+                if (TPL_HAS_PROD_IMG) sample.Image = 'default.png'; 
+                if (TPL_HAS_BADGE) sample.Badge = 'New';
+                if (TPL_HAS_CALORIES) sample.Calories = '350'; 
+                if (TPL_HAS_SERVES) sample.Serves = '2'; 
+                if (TPL_HAS_INGREDIENTS) sample.Ingredients = 'Salt, Pepper'; 
+                data.push(sample);
+            }
+            const ws = XLSX.utils.json_to_sheet(data); 
+            const wb = XLSX.utils.book_new(); 
+            XLSX.utils.book_append_sheet(wb, ws, "Menu_Data"); 
+            XLSX.writeFile(wb, `Asweq_Menu_${activeLang.toUpperCase()}.xlsx`);
+        }
+
+// Helper to fetch an image URL, compress to 100KB JPEG and store in memory
+        async function fetchAndProcessExternalImage(url) {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second network timeout
+
+                const response = await fetch(url, { signal: controller.signal, mode: 'cors' });
+                clearTimeout(timeoutId);
+
+                if (!response.ok) return "";
+                const blob = await response.blob();
+                if (!blob.type.startsWith('image/')) return "";
+
+                // Convert blob to File object for compressor
+                const tempFile = new File([blob], "temp_import.jpg", { type: blob.type });
+                const base64Jpg = await compressImageToJpeg(tempFile, 100);
+
+                if (!base64Jpg || !base64Jpg.startsWith('data:image')) return "";
+
+                // Assign valid sequential name and save to memory map
+                const newName = getNextAvailableImageName("image-file-");
+                objectUrls[newName] = base64Jpg;
+                return newName;
+            } catch (_) {
+                // If CORS, network or format error happens -> consider as no image (blank)
+                return "";
+            }
+        }
+
+        // Validates whether image name matches system naming format
+        function sanitizeExcelImageField(rawImage) {
+            if (!rawImage || typeof rawImage !== 'string') return "";
+            const clean = rawImage.trim();
+
+            // Strict system naming format: image-file-1.jpg, image-file-22.jpg, or default.png
+            const isValidSystemName = /^image-file-\d+\.jpg$/i.test(clean) || clean.toLowerCase() === 'default.png';
+
+            return isValidSystemName ? clean : "";
+        }
+
+        document.getElementById('excel-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function(evt) {
+                const data = evt.target.result; 
+                const workbook = XLSX.read(data, {type: 'binary'}); 
+                const firstSheet = workbook.SheetNames[0];
+                const rawJson = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet]);
+                await processExcelData(rawJson); 
+                e.target.value = ""; 
+            };
+            reader.readAsBinaryString(file);
+        });
+
+        async function processExcelData(rawJson) {
+            // Show loading modal/status while processing images
+            setPublishModalState('loading', { current: 1, total: 1, waiting: false });
+            const modalTitle = document.querySelector('#publish-modal-content h3');
+            const modalDesc = document.querySelector('#publish-modal-content p');
+            if (modalTitle) modalTitle.innerText = trText("Importing Excel Data...");
+            if (modalDesc) modalDesc.innerText = trText("Processing and compressing images. Please wait...");
+
+            const parsedItems = [];
+
+            for (let row of rawJson) {
+                let rawImg = (row.Image || '').toString().trim();
+                let finalImgName = "";
+
+                if (TPL_HAS_PROD_IMG && rawImg) {
+                    if (rawImg.startsWith('http://') || rawImg.startsWith('https://')) {
+                        // It is a link: fetch, extract, compress, rename
+                        finalImgName = await fetchAndProcessExternalImage(rawImg);
+                    } else {
+                        // Not a link: only keep if it strictly fits system formatting; otherwise blank
+                        finalImgName = sanitizeExcelImageField(rawImg);
+                    }
+                }
+
+                let newItem = { 
+                    name: (row.Name || '').toString().trim(), 
+                    description: (row.Description || '').toString().trim(), 
+                    subcategory: TPL_HAS_SUBCAT ? (row.Subcategory || '').toString().trim() : '', 
+                    category: (row.Category || '').toString().trim(), 
+                    price: (row.Price || '').toString().trim(), 
+                    image: finalImgName 
+                };
+
+                if (TPL_HAS_BADGE && row.Badge) newItem.badge = row.Badge.toString().trim(); 
+                if (TPL_HAS_CALORIES && row.Calories) newItem.calories = row.Calories.toString().trim();
+                if (TPL_HAS_SERVES && row.Serves) newItem.serves = row.Serves.toString().trim(); 
+                if (TPL_HAS_INGREDIENTS) {
+                    const ing = (row.Ingredients || '').toString().trim();
+                    const splitList = ing.split(/[,،]+/).map(s => s.trim()).filter(Boolean);
+
+                    const existingItemWithIngredients = (appData.menu[activeLang] || []).find(i => i.ingredients !== undefined && i.ingredients !== null);
+                    const usesArray = Array.isArray(existingItemWithIngredients?.ingredients);
+
+                    if (usesArray) {
+                        newItem.ingredients = splitList;
+                    } else {
+                        newItem.ingredients = splitList.join(activeLang === 'ar' ? '، ' : ', ');
+                    }
+                }
+
+                if (newItem.name || newItem.category) {
+                    parsedItems.push(newItem);
+                }
+            }
+
+            closePublishModal();
+
+            const distinctCats = [...new Set(parsedItems.map(i => i.category))].filter(Boolean);
+            if (distinctCats.length > 2 && TPL_HAS_SUBCAT) { 
+                openMergeModal(distinctCats, parsedItems); 
+                return; 
+            }
+            applyExcelData(parsedItems); 
+        }
+        function openMergeModal(cats, parsedItems) {
+            pendingMergeData = parsedItems; pendingMergeCats = cats; document.getElementById('merge-cat-count').textContent = cats.length;
+            const list = document.getElementById('merge-categories-list');
+            list.innerHTML = cats.map((cat, idx) => `
+                <div class="flex items-center gap-3 bg-[var(--surface)] p-2.5 rounded-lg border border-[var(--border)] shadow-sm">
+                    <span class="w-1/2 font-bold text-[var(--text)] truncate" title="${cat}">${cat}</span>
+                    <svg class="w-5 h-5 text-[var(--primary)] opacity-50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <input type="text" id="merge-input-${idx}" value="${cat}" class="w-1/2 border border-[var(--border)] rounded-lg p-2 focus:ring-2 focus:ring-[var(--primary)]/30 focus:border-[var(--primary)] font-bold text-sm bg-[var(--bg)]">
+                </div>
+            `).join('');
+            document.getElementById('merge-error').classList.add('hidden'); document.getElementById('merge-categories-modal').classList.remove('hidden');
+        }
+
+        function closeMergeModal() { document.getElementById('merge-categories-modal').classList.add('hidden'); document.getElementById('excel-upload').value = ""; }
+        
+        function applyMergeCategories() {
+            const map = {}; pendingMergeCats.forEach((cat, idx) => { const newVal = document.getElementById(`merge-input-${idx}`).value.trim() || 'Uncategorized'; map[cat] = newVal; });
+            const newDistinct = [...new Set(Object.values(map))]; if (newDistinct.length > 2 && TPL_HAS_SUBCAT) { document.getElementById('merge-error').classList.remove('hidden'); return; }
+            const updatedItems = pendingMergeData.map(item => ({ ...item, category: map[item.category] || item.category }));
+            closeMergeModal(); applyExcelData(updatedItems);
+        }
+
+        function applyExcelData(data) {
+    data.forEach(item => { 
+        if (TPL_HAS_PROD_IMG && !item.image) {
+            item.image = '';
+        } 
+    });
+            const cats = [...new Set(data.map(i => i.category))].filter(Boolean);
+            
+            globalCategories[activeLang] = cats.map((c, cIdx) => {
+                const subcats = [...new Set(data.filter(i => i.category === c).map(i => i.subcategory))].filter(Boolean);
+                let existingCat = globalCategories[activeLang].find(oldCat => oldCat.name === c);
+                return { id: `cat_${activeLang}_${cIdx}`, name: c, image: existingCat ? existingCat.image : '', _rawCat: existingCat ? existingCat._rawCat : c.toLowerCase().replace(/[^a-z0-9]/g, '_'), subcats: subcats.map((sc, sIdx) => ({ id: `sub_${activeLang}_${cIdx}_${sIdx}`, name: sc })) };
+            });
+            
+            appData.menu[activeLang] = data.map(newItem => { 
+                let existingItem = appData.menu[activeLang].find(i => i.name === newItem.name); 
+                if (existingItem) { return { ...existingItem, ...newItem }; } 
+                return { ...newItem }; 
+            });
+
+            activeCat = ''; activeSubCat = ''; syncArrayOrder(); refreshUI(); showAlert(`Excel Data Successfully Imported! Replaced current menu.`, "Success");
+        }
+
+        let addItemType = ''; 
+        function promptAddItem(type) {
+            addItemType = type;
+            if (type === 'cat') { 
+                if (TPL_HAS_SUBCAT && globalCategories[activeLang].length >= 2) { showAlert("Maximum of 2 Categories allowed for this template structure.", "Limit Reached"); return; } 
+                document.getElementById('add-item-title').innerText = "Add New Category"; 
+            } else { 
+                if (!activeCat) { showAlert("Please select a category first."); return; } 
+                document.getElementById('add-item-title').innerText = "Add Subcategory to: " + activeCat; 
+            }
+            document.getElementById('add-item-input').value = ""; 
+            document.getElementById('add-item-input').setAttribute('dir', activeLang === 'ar' ? 'rtl' : 'ltr'); 
+            document.getElementById('add-item-modal').classList.remove('hidden');
+        }
+
+        function closeAddItemModal() { document.getElementById('add-item-modal').classList.add('hidden'); }
+        
+        function submitAddItem() {
+            let val = document.getElementById('add-item-input').value.trim(); if (!val) { showAlert("Name cannot be empty."); return; }
+            if (addItemType === 'cat') {
+                if (globalCategories[activeLang].find(c => c.name === val)) { showAlert("A category with this name already exists."); return; }
+                globalCategories[activeLang].push({ id: `cat_${activeLang}_${Date.now()}`, name: val, image: '', _rawCat: val.toLowerCase().replace(/[^a-z0-9]/g, '_'), subcats: [] }); 
+                activeCat = val; activeSubCat = '';
+            } else {
+                const catIdx = globalCategories[activeLang].findIndex(c => c.name === activeCat);
+                if(catIdx !== -1) {
+                    if (globalCategories[activeLang][catIdx].subcats.find(s => s.name === val)) { showAlert("A subcategory with this name already exists in this category."); return; }
+                    globalCategories[activeLang][catIdx].subcats.push({ id: `sub_${activeLang}_${Date.now()}`, name: val }); 
+                    activeSubCat = val;
+                }
+            }
+            closeAddItemModal(); syncArrayOrder(); refreshUI();
+        }
+
+async function getImageUrl(imageName) {
+    if (!imageName) imageName = 'default.png';
+    if (objectUrls[imageName]) return objectUrls[imageName];
+    
+    // Ensure clean ID with no JSON artifacts
+    const cleanId = (trialUserId || '').replace(/[^0-9]/g, '');
+    if (isTrialMode && cleanId) {
+        return `${TRIAL_WORKER_URL}/trial_${cleanId}/images/${imageName}`;
+    }
+    if (isTrialMode) {
+        return `${TRIAL_DEFAULT_TEMPLATE}images/${imageName}`;
+    }
+    return `${PAGES_URL}/images/${imageName}`;
+}
+
+        function applyLangDirection() {
+            const isAr = activeLang === 'ar'; const dir = isAr ? 'rtl' : 'ltr';
+            document.getElementById('manage-modal-body').setAttribute('dir', dir);
+            ['special-mark', 'special-title', 'special-desc'].forEach(id => { const el = document.getElementById(id); if(el) el.setAttribute('dir', dir); });
+        }
+
+        async function refreshUI() { applyLangDirection(); renderCategories(); if (TPL_HAS_SUBCAT) renderSubCategories(); await renderProducts(); initializeSortables(); }
+
+        function switchLang(lang) {
+            activeLang = lang;
+            document.getElementById('lang-ar').className = lang === 'ar' ? "px-5 py-2 rounded-full bg-[var(--primary)] text-white font-bold border border-[var(--primary)] text-sm sm:text-base transition-colors" : "px-5 py-2 rounded-full bg-[var(--bg)] text-[var(--text-muted)] border border-[var(--border)] hover:bg-[var(--primary-light)] hover:text-[var(--primary)] text-sm sm:text-base transition-colors";
+            document.getElementById('lang-en').className = lang === 'en' ? "px-5 py-2 rounded-full bg-[var(--primary)] text-white font-bold border border-[var(--primary)] text-sm sm:text-base transition-colors" : "px-5 py-2 rounded-full bg-[var(--bg)] text-[var(--text-muted)] border border-[var(--border)] hover:bg-[var(--primary-light)] hover:text-[var(--primary)] text-sm sm:text-base transition-colors";
+            activeCat = ''; activeSubCat = ''; refreshUI(); loadSpecialItem();
+        }
+
+        function loadSpecialItem() {
+            if (!TPL_HAS_SITE_DICT || !appData.site) return; const siteData = appData.site[activeLang];
+            if (siteData) {
+                let mark = siteData.chefMark || ''; mark = mark.replace(/<br\s*class=['"]?hide-mobile['"]?\s*\/?>/gi, '\n').replace(/<br\s*\/?>/gi, '\n');
+                document.getElementById('special-mark').value = mark; document.getElementById('special-title').value = siteData.chefTitle || ''; document.getElementById('special-price').value = siteData.chefPrice || ''; document.getElementById('special-desc').value = siteData.chefDesc || '';
+            }
+        }
+
+        function saveSpecialItem() {
+            if (!TPL_HAS_SITE_DICT || !appData.site) return; if (!appData.site[activeLang]) appData.site[activeLang] = {};
+            let mark = document.getElementById('special-mark').value; if (activeLang === 'ar') mark = mark.replace(/\n/g, "<br class='hide-mobile'>"); else mark = mark.replace(/\n/g, "<br>");
+            appData.site[activeLang].chefMark = mark; appData.site[activeLang].chefTitle = document.getElementById('special-title').value; appData.site[activeLang].chefPrice = document.getElementById('special-price').value; appData.site[activeLang].chefDesc = document.getElementById('special-desc').value;
+            showAlert("Special Item saved successfully!", "Success");
+        }
+
+        function renderCategories() {
+            const cats = globalCategories[activeLang].map(c => c.name); if (!cats.includes(activeCat) && cats.length > 0) activeCat = cats[0];
+            const bar = document.getElementById('categories-bar'); bar.innerHTML = cats.length === 0 ? '<span class="text-sm font-semibold text-[var(--text-muted)] italic">No categories created yet.</span>' : '';
+            const isAr = activeLang === 'ar';
+            cats.forEach((c) => {
+                const btn = document.createElement('div'); btn.className = `px-6 py-2.5 rounded-full font-bold transition-colors cursor-move select-none ${isAr ? 'rtl-content' : ''} ${activeCat === c ? 'bg-[var(--primary)] text-white shadow-md' : 'bg-white border border-[var(--border)] text-[var(--text-muted)] hover:bg-[var(--bg)] hover:text-[var(--text)]'}`; btn.textContent = c; btn.onclick = () => { activeCat = c; activeSubCat = ''; refreshUI(); }; bar.appendChild(btn);
+            });
+        }
+
+        function renderSubCategories() {
+            const bar = document.getElementById('subcategories-bar'); bar.innerHTML = ''; if (!activeCat) return;
+            const catObj = globalCategories[activeLang].find(c => c.name === activeCat); if (!catObj) return; const subCats = catObj.subcats.map(s => s.name);
+            if (!subCats.includes(activeSubCat) && subCats.length > 0) activeSubCat = subCats[0];
+            const isAr = activeLang === 'ar';
+            subCats.forEach((sc) => {
+                const btn = document.createElement('div'); btn.className = `px-5 py-2 rounded-full text-sm font-bold transition-colors cursor-move select-none ${isAr ? 'rtl-content' : ''} ${activeSubCat === sc ? 'bg-[var(--accent)] text-white shadow' : 'bg-white border border-[var(--border)] text-[var(--text-muted)] hover:bg-[var(--bg)] hover:text-[var(--text)]'}`; btn.textContent = sc; btn.onclick = () => { activeSubCat = sc; renderSubCategories(); renderProducts(); }; bar.appendChild(btn);
+            });
+        }
+
+        async function renderProducts() {
+            const grid = document.getElementById('products-grid'); grid.innerHTML = ''; const items = appData.menu[activeLang] || [];
+            const displayItems = items.map((item, index) => ({item, index})).filter(x => { if (TPL_HAS_SUBCAT) return x.item.category === activeCat && x.item.subcategory === activeSubCat; return x.item.category === activeCat; });
+            const isAr = activeLang === 'ar'; const plateIcon = `<svg class="w-8 h-8 text-[var(--border)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>`;
+
+            for (let i = 0; i < displayItems.length; i++) {
+                const {item, index} = displayItems[i];
+                let mediaHtml = '';
+                if (TPL_HAS_PROD_IMG) { 
+                    const imgUrl = await getImageUrl(item.image); 
+                    const svgFallback = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2JkNWUxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTIgNHYxNm04LThINCIvPjwvc3ZnPg==";
+                    const fallbackUrl = isTrialMode ? `${TRIAL_DEFAULT_TEMPLATE}images/${item.image}` : svgFallback;
+                    
+                    mediaHtml = `<img src="${imgUrl}" class="w-20 h-20 object-cover rounded-xl border border-[var(--border)] shrink-0 mt-1 pointer-events-none bg-[var(--bg)]" alt="Product Image" onerror="this.onerror=null; this.src='${fallbackUrl}';">`; 
+                } else { 
+                    mediaHtml = `<div class="w-20 h-20 rounded-xl border border-[var(--border)] shrink-0 mt-1 bg-[var(--bg)] flex items-center justify-center">${plateIcon}</div>`; 
+                }
+                const card = document.createElement('div'); card.className = `border border-[var(--border)] rounded-2xl p-5 hover:shadow-lg hover:border-[var(--primary)]/30 transition-shadow bg-white flex flex-col justify-between h-full cursor-move select-none ${isAr ? 'rtl-content' : ''}`; card.dataset.appIndex = index; 
+                card.innerHTML = `
+                    <div class="flex gap-4">${mediaHtml}<div class="flex-1 min-w-0"><div class="flex justify-between items-start mb-2 gap-2"><h3 class="font-bold text-lg text-[var(--text)] break-words leading-tight">${item.name}</h3><span class="price-tag shrink-0">${item.price}</span></div><p class="text-sm font-medium text-[var(--text-muted)] mb-4 line-clamp-2">${item.description}</p></div></div>
+                    <div class="flex gap-3 border-t border-[var(--border)] pt-4 mt-auto items-center"><button onclick="editProduct(${index})" class="flex-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text-muted)] py-2 rounded-xl text-sm font-bold hover:bg-[var(--border)] hover:text-[var(--text)] transition-colors">Edit</button><button onclick="deleteProduct(${index})" class="flex-1 bg-[var(--danger-light)] border border-[#f3d0ce] text-[var(--danger)] py-2 rounded-xl text-sm font-bold hover:bg-[#f3d0ce] hover:border-[#eba19d] transition-colors">Delete</button></div>
+                `; grid.appendChild(card);
+            }
+        }
+
+        function initializeSortables() {
+            if (sortableCat) sortableCat.destroy(); if (sortableSubcat) sortableSubcat.destroy(); if (sortableProducts) sortableProducts.destroy();
+            const dragConfig = { animation: 200, easing: "cubic-bezier(0.25, 1, 0.5, 1)", ghostClass: 'sortable-ghost', fallbackClass: 'sortable-fallback', forceFallback: true, fallbackTolerance: 3, swapThreshold: 0.65 };
+            
+            sortableCat = Sortable.create(document.getElementById('categories-bar'), { 
+                ...dragConfig, 
+                onEnd: function (evt) { 
+                    if (evt.oldIndex === evt.newIndex) return; 
+                    if(globalCategories[activeLang] && globalCategories[activeLang].length > evt.oldIndex) {
+                        const moved = globalCategories[activeLang].splice(evt.oldIndex, 1)[0]; 
+                        globalCategories[activeLang].splice(evt.newIndex, 0, moved); 
+                    }
+                    syncArrayOrder(); 
+                } 
+            });
+
+            if (TPL_HAS_SUBCAT) { 
+                sortableSubcat = Sortable.create(document.getElementById('subcategories-bar'), { 
+                    ...dragConfig, 
+                    onEnd: function (evt) { 
+                        if (evt.oldIndex === evt.newIndex) return; 
+                        const catIdx = globalCategories[activeLang].findIndex(c => c.name === activeCat);
+                        if(catIdx !== -1 && globalCategories[activeLang][catIdx]) {
+                            const catObj = globalCategories[activeLang][catIdx];
+                            const moved = catObj.subcats.splice(evt.oldIndex, 1)[0]; 
+                            catObj.subcats.splice(evt.newIndex, 0, moved); 
+                        }
+                        syncArrayOrder(); 
+                    } 
+                }); 
+            }
+
+            sortableProducts = Sortable.create(document.getElementById('products-grid'), { 
+                ...dragConfig, 
+                onEnd: function (evt) { 
+                    if (evt.oldIndex === evt.newIndex) return; 
+                    
+                    const itemsActive = appData.menu[activeLang]; 
+                    const filteredIndices = []; 
+                    itemsActive.forEach((item, idx) => { 
+                        if (TPL_HAS_SUBCAT) { 
+                            if (item.category === activeCat && item.subcategory === activeSubCat) filteredIndices.push(idx); 
+                        } else { 
+                            if (item.category === activeCat) filteredIndices.push(idx); 
+                        } 
+                    }); 
+                    
+                    const items = appData.menu[activeLang];
+                    if(!items || items.length === 0) return;
+                    
+                    const subcatItems = filteredIndices.map(i => items[i]); 
+                    const movedItem = subcatItems.splice(evt.oldIndex, 1)[0]; 
+                    subcatItems.splice(evt.newIndex, 0, movedItem); 
+                    
+                    filteredIndices.forEach((appIdx, i) => { items[appIdx] = subcatItems[i]; }); 
+
+                    setTimeout(() => { renderProducts().then(() => initializeSortables()); }, 10); 
+                } 
+            });
+        }
+
+        async function openManageModal() {
+            manageState = JSON.parse(JSON.stringify(globalCategories[activeLang])); manageState.forEach(c => { c.originalName = c.name; c.subcats.forEach(s => s.originalName = s.name); });
+            document.getElementById('manage-modal-body').setAttribute('dir', activeLang === 'ar' ? 'rtl' : 'ltr'); await drawManageModal(); document.getElementById('manage-modal').classList.remove('hidden');
+        }
+        function closeManageModal() { document.getElementById('manage-modal').classList.add('hidden'); }
+        
+        async function drawManageModal() {
+            const body = document.getElementById('manage-modal-body'); body.innerHTML = ''; document.getElementById('btn-add-cat').style.display = (TPL_HAS_SUBCAT && manageState.length >= 2) ? 'none' : 'flex';
+            for (let cat of manageState) {
+                const catDiv = document.createElement('div'); 
+                catDiv.className = "border border-[var(--border)] rounded-2xl p-5 sm:p-6 bg-white shadow-sm relative mb-4";
+                catDiv.id = `manage-cat-${cat.id}`;
+                
+                let subcatsHtml = '';
+                if (TPL_HAS_SUBCAT) {
+                    subcatsHtml = cat.subcats.map((sub) => {
+                        const parentOptions = manageState.map(c => `<option value="${c.id}" ${c.id === cat.id ? 'selected' : ''}>${c.name}</option>`).join('');
+                        return `<div id="manage-subcat-${sub.id}" class="flex flex-wrap items-center gap-3 mt-3 bg-[var(--bg)] p-2.5 rounded-xl border border-[var(--border)] shadow-sm transition-colors hover:border-[var(--primary)]/30"><svg class="w-4 h-4 text-[var(--text-muted)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg><input type="text" value="${sub.name}" oninput="updateManageSubcat('${cat.id}', '${sub.id}', this.value)" class="flex-1 min-w-[120px] border-0 focus:ring-0 text-sm font-bold bg-transparent text-[var(--text)] placeholder-[var(--text-muted)]" placeholder="Subcategory Name"><select onchange="moveManageSubcatParent('${cat.id}', '${sub.id}', this.value)" class="text-xs border border-[var(--border)] rounded-lg text-[var(--text-muted)] bg-white focus:ring-[var(--primary)] focus:border-[var(--primary)] p-2 shadow-sm font-bold">${parentOptions}</select><button onclick="deleteManageSubcat('${cat.id}', '${sub.id}')" class="text-[var(--text-muted)] hover:bg-[var(--danger-light)] hover:text-[var(--danger)] p-2 rounded-lg transition-colors shrink-0" title="Delete Subcategory"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div>`;
+                    }).join('');
+                }
+                let catImageHtml = '';
+                if (TPL_HAS_CAT_IMG) {
+                    let imgSrc = cat.image ? await getImageUrl(cat.image) : '';
+                    const svgFallback = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2JkNWUxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTIgNHYxNm04LThINCIvPjwvc3ZnPg==";
+                    const fallbackUrl = (isTrialMode && cat.image) ? `${TRIAL_DEFAULT_TEMPLATE}images/${cat.image}` : svgFallback;
+
+                    catImageHtml = `
+                    <div class="mt-3 flex items-center gap-4 bg-[var(--bg)] p-3 rounded-xl border border-[var(--border)]">
+                        <img id="preview-cat-${cat.id}" src="${imgSrc || svgFallback}" onerror="if(this.src !== '${fallbackUrl}' && this.src !== '${svgFallback}') { this.src='${fallbackUrl}'; } else { this.src='${svgFallback}'; }" class="w-16 h-12 rounded object-cover border border-[var(--border)] bg-white shrink-0">
+                        <div class="flex-1">
+                            <p class="text-xs font-bold text-[var(--text-muted)] mb-1">Category Header Banner</p>
+                            <input type="file" onchange="uploadCatImage(event, '${cat.id}')" accept="image/*" class="text-sm file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[var(--primary-light)] file:text-[var(--primary-dark)] hover:file:bg-[var(--primary)] hover:file:text-white cursor-pointer transition-colors">
+                        </div>
+                        <input type="hidden" id="hidden-cat-img-${cat.id}" value="${cat.image || ''}">
+                    </div>`;
+                }
+                catDiv.innerHTML = `<div class="flex justify-between items-center mb-4 pb-4 border-b border-[var(--border)] gap-3"><input type="text" value="${cat.name}" oninput="updateManageCat('${cat.id}', this.value)" class="font-extrabold text-lg sm:text-xl text-[var(--text)] bg-transparent border-0 focus:ring-0 p-0 w-2/3 placeholder-[var(--text-muted)]" placeholder="Category Name"><button onclick="deleteManageCat('${cat.id}')" class="text-[var(--danger)] hover:text-[#b0403a] hover:bg-[var(--danger-light)] flex items-center gap-1.5 text-sm font-bold bg-white px-3 py-1.5 border border-[#f3d0ce] rounded-xl shrink-0 transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Delete</button></div>${catImageHtml}${TPL_HAS_SUBCAT ? `<div class="pl-3 sm:pl-4 border-l-2 border-[var(--border)] space-y-3 mt-4">${subcatsHtml}<button onclick="addManageSubcat('${cat.id}')" class="mt-4 text-xs font-bold text-[var(--primary)] hover:text-white flex items-center gap-1.5 px-3 py-2 bg-[var(--primary-light)] hover:bg-[var(--primary)] rounded-lg border border-[var(--primary)]/10 transition-colors">+ Add Subcategory</button></div>` : ''}`;
+                body.appendChild(catDiv);
+            };
+            if (manageState.length === 0) body.innerHTML = `<div class="flex flex-col items-center justify-center text-center py-12 px-4 bg-white rounded-2xl border-2 border-dashed border-[var(--border)]"><div class="w-12 h-12 bg-[var(--bg)] text-[var(--text-muted)] rounded-full flex items-center justify-center mb-3"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></div><p class="text-[var(--text-muted)] font-bold text-lg">No categories exist.</p><p class="text-sm text-[var(--text-muted)] mt-1 font-medium">Add one below to build your menu.</p></div>`;
+        }
+function formatRestaurantNameWithEm(rawName) {
+  if (!rawName || typeof rawName !== 'string') return '';
+
+  // 1. Strip existing <em> tags and normalize spaces
+  const clean = rawName.replace(/<\/?em>/gi, '').replace(/\s+/g, ' ').trim();
+  if (!clean) return '';
+
+  // 2. Exact word boundaries without nested lookarounds
+  // Multi-word phrases first, followed by single words
+  const stopPattern = /\b(?:coffee shop|restaurant|restaurants|cafe|lounge)\b|(?:^|\s)(?:مطعم|مطاعم|كافيه|مقهى)(?=\s|$)/gi;
+
+  // Split on plain whitespace into tokens
+  return clean
+    .split(' ')
+    .map(token => {
+      // If token matches a stop word exactly, keep it plain; otherwise wrap in <em>
+      return token.match(stopPattern) ? token : `<em>${token}</em>`;
+    })
+    .join(' ');
+}
+async function uploadCatImage(event, catId) {
+            const file = event.target.files[0]; if (!file) return; 
+            // Generate safe, collision-free English name for banner
+            const newName = getNextAvailableImageName("banner-file-"); 
+            
+            // Allow up to 300KB for Category Banners
+            const base64Jpg = await compressImageToJpeg(file, 300); 
+            
+            const cat = manageState.find(c => c.id === catId); if (cat) cat.image = newName;
+            document.getElementById(`hidden-cat-img-${catId}`).value = newName; 
+            document.getElementById(`preview-cat-${catId}`).src = base64Jpg;
+            objectUrls[newName] = base64Jpg; 
+        }
+        function updateManageCat(catId, val) { const cat = manageState.find(c => c.id === catId); if (cat) cat.name = val; }
+        function updateManageSubcat(catId, subId, val) { const cat = manageState.find(c => c.id === catId); if (cat) { const sub = cat.subcats.find(s => s.id === subId); if (sub) sub.name = val; } }
+        function moveManageSubcatParent(oldCatId, subId, newCatId) { const oldCat = manageState.find(c => c.id === oldCatId); const newCat = manageState.find(c => c.id === newCatId); if (oldCat && newCat && oldCatId !== newCatId) { const subIdx = oldCat.subcats.findIndex(s => s.id === subId); if (subIdx !== -1) { const sub = oldCat.subcats.splice(subIdx, 1)[0]; newCat.subcats.push(sub); } } drawManageModal(); }
+        function deleteManageCat(catId) { showConfirm("Are you sure? This will permanently delete the category and ALL its products.", () => { manageState = manageState.filter(c => c.id !== catId); drawManageModal(); }); }
+        function deleteManageSubcat(catId, subId) { showConfirm("Are you sure? This will delete the subcategory and ALL its products.", () => { const cat = manageState.find(c => c.id === catId); if (cat) { cat.subcats = cat.subcats.filter(s => s.id !== subId); drawManageModal(); } }); }
+        
+        async function addManageCat() { 
+            if (TPL_HAS_SUBCAT && manageState.length >= 2) { showAlert("Maximum of 2 Categories allowed for this template structure.", "Limit Reached"); return; } 
+            const newId = 'cat_' + Date.now();
+            manageState.push({ id: newId, originalName: null, name: 'New Category', image: '', subcats: [] }); 
+            await drawManageModal(); 
+            const el = document.getElementById(`manage-cat-${newId}`);
+            if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        async function addManageSubcat(catId) { 
+            const cat = manageState.find(c => c.id === catId); 
+            if (cat) { 
+                const newId = 'sub_' + Date.now();
+                cat.subcats.push({ id: newId, originalName: null, name: 'New Subcategory' }); 
+                await drawManageModal(); 
+                const el = document.getElementById(`manage-subcat-${newId}`);
+                if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } 
+        }
+
+        function saveManageModal() {
+            const oldCats = globalCategories[activeLang]; 
+            const newCats = manageState; 
+            
+            const currentCatOriginals = newCats.map(c => c.originalName).filter(Boolean); 
+            const currentSubOriginals = newCats.flatMap(c => c.subcats.map(s => s.originalName)).filter(Boolean);
+            const deletedCats = oldCats.map(c => c.originalName).filter(name => name && !currentCatOriginals.includes(name));
+            const deletedSubcats = oldCats.flatMap(c => c.subcats.map(s => s.originalName)).filter(name => name && !currentSubOriginals.includes(name));
+
+            globalCategories[activeLang] = JSON.parse(JSON.stringify(newCats));
+
+            const activeLangItems = appData.menu[activeLang] || [];
+            const indicesToKeep = [];
+            
+            activeLangItems.forEach((item, idx) => {
+                let keep = true;
+                if (deletedCats.includes(item.category)) keep = false;
+                if (TPL_HAS_SUBCAT && deletedSubcats.includes(item.subcategory)) keep = false;
+                if (keep) indicesToKeep.push(idx);
+            });
+
+            const items = appData.menu[activeLang] || [];
+            const filteredItems = indicesToKeep.map(idx => items[idx]).filter(Boolean);
+            
+            filteredItems.forEach(item => {
+                const activeCatObj = newCats.find(c => c.originalName === item.category || c.name === item.category);
+                if (activeCatObj) {
+                    const catIdx = newCats.indexOf(activeCatObj);
+                    item.category = globalCategories[activeLang][catIdx].name;
+                    
+                    if (TPL_HAS_SUBCAT) {
+                        const activeSubObj = activeCatObj.subcats.find(s => s.originalName === item.subcategory || s.name === item.subcategory);
+                        if (activeSubObj) {
+                            const subIdx = activeCatObj.subcats.indexOf(activeSubObj);
+                            item.subcategory = globalCategories[activeLang][catIdx].subcats[subIdx].name;
+                        }
+                    }
+                }
+            });
+            appData.menu[activeLang] = filteredItems;
+
+            newCats.forEach(c => { delete c.originalName; c.subcats.forEach(s => delete s.originalName); });
+            closeManageModal(); syncArrayOrder(); refreshUI();
+        }
+
+        function updateSubcatDropdown() { if(!TPL_HAS_SUBCAT) return; const catVal = document.getElementById('prod-cat').value; const catObj = globalCategories[activeLang].find(c => c.name === catVal); const subcatSelect = document.getElementById('prod-subcat'); if (catObj) { subcatSelect.innerHTML = catObj.subcats.map(s => `<option value="${s.name}">${s.name}</option>`).join(''); } else { subcatSelect.innerHTML = ''; } }
+        function populateModalDropdowns() { document.getElementById('prod-cat').innerHTML = globalCategories[activeLang].map(c => `<option value="${c.name}">${c.name}</option>`).join(''); updateSubcatDropdown(); }
+        function applyModalFieldDirection() { const dir = activeLang === 'ar' ? 'rtl' : 'ltr'; ['prod-name', 'prod-desc', 'prod-badge', 'prod-ingredients'].forEach(id => { const el = document.getElementById(id); if(el) el.setAttribute('dir', dir); }); }
+
+        async function openAddModal() {
+            if (globalCategories[activeLang].length === 0) { showAlert("Please create a category first."); return; }
+            populateModalDropdowns(); document.getElementById('modal-title').textContent = "Add New Product"; document.getElementById('edit-index').value = "-1";
+            document.getElementById('prod-cat').value = activeCat; updateSubcatDropdown(); if (TPL_HAS_SUBCAT) document.getElementById('prod-subcat').value = activeSubCat;
+            document.getElementById('prod-name').value = ""; document.getElementById('prod-price').value = ""; document.getElementById('prod-desc').value = "";
+            document.getElementById('prod-badge').value = ""; document.getElementById('prod-calories').value = ""; document.getElementById('prod-serves').value = ""; document.getElementById('prod-ingredients').value = "";
+            applyModalFieldDirection();
+            
+            if (TPL_HAS_PROD_IMG) { 
+                let imgName = "default.png";
+                document.getElementById('prod-image-name').value = imgName; 
+                document.getElementById('prod-image-file').value = ""; 
+                let previewImg = document.getElementById('prod-image-preview');
+                previewImg.src = await getImageUrl(imgName);
+                
+                const svgFallback = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2JkNWUxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTIgNHYxNm04LThINCIvPjwvc3ZnPg==";
+                const fallbackUrl = isTrialMode ? `${TRIAL_DEFAULT_TEMPLATE}images/${imgName}` : svgFallback;
+                previewImg.setAttribute('onerror', `this.onerror=null; this.src='${fallbackUrl}';`);
+            }
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        async function editProduct(index) {
+            populateModalDropdowns(); const item = appData.menu[activeLang][index];
+            document.getElementById('modal-title').textContent = "Edit Product"; document.getElementById('edit-index').value = index;
+            document.getElementById('prod-cat').value = item.category; updateSubcatDropdown(); if (TPL_HAS_SUBCAT) document.getElementById('prod-subcat').value = item.subcategory;
+            document.getElementById('prod-name').value = item.name; document.getElementById('prod-price').value = item.price; document.getElementById('prod-desc').value = item.description;
+            document.getElementById('prod-badge').value = item.badge || item._rawTag || ""; document.getElementById('prod-calories').value = item.calories || item.cal || ""; document.getElementById('prod-serves').value = item.serves || ""; 
+            
+            const ingVal = Array.isArray(item.ingredients) ? item.ingredients.join(', ') : (item.ingredients || "");
+            document.getElementById('prod-ingredients').value = ingVal;
+            applyModalFieldDirection();
+            
+            if (TPL_HAS_PROD_IMG) { 
+                let imgName = item.image || 'default.png';
+                document.getElementById('prod-image-name').value = imgName; 
+                document.getElementById('prod-image-file').value = ""; 
+                let previewImg = document.getElementById('prod-image-preview');
+                previewImg.src = await getImageUrl(imgName);
+                
+                const svgFallback = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2JkNWUxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTIgNHYxNm04LThINCIvPjwvc3ZnPg==";
+                const fallbackUrl = isTrialMode ? `${TRIAL_DEFAULT_TEMPLATE}images/${imgName}` : svgFallback;
+                previewImg.setAttribute('onerror', `this.onerror=null; this.src='${fallbackUrl}';`);
+            }
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        if (document.getElementById('prod-image-file')) { 
+            document.getElementById('prod-image-file').addEventListener('change', async (e) => { 
+                const file = e.target.files[0]; 
+                if (file) { 
+                    // Generate safe, collision-free English name
+                    const newName = getNextAvailableImageName("image-file-"); 
+                    
+                    // Keep products strictly at 100KB
+                    const base64Jpg = await compressImageToJpeg(file, 100); 
+                    
+                    document.getElementById('prod-image-preview').src = base64Jpg; 
+                    objectUrls[newName] = base64Jpg; 
+                    document.getElementById('prod-image-name').value = newName;
+                } 
+            }); 
+        }
+        function closeModal() { document.getElementById('product-modal').classList.add('hidden'); }
+
+        function saveProduct() {
+            const index = parseInt(document.getElementById('edit-index').value); 
+            const newItem = { category: document.getElementById('prod-cat').value, subcategory: TPL_HAS_SUBCAT ? document.getElementById('prod-subcat').value : '', name: document.getElementById('prod-name').value, price: document.getElementById('prod-price').value, description: document.getElementById('prod-desc').value };
+            const badgeVal = document.getElementById('prod-badge').value; if(badgeVal) newItem.badge = badgeVal; 
+            const calVal = document.getElementById('prod-calories').value; if(calVal) newItem.calories = calVal; 
+            const servesVal = document.getElementById('prod-serves').value; if(servesVal) newItem.serves = servesVal; 
+            
+            const ingVal = document.getElementById('prod-ingredients').value.trim(); 
+            if(ingVal) {
+                const splitList = ingVal.split(/[,،]+/).map(s => s.trim()).filter(Boolean);
+                const existingItemWithIngredients = (appData.menu[activeLang] || []).find(i => i.ingredients !== undefined && i.ingredients !== null);
+                const usesArray = Array.isArray(existingItemWithIngredients?.ingredients);
+
+                newItem.ingredients = usesArray ? splitList : splitList.join(activeLang === 'ar' ? '، ' : ', ');
+            }
+            
+            if (TPL_HAS_PROD_IMG) {
+                let imageName = document.getElementById('prod-image-name').value;
+                newItem.image = imageName;
+            } else { if(index !== -1) newItem._rawImg = appData.menu[activeLang][index]._rawImg; }
+
+            if(index !== -1) { 
+                newItem._raw = appData.menu[activeLang][index]._raw; 
+                newItem._rawCat = appData.menu[activeLang][index]._rawCat; 
+                newItem._type = appData.menu[activeLang][index]._type; 
+                newItem._rawTag = appData.menu[activeLang][index]._rawTag; 
+                appData.menu[activeLang][index] = newItem; 
+            } else { 
+                appData.menu[activeLang].push(newItem); 
+            }
+            syncArrayOrder(); closeModal(); refreshUI();
+        }
+
+        function deleteProduct(index) { 
+            showConfirm("Are you sure you want to delete this product?", () => { 
+                if(appData.menu[activeLang] && appData.menu[activeLang].length > index) {
+                    appData.menu[activeLang].splice(index, 1);
+                }
+                refreshUI(); 
+            }); 
+        }
+
+        async function getBase64FromUrl(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) return null;
+                const blob = await response.blob();
+                return await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                    reader.readAsDataURL(blob);
+                });
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function initGlobalCategories() {
+            globalCategories = { ar: [], en: [] };
+            ['ar', 'en'].forEach(lang => {
+                const items = appData.menu[lang] || []; const cats = [...new Set(items.map(i => i.category))].filter(Boolean);
+                cats.forEach((c, cIdx) => {
+                    const subcats = [...new Set(items.filter(i => i.category === c).map(i => i.subcategory))].filter(Boolean);
+                    let img = ''; let rawCatKey = '';
+                    
+                    if (TPL_TYPE === 'MENU') {
+                        rawCatKey = Object.keys(rawTranslations.obj[lang].categories).find(k => rawTranslations.obj[lang].categories[k] === c) || c.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                        if (TPL_HAS_CAT_IMG && rawCategoryBanners && rawCategoryBanners.obj[rawCatKey]) { img = rawCategoryBanners.obj[rawCatKey].replace('images/', ''); }
+                    } else if (TPL_TYPE === 'appData' || TPL_TYPE === 'menuData') {
+                        rawCatKey = c;
+                        if (TPL_HAS_CAT_IMG && rawCategoryBanners && rawCategoryBanners.obj[c]) { 
+                            img = rawCategoryBanners.obj[c].replace('images/', ''); 
+                        }
+                    }
+                    
+                    globalCategories[lang].push({ id: `cat_${lang}_${cIdx}`, name: c, image: img, _rawCat: rawCatKey, subcats: subcats.map((sc, sIdx) => ({ id: `sub_${lang}_${cIdx}_${sIdx}`, name: sc })) });
+                });
+            });
+        }
+
+        async function publishEditions() {
+            if (TPL_HAS_CAT_IMG) {
+                ['en', 'ar'].forEach(lang => {
+                    if (globalCategories[lang]) {
+                        globalCategories[lang].forEach(cat => {
+                            if (!cat.image || cat.image.trim() === '') {
+                                cat.image = 'default.jpg';
+                            }
+                        });
+                    }
+                });
+            }
+            let payloadData = null;
+            if (TPL_TYPE === 'MENU') {
+                let newMENU = []; let newCatsEn = {}; let newCatsAr = {}; let maxLen = Math.max(appData.menu.en.length, appData.menu.ar.length);
+                for(let i=0; i<maxLen; i++) {
+                    let e = appData.menu.en[i] || appData.menu.ar[i]; let a = appData.menu.ar[i] || appData.menu.en[i];
+                    let rawCatKey = e._rawCat || e.category.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                    newCatsEn[rawCatKey] = e.category; newCatsAr[rawCatKey] = a.category;
+                    let newItem = { id: e._raw ? e._raw.id : 'item_' + Date.now() + '_' + i, cat: rawCatKey, price: e.price, i18n: { en: { title: e.name, desc: e.description }, ar: { title: a.name, desc: a.description } } };
+                    
+                    let imgValue = e.image || a.image;
+                    if (imgValue) {
+                        newItem.img = imgValue.includes('images/') ? imgValue : 'images/' + imgValue;
+                    } else if (e._raw && e._raw.img) {
+                        newItem.img = e._raw.img;
+                    }
+
+                    if (e.badge || a.badge) { newItem.badge = { en: e.badge || '', ar: a.badge || '' }; } else if (e._raw && e._raw.badge) { newItem.badge = e._raw.badge; }
+                    if (e.calories) newItem.cal = isNaN(e.calories) ? e.calories : Number(e.calories); if (e.serves) newItem.serves = isNaN(e.serves) ? e.serves : Number(e.serves);
+                    
+                    let origEnIng = e._raw ? e._raw.i18n.en.ingredients : null;
+                    if (Array.isArray(origEnIng)) { 
+                        newItem.i18n.en.ingredients = Array.isArray(e.ingredients) ? e.ingredients : (e.ingredients ? e.ingredients.split(/[,،]+/).map(s=>s.trim()).filter(Boolean) : []); 
+                        newItem.i18n.ar.ingredients = Array.isArray(a.ingredients) ? a.ingredients : (a.ingredients ? a.ingredients.split(/[,،]+/).map(s=>s.trim()).filter(Boolean) : []); 
+                    } else { 
+                        newItem.i18n.en.ingredients = Array.isArray(e.ingredients) ? e.ingredients.join(', ') : (e.ingredients || ''); 
+                        newItem.i18n.ar.ingredients = Array.isArray(a.ingredients) ? a.ingredients.join(', ') : (a.ingredients || ''); 
+                    }
+                    newMENU.push(newItem);
+                }
+                rawTranslations.obj.en.categories = newCatsEn; rawTranslations.obj.ar.categories = newCatsAr;
+                let newBanners = {};
+                if (TPL_HAS_CAT_IMG) { globalCategories['en'].forEach(cat => { let rawCatKey = cat._rawCat || cat.name.toLowerCase().replace(/[^a-z0-9]/g, '_'); newBanners[rawCatKey] = cat.image ? 'images/' + cat.image : 'images/default.jpg'; }); }
+                payloadData = { type: 'MENU', MENU: newMENU, TRANSLATIONS: rawTranslations.obj, CATEGORY_BANNERS: TPL_HAS_CAT_IMG ? newBanners : null };
+            } else if (TPL_TYPE === 'menuData') {
+                let newMenuData = JSON.parse(JSON.stringify(rawMenuData.obj));
+                ['en', 'ar'].forEach(lang => {
+                    let sectionsMap = { menuSections: {}, drinksSections: {} };
+                    appData.menu[lang].forEach(item => {
+                        let secType = item._type || 'menuSections'; if (item.category === 'Menu' || item.category === 'القائمة') secType = 'menuSections'; if (item.category === 'Drinks' || item.category === 'المشروبات') secType = 'drinksSections'; let subCatName = item.subcategory || 'General';
+                        if (!sectionsMap[secType][subCatName]) sectionsMap[secType][subCatName] = []; sectionsMap[secType][subCatName].push({ name: item.name, price: item.price, desc: item.description, tag: item.badge || item._rawTag || '' });
+                    });
+                    ['menuSections', 'drinksSections'].forEach(secType => { newMenuData[lang][secType] = []; if (sectionsMap[secType]) { Object.keys(sectionsMap[secType]).forEach(subcat => { newMenuData[lang][secType].push({ courseTitle: subcat, dishes: sectionsMap[secType][subcat] }); }); } });
+                });
+                payloadData = { type: 'menuData', data: newMenuData };
+            } else {
+                Object.keys(appData.menu).forEach(lang => { appData.menu[lang].forEach(item => { if (!item.badge) delete item.badge; if (!item.calories) delete item.calories; if (!item.serves) delete item.serves; if (!item.ingredients) delete item.ingredients; if (item._rawTag === '') delete item._rawTag; }); });
+                payloadData = { type: 'appData', data: appData };
+                
+                if (TPL_HAS_CAT_IMG) {
+                    let newBanners = {};
+                    ['en', 'ar'].forEach(lang => {
+                        globalCategories[lang].forEach(cat => {
+                            newBanners[cat.name] = cat.image ? (cat.image.startsWith('http') || cat.image.includes('images/') ? cat.image : 'images/' + cat.image) : 'images/default.jpg';
+                        });
+                    });
+                    payloadData.CATEGORY_BANNERS = newBanners;
+                }
+            }
+
+            if (!isTrialMode) {
+                currentTrackingId = Date.now() + Math.floor(Math.random() * 10000);
+                if (TPL_TYPE === 'MENU') {
+                    payloadData.TRANSLATIONS._tracking = currentTrackingId;
+                } else if (TPL_TYPE === 'menuData') {
+                    payloadData.data._tracking = currentTrackingId;
+                } else {
+                    payloadData.data._tracking = currentTrackingId;
+                }
+            }
+            if (appData && appData.info && appData.info.doem === true) {
+                ['ar', 'en'].forEach(lang => {
+                    if (appData.info[lang] && appData.info[lang].name) {
+                        appData.info[lang].name = formatRestaurantNameWithEm(appData.info[lang].name);
+                    }
+                });
+            }
+            let newImagesToUpload = [];
+            let imagesToFetch = []; 
+
+            if (pendingLogoBase64) {
+                newImagesToUpload.push({
+                    name: 'logo.png',
+                    content: pendingLogoBase64
+                });
+            }
+
+            
+            if (TPL_HAS_PROD_IMG || TPL_HAS_CAT_IMG) {
+                setPublishModalState('loading', { current: 1, total: 1, waiting: false });
+                const modalTitle = document.querySelector('#publish-modal-content h3');
+                if(modalTitle) modalTitle.innerText = "Bundling Menu Assets...";
+
+                let imagesToProcess = new Set();
+                if (TPL_HAS_PROD_IMG) imagesToProcess.add('default.png');
+                if (TPL_HAS_CAT_IMG) imagesToProcess.add('default.jpg');
+                
+                if (TPL_HAS_PROD_IMG) {
+                    Object.values(appData.menu).forEach(langMenu => {
+                        langMenu.forEach(item => {
+                            let imgName = item.image;
+                            if (imgName && imgName.startsWith('images/')) imgName = imgName.replace('images/', '');
+                            if (imgName && !imgName.startsWith('http')) {
+                                imagesToProcess.add(imgName);
+                            }
+                        });
+                    });
+                }
+                if (TPL_HAS_CAT_IMG) {
+                    Object.values(globalCategories).forEach(langCats => {
+                        langCats.forEach(cat => {
+                            let imgName = cat.image;
+                            if (imgName && imgName.startsWith('images/')) imgName = imgName.replace('images/', '');
+                            if (imgName && !imgName.startsWith('http')) {
+                                imagesToProcess.add(imgName);
+                            }
+                        });
+                    });
+                }
+
+                await Promise.all(Array.from(imagesToProcess).map(async (imgName) => {
+    if (objectUrls[imgName] && objectUrls[imgName].startsWith('data:image')) {
+        const base64 = objectUrls[imgName].split(',')[1];
+        newImagesToUpload.push({ name: imgName, content: base64 });
+    } else if (isTrialMode) {
+        const r2Url = `${TRIAL_WORKER_URL}/trial_${trialUserId}/images/${imgName}`;
+        try {
+            const checkRes = await fetch(r2Url, { method: 'HEAD' });
+            if (!checkRes.ok) {
+                const templateImgUrl = `${TRIAL_DEFAULT_TEMPLATE}images/${imgName}`;
+                const base64Content = await getBase64FromUrl(templateImgUrl);
+                if (base64Content) {
+                    newImagesToUpload.push({ name: imgName, content: base64Content });
+                } else {
+                    imagesToFetch.push({ name: imgName, url: templateImgUrl });
+                }
+            }
+        } catch (e) {}
+    }
+}));
+            }
+
+            if (isTrialMode) {
+                let updatedHtml = originalHtml;
+                updatedHtml = updatedHtml.replace(/"images\/https/g, '"https');
+
+                // Apply default language changes to the HTML
+                const selectedDefaultLang = document.getElementById('default-menu-lang')?.value || 'ar';
+                updatedHtml = applyDefaultLanguageToTemplateHtml(updatedHtml, selectedDefaultLang);
+                
+                if (TPL_TYPE === 'MENU') {
+                    updatedHtml = updatedHtml.replace(/(const\s+MENU\s*=\s*)\[[\s\S]*?\](;)/, `$1${JSON.stringify(payloadData.MENU)}$2`);
+                    updatedHtml = updatedHtml.replace(/(const\s+TRANSLATIONS\s*=\s*)\{[\s\S]*?\}(;)/, `$1${JSON.stringify(payloadData.TRANSLATIONS)}$2`);
+                    if (payloadData.CATEGORY_BANNERS) {
+                        updatedHtml = updatedHtml.replace(/(const\s+CATEGORY_BANNERS\s*=\s*)\{[\s\S]*?\}(;)/, `$1${JSON.stringify(payloadData.CATEGORY_BANNERS)}$2`);
+                    }
+                } else if (TPL_TYPE === 'menuData') {
+                    updatedHtml = updatedHtml.replace(/(const\s+menuData\s*=\s*)\{[\s\S]*?\}(;)/, `$1${JSON.stringify(payloadData.data)}$2`);
+                } else {
+                    updatedHtml = updatedHtml.replace(/(const\s+appData\s*=\s*)\{[\s\S]*?\}(;)/, `$1${JSON.stringify(payloadData.data)}$2`);
+                    if (payloadData.CATEGORY_BANNERS) {
+                        if (/(const\s+CATEGORY_BANNERS\s*=\s*)\{[\s\S]*?\}(;)/.test(updatedHtml)) {
+                            updatedHtml = updatedHtml.replace(/(const\s+CATEGORY_BANNERS\s*=\s*)\{[\s\S]*?\}(;)/, `$1${JSON.stringify(payloadData.CATEGORY_BANNERS)}$2`);
+                        } else {
+                            updatedHtml = updatedHtml.replace(/(const\s+appData\s*=\s*)\{[\s\S]*?\}(;)/, `const CATEGORY_BANNERS = ${JSON.stringify(payloadData.CATEGORY_BANNERS)};\n$1${JSON.stringify(payloadData.data)}$2`);
+                        }
+                    }
+                }
+
+                const TRIAL_CHUNK_SIZE = 50;
+                publishQueueBatches = [];
+                currentBatchIndex = 0;
+
+                if (newImagesToUpload.length === 0) {
+                    publishQueueBatches.push({
+                        userId: trialUserId,
+                        templateId: savedTemplateId,
+                        html: updatedHtml,
+                        images: [],
+                        imagesToFetch: imagesToFetch
+                    });
+                } else {
+                    publishQueueBatches.push({
+                        userId: trialUserId,
+                        templateId: savedTemplateId,
+                        html: updatedHtml,
+                        images: newImagesToUpload.slice(0, TRIAL_CHUNK_SIZE),
+                        imagesToFetch: imagesToFetch
+                    });
+
+                    for (let i = TRIAL_CHUNK_SIZE; i < newImagesToUpload.length; i += TRIAL_CHUNK_SIZE) {
+                        publishQueueBatches.push({
+                            userId: trialUserId,
+                            templateId: savedTemplateId,
+                            images: newImagesToUpload.slice(i, i + TRIAL_CHUNK_SIZE)
+                        });
+                    }
+                }
+                
+                processPublishQueue();
+                return;
+            }
+
+            publishQueueBatches = [];
+            currentBatchIndex = 0;
+            const CHUNK_SIZE = 98;
+            let imageChunks = [];
+            
+            for (let i = 0; i < newImagesToUpload.length; i += CHUNK_SIZE) {
+                imageChunks.push(newImagesToUpload.slice(i, i + CHUNK_SIZE));
+            }
+
+            let cleanPayloadStr = JSON.stringify(payloadData);
+            cleanPayloadStr = cleanPayloadStr.replace(/"images\/https/g, '"https');
+            payloadData = JSON.parse(cleanPayloadStr);
+
+            // Send default language setting to dedicated worker
+            const selectedDefaultLang = document.getElementById('default-menu-lang')?.value || 'ar';
+            payloadData.defaultLang = selectedDefaultLang;
+
+            let savedUserObj = null;
+            try { savedUserObj = JSON.parse(localStorage.getItem('dashboard_user') || '{}'); } catch(_) {}
+            const memberUserId = localStorage.getItem('userid') || savedUserObj?.id || trialUserId;
+            payloadData.userId = memberUserId;
+
+            if (imageChunks.length === 0) {
+                payloadData.images = [];
+                publishQueueBatches.push(payloadData);
+            } else {
+                payloadData.images = imageChunks[0];
+                publishQueueBatches.push(payloadData);
+                for (let i = 1; i < imageChunks.length; i++) {
+                    publishQueueBatches.push({ type: 'imagesOnly', images: imageChunks[i] });
+                }
+            }
+
+            processPublishQueue();
+        }
+
+        async function processPublishQueue() {
+            if (currentBatchIndex >= publishQueueBatches.length) {
+                if (isTrialMode) {
+                    try {
+                        const userStr = localStorage.getItem('dashboard_user');
+                        if (userStr) {
+                            const userObj = JSON.parse(userStr);
+                            const encryptedData = await AsweqVault.encrypt({ email: userObj.email, isPublished: true });                            
+                            const res = await fetch(`${API_BASE}/api/update_template`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ encryptedPayload: encryptedData })
+                            });
+                            
+                            if (res.ok) {
+                                userObj.details.published = true;
+                                localStorage.setItem('dashboard_user', JSON.stringify(userObj));
+                            }
+                        }
+                    } catch (e) {}
+                    setPublishModalState('success');
+                } else {
+                    startVerificationLoop();
+                }
+                return;
+            }
+
+            const batch = publishQueueBatches[currentBatchIndex];
+const isLastBatch = currentBatchIndex === publishQueueBatches.length - 1;
+batch.isFinalBatch = isLastBatch;
+
+try {
+                setPublishModalState('loading', { current: currentBatchIndex + 1, total: publishQueueBatches.length, waiting: false });
+
+                const targetUrl = isTrialMode ? `${TRIAL_WORKER_URL}/api/trial/save` : WORKER_URL;
+                let savedUserObj = null;
+                try { savedUserObj = JSON.parse(localStorage.getItem('dashboard_user') || '{}'); } catch(_) {}
+                const activeUserId = isTrialMode ? trialUserId : (localStorage.getItem('userid') || savedUserObj?.id);
+                const sessionV = savedUserObj?.details?.session_v || 1;
+                const authToken = await AsweqVault.createAuthToken(activeUserId, sessionV);
+
+                const response = await fetch(targetUrl, { 
+                    method: 'POST', 
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-Auth-Token': authToken
+                    }, 
+                    body: JSON.stringify(batch) 
+                });
+
+                if (!response.ok) throw new Error("Worker request failed. Status: " + response.status);
+
+                if (!isTrialMode && !isLastBatch) {
+                    await startThreeMinuteCountdown(currentBatchIndex + 1, publishQueueBatches.length);
+                }
+
+                currentBatchIndex++;
+                processPublishQueue();
+
+            } catch (err) {
+                setPublishModalState('error', { errorMsg: err.message });
+            }
+        }
+
+function startVerificationLoop() {
+    // 1. If trial mode, there is no Pages build to verify; resolve to success directly
+    if (isTrialMode) {
+        setPublishModalState('success');
+        return;
+    }
+
+    // 2. Guard against missing tracking ID
+    if (!currentTrackingId) {
+        closePublishModal();
+        return;
+    }
+
+    setPublishModalState('verifying');
+    if (verifyTimer) clearInterval(verifyTimer);
+    
+    let attempts = 0;
+    const maxAttempts = 60;
+    const trackingStr = String(currentTrackingId);
+    
+    verifyTimer = setInterval(async () => {
+        attempts++;
+        try {
+            const res = await fetch(`${PAGES_URL}/index.html?t=${Date.now()}`);
+            if (res.ok) {
+                const text = await res.text();
+                if (text.includes(trackingStr)) {
+                    clearInterval(verifyTimer);
+                    setPublishModalState('success');
+                    return;
+                }
+            }
+        } catch (e) {}
+        
+        if (attempts >= maxAttempts) {
+            clearInterval(verifyTimer);
+            setPublishModalState('timeout');
+        }
+    }, 10000);
+}
+        function startThreeMinuteCountdown(current, total) {
+            return new Promise(resolve => {
+                let timeLeft = 180;
+                setPublishModalState('loading', { current, total, waiting: true, timeLeft });
+
+                publishTimer = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft <= 0) {
+                        clearInterval(publishTimer);
+                        resolve();
+                    } else {
+                        setPublishModalState('loading', { current, total, waiting: true, timeLeft });
+                    }
+                }, 1000);
+            });
+        }
+    </script>
+    <script>
+      const EDITOR_TRANSLATIONS = {
+        en: {
+            "Default Menu View:": "Default Menu View:",
+          "Dashboard": "Dashboard",
+          "Publish Editions": "Publish Editions",
+          "Menu Language:": "Menu Language:",
+          "Arabic": "Arabic",
+          "English": "English",
+          "Download DB": "Download DB",
+          "Import Excel": "Import Excel",
+          "Select Category": "Select Category",
+          "+ Add Category": "+ Add Category",
+          "Manage Categories": "Manage Categories",
+          "Select Subcategory": "Select Subcategory",
+          "+ Add Subcategory": "+ Add Subcategory",
+          "Menu Products": "Menu Products",
+          "Add Product": "Add Product",
+          "Edit": "Edit",
+          "Delete": "Delete",
+          "Special Item": "Special Item",
+          "Mark / Badge": "Mark / Badge",
+          "Title": "Title",
+          "Price": "Price",
+          "Description": "Description",
+          "Save Special Item": "Save Special Item",
+          "Cancel": "Cancel",
+          "Save Structure": "Save Structure",
+          "Save Product": "Save Product",
+          "Add New Product": "Add New Product",
+          "Edit Product": "Edit Product",
+          "Category": "Category",
+          "Subcategory": "Subcategory",
+          "Product Name": "Product Name",
+          "Badge": "Badge",
+          "Calories": "Calories",
+          "Serves": "Serves",
+          "Ingredients": "Ingredients",
+          "Product Image": "Product Image",
+          "Notification": "Notification",
+          "Success": "Success",
+          "Confirm Action": "Confirm Action",
+          "Proceed": "Proceed",
+          "Add Item": "Add Item",
+          "Add": "Add",
+          "OK": "OK",
+          "Merge Categories": "Merge Categories",
+          "Cancel Import": "Cancel Import",
+          "Apply Mappings": "Apply Mappings",
+          "Category Header Banner": "Category Header Banner",
+          "Are you sure you want to delete this product?": "Are you sure you want to delete this product?",
+          "Are you sure? This will permanently delete the category and ALL its products.": "Are you sure? This will permanently delete the category and ALL its products.",
+          "Are you sure? This will delete the subcategory and ALL its products.": "Are you sure? This will delete the subcategory and ALL its products.",
+          "Special Item saved successfully!": "Special Item saved successfully!",
+          "Please create a category first.": "Please create a category first.",
+          "Please select a category first.": "Please select a category first.",
+          "Maximum of 2 Categories allowed for this template structure.": "Maximum of 2 Categories allowed for this template structure.",
+          "Limit Reached": "Limit Reached",
+          "Add New Category": "Add New Category",
+          "Name cannot be empty.": "Name cannot be empty.",
+          "A category with this name already exists.": "A category with this name already exists.",
+          "A subcategory with this name already exists in this category.": "A subcategory with this name already exists in this category.",
+          "Excel Data Successfully Imported! Replaced current menu.": "Excel Data Successfully Imported! Replaced current menu.",
+          "Publishing Editions...": "Publishing Editions...",
+          "Please wait while we update your repository.": "Please wait while we update your repository.",
+          "Verifying Deployment...": "Verifying Deployment...",
+          "Your editions were saved successfully. Waiting for the global network to update. This usually takes 1 to 3 minutes.": "Your editions were saved successfully. Waiting for the global network to update. This usually takes 1 to 3 minutes.",
+          "Successfully Published!": "Successfully Published!",
+          "Your editions have been securely stored.": "Your editions have been securely stored.",
+          "Your live menu is now up to date.": "Your live menu is now up to date.",
+          "Verification Timeout": "Verification Timeout",
+          "We couldn't verify the live deployment within 5 minutes. It might still be processing, or there could be a network connection issue.": "We couldn't verify the live deployment within 5 minutes. It might still be processing, or there could be a network connection issue.",
+          "Check Again": "Check Again",
+          "Publishing Failed": "Publishing Failed",
+          "Try Again": "Try Again",
+          "Close": "Close",
+          "View Website": "View Website",
+          "All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.": "All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.",
+          "Quick Links": "Quick Links",
+          "Main Website": "Main Website",
+          "User Dashboard": "User Dashboard",
+          "Plans & Subscriptions": "Plans & Subscriptions",
+          "Browse Templates": "Browse Templates",
+          "Customer Support": "Customer Support",
+          "Terms of Service": "Terms of Service",
+          "Privacy Policy": "Privacy Policy",
+          "Cloud Systems Operational": "Cloud Systems Operational",
+          "Company Info": "Company Info",
+"Edit Company Details": "Edit Company Details",
+"Company Logo (PNG)": "Company Logo (PNG)",
+"Save Details": "Save Details",
+"Premium Feature": "Premium Feature",
+"Modifying restaurant name, logo, and contact info requires an active subscription. Would you like to view our plans?": "Modifying restaurant name, logo, and contact info requires an active subscription. Would you like to view our plans?",
+"Company Name (Arabic)": "Company Name (Arabic)",
+"Company Name (English)": "Company Name (English)",
+"Tagline / Description (Arabic)": "Tagline / Description (Arabic)",
+"Tagline / Description (English)": "Tagline / Description (English)",
+"Phone Number": "Phone Number",
+"Email Address": "Email Address",
+"Address (Arabic)": "Address (Arabic)",
+"Address (English)": "Address (English)",
+"Working Hours (Arabic)": "Working Hours (Arabic)",
+"Working Hours (English)": "Working Hours (English)",
+"Accepts any format (automatically resized & converted to PNG 512x512)": "Accepts any format (automatically resized & converted to PNG 512x512)",
+"Company info updated successfully! Click 'Publish Editions' to deploy live.": "Company info updated successfully! Click 'Publish Editions' to deploy live.",
+"Current template does not support customizable company data.": "Current template does not support customizable company data."
+        },
+        ar: {
+            "Default Menu View:": "اللغة الأساسية للمنيو:",
+          "Dashboard": "لوحة التحكم",
+          "Publish Editions": "نشر التعديلات",
+          "Menu Language:": "لغة قائمة المنتجات:",
+          "Arabic": "العربية",
+          "English": "English",
+          "Download DB": "تحميل إكسل",
+          "Import Excel": "استيراد إكسل",
+          "Select Category": "اختر القسم الرئيسي",
+          "+ Add Category": "+ إضافة قسم",
+          "Manage Categories": "إدارة الأقسام",
+          "Select Subcategory": "اختر القسم الفرعي",
+          "+ Add Subcategory": "+ إضافة قسم فرعي",
+          "Menu Products": "قائمة المنتجات",
+          "Add Product": "إضافة منتج",
+          "Edit": "تعديل",
+          "Delete": "حذف",
+          "Special Item": "الطبق الخاص",
+          "Mark / Badge": "الشارة الترويجية",
+          "Title": "العنوان",
+          "Price": "السعر",
+          "Description": "الوصف",
+          "Save Special Item": "حفظ الطبق الخاص",
+          "Cancel": "إلغاء",
+          "Save Structure": "حفظ هيكل الأقسام",
+          "Save Product": "حفظ المنتج",
+          "Add New Product": "إضافة منتج جديد",
+          "Edit Product": "تعديل المنتج",
+          "Category": "القسم الرئيسي",
+          "Subcategory": "القسم الفرعي",
+          "Product Name": "اسم المنتج",
+          "Badge": "الشارة",
+          "Calories": "السعرات",
+          "Serves": "يكفي لـ",
+          "Ingredients": "المكونات",
+          "Product Image": "صورة المنتج",
+          "Notification": "تنبيه",
+          "Success": "تم بنجاح",
+          "Confirm Action": "تأكيد الإجراء",
+          "Proceed": "متابعة",
+          "Add Item": "إضافة عنصر",
+          "Add": "إضافة",
+          "OK": "حسناً",
+          "Merge Categories": "دمج الأقسام",
+          "Cancel Import": "إلغاء الاستيراد",
+          "Apply Mappings": "تطبيق الدمج",
+          "Category Header Banner": "صورة خلفية القسم",
+          "Are you sure you want to delete this product?": "هل أنت متأكد من رغبتك في حذف هذا المنتج؟",
+          "Are you sure? This will permanently delete the category and ALL its products.": "هل أنت متأكد؟ سيؤدي هذا الإجراء إلى حذف القسم وكافة المنتجات التابعة له بشكل نهائي.",
+          "Are you sure? This will delete the subcategory and ALL its products.": "هل أنت متأكد؟ سيؤدي هذا الإجراء إلى حذف القسم الفرعي وكافة المنتجات التابعة له.",
+          "Special Item saved successfully!": "تم حفظ الطبق الخاص بنجاح!",
+          "Please create a category first.": "يرجى إنشاء قسم أولاً.",
+          "Please select a category first.": "يرجى اختيار قسم أولاً.",
+          "Maximum of 2 Categories allowed for this template structure.": "الحد الأقصى المسموح به هو قسمين رئيسيين فقط لهذا القالب.",
+          "Limit Reached": "تم الوصول للحد الأقصى",
+          "Add New Category": "إضافة قسم رئيسي جديد",
+          "Name cannot be empty.": "لا يمكن ترك حقل الاسم فارغاً.",
+          "A category with this name already exists.": "يوجد قسم بهذا الاسم مسبقاً.",
+          "A subcategory with this name already exists in this category.": "يوجد قسم فرعي بهذا الاسم مسبقاً داخل هذا القسم.",
+          "Excel Data Successfully Imported! Replaced current menu.": "تم استيراد بيانات الإكسل بنجاح واستبدال القائمة الحالية!",
+          "Publishing Editions...": "جاري نشر التعديلات...",
+          "Please wait while we update your repository.": "يرجى الانتظار ريثما يتم حفظ وتحديث القائمة على السيرفر.",
+          "Verifying Deployment...": "جاري التحقق من النشر على الشبكة...",
+          "Your editions were saved successfully. Waiting for the global network to update. This usually takes 1 to 3 minutes.": "تم حفظ تعديلاتك بنجاح. ننتظر الآن اكتمال التحديث على الشبكة وعادة ما يستغرق ذلك دقيقة إلى ثلاث دقائق.",
+          "Successfully Published!": "تم النشر بنجاح!",
+          "Your editions have been securely stored.": "تم تخزين وحفظ كافة التعديلات بأمان.",
+          "Your live menu is now up to date.": "قائمة الطعام محدثة الآن بالكامل.",
+          "Verification Timeout": "انتهت مهلة التحقق",
+          "We couldn't verify the live deployment within 5 minutes. It might still be processing, or there could be a network connection issue.": "تعذر تأكيد النشر الحي خلال 5 دقائق. قد تكون العملية لا تزال قيد التنفيذ أو حدث انقطاع في الاتصال.",
+          "Check Again": "إعادة الفحص",
+          "Publishing Failed": "فشل النشر",
+          "Try Again": "إعادة المحاولة",
+          "Close": "إغلاق",
+          "View Website": "معاينة الموقع",
+          "All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.": "منصتك السحابية الشاملة لتوفير قوائم طعام تفاعلية ذكية وسريعة الاستجابة، مع توليد فوري لرموز الـ QR وإدارة سلسة للكتالوج.",
+          "Quick Links": "روابط سريعة",
+          "Main Website": "الموقع الرئيسي",
+          "User Dashboard": "لوحة التحكم",
+          "Plans & Subscriptions": "الباقات والاشتراكات",
+          "Browse Templates": "تصفح القوالب",
+          "Customer Support": "خدمة العملاء",
+          "Terms of Service": "شروط الخدمة",
+          "Privacy Policy": "سياسة الخصوصية",
+          "Cloud Systems Operational": "الأنظمة السحابية تعمل بكفاءة",
+          "Company Info": "بيانات المنشأة",
+"Edit Company Details": "تعديل بيانات المنشأة",
+"Company Logo (PNG)": "شعار المنشأة (PNG)",
+"Save Details": "حفظ البيانات",
+"Premium Feature": "ميزة خاصة بالمشتركين",
+"Modifying restaurant name, logo, and contact info requires an active subscription. Would you like to view our plans?": "تعديل اسم المطعم وشعاره وبيانات الإتصال يتطلب اشتراكاً مفعلاً. هل ترغب في الاطلاع على باقات الاشتراك؟",
+"Company Name (Arabic)": "اسم المنشأة (بالعربية)",
+"Company Name (English)": "اسم المنشأة (بالإنجليزية)",
+"Tagline / Description (Arabic)": "الوصف / الشعار اللفظي (بالعربية)",
+"Tagline / Description (English)": "الوصف / الشعار اللفظي (بالإنجليزية)",
+"Phone Number": "رقم الهاتف / الواتساب",
+"Email Address": "البريد الإلكتروني",
+"Address (Arabic)": "العنوان (بالعربية)",
+"Address (English)": "العنوان (بالإنجليزية)",
+"Working Hours (Arabic)": "أوقات العمل (بالعربية)",
+"Working Hours (English)": "أوقات العمل (بالإنجليزية)",
+"Accepts any format (automatically resized & converted to PNG 512x512)": "يقبل أي صيغة (يتم تحويلها وتعديل مقاسها تلقائياً إلى PNG 512x512)",
+"Company info updated successfully! Click 'Publish Editions' to deploy live.": "تم تحديث بيانات المنشأة بنجاح! اضغط على 'نشر التعديلات' لاعتمادها مباشرة.",
+"Current template does not support customizable company data.": "القالب الحالي لا يدعم تخصيص بيانات المنشأة."
+        }
+      };
+
+      function trText(txt) {
+        if (!txt || typeof txt !== 'string') return txt;
+        const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+        const trimmed = txt.trim();
+        if (isAr && EDITOR_TRANSLATIONS.ar[trimmed]) {
+          return EDITOR_TRANSLATIONS.ar[trimmed];
+        } else if (!isAr && EDITOR_TRANSLATIONS.en[trimmed]) {
+          return EDITOR_TRANSLATIONS.en[trimmed];
+        }
+        return txt;
+      }
+
+      function applyEditorTranslations(scopeElement = document.body) {
+        const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+        const targetMap = isAr ? EDITOR_TRANSLATIONS.ar : EDITOR_TRANSLATIONS.en;
+        const lookupMap = isAr ? EDITOR_TRANSLATIONS.en : EDITOR_TRANSLATIONS.ar;
+
+        const walker = document.createTreeWalker(scopeElement, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while (node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (!text) continue;
+
+          for (let [origKey, origVal] of Object.entries(lookupMap)) {
+            if (text === origVal) {
+              node.nodeValue = node.nodeValue.replace(text, targetMap[origKey]);
+              break;
+            }
+          }
+        }
+
+        const addCatBtn = document.getElementById('btn-add-cat');
+        if (addCatBtn) {
+          const svgIcon = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>';
+          addCatBtn.innerHTML = isAr ? `${svgIcon} إضافة قسم` : `${svgIcon} Add Category`;
+        }
+
+        const catLabel = document.getElementById('cat-label');
+        if (catLabel) {
+          catLabel.textContent = isAr 
+            ? (TPL_HAS_SUBCAT ? 'اختر القسم الرئيسي' : 'اختر القسم الرئيسي')
+            : (TPL_HAS_SUBCAT ? 'Select Category' : 'Select Category');
+        }
+
+        const subcatLabel = document.getElementById('subcat-label');
+        if (subcatLabel) {
+          subcatLabel.textContent = isAr ? 'اختر القسم الفرعي' : 'Select Subcategory';
+        }
+
+        document.documentElement.setAttribute('dir', 'ltr');
+        document.body.style.direction = 'ltr';
+        const ws = document.getElementById('workspace');
+        if (ws) ws.setAttribute('dir', 'ltr');
+
+        const footerEl = document.getElementById('platform-footer');
+        if (footerEl) {
+          footerEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        }
+
+        const editorModals = ['company-modal','product-modal', 'manage-modal', 'merge-categories-modal', 'custom-alert-modal', 'custom-confirm-modal', 'add-item-modal', 'publish-modal'];
+        editorModals.forEach(mId => {
+          const el = document.getElementById(mId);
+          if (el) {
+            el.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+            const panel = el.querySelector('.modal-panel') || el.querySelector('.bg-white');
+            if (panel) panel.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+          }
+        });
+      }
+
+      function setEditorLanguage(lang) {
+        const isAr = (lang === 'ar');
+        localStorage.setItem('barmga_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+        const labelBtn = document.getElementById('editor-lang-label');
+        if (labelBtn) labelBtn.textContent = isAr ? "English" : "عربي";
+        applyEditorTranslations(document.body);
+      }
+
+      function toggleEditorLanguage() {
+        const current = localStorage.getItem('barmga_lang') || 'en';
+        setEditorLanguage(current === 'en' ? 'ar' : 'en');
+      }
+
+      const _origShowAlert = window.showAlert;
+      window.showAlert = function(msg, title = "Notification") {
+        const trMsg = trText(msg);
+        const trTitle = trText(title);
+        if (typeof _origShowAlert === 'function') _origShowAlert(trMsg, trTitle);
+        applyEditorTranslations(document.getElementById('custom-alert-modal'));
+      };
+
+      const _origShowConfirm = window.showConfirm;
+      window.showConfirm = function(msg, callback, title = "Confirm Action") {
+        const trMsg = trText(msg);
+        const trTitle = trText(title);
+        if (typeof _origShowConfirm === 'function') _origShowConfirm(trMsg, callback, trTitle);
+        applyEditorTranslations(document.getElementById('custom-confirm-modal'));
+      };
+
+      const _origPromptAddItem = window.promptAddItem;
+      window.promptAddItem = function(type) {
+        if (typeof _origPromptAddItem === 'function') _origPromptAddItem(type);
+        const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+        const titleEl = document.getElementById('add-item-title');
+        const inputEl = document.getElementById('add-item-input');
+        if (titleEl) {
+          if (type === 'cat') {
+            titleEl.textContent = isAr ? "إضافة قسم رئيسي جديد" : "Add New Category";
+          } else {
+            titleEl.textContent = isAr ? `إضافة قسم فرعي إلى: ${activeCat}` : `Add Subcategory to: ${activeCat}`;
+          }
+        }
+        if (inputEl) {
+          inputEl.placeholder = isAr ? "اكتب الاسم هنا..." : "Enter name...";
+        }
+        applyEditorTranslations(document.getElementById('add-item-modal'));
+      };
+
+      const _origSetPublishModalState = window.setPublishModalState;
+      window.setPublishModalState = function(state, data = {}) {
+        if (typeof _origSetPublishModalState === 'function') _origSetPublishModalState(state, data);
+        applyEditorTranslations(document.getElementById('publish-modal'));
+      };
+
+      const _origDrawManage = window.drawManageModal;
+      if (typeof _origDrawManage === 'function') {
+        window.drawManageModal = async function() {
+          await _origDrawManage.apply(this, arguments);
+          applyEditorTranslations(document.getElementById('manage-modal'));
+        };
+      }
+
+      const _origOpenAddModal = window.openAddModal;
+      if (typeof _origOpenAddModal === 'function') {
+        window.openAddModal = async function() {
+          await _origOpenAddModal.apply(this, arguments);
+          applyEditorTranslations(document.getElementById('product-modal'));
+        };
+      }
+
+      const _origEditProduct = window.editProduct;
+      if (typeof _origEditProduct === 'function') {
+        window.editProduct = async function() {
+          await _origEditProduct.apply(this, arguments);
+          applyEditorTranslations(document.getElementById('product-modal'));
+        };
+      }
+
+      const _origRenderProducts = window.renderProducts;
+      if (typeof _origRenderProducts === 'function') {
+        window.renderProducts = async function() {
+          await _origRenderProducts.apply(this, arguments);
+          applyEditorTranslations(document.getElementById('products-grid'));
+        };
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const saved = localStorage.getItem('barmga_lang') || 'en';
+        if (saved === 'ar') setTimeout(() => setEditorLanguage('ar'), 300);
+      });
+
+      function resetModalScrollTop() {
+        const scrollContainers = [
+          document.getElementById('manage-modal-body'),
+          document.querySelector('#product-modal .overflow-y-auto'),
+          document.querySelector('#merge-categories-modal .max-h-60')
+        ];
+
+        scrollContainers.forEach(container => {
+          if (container) {
+            container.scrollTop = 0;
+          }
+        });
+      }
+
+      const _scrollHookOpenManage = window.openManageModal;
+      if (typeof _scrollHookOpenManage === 'function') {
+        window.openManageModal = async function() {
+          await _scrollHookOpenManage.apply(this, arguments);
+          resetModalScrollTop();
+        };
+      }
+
+      const _scrollHookOpenAdd = window.openAddModal;
+      if (typeof _scrollHookOpenAdd === 'function') {
+        window.openAddModal = async function() {
+          await _scrollHookOpenAdd.apply(this, arguments);
+          resetModalScrollTop();
+        };
+      }
+
+      const _scrollHookEditProduct = window.editProduct;
+      if (typeof _scrollHookEditProduct === 'function') {
+        window.editProduct = async function() {
+          await _scrollHookEditProduct.apply(this, arguments);
+          resetModalScrollTop();
+        };
+      }
+
+      function adjustManageBtnPos() {
+        const btn = document.querySelector('button[onclick="openManageModal()"]');
+        const productsSection = document.getElementById('products-section-container');
+        const catHeader = document.getElementById('category-header-section');
+        if (!btn || !productsSection || !catHeader) return;
+
+        if (window.innerWidth < 640) {
+          if (btn.nextElementSibling !== productsSection) {
+            productsSection.parentNode.insertBefore(btn, productsSection);
+            btn.classList.add('mx-auto', 'mb-6', 'w-full', 'max-w-xs');
+          }
+        } else {
+          if (btn.parentElement !== catHeader) {
+            catHeader.appendChild(btn);
+            btn.classList.remove('mx-auto', 'mb-6', 'w-full', 'max-w-xs');
+          }
+        }
+      }
+
+      window.addEventListener('resize', adjustManageBtnPos);
+      window.addEventListener('DOMContentLoaded', () => setTimeout(adjustManageBtnPos, 150));
+
+  document.addEventListener('input', (e) => {
+  if (e.target && (e.target.type === 'email' || e.target.classList.contains('lowercase-email'))) {
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = e.target.value.toLowerCase();
+    e.target.setSelectionRange(start, end);
+  }
+});
+</script>
+<script>
+  (function() {
+    // Target symbols to block: {, [, <, >
+    const blockedRegex = /[{}\[\]<>]/g;
+
+    // 1. Block physical typing of the 4 characters
+    document.addEventListener('keydown', (e) => {
+      const tag = e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') {
+        if (['{', '}', '[', ']', '<', '>'].includes(e.key)) {
+          e.preventDefault();
+        }
+      }
+    }, true);
+
+    // 2. Strip the characters on paste and real-time input (covers virtual keyboards, autofill, etc.)
+    document.addEventListener('input', (e) => {
+      const target = e.target;
+      if ((target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') && target.type !== 'file') {
+        if (blockedRegex.test(target.value)) {
+          const start = target.selectionStart;
+          const end = target.selectionEnd;
+          const originalLen = target.value.length;
+
+          target.value = target.value.replace(blockedRegex, '');
+
+          // Restore cursor position accurately
+          const removedCount = originalLen - target.value.length;
+          target.setSelectionRange(Math.max(0, start - removedCount), Math.max(0, end - removedCount));
+        }
+      }
+    }, true);
+
+    // 3. Cleanse Excel-imported data before it enters the app state
+    const originalProcessExcel = window.processExcelData;
+    if (typeof originalProcessExcel === 'function') {
+      window.processExcelData = async function(rawJson) {
+        if (Array.isArray(rawJson)) {
+          rawJson.forEach(row => {
+            Object.keys(row).forEach(key => {
+              if (typeof row[key] === 'string' && key !== 'Image') {
+                row[key] = row[key].replace(blockedRegex, '');
+              }
+            });
+          });
+        }
+        return await originalProcessExcel.apply(this, arguments);
+      };
+    }
+  })();
+</script>
+</body>
+</html>

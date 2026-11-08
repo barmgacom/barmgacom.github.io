@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activating Membership | Barmga</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<script src="js/vault.js"></script>
+<style>
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F8F9FA;
+  }
+  html[lang="ar"], body[dir="rtl"] * {
+    font-family: 'Cairo', sans-serif !important;
+  }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+  <div class="bg-white max-w-md w-full rounded-3xl shadow-xl border border-slate-100 p-8 text-center space-y-6">
+    <div id="icon-container" class="w-16 h-16 bg-blue-50 text-[#1877F2] rounded-2xl flex items-center justify-center mx-auto text-3xl">
+      <i id="status-icon" class="bi bi-arrow-repeat animate-spin"></i>
+    </div>
+
+    <div>
+      <h2 id="status-title" class="text-xl font-black text-slate-900">Activating Your Membership</h2>
+      <p id="status-desc" class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
+        It may take a couple of minutes to create your menu...
+      </p>
+    </div>
+
+    <div id="progress-wrapper" class="w-full space-y-4">
+      <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+        <div id="progress-bar" class="bg-[#1877F2] h-2 rounded-full transition-all duration-500" style="width: 30%"></div>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 text-slate-600 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-medium flex items-center justify-center gap-2">
+        <span>Keep this page open until the process finishes.</span>
+      </div>
+    </div>
+
+    <p id="time-counter" class="text-xs font-mono text-slate-400">Elapsed: 0s</p>
+    
+    <div id="action-btn-container" class="hidden pt-2">
+      <a href="dashboard.html" class="block w-full bg-[#1877F2] hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-2xl transition-colors shadow-sm text-sm">
+        Go to Dashboard
+      </a>
+    </div>
+
+    <!-- Login / Auth Form -->
+    <form id="email-entry-form" class="hidden space-y-4 pt-2 text-left">
+      <div>
+        <label for="manual-email" class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+        <input type="email" id="manual-email" required placeholder="you@example.com" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 outline-none focus:border-[#1877F2] focus:ring-4 focus:ring-blue-100 transition-all">
+      </div>
+      <div>
+        <label for="manual-password" class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+        <input type="password" id="manual-password" required placeholder="••••••••" class="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 outline-none focus:border-[#1877F2] focus:ring-4 focus:ring-blue-100 transition-all">
+      </div>
+      
+      <!-- Alert message styled identically to login.html -->
+      <div id="auth-error-msg" class="hidden bg-[#FBEAE8] text-[#D6534B] text-xs sm:text-sm font-semibold rounded-xl p-3"></div>
+
+      <button type="submit" id="btn-submit-auth" class="w-full bg-[#1877F2] hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-2xl transition-colors shadow-sm text-sm">
+        Verify & Activate Membership
+      </button>
+    </form>
+  </div>
+
+<script>
+  const ACTIVATION_WORKER_URL = "https://barmga-1004.asweqofficial.workers.dev";
+  const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+
+  async function verifyUserSession(user) {
+    try {
+      const token = localStorage.getItem('session_token');
+      if (!token || !user?.email) return false;
+
+      const res = await fetch(`${API_BASE}/api/verify_session`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!res.ok) return false;
+      const data = await res.json();
+      if (data.logout || !data.details || data.details.locked === true || String(data.details.locked) === "true") {
+        return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    // 1. READ ALL PARAMS BEFORE STRIPPING URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const activationToken = (urlParams.get('tk') || '').trim();
+    const dateParam = (urlParams.get('date') || 'year').toLowerCase();
+    const planDuration = (dateParam === 'month') ? 'month' : 'year';
+    const planParam = (urlParams.get('plan') || '').trim();
+
+    const rawMatch = window.location.search.match(/[?&]usid=([^&]*)/i);
+    const rawUsid = rawMatch ? rawMatch[1] : '';
+    const emailParam = decodeURIComponent(rawUsid.replace(/\+/g, '%2B')).trim().toLowerCase();
+
+    // 2. STRIP ALL QUERY PARAMETERS FROM URL INSTANTLY
+    // Removes ?tk=..., ?usid=..., ?date=... from history and address bar
+    if (window.location.search) {
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+
+    const titleEl = document.getElementById('status-title');
+    const descEl = document.getElementById('status-desc');
+    const progEl = document.getElementById('progress-bar');
+    const progWrapper = document.getElementById('progress-wrapper');
+    const iconContainer = document.getElementById('icon-container');
+    const statusIcon = document.getElementById('status-icon');
+    const counterEl = document.getElementById('time-counter');
+    const actionBtn = document.getElementById('action-btn-container');
+    const emailForm = document.getElementById('email-entry-form');
+    const errorEl = document.getElementById('auth-error-msg');
+    const submitBtn = document.getElementById('btn-submit-auth');
+
+    let seconds = 0;
+    let timer = null;
+
+    const startTimer = () => {
+      if (timer) clearInterval(timer);
+      seconds = 0;
+      timer = setInterval(() => {
+        seconds++;
+        counterEl.textContent = `Elapsed: ${seconds}s`;
+      }, 1000);
+    };
+
+    const stopTimer = () => {
+      if (timer) clearInterval(timer);
+    };
+
+    // Displays the standard "in progress / 24 hours" notice
+    const showDelayedNotice = (msg = "Your activation is on progress and will be active in less than 24 hours.") => {
+      stopTimer();
+      progWrapper.classList.add('hidden');
+      counterEl.classList.add('hidden');
+      emailForm.classList.add('hidden');
+      actionBtn.classList.remove('hidden');
+
+      titleEl.textContent = "Processing Request";
+      descEl.textContent = msg;
+      iconContainer.className = "w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+      statusIcon.className = "bi bi-clock-history";
+    };
+
+    const showEmailForm = (prefilledEmail = "", customTitle = "Confirm Account Credentials", customDesc = "Please enter your password to authenticate and proceed with activation.") => {
+      stopTimer();
+      progWrapper.classList.add('hidden');
+      counterEl.classList.add('hidden');
+      actionBtn.classList.add('hidden');
+
+      titleEl.textContent = customTitle;
+      descEl.textContent = customDesc;
+      iconContainer.className = "w-16 h-16 bg-blue-50 text-[#1877F2] rounded-2xl flex items-center justify-center mx-auto text-3xl";
+      statusIcon.className = "bi bi-shield-lock";
+
+      if (prefilledEmail) {
+        document.getElementById('manual-email').value = prefilledEmail;
+        document.getElementById('manual-password').focus();
+      } else {
+        document.getElementById('manual-email').focus();
+      }
+
+      emailForm.classList.remove('hidden');
+    };
+
+    // -------------------------------------------------------------
+    // GUARD: If no token was provided in the link, halt immediately
+    // -------------------------------------------------------------
+    if (!activationToken) {
+      showDelayedNotice();
+      return;
+    }
+
+    const isActivelyLoggedIn = localStorage.getItem('dashboard_access') === 'true';
+    const userRaw = localStorage.getItem('dashboard_user');
+    let currentUser = {};
+    try { currentUser = JSON.parse(userRaw || '{}'); } catch (_) {}
+
+    function switchActiveUserSession(userData, details, newSessionToken = null) {
+      // 1. Preserve or grab the active session_token & visitor preferences
+      const token = newSessionToken || localStorage.getItem('session_token');
+      const savedLang = localStorage.getItem('barmga_lang') || 'en';
+      const savedRef = localStorage.getItem('barmga_referral') || '';
+      const savedCur = localStorage.getItem('barmga_currency') || '';
+
+      // 2. Clear old state safely
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // 3. Restore essential session and auth keys
+      if (token) localStorage.setItem('session_token', token);
+      if (savedLang) localStorage.setItem('barmga_lang', savedLang);
+      if (savedRef) localStorage.setItem('barmga_referral', savedRef);
+      if (savedCur) localStorage.setItem('barmga_currency', savedCur);
+
+      localStorage.setItem('dashboard_access', 'true');
+      localStorage.setItem('dashboard_user', JSON.stringify(userData));
+      localStorage.setItem('userid', String(userData.id));
+      localStorage.setItem('membership', 'member');
+
+      if (details?.wk) localStorage.setItem('editor_wk', details.wk);
+      if (details?.pg) localStorage.setItem('editor_pg', details.pg);
+
+      currentUser = userData;
+    }
+
+emailForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const inputEmail = document.getElementById('manual-email').value.trim().toLowerCase();
+      const inputPass = document.getElementById('manual-password').value;
+      if (!inputEmail || !inputPass) return;
+
+      errorEl.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      try {
+        const encrypted = await AsweqVault.encrypt({ email: inputEmail, password: inputPass });
+        await executeActivation(encrypted, inputEmail, true);
+      } catch (err) {
+        stopTimer();
+        progWrapper.classList.add('hidden');
+        counterEl.classList.add('hidden');
+        emailForm.classList.remove('hidden');
+        errorEl.textContent = err.message || "Authentication failed";
+        errorEl.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verify & Activate Membership';
+      }
+    });
+
+let isActivating = false;
+    async function executeActivation(encryptedPayload, emailForSession, fromManualForm = false) {
+      if (isActivating) return;
+      isActivating = true;
+      const activeTemplateId = localStorage.getItem('trial_template') || currentUser?.details?.template_id || 'resto-2';
+      // Transition immediately: hide form, show progress bar and start counter from the beginning
+      emailForm.classList.add('hidden');
+      actionBtn.classList.add('hidden');
+      progWrapper.classList.remove('hidden');
+      counterEl.classList.remove('hidden');
+
+      progEl.style.width = "25%";
+      progEl.className = "bg-[#1877F2] h-2 rounded-full transition-all duration-500";
+      titleEl.textContent = "Activating Your Membership";
+      descEl.textContent = "It may take a couple of minutes to create your menu...";
+      iconContainer.className = "w-16 h-16 bg-blue-50 text-[#1877F2] rounded-2xl flex items-center justify-center mx-auto text-3xl";
+      statusIcon.className = "bi bi-arrow-repeat animate-spin";
+
+      startTimer();
+
+      try {
+        const res = await fetch(`${ACTIVATION_WORKER_URL}/api/activate_subscription`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token: activationToken,
+            encryptedPayload: encryptedPayload,
+            planDuration: planDuration,
+            templateId: activeTemplateId,
+            planParam: planParam
+          })
+        });
+
+        const data = await res.json();
+
+        // If the backend token verification fails, display the 24h message
+        if (data.status === "TOKEN_INVALID" || res.status === 403) {
+          showDelayedNotice(data.message || "Your activation is on progress and will be active in less than 24 hours.");
+          return;
+        }
+
+        // Credentials required / password failed
+        if (data.status === "AUTH_REQUIRED" || data.error) {
+          isActivating = false;
+          const errMsg = data.error || data.message || "Invalid email or password.";
+          
+          if (fromManualForm) {
+            errorEl.textContent = errMsg;
+            errorEl.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Verify & Activate Membership';
+            return;
+          }
+
+          showEmailForm(emailForSession || emailParam || currentUser?.email || "", "Authentication Required", errMsg);
+          return;
+        }
+
+        if (fromManualForm && data.user) {
+          switchActiveUserSession(data.user, data.details);
+        }
+
+        emailForm.classList.add('hidden');
+        actionBtn.classList.add('hidden');
+        progWrapper.classList.remove('hidden');
+        counterEl.classList.remove('hidden');
+
+        progEl.style.width = "30%";
+        progEl.className = "bg-[#1877F2] h-2 rounded-full transition-all duration-500";
+        titleEl.textContent = "Activating Your Membership";
+        descEl.textContent = "It may take a couple of minutes to create your menu...";
+        iconContainer.className = "w-16 h-16 bg-blue-50 text-[#1877F2] rounded-2xl flex items-center justify-center mx-auto text-3xl";
+        statusIcon.className = "bi bi-arrow-repeat animate-spin";
+
+        startTimer();
+
+if (data.status === "RENEWED" || data.status === "ALREADY_ACTIVE") {
+          stopTimer();
+          progEl.style.width = "100%";
+          titleEl.textContent = "Membership Renewed!";
+          descEl.textContent = data.message || "Your membership renewal has been applied. Redirecting to your dashboard...";
+          iconContainer.className = "w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+          statusIcon.className = "bi bi-check-circle-fill";
+
+          if (data.user) {
+            switchActiveUserSession(data.user, data.details);
+          }
+
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 2000);
+          return;
+        }
+        if (data.status === "IN_PROGRESS") {
+          if (!data.targetUrl) {
+            showDelayedNotice(data.message || "Your activation is currently processing and will be live shortly.");
+            return;
+          }
+          // The backend is already building/deploying this user. Keep progress visible and poll targetUrl.
+          progEl.style.width = "50%";
+          titleEl.textContent = "Deploying Your Menu";
+          descEl.textContent = "Your digital menu is currently being published...";
+        } else if (!res.ok || !data.success) {
+          showDelayedNotice(data.message || "Activation request is on progress and will be active in less than 24 hours.");
+          return;
+        }
+
+        progEl.style.width = "75%";
+        const targetUrl = data.targetUrl;
+        const marker = data.verificationMarker;
+
+        let verified = false;
+        let checkAttempts = 0;
+        const maxAttempts = 60;
+
+        while (!verified && checkAttempts < maxAttempts) {
+          checkAttempts++;
+          await new Promise(r => setTimeout(r, 4000));
+          try {
+            const pollRes = await fetch(`${targetUrl}?nocache=${Date.now()}`);
+            if (pollRes.ok) {
+              const htmlText = await pollRes.text();
+              if (htmlText.includes(marker)) {
+                verified = true;
+              }
+            }
+          } catch (_) {}
+        }
+
+        if (!verified) {
+          showDelayedNotice("Deployment reached GitHub, but verification timed out. It should be active within a few minutes.");
+          return;
+        }
+
+        stopTimer();
+        progEl.style.width = "100%";
+        titleEl.textContent = "Membership Activated!";
+        descEl.textContent = "Your digital menu is officially deployed and ready. Redirecting to your dashboard...";
+        iconContainer.className = "w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+        statusIcon.className = "bi bi-check-circle-fill";
+
+        if (data.user) {
+          switchActiveUserSession(data.user, data.details);
+        } else {
+          currentUser.details = data.details;
+          localStorage.setItem('dashboard_user', JSON.stringify(currentUser));
+        }
+
+        localStorage.setItem('membership', 'member');
+        if (data.details?.wk) localStorage.setItem('editor_wk', data.details.wk);
+        if (data.details?.pg) localStorage.setItem('editor_pg', data.details.pg);
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 2000);
+
+      } catch (err) {
+        if (fromManualForm) {
+          errorEl.textContent = err.message || "Failed to communicate with activation server.";
+          errorEl.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Verify & Activate Membership';
+          return;
+        }
+        showDelayedNotice();
+      }
+    }
+
+    const activeEmail = (currentUser?.email || "").toLowerCase().trim();
+    const hasUsid = Boolean(emailParam);
+    const usidMatchesActive = hasUsid && activeEmail && activeEmail === emailParam;
+
+    let canAutoActivate = false;
+    if (!hasUsid && isActivelyLoggedIn && activeEmail) {
+      canAutoActivate = true;
+    } else if (hasUsid && usidMatchesActive && isActivelyLoggedIn) {
+      canAutoActivate = true;
+    }
+
+    let authorizedPayload = null;
+    if (canAutoActivate) {
+      const isSessionValid = await verifyUserSession(currentUser);
+      if (isSessionValid) {
+        authorizedPayload = await AsweqVault.encrypt({ email: currentUser.email });
+      }
+    }
+
+    if (authorizedPayload) {
+      await executeActivation(authorizedPayload, currentUser.email, false);
+    } else {
+      showEmailForm(emailParam || activeEmail || "");
+    }
+  });
+
+  document.addEventListener('input', (e) => {
+  if (e.target && (e.target.type === 'email' || e.target.classList.contains('lowercase-email'))) {
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = e.target.value.toLowerCase();
+    e.target.setSelectionRange(start, end);
+  }
+});
+</script>
+</body>
+</html>

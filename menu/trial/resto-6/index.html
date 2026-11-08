@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Al-Nakheel Restaurant — Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Great+Vibes&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <style>
+        :root {
+            --bg-color: #EBE1D5; 
+            --primary-color: #5A1F1E; 
+            --text-dark: #2A2A2A;
+            --text-gray: #4a4a4a;
+            --outer-offset: 15px;
+            --inner-offset: 33px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #D6C7B5; 
+            font-family: 'Montserrat', sans-serif;
+            padding-bottom: 20px; 
+            overflow-x: hidden;
+            transition: font-family 0.3s ease;
+        }
+        .top-bar {
+            background-color: var(--primary-color); color: #fff;
+            padding: 12px 20px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .resto-info { display: flex; align-items: center; gap: 12px; }
+        .logo-placeholder {
+            width: 36px; height: 36px; background-color: #fff; color: var(--primary-color);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; flex-shrink: 0; overflow: hidden;
+        }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .resto-details h1 { font-size: 16px; margin: 0; font-weight: 800; }
+        .resto-details p { font-size: 11px; margin: 0; opacity: 0.85; }
+        .lang-btn {
+            background-color: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 6px 14px; cursor: pointer; border-radius: 6px;
+            font-weight: 700; font-size: 13px; transition: all 0.3s ease;
+        }
+        .lang-btn:hover { background-color: #fff; color: var(--primary-color); }
+        .page-container { width: 100%; max-width: 210mm; margin: 30px auto; position: relative; }
+        .menu-sheet {
+            background-color: var(--bg-color); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 297mm; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300' opacity='0.08'%3E%3Cpath d='M30,300 C40,200 150,150 180,50' stroke='%232A2A2A' fill='none' stroke-width='2'/%3E%3Cpath d='M150,150 C180,120 190,80 180,50 C150,60 140,100 150,150' stroke='%232A2A2A' fill='none' stroke-width='1.5'/%3E%3Cpath d='M100,200 C140,190 150,140 130,110 C100,130 90,170 100,200' stroke='%232A2A2A' fill='none' stroke-width='1.5'/%3E%3Cpath d='M60,250 C90,260 110,220 90,180 C60,190 50,230 60,250' stroke='%232A2A2A' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300' opacity='0.08'%3E%3Cpath d='M170,300 C160,200 50,150 20,50' stroke='%232A2A2A' fill='none' stroke-width='2'/%3E%3Cpath d='M50,150 C20,120 10,80 20,50 C50,60 60,100 50,150' stroke='%232A2A2A' fill='none' stroke-width='1.5'/%3E%3Cpath d='M100,200 C60,190 50,140 70,110 C100,130 110,170 100,200' stroke='%232A2A2A' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-position: right 10% top 30%, left 10% bottom 20%;
+            background-repeat: no-repeat, no-repeat; background-size: 300px, 250px;
+        }
+        .b-out { position: absolute; background-color: var(--primary-color); z-index: 10; pointer-events: none; }
+        .b-out.top { top: var(--outer-offset); left: var(--outer-offset); right: var(--outer-offset); height: 2px; }
+        .b-out.bottom { bottom: var(--outer-offset); left: var(--outer-offset); right: var(--outer-offset); height: 2px; }
+        .b-out.left { left: var(--outer-offset); top: var(--outer-offset); bottom: var(--outer-offset); width: 2px; }
+        .b-out.right { right: var(--outer-offset); top: var(--outer-offset); bottom: var(--outer-offset); width: 2px; }
+        .b-in { position: absolute; background-color: var(--primary-color); z-index: 10; pointer-events: none; }
+        .b-in.top { top: var(--inner-offset); left: 90px; right: 90px; height: 1px; }
+        .b-in.bottom { bottom: var(--inner-offset); left: 90px; right: 90px; height: 1px; }
+        .b-in.left { left: var(--inner-offset); top: 90px; bottom: 90px; width: 1px; }
+        .b-in.right { right: var(--inner-offset); top: 90px; bottom: 90px; width: 1px; }
+        .corner-art { position: absolute; width: 80px; height: 80px; z-index: 15; pointer-events: none; }
+        .c-tl { top: var(--outer-offset); left: var(--outer-offset); }
+        .c-tr { top: var(--outer-offset); right: var(--outer-offset); transform: scaleX(-1); }
+        .c-bl { bottom: var(--outer-offset); left: var(--outer-offset); transform: scaleY(-1); }
+        .c-br { bottom: var(--outer-offset); right: var(--outer-offset); transform: scale(-1, -1); }
+        .menu-content { position: relative; z-index: 20; flex-grow: 1; display: flex; flex-direction: column; padding: 75px 80px 60px 80px; }
+        .menu-header { text-align: center; margin-bottom: 35px; }
+        .emblem-top { width: 120px; height: auto; margin: 0 auto 10px auto; display: block; }
+        .menu-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 32px; color: var(--primary-color); margin-bottom: 5px; letter-spacing: 0.5px; }
+        .menu-subtitle { font-family: 'Great Vibes', cursive; font-size: 34px; color: var(--text-dark); position: relative; display: inline-block; }
+        .menu-subtitle::before, .menu-subtitle::after { content: ''; position: absolute; top: 50%; width: 70px; height: 1px; background-color: var(--text-gray); }
+        .menu-subtitle::before { left: -85px; }
+        .menu-subtitle::after { right: -85px; }
+        .category { margin-bottom: 30px; }
+        .category-title { text-align: center; font-weight: 800; font-size: 20px; color: var(--primary-color); margin-bottom: 20px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .menu-item { margin-bottom: 16px; }
+        .item-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
+        .item-name { font-weight: 800; font-size: 15px; color: var(--text-dark); }
+        .leader-line { flex-grow: 1; border-bottom: 1px solid rgba(90, 31, 30, 0.4); margin: 0 12px; position: relative; bottom: 5px; }
+        .item-price { font-weight: 800; font-size: 15px; color: var(--text-dark); }
+        .item-desc { font-size: 12px; color: var(--text-gray); line-height: 1.5; max-width: 85%; font-weight: 500; }
+        .footer-info { text-align: center; font-weight: 700; color: var(--text-dark); font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; margin-top: auto; padding-top: 30px; }
+        [dir="rtl"] { font-family: 'Cairo', sans-serif; }
+        [dir="rtl"] .menu-title { font-family: 'Cairo', sans-serif; }
+        [dir="rtl"] .category-title { font-family: 'Cairo', sans-serif; font-size: 24px; }
+        [dir="rtl"] .menu-subtitle { font-family: 'Cairo', sans-serif; font-size: 30px; font-weight: 800; }
+        [dir="rtl"] .menu-subtitle::before { right: -85px; left: auto; }
+        [dir="rtl"] .menu-subtitle::after { left: -85px; right: auto; }
+        [dir="rtl"] .item-desc { margin-right: 0; margin-left: auto; font-size: 14.5px; }
+        [dir="rtl"] .item-name, [dir="rtl"] .item-price { font-size: 17px; }
+        [dir="rtl"] .resto-details { text-align: right; }
+        [dir="rtl"] .resto-details h1 { font-family: 'Cairo', sans-serif; font-size: 18px; }
+        @media (max-width: 600px) {
+            body { padding-bottom: 0; background-color: var(--bg-color); }
+            .page-container { margin: 0; padding: 0 0 15px 0; } 
+            .menu-sheet { box-shadow: none; background-size: 200px, 150px; }
+            :root { --outer-offset: 8px; --inner-offset: 20px; }
+            .corner-art { width: 52px; height: 52px; }
+            .b-in.top { left: 55px; right: 55px; } .b-in.bottom { left: 55px; right: 55px; }
+            .b-in.left { top: 55px; bottom: 55px; } .b-in.right { top: 55px; bottom: 55px; }
+            .menu-content { padding: 45px 32px 50px 32px; }
+            .menu-title { font-size: 24px; } .menu-subtitle { font-size: 22px; }
+            .menu-subtitle::before, .menu-subtitle::after { width: 30px; }
+            .menu-subtitle::before { left: -40px; } .menu-subtitle::after { right: -40px; }
+            [dir="rtl"] .menu-subtitle::before { right: -40px; left: auto; } [dir="rtl"] .menu-subtitle::after { left: -40px; right: auto; }
+            .emblem-top { width: 90px; margin-bottom: 5px; }
+            .category-title { font-size: 17px; margin-bottom: 15px; }
+            .item-name, .item-price { font-size: 14px; }
+            .item-desc { font-size: 11px; max-width: 100%; }
+            .leader-line { margin: 0 6px; }
+            [dir="rtl"] .category-title { font-size: 20px; }
+            [dir="rtl"] .item-name, [dir="rtl"] .item-price { font-size: 16px; }
+            [dir="rtl"] .item-desc { font-size: 13.5px; }
+            [dir="rtl"] .menu-subtitle { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="resto-info">
+            <div class="logo-placeholder" id="logoContainer">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                    <path d="M7 2v20"></path>
+                    <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+                </svg>
+            </div>
+            <div class="resto-details">
+                <h1 id="brand-name">Al-Nakheel Restaurant</h1>
+                <p id="brand-desc">Authentic Culinary Heritage</p>
+            </div>
+        </div>
+        <button class="lang-btn" id="langToggle">عربي</button>
+    </div>
+
+    <div class="page-container">
+        <div class="menu-sheet">
+            <div class="b-out top"></div> <div class="b-out bottom"></div>
+            <div class="b-out left"></div> <div class="b-out right"></div>
+            <div class="b-in top"></div> <div class="b-in bottom"></div>
+            <div class="b-in left"></div> <div class="b-in right"></div>
+
+            <svg class="corner-art c-tl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0,0 12,28 28,28 28,12" fill="none" stroke="#5A1F1E" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="28" y2="28" stroke="#5A1F1E" stroke-width="1.5"/>
+                <polygon points="0,0 6,36 12,32 8,10" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <polygon points="0,0 36,6 32,12 10,8" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <line x1="30" y1="18" x2="80" y2="18" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="80" cy="18" r="2.5" fill="#5A1F1E"/>
+                <line x1="18" y1="30" x2="18" y2="80" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="18" cy="80" r="2.5" fill="#5A1F1E"/>
+            </svg>
+            <svg class="corner-art c-tr" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0,0 12,28 28,28 28,12" fill="none" stroke="#5A1F1E" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="28" y2="28" stroke="#5A1F1E" stroke-width="1.5"/>
+                <polygon points="0,0 6,36 12,32 8,10" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <polygon points="0,0 36,6 32,12 10,8" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <line x1="30" y1="18" x2="80" y2="18" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="80" cy="18" r="2.5" fill="#5A1F1E"/>
+                <line x1="18" y1="30" x2="18" y2="80" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="18" cy="80" r="2.5" fill="#5A1F1E"/>
+            </svg>
+            <svg class="corner-art c-bl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0,0 12,28 28,28 28,12" fill="none" stroke="#5A1F1E" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="28" y2="28" stroke="#5A1F1E" stroke-width="1.5"/>
+                <polygon points="0,0 6,36 12,32 8,10" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <polygon points="0,0 36,6 32,12 10,8" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <line x1="30" y1="18" x2="80" y2="18" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="80" cy="18" r="2.5" fill="#5A1F1E"/>
+                <line x1="18" y1="30" x2="18" y2="80" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="18" cy="80" r="2.5" fill="#5A1F1E"/>
+            </svg>
+            <svg class="corner-art c-br" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0,0 12,28 28,28 28,12" fill="none" stroke="#5A1F1E" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="28" y2="28" stroke="#5A1F1E" stroke-width="1.5"/>
+                <polygon points="0,0 6,36 12,32 8,10" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <polygon points="0,0 36,6 32,12 10,8" fill="none" stroke="#5A1F1E" stroke-width="1.2"/>
+                <line x1="30" y1="18" x2="80" y2="18" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="80" cy="18" r="2.5" fill="#5A1F1E"/>
+                <line x1="18" y1="30" x2="18" y2="80" stroke="#5A1F1E" stroke-width="1"/>
+                <circle cx="18" cy="80" r="2.5" fill="#5A1F1E"/>
+            </svg>
+
+            <div class="menu-content" id="dynamic-menu-content">
+                <div class="menu-header">
+                    <svg class="emblem-top" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 68 35 A 12 12 0 0 1 92 35 Z" fill="#5A1F1E"/>
+                        <polygon points="80,18 76,5 80,0 84,5" fill="#5A1F1E"/>
+                        <polygon points="65,22 50,12 54,6 62,15" fill="#5A1F1E"/>
+                        <polygon points="95,22 110,12 106,6 98,15" fill="#5A1F1E"/>
+                        <polygon points="35,22 38,28 45,28 39,32 41,39 35,34 29,39 31,32 25,28 32,28" fill="#5A1F1E"/>
+                        <polygon points="125,22 128,28 135,28 129,32 131,39 125,34 119,39 121,32 115,28 122,28" fill="#5A1F1E"/>
+                        <polygon points="15,28 17,32 22,32 18,35 19,40 15,36 11,40 12,35 8,32 13,32" fill="#5A1F1E"/>
+                        <polygon points="145,28 147,32 152,32 148,35 149,40 145,36 141,40 142,35 138,32 143,32" fill="#5A1F1E"/>
+                    </svg>
+
+                    <h1 class="menu-title" id="page-title">Al-Nakheel Restaurant</h1>
+                    <div class="menu-subtitle" id="page-subtitle">Authentic Culinary Heritage</div>
+                </div>
+
+                <div id="items-container"></div>
+
+                <div class="footer-info">
+                    <span id="footer-address">King Abdulaziz Road, Al Malqa District, Riyadh</span>
+                    <span id="footer-phone" style="direction: ltr;">+966 11 456 7890</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const customLogoImg = new Image();
+        customLogoImg.onload = function() {
+            const container = document.getElementById('logoContainer');
+            container.innerHTML = '<img src="' + customLogoImg.src + '" alt="Restaurant Logo" class="logo-img">';
+        };
+        customLogoImg.src = 'images/logo.png';
+
+        const appData = {
+            menu: {
+                ar: [
+                    { category: "المقبلات", name: "بطاطس ودجز بالأعشاب", price: "24", description: "أصابع بطاطس متبلة بإكليل الجبل والثوم المشوي مع صوص الرانش." },
+                    { category: "المقبلات", name: "أصابع الموزاريلا الفاخرة", price: "29", description: "جبنة موزاريلا ذائبة تقدم ساخنة مع صوص المارينارا الإيطالي." },
+                    { category: "المقبلات", name: "أجنحة الدجاج (بافلو)", price: "36", description: "أجنحة دجاج مقلية مغطاة بصوص البافلو المدخن والزبدة النقية." },
+                    { category: "المقبلات", name: "سلطة الكينوا والأفوكادو", price: "32", description: "كينوا عضوية مع مكعبات الأفوكادو والرمان وزيت الزيتون والليمون." },
+                    { category: "البيتزا", name: "بيتزا بيبروني كلاسيك", price: "54", description: "عجينة إيطالية مخمرة مغطاة بشرائح البيبروني البقري والموزاريلا." },
+                    { category: "البيتزا", name: "بيتزا الدجاج والباربكيو", price: "58", description: "صدور دجاج مشوية مع البصل المكرمل وصوص الشواء المدخن." },
+                    { category: "البيتزا", name: "بيتزا تروفل فونغي الفاخرة", price: "68", description: "صلصة الكريمة والكمأة مع تشكيلة من المشروم الطازج وزيت الزيتون." },
+                    { category: "البيتزا", name: "بيتزا الخضار المشوية", price: "49", description: "خضار موسمية مشوية مع صوص البيستو الإيطالي الطازج والريحان." },
+                    { category: "الأطباق الرئيسية", name: "ستيك تندرلوين المشوي", price: "110", description: "شريحة لحم بقري طرية تقدم مع البطاطس المهروسة وصلصة الفلفل الأسود." },
+                    { category: "الأطباق الرئيسية", name: "دجاج كوردون بلو الذهبي", price: "64", description: "صدر دجاج محشو بشرائح الرومي المدخن وجبن الإيمنتال السائل ومقلي بامتياز." },
+                    { category: "الأطباق الرئيسية", name: "سلمون نرويجي محمر", price: "89", description: "سلمون طازج مشوي بجلد مقرمش مع صوص الزبدة والليمون والشبت." },
+                    { category: "الأطباق الرئيسية", name: "ريزوتو الروبيان بالزعفران", price: "78", description: "أرز أربوريو مطهو بمرق الروبيان الغني وخيوط الزعفران الأصلي والزبدة." },
+                    { category: "المشروبات", name: "موهيتو الباشن فروت", price: "24", description: "فاكهة الباشن الطبيعية مع أوراق النعناع وشرائح الليمون والمياه الفوارة." },
+                    { category: "المشروبات", name: "عصير برتقال وجزر", price: "20", description: "عصير طازج معصور على البارد عند الطلب بدون إضافة سكر." },
+                    { category: "المشروبات", name: "آيس تي الخوخ والتوت", price: "22", description: "شاي أسود مثلج مع مستخلص الخوخ الطبيعي وحبات التوت البري." },
+                    { category: "المشروبات", name: "ليموناضة اللافندر", price: "25", description: "عصير ليمون طازج مع سيرب زهور اللافندر المعطرة والثلج." },
+                    { category: "الحلويات", name: "كوكيز الشوكولاتة البلجيكية", price: "28", description: "كوكيز مخبوز فوراً عند الطلب محشو بقطع الشوكولاتة الداكنة السائلة." },
+                    { category: "الحلويات", name: "مولتن كيك الشوكولاتة", price: "36", description: "كيكة الشوكولاتة الداكنة بقلب سائل دافئ يعلوها رشة كاكاو خام." },
+                    { category: "الحلويات", name: "كيكة التمر بالكراميل", price: "34", description: "كيكة التمر السكري الدافئة تقدم مع آيس كريم الفانيليا وصلصة الكراميل." },
+                    { category: "الحلويات", name: "تشيز كيك الفستق المحمص", price: "39", description: "طبقات من البسكويت مع كريمة الجبن المخملية بزبدة الفستق الحلبي الخالصة." }
+                ],
+                en: [
+                    { category: "To Begin", name: "Herbed Potato Wedges", price: "24", description: "Crispy potato wedges seasoned with rosemary and roasted garlic, served with ranch dip." },
+                    { category: "To Begin", name: "Mozzarella Sticks", price: "29", description: "Crispy coated melted mozzarella sticks served hot with Italian marinara sauce." },
+                    { category: "To Begin", name: "Buffalo Chicken Wings", price: "36", description: "Crisp fried chicken wings tossed in smoked buffalo sauce and pure butter." },
+                    { category: "To Begin", name: "Quinoa Avocado Salad", price: "32", description: "Organic quinoa with diced avocado, pomegranate seeds, olive oil, and lemon dressing." },
+                    { category: "Artisan Pizzas", name: "Classic Beef Pepperoni", price: "54", description: "Slow-fermented dough topped with beef pepperoni slices and shredded mozzarella." },
+                    { category: "Artisan Pizzas", name: "BBQ Smoked Chicken Pizza", price: "58", description: "Grilled chicken breast, caramelized red onions, smoked barbecue sauce, and mozzarella." },
+                    { category: "Artisan Pizzas", name: "Truffle Funghi Pizza", price: "68", description: "Creamy truffle sauce with wild mushroom medley and cold-pressed extra virgin olive oil." },
+                    { category: "Artisan Pizzas", name: "Roasted Veggie & Pesto Pizza", price: "49", description: "Wood-fired seasonal vegetables with fresh basil pesto sauce and Kalamata olives." },
+                    { category: "Main Courses", name: "Grilled Tenderloin Steak", price: "110", description: "Tender Angus beef steak served with creamy mashed potatoes and black pepper sauce." },
+                    { category: "Main Courses", name: "Golden Cordon Bleu", price: "64", description: "Crisp chicken breast rolled with smoked turkey and melted Emmental cheese." },
+                    { category: "Main Courses", name: "Pan-Seared Norwegian Salmon", price: "89", description: "Crispy skin salmon filet with velvety lemon-butter dill sauce and seasoned basmati rice." },
+                    { category: "Main Courses", name: "Saffron Shrimp Risotto", price: "78", description: "Arborio rice simmered in rich shrimp reduction, pure saffron threads, and aged parmesan." },
+                    { category: "Drinks", name: "Passion Fruit Mojito", price: "24", description: "Natural passion fruit pulp, fresh mint leaves, lime slices, and sparkling soda." },
+                    { category: "Drinks", name: "Fresh Orange Carrot Juice", price: "20", description: "Cold-pressed daily without added sugar or preservatives." },
+                    { category: "Drinks", name: "Peach Berry Iced Tea", price: "22", description: "Chilled Ceylon black tea with natural peach essence and fresh blueberries." },
+                    { category: "Drinks", name: "Iced Lavender Lemonade", price: "25", description: "Fresh squeezed lemonade infused with aromatic floral lavender syrup." },
+                    { category: "Desserts", name: "Belgian Chocolate Cookies", price: "28", description: "Freshly baked warm cookies loaded with melting 70% dark Belgian chocolate." },
+                    { category: "Desserts", name: "Molten Lava Cake", price: "36", description: "Warm dark chocolate cake with a molten center, dusted with raw cocoa powder." },
+                    { category: "Desserts", name: "Salted Caramel Date Cake", price: "34", description: "Warm date cake served with rich salted caramel sauce and vanilla bean ice cream." },
+                    { category: "Desserts", name: "Roasted Pistachio Cheesecake", price: "39", description: "Crunchy biscuit crust topped with silky cream cheese and pure pistachio butter." }
+                ]
+            },
+            info: {
+                ar: {
+                    name: "مطعم النخيل",
+                    description: "التراث الأصيل للطهي",
+                    address: "طريق الملك عبد العزيز، حي الملقا، الرياض",
+                    phone: "+966 11 456 7890",
+                    email: "info@alnakheel.sa"
+                },
+                en: {
+                    name: "Al-Nakheel Restaurant",
+                    description: "Authentic Culinary Heritage",
+                    address: "King Abdulaziz Road, Al Malqa District, Riyadh",
+                    phone: "+966 11 456 7890",
+                    email: "info@alnakheel.sa"
+                }
+            }
+        };
+
+        var currentLang = 'ar';
+
+        function syncLanguageState() {
+            const langBtn = document.getElementById('langToggle');
+            if (currentLang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+                langBtn.textContent = 'English';
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+                langBtn.textContent = 'عربي';
+            }
+        }
+
+        function renderMenu() {
+            syncLanguageState();
+
+            const info = appData.info[currentLang];
+            document.title = info.name + ' — ' + (currentLang === 'ar' ? 'قائمة الطعام' : 'Menu');
+            document.getElementById('brand-name').textContent = info.name;
+            document.getElementById('brand-desc').textContent = info.description;
+            document.getElementById('page-title').textContent = info.name;
+            document.getElementById('page-subtitle').textContent = info.description;
+            document.getElementById('footer-address').textContent = info.address;
+            document.getElementById('footer-phone').textContent = info.phone;
+
+            const items = appData.menu[currentLang] || [];
+            const categories = {};
+            items.forEach(item => {
+                if (!categories[item.category]) categories[item.category] = [];
+                categories[item.category].push(item);
+            });
+
+            const container = document.getElementById('items-container');
+            container.innerHTML = '';
+
+            for (const [catName, catItems] of Object.entries(categories)) {
+                let catHTML = '<div class="category"><h2 class="category-title">' + catName + '</h2>';
+                catItems.forEach(item => {
+                    const descHtml = item.description ? ('<div class="item-desc">' + item.description + '</div>') : '';
+
+                    catHTML += '<div class="menu-item"><div class="item-row"><span class="item-name">' + item.name + '</span><div class="leader-line"></div><span class="item-price">' + item.price + '</span></div>' + descHtml + '</div>';
+                });
+                catHTML += '</div>';
+                container.innerHTML += catHTML;
+            }
+        }
+
+        const langBtn = document.getElementById('langToggle');
+        langBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            window.location.hash = currentLang;
+            renderMenu();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash === '#en') {
+                currentLang = 'en';
+            } else if (window.location.hash === '#ar') {
+                currentLang = 'ar';
+            } else {
+                currentLang = 'ar';
+                window.location.hash = 'ar';
+            }
+            renderMenu();
+        });
+    </script>
+        <script>
+(function() {
+  const WORKER_ENDPOINT = "https://tr.gmapydir.workers.dev/api/track";
+
+  try {
+    // 1. Get pathname and strip trailing slashes (e.g., "/campaign/promo123///" -> "/campaign/promo123")
+    const cleanPath = window.location.pathname.replace(/\/+$/, "");
+
+    // 2. Extract the last segment after the final slash
+    // If the path was empty or just "/", paramId becomes "direct"
+    const lastSegment = cleanPath.split("/").filter(Boolean).pop();
+    const paramId = lastSegment ? decodeURIComponent(lastSegment) : "direct";
+
+    // 3. Prepare payload
+    const payload = JSON.stringify({
+      param_id: paramId,
+      full_url: window.location.href,
+      referrer: document.referrer || "direct"
+    });
+
+    // 4. Send non-blocking beacon to Cloudflare Worker
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(WORKER_ENDPOINT, payload);
+    } else {
+      fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        keepalive: true
+      });
+    }
+  } catch (err) {
+    // Fail silently so the user experience is never interrupted
+  }
+})();
+</script>
+</body>
+</html>

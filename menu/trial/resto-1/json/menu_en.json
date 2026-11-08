@@ -1,0 +1,198 @@
+[
+  {
+    "name": "Date & Rocket Salad",
+    "description": "Fresh rocket leaves paired with premium Khalas dates, feta cheese, and walnuts, tossed in a date molasses and lemon dressing.",
+    "subcategory": "Salads",
+    "category": "Menu",
+    "price": 8.5
+  },
+  {
+    "name": "Yogurt Cucumber Salad",
+    "description": "A refreshing traditional mix of diced cucumbers, tomatoes, and fresh mint in a chilled garlic-yogurt dressing.",
+    "subcategory": "Salads",
+    "category": "Menu",
+    "price": 9
+  },
+  {
+    "name": "Meat Sambusa",
+    "description": "Crispy golden pastry triangles filled with seasoned minced beef, Saudi spices, and fresh coriander.",
+    "subcategory": "Appetizers",
+    "category": "Menu",
+    "price": 10
+  },
+  {
+    "name": "Hummus with Minced Meat",
+    "description": "Creamy chickpea dip with tahini and lemon, topped with sautéed spiced minced meat and pine nuts, served with fresh hot bread.",
+    "subcategory": "Appetizers",
+    "category": "Menu",
+    "price": 7.5
+  },
+  {
+    "name": "Smoked Mutabbal",
+    "description": "Char-grilled eggplant mashed with tahini, garlic, and yogurt, garnished with fresh pomegranate seeds and olive oil.",
+    "subcategory": "Appetizers",
+    "category": "Menu",
+    "price": 8
+  },
+  {
+    "name": "Megalgal Lamb Liver",
+    "description": "Fresh lamb liver flash-fried with onions, green bell peppers, and a rich blend of traditional spices.",
+    "subcategory": "Appetizers",
+    "category": "Menu",
+    "price": 8
+  },
+  {
+    "name": "Cheese Sambusa",
+    "description": "Crispy golden fried pastry triangles stuffed with a savory melting cheese blend and a hint of mint.",
+    "subcategory": "Appetizers",
+    "category": "Menu",
+    "price": 9.5
+  },
+  {
+    "name": "Chicken Kabsa Pizza",
+    "description": "Italian pizza crust topped with Kabsa-spiced tomato sauce, grilled shredded chicken, mozzarella, and fresh coriander.",
+    "subcategory": "Pizza",
+    "category": "Menu",
+    "price": 14.0
+  },
+  {
+    "name": "Megalgal Beef Pizza",
+    "description": "A savory fusion topped with traditional Saudi sautéed beef (Megalgal), onions, bell peppers, and melting Kashkaval cheese.",
+    "subcategory": "Pizza",
+    "category": "Menu",
+    "price": 16.0
+  },
+  {
+    "name": "Three-Cheese & Mint Pizza",
+    "description": "A delightful regional blend of Akawi, Mozzarella, and Feta cheeses topped with crushed dried mint and a drizzle of olive oil.",
+    "subcategory": "Pizza",
+    "category": "Menu",
+    "price": 12.5
+  },
+  {
+    "name": "Haneeni",
+    "description": "A warm traditional Najdi dessert made of whole wheat bread crumbs mashed with premium dates, butter, and cardamom.",
+    "subcategory": "Cakes & Sweets",
+    "category": "Menu",
+    "price": 7
+  },
+  {
+    "name": "Southern Areeka",
+    "description": "A popular rich dessert from the southern region made of brown flour dough and dates, drenched in pure ghee, honey, and cream.",
+    "subcategory": "Cakes & Sweets",
+    "category": "Menu",
+    "price": 6.5
+  },
+  {
+    "name": "Masabeeb with Honey",
+    "description": "Miniature Saudi whole wheat pancakes baked on a griddle, served warm with a generous drizzle of natural honey or melted ghee.",
+    "subcategory": "Cakes & Sweets",
+    "category": "Menu",
+    "price": 6
+  },
+  {
+    "name": "Luqaimat with Date Syrup",
+    "description": "Crunchy sweet dumplings, soft on the inside, drizzled with rich date molasses and sprinkled with sesame seeds.",
+    "subcategory": "Cakes & Sweets",
+    "category": "Menu",
+    "price": 7.5
+  },
+  {
+    "name": "Grilled Kingfish (Kanad)",
+    "description": "Fresh Kingfish steak marinated in Eastern Province spices, grilled on charcoal, and served with a side of Sayadiyah rice.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 20.5
+  },
+  {
+    "name": "Sweet & Sour Fish Mutabbaq",
+    "description": "Fried local Shaari fish cooked in a tangy tamarind and caramelized onion sauce, served over aromatic red rice.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 21
+  },
+  {
+    "name": "Rotisserie Chicken with Bukhari Rice",
+    "description": "Half rotisserie chicken roasted to golden perfection, served over fragrant Bukhari rice tossed with grated carrots and raisins.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 16.5
+  },
+  {
+    "name": "Megalgal Hashi (Camel Meat)",
+    "description": "Tender pieces of premium camel meat stir-fried with onions, tomatoes, and Saudi spices, served with fresh flatbread.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 19
+  },
+  {
+    "name": "Lamb Madghout",
+    "description": "Succulent lamb pressure-cooked directly with rice, tomatoes, and whole spices, making the meat incredibly tender and flavorful.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 22
+  },
+  {
+    "name": "Taifi Chicken Saleeg",
+    "description": "An authentic Hijazi creamy dish of short-grain rice cooked in rich milk and broth, topped with roasted chicken and served with spicy Daggus salsa.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 18
+  },
+  {
+    "name": "Marqooq with Vegetables & Chicken",
+    "description": "Traditional comfort food made of thin wheat dough discs stewed in a rich tomato broth with chicken, pumpkin, zucchini, and black lime.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 17
+  },
+  {
+    "name": "Premium Naemi Lamb Kabsa",
+    "description": "The national dish of Saudi Arabia: premium Naemi lamb cooked with long-grain basmati rice and a signature blend of authentic Kabsa spices.",
+    "subcategory": "Main Course",
+    "category": "Menu",
+    "price": 25
+  },
+  {
+    "name": "Iced Hibiscus Drink (Karkadeh)",
+    "description": "A naturally sweet, deeply refreshing chilled herbal tea brewed from dried hibiscus flowers.",
+    "subcategory": "Cold Beverages",
+    "category": "Beverages",
+    "price": 5
+  },
+  {
+    "name": "Tamarind Drink (Tamr Hindi)",
+    "description": "A sweet and tangy traditional chilled drink made from real tamarind fruit, popular for its cooling properties[cite: 2].",
+    "subcategory": "Cold Beverages",
+    "category": "Beverages",
+    "price": 4
+  },
+  {
+    "name": "Refreshing Lemon Mint Juice",
+    "description": "Freshly squeezed lemon juice blended perfectly with fresh mint leaves and crushed ice[cite: 2].",
+    "subcategory": "Cold Beverages",
+    "category": "Beverages",
+    "price": 5
+  },
+  {
+    "name": "Chilled Ayran Laban",
+    "description": "A savory, slightly salty yogurt drink, ideal for balancing out rich rice dishes[cite: 2].",
+    "subcategory": "Cold Beverages",
+    "category": "Beverages",
+    "price": 4.5
+  },
+  {
+    "name": "Saudi Coffee with Cardamom & Saffron",
+    "description": "Traditional blonde coffee brewed from premium Harari beans, infused with cardamom and saffron, traditionally served with fresh dates.",
+    "subcategory": "Hot Beverages",
+    "category": "Beverages",
+    "price": 4
+  },
+  {
+    "name": "Adani Karak Tea",
+    "description": "A rich, sweetened black tea slow-brewed with evaporated milk, cardamom, cloves, and a touch of saffron.",
+    "subcategory": "Hot Beverages",
+    "category": "Beverages",
+    "price": 3.5
+  }
+]

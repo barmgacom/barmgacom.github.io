@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+
+<head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    
+    <!-- Google Web Fonts for both Arabic and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&family=Open+Sans:wght@400;600&family=Playball&family=Gabriela&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Dynamic Font Switching based on language attribute */
+        html[lang="ar"] body, html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4, html[lang="ar"] p {
+            font-family: 'El Messiri', sans-serif !important; 
+        }
+        html[lang="ar"] h4:not(.text-primary){direction:rtl !important; text-align:right !important;}
+        html[lang="en"] body, html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3, html[lang="en"] h4, html[lang="en"] p {
+            font-family: 'Gabriela', sans-serif !important;
+        }
+
+        @media (min-width: 500px){
+            .fixsize {font-size: 120% !important;}
+        }
+        @media (max-width: 500px){
+            .fixsize {font-size: 105% !important;}
+        }
+        
+        h4, p { font-size: 98% !important; }
+        .rounded-pill.active { box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); }
+        
+        h3 {
+            font-weight: bolder !important; 
+            margin-top: 60px; 
+            margin-bottom: 50px; 
+            color: rgb(136, 89, 33) !important;
+            text-shadow: 2px 2px 5px rgba(224, 206, 179, 0.8); 
+            text-align: center; 
+        }
+        
+        html[lang="ar"] p { text-align: right !important; }
+        html[lang="en"] p { text-align: left !important; }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #spinner { z-index: 9999; }
+
+        /* Styles for the footer */
+        .new-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: 4rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
+        }
+        .new-footer .container {
+            max-width: 72rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.875rem;
+            user-select: none;
+        }
+        .new-footer #contact-info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #495057;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .new-footer #contact-info-container {
+                flex-direction: row;
+                gap: 2rem;
+                margin-bottom: 0;
+            }
+        }
+        .new-footer #email-info,
+        .new-footer #phone-info,
+        .new-footer #address-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Flips the gap direction for LTR (English) */
+        html[lang="en"] .new-footer #contact-info-container { direction: ltr; }
+        html[lang="ar"] .new-footer #contact-info-container { direction: rtl; }
+
+        .new-footer #contact-info-divider {
+            margin-bottom: 1rem;
+            border-top: 1px solid #e9ecef; 
+        }
+        .new-footer .bi { color: #ffb524; }
+
+        #error-section {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; 
+            text-align: center;
+            background-color: #f8f9fa; 
+            color: #343a40; 
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        #error-section h2 { color: #dc3545; margin-bottom: 1rem; font-size: 2em; }
+        #error-section p { font-size: 1.2em; line-height: 1.5; margin-bottom: 1.5rem; }
+        #error-section a { color: #007bff; text-decoration: underline; font-weight: bold; }
+        #error-section a:hover { color: #0056b3; }
+        /* Ensure subcategory buttons have a minimum width and better horizontal padding on desktop */
+@media (min-width: 768px) {
+    .tab-class .nav-pills .nav-item a {
+        min-width: 140px; /* Adjust this value to your preferred minimum width */
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Home Section -->
+    <div id="home-section">
+        <!-- Navigation -->
+        <nav class="navbar navbar-light bg-light mb-5" id="nav-bar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" onclick="resetMenu(); return false;">
+                    <img src="images/logo.png" alt="Restaurant Logo" height="100">
+                </a>
+                
+                <!-- Single Language Toggle Button -->
+                <button id="lang-toggle-btn" class="btn btn-outline-primary langbtn" style="margin-left: 30px !important; margin-right: 30px !important;">
+                    English <i class="bi bi-arrow-left"></i> 
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Start -->
+        <div class="container-fluid bg-light">
+            <div class="container">
+                <div class="row g-5 align-items-center justify-content-center">
+                    <div class="col-lg-7 col-md-12">
+                        <small class="welcomeclass d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-4 animated bounceInDown">
+                            <span id="hero-welcome-text">مرحبا بك في</span> <span class="text-primary restoName"></span>
+                        </small>
+                        <h1 class="display-3 mb-4 animated bounceInDown" style="font-weight: 600 !important;">
+                            <span id="hero-title-prefix">أشهى أصناف</span> <span class="text-primary" id="restaurant-name"></span>
+                        </h1>
+                        <p id="restaurant-description" class="mb-4 animated bounceInDown fixsize"></p>
+                        <div class="d-flex flex-wrap align-items-center button-group" id="hero-category-buttons">
+                            <!-- Category buttons injected by JS -->
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12 mb-5">
+                        <img src="images/main.png" style="max-height: 500px; width: auto;" class="img-fluid rounded animated zoomIn" alt="Main Restaurant Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+    </div>
+
+    <!-- Menu Section -->
+    <div id="menu-section">
+        <div class="container-fluid menu py-5">
+            <div class="container wow bounceInUp">
+                <div class="text-center" data-wow-delay="0.1s">
+                    <small id="menu-subtitle" class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">الأصناف</small>
+                    <h1 id="menu-title" class="display-5 mb-5 text-primary">القائمة الكاملة</h1>
+                </div>
+                <div class="tab-class text-center">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-3 p-0" data-wow-delay="0.1s">
+                        <!-- Subcategory scroll buttons injected here -->
+                    </ul>
+                    <div id="menu-content-area">
+                        <!-- Menu items injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+        <h3>Failed to load this page.</h3>
+        <p>Verify your internet connection. <a style="color: #35404a;" href="javascript:location.reload();">Click here to refresh the page</a></p>
+    </div>
+
+    <!-- New Footer -->
+    <footer class="new-footer" dir="ltr">
+        <div class="container">
+            <div id="contact-info-container">
+                <div id="email-info" class="flex items-center space-x-2">
+                    <i class="bi bi-envelope-fill text-primary"></i>
+                    <span id="email-info-span"></span>
+                </div>
+                <div id="phone-info" class="flex items-center space-x-2">
+                    <i class="bi bi-telephone-fill text-primary"></i>
+                    <span id="phone-info-span" dir="ltr"></span>
+                </div>
+                <div id="address-info" class="flex items-center space-x-2">
+                    <i class="bi bi-geo-alt-fill text-primary"></i>
+                    <span id="address-info-span"></span>
+                </div>
+            </div>
+            <hr id="contact-info-divider" style="color: #6c757d;">
+            &copy; <span id="current-year">2025</span> <span id="site-title-footer"></span>. <span id="footer-rights">جميع الحقوق محفوظة.</span>
+        </div>
+    </footer>
+
+    <!-- Back to Top button -->
+    <a href="#" onclick="window.scrollTo(0, 0); return false;" class="btn btn-md-square btn-primary rounded-circle back-to-topx" style="display: none;"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- MAIN DATA & LOGIC -->
+    <script>
+        // ==========================================
+        // 1. DATA DICTIONARIES 
+        // ==========================================
+        const appData = {
+            info: {
+                ar: {
+                    name: "مطعم النخيل",
+                    description: "تراث طهي أصيل يرتقي إلى الكمال المعاصر. اختبر النكهات النجدية التقليدية الفاخرة بأسلوب عصري فريد.",
+                    keywords: "مطعم, مأكولات, طعام, النخيل, الرياض",
+                    email: "info@alnakheel.sa",
+                    phone: "+966 11 456 7890",
+                    address: "طريق الملك عبدالعزيز، حي الملقا، الرياض",
+                    
+                    // Static UI Translations
+                    heroWelcome: "مرحبا بك في",
+                    heroTitle: "أشهى أصناف",
+                    menuSubtitle: "الأصناف",
+                    menuTitle: "القائمة الكاملة",
+                    footerRights: "جميع الحقوق محفوظة."
+                },
+                en: {
+                    name: "Al-Nakheel",
+                    description: "An authentic culinary heritage elevated to modern perfection. Experience elite traditional Najdi flavors combined with contemporary style.",
+                    keywords: "restaurant, food, meals, Al-Nakheel, Riyadh",
+                    email: "info@alnakheel.sa",
+                    phone: "+966 11 456 7890",
+                    address: "King Abdulaziz Road, Al Malqa District, Riyadh",
+
+                    // Static UI Translations
+                    heroWelcome: "Welcome to",
+                    heroTitle: "Most Delicious Meals At",
+                    menuSubtitle: "Our Menu",
+                    menuTitle: "Full Menu",
+                    footerRights: "All rights reserved."
+                }
+            },
+menu: {
+                ar: [
+                    // Category 1: المأكولات (Food)
+                    { category: "المأكولات", subcategory: "المقبلات", name: "بطاطس ودجز بالأعشاب", price: "24", description: "أصابع بطاطس متبلة بإكليل الجبل والثوم المشوي مع صوص الرانش.", calories: 320, image: "image1.jpg" },
+                    { category: "المأكولات", subcategory: "المقبلات", name: "أصابع الموزاريلا الفاخرة", price: "29", description: "جبنة موزاريلا ذائبة تقدم ساخنة مع صوص المارينارا الإيطالي.", calories: 410, image: "image2.jpg" },
+                    { category: "المأكولات", subcategory: "المقبلات", name: "أجنحة الدجاج (بافلو)", price: "36", description: "أجنحة دجاج مقلية مغطاة بصوص البافلو المدخن والزبدة النقية.", calories: 490, image: "image3.jpg" },
+                    { category: "المأكولات", subcategory: "المقبلات", name: "سلطة الكينوا والأفوكادو", price: "32", description: "كينوا عضوية مع مكعبات الأفوكادو والرمان وزيت الزيتون والليمون.", calories: 240, image: "image4.jpg" },
+
+                    { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا بيبروني كلاسيك", price: "54", description: "عجينة إيطالية مخمرة مغطاة بشرائح البيبروني البقري والموزاريلا.", calories: 860, image: "image5.jpg" },
+                    { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا الدجاج والباربكيو", price: "58", description: "صدور دجاج مشوية مع البصل المكرمل وصوص الشواء المدخن.", calories: 910, image: "image6.jpg" },
+                    { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا تروفل فونغي الفاخرة", price: "68", description: "صلصة الكريمة والكمأة مع تشكيلة من المشروم الطازج وزيت الزيتون.", calories: 890, image: "image7.jpg" },
+                    { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا الخضار المشوية", price: "49", description: "خضار موسمية مشوية مع صوص البيستو الإيطالي الطازج والريحان.", calories: 720, image: "image8.jpg" },
+
+                    { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "ستيك تندرلوين المشوي", price: "110", description: "شريحة لحم بقري طرية تقدم مع البطاطس المهروسة وصلصة الفلفل الأسود.", calories: 690, image: "image9.jpg" },
+                    { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "دجاج كوردون بلو الذهبي", price: "64", description: "صدر دجاج محشو بشرائح الرومي المدخن وجبن الإيمنتال السائل ومقلي بامتياز.", calories: 750, image: "image10.jpg" },
+                    { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "سلمون نرويجي محمر", price: "89", description: "سلمون طازج مشوي بجلد مقرمش مع صوص الزبدة والليمون والشبت.", calories: 590, image: "image11.jpg" },
+                    { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "ريزوتو الروبيان بالزعفران", price: "78", description: "أرز أربوريو مطهو بمرق الروبيان الغني وخيوط الزعفران الأصلي والزبدة.", calories: 630, image: "image12.jpg" },
+
+                    { category: "المأكولات", subcategory: "الحلويات", name: "كوكيز الشوكولاتة البلجيكية", price: "28", description: "كوكيز مخبوز فوراً عند الطلب محشو بقطع الشوكولاتة الداكنة السائلة.", calories: 410, image: "image17.jpg" },
+                    { category: "المأكولات", subcategory: "الحلويات", name: "مولتن كيك الشوكولاتة", price: "36", description: "كيكة الشوكولاتة الداكنة بقلب سائل دافئ يعلوها رشة كاكاو خام.", calories: 560, image: "image18.jpg" },
+                    { category: "المأكولات", subcategory: "الحلويات", name: "كيكة التمر بالكراميل", price: "34", description: "كيكة التمر السكري الدافئة تقدم مع آيس كريم الفانيليا وصلصة الكراميل.", calories: 490, image: "image19.jpg" },
+                    { category: "المأكولات", subcategory: "الحلويات", name: "تشيز كيك الفستق المحمص", price: "39", description: "طبقات من البسكويت مع كريمة الجبن المخملية بزبدة الفستق الحلبي الخالصة.", calories: 520, image: "image20.jpg" },
+
+                    // Category 2: المشروبات (Beverages)
+                    { category: "المشروبات", subcategory: "المشروبات", name: "موهيتو الباشن فروت", price: "24", description: "فاكهة الباشن الطبيعية مع أوراق النعناع وشرائح الليمون والمياه الفوارة.", calories: 140, image: "image13.jpg" },
+                    { category: "المشروبات", subcategory: "المشروبات", name: "عصير برتقال وجزر", price: "20", description: "عصير طازج معصور على البارد عند الطلب بدون إضافة سكر.", calories: 115, image: "image14.jpg" },
+                    { category: "المشروبات", subcategory: "المشروبات", name: "آيس تي الخوخ والتوت", price: "22", description: "شاي أسود مثلج مع مستخلص الخوخ الطبيعي وحبات التوت البري.", calories: 95, image: "image15.jpg" },
+                    { category: "المشروبات", subcategory: "المشروبات", name: "ليموناضة اللافندر", price: "25", description: "عصير ليمون طازج مع سيرب زهور اللافندر المعطرة والثلج.", calories: 120, image: "image16.jpg" }
+                ],
+                en: [
+                    // Category 1: Food
+                    { category: "Food", subcategory: "Appetizers", name: "Herbed Potato Wedges", price: "24", description: "Crispy potato wedges seasoned with rosemary and roasted garlic, served with ranch dip.", calories: 320, image: "image1.jpg" },
+                    { category: "Food", subcategory: "Appetizers", name: "Mozzarella Sticks", price: "29", description: "Crispy coated melted mozzarella sticks served hot with Italian marinara sauce.", calories: 410, image: "image2.jpg" },
+                    { category: "Food", subcategory: "Appetizers", name: "Buffalo Chicken Wings", price: "36", description: "Crisp fried chicken wings tossed in smoked buffalo sauce and pure butter.", calories: 490, image: "image3.jpg" },
+                    { category: "Food", subcategory: "Appetizers", name: "Quinoa Avocado Salad", price: "32", description: "Organic quinoa with diced avocado, pomegranate seeds, olive oil, and lemon dressing.", calories: 240, image: "image4.jpg" },
+
+                    { category: "Food", subcategory: "Artisan Pizzas", name: "Classic Beef Pepperoni", price: "54", description: "Slow-fermented dough topped with beef pepperoni slices and shredded mozzarella.", calories: 860, image: "image5.jpg" },
+                    { category: "Food", subcategory: "Artisan Pizzas", name: "BBQ Smoked Chicken Pizza", price: "58", description: "Grilled chicken breast, caramelized red onions, smoked barbecue sauce, and mozzarella.", calories: 910, image: "image6.jpg" },
+                    { category: "Food", subcategory: "Artisan Pizzas", name: "Truffle Funghi Pizza", price: "68", description: "Creamy truffle sauce with wild mushroom medley and cold-pressed extra virgin olive oil.", calories: 890, image: "image7.jpg" },
+                    { category: "Food", subcategory: "Artisan Pizzas", name: "Roasted Veggie & Pesto Pizza", price: "49", description: "Wood-fired seasonal vegetables with fresh basil pesto sauce and Kalamata olives.", calories: 720, image: "image8.jpg" },
+
+                    { category: "Food", subcategory: "Signature Mains", name: "Grilled Tenderloin Steak", price: "110", description: "Tender Angus beef steak served with creamy mashed potatoes and black pepper sauce.", calories: 690, image: "image9.jpg" },
+                    { category: "Food", subcategory: "Signature Mains", name: "Golden Cordon Bleu", price: "64", description: "Crisp chicken breast rolled with smoked turkey and melted Emmental cheese.", calories: 750, image: "image10.jpg" },
+                    { category: "Food", subcategory: "Signature Mains", name: "Pan-Seared Norwegian Salmon", price: "89", description: "Crispy skin salmon filet with velvety lemon-butter dill sauce and seasoned basmati rice.", calories: 590, image: "image11.jpg" },
+                    { category: "Food", subcategory: "Signature Mains", name: "Saffron Shrimp Risotto", price: "78", description: "Arborio rice simmered in rich shrimp reduction, pure saffron threads, and aged parmesan.", calories: 630, image: "image12.jpg" },
+
+                    { category: "Food", subcategory: "Sweets", name: "Belgian Chocolate Cookies", price: "28", description: "Freshly baked warm cookies loaded with melting 70% dark Belgian chocolate.", calories: 410, image: "image17.jpg" },
+                    { category: "Food", subcategory: "Sweets", name: "Molten Lava Cake", price: "36", description: "Warm dark chocolate cake with a molten center, dusted with raw cocoa powder.", calories: 560, image: "image18.jpg" },
+                    { category: "Food", subcategory: "Sweets", name: "Salted Caramel Date Cake", price: "34", description: "Warm date cake served with rich salted caramel sauce and vanilla bean ice cream.", calories: 490, image: "image19.jpg" },
+                    { category: "Food", subcategory: "Sweets", name: "Roasted Pistachio Cheesecake", price: "39", description: "Crunchy biscuit crust topped with silky cream cheese and pure pistachio butter.", calories: 520, image: "image20.jpg" },
+
+                    // Category 2: Beverages
+                    { category: "Beverages", subcategory: "Beverages", name: "Passion Fruit Mojito", price: "24", description: "Natural passion fruit pulp, fresh mint leaves, lime slices, and sparkling soda.", calories: 140, image: "image13.jpg" },
+                    { category: "Beverages", subcategory: "Beverages", name: "Fresh Orange Carrot Juice", price: "20", description: "Cold-pressed daily without added sugar or preservatives.", calories: 115, image: "image14.jpg" },
+                    { category: "Beverages", subcategory: "Beverages", name: "Peach Berry Iced Tea", price: "22", description: "Chilled Ceylon black tea with natural peach essence and fresh blueberries.", calories: 95, image: "image15.jpg" },
+                    { category: "Beverages", subcategory: "Beverages", name: "Iced Lavender Lemonade", price: "25", description: "Fresh squeezed lemonade infused with aromatic floral lavender syrup.", calories: 120, image: "image16.jpg" }
+                ]
+            }  
+        };
+
+        // ==========================================
+        // 2. GLOBAL VARIABLES & STATE
+        // ==========================================
+        let currentLang = 'ar'; // Default language
+        let allMenuData = [];
+        let restaurantInfo = {};
+
+        function capitalizeWords(str) {
+            return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+
+        // ==========================================
+        // 3. UI RENDERING & LANGUAGE SWITCHING
+        // ==========================================
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Assign localized data
+            restaurantInfo = appData.info[currentLang];
+            allMenuData = appData.menu[currentLang];
+
+            // 1. Update HTML attributes
+            const root = document.getElementById('html-root');
+            root.setAttribute('lang', currentLang);
+            root.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            
+            // Adjust Navbar direction dynamically
+            document.getElementById('nav-bar').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+            // 2. Update toggle button UI
+            const langBtn = document.getElementById('lang-toggle-btn');
+            if (currentLang === 'ar') {
+                langBtn.innerHTML = 'English <i class="bi bi-arrow-left"></i>';
+            } else {
+                langBtn.innerHTML = '<i class="bi bi-arrow-left"></i> العربية';
+            }
+
+            // 3. Update Meta & Document Title
+            document.querySelector('head title').textContent = restaurantInfo.name;
+            document.querySelector('meta[name="keywords"]').setAttribute('content', restaurantInfo.keywords);
+            document.querySelector('meta[name="description"]').setAttribute('content', restaurantInfo.description);
+
+            // 4. Update Static Text Elements
+            document.getElementById('hero-welcome-text').textContent = restaurantInfo.heroWelcome;
+            document.getElementById('hero-title-prefix').textContent = restaurantInfo.heroTitle;
+            document.getElementById('menu-subtitle').textContent = restaurantInfo.menuSubtitle;
+            document.getElementById('menu-title').textContent = restaurantInfo.menuTitle;
+            document.getElementById('footer-rights').textContent = restaurantInfo.footerRights;
+
+            // 5. Update Dynamic Restaurant Info
+            document.getElementById('restaurant-name').textContent = restaurantInfo.name;
+            document.querySelector('.welcomeclass .restoName').textContent = restaurantInfo.name;
+            
+            const descEl = document.getElementById('restaurant-description');
+            if (restaurantInfo.description) {
+                descEl.textContent = restaurantInfo.description;
+                descEl.style.display = 'block';
+            } else {
+                descEl.style.display = 'none';
+            }
+
+            // Update Contact Info
+            const elements = ['email', 'phone', 'address'];
+            elements.forEach(type => {
+                const span = document.getElementById(`${type}-info-span`);
+                const div = document.getElementById(`${type}-info`);
+                if (restaurantInfo[type]) {
+                    span.textContent = restaurantInfo[type];
+                    div.style.display = 'flex';
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+
+            document.getElementById('site-title-footer').textContent = restaurantInfo.name;
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 6. Re-render Menu Components
+            generateHeroButtons();
+            
+            // Re-render menu content with full menu on language switch to be clean
+            renderContent(allMenuData, 'menu-section', null);
+        }
+
+        document.getElementById('lang-toggle-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            window.location.hash = newLang; // Keep track in URL
+            setLanguage(newLang);
+        });
+
+        // ==========================================
+        // 4. MENU LOGIC & RENDERERS
+        // ==========================================
+        function generateHeroButtons() {
+            const container = document.getElementById('hero-category-buttons');
+            container.innerHTML = ''; 
+
+            const uniqueCategories = new Set();
+            allMenuData.forEach(item => {
+                if (item.category) uniqueCategories.add(item.category);
+            });
+
+            // Adjust animation direction based on language
+            const animationClass = currentLang === 'ar' ? 'bounceInRight' : 'bounceInLeft';
+            const marginClass = currentLang === 'ar' ? 'ms-2' : 'me-2';
+
+            // Create dynamic Category Buttons 
+            uniqueCategories.forEach(category => {
+                const button = document.createElement('a');
+                button.href = '#';
+                
+                button.className = `shadow btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated ${animationClass} custom-btn ${marginClass} mb-2 category-hero-btn`;
+                button.style.minWidth = '150px';
+                button.style.animationDuration = '0.4s';
+                button.textContent = category; 
+                button.onclick = (e) => {
+                    e.preventDefault();
+                    
+                    // Mark as active
+                    document.querySelectorAll('.category-hero-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    renderContent(allMenuData, 'menu-section', category);
+                    document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
+                };
+                container.appendChild(button);
+            });
+        }
+
+        function resetMenu() {
+            document.querySelectorAll('.category-hero-btn').forEach(btn => btn.classList.remove('active'));
+            renderContent(allMenuData, 'menu-section', null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        //(function(){if(window['\x6c\x6f\x63\x61\x74\x69\x6f\x6e']['\x68\x6f\x73\x74\x6e\x61\x6d\x65']!==window['\x61\x74\x6f\x62']('d2ViLmFzd2VxLmNvbQ==')){window['\x6c\x6f\x63\x61\x74\x69\x6f\x6e']['\x68\x72\x65\x66']='https://barmga.com';}})();
+
+        function renderContent(itemsData, targetSectionId, filterCategory = null) {
+            const tabList = document.querySelector(`#${targetSectionId} .nav.nav-pills`);
+            const menuContentArea = document.querySelector(`#${targetSectionId} #menu-content-area`);
+
+            tabList.innerHTML = ""; 
+            menuContentArea.innerHTML = ""; 
+
+            // Step 1: Filter by Category (Hero button click)
+            let itemsToRender = itemsData;
+            if (filterCategory) {
+                itemsToRender = itemsData.filter(item => item.category === filterCategory);
+                document.getElementById('menu-title').textContent = filterCategory; // Update title to reflect category
+            } else {
+                document.getElementById('menu-title').textContent = restaurantInfo.menuTitle;
+            }
+
+            // Step 2: Group by Subcategory
+            const subcategoryMap = {};
+            itemsToRender.forEach(item => {
+                const subcategory = item.subcategory ? item.subcategory : (item.category ? item.category : "General");
+                if (!subcategoryMap[subcategory]) subcategoryMap[subcategory] = [];
+                subcategoryMap[subcategory].push(item);
+            });
+
+            const sortedSubcategoryNames = Object.keys(subcategoryMap);
+
+            // Render Subcategory Tabs (Automatically flows RTL in Arabic because dir="ltr" was removed)
+            sortedSubcategoryNames.forEach(subcategoryName => {
+                const subcategoryHeaderId = `subcat-${targetSectionId}-${subcategoryName.replace(/\s+/g, '-').toLowerCase()}`;
+
+                const li = document.createElement("li");
+                
+                // FIX: Check if there is only one subcategory to prevent the button from collapsing
+                const mobileClass = sortedSubcategoryNames.length === 1 ? "nav-item p-1" : "nav-item p-1 col-6";
+                li.className = window.innerWidth < 760 ? mobileClass : "nav-item p-2";
+                
+                li.innerHTML = `
+                    <a class="w-100 justify-content-center d-flex py-2 px-2 border border-primary bg-white rounded-pill" style="white-space: nowrap;" href="#${subcategoryHeaderId}">
+                        <span class="text-dark">${currentLang === 'en' ? capitalizeWords(subcategoryName) : subcategoryName}</span>
+                    </a>
+                `;
+                li.querySelector('a').onclick = (e) => {
+                    e.preventDefault();
+                    document.getElementById(subcategoryHeaderId)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    document.querySelectorAll(`#${targetSectionId} .nav-pills a`).forEach(btn => btn.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                };
+                tabList.appendChild(li);
+            });
+
+            // Render Subcategory Sections and Items
+            sortedSubcategoryNames.forEach(subcategoryName => {
+                const subcategoryHeaderId = `subcat-${targetSectionId}-${subcategoryName.replace(/\s+/g, '-').toLowerCase()}`;
+                
+                const subcategoryHeader = document.createElement("h3");
+                subcategoryHeader.id = subcategoryHeaderId;
+                subcategoryHeader.textContent = currentLang === 'en' ? capitalizeWords(subcategoryName) : subcategoryName; 
+                menuContentArea.appendChild(subcategoryHeader);
+
+                const row = document.createElement("div");
+                row.className = "row g-4";
+
+                subcategoryMap[subcategoryName].forEach(item => {
+                    const name = currentLang === 'en' ? capitalizeWords(item.name || "") : (item.name || "");
+                    const price = item.price || "";
+                    const desc = item.description || "";
+                    let calories = item.calories ? item.calories + (currentLang === 'en' ? " calories." : " سعرة.") : "";
+                    const imagePath = item.image ? (item.image.startsWith('http') || item.image.includes('images/') ? item.image : `images/${item.image}`) : `images/default.png`;
+                    const paddingClass = currentLang === 'ar' ? 'pe-4' : 'ps-4';
+
+                    let descText = [desc, calories].filter(Boolean).join("<br>");
+
+                    row.innerHTML += `
+                        <div class="col-lg-6">
+                            <div class="menu-item d-flex align-items-center">
+                                <img class="flex-shrink-0 img-fluid rounded-circle" src="${imagePath}" onerror="this.onerror=null;this.src='images/default.png';" alt="${name}" style="height: 100px; width: 100px; object-fit: cover;">
+                                <div class="w-100 d-flex flex-column text-start ${paddingClass}">
+                                    <div class="d-flex justify-content-between border-bottom border-primary pb-2 mb-2">
+                                        <h4>${name}</h4>
+                                        <h4 class="text-primary">${price}</h4>
+                                    </div>
+                                    <p class="mb-0">${descText}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                menuContentArea.appendChild(row);
+            });
+
+            if (sortedSubcategoryNames.length > 0) {
+                tabList.querySelector('a')?.classList.add('active');
+            }
+        }
+
+        // ==========================================
+        // 5. SCROLL & INITIALIZATION
+        // ==========================================
+        function heightsec() {
+            const homeSection = document.getElementById('home-section');
+            return homeSection ? homeSection.offsetHeight : 300;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Check hash in URL to set initial language
+            if (window.location.hash === '#ar') {
+                currentLang = 'ar';
+            } else if (window.location.hash === '#en') {
+                currentLang = 'en';
+            } else {
+                window.location.hash = currentLang;
+            }
+
+            // Initialize App
+            setLanguage(currentLang);
+            // On page load, immediately render the full menu
+            renderContent(allMenuData, 'menu-section', null);
+
+            // Hide spinner
+            const spinner = document.getElementById('spinner');
+            if (spinner) {
+                setTimeout(() => {
+                    spinner.classList.remove('show');
+                    spinner.style.display = 'none';
+                }, 500);
+            }
+
+            // Back to top button logic
+            const backToTopButton = document.querySelector('.back-to-topx');
+            window.addEventListener('scroll', () => {
+                backToTopButton.style.display = window.scrollY > heightsec() ? 'flex' : 'none';
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+         window.addEventListener('error', function(e) {
+    if (e.target && e.target.tagName === 'IMG') {
+      const img = e.target;
+      if (!img.src.endsWith('images/default.png')) {
+        img.src = 'images/default.png';
+      }
+    }
+  }, true);
+    </script>
+    <script>
+(function() {
+  const WORKER_ENDPOINT = "https://tr.gmapydir.workers.dev/api/track";
+
+  try {
+    // 1. Get pathname and strip trailing slashes (e.g., "/campaign/promo123///" -> "/campaign/promo123")
+    const cleanPath = window.location.pathname.replace(/\/+$/, "");
+
+    // 2. Extract the last segment after the final slash
+    // If the path was empty or just "/", paramId becomes "direct"
+    const lastSegment = cleanPath.split("/").filter(Boolean).pop();
+    const paramId = lastSegment ? decodeURIComponent(lastSegment) : "direct";
+
+    // 3. Prepare payload
+    const payload = JSON.stringify({
+      param_id: paramId,
+      full_url: window.location.href,
+      referrer: document.referrer || "direct"
+    });
+
+    // 4. Send non-blocking beacon to Cloudflare Worker
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(WORKER_ENDPOINT, payload);
+    } else {
+      fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        keepalive: true
+      });
+    }
+  } catch (err) {
+    // Fail silently so the user experience is never interrupted
+  }
+})();
+</script>
+</body>
+</html>

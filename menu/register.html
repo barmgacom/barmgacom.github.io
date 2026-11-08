@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create New Account | Barmga</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<script src="js/vault.js"></script>
+<style>
+  :root {
+    --bg: #F8F9FA;
+    --surface: #FFFFFF;
+    --primary: #2780B7;
+    --primary-dark: #1E6A9A;
+    --primary-light: #EBF3F8;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --danger: #D6534B;
+    --danger-light: #FBEAE8;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+  html[lang="ar"],
+  html[lang="ar"] body,
+  html[lang="ar"] *,
+  body[dir="rtl"],
+  body[dir="rtl"] * {
+    font-family: 'Cairo', sans-serif !important;
+  }
+  .input-field {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 16px;
+    width: 100%;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: #fff;
+  }
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3.5px rgba(39, 128, 183, 0.15);
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px -2px rgba(39, 128, 183, 0.35);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .card-shadow {
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 12px 32px -4px rgba(15, 23, 42, 0.04);
+  }
+  html[lang="ar"] #password, html[lang="ar"] #password_confirm {
+    text-align: right;
+    direction: rtl;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <header class="w-full bg-white border-b border-[var(--border)] sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="https://barmga.com" class="flex items-center gap-3">
+        <img src="images/logo.png" alt="Logo" class="w-9 h-9 object-contain" onerror="this.style.display='none';">
+        <div>
+          <span class="text-xl font-black text-slate-900 tracking-tight block leading-tight">برمجة</span>
+          <span class="text-[10px] text-blue-600 font-extrabold uppercase tracking-wider block">Smart Menu Platform</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="togglePlatformLanguage()" class="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl font-bold transition text-xs sm:text-sm">
+          <i class="bi bi-globe2 text-base text-[var(--primary)]"></i>
+          <span id="platform-lang-label">عربي</span>
+        </button>
+
+        <a href="login.html" class="hidden sm:inline-flex text-xs sm:text-sm font-bold text-[var(--primary)] bg-[var(--primary-light)] hover:bg-[var(--primary)] hover:text-white px-4 py-2 rounded-xl transition" id="nav-login-btn">
+          Log In
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-4 py-12">
+    <div class="w-full max-w-2xl">
+      <div class="text-center mb-8">
+        <div class="w-14 h-14 bg-[var(--primary-light)] text-[var(--primary)] rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold mb-3 shadow-sm">
+          <i class="bi bi-person-plus"></i>
+        </div>
+        <h1 class="text-2xl font-extrabold text-slate-900" id="reg-title">Create New Account</h1>
+        <p class="text-[var(--text-muted)] text-sm mt-1" id="reg-subtitle">Enter your details to create your account</p>
+      </div>
+
+      <form id="registerForm" class="bg-[var(--surface)] p-6 sm:p-8 rounded-3xl card-shadow border border-[var(--border)] space-y-5">
+        <div class="grid sm:grid-cols-1 gap-5">
+          <div>
+            <label class="block text-xs font-bold mb-2 text-slate-700" id="label-name">Full Name</label>
+            <input type="text" id="name" required class="input-field text-sm" placeholder="John Doe">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs font-bold mb-2 text-slate-700" id="label-email">Email Address</label>
+            <input type="email" id="email" required class="input-field text-sm" placeholder="you@example.com">
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-2 text-slate-700" id="label-phone">Phone Number</label>
+            <input type="tel" id="phone" required class="input-field text-sm" placeholder="+966xxxxxxxxx">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs font-bold mb-2 text-slate-700" id="label-password">Password</label>
+            <div class="relative flex items-center">
+              <input type="password" id="password" required minlength="8" class="input-field text-sm ltr:pr-11 rtl:pl-11" placeholder="At least 8 characters">
+              <button type="button" onclick="togglePasswordVisibility('password', 'eye-pass-icon')" class="absolute ltr:right-3.5 rtl:left-3.5 text-slate-400 hover:text-slate-600 focus:outline-none p-1 text-base">
+                <i class="bi bi-eye" id="eye-pass-icon"></i>
+              </button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold mb-2 text-slate-700" id="label-confirm">Confirm Password</label>
+            <div class="relative flex items-center">
+              <input type="password" id="password_confirm" required minlength="8" class="input-field text-sm ltr:pr-11 rtl:pl-11" placeholder="Retype password">
+              <button type="button" onclick="togglePasswordVisibility('password_confirm', 'eye-confirm-icon')" class="absolute ltr:right-3.5 rtl:left-3.5 text-slate-400 hover:text-slate-600 focus:outline-none p-1 text-base">
+                <i class="bi bi-eye" id="eye-confirm-icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="errorBox" class="hidden text-xs sm:text-sm font-semibold rounded-xl p-3"></div>
+
+        <button type="submit" id="submitBtn" class="btn-primary mt-2 flex items-center justify-center text-sm">Create Account</button>
+
+        <p class="text-center text-xs sm:text-sm text-[var(--text-muted)] pt-2">
+          <span id="text-have-acc">Already have an account?</span> 
+          <a href="login.html" class="text-[var(--primary)] font-bold hover:underline" id="link-login">Log in</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer id="platform-footer" class="w-full bg-[#0f3650] text-white pt-16 pb-8 border-t border-[#2780b7]/20 relative overflow-hidden">
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#2780b7]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#2780b7]/20">
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="images/logo.png" alt="برمجة" class="w-9 h-9 object-contain brightness-0 invert" onerror="this.style.display='none';">
+            <div>
+              <span class="text-xl font-black text-white tracking-tight block">برمجة</span>
+              <span class="text-[10px] text-blue-200/70 font-extrabold uppercase tracking-wider block">Smart Menu Platform</span>
+            </div>
+          </div>
+          <p class="text-sm text-blue-100/75 leading-relaxed max-w-sm font-normal" id="footer-desc">
+            All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider" id="footer-quick-links">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm text-blue-100/70">
+            <li><a href="https://barmga.com" class="hover:text-white transition-colors" id="link-home">Home</a></li>
+            <li><a href="login.html" class="hover:text-white transition-colors" id="link-nav-login">Log In</a></li>
+            <li><a href="dashboard.html" class="hover:text-white transition-colors" id="link-dash">Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider" id="footer-support">Contact & Support</h4>
+          <div class="space-y-3 text-sm text-blue-100/80">
+            <a href="mailto:info@barmga.com" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-envelope"></i>
+              </div>
+              <span class="font-mono">info@barmga.com</span>
+            </a>
+            <a href="https://wa.me/21626373656" target="_blank" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <span dir="ltr" class="font-mono">+216 26 373 656</span>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 pt-2 text-xs text-blue-200/60 font-semibold">
+            <a href="https://barmga.com/menu/terms" class="hover:text-white transition-colors" id="link-terms">Terms of Service</a>
+            <span>•</span>
+            <a href="https://barmga.com/menu/privacy" class="hover:text-white transition-colors" id="link-privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-200/60">
+        <p id="footer-copy">&copy; 2026 <a href="https://barmga.com/menu" class="text-white hover:underline font-bold">Barmga</a> All rights reserved.</p>
+        <p>Crafted for modern dining experiences.</p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  
+const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+const PAGE_TRANSLATIONS = {
+    en: {
+      "title": "Create New Account | Barmga",
+      "heading": "Create New Account",
+      "subheading": "Enter your details to create your account",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "password": "Password",
+      "confirm": "Confirm Password",
+      "submit": "Create Account",
+      "creating": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "login": "Log in",
+      "loginNav": "Log In",
+      "pwMismatch": "Passwords do not match",
+      "pwMinLength": "Password must be at least 8 characters long",
+      "pwInvalidChars": "Password can only contain English letters (a-z, A-Z), numbers (0-9), and symbols without spaces",
+      "successNotice": "Account created! Redirecting to dashboard...",
+      "footerDesc": "All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.",
+      "quickLinks": "Quick Links",
+      "home": "Home",
+      "support": "Contact & Support",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "copy": "© 2026 <a href=\"https://barmga.com/menu\" class=\"text-white hover:underline font-bold\">Barmga</a> All rights reserved."
+    },
+    ar: {
+      "title": "إنشاء حساب جديد | برمجة",
+      "heading": "إنشاء حساب جديد",
+      "subheading": "أدخل بياناتك لتسجيل وإنشاء حسابك في المنصة",
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الجوال",
+      "password": "كلمة المرور",
+      "confirm": "تأكيد كلمة المرور",
+      "submit": "إنشاء الحساب",
+      "creating": "جاري إنشاء الحساب...",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "login": "تسجيل الدخول",
+      "loginNav": "دخول",
+      "pwMismatch": "كلمتا المرور غير متطابقتين",
+      "pwMinLength": "يجب ألا تقل كلمة المرور عن 8 خانات",
+      "pwInvalidChars": "يجب أن تحتوي كلمة المرور فقط على أحرف إنجليزية (a-z, A-Z)، وأرقام، ورموز وبدون مسافات",
+      "successNotice": "تم إنشاء الحساب بنجاح! جاري تحويلك إلى لوحة التحكم...",
+      "footerDesc": "منصتك المتكاملة لإطلاق منيو رقمي تفاعلي ذكي بإدارة سحابية فورية وتصاميم متميزة تليق بهوية مطعمك.",
+      "quickLinks": "روابط سريعة",
+      "home": "الرئيسية",
+      "support": "التواصل والدعم",
+      "terms": "شروط الخدمة",
+      "privacy": "سياسة الخصوصية",
+      "copy": "© 2026 <a href=\"https://barmga.com/menu\" class=\"text-white hover:underline font-bold\">برمجة</a>، إحدى خدمات منصة أسواق الرقمية. جميع الحقوق محفوظة."
+    }
+  };
+
+  // دالة زر إظهار وإخفاء كلمة المرور
+  function togglePasswordVisibility(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (!input || !icon) return;
+
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.remove('bi-eye');
+      icon.classList.add('bi-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.remove('bi-eye-slash');
+      icon.classList.add('bi-eye');
+    }
+  }
+  function logout() {
+  // 1. Preserve visitor & affiliate preferences
+  const savedLang = localStorage.getItem('barmga_lang') || 'en';
+  const savedRef = localStorage.getItem('barmga_referral') || '';
+  const savedCur = localStorage.getItem('barmga_currency') || '';
+
+  // 2. Wipe all session & user credentials
+  localStorage.removeItem('session_token');
+  localStorage.clear();
+  sessionStorage.clear();
+
+  // 3. Restore preserved preferences
+  if (savedLang) localStorage.setItem('barmga_lang', savedLang);
+  if (savedRef) localStorage.setItem('barmga_referral', savedRef);
+  if (savedCur) localStorage.setItem('barmga_currency', savedCur);
+}
+function checkActiveSessionOrLogout() {
+    const token = localStorage.getItem('session_token');
+    const hasAccess = localStorage.getItem('dashboard_access') === 'true';
+
+    // If user already holds an active dashboard session, redirect them immediately
+    if (token && hasAccess) {
+      window.location.replace('dashboard.html');
+      return;
+    }
+
+    logout();
+  }
+  checkActiveSessionOrLogout();
+  function applyLanguage(lang) {
+    const isAr = (lang === 'ar');
+    localStorage.setItem('barmga_lang', lang);
+
+    document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+    document.body.style.direction = isAr ? 'rtl' : 'ltr';
+
+    const t = isAr ? PAGE_TRANSLATIONS.ar : PAGE_TRANSLATIONS.en;
+    document.title = t.title;
+    document.getElementById('platform-lang-label').textContent = isAr ? "English" : "عربي";
+    document.getElementById('reg-title').textContent = t.heading;
+    document.getElementById('reg-subtitle').textContent = t.subheading;
+    document.getElementById('label-name').textContent = t.name;
+    document.getElementById('label-email').textContent = t.email;
+    document.getElementById('label-phone').textContent = t.phone;
+    document.getElementById('label-password').textContent = t.password;
+    document.getElementById('label-confirm').textContent = t.confirm;
+    document.getElementById('submitBtn').textContent = t.submit;
+    document.getElementById('text-have-acc').textContent = t.haveAccount;
+    document.getElementById('link-login').textContent = t.login;
+    document.getElementById('nav-login-btn').textContent = t.loginNav;
+
+    document.getElementById('footer-desc').textContent = t.footerDesc;
+    document.getElementById('footer-quick-links').textContent = t.quickLinks;
+    document.getElementById('link-home').textContent = t.home;
+    document.getElementById('link-nav-login').textContent = t.loginNav;
+    document.getElementById('link-dash').textContent = isAr ? "لوحة التحكم" : "Dashboard";
+    document.getElementById('footer-support').textContent = t.support;
+    document.getElementById('link-terms').textContent = t.terms;
+    document.getElementById('link-privacy').textContent = t.privacy;
+    document.getElementById('footer-copy').innerHTML = t.copy;
+
+    const footer = document.getElementById('platform-footer');
+    if (footer) footer.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  }
+
+  function togglePlatformLanguage() {
+    const current = localStorage.getItem('barmga_lang') || 'en';
+    applyLanguage(current === 'en' ? 'ar' : 'en');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('barmga_lang') || 'en';
+    applyLanguage(saved);
+  });
+
+  const form = document.getElementById('registerForm');
+  const errorBox = document.getElementById('errorBox');
+  const submitBtn = document.getElementById('submitBtn');
+
+  // Immediately store/update latest referral and currency code from URL on load
+  const initialParams = new URLSearchParams(window.location.search);
+  const initialRef = initialParams.get('ref');
+  if (initialRef && initialRef.trim() !== "") {
+    localStorage.setItem('barmga_referral', initialRef.trim());
+  }
+  const initialCur = initialParams.get('cur');
+  if (initialCur && initialCur.trim() !== "") {
+    localStorage.setItem('barmga_currency', initialCur.trim().toLowerCase());
+  }
+
+let pwTimer = null;
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.className = 'hidden text-xs sm:text-sm font-semibold rounded-xl p-3';
+
+    const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+    const emailVal = document.getElementById('email').value.trim();
+    const passInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eye-pass-icon');
+    const password = passInput.value;
+    const confirm = document.getElementById('password_confirm').value;
+
+// 1. Password mismatch checked FIRST
+    if (password !== confirm) {
+      errorBox.textContent = isAr ? PAGE_TRANSLATIONS.ar.pwMismatch : PAGE_TRANSLATIONS.en.pwMismatch;
+      errorBox.classList.add('bg-[var(--danger-light)]', 'text-[var(--danger)]');
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const revealPasswordTemporarily = () => {
+      passInput.type = 'text';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('bi-eye');
+        eyeIcon.classList.add('bi-eye-slash');
+      }
+      setTimeout(() => {
+        passInput.type = 'password';
+        if (eyeIcon) {
+          eyeIcon.classList.remove('bi-eye-slash');
+          eyeIcon.classList.add('bi-eye');
+        }
+      }, 3000);
+    };
+
+    // 2. Minimum length check
+    if (password.length < 8) {
+      errorBox.textContent = isAr ? PAGE_TRANSLATIONS.ar.pwMinLength : PAGE_TRANSLATIONS.en.pwMinLength;
+      errorBox.classList.add('bg-[var(--danger-light)]', 'text-[var(--danger)]');
+      errorBox.classList.remove('hidden');
+      revealPasswordTemporarily();
+      return;
+    }
+
+    // 3. Characters rule: only ASCII printable characters (33-126: a-z, A-Z, 0-9, symbols) without spaces
+    const validPasswordRegex = /^[\x21-\x7E]+$/;
+
+    if (!validPasswordRegex.test(password)) {
+      errorBox.textContent = isAr ? PAGE_TRANSLATIONS.ar.pwInvalidChars : PAGE_TRANSLATIONS.en.pwInvalidChars;
+      errorBox.classList.add('bg-[var(--danger-light)]', 'text-[var(--danger)]');
+      errorBox.classList.remove('hidden');
+      revealPasswordTemporarily();
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = isAr ? PAGE_TRANSLATIONS.ar.creating : PAGE_TRANSLATIONS.en.creating;
+
+    const submitParams = new URLSearchParams(window.location.search);
+    const currentRefParam = submitParams.get('ref');
+    if (currentRefParam && currentRefParam.trim() !== "") {
+      localStorage.setItem('barmga_referral', currentRefParam.trim());
+    }
+    const currentCurParam = submitParams.get('cur');
+    if (currentCurParam && currentCurParam.trim() !== "") {
+      localStorage.setItem('barmga_currency', currentCurParam.trim().toLowerCase());
+    }
+
+    const finalReferral = localStorage.getItem('barmga_referral') || "";
+    const finalCurrency = (localStorage.getItem('barmga_currency') || "").trim().toLowerCase();
+
+    const registerPayload = {
+      name: document.getElementById('name').value.trim(),
+      email: emailVal,
+      phone: document.getElementById('phone').value.trim(),
+      password: password,
+      referral: finalReferral.trim(),
+      cur: finalCurrency
+    };
+
+    try {
+      // Step 1: Create Account
+      const encryptedRegister = await AsweqVault.encrypt(registerPayload);
+      const regRes = await fetch(`${API_BASE}/api/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ encryptedPayload: encryptedRegister })
+      });
+      const regData = await regRes.json();
+      if (!regRes.ok) throw new Error(regData.error || "Registration failed");
+
+      if (regData.userId) {
+        localStorage.setItem('userid', String(regData.userId));
+      }
+
+      localStorage.removeItem('barmga_referral');
+      localStorage.removeItem('barmga_currency');
+
+      // Display success message
+      errorBox.textContent = isAr ? PAGE_TRANSLATIONS.ar.successNotice : PAGE_TRANSLATIONS.en.successNotice;
+      errorBox.classList.remove('bg-[var(--danger-light)]', 'text-[var(--danger)]');
+      errorBox.classList.add('bg-emerald-100', 'text-emerald-800');
+      errorBox.classList.remove('hidden');
+
+// Step 2: Auto-Login & write exact session storage identical to dashboard access
+      const loginPayload = { email: emailVal, password: password };
+      const encryptedLogin = await AsweqVault.encrypt(loginPayload);
+      const loginRes = await fetch(`${API_BASE}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ encryptedPayload: encryptedLogin })
+      });
+      const loginData = await loginRes.json();
+      if (!loginRes.ok) {
+        setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+        return;
+      }
+
+      if (loginData.session_token) {
+        localStorage.setItem('session_token', loginData.session_token);
+      }
+
+      if (loginData.details) {
+        if (loginData.details.wk) localStorage.setItem('editor_wk', loginData.details.wk);
+        if (loginData.details.pg) localStorage.setItem('editor_pg', loginData.details.pg);
+      }
+
+      let parsedUser = {
+        id: regData.userId,
+        name: document.getElementById('name').value.trim(),
+        email: emailVal,
+        phone: document.getElementById('phone').value.trim(),
+        details: loginData.details || {}
+      };
+
+      if (loginData.encrypted_id) {
+        try {
+          const decryptedIdStr = await AsweqVault.decrypt(loginData.encrypted_id);
+          const parsedInfo = JSON.parse(decryptedIdStr);
+          const actualId = parsedInfo?.id || parsedInfo?.userId || regData.userId;
+          if (actualId) {
+            localStorage.setItem('userid', String(actualId).trim());
+          }
+          parsedUser = { ...parsedUser, ...parsedInfo, id: regData.userId };
+        } catch (_) {
+          if (regData.userId) {
+            localStorage.setItem('userid', String(regData.userId).trim());
+          }
+        }
+      }
+
+      // Populate identical session keys that dashboard.html requires
+      localStorage.setItem('dashboard_access', 'true');
+      localStorage.setItem('dashboard_user', JSON.stringify(parsedUser));
+
+      // Step 3: Redirect directly to dashboard.html
+      setTimeout(() => {
+        window.location.href = `dashboard.html?sd=${encodeURIComponent(loginData.encrypted_key)}&id=${encodeURIComponent(loginData.encrypted_id)}`;
+      }, 1000);
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.classList.add('bg-[var(--danger-light)]', 'text-[var(--danger)]');
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = isAr ? PAGE_TRANSLATIONS.ar.submit : PAGE_TRANSLATIONS.en.submit;
+    }
+  });</script>
+  <script>
+  document.addEventListener('input', (e) => {
+  if (e.target && (e.target.type === 'email' || e.target.classList.contains('lowercase-email'))) {
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = e.target.value.toLowerCase();
+    e.target.setSelectionRange(start, end);
+  }
+});
+</script>
+</body>
+</html>

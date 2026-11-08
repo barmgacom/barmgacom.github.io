@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Verification | Barmga</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-[#F8F6F1] min-h-screen flex items-center justify-center p-4">
+
+  <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-[#E7E2D6] text-center">
+    
+    <!-- State: Processing -->
+    <div id="state-loading" class="space-y-4">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2780b7] mx-auto"></div>
+      <h2 class="text-xl font-bold text-gray-800">Verifying Email Address...</h2>
+      <p class="text-sm text-gray-500">Please wait while we validate your token.</p>
+    </div>
+
+    <!-- State: Success -->
+    <div id="state-success" class="hidden space-y-4">
+      <div class="h-16 w-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl font-bold">
+        <i class="bi bi-check-lg"></i>
+      </div>
+      <h2 class="text-2xl font-extrabold text-gray-900">Email Verified!</h2>
+      <p class="text-sm text-gray-600">Your account is fully activated. The verification notice has been removed from your dashboard.</p>
+      <a href="dashboard.html" class="inline-block w-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold py-3 px-6 rounded-xl transition shadow-sm mt-4">
+        Go to Dashboard
+      </a>
+    </div>
+
+    <!-- State: Error -->
+    <div id="state-error" class="hidden space-y-4">
+      <div class="h-16 w-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto text-3xl font-bold">
+        <i class="bi bi-exclamation-triangle"></i>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900">Verification Failed</h2>
+      <p id="error-message" class="text-sm text-red-600">Invalid or expired link.</p>
+      <a href="login.html" class="inline-block w-full bg-gray-900 hover:bg-black text-white font-bold py-3 px-6 rounded-xl transition shadow-sm mt-4">
+        Back to Login
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('u');
+      
+      // Extract raw token string directly from the URL to avoid plus/space loss
+      const rawMatch = window.location.search.match(/[?&]token=([^&]*)/i);
+      const rawToken = rawMatch ? rawMatch[1] : (urlParams.get('token') || '');
+      const token = decodeURIComponent(rawToken.replace(/\+/g, '%2B')).trim();
+
+      if (!userId || !token) {
+        showError("Invalid link: Missing user identification or token.");
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/verify_email`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: userId, token: token })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        // Success - clean local user storage if already logged in on this browser
+        const storedUser = localStorage.getItem('dashboard_user');
+        if (storedUser) {
+          try {
+            const u = JSON.parse(storedUser);
+            if (u.details) {
+              u.details.notes = "";
+              u.details.email_verified = true;
+              localStorage.setItem('dashboard_user', JSON.stringify(u));
+            }
+          } catch (e) {}
+        }
+
+        document.getElementById('state-loading').classList.add('hidden');
+        document.getElementById('state-success').classList.remove('hidden');
+
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+
+    function showError(msg) {
+      document.getElementById('state-loading').classList.add('hidden');
+      document.getElementById('state-error').classList.remove('hidden');
+      document.getElementById('error-message').textContent = msg;
+    }
+  </script>
+</body>
+</html>

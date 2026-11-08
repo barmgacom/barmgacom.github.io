@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Barmga</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<script src="js/vault.js"></script>
+<style>
+  :root {
+    --bg: #F8F9FA;
+    --surface: #FFFFFF;
+    --primary: #2780B7;
+    --primary-dark: #1E6A9A;
+    --primary-light: #EBF3F8;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --danger: #D6534B;
+    --danger-light: #FBEAE8;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+  html[lang="ar"],
+  html[lang="ar"] body,
+  html[lang="ar"] *,
+  body[dir="rtl"],
+  body[dir="rtl"] * {
+    font-family: 'Cairo', sans-serif !important;
+  }
+  .input-field {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 16px;
+    width: 100%;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: #fff;
+  }
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3.5px rgba(39, 128, 183, 0.15);
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px -2px rgba(39, 128, 183, 0.35);
+  }
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .card-shadow {
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 12px 32px -4px rgba(15, 23, 42, 0.04);
+  }
+    html[lang="ar"] #password {
+    text-align: right;
+    direction: rtl;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <header class="w-full bg-white border-b border-[var(--border)] sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="https://barmga.com" class="flex items-center gap-3">
+        <img src="images/logo.png" alt="Logo" class="w-9 h-9 object-contain" onerror="this.style.display='none';">
+        <div>
+          <span class="text-xl font-black text-slate-900 tracking-tight block leading-tight">برمجة</span>
+          <span class="text-[10px] text-blue-600 font-extrabold uppercase tracking-wider block">Smart Menu Platform</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="togglePlatformLanguage()" class="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl font-bold transition text-xs sm:text-sm">
+          <i class="bi bi-globe2 text-base text-[var(--primary)]"></i>
+          <span id="platform-lang-label">عربي</span>
+        </button>
+
+        <a href="register.html" class="hidden sm:inline-flex text-xs sm:text-sm font-bold text-[var(--primary)] bg-[var(--primary-light)] hover:bg-[var(--primary)] hover:text-white px-4 py-2 rounded-xl transition" id="nav-reg-btn">
+          Create Account
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-4 py-12">
+    <div class="w-full max-w-md">
+      <div class="text-center mb-8">
+        <div class="w-14 h-14 bg-[var(--primary-light)] text-[var(--primary)] rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold mb-3 shadow-sm">
+          <i class="bi bi-person-lock"></i>
+        </div>
+        <h1 class="text-2xl font-extrabold text-slate-900" id="login-title">Login</h1>
+        <p class="text-[var(--text-muted)] text-sm mt-1" id="login-subtitle">Enter your details to access the dashboard</p>
+      </div>
+
+      <!-- Step 1: Standard Credentials Form -->
+      <form id="loginForm" class="bg-[var(--surface)] p-6 sm:p-8 rounded-3xl card-shadow border border-[var(--border)] space-y-5">
+        <div>
+          <label class="block text-xs font-bold mb-2 text-slate-700" id="label-email">Email Address</label>
+          <input type="email" id="email" required class="input-field text-sm" placeholder="you@example.com">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-2 text-slate-700" id="label-password">Password</label>
+          <div class="relative flex items-center">
+            <input type="password" id="password" required class="input-field text-sm ltr:pr-11 rtl:pl-11" placeholder="••••••••">
+            <button type="button" onclick="togglePasswordVisibility('password', 'eye-pass-icon')" class="absolute ltr:right-3.5 rtl:left-3.5 text-slate-400 hover:text-slate-600 focus:outline-none p-1 text-base">
+              <i class="bi bi-eye" id="eye-pass-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="errorBox" class="hidden bg-[var(--danger-light)] text-[var(--danger)] text-xs sm:text-sm font-semibold rounded-xl p-3"></div>
+
+        <button type="submit" id="submitBtn" class="btn-primary mt-2 flex items-center justify-center text-sm">Login</button>
+
+        <p class="text-center text-xs sm:text-sm text-[var(--text-muted)] pt-2">
+          <span id="text-no-acc">Don't have an account?</span> 
+          <a href="register.html" class="text-[var(--primary)] font-bold hover:underline" id="link-reg">Register now</a>
+        </p>
+      </form>
+
+      <!-- Step 2: 2FA Code Form (Hidden by default) -->
+      <form id="twoFaForm" class="hidden bg-[var(--surface)] p-6 sm:p-8 rounded-3xl card-shadow border border-[var(--border)] space-y-5 text-center">
+        <div>
+          <p class="text-xs text-slate-500 leading-relaxed" id="twofa-sent-desc">
+            We sent a 6-digit verification code to your email. Enter it below to access your dashboard.
+          </p>
+        </div>
+
+        <div>
+          <input type="text" id="twofa-input" maxlength="6" inputmode="numeric" pattern="[0-9]*" required class="w-full text-center tracking-[8px] font-mono font-black text-2xl py-3 border border-[var(--border)] rounded-2xl outline-none focus:border-[var(--primary)] bg-slate-50 focus:bg-white transition" placeholder="••••••">
+        </div>
+
+        <p id="twofa-expiry-timer" class="text-xs font-mono text-slate-400">Session expires in: 30:00</p>
+
+        <div id="twoFaErrorBox" class="hidden bg-[var(--danger-light)] text-[var(--danger)] text-xs font-semibold rounded-xl p-3 text-start"></div>
+
+        <button type="submit" id="twoFaSubmitBtn" class="btn-primary flex items-center justify-center text-sm">
+          Verify & Enter Dashboard
+        </button>
+
+        <div class="pt-2 flex items-center justify-between text-xs">
+          <button type="button" id="btn-resend-2fa" onclick="resend2FaCode()" class="font-bold text-[var(--primary)] hover:underline disabled:text-slate-400 disabled:no-underline disabled:cursor-not-allowed">
+            Resend Code
+          </button>
+          <button type="button" onclick="cancel2FaSession()" class="text-slate-500 hover:text-slate-800 font-semibold">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer id="platform-footer" class="w-full bg-[#0f3650] text-white pt-16 pb-8 border-t border-[#2780b7]/20 relative overflow-hidden">
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#2780b7]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#2780b7]/20">
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="images/logo.png" alt="برمجة" class="w-9 h-9 object-contain brightness-0 invert" onerror="this.style.display='none';">
+            <div>
+              <span class="text-xl font-black text-white tracking-tight block">برمجة</span>
+              <span class="text-[10px] text-blue-200/70 font-extrabold uppercase tracking-wider block">Smart Menu Platform</span>
+            </div>
+          </div>
+          <p class="text-sm text-blue-100/75 leading-relaxed max-w-sm font-normal" id="footer-desc">
+            All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider" id="footer-quick-links">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm text-blue-100/70">
+            <li><a href="https://barmga.com" class="hover:text-white transition-colors" id="link-home">Home</a></li>
+            <li><a href="register.html" class="hover:text-white transition-colors" id="link-signup">Create Account</a></li>
+            <li><a href="dashboard.html" class="hover:text-white transition-colors" id="link-dash">Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider" id="footer-support">Contact & Support</h4>
+          <div class="space-y-3 text-sm text-blue-100/80">
+            <a href="mailto:info@barmga.com" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-envelope"></i>
+              </div>
+              <span class="font-mono">info@barmga.com</span>
+            </a>
+            <a href="https://wa.me/21626373656" target="_blank" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <span dir="ltr" class="font-mono">+216 26 373 656</span>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 pt-2 text-xs text-blue-200/60 font-semibold">
+            <a href="https://barmga.com/menu/terms" class="hover:text-white transition-colors" id="link-terms">Terms of Service</a>
+            <span>•</span>
+            <a href="https://barmga.com/menu/privacy" class="hover:text-white transition-colors" id="link-privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-200/60">
+        <p id="footer-copy">&copy; 2026 <a href="https://barmga.com/menu" class="text-white hover:underline font-bold">Barmga</a> All rights reserved.</p>
+        <p>Crafted for modern dining experiences.</p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const API_BASE = "https://barmga-1001.asweqofficial.workers.dev";
+  const PAGE_TRANSLATIONS = {
+    en: {
+      "title": "Login | Barmga",
+      "heading": "Login",
+      "subheading": "Enter your details to access the dashboard",
+      "email": "Email Address",
+      "password": "Password",
+      "submit": "Login",
+      "loggingIn": "Logging in...",
+      "noAccount": "Don't have an account?",
+      "register": "Register now",
+      "createAccountNav": "Create Account",
+      "footerDesc": "All-in-one cloud platform providing responsive interactive digital menus, instant QR code generation, and effortless menu catalog management.",
+      "quickLinks": "Quick Links",
+      "home": "Home",
+      "support": "Contact & Support",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "copy": "© 2026 <a href=\"https://barmga.com/menu\" class=\"text-white hover:underline font-bold\">Barmga</a> All rights reserved."
+    },
+    ar: {
+      "title": "تسجيل الدخول | برمجة",
+      "heading": "تسجيل الدخول",
+      "subheading": "أدخل بيانات حسابك للوصول إلى لوحة التحكم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "submit": "تسجيل الدخول",
+      "loggingIn": "جاري الدخول...",
+      "noAccount": "ليس لديك حساب؟",
+      "register": "سجل الآن مجاناً",
+      "createAccountNav": "إنشاء حساب جديد",
+      "footerDesc": "منصتك المتكاملة لإطلاق منيو رقمي تفاعلي ذكي بإدارة سحابية فورية وتصاميم متميزة تليق بهوية مطعمك.",
+      "quickLinks": "روابط سريعة",
+      "home": "الرئيسية",
+      "support": "التواصل والدعم",
+      "terms": "شروط الخدمة",
+      "privacy": "سياسة الخصوصية",
+      "copy": "© 2026 <a href=\"https://barmga.com/menu\" class=\"text-white hover:underline font-bold\">برمجة</a>، إحدى خدمات منصة أسواق الرقمية. جميع الحقوق محفوظة."
+    }
+  };
+  function checkActiveSessionOrLogout() {
+  const token = localStorage.getItem('session_token');
+  const hasAccess = localStorage.getItem('dashboard_access') === 'true';
+
+  // If user already holds an active dashboard session, redirect them immediately
+  if (token && hasAccess) {
+    window.location.replace('dashboard.html');
+    return;
+  }
+
+  logout();
+}
+
+function logout() {
+  // 1. Preserve visitor & affiliate preferences
+  const savedLang = localStorage.getItem('barmga_lang') || 'en';
+  const savedRef = localStorage.getItem('barmga_referral') || '';
+  const savedCur = localStorage.getItem('barmga_currency') || '';
+
+  // 2. Wipe all session & user credentials
+  localStorage.removeItem('session_token');
+  localStorage.clear();
+  sessionStorage.clear();
+
+  // 3. Restore preserved preferences
+  if (savedLang) localStorage.setItem('barmga_lang', savedLang);
+  if (savedRef) localStorage.setItem('barmga_referral', savedRef);
+  if (savedCur) localStorage.setItem('barmga_currency', savedCur);
+}
+checkActiveSessionOrLogout();
+  function applyLanguage(lang) {
+    const isAr = (lang === 'ar');
+    localStorage.setItem('barmga_lang', lang);
+
+    document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+    document.body.style.direction = isAr ? 'rtl' : 'ltr';
+
+    const t = isAr ? PAGE_TRANSLATIONS.ar : PAGE_TRANSLATIONS.en;
+    document.title = t.title;
+    document.getElementById('platform-lang-label').textContent = isAr ? "English" : "عربي";
+    document.getElementById('login-title').textContent = t.heading;
+    document.getElementById('login-subtitle').textContent = t.subheading;
+    document.getElementById('label-email').textContent = t.email;
+    document.getElementById('label-password').textContent = t.password;
+    document.getElementById('submitBtn').textContent = t.submit;
+    document.getElementById('text-no-acc').textContent = t.noAccount;
+    document.getElementById('link-reg').textContent = t.register;
+    document.getElementById('nav-reg-btn').textContent = t.createAccountNav;
+
+    document.getElementById('footer-desc').textContent = t.footerDesc;
+    document.getElementById('footer-quick-links').textContent = t.quickLinks;
+    document.getElementById('link-home').textContent = t.home;
+    document.getElementById('link-signup').textContent = t.createAccountNav;
+    document.getElementById('link-dash').textContent = isAr ? "لوحة التحكم" : "Dashboard";
+    document.getElementById('footer-support').textContent = t.support;
+    document.getElementById('link-terms').textContent = t.terms;
+    document.getElementById('link-privacy').textContent = t.privacy;
+    document.getElementById('footer-copy').innerHTML = t.copy;
+
+    const footer = document.getElementById('platform-footer');
+    if (footer) footer.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  }
+
+  function togglePlatformLanguage() {
+    const current = localStorage.getItem('barmga_lang') || 'en';
+    applyLanguage(current === 'en' ? 'ar' : 'en');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('barmga_lang') || 'en';
+    applyLanguage(saved);
+  });
+
+
+  const form = document.getElementById('loginForm');
+  const errorBox = document.getElementById('errorBox');
+  const submitBtn = document.getElementById('submitBtn');
+  let pwTimer = null;
+
+  // 2FA State Variables
+  let cachedPayload = null;
+  let twoFaSessionStart = null;
+  let sessionCountdownInterval = null;
+  let resendCooldownInterval = null;
+  let resendSecondsLeft = 0;
+
+  function togglePasswordVisibility(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (!input || !icon) return;
+
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.remove('bi-eye');
+      icon.classList.add('bi-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.remove('bi-eye-slash');
+      icon.classList.add('bi-eye');
+    }
+  }
+
+  function handleSuccessfulLogin(data) {
+    if (data.session_token) {
+      localStorage.setItem('session_token', data.session_token);
+    }
+    if (data.details) {
+      if (data.details.wk) localStorage.setItem('editor_wk', data.details.wk);
+      if (data.details.pg) localStorage.setItem('editor_pg', data.details.pg);
+    }
+    if (data.encrypted_id) {
+      try {
+        AsweqVault.decrypt(data.encrypted_id).then(rawData => {
+          const parsed = JSON.parse(rawData);
+          const actualId = parsed?.id || parsed?.userId;
+          if (actualId) localStorage.setItem('userid', String(actualId).trim());
+        }).catch(() => {});
+      } catch (_) {}
+    }
+    window.location.href = `dashboard.html?sd=${encodeURIComponent(data.encrypted_key)}&id=${encodeURIComponent(data.encrypted_id)}`;
+  }
+
+  // 1. Initial Login Submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+    submitBtn.textContent = isAr ? PAGE_TRANSLATIONS.ar.loggingIn : PAGE_TRANSLATIONS.en.loggingIn;
+
+    const passInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eye-pass-icon');
+
+    cachedPayload = {
+      email: document.getElementById('email').value.trim(),
+      password: passInput.value
+    };
+
+    try {
+      const encryptedData = await AsweqVault.encrypt(cachedPayload);
+
+      const res = await fetch(`${API_BASE}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ encryptedPayload: encryptedData })
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      // Check if 2FA is required for this active paid member
+      if (data.two_fa_required) {
+        show2FaView(data.session_expires_in || 1800, data.can_resend_in || 120);
+        return;
+      }
+
+      // Non-active member / regular trial member login without 2FA
+      handleSuccessfulLogin(data);
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = isAr ? PAGE_TRANSLATIONS.ar.submit : PAGE_TRANSLATIONS.en.submit;
+
+      passInput.type = 'text';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('bi-eye');
+        eyeIcon.classList.add('bi-eye-slash');
+      }
+
+      if (pwTimer) clearTimeout(pwTimer);
+      pwTimer = setTimeout(() => {
+        passInput.type = 'password';
+        if (eyeIcon) {
+          eyeIcon.classList.remove('bi-eye-slash');
+          eyeIcon.classList.add('bi-eye');
+        }
+      }, 3000);
+    }
+  });
+
+  // 2. Transition into 2FA View
+  function show2FaView(expiresInSec, canResendInSec) {
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('twoFaForm').classList.remove('hidden');
+    document.getElementById('twofa-input').value = '';
+    document.getElementById('twofa-input').focus();
+
+    twoFaSessionStart = Date.now();
+    startSessionCountdown(expiresInSec);
+    startResendCooldown(canResendInSec);
+  }
+
+  // 3. Countdown for the 30-minute Max Session (Auto-refreshes if >= 30 mins)
+  function startSessionCountdown(totalSeconds) {
+    if (sessionCountdownInterval) clearInterval(sessionCountdownInterval);
+
+    let secLeft = totalSeconds;
+    const timerEl = document.getElementById('twofa-expiry-timer');
+
+    sessionCountdownInterval = setInterval(() => {
+      secLeft--;
+
+      // If 30 minutes expired, refresh page to show normal login form
+      if (secLeft <= 0 || (Date.now() - twoFaSessionStart) >= (30 * 60 * 1000)) {
+        clearInterval(sessionCountdownInterval);
+        cancel2FaSession();
+        return;
+      }
+
+      const m = Math.floor(secLeft / 60).toString().padStart(2, '0');
+      const s = (secLeft % 60).toString().padStart(2, '0');
+      const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+      timerEl.textContent = isAr ? `ينتهي الرمز خلال: ${m}:${s}` : `Code expires in: ${m}:${s}`;
+    }, 1000);
+  }
+
+  // 4. 2-minute Cooldown on Resend Button
+  function startResendCooldown(seconds) {
+    if (resendCooldownInterval) clearInterval(resendCooldownInterval);
+    resendSecondsLeft = seconds;
+    const resendBtn = document.getElementById('btn-resend-2fa');
+    const isAr = (localStorage.getItem('barmga_lang') || 'en') === 'ar';
+
+    resendBtn.disabled = true;
+
+    resendCooldownInterval = setInterval(() => {
+      resendSecondsLeft--;
+      if (resendSecondsLeft <= 0) {
+        clearInterval(resendCooldownInterval);
+        resendBtn.disabled = false;
+        resendBtn.textContent = isAr ? "إعادة إرسال الرمز" : "Resend Code";
+        return;
+      }
+      resendBtn.textContent = isAr ? `إعادة الإرسال بعد (${resendSecondsLeft} ث)` : `Resend in (${resendSecondsLeft}s)`;
+    }, 1000);
+  }
+
+  // 5. Trigger Resend Code API (maintains the same code for the 30-min window)
+  async function resend2FaCode() {
+    const resendBtn = document.getElementById('btn-resend-2fa');
+    const twoFaError = document.getElementById('twoFaErrorBox');
+    twoFaError.classList.add('hidden');
+    resendBtn.disabled = true;
+
+    try {
+      const encryptedData = await AsweqVault.encrypt(cachedPayload);
+      const res = await fetch(`${API_BASE}/api/verify_2fa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          encryptedPayload: encryptedData,
+          action: 'resend'
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        if (data.session_expired) {
+          cancel2FaSession();
+          return;
+        }
+        throw new Error(data.error || "Failed to resend");
+      }
+
+      startResendCooldown(data.can_resend_in || 120);
+    } catch (err) {
+      twoFaError.textContent = err.message;
+      twoFaError.classList.remove('hidden');
+      
+      // If the error tells them to wait, keep button disabled
+      if (err.message && err.message.includes("wait")) {
+        const match = err.message.match(/\d+/);
+        const waitSec = match ? parseInt(match[0]) : 60;
+        startResendCooldown(waitSec);
+      } else {
+        resendBtn.disabled = false;
+      }
+    }
+  }
+
+  // 6. Submit 2FA Code
+  document.getElementById('twoFaForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const twoFaError = document.getElementById('twoFaErrorBox');
+    const submitBtn = document.getElementById('twoFaSubmitBtn');
+    twoFaError.classList.add('hidden');
+
+    const enteredCode = document.getElementById('twofa-input').value.trim();
+    if (enteredCode.length !== 6) {
+      twoFaError.textContent = "Please enter all 6 digits.";
+      twoFaError.classList.remove('hidden');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Verifying...";
+
+    try {
+      const encryptedData = await AsweqVault.encrypt(cachedPayload);
+      const res = await fetch(`${API_BASE}/api/verify_2fa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          encryptedPayload: encryptedData,
+          action: 'verify',
+          code: enteredCode
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        if (data.session_expired) {
+          cancel2FaSession();
+          return;
+        }
+        throw new Error(data.error || "Verification failed");
+      }
+
+      if (sessionCountdownInterval) clearInterval(sessionCountdownInterval);
+      if (resendCooldownInterval) clearInterval(resendCooldownInterval);
+
+      // Redirect directly to dashboard upon valid code entry
+      handleSuccessfulLogin(data);
+    } catch (err) {
+      twoFaError.textContent = err.message;
+      twoFaError.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Verify & Enter Dashboard";
+    }
+  });
+
+  // 7. Reset back to the Standard Login Form
+  function cancel2FaSession() {
+    if (sessionCountdownInterval) clearInterval(sessionCountdownInterval);
+    if (resendCooldownInterval) clearInterval(resendCooldownInterval);
+    cachedPayload = null;
+    twoFaSessionStart = null;
+    document.getElementById('twoFaForm').classList.add('hidden');
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('password').value = '';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = "Login";
+  }
+</script>
+<script>
+  document.addEventListener('input', (e) => {
+  if (e.target && (e.target.type === 'email' || e.target.classList.contains('lowercase-email'))) {
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = e.target.value.toLowerCase();
+    e.target.setSelectionRange(start, end);
+  }
+});
+</script>
+</body>
+</html>

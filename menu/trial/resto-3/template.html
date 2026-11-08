@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
+<title>Al-Nakheel — Table Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="images/logo.png">
+<style>
+  :root{
+    --bg: #FDF9F1;
+    --bg-raised: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --gold: #B27A17;
+    --gold-soft: #D9A53C;
+    --ember: #C1432A;
+    --ember-deep: #9C331F;
+    --white: #2B1B12;
+    --white-dim: rgba(43,27,18,0.66);
+    --white-faint: rgba(43,27,18,0.42);
+    --line: rgba(193,67,42,0.16);
+    --shadow: 0 20px 40px -15px rgba(43,27,18,0.14);
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --radius-sm: 9px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .badge.cal {
+    background: rgba(178, 122, 23, 0.12);
+    color: var(--gold);
+    border: 1px solid rgba(178, 122, 23, 0.28);
+  }
+  button{cursor:pointer;}
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color: transparent;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(193,67,42,0.06), transparent 60%),
+      var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom: 40px;
+  }
+
+  ::selection{ background: var(--ember); color:#FFF6EA; }
+
+  /* ---------- Loading Shimmer ---------- */
+  #loader{
+    position:fixed; inset:0; background: var(--bg); z-index:999;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+    transition: opacity .6s ease, visibility .6s ease;
+  }
+  #loader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  .loader-mark{
+    font-family:'Fraunces', serif; font-size:15px; letter-spacing:6px; color:var(--gold);
+    text-transform:uppercase; opacity:.9;
+  }
+  .skeleton-row{ width: 84vw; max-width:380px; display:flex; flex-direction:column; gap:12px; }
+  .skel{
+    height:14px; border-radius:6px;
+    background: linear-gradient(90deg, #EFDFC7 0%, #FBF1E2 20%, #EFDFC7 40%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  .skel.w1{width:60%; height:20px;}
+  .skel.w2{width:100%;}
+  .skel.w3{width:80%;}
+  @keyframes shimmer{
+    0%{ background-position: -400px 0; }
+    100%{ background-position: 400px 0; }
+  }
+
+  /* ---------- Header ---------- */
+  @media (max-width: 860px){
+    header.top{ position: sticky; }
+  }
+  header.top{
+    top: 0;
+    z-index: 90;
+    padding: calc(18px + var(--safe-top)) 20px 14px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; position:relative;
+    background:#FFFCF6;
+    flex-shrink:0;
+  }
+  .brand-logo{ width:100%; height:100%; object-fit:cover; display:block; }
+  .brand-name{ display:flex; flex-direction:column; line-height:1.05; }
+  .brand-name span:first-child{
+    font-family:'Fraunces', serif; font-weight:500; font-size:16.5px; letter-spacing:0.3px;
+  }
+  .brand-name span:last-child{
+    font-size:9.5px; letter-spacing:2.5px; color: var(--white-faint); text-transform:uppercase; margin-top:2px;
+  }
+
+  .header-actions{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+
+  .lang-toggle{
+    font-family:'Tajawal', 'Inter', sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.3px;
+    color: var(--white); background: var(--bg-raised);
+    border:1px solid var(--line); padding:8px 13px; border-radius:100px;
+    white-space:nowrap;
+    transition: transform .15s ease, background .2s ease, color .2s ease;
+  }
+  .lang-toggle:active{ transform: scale(0.95); }
+
+  .fav-toggle{
+    display:flex; align-items:center; gap:6px;
+    font-family:'Inter'; font-size:11.5px; font-weight:600; letter-spacing:0.3px;
+    color: #2B1B12; background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+    padding:8px 14px; border-radius:100px; white-space:nowrap; border:none;
+    box-shadow: 0 4px 14px rgba(178,122,23,0.28);
+    transition: background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .fav-toggle:active{ transform: scale(0.95); }
+  .fav-toggle svg{ flex-shrink:0; }
+  .fav-toggle.active{
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    color:#FFF6EA;
+  }
+  .fav-toggle.active svg{ fill: currentColor; }
+
+  /* ---------- Search ---------- */
+  .search-wrap{ padding: 4px 20px 16px; position: static; }
+  .search-box{
+    display:flex; align-items:center; gap:10px;
+    background: var(--bg-raised); border:1px solid var(--line);
+    border-radius: 100px; padding: 11px 16px;
+    box-shadow: 0 2px 10px rgba(43,27,18,0.05);
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .search-box:focus-within{
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(193,67,42,0.12);
+  }
+  .search-box svg{ flex-shrink:0; opacity:0.6; }
+  .search-box input{
+    background:none; border:none; outline:none; color:var(--white);
+    font-family:'Inter'; font-size:14.5px; width:100%;
+  }
+  .search-box input::placeholder{ color: var(--white-faint); }
+
+  /* ---------- Category Navigation ---------- */
+  .cat-nav{
+    position: static;
+    background: transparent;
+    padding: 12px 0 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cat-scroll{ display:flex; flex-wrap:wrap; gap:8px; padding: 2px 20px; }
+  .pill{
+    flex-shrink:0; white-space:nowrap;
+    font-family:'Inter'; font-size:13.5px; font-weight:500;
+    color: var(--white-dim);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    padding: 9px 18px; border-radius: 100px;
+    transition: all .25s cubic-bezier(.4,0,.2,1);
+  }
+  .pill.active{
+    color: #FBF1E2;
+    background: var(--white);
+    border-color: transparent;
+    font-weight:600;
+    box-shadow: 0 6px 16px rgba(43,27,18,0.22);
+  }
+  .pill:active{ transform: scale(0.94); }
+
+  /* ---------- Sections & Cards ---------- */
+  main{ padding: 6px 20px 10px; }
+  .section-block{ padding-top: 30px; scroll-margin-top: var(--scroll-offset, 20px); }
+  .section-head{ margin-bottom: 16px; display:flex; align-items:baseline; gap:10px;}
+  .section-head h2{
+    font-family:'Fraunces', serif; font-weight:500; font-size:23px; letter-spacing:0.2px;
+  }
+  .section-divider{
+    height:1px; width:40px; background: var(--gold); margin-bottom: 14px; opacity:0.7;
+  }
+
+  .card-grid{ display:grid; grid-template-columns: 1fr; gap:14px; }
+
+  .food-card{
+    position:relative;
+    display:flex; gap:14px;
+    background: linear-gradient(165deg, #FFFCF6 0%, #F6E9D2 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 12px; padding-right: 50px; cursor:pointer;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .food-card:active{ transform: scale(0.98); }
+
+  .food-media{ position:relative; width:84px; height:84px; flex-shrink:0; }
+  .food-thumb{
+    width: 84px; height: 84px; border-radius: var(--radius-md);
+    object-fit: cover; display:block;
+    background: #EFE1CB;
+    transition: transform .4s ease;
+  }
+  .food-card:active .food-thumb{ transform: scale(1.04); }
+
+  .food-info{ display:flex; flex-direction:column; justify-content:center; flex:1; min-width:0; }
+  .food-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .food-title{ font-family:'Fraunces', serif; font-weight:500; font-size:16.5px; line-height:1.25; padding-right:56px; }
+  .food-price{
+    position:absolute; top:10px; right:10px; z-index:1;
+    font-family:'Fraunces', serif; font-style:italic; font-weight:600; color:var(--gold);
+    font-size:14px; white-space:nowrap;
+    background: #FFFCF6; border:1px solid var(--line);
+    padding:5px 11px; border-radius:100px;
+    box-shadow: 0 4px 10px rgba(43,27,18,0.12);
+  }
+  .food-desc{
+    font-size:12.6px; color: var(--white-dim); line-height:1.45; margin-top:4px;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .tag-row{ display:flex; gap:6px; margin-top:9px; flex-wrap:wrap; }
+  .badge{
+    font-size:9.5px; font-weight:700; letter-spacing:0.4px; text-transform:uppercase;
+    padding:4px 9px; border-radius:100px;
+    display:flex; align-items:center; gap:4px;
+  }
+  .badge.special{
+    background: linear-gradient(135deg, #E8C374, #D9A53C);
+    color:#2B1B12;
+  }
+  .badge.serves{
+    background: rgba(43,27,18,0.06); color: var(--white-dim);
+    border: 1px solid var(--line);
+  }
+
+  .card-fav-btn{
+    position:absolute; bottom:10px; right:10px;
+    width:32px; height:32px; border-radius:50%;
+    background: #F4E7CE;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--white-faint);
+    box-shadow: 0 4px 10px rgba(43,27,18,0.15);
+    transition: transform .15s ease, color .15s ease, background .15s ease;
+    z-index:2;
+  }
+  .card-fav-btn:active{ transform: scale(0.88); }
+  .card-fav-btn.active{ color: var(--ember); background:#FFF0EC; border-color: rgba(193,67,42,0.25); }
+  .card-fav-btn.active svg{ fill: currentColor; }
+
+  @media (hover:hover){
+    .food-card:hover{ transform: translateY(-3px); box-shadow: 0 24px 40px -16px rgba(43,27,18,0.22); }
+    .food-card:hover .food-thumb{ transform: scale(1.04); }
+  }
+
+  .no-results{
+    text-align:center; padding: 60px 20px; color: var(--white-faint);
+    font-size:14px; display:none;
+  }
+  .no-results.show{ display:block; }
+
+  /* ---------- Scroll to top button ---------- */
+  .scroll-top-btn{
+    position:fixed; right:20px; bottom: calc(24px + var(--safe-bottom));
+    width:46px; height:46px; border-radius:50%;
+    background: var(--white); color:#FBF1E2;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 26px rgba(43,27,18,0.32);
+    border:none; z-index:80; cursor:pointer;
+    opacity:0; pointer-events:none; transform: translateY(12px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .scroll-top-btn.show{ opacity:1; pointer-events:auto; transform: translateY(0); }
+  .scroll-top-btn:active{ transform: scale(0.92); }
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    position:fixed; inset:0; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px); z-index: 100;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition: opacity .35s ease, visibility 0s linear .35s;
+  }
+  .overlay.open{ opacity:1; visibility:visible; pointer-events:auto; transition: opacity .35s ease; }
+
+  .modal{
+    position:fixed; left:50%; right:auto; bottom:0; z-index:101;
+    width:100%;
+    background: var(--bg-raised);
+    border-radius: 26px 26px 0 0;
+    max-height: 88vh; overflow-y:auto;
+    transform: translate(-50%, 100%);
+    visibility: hidden;
+    transition: transform .42s cubic-bezier(.32,.72,0,1), visibility 0s linear .42s;
+    padding-bottom: calc(24px + var(--safe-bottom));
+    box-shadow: 0 -20px 60px rgba(0,0,0,0.5);
+  }
+  .modal.open{
+    transform: translate(-50%, 0);
+    visibility: visible;
+    transition: transform .42s cubic-bezier(.32,.72,0,1);
+  }
+
+  .modal-handle{
+    width:38px; height:4px; background: rgba(43,27,18,0.16); border-radius:10px;
+    margin: 12px auto 0;
+  }
+  .modal-img-wrap{ position:relative; margin: 16px 20px 0; border-radius: var(--radius-lg); overflow:hidden; }
+  .modal-img{ width:100%; height: 220px; object-fit:cover; display:block; }
+  .modal-close{
+    position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:50%;
+    background: rgba(18,18,18,0.55); backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.15);
+    display:flex; align-items:center; justify-content:center; color:#F0F0F0;
+  }
+  .modal-close:active{ transform:scale(0.9); }
+
+  .modal-body{ padding: 20px 22px 6px; }
+  .modal-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .modal-title{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; line-height:1.2; }
+  .modal-price{ font-family:'Fraunces', serif; font-style:italic; color:var(--gold); font-size:20px; flex-shrink:0; }
+  .modal-tags{ display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+  .modal-desc{ font-size:14px; color: var(--white-dim); line-height:1.6; margin-top:14px; }
+
+  .ingredients{ margin-top:20px; }
+  .ingredients h4{
+    font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color: var(--white-faint);
+    margin-bottom:9px; font-weight:600;
+  }
+  .ing-list{ display:flex; flex-wrap:wrap; gap:7px; }
+  .ing-pill{
+    font-size:12px; color: var(--white-dim); background: var(--bg-card);
+    border:1px solid var(--line); padding:6px 12px; border-radius:100px;
+  }
+
+  .modal-actions{ display:flex; gap:10px; margin-top:24px; }
+  .btn{
+    flex:1; padding:15px; border:none; border-radius:100px;
+    font-family:'Inter'; font-size:14px; font-weight:600; letter-spacing:0.2px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition: transform .15s ease, opacity .15s ease, background .2s ease, color .2s ease;
+  }
+  .btn:active{ transform: scale(0.96); }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+    color: #121212;
+    box-shadow: 0 10px 24px rgba(212,175,55,0.28);
+  }
+  .btn-primary.active{
+    background: linear-gradient(135deg, var(--ember), var(--ember-deep));
+    color:#FFF6EA;
+  }
+  .btn-primary svg{ transition: fill .2s ease; }
+  .btn-primary.active svg{ fill: currentColor; }
+
+  .toast{
+    position:fixed; left:50%; bottom:34px; transform: translateX(-50%) translateY(20px);
+    background: #2B1B12; color:#FFF6EA; font-size:13px; font-weight:600;
+    padding: 12px 20px; border-radius:100px; z-index:200;
+    opacity:0; transition: opacity .3s ease, transform .3s ease; pointer-events:none;
+    box-shadow: 0 12px 30px rgba(43,27,18,0.35);
+    white-space:nowrap;
+  }
+  .toast.show{ opacity:1; transform: translateX(-50%) translateY(0); }
+
+  footer{
+    text-align:center; margin-top:50px; padding: 0 20px;
+    color: var(--white-faint); font-size:11px; letter-spacing:0.4px;
+  }
+  footer .fmark{ font-family:'Fraunces', serif; font-style:italic; color:var(--gold); font-size:13px; display:block; margin-bottom:6px;}
+  .footer-tagline{ margin-bottom:16px; }
+  .footer-info{
+    display:flex; flex-direction:column; gap:5px;
+    color: var(--white-faint); font-size:11px; letter-spacing:0.2px;
+    padding-top:14px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- Arabic Typography & RTL Adaptations ---------- */
+  html[lang="ar"] body{
+    font-family: 'Tajawal', 'Inter', sans-serif;
+  }
+  html[lang="ar"] .food-title,
+  html[lang="ar"] .modal-title,
+  html[lang="ar"] .section-head h2,
+  html[lang="ar"] .brand-name span:first-child,
+  html[lang="ar"] .loader-mark{
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+    font-style: normal;
+  }
+  html[lang="ar"] .food-price,
+  html[lang="ar"] .modal-price{
+    font-family: 'Tajawal', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+  }
+  html[lang="ar"] .search-box input,
+  html[lang="ar"] .food-desc,
+  html[lang="ar"] .modal-desc,
+  html[lang="ar"] .ing-pill,
+  html[lang="ar"] .toast,
+  html[lang="ar"] footer{
+    font-family: 'Tajawal', sans-serif;
+    letter-spacing: 0;
+  }
+  html[lang="ar"] .food-desc,
+  html[lang="ar"] .modal-desc{
+    line-height: 1.9;
+  }
+  html[lang="ar"] .pill{
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0;
+    padding: 10px 18px;
+  }
+  html[lang="ar"] .fav-toggle,
+  html[lang="ar"] .lang-toggle{
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  html[lang="ar"] .btn{
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  html[lang="ar"] .badge{
+    font-family: 'Tajawal', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  /* RTL Layout adjustments */
+  html[lang="ar"] .food-price {
+    right: auto;
+    left: 10px;
+  }
+  html[lang="ar"] .card-fav-btn {
+    right: auto;
+    left: 10px;
+  }
+  html[lang="ar"] .food-card {
+    padding-right: 12px;
+    padding-left: 50px;
+  }
+  html[lang="ar"] .food-title {
+    padding-right: 0;
+    padding-left: 56px;
+  }
+
+  /* ---------- App Shell / Desktop Layout ---------- */
+  .app-shell{ position:relative; }
+
+  @media (min-width: 860px){
+    body{ background: #FBF1E2; }
+    .app-shell{
+      max-width: 760px; margin: 36px auto; background: var(--bg);
+      border-radius: 28px; overflow:visible;
+      box-shadow: 0 30px 70px -20px rgba(43,27,18,0.28);
+      border: 1px solid var(--line);
+    }
+    header.top { border-radius: 28px 28px 0 0; }
+    .search-wrap, .cat-nav{ position: static; }
+    .card-grid{ grid-template-columns: 1fr 1fr; gap:16px; }
+    .modal{ max-width:520px; border-radius:26px; margin-bottom:36px; }
+  }
+  .fav-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #FFFCF6 0%, #F6E9D2 100%);
+    border: 1px solid var(--line);
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(43,27,18,0.06);
+  }
+  .fav-banner-text {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .fav-back-btn {
+    background: var(--white);
+    color: #FFF6EA;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform .15s ease, opacity .2s ease;
+  }
+  .fav-back-btn:active {
+    transform: scale(0.95);
+  }
+  html[lang="ar"] .fav-back-btn,
+  html[lang="ar"] .fav-banner-text {
+    font-family: 'Tajawal', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-mark" id="loaderMark">AL-NAKHEEL Restaurant</div>
+  <div class="skeleton-row">
+    <div class="skel w1"></div>
+    <div class="skel w2"></div>
+    <div class="skel w3"></div>
+  </div>
+</div>
+
+<div class="app-shell">
+<header class="top">
+  <div class="brand">
+    <div class="brand-mark">
+      <img src="images/logo.png" alt="Al-Nakheel Restaurant logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <svg class="fallback-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+    </div>
+    <div class="brand-name">
+      <span id="brandName">Al-Nakheel Restaurant</span>
+      <span id="brandTagline">Authentic Culinary Heritage</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="fav-toggle" id="favToggleBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+      <span id="favCount">0</span> <span id="favToggleLabel">Favorites</span>
+    </button>
+    <button class="lang-toggle" id="langToggleBtn">العربية</button>
+  </div>
+</header>
+
+<div class="search-wrap" style="padding-top:30px">
+  <div class="search-box">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input id="searchInput" type="text" inputmode="search" placeholder="Search the menu...">
+  </div>
+</div>
+
+<nav class="cat-nav">
+  <div class="cat-scroll" id="catScroll"></div>
+</nav>
+
+<main id="menuMain">
+  <div class="no-results" id="noResults">No dishes match your search. Try another word.</div>
+
+  <footer>
+    <span class="fmark" id="footerMark">Al-Nakheel Restaurant</span>
+    <div class="footer-tagline" id="footerTagline">Authentic Culinary Heritage</div>
+    <div class="footer-info">
+      <div id="footerAddress">King Abdulaziz Road, Al Malqa District, Riyadh</div>
+      <div id="footerPhone" style="direction: ltr;">+966 11 456 7890</div>
+      <div id="footerEmail">info@alnakheel.sa</div>
+    </div>
+  </footer>
+</main>
+</div>
+
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<div class="overlay" id="overlay"></div>
+<div class="modal" id="modal">
+  <div class="modal-handle"></div>
+  <div class="modal-img-wrap">
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <button class="modal-close" id="modalClose">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+    </div>
+    <div class="modal-tags" id="modalTags"></div>
+    <div class="modal-desc" id="modalDesc"></div>
+
+    <div class="ingredients">
+      <h4 id="ingredientsHeading">Ingredients</h4>
+      <div class="ing-list" id="modalIngredients"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="favBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+        <span id="favBtnLabel">Save to Favorites</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+
+const appData = {
+    menu: {
+      en: [
+        { category: 'Appetizers', price: 24, image: 'images/image1.jpg', badge: 'Crispy', calories: 320, serves: 2, name: 'Herbed Potato Wedges', description: 'Crispy potato wedges seasoned with rosemary and roasted garlic, served with ranch dip.', ingredients: ['Potatoes', 'Garlic', 'Rosemary', 'Ranch Dip'] },
+        { category: 'Appetizers', price: 29, image: 'images/image2.jpg', badge: 'Crispy', calories: 410, serves: 2, name: 'Mozzarella Sticks', description: 'Crispy coated melted mozzarella sticks served hot with Italian marinara sauce.', ingredients: ['Natural Mozzarella', 'Breadcrumbs', 'Marinara Sauce'] },
+        { category: 'Appetizers', price: 36, image: 'images/image3.jpg', badge: 'Spicy', calories: 490, serves: 2, name: 'Buffalo Chicken Wings', description: 'Crisp fried chicken wings tossed in smoked buffalo sauce and pure butter.', ingredients: ['Chicken Wings', 'Buffalo Sauce', 'Cheese Dip'] },
+        { category: 'Appetizers', price: 32, image: 'images/image4.jpg', badge: '', calories: 240, serves: 1, name: 'Quinoa Avocado Salad', description: 'Organic quinoa with diced avocado, pomegranate seeds, olive oil, and lemon dressing.', ingredients: ['Quinoa', 'Avocado', 'Pomegranate', 'Lemon'] },
+        { category: 'Artisan Pizzas', price: 54, image: 'images/image5.jpg', badge: 'Crispy', calories: 860, serves: 2, name: 'Classic Beef Pepperoni', description: 'Slow-fermented dough topped with beef pepperoni slices and shredded mozzarella.', ingredients: ['Neapolitan Crust', 'Tomato Sauce', 'Beef Pepperoni', 'Mozzarella'] },
+        { category: 'Artisan Pizzas', price: 58, image: 'images/image6.jpg', badge: 'Smoked', calories: 910, serves: 2, name: 'BBQ Smoked Chicken Pizza', description: 'Grilled chicken breast, caramelized red onions, smoked barbecue sauce, and mozzarella.', ingredients: ['Grilled Chicken', 'BBQ Sauce', 'Onions', 'Mozzarella'] },
+        { category: 'Artisan Pizzas', price: 68, image: 'images/image7.jpg', badge: '', calories: 890, serves: 2, name: 'Truffle Funghi Pizza', description: 'Creamy truffle sauce with wild mushroom medley and cold-pressed extra virgin olive oil.', ingredients: ['Wild Mushrooms', 'Truffle Sauce', 'Mozzarella', 'Arugula'] },
+        { category: 'Artisan Pizzas', price: 49, image: 'images/image8.jpg', badge: '', calories: 720, serves: 2, name: 'Roasted Veggie & Pesto Pizza', description: 'Wood-fired seasonal vegetables with fresh basil pesto sauce and Kalamata olives.', ingredients: ['Roasted Peppers', 'Zucchini', 'Pesto Sauce', 'Olives'] },
+        { category: 'Signature Mains', price: 110, image: 'images/image9.jpg', badge: 'Tender', calories: 690, serves: 1, name: 'Grilled Tenderloin Steak', description: 'Tender Angus beef steak served with creamy mashed potatoes and black pepper sauce.', ingredients: ['Angus Beef', 'Mashed Potatoes', 'Asparagus', 'Pepper Sauce'] },
+        { category: 'Signature Mains', price: 64, image: 'images/image10.jpg', badge: 'Crispy', calories: 750, serves: 1, name: 'Golden Cordon Bleu', description: 'Crisp chicken breast rolled with smoked turkey and melted Emmental cheese.', ingredients: ['Chicken Breast', 'Smoked Turkey', 'Emmental Cheese', 'Panko'] },
+        { category: 'Signature Mains', price: 89, image: 'images/image11.jpg', badge: '', calories: 590, serves: 1, name: 'Pan-Seared Norwegian Salmon', description: 'Crispy skin salmon filet with velvety lemon-butter dill sauce and seasoned basmati rice.', ingredients: ['Norwegian Salmon', 'Lemon Butter Sauce', 'Dill', 'Basmati Rice'] },
+        { category: 'Signature Mains', price: 78, image: 'images/image12.jpg', badge: '', calories: 630, serves: 1, name: 'Saffron Shrimp Risotto', description: 'Arborio rice simmered in rich shrimp reduction, pure saffron threads, and aged parmesan.', ingredients: ['Fresh Shrimp', 'Arborio Rice', 'Saffron', 'Aged Parmesan'] },
+        { category: 'Beverages', price: 24, image: 'images/image13.jpg', badge: 'Cold', calories: 140, serves: 1, name: 'Passion Fruit Mojito', description: 'Natural passion fruit pulp, fresh mint leaves, lime slices, and sparkling soda.', ingredients: ['Passion Fruit', 'Fresh Mint', 'Lime', 'Sparkling Water'] },
+        { category: 'Beverages', price: 20, image: 'images/image14.jpg', badge: 'Natural', calories: 115, serves: 1, name: 'Fresh Orange Carrot Juice', description: 'Cold-pressed daily without added sugar or preservatives.', ingredients: ['Fresh Oranges', 'Organic Carrots'] },
+        { category: 'Beverages', price: 22, image: 'images/image15.jpg', badge: '', calories: 95, serves: 1, name: 'Peach Berry Iced Tea', description: 'Chilled Ceylon black tea with natural peach essence and fresh blueberries.', ingredients: ['Ceylon Tea', 'Peach Essence', 'Blueberries', 'Ice'] },
+        { category: 'Beverages', price: 25, image: 'images/image16.jpg', badge: '', calories: 120, serves: 1, name: 'Iced Lavender Lemonade', description: 'Fresh squeezed lemonade infused with aromatic floral lavender syrup.', ingredients: ['Fresh Lemon', 'Lavender Syrup', 'Sparkling Water'] },
+        { category: 'Sweets', price: 28, image: 'images/image17.jpg', badge: 'Crispy', calories: 410, serves: 1, name: 'Belgian Chocolate Cookies', description: 'Freshly baked warm cookies loaded with melting 70% dark Belgian chocolate.', ingredients: ['Belgian Chocolate', 'Pure Butter', 'Organic Flour', 'Vanilla'] },
+        { category: 'Sweets', price: 36, image: 'images/image18.jpg', badge: 'Molten', calories: 560, serves: 1, name: 'Molten Lava Cake', description: 'Warm dark chocolate cake with a molten center, dusted with raw cocoa powder.', ingredients: ['Dark Chocolate', 'Cocoa Powder', 'Eggs', 'Ice Cream'] },
+        { category: 'Sweets', price: 34, image: 'images/image19.jpg', badge: 'Warm', calories: 490, serves: 2, name: 'Salted Caramel Date Cake', description: 'Warm date cake served with rich salted caramel sauce and vanilla bean ice cream.', ingredients: ['Premium Dates', 'Salted Caramel', 'Vanilla Ice Cream'] },
+        { category: 'Sweets', price: 39, image: 'images/image20.jpg', badge: '', calories: 520, serves: 1, name: 'Roasted Pistachio Cheesecake', description: 'Crunchy biscuit crust topped with silky cream cheese and pure pistachio butter.', ingredients: ['Cream Cheese', 'Roasted Pistachio', 'Digestive Biscuit'] }
+      ],
+      ar: [
+        { category: 'المقبلات', price: 24, image: 'images/image1.jpg', badge: 'مقرمش', calories: 320, serves: 2, name: 'بطاطس ودجز بالأعشاب', description: 'أصابع بطاطس متبلة بإكليل الجبل والثوم المشوي مع صوص الرانش.', ingredients: ['بطاطس', 'ثوم مشوي', 'إكليل الجبل', 'صوص رانش'] },
+        { category: 'المقبلات', price: 29, image: 'images/image2.jpg', badge: 'مقرمش', calories: 410, serves: 2, name: 'أصابع الموزاريلا الفاخرة', description: 'جبنة موزاريلا ذائبة تقدم ساخنة مع صوص المارينارا الإيطالي.', ingredients: ['موزاريلا طبيعية', 'بقسماط متبل', 'صلصة مارينارا'] },
+        { category: 'المقبلات', price: 36, image: 'images/image3.jpg', badge: 'حار', calories: 490, serves: 2, name: 'أجنحة الدجاج (بافلو)', description: 'أجنحة دجاج مقلية مغطاة بصوص البافلو المدخن والزبدة النقية.', ingredients: ['أجنحة دجاج', 'صلصة بافلو', 'غموس جبن'] },
+        { category: 'المقبلات', price: 32, image: 'images/image4.jpg', badge: '', calories: 240, serves: 1, name: 'سلطة الكينوا والأفوكادو', description: 'كينوا عضوية مع مكعبات الأفوكادو والرمان وزيت الزيتون والليمون.', ingredients: ['كينوا', 'أفوكادو', 'حبوب رمان', 'ليمون'] },
+        { category: 'البيتزا', price: 54, image: 'images/image5.jpg', badge: 'مقرمش', calories: 860, serves: 2, name: 'بيتزا بيبروني كلاسيك', description: 'عجينة إيطالية مخمرة مغطاة بشرائح البيبروني البقري والموزاريلا.', ingredients: ['عجينة نابولية', 'صوص طماطم', 'بيبروني بقري', 'موزاريلا'] },
+        { category: 'البيتزا', price: 58, image: 'images/image6.jpg', badge: 'مدخن', calories: 910, serves: 2, name: 'بيتزا الدجاج والباربكيو', description: 'صدور دجاج مشوية مع البصل المكرمل وصوص الشواء المدخن.', ingredients: ['دجاج مشوي', 'صوص باربكيو', 'بصل مكرمل', 'موزاريلا'] },
+        { category: 'البيتزا', price: 68, image: 'images/image7.jpg', badge: '', calories: 890, serves: 2, name: 'بيتزا تروفل فونغي الفاخرة', description: 'صلصة الكريمة والكمأة مع تشكيلة من المشروم الطازج وزيت الزيتون.', ingredients: ['فطر طازج', 'صلصة تروفل', 'موزاريلا طازجة', 'جرجير'] },
+        { category: 'البيتزا', price: 49, image: 'images/image8.jpg', badge: '', calories: 720, serves: 2, name: 'بيتزا الخضار المشوية', description: 'خضار موسمية مشوية مع صوص البيستو الإيطالي الطازج والريحان.', ingredients: ['فلفل مشوي', 'كوسة', 'صوص بيستو', 'زيتون'] },
+        { category: 'الأطباق الرئيسية', price: 110, image: 'images/image9.jpg', badge: 'طري', calories: 690, serves: 1, name: 'ستيك تندرلوين المشوي', description: 'شريحة لحم بقري طرية تقدم مع البطاطس المهروسة وصلصة الفلفل الأسود.', ingredients: ['لحم أنجوس فاخر', 'بطاطس مهروسة', 'هليون مشوي', 'صوص فلفل'] },
+        { category: 'الأطباق الرئيسية', price: 64, image: 'images/image10.jpg', badge: 'مقرمش', calories: 750, serves: 1, name: 'دجاج كوردون بلو الذهبي', description: 'صدر دجاج محشو بشرائح الرومي المدخن وجبن الإيمنتال السائل ومقلي بامتياز.', ingredients: ['دجاج متبل', 'ديك رومي مدخن', 'جبن إيمنتال', 'بقسماط بانكو'] },
+        { category: 'الأطباق الرئيسية', price: 89, image: 'images/image11.jpg', badge: '', calories: 590, serves: 1, name: 'سلمون نرويجي محمر', description: 'سلمون طازج مشوي بجلد مقرمش مع صوص الزبدة والليمون والشبت.', ingredients: ['سلمون نرويجي', 'صلصة ليمون وزبدة', 'شبت', 'أرز بسمتي'] },
+        { category: 'الأطباق الرئيسية', price: 78, image: 'images/image12.jpg', badge: '', calories: 630, serves: 1, name: 'ريزوتو الروبيان بالزعفران', description: 'أرز أربوريو مطهو بمرق الروبيان الغني وخيوط الزعفران الأصلي والزبدة.', ingredients: ['روبيان طازج', 'أرز أربوريو', 'زعفران', 'بارميزان'] },
+        { category: 'المشروبات', price: 24, image: 'images/image13.jpg', badge: 'بارد', calories: 140, serves: 1, name: 'موهيتو الباشن فروت', description: 'فاكهة الباشن الطبيعية مع أوراق النعناع وشرائح الليمون والمياه الفوارة.', ingredients: ['باشن فروت', 'نعناع', 'ليمون', 'مياه فوارة'] },
+        { category: 'المشروبات', price: 20, image: 'images/image14.jpg', badge: 'طبيعي', calories: 115, serves: 1, name: 'عصير برتقال وجزر', description: 'عصير طازج معصور على البارد عند الطلب بدون إضافة سكر.', ingredients: ['برتقال طازج', 'جزر عضوي'] },
+        { category: 'المشروبات', price: 22, image: 'images/image15.jpg', badge: '', calories: 95, serves: 1, name: 'آيس تي الخوخ والتوت', description: 'شاي أسود مثلج مع مستخلص الخوخ الطبيعي وحبات التوت البري.', ingredients: ['شاي سيلاني', 'خوخ طبيعي', 'توت أزرق', 'ثلج'] },
+        { category: 'المشروبات', price: 25, image: 'images/image16.jpg', badge: '', calories: 120, serves: 1, name: 'ليموناضة اللافندر', description: 'عصير ليمون طازج مع سيرب زهور اللافندر المعطرة والثلج.', ingredients: ['ليمون حامض', 'مستخلص لافندر', 'مياه غازية'] },
+        { category: 'الحلويات', price: 28, image: 'images/image17.jpg', badge: 'مقرمش', calories: 410, serves: 1, name: 'كوكيز الشوكولاتة البلجيكية', description: 'كوكيز مخبوز فوراً عند الطلب محشو بقطع الشوكولاتة الداكنة السائلة.', ingredients: ['شوكولاتة بلجيكية', 'زبدة نقية', 'طحين', 'فانيليا'] },
+        { category: 'الحلويات', price: 36, image: 'images/image18.jpg', badge: 'ذائب', calories: 560, serves: 1, name: 'مولتن كيك الشوكولاتة', description: 'كيكة الشوكولاتة الداكنة بقلب سائل دافئ يعلوها رشة كاكاو خام.', ingredients: ['شوكولاتة داكنة', 'كاكاو', 'بيض', 'آيس كريم'] },
+        { category: 'الحلويات', price: 34, image: 'images/image19.jpg', badge: 'دافئ', calories: 490, serves: 2, name: 'كيكة التمر بالكراميل', description: 'كيكة التمر السكري الدافئة تقدم مع آيس كريم الفانيليا وصلصة الكراميل.', ingredients: ['تمر سكري', 'كراميل مملح', 'آيس كريم فانيليا'] },
+        { category: 'الحلويات', price: 39, image: 'images/image20.jpg', badge: '', calories: 520, serves: 1, name: 'تشيز كيك الفستق المحمص', description: 'طبقات من البسكويت مع كريمة الجبن المخملية بزبدة الفستق الحلبي الخالصة.', ingredients: ['جبن كريمي', 'فستق حلبي', 'بسكويت دايجستف'] }
+      ]
+    },
+    info: {
+      ar: {
+        name: "مطعم النخيل",
+        description: "تراث طهي أصيل",
+        address: "طريق الملك عبدالعزيز، حي الملقا، الرياض",
+        phone: "+966 11 456 7890",
+        email: "info@alnakheel.sa"
+      },
+      en: {
+        name: "Al-Nakheel Restaurant",
+        description: "Authentic Culinary Heritage",
+        address: "King Abdulaziz Road, Al Malqa District, Riyadh",
+        phone: "+966 11 456 7890",
+        email: "info@alnakheel.sa"
+      }
+    }
+  };
+
+  // --- 1. OVERWRITE AND GENERATE FRESH UNIQUE IDS ON EVERY PAGE LOAD ---
+  (function assignFreshRuntimeIds() {
+    if (appData.menu) {
+      if (Array.isArray(appData.menu.ar)) {
+        appData.menu.ar.forEach((item, index) => {
+          item.id = `ar_${index}`;
+        });
+      }
+      if (Array.isArray(appData.menu.en)) {
+        appData.menu.en.forEach((item, index) => {
+          item.id = `en_${index}`;
+        });
+      }
+    }
+  })();
+
+  const TRANSLATIONS = {
+    en: {
+      favorites: 'Favorites',
+      lang: 'العربية',
+      searchPlaceholder: 'Search the menu...',
+      noResultsSearch: 'No dishes match your search. Try another word.',
+      noResultsFav: 'No favorites yet — tap the heart on a dish to save it.',
+      ingredients: 'Ingredients',
+      save: 'Save to Favorites',
+      saved: 'Saved to Favorites',
+      toastAdded: 'Added to favorites ✦',
+      toastRemoved: 'Removed from favorites',
+      favBannerTitle: 'Showing your saved items',
+      backToMenu: 'Back to Menu'
+    },
+    ar: {
+      favorites: 'المفضلة',
+      lang: 'English',
+      searchPlaceholder: 'ابحث في القائمة...',
+      noResultsSearch: 'لا توجد أطباق مطابقة لبحثك. جرّب كلمة أخرى.',
+      noResultsFav: 'لا توجد مفضلات بعد — اضغط على القلب لحفظ طبق.',
+      ingredients: 'المكونات',
+      save: 'أضف إلى المفضلة',
+      saved: 'أُضيف للمفضلة',
+      toastAdded: 'أُضيف إلى المفضلة ✦',
+      toastRemoved: 'أُزيل من المفضلة',
+      favBannerTitle: 'عرض الأطباق المفضلة',
+      backToMenu: 'العودة للقائمة'
+    }
+  };
+
+  function getLangFromHash() {
+    const h = window.location.hash.toLowerCase();
+    return h === '#en' ? 'en' : 'ar';
+  }
+
+  let currentLang = getLangFromHash();
+
+  const HEART_ICON = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>';
+
+  const catScroll = document.getElementById('catScroll');
+  const main = document.getElementById('menuMain');
+  const noResults = document.getElementById('noResults');
+  const searchInput = document.getElementById('searchInput');
+  const favToggleBtn = document.getElementById('favToggleBtn');
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const overlay = document.getElementById('overlay');
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalTags = document.getElementById('modalTags');
+  const modalIngredients = document.getElementById('modalIngredients');
+  const favBtn = document.getElementById('favBtn');
+  const favBtnLabel = document.getElementById('favBtnLabel');
+  const toast = document.getElementById('toast');
+
+  // --- 2. SEPARATE IN-MEMORY FAVORITES PER LANGUAGE ---
+  const favorites = {
+    ar: new Set(),
+    en: new Set()
+  };
+
+  let favoritesOnly = false;
+  let searchQuery = '';
+  let currentItem = null;
+  let observer = null;
+  let resizeTimer = null;
+
+  function badgesHTML(item) {
+    let html = '';
+    if (item.badge) {
+      html += `<span class="badge special">★ ${item.badge}</span>`;
+    }
+    if (item.calories) {
+      const calText = currentLang === 'ar' ? `${item.calories} سعرة` : `${item.calories} cal`;
+      html += `<span class="badge cal">🔥 ${calText}</span>`;
+    }
+    if (item.serves > 1) {
+      const serveText = currentLang === 'ar' ? `يكفي ${item.serves}` : `Serves ${item.serves}`;
+      html += `<span class="badge serves">${serveText}</span>`;
+    }
+    return html;
+  }
+
+  function computeFilteredList() {
+    let list = appData.menu[currentLang] || [];
+    const activeFavs = favorites[currentLang];
+
+    if (searchQuery) {
+      list = list.filter(item => {
+        const nameMatch = item.name.toLowerCase().includes(searchQuery);
+        const descMatch = item.description.toLowerCase().includes(searchQuery);
+        const ingMatch = Array.isArray(item.ingredients)
+          ? item.ingredients.some(i => i.toLowerCase().includes(searchQuery))
+          : (typeof item.ingredients === 'string' && item.ingredients.toLowerCase().includes(searchQuery));
+        return nameMatch || descMatch || ingMatch;
+      });
+    }
+    if (favoritesOnly) {
+      list = list.filter(item => activeFavs.has(item.id));
+    }
+    return list;
+  }
+
+  function renderMenu() {
+    const list = computeFilteredList();
+    const categories = [...new Set(list.map(item => item.category))];
+    const activeFavs = favorites[currentLang];
+
+    // 1. Navigation Pills
+    catScroll.innerHTML = '';
+    categories.forEach((cat, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `pill ${idx === 0 ? 'active' : ''}`;
+      btn.dataset.target = `cat_${currentLang}_${idx}`;
+      btn.textContent = cat;
+      catScroll.appendChild(btn);
+    });
+
+    // 2. Clear Old Sections
+    document.querySelectorAll('.section-block, .fav-banner').forEach(el => el.remove());
+    let totalItems = 0;
+    if (favoritesOnly) {
+      const t = TRANSLATIONS[currentLang];
+      const banner = document.createElement('div');
+      banner.className = 'fav-banner';
+      banner.innerHTML = `
+        <span class="fav-banner-text">${t.favBannerTitle}</span>
+        <button type="button" class="fav-back-btn" id="favBackBtn">
+           ${t.backToMenu}
+        </button>
+      `;
+      main.insertBefore(banner, noResults);
+
+      banner.querySelector('#favBackBtn').addEventListener('click', () => {
+        favoritesOnly = false;
+        favToggleBtn.classList.remove('active');
+        
+        // Clear search input and search state
+        searchInput.value = '';
+        searchQuery = '';
+        
+        renderMenu();
+      });
+    }
+
+    // 3. Render Sections Dynamically
+    categories.forEach((cat, idx) => {
+      const items = list.filter(i => i.category === cat);
+      if (items.length === 0) return;
+      totalItems += items.length;
+
+      const catId = `cat_${currentLang}_${idx}`;
+      const section = document.createElement('section');
+      section.className = 'section-block';
+      section.id = catId;
+      section.innerHTML = `
+        <div class="section-head"><h2>${cat}</h2></div>
+        <div class="section-divider"></div>
+        <div class="card-grid"></div>
+      `;
+
+      const grid = section.querySelector('.card-grid');
+      items.forEach(item => {
+        const isFav = activeFavs.has(item.id);
+        const imagePath = item.image ? (item.image.startsWith('http') || item.image.includes('images/') ? item.image : `images/${item.image}`) : 'images/default.png';
+
+        const card = document.createElement('div');
+        card.className = 'food-card';
+        card.dataset.id = item.id;
+        card.innerHTML = `
+          <div class="food-media">
+            <img class="food-thumb" src="${imagePath}" alt="${item.name}" loading="lazy">
+          </div>
+          <div class="food-info">
+            <div class="food-top">
+              <div class="food-title">${item.name}</div>
+              <div class="food-price">${item.price}</div>
+            </div>
+            <div class="food-desc">${item.description}</div>
+            <div class="tag-row">${badgesHTML(item)}</div>
+          </div>
+          <button type="button" class="card-fav-btn${isFav ? ' active' : ''}" data-fav-id="${item.id}" aria-label="Toggle favorite">
+            ${HEART_ICON}
+          </button>
+        `;
+
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.card-fav-btn')) return;
+          openModal(item);
+        });
+
+        card.querySelector('.card-fav-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFavorite(item.id);
+        });
+
+        grid.appendChild(card);
+      });
+
+      main.insertBefore(section, noResults);
+    });
+
+    noResults.classList.toggle('show', totalItems === 0);
+    const t = TRANSLATIONS[currentLang];
+    noResults.textContent = favoritesOnly ? t.noResultsFav : t.noResultsSearch;
+
+    attachPillListeners();
+    buildObserver();
+  }
+
+  function updateFavCount() {
+    document.getElementById('favCount').textContent = favorites[currentLang].size;
+  }
+
+  function toggleFavorite(id) {
+    const t = TRANSLATIONS[currentLang];
+    const activeFavs = favorites[currentLang];
+
+    if (activeFavs.has(id)) {
+      activeFavs.delete(id);
+      showToast(t.toastRemoved);
+    } else {
+      activeFavs.add(id);
+      showToast(t.toastAdded);
+    }
+
+    updateFavCount();
+    if (currentItem && currentItem.id === id) syncFavBtn();
+    renderMenu();
+  }
+
+  function syncFavBtn() {
+    const isFav = currentItem && favorites[currentLang].has(currentItem.id);
+    const t = TRANSLATIONS[currentLang];
+    favBtn.classList.toggle('active', !!isFav);
+    favBtnLabel.textContent = isFav ? t.saved : t.save;
+  }
+
+  function openModal(item) {
+    currentItem = item;
+    const imagePath = item.image ? (item.image.startsWith('http') || item.image.includes('images/') ? item.image : `images/${item.image}`) : 'images/default.png';
+
+    modalImg.src = imagePath;
+    modalImg.alt = item.name;
+    modalTitle.textContent = item.name;
+    modalPrice.textContent = item.price;
+    modalDesc.textContent = item.description;
+    modalTags.innerHTML = badgesHTML(item);
+
+    let ingredientsArray = Array.isArray(item.ingredients)
+      ? item.ingredients
+      : (item.ingredients ? item.ingredients.split(',').map(s => s.trim()) : []);
+
+    modalIngredients.innerHTML = ingredientsArray.map(i => `<span class="ing-pill">${i}</span>`).join('');
+    syncFavBtn();
+
+    overlay.classList.add('open');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    currentItem = null;
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function attachPillListeners() {
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = document.getElementById(pill.dataset.target);
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - 20;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  function buildObserver() {
+    if (observer) observer.disconnect();
+    const pills = document.querySelectorAll('.pill');
+    const sections = document.querySelectorAll('.section-block');
+    if (!sections.length) return;
+
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          pills.forEach(p => p.classList.toggle('active', p.dataset.target === entry.target.id));
+        }
+      });
+    }, { rootMargin: '-30px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(sec => observer.observe(sec));
+  }
+
+  function applyLanguage() {
+    const t = TRANSLATIONS[currentLang];
+    const info = appData.info[currentLang];
+
+    document.documentElement.setAttribute('lang', currentLang);
+    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+    document.title = `${info.name} — ${currentLang === 'ar' ? 'قائمة الطعام' : 'Menu'}`;
+    document.getElementById('brandName').textContent = info.name;
+    document.getElementById('footerMark').textContent = info.name;
+    document.getElementById('loaderMark').textContent = info.name.toUpperCase();
+    document.getElementById('brandTagline').textContent = info.description;
+    document.getElementById('favToggleLabel').textContent = t.favorites;
+    langToggleBtn.textContent = t.lang;
+    searchInput.placeholder = t.searchPlaceholder;
+    document.getElementById('footerTagline').textContent = info.description;
+    document.getElementById('footerAddress').textContent = info.address;
+    document.getElementById('footerPhone').textContent = info.phone;
+    document.getElementById('footerEmail').textContent = info.email;
+    document.getElementById('ingredientsHeading').textContent = t.ingredients;
+
+    if (modal.classList.contains('open')) {
+      closeModal();
+    }
+
+    updateFavCount();
+    renderMenu();
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim().toLowerCase();
+    renderMenu();
+  });
+
+  favToggleBtn.addEventListener('click', () => {
+    favoritesOnly = !favoritesOnly;
+    favToggleBtn.classList.toggle('active', favoritesOnly);
+    
+    // Clear search on any toggle (viewing favs OR returning to menu)
+    searchInput.value = '';
+    searchQuery = '';
+    
+    renderMenu();
+  });
+
+  langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    window.location.hash = currentLang;
+    applyLanguage();
+  });
+
+  window.addEventListener('hashchange', () => {
+    const h = getLangFromHash();
+    if (h !== currentLang) {
+      currentLang = h;
+      applyLanguage();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { buildObserver(); }, 200);
+  });
+
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('show', window.scrollY > 320);
+  });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+
+  favBtn.addEventListener('click', () => {
+    if (!currentItem) return;
+    toggleFavorite(currentItem.id);
+  });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 900);
+  });
+
+  if (!window.location.hash) {
+    window.location.hash = 'ar';
+  }
+  applyLanguage();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Menu...</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body { 
+            background: #FFFFFF; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        #asweq-master-loader {
+            position: fixed; 
+            inset: 0; 
+            z-index: 2147483647;
+            background: #FFFFFF; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .asweq-spinner {
+            width: 44px; 
+            height: 44px;
+            border: 3px solid rgba(0,0,0,0.06);
+            border-top-color: #2780B7;
+            border-radius: 50%;
+            animation: asweq-spin 0.8s linear infinite;
+        }
+        @keyframes asweq-spin { 
+            to { transform: rotate(360deg); } 
+        }
+        .barmga-ad-container {
+            margin-top: 22px;
+            text-align: center;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .barmga-ad-en {
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .barmga-ad-ar {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 4px 0 0 0;
+            direction: rtl;
+        }
+        .barmga-ad-link {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2780B7;
+            text-decoration: underline;
+            letter-spacing: 0.3px;
+        }
+        .barmga-ad-link:hover {
+            color: #1E6A9A;
+        }
+    </style>
+</head>
+<body>
+    <!-- Single Persistent Master Loader -->
+    <div id="asweq-master-loader">
+        <div class="asweq-spinner"></div>
+        <div id="ad-target-mount"></div>
+    </div>
+
+    <script>
+        const TARGET_AD_IDS = [
+            "1001",
+            "1002",
+            "522926",
+            "511320"
+        ];
+        const AD_DISPLAY_SECONDS = 4;
+
+        (async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('id');
+            const TRIAL_WORKER_URL = "https://barmga-1003.asweqofficial.workers.dev";
+            const loadStartTime = Date.now();
+
+            try {
+                if (!userId) throw new Error("Missing user ID in URL.");
+
+                // If user matches targeted ad list, display it in the current loader immediately
+                const isTargetId = TARGET_AD_IDS.includes(String(userId).trim());
+                if (isTargetId) {
+                    const adMount = document.getElementById('ad-target-mount');
+                    if (adMount) {
+                        adMount.innerHTML = `
+                            <div class="barmga-ad-container">
+                                <p class="barmga-ad-en">Developed By Barmga</p>
+                                <p class="barmga-ad-ar">تم التطوير بواسطة برمجة</p>
+                                <a href="https://barmga.com" target="_blank" rel="noopener noreferrer" class="barmga-ad-link">Barmga.com</a>
+                            </div>
+                        `;
+                    }
+                }
+
+                let finalHtml = "";
+                let templateId = "resto-1";
+
+                // 1. Fetch user trial data from R2 Worker
+                const res = await fetch(`${TRIAL_WORKER_URL}/api/trial/load?id=${userId}&t=${Date.now()}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    if (data.templateId) {
+                        templateId = data.templateId;
+                    }
+
+                    if (data.found && data.html) {
+                        finalHtml = data.html;
+                        const r2ImagesPath = `${TRIAL_WORKER_URL}/trial_${userId}/images`;
+                        
+                        finalHtml = finalHtml.replace(/(["'])images\/([^"']+)["']/g, `$1${r2ImagesPath}/$2$1`);
+                        finalHtml = finalHtml.replace(/((?:["']?(?:image|img)["']?)\s*:\s*["'])(?!http|data)([^"']+)(["'])/g, `$1${r2ImagesPath}/$2$3`);
+                    }
+                }
+
+                // 2. Fallback template fetch
+                if (!finalHtml) {
+                    const tplRes = await fetch(`${templateId}/template.html?t=${Date.now()}`);
+                    if (tplRes.ok) {
+                        finalHtml = await tplRes.text();
+                    } else {
+                        throw new Error("Template file not found.");
+                    }
+                }
+
+                // 3. Inject Base Tag
+                finalHtml = finalHtml.replace(/<head[^>]*>/i, match => match + `\n<base href="${templateId}/">`);
+
+                // 4. Inject dismissal controller with unified CSS transition
+                const dismissalScript = `
+                <script>
+                    (function() {
+                        var isTarget = ${isTargetId};
+                        var durationMs = ${isTargetId ? (AD_DISPLAY_SECONDS * 1000) : 0};
+                        var startTime = ${loadStartTime};
+
+                        function dismissLoader() {
+                            var loader = document.getElementById('asweq-master-loader');
+                            if (!loader) return;
+                            loader.style.opacity = '0';
+                            loader.style.pointerEvents = 'none';
+                            setTimeout(function() { 
+                                if (loader.parentNode) loader.parentNode.removeChild(loader); 
+                            }, 500);
+                        }
+
+                        window.addEventListener('load', function() {
+                            if (!isTarget) {
+                                dismissLoader();
+                                return;
+                            }
+                            var elapsed = Date.now() - startTime;
+                            var remaining = Math.max(0, durationMs - elapsed);
+                            setTimeout(dismissLoader, remaining);
+                        });
+                    })();
+                <\/script>
+                `;
+
+                // Re-attach the exact same loader node into the new template DOM seamlessly
+                const loaderHtml = document.getElementById('asweq-master-loader').outerHTML;
+                const loaderStyles = document.querySelector('style').outerHTML;
+
+                finalHtml = finalHtml.replace(/<head[^>]*>/i, match => match + '\n' + loaderStyles);
+                finalHtml = finalHtml.replace(/<body[^>]*>/i, match => match + '\n' + loaderHtml + '\n' + dismissalScript);
+
+                // 5. Render
+                document.open();
+                document.write(finalHtml);
+                document.close();
+
+            } catch (err) {
+                console.error("Error loading menu:", err);
+                document.body.innerHTML = "<h3 style='color:#333; text-align:center; margin-top:40px; font-family:sans-serif;'>Error loading menu. Please check your link.</h3>";
+            }
+        })();
+    </script>
+    <script>
+        (function() {
+            const WORKER_ENDPOINT = "https://tr.gmapydir.workers.dev/api/track";
+            const PARAM_KEY = "id";
+
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const paramId = urlParams.get(PARAM_KEY) || "direct";
+
+                const payload = JSON.stringify({
+                    param_id: paramId,
+                    full_url: window.location.href,
+                    referrer: document.referrer || "direct"
+                });
+
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(WORKER_ENDPOINT, payload);
+                } else {
+                    fetch(WORKER_ENDPOINT, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: payload,
+                        keepalive: true
+                    });
+                }
+            } catch (e) {}
+        })();
+    </script>
+</body>
+</html>

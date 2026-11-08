@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>برمجة | منيو إلكتروني ذكي لمطعمك</title>
+  <meta name="description" content="حوّل تجربة عملائك بمسح رمز QR. اختر من قوالبنا الفاخرة، وعدّل أسعارك فوراً عبر لوحة تحكم احترافية.">
+
+  <!-- Tailwind CSS & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Google Fonts: Cairo & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2780b7;
+      --primary-dark: #1e6a9a;
+      --primary-light: #ebf3f8;
+      --accent: #fd7e14;
+      --accent-dark: #e6711a;
+      --navy: #110370;
+      --bg-light: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif !important;
+      line-height: 1.8;
+      color: #333333;
+      overflow-x: hidden;
+      background-color: #ffffff;
+    }
+
+    .font-en {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+
+    /* Floating Animated Restaurant Icons from original hero */
+    .hero-bg-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-bg-animation span {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.12);
+      animation: animate-shapes linear infinite;
+      bottom: -160px;
+    }
+    .hero-bg-animation span:nth-child(1) { left: 4%; font-size: 55px; animation-duration: 10s; animation-delay: 0s; }
+    .hero-bg-animation span:nth-child(2) { left: 14%; font-size: 40px; animation-duration: 12s; animation-delay: 2s; }
+    .hero-bg-animation span:nth-child(3) { left: 26%; font-size: 65px; animation-duration: 9s; animation-delay: 1s; }
+    .hero-bg-animation span:nth-child(4) { left: 38%; font-size: 48px; animation-duration: 13s; animation-delay: 3s; }
+    .hero-bg-animation span:nth-child(5) { left: 48%; font-size: 75px; animation-duration: 11s; animation-delay: 0.5s; }
+    .hero-bg-animation span:nth-child(6) { left: 58%; font-size: 50px; animation-duration: 14s; animation-delay: 2.5s; }
+    .hero-bg-animation span:nth-child(7) { left: 68%; font-size: 60px; animation-duration: 10s; animation-delay: 1.5s; }
+    .hero-bg-animation span:nth-child(8) { left: 78%; font-size: 42px; animation-duration: 8s; animation-delay: 3.5s; }
+    .hero-bg-animation span:nth-child(9) { left: 88%; font-size: 80px; animation-duration: 15s; animation-delay: 2s; }
+    .hero-bg-animation span:nth-child(10) { left: 93%; font-size: 46px; animation-duration: 11s; animation-delay: 0s; }
+
+    @keyframes animate-shapes {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-125vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Modern Mesh Gradients and Dot Patterns */
+    .bg-dots-pattern {
+      background-image: radial-gradient(rgba(39, 128, 183, 0.12) 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+    }
+    .bg-mesh-soft {
+      background: radial-gradient(at 10% 15%, rgba(39, 128, 183, 0.08) 0px, transparent 50%),
+                  radial-gradient(at 90% 85%, rgba(253, 126, 20, 0.06) 0px, transparent 50%),
+                  #f8f9fa;
+    }
+
+    /* Shiny custom button effect from original */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: right 0.6s ease;
+    }
+    .btn-shine:hover::before {
+      right: 100%;
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      background: #2780b7;
+      color: #ffffff;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 10px 25px rgba(39, 128, 183, 0.35);
+      z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1) translateY(-3px);
+      background: #1e6a9a;
+      box-shadow: 0 15px 35px rgba(39, 128, 183, 0.45);
+    }
+  </style>
+</head>
+<body class="selection:bg-[#2780b7] selection:text-white">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 decoration-none">
+        <img src="images/logo.png" alt="برمجة" class="w-10 h-10 object-contain rounded-xl" onerror="this.onerror=null; this.src='https://via.placeholder.com/40x40.png?text=Logo';">
+        <div class="flex flex-col justify-center">
+          <span class="text-xl font-black text-[#110370] tracking-tight leading-tight block">برمجة</span>
+          <span class="text-[10px] text-slate-400 font-extrabold uppercase font-en tracking-wider block mt-1">Smart Menu Platform</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8 text-sm font-bold text-slate-600">
+        <a href="#" class="hover:text-[#2780b7] transition">الرئيسية</a>
+        <a href="#why-us" class="hover:text-[#2780b7] transition">المميزات</a>
+        <a href="#templates" class="hover:text-[#2780b7] transition">القوالب</a>
+        <a href="#dashboard" class="hover:text-[#2780b7] transition">لوحة التحكم</a>
+        <a href="#pricing" class="hover:text-[#2780b7] transition">الأسعار</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#order-form" class="btn-shine bg-[#2780b7] hover:bg-[#1e6a9a] text-white px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition shadow-md shadow-blue-600/20 flex items-center gap-2">
+          <span>اطلب المنيو الآن</span>
+          <i class="bi bi-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-[#1a5b87] via-[#1f6d9e] to-[#2780b7] min-h-[85vh] flex items-center justify-center text-white py-20 px-4 overflow-hidden">
+    
+    <div class="hero-bg-animation">
+      <span><i class="bi bi-cup-hot-fill"></i></span>
+      <span><i class="bi bi-egg-fried"></i></span>
+      <span><i class="bi bi-shop"></i></span>
+      <span><i class="bi bi-cup-straw"></i></span>
+      <span><i class="bi bi-menu-button-wide"></i></span>
+      <span><i class="bi bi-basket-fill"></i></span>
+      <span><i class="bi bi-cake2"></i></span>
+      <span><i class="bi bi-fire"></i></span>
+      <span><i class="bi bi-cup-fill"></i></span>
+      <span><i class="bi bi-bag-heart"></i></span>
+    </div>
+
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-[#2780b7] text-xs sm:text-sm font-extrabold shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-[#fd7e14] animate-pulse"></span>
+        منيو تفاعلي متاح 24/7 🚀
+      </div>
+
+      <h1 class="text-3xl sm:5xl lg:text-6xl font-black leading-[1.3] text-white">
+        منيو إلكتروني ذكي لمطعمك
+      </h1>
+
+      <p class="text-base sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium">
+        حوّل تجربة عملائك بمسح رمز QR. اختر من قوالبنا الفاخرة، وعدّل أسعارك فوراً عبر لوحة تحكم احترافية.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a href="#templates" class="btn-shine w-full sm:w-auto bg-[#fd7e14] hover:bg-[#e6711a] text-white font-extrabold px-8 py-3.5 rounded-full text-base transition shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+          <span>تصفح القوالب</span>
+          <i class="bi bi-arrow-down-short text-xl"></i>
+        </a>
+        <a href="#dashboard" class="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#2780b7] font-extrabold px-8 py-3.5 rounded-full text-base transition shadow-md flex items-center justify-center gap-2">
+          <i class="bi bi-play-circle-fill text-lg"></i>
+          <span>شاهد كيف يعمل</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="why-us" class="py-24 bg-gradient-to-b from-[#f8f9fa] to-[#e9ecef]/60 relative overflow-hidden">
+    <div class="absolute top-10 right-8 w-40 h-40 bg-blue-200/20 rounded-full blur-2xl pointer-events-none"></div>
+    <div class="absolute bottom-10 left-8 w-48 h-48 bg-orange-200/20 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">لماذا يحتاج مطعمك إلى منيو إلكتروني؟</h2>
+        <p class="text-slate-600 text-base sm:text-lg font-medium">واكب التطور الرقمي وقدم لعملائك تجربة استثنائية وسلسة تليق بمستوى مطعمك.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-2xl hover:-translate-y-2.5 transition-all duration-300 border border-slate-100 flex flex-col items-center">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-50 to-blue-100/80 text-[#2780b7] flex items-center justify-center text-4xl mb-6 shadow-inner">
+            <i class="bi bi-qr-code-scan"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">وصول سهل وسريع</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            يتيح لعملائك تصفح قائمة الطعام بسهولة تامة عبر مسح رمز الاستجابة السريعة (QR)، تماماً كالمطاعم والمقاهي الحديثة لتقليل وقت الانتظار.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-2xl hover:-translate-y-2.5 transition-all duration-300 border border-slate-100 flex flex-col items-center">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-orange-50 to-orange-100/80 text-[#fd7e14] flex items-center justify-center text-4xl mb-6 shadow-inner">
+            <i class="bi bi-sliders"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">تحديث فوري بدون طباعة</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            استخدم لوحة التحكم الاحترافية لتحديث الأسعار وتغيير المنتجات في ثوانٍ، لتودع تكاليف طباعة وإتلاف القوائم الورقية المزعجة إلى الأبد.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-2xl hover:-translate-y-2.5 transition-all duration-300 border border-slate-100 flex flex-col items-center">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-sky-50 to-sky-100/80 text-[#38a1e2] flex items-center justify-center text-4xl mb-6 shadow-inner">
+            <i class="bi bi-share"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">أداة تسويق متكاملة</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            المنيو ليس فقط للطلبات الداخلية؛ يمكنك نشر الرابط على حسابات التواصل الاجتماعي الخاصة بك لتعريف العملاء بقائمتك وعروضك عن بُعد وكأنه موقعك الخاص.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Templates Section -->
+  <section id="templates" class="py-24 bg-white relative overflow-hidden">
+    <div class="absolute top-1/4 -right-12 w-64 h-64 border-2 border-slate-100 rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-16 -left-16 w-80 h-80 border-2 border-dashed border-blue-100 rounded-full pointer-events-none"></div>
+    <div class="absolute top-2/3 right-1/4 w-12 h-12 border-2 border-[#fd7e14]/20 rounded-2xl rotate-45 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">اختر من بين 9 قوالب مصممة بإتقان</h2>
+        <p class="text-slate-600 text-base sm:text-lg font-medium">سواء كنت تدير مطعماً فاخراً، مقهى هادئ، أو مطعم وجبات سريعة، لدينا التصميم الذي يعكس هوية مكانك.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="templates-grid">
+        
+        <!-- Template 1 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-1/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-[#2780b7] text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-image"></i> بصور منتجات
+              </span>
+              <img src="images/resto-1.jpg" alt="القالب العربي التراثي" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+1';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">القالب العربي التراثي</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">1. تصميم منيو عصري</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تصميم كلاسيكي مميز مع أزرار أقسام بارزة وصور دائرية للأطباق. يدعم اللغتين العربية والإنجليزية بشكل مثالي.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-1/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-2/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-[#2780b7] text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-image"></i> بصور منتجات
+              </span>
+              <img src="images/resto-2.jpg" alt="التصميم الزجاجي الأنيق" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+2';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">التصميم الزجاجي الأنيق</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">2. تصميم منيو أنيق</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                بطاقات أطباق شبه شفافة تبرز فوق خلفية مزخرفة. تصميم عصري وجذاب، مناسب جداً لمقاهي القهوة المختصة.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-2/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-3/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-[#2780b7] text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-image"></i> بصور منتجات
+              </span>
+              <img src="images/resto-3.jpg" alt="تجربة التطبيق الذكي" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+3';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">تجربة التطبيق الذكي</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">3. تطبيق منيو ذكي</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تصميم موجه خصيصاً للجوال يشعرك وكأنه تطبيق. يتضمن ميزة البحث السريع وقائمة مفضلة تتيح للعملاء حفظ أطباقهم.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-3/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-4/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-slate-600 text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-card-text"></i> بصور الأقسام
+              </span>
+              <img src="images/resto-4.jpg" alt="لافتات الأقسام العصرية" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+4';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">لافتات الأقسام العصرية</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">4. منيو مع لافتات الأقسام</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تعتمد على صور عرض كبيرة لكل قسم لتوجيه العميل، مع قائمة أطباق نصية واضحة ومباشرة تحت كل صورة قسم.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-4/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 5 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-5/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-slate-600 text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-card-text"></i> بدون صور
+              </span>
+              <img src="images/resto-5.jpg" alt="الكتيب الكلاسيكي الفاخر" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+5';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">الكتيب الكلاسيكي الفاخر</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">5. الكتيب الكلاسيكي الفاخر</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                محاكاة رقمية لدفتر المنيو الفاخر المطبوع، مخصص للمطاعم الراقية. لا يتطلب إضافة صور، يعتمد على الخطوط والأسماء.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-5/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 6 -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-6/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-slate-600 text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-card-text"></i> بدون صور
+              </span>
+              <img src="images/resto-6.jpg" alt="القائمة المبسطة" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+6';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">القائمة المبسطة</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">6. القائمة المبسطة المباشرة</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تصميم نصي مباشر، نظيف وسهل الوصول. الخيار الأفضل لقوائم الوجبات السريعة المختصرة.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-6/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 7 (New) -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group hidden">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-7/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-[#2780b7] text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-image"></i> بصور منتجات
+              </span>
+              <img src="images/resto-7.jpg" alt="البطاقات الأفقية الفاخرة" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+7';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">النمط الليلي الفاخر</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">7. تصميم البطاقات الأفقية</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تصميم داكن فاخر مع بطاقات أفقية متجاورة، وصور أطباق دائرية عائمة بلمسات ذهبية أنيقة وأزرار تبديل الوضع الليلي.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-7/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 8 (New) -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group hidden">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-8/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-[#2780b7] text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-image"></i> بصور منتجات
+              </span>
+              <img src="images/resto-8.jpg" alt="التراث الصحراوي والسدو" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+8';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">الطابع التراثي الأصيل</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">8. تصميم التراث الصحراوي</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                مظهر دافئ مستوحى من ألوان الصحراء وزخارف السدو، يقدم الأطباق في بطاقات عمودية مع صور واضحة وخطوط أميري التراثية.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-8/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+        <!-- Template 9 (New) -->
+        <div class="template-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group hidden">
+          <div>
+            <div class="relative h-48 bg-slate-100 overflow-hidden cursor-pointer" onclick="window.open('templates/resto-9/#ar', '_blank')">
+              <span class="absolute top-3.5 right-3.5 z-10 text-xs font-bold px-3 py-1 rounded-full bg-slate-600 text-white shadow-sm flex items-center gap-1.5">
+                <i class="bi bi-card-text"></i> بدون صور
+              </span>
+              <img src="images/resto-9.jpg" alt="القائمة التحريرية الراقية" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Template+9';">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-extrabold text-slate-400 block mb-1">النمط التحريري الراقي</span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">9. القائمة التحريرية المتقنة</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                تصميم راقٍ لمحبي الطهي البطيء والمطاعم الفاخرة، يركز على الخطوط الطباعية الفخمة وقوائم المكونات بدون تشتيت الصور.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="templates/resto-9/#ar" target="_blank" class="w-full block text-center py-2.5 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-xs transition shadow-md shadow-blue-500/20">
+              معاينة القالب
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- View More / View Less Toggle Button -->
+      <div class="mt-14 text-center">
+        <button id="toggle-templates-btn" onclick="toggleTemplatesView()" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#2780b7] border-2 border-[#2780b7] px-8 py-3 rounded-full font-bold text-sm sm:text-base transition shadow-sm hover:shadow-md">
+          <span id="toggle-templates-text">عرض المزيد من القوالب</span>
+          <i id="toggle-templates-icon" class="bi bi-chevron-down text-base"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Dashboard & Video Section -->
+  <section id="dashboard" class="py-24 bg-mesh-soft bg-dots-pattern relative overflow-hidden border-t border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2780b7]/10 text-[#2780b7] text-xs font-bold">
+            <i class="bi bi-sliders"></i>
+            إدارة سلسة وبسيطة
+          </div>
+
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+            عدّل قائمة طعامك في ثوانٍ عبر لوحة تحكم سهلة الإستخدام
+          </h2>
+
+          <p class="text-slate-600 text-base leading-relaxed">
+            لا داعي للتواصل مع المبرمجين أو دفع رسوم صيانة دورية. لوحة تحكم برمجة تعمل مباشرة من متصفحك، وتسمح لك بإدارة كل تفاصيل القائمة بسلاسة وسهولة فائقة.
+          </p>
+
+          <ul class="space-y-4 pt-2">
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-slate-800">
+              <i class="bi bi-check-circle-fill text-[#2780b7] text-xl shrink-0"></i>
+              <span>إضافة وإزالة وتعديل الأطباق يدوياً بكل سهولة في أي وقت.</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-slate-800">
+              <i class="bi bi-arrows-move text-[#2780b7] text-xl shrink-0"></i>
+              <span>السحب والإفلات لترتيب الأقسام والمنتجات بالطريقة التي تناسبك.</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-slate-800">
+              <i class="bi bi-image-fill text-[#2780b7] text-xl shrink-0"></i>
+              <span>رفع وتغيير صور المنتجات والتحقق منها برمجياً بنقرة واحدة.</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-slate-800">
+              <i class="bi bi-translate text-[#2780b7] text-xl shrink-0"></i>
+              <span>دعم كامل لإدارة وتعديل القوائم باللغتين العربية والإنجليزية.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="relative rounded-3xl p-3 bg-white border-2 border-white shadow-2xl shadow-blue-900/10">
+            <div class="relative rounded-2xl overflow-hidden bg-slate-900 aspect-video shadow-inner">
+              <iframe 
+                class="w-full h-full absolute inset-0"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" 
+                title="شرح لوحة تحكم برمجة" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 bg-white relative overflow-hidden border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">خطط أسعار بسيطة وشفافة</h2>
+        <p class="text-slate-600 text-base sm:text-lg font-medium">اختر الباقة التي تتناسب مع حجم أعمالك، بدون رسوم خفية أو مفاجآت.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Monthly -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between text-center relative">
+          <div class="w-full h-1.5 bg-gradient-to-r from-[#2780b7] to-[#fd7e14] absolute top-0 left-0 right-0 rounded-t-3xl"></div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">الباقة الشهرية</h3>
+            <p class="text-xs font-bold text-slate-400 mb-6">مثالية لتجربة النظام</p>
+
+            <div class="flex justify-center items-baseline gap-2 direction-ltr mb-6" dir="ltr">
+                            <span class="text-xs font-bold text-slate-500">ريال / شهرياً</span>
+              <span class="text-4xl font-black text-[#2780b7] font-en">250</span>
+            </div>
+
+            <hr class="border-slate-100 mb-6">
+
+            <ul class="space-y-3.5 text-right text-xs sm:text-sm font-semibold text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>اختيار من بين 9 قوالب منيو</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>تجهيز القالب بمعلومات مطعمك</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>لوحة تحكم لتعديل المنيو</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>استضافة Cloudflare مجانية على</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>توليد رمز الإستجابة السريع (QR)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8">
+            <a href="#order-form" onclick="setContactSubject('طلب الباقة الشهرية (250 ريال)')" class="w-full block text-center py-3 rounded-full border-2 border-[#2780b7] text-[#2780b7] font-bold text-sm hover:bg-[#2780b7] hover:text-white transition">
+              اشترك شهرياً
+            </a>
+          </div>
+        </div>
+
+        <!-- Annual (Featured & Scaled) -->
+        <div class="bg-white rounded-3xl p-8 border-3 border-[#2780b7] shadow-2xl relative flex flex-col justify-between text-center md:-translate-y-3 ring-4 ring-[#2780b7]/10">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#2780b7] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
+            الأكثر طلباً + خصم شهرين
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1 mt-2">الباقة السنوية الاحترافية</h3>
+            <p class="text-xs font-bold text-slate-400 mb-6">الخيار المفضل للمطاعم المتنامية</p>
+
+            <div class="flex justify-center items-baseline gap-2 direction-ltr mb-6" dir="ltr">
+                            <span class="text-xs font-bold text-slate-500">ريال / سنوياً</span>
+
+              <span class="text-4xl font-black text-[#2780b7] font-en">2,500</span>
+            </div>
+
+            <hr class="border-slate-100 mb-6">
+
+            <ul class="space-y-3.5 text-right text-xs sm:text-sm font-semibold text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>جميع مميزات الباقة الشهرية</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>تخصيص تصميم القالب حسب الطلب</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>ربط دومين مخصص (example.com)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>حملة بريد إلكتروني مجانية لـ 5,000 عميل</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8 space-y-3">
+            <a href="#order-form" onclick="setContactSubject('طلب الباقة السنوية (2500 ريال)')" class="btn-shine w-full block text-center py-3 rounded-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-bold text-sm transition shadow-lg shadow-blue-600/25">
+              اشترك سنوياً ووفر شهرين
+            </a>
+            <a href="#order-form" onclick="setContactSubject('طلب تجربة مجانية للمنيو')" class="w-full block text-center py-2.5 rounded-full border-2 border-[#2780b7] text-[#2780b7] font-bold text-xs sm:text-sm hover:bg-[#2780b7] hover:text-white transition">
+              تجربة مجانية
+            </a>
+          </div>
+        </div>
+
+        <!-- Comprehensive Web Plan -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between text-center relative">
+          <div class="w-full h-1.5 bg-gradient-to-r from-[#2780b7] to-[#fd7e14] absolute top-0 left-0 right-0 rounded-t-3xl"></div>
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">باقة الويب الشاملة</h3>
+            <p class="text-xs font-bold text-slate-400 mb-6">لتواجد رقمي متكامل وقوي</p>
+
+            <div class="flex justify-center items-baseline gap-2 direction-ltr mb-1" dir="ltr">
+                            <span class="text-xs font-bold text-slate-500">ريال / للسنة الأولى</span>
+
+              <span class="text-4xl font-black text-[#2780b7] font-en">3,500</span>
+            </div>
+            <p class="text-[11px] font-bold text-slate-400 mb-6">يجدد بـ 2,200 ريال سنوياً</p>
+
+            <hr class="border-slate-100 mb-6">
+
+            <ul class="space-y-3.5 text-right text-xs sm:text-sm font-semibold text-slate-700">
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>جميع مميزات الباقة السنوية</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>بناء موقع إلكتروني تعريفي متكامل للمطعم</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>دمج المنيو مع الموقع الرئيسي</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>حملة بريد إلكتروني لـ 10,000 عميل</span>
+              </li>
+                            <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500 text-base"></i>
+                <span>تجديد سنوي ب 2,200 ريال</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8">
+            <a href="#order-form" onclick="setContactSubject('طلب باقة الويب الشاملة (3500 ريال)')" class="w-full block text-center py-3 rounded-full border-2 border-[#2780b7] text-[#2780b7] font-bold text-sm hover:bg-[#2780b7] hover:text-white transition">
+              اطلب الباقة الشاملة
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="order-form" class="py-24 bg-gradient-to-b from-[#f8f9fa] to-slate-100 relative border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+            اطلب المنيو الإلكتروني لمطعمك الآن
+          </h2>
+          <p class="text-slate-600 text-base leading-relaxed">
+            املأ النموذج للحصول على استشارة وتجهيز المنيو الرقمي الخاص بك، اجعل مطعمك يواكب التقنية!
+          </p>
+
+          <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-3.5">
+            <h5 class="font-bold text-[#110370] text-base">ما الذي ستحصل عليه:</h5>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 font-semibold">
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                <span>منيو رقمي احترافي تفاعلي</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                <span>لوحة تحكم لإدارة الأسعار والأطباق</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                <span>استضافة سريعة لضمان تحميل المنيو للعملاء فوراً</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i class="bi bi-check-circle-fill text-emerald-500"></i>
+                <span>خيارات متقدمة لربط دومين مخصص وحملات تسويقية</span>
+              </li>
+              <li class="flex items-center gap-2.5 text-[#fd7e14] pt-2 font-bold">
+                <i class="bi bi-tag-fill"></i>
+                <span>تبدأ الباقات من 250 ريال شهرياً</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-200/80">
+            <form id="contactForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSff_x5NvP6ljwM5eaJ11EviX9rsumt3p51MKJcKrgkPJNeRgw/formResponse" target="hidden_iframe" class="space-y-4">
+              
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم الكامل *</label>
+                <input type="text" name="entry.2005620554" id="fullName" required placeholder="أدخل اسمك الكريم" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2780b7] transition">
+              </div>
+
+              <input type="hidden" name="entry.794833600" id="companyName" value="-">
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">رقم الجوال *</label>
+                  <input type="text" name="entry.1166974658" id="phone" required placeholder="05xxxxxxxx" dir="ltr" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2780b7] transition text-right">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">البريد الإلكتروني *</label>
+                  <input type="email" name="entry.1045781291" id="email" required placeholder="name@domain.com" dir="ltr" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2780b7] transition text-right">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">أخبرنا عن طلبك</label>
+                <textarea name="entry.839337160" id="project" rows="4" placeholder="حدد الباقة أو القالب الذي ترغب به..." class="w-full border-2 border-slate-200 rounded-xl p-3.5 text-sm outline-none focus:border-[#2780b7] transition resize-none"></textarea>
+              </div>
+
+              <input type="hidden" name="entry.1466964258" id="ipInput" value="IP_NOT_FOUND">
+              <input type="hidden" name="entry.1065046570" id="contactSubject">
+
+              <button type="submit" class="btn-shine w-full bg-[#2780b7] hover:bg-[#1e6a9a] text-white font-extrabold py-3.5 px-6 rounded-xl transition shadow-lg shadow-blue-600/25 text-sm">
+                إرسال الطلب
+              </button>
+
+              <div id="submitted" class="text-center font-bold text-sm pt-2"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submittedForm) { handleFormSuccess(); }"></iframe>
+
+  <!-- Footer (Modern Shades of Blue and Crisp White Only) -->
+  <footer class="bg-[#0f3650] text-white pt-16 pb-8 border-t border-[#2780b7]/20 relative overflow-hidden">
+    <!-- Ambient Blue Glow -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#2780b7]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#2780b7]/20">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="images/logo.png" alt="برمجة" class="w-9 h-9 object-contain brightness-0 invert" onerror="this.onerror=null; this.src='https://via.placeholder.com/36x36.png?text=Logo';">
+            <div>
+              <span class="text-xl font-black text-white tracking-tight block">برمجة</span>
+              <span class="text-[10px] text-blue-200/70 font-extrabold uppercase font-en tracking-wider block">Smart Menu Platform</span>
+            </div>
+          </div>
+          <p class="text-sm text-blue-100/75 leading-relaxed max-w-sm font-normal">
+            منصتك المتكاملة لإطلاق منيو رقمي تفاعلي ذكي بإدارة سحابية فورية وتصاميم متميزة تليق بهوية مطعمك.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="md:col-span-3 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">روابط سريعة</h4>
+          <ul class="space-y-2.5 text-sm text-blue-100/70">
+            <li><a href="#" class="hover:text-white transition-colors">الرئيسية</a></li>
+            <li><a href="#why-us" class="hover:text-white transition-colors">المميزات</a></li>
+            <li><a href="#templates" class="hover:text-white transition-colors">القوالب الجاهزة</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">الباقات والأسعار</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Policies -->
+        <div class="md:col-span-4 space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider">التواصل والدعم</h4>
+          <div class="space-y-3 text-sm text-blue-100/80">
+            <a href="mailto:info@barmga.com" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-envelope"></i>
+              </div>
+              <span class="font-en">info@barmga.com</span>
+            </a>
+            <a href="https://wa.me/21626373656" target="_blank" class="flex items-center gap-3 hover:text-white transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-[#2780b7]/30 flex items-center justify-center text-[#7bc9f5]">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+              <span dir="ltr" class="font-en">+216 26 373 656</span>
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4 pt-2 text-xs text-blue-200/60 font-semibold">
+            <a href="https://barmga.com/menu/terms" class="hover:text-white transition-colors">شروط الخدمة</a>
+            <span>•</span>
+            <a href="https://barmga.com/menu/privacy" class="hover:text-white transition-colors">سياسة الخصوصية</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-200/60">
+        <p>&copy; 2026 <a href="https://barmga.com/menu" class="text-white hover:underline font-bold">برمجة</a>، إحدى خدمات منصة أسواق الرقمية. جميع الحقوق محفوظة.</p>
+        <p class="font-en">Crafted for modern dining experiences.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/21626373656" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Script Logic -->
+  <script>
+    var submittedForm = false;
+
+    document.querySelector('#contactForm').addEventListener('submit', function(event) {
+      var nameInput = document.querySelector('#fullName');
+      var emailInput = document.querySelector('#email');
+      var phone = document.querySelector('#phone');
+      var submitButton = this.querySelector('button[type="submit"]');
+
+      if (nameInput.value && emailInput.value && phone.value) {
+        submittedForm = true;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'جاري إرسال الطلب...';
+        }
+      } else {
+        event.preventDefault();
+      }
+    });
+
+    function handleFormSuccess() {
+      document.querySelector('#fullName').value = '';
+      document.querySelector('#email').value = '';
+      document.querySelector('#phone').value = '';
+      document.querySelector('#contactSubject').value = '';
+      document.querySelector('#project').value = '';
+      document.querySelector('#companyName').value = '-';
+      
+      var submitButton = document.querySelector('#contactForm button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'إرسال الطلب';
+      }
+      
+      var message = document.querySelector("#submitted");
+      if (message) {
+        message.style.color = '#10b981';
+        message.textContent = 'تم الإرسال بنجاح! سنتواصل معكم في أقرب وقت.';
+      }
+      
+      submittedForm = false;
+    }
+
+    function setContactSubject(subject) {
+      var subjectInput = document.getElementById('contactSubject');
+      if (subjectInput) {
+        subjectInput.value = subject;
+      }
+    }
+    let isAllTemplatesVisible = false;
+
+    function toggleTemplatesView() {
+      const cards = document.querySelectorAll('.template-card');
+      const btnText = document.getElementById('toggle-templates-text');
+      const btnIcon = document.getElementById('toggle-templates-icon');
+      
+      isAllTemplatesVisible = !isAllTemplatesVisible;
+
+      cards.forEach((card, index) => {
+        if (index >= 6) {
+          if (isAllTemplatesVisible) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        }
+      });
+
+      if (isAllTemplatesVisible) {
+        btnText.textContent = 'عرض قوالب أقل';
+        btnIcon.className = 'bi bi-chevron-up text-base';
+      } else {
+        btnText.textContent = 'عرض المزيد من القوالب (3 قوالب إضافية)';
+        btnIcon.className = 'bi bi-chevron-down text-base';
+        
+        // Smooth scroll back to templates header when collapsed
+        document.getElementById('templates').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  </script>
+</body>
+</html>

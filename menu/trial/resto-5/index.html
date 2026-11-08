@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<title>Al-Nakheel Restaurant — Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --scene:#18140f;
+    --scene-2:#221c15;
+    --ink:#2b241d;
+    --paper:#f7f0df;
+    --paper-2:#efe4c9;
+    --card:#fffdf7;
+    --gold:#8f6122;
+    --gold-bright:#7a4d10;
+    --gold-soft:#c99f52;
+    --gold-dim:#8c691f;
+    --gold-light:#e9cd82;
+    --wine:#6b1f21;
+    --line: rgba(107,74,26,0.55);
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--scene);
+    color:var(--ink);
+    font-family:'EB Garamond', serif;
+  }
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(233,205,130,0.09), transparent 55%),
+      linear-gradient(180deg, var(--scene), var(--scene-2) 55%, var(--scene));
+    background-attachment: fixed;
+    padding: 60px 20px 100px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+  }
+
+  /* ===== Arabic / RTL support ===== */
+  html[dir="rtl"] body{
+    font-family:'Cairo', 'Amiri', serif;
+  }
+  
+  /* Applying Tagline Font (Cairo) to the Brand Name in Arabic */
+  html[dir="rtl"] h1.brand{
+    font-family:'Cairo', sans-serif; 
+    font-weight:700;
+    letter-spacing:0;
+  }
+  
+  html[dir="rtl"] .eyebrow,
+  html[dir="rtl"] .tab-btn,
+  html[dir="rtl"] .lang-badge,
+  html[dir="rtl"] .price,
+  html[dir="rtl"] .tag,
+  html[dir="rtl"] .menu-footer .small{
+    font-family:'Cairo', sans-serif;
+    letter-spacing:0;
+    text-transform:none;
+  }
+  html[dir="rtl"] .tagline,
+  html[dir="rtl"] .dish-desc,
+  html[dir="rtl"] .menu-footer p{
+    font-family:'Cairo', sans-serif;
+    font-style:normal;
+    line-height:2;
+  }
+  html[dir="rtl"] .dish-name{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    white-space:normal;
+  }
+  html[dir="rtl"] .price{
+    unicode-bidi: isolate;
+    direction: ltr;
+    display:inline-block;
+  }
+
+  /* Chef's Selection card, Arabic */
+  html[dir="rtl"] .feature{
+    padding: 32px 34px;
+    gap: 28px;
+  }
+  @media (max-width:600px){
+    html[dir="rtl"] .feature{ padding: 26px 22px; }
+    
+    /* Remove the <br> for Chef's Selection text in Arabic on mobile */
+    html[dir="rtl"] .hide-mobile {
+      display: none;
+    }
+  }
+  html[dir="rtl"] .feature-mark{
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:0;
+    text-transform:none;
+    padding: 18px 26px;
+    line-height:1.4;
+  }
+  html[dir="rtl"] .feature-body h3{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    font-size:2rem;
+    letter-spacing:0;
+    line-height:1.4;
+  }
+  html[dir="rtl"] .feature-price{
+    font-family:'Cairo', sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0;
+    text-transform:none;
+    unicode-bidi: isolate;
+    direction: ltr;
+    display:inline-block;
+  }
+  html[dir="rtl"] .feature-body p{
+    font-family:'Cairo', sans-serif;
+    font-style:normal;
+    font-size:1.08rem;
+    line-height:2;
+    margin-top:14px;
+  }
+
+  /* Section titles, Arabic */
+  html[dir="rtl"] .course-title{
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:0;
+    text-transform:none;
+    margin-bottom:8px;
+  }
+
+  /* ===== Frame ===== */
+  .menu-book{
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    background: var(--paper);
+    border: 1px solid rgba(107,74,26,0.55);
+    box-shadow:
+      0 30px 70px rgba(0,0,0,0.55),
+      0 4px 0 rgba(0,0,0,0.2),
+      inset 0 0 0 6px var(--scene-2);
+    padding: 20px 26px 50px;
+  }
+
+  .corner{
+    position:absolute;
+    width:64px; height:64px;
+    opacity:0.85;
+    pointer-events:none;
+  }
+  .corner svg{width:100%;height:100%;display:block;}
+  .corner.tl{top:22px; left:22px;}
+  .corner.tr{top:22px; right:22px; transform:scaleX(-1);}
+  .corner.bl{bottom:22px; left:22px; transform:scaleY(-1);}
+  .corner.br{bottom:22px; right:22px; transform:scale(-1,-1);}
+
+  .flourish-path{
+    stroke:var(--gold);
+    stroke-width:1.1;
+    fill:none;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: draw 2.2s ease forwards;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .flourish-path{ animation: none; stroke-dashoffset:0; }
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  /* ===== Header ===== */
+  .menu-header{
+    text-align:center;
+    padding: 46px 20px 30px;
+    position:relative;
+  }
+
+  .seal{
+    width:120px; height:120px;
+    margin:0 auto 18px;
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .seal::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    box-shadow: 0 0 0 1px rgba(169,118,44,0.12), 0 0 22px 2px rgba(201,159,82,0.22);
+    animation: glow 4.5s ease-in-out infinite;
+  }
+  .seal::after{
+    content:"";
+    position:absolute; inset:10px;
+    border-radius:50%;
+    border:1px solid rgba(107,74,26,0.5);
+  }
+  @keyframes glow{
+    0%,100%{ box-shadow: 0 0 0 1px rgba(169,118,44,0.12), 0 0 18px 1px rgba(201,159,82,0.18); }
+    50%{ box-shadow: 0 0 0 1px rgba(169,118,44,0.2), 0 0 30px 4px rgba(201,159,82,0.32); }
+  }
+  @media (prefers-reduced-motion: reduce){ .seal::before{ animation:none; } }
+
+  .seal-glyph{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .seal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:0.68rem;
+    letter-spacing:0.4em;
+    color: var(--gold-dim);
+    text-transform:uppercase;
+    margin: 0 0 10px;
+  }
+
+  h1.brand{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    letter-spacing:0.06em;
+    margin:0;
+    color: var(--ink);
+  }
+
+  .tagline{
+    font-style:italic;
+    color: #463c2d;
+    font-size:1.02rem;
+    letter-spacing:0.03em;
+    margin: 10px 0 0;
+  }
+
+  .rule{
+    width:220px;
+    margin: 26px auto 0;
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    position:relative;
+  }
+  .rule::after{
+    content:"❦";
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%,-56%);
+    background: var(--paper);
+    padding: 0 12px;
+    color: var(--gold);
+    font-size:0.9rem;
+  }
+
+  /* ===== Nav ===== */
+  .lang-switch{
+    display:flex;
+    justify-content:center;
+    margin-top: 18px;
+  }
+  .lang-badge{
+    display:inline-flex;
+    align-items:center;
+    gap: 6px;
+    background: var(--paper-2);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-bright);
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  .lang-badge:hover{ background: var(--gold-dim); color: var(--card); }
+
+  .tabs{
+    display:flex;
+    justify-content:center;
+    gap: 10px;
+    margin: 30px 0 6px;
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    background: var(--scene);
+    border:1px solid var(--gold);
+    color: var(--gold-light);
+    font-family:'Cinzel', serif;
+    font-size:0.95rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    padding: 13px 32px;
+    cursor:pointer;
+    transition: all 0.35s ease;
+  }
+  .tab-btn:hover{ background: var(--scene-2); border-color: var(--gold-light); color:#fff2ce; }
+
+  /* ===== Chef's recommendation card ===== */
+  .feature{
+    margin: 34px 0 46px;
+    border: 1px solid var(--gold);
+    background: linear-gradient(160deg, rgba(169,118,44,0.09), rgba(169,118,44,0.02));
+    padding: 26px 30px;
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items:center;
+  }
+  @media (max-width:600px){ .feature{ grid-template-columns:1fr; text-align:center; } }
+
+  .feature-mark{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    color: var(--gold-light);
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    border: 1px solid var(--gold-dim);
+    padding: 16px 14px;
+    text-align:center;
+    text-transform:uppercase;
+    background: linear-gradient(160deg, #5c4126, #4a3420);
+  }
+  .feature-title-row{
+    display:flex;
+    align-items:baseline;
+    gap: 14px;
+    flex-wrap:wrap;
+  }
+  @media (max-width:600px){ .feature-title-row{ justify-content:center; } }
+  .feature-body h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem;
+    margin:0;
+    color: var(--ink);
+  }
+  .feature-price{
+    font-family:'Cinzel', serif;
+    font-size:1rem;
+    color: var(--gold-bright);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom:2px;
+  }
+  .feature-body p{
+    margin:10px 0 0;
+    color: #463c2d;
+    font-style:italic;
+    font-size:0.96rem;
+  }
+
+  /* ===== Sections ===== */
+  .section-rule{
+    width:60px; height:1px;
+    background: var(--gold);
+    margin: 10px auto 40px;
+  }
+
+  .pages{
+    display:grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 46px;
+    position:relative;
+  }
+  .spine{
+    background: linear-gradient(180deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+    opacity:0.5;
+  }
+
+  @media (max-width: 760px){
+    .pages{ grid-template-columns: 1fr; }
+    .spine{ display:none; }
+  }
+
+  .course{ margin-bottom: 40px; }
+  .course:last-child{ margin-bottom:0; }
+
+  .course-title{
+    font-family:'Cinzel', serif;
+    font-weight:700;
+    font-size:0.82rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color: var(--gold-bright);
+    text-align:center;
+    margin: 0 0 4px;
+  }
+  .course-sub{
+    text-align:center;
+    display:block;
+    width:70px;
+    height:1px;
+    margin:8px auto 24px;
+    background: var(--gold-dim);
+  }
+
+  .dish{
+    padding: 14px 0;
+    border-bottom: 1px dashed rgba(107,74,26,0.4);
+  }
+  .dish:last-child{ border-bottom:none; }
+
+  .dish-row{
+    display:flex;
+    align-items:baseline;
+    gap: 8px;
+  }
+  .dish-name{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:1.28rem;
+    color: var(--ink);
+    letter-spacing:0.01em;
+    white-space:nowrap;
+  }
+  .leader{
+    flex:1;
+    border-bottom: 1px dotted rgba(43,36,29,0.45);
+    transform: translateY(-4px);
+  }
+  .price{
+    font-family:'Cinzel', serif;
+    font-size:0.92rem;
+    color: var(--gold-bright);
+    white-space:nowrap;
+  }
+  .dish-desc{
+    font-style:italic;
+    color: #463c2d;
+    font-size:0.92rem;
+    margin-top: 4px;
+    line-height:1.5;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Cinzel', serif;
+    font-size:0.56rem;
+    letter-spacing:0.18em;
+    color: var(--card);
+    background: var(--gold-bright);
+    padding: 2px 6px;
+    margin-inline-start:8px;
+    transform: translateY(-2px);
+    vertical-align: middle;
+  }
+
+  /* ===== Footer ===== */
+  .menu-footer{
+    text-align:center;
+    margin-top: 56px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .menu-footer p{
+    margin:4px 0;
+    font-size:0.85rem;
+    color: #463c2d;
+    letter-spacing:0.04em;
+  }
+  .menu-footer .small{
+    font-family:'Cinzel', serif;
+    font-size:0.6rem;
+    letter-spacing:0.3em;
+    color: var(--gold-dim);
+    text-transform:uppercase;
+    margin-top:14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="menu-book">
+
+  <div class="corner tl"><svg viewBox="0 0 64 64"><path class="flourish-path" style="fill: var(--gold-soft); fill-opacity: 0.15;" d="M2,2 C 20,2 20,20 40,20 C 55,20 55,5 62,2 Z M2,2 C2,20 20,20 20,40 C20,55 5,55 2,62 Z"/></svg></div>
+  <div class="corner tr"><svg viewBox="0 0 64 64"><path class="flourish-path" style="fill: var(--gold-soft); fill-opacity: 0.15;" d="M2,2 C 20,2 20,20 40,20 C 55,20 55,5 62,2 Z M2,2 C2,20 20,20 20,40 C20,55 5,55 2,62 Z"/></svg></div>
+  <div class="corner bl"><svg viewBox="0 0 64 64"><path class="flourish-path" style="fill: var(--gold-soft); fill-opacity: 0.15;" d="M2,2 C 20,2 20,20 40,20 C 55,20 55,5 62,2 Z M2,2 C2,20 20,20 20,40 C20,55 5,55 2,62 Z"/></svg></div>
+  <div class="corner br"><svg viewBox="0 0 64 64"><path class="flourish-path" style="fill: var(--gold-soft); fill-opacity: 0.15;" d="M2,2 C 20,2 20,20 40,20 C 55,20 55,5 62,2 Z M2,2 C2,20 20,20 20,40 C20,55 5,55 2,62 Z"/></svg></div>
+
+  <header class="menu-header">
+    <p class="eyebrow" id="headerEyebrow">Authentic Culinary Heritage · Est. 2019</p>
+    <div class="seal" aria-hidden="true" id="logoContainer">
+      <span class="seal-glyph" id="logoPlaceholder">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+          <path d="M7 2v20"/>
+          <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+          <path d="M18 10h3"/>
+        </svg>
+      </span>
+    </div>
+    <h1 class="brand" id="brandTitle">Al-Nakheel Restaurant</h1>
+    <p class="tagline" id="headerTagline">Traditional Saudi &amp; Regional Delicacies</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="lang-switch">
+    <button class="lang-badge" id="lang-toggle" type="button">العربية</button>
+  </div>
+
+  <nav class="tabs" aria-label="Menu sections" id="dynamic-tabs"></nav>
+
+  <div class="feature" id="chefFeature">
+    <div class="feature-mark" id="chefMark">Chef's<br>Selection</div>
+    <div class="feature-body">
+      <div class="feature-title-row">
+        <h3 id="chefTitle">Traditional Lamb Mandi</h3>
+        <span class="price feature-price" id="chefPrice">75</span>
+      </div>
+      <p id="chefDesc">Slow-cooked tender lamb served over aromatic smoked basmati rice, infused with traditional spices, and garnished with toasted nuts.</p>
+    </div>
+  </div>
+
+  <div id="dynamic-sections"></div>
+
+  <footer class="menu-footer">
+    <p id="footerAddress">King Abdulaziz Road, Al Malqa District, Riyadh</p>
+    <p id="footerPhone" style="direction: ltr;">+966 11 456 7890</p>
+    <p id="footerEmail">info@alnakheel.sa</p>
+    <p class="small" id="footerBrand">Al-Nakheel Restaurant</p>
+  </footer>
+
+</div>
+
+<script>
+  const customLogoImg = new Image();
+  customLogoImg.onload = function() {
+    const container = document.getElementById('logoContainer');
+    container.innerHTML = '<img src="' + customLogoImg.src + '" alt="Restaurant Logo" class="seal-img">';
+  };
+  customLogoImg.src = 'images/logo.png';
+
+  const appData = {
+    menu: {
+      en: [
+        { category: "Food", subcategory: "Appetizers", name: "Herbed Potato Wedges", price: "24", description: "Crispy potato wedges seasoned with rosemary and roasted garlic, served with ranch dip.", _rawTag: "Crispy" },
+        { category: "Food", subcategory: "Appetizers", name: "Mozzarella Sticks", price: "29", description: "Crispy coated melted mozzarella sticks served hot with Italian marinara sauce.", _rawTag: "Crispy" },
+        { category: "Food", subcategory: "Appetizers", name: "Buffalo Chicken Wings", price: "36", description: "Crisp fried chicken wings tossed in smoked buffalo sauce and pure butter.", _rawTag: "Spicy" },
+        { category: "Food", subcategory: "Appetizers", name: "Quinoa Avocado Salad", price: "32", description: "Organic quinoa with diced avocado, pomegranate seeds, olive oil, and lemon dressing.", _rawTag: "" },
+        { category: "Food", subcategory: "Artisan Pizzas", name: "Classic Beef Pepperoni", price: "54", description: "Slow-fermented dough topped with beef pepperoni slices and shredded mozzarella.", _rawTag: "Crispy" },
+        { category: "Food", subcategory: "Artisan Pizzas", name: "BBQ Smoked Chicken Pizza", price: "58", description: "Grilled chicken breast, caramelized red onions, smoked barbecue sauce, and mozzarella.", _rawTag: "Smoked" },
+        { category: "Food", subcategory: "Artisan Pizzas", name: "Truffle Funghi Pizza", price: "68", description: "Creamy truffle sauce with wild mushroom medley and cold-pressed extra virgin olive oil.", _rawTag: "" },
+        { category: "Food", subcategory: "Artisan Pizzas", name: "Roasted Veggie & Pesto Pizza", price: "49", description: "Wood-fired seasonal vegetables with fresh basil pesto sauce and Kalamata olives.", _rawTag: "" },
+        { category: "Food", subcategory: "Signature Mains", name: "Grilled Tenderloin Steak", price: "110", description: "Tender Angus beef steak served with creamy mashed potatoes and black pepper sauce.", _rawTag: "Tender" },
+        { category: "Food", subcategory: "Signature Mains", name: "Golden Cordon Bleu", price: "64", description: "Crisp chicken breast rolled with smoked turkey and melted Emmental cheese.", _rawTag: "Crispy" },
+        { category: "Food", subcategory: "Signature Mains", name: "Pan-Seared Norwegian Salmon", price: "89", description: "Crispy skin salmon filet with velvety lemon-butter dill sauce and seasoned basmati rice.", _rawTag: "" },
+        { category: "Food", subcategory: "Signature Mains", name: "Saffron Shrimp Risotto", price: "78", description: "Arborio rice simmered in rich shrimp reduction, pure saffron threads, and aged parmesan.", _rawTag: "" },
+        { category: "Food", subcategory: "Sweets", name: "Belgian Chocolate Cookies", price: "28", description: "Freshly baked warm cookies loaded with melting 70% dark Belgian chocolate.", _rawTag: "Crispy" },
+        { category: "Food", subcategory: "Sweets", name: "Molten Lava Cake", price: "36", description: "Warm dark chocolate cake with a molten center, dusted with raw cocoa powder.", _rawTag: "Molten" },
+        { category: "Food", subcategory: "Sweets", name: "Salted Caramel Date Cake", price: "34", description: "Warm date cake served with rich salted caramel sauce and vanilla bean ice cream.", _rawTag: "Warm" },
+        { category: "Food", subcategory: "Sweets", name: "Roasted Pistachio Cheesecake", price: "39", description: "Crunchy biscuit crust topped with silky cream cheese and pure pistachio butter.", _rawTag: "" },
+        { category: "Beverages", subcategory: "Beverages", name: "Passion Fruit Mojito", price: "24", description: "Natural passion fruit pulp, fresh mint leaves, lime slices, and sparkling soda.", _rawTag: "Cold" },
+        { category: "Beverages", subcategory: "Beverages", name: "Fresh Orange Carrot Juice", price: "20", description: "Cold-pressed daily without added sugar or preservatives.", _rawTag: "Natural" },
+        { category: "Beverages", subcategory: "Beverages", name: "Peach Berry Iced Tea", price: "22", description: "Chilled Ceylon black tea with natural peach essence and fresh blueberries.", _rawTag: "" },
+        { category: "Beverages", subcategory: "Beverages", name: "Iced Lavender Lemonade", price: "25", description: "Fresh squeezed lemonade infused with aromatic floral lavender syrup.", _rawTag: "" }
+      ],
+      ar: [
+        { category: "المأكولات", subcategory: "المقبلات", name: "بطاطس ودجز بالأعشاب", price: "24", description: "أصابع بطاطس متبلة بإكليل الجبل والثوم المشوي مع صوص الرانش.", _rawTag: "مقرمش" },
+        { category: "المأكولات", subcategory: "المقبلات", name: "أصابع الموزاريلا الفاخرة", price: "29", description: "جبنة موزاريلا ذائبة تقدم ساخنة مع صوص المارينارا الإيطالي.", _rawTag: "مقرمش" },
+        { category: "المأكولات", subcategory: "المقبلات", name: "أجنحة الدجاج (بافلو)", price: "36", description: "أجنحة دجاج مقلية مغطاة بصوص البافلو المدخن والزبدة النقية.", _rawTag: "حار" },
+        { category: "المأكولات", subcategory: "المقبلات", name: "سلطة الكينوا والأفوكادو", price: "32", description: "كينوا عضوية مع مكعبات الأفوكادو والرمان وزيت الزيتون والليمون.", _rawTag: "" },
+        { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا بيبروني كلاسيك", price: "54", description: "عجينة إيطالية مخمرة مغطاة بشرائح البيبروني البقري والموزاريلا.", _rawTag: "مقرمش" },
+        { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا الدجاج والباربكيو", price: "58", description: "صدور دجاج مشوية مع البصل المكرمل وصوص الشواء المدخن.", _rawTag: "مدخن" },
+        { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا تروفل فونغي الفاخرة", price: "68", description: "صلصة الكريمة والكمأة مع تشكيلة من المشروم الطازج وزيت الزيتون.", _rawTag: "" },
+        { category: "المأكولات", subcategory: "البيتزا", name: "بيتزا الخضار المشوية", price: "49", description: "خضار موسمية مشوية مع صوص البيستو الإيطالي الطازج والريحان.", _rawTag: "" },
+        { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "ستيك تندرلوين المشوي", price: "110", description: "شريحة لحم بقري طرية تقدم مع البطاطس المهروسة وصلصة الفلفل الأسود.", _rawTag: "طري" },
+        { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "دجاج كوردون بلو الذهبي", price: "64", description: "صدر دجاج محشو بشرائح الرومي المدخن وجبن الإيمنتال السائل ومقلي بامتياز.", _rawTag: "مقرمش" },
+        { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "سلمون نرويجي محمر", price: "89", description: "سلمون طازج مشوي بجلد مقرمش مع صوص الزبدة والليمون والشبت.", _rawTag: "" },
+        { category: "المأكولات", subcategory: "الأطباق الرئيسية", name: "ريزوتو الروبيان بالزعفران", price: "78", description: "أرز أربوريو مطهو بمرق الروبيان الغني وخيوط الزعفران الأصلي والزبدة.", _rawTag: "" },
+        { category: "المأكولات", subcategory: "الحلويات", name: "كوكيز الشوكولاتة البلجيكية", price: "28", description: "كوكيز مخبوز فوراً عند الطلب محشو بقطع الشوكولاتة الداكنة السائلة.", _rawTag: "مقرمش" },
+        { category: "المأكولات", subcategory: "الحلويات", name: "مولتن كيك الشوكولاتة", price: "36", description: "كيكة الشوكولاتة الداكنة بقلب سائل دافئ يعلوها رشة كاكاو خام.", _rawTag: "ذائب" },
+        { category: "المأكولات", subcategory: "الحلويات", name: "كيكة التمر بالكراميل", price: "34", description: "كيكة التمر السكري الدافئة تقدم مع آيس كريم الفانيليا وصلصة الكراميل.", _rawTag: "دافئ" },
+        { category: "المأكولات", subcategory: "الحلويات", name: "تشيز كيك الفستق المحمص", price: "39", description: "طبقات من البسكويت مع كريمة الجبن المخملية بزبدة الفستق الحلبي الخالصة.", _rawTag: "" },
+        { category: "المشروبات", subcategory: "المشروبات", name: "موهيتو الباشن فروت", price: "24", description: "فاكهة الباشن الطبيعية مع أوراق النعناع وشرائح الليمون والمياه الفوارة.", _rawTag: "بارد" },
+        { category: "المشروبات", subcategory: "المشروبات", name: "عصير برتقال وجزر", price: "20", description: "عصير طازج معصور على البارد عند الطلب بدون إضافة سكر.", _rawTag: "طبيعي" },
+        { category: "المشروبات", subcategory: "المشروبات", name: "آيس تي الخوخ والتوت", price: "22", description: "شاي أسود مثلج مع مستخلص الخوخ الطبيعي وحبات التوت البري.", _rawTag: "" },
+        { category: "المشروبات", subcategory: "المشروبات", name: "ليموناضة اللافندر", price: "25", description: "عصير ليمون طازج مع سيرب زهور اللافندر المعطرة والثلج.", _rawTag: "" }
+      ]
+    },
+    info: {
+      ar: {
+        name: "مطعم النخيل",
+        description: "أشهى المأكولات العالمية والأطباق الفاخرة",
+        address: "طريق الملك عبد العزيز، حي الملقا، الرياض",
+        phone: "+966 11 456 7890",
+        email: "info@alnakheel.sa"
+      },
+      en: {
+        name: "Al-Nakheel Restaurant",
+        description: "Finest International & Gourmet Dishes",
+        address: "King Abdulaziz Road, Al Malqa District, Riyadh",
+        phone: "+966 11 456 7890",
+        email: "info@alnakheel.sa"
+      }
+    },
+    chef: {
+      ar: {
+        chefMark: "اختيار الشيف",
+        chefTitle: "ستيك تندرلوين المشوي",
+        chefPrice: "110",
+        chefDesc: "شريحة لحم أنجوس فاخرة طرية تقدم مع البطاطس المهروسة وصلصة الفلفل الأسود."
+      },
+      en: {
+        chefMark: "Chef's Selection",
+        chefTitle: "Grilled Tenderloin Steak",
+        chefPrice: "110",
+        chefDesc: "Tender Angus beef steak served with creamy mashed potatoes and black pepper sauce."
+      }
+    }
+  };
+
+  var currentLang = 'ar';
+
+  function renderMenu(lang) {
+    const info = appData.info[lang];
+    const chef = (appData.chef && appData.chef[lang]) ? appData.chef[lang] : {};
+    const menuItems = appData.menu[lang] || [];
+
+    document.title = info.name + ' — ' + (lang === 'ar' ? 'قائمة الطعام' : 'Menu');
+    document.getElementById('headerEyebrow').textContent = lang === 'ar' ? "التميز في الطهي · تأسست 2019" : "Culinary Excellence · Est. 2019";
+    document.getElementById('brandTitle').textContent = info.name;
+    document.getElementById('headerTagline').textContent = info.description;
+    document.getElementById('lang-toggle').textContent = lang === 'en' ? 'العربية' : 'English';
+
+    if (chef.chefTitle) {
+      document.getElementById('chefMark').innerHTML = chef.chefMark || (lang === 'ar' ? "اختيار الشيف" : "Chef's Selection");
+      document.getElementById('chefTitle').textContent = chef.chefTitle;
+      document.getElementById('chefPrice').textContent = chef.chefPrice || "";
+      document.getElementById('chefDesc').textContent = chef.chefDesc || "";
+    }
+
+    document.getElementById('footerAddress').textContent = info.address;
+    document.getElementById('footerPhone').textContent = info.phone;
+    document.getElementById('footerEmail').textContent = info.email;
+    document.getElementById('footerBrand').textContent = info.name;
+    
+    const categories = [...new Set(menuItems.map(i => i.category))].filter(Boolean);
+    
+    const tabsContainer = document.getElementById('dynamic-tabs');
+    tabsContainer.innerHTML = '';
+    
+    const sectionsContainer = document.getElementById('dynamic-sections');
+    sectionsContainer.innerHTML = '';
+    
+    categories.forEach((cat, index) => {
+        const tab = document.createElement('button');
+        tab.className = 'tab-btn';
+        tab.id = 'nav-cat-' + index;
+        tab.textContent = cat;
+        tabsContainer.appendChild(tab);
+        
+        const section = document.createElement('section');
+        section.id = 'section-cat-' + index;
+        section.style.scrollMarginTop = '26px';
+        if (index > 0) section.style.marginTop = '60px';
+        
+        section.innerHTML = '<div class="section-rule"></div><div class="pages" id="pages-' + index + '"></div>';
+        sectionsContainer.appendChild(section);
+        
+        tab.addEventListener('click', () => {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        const catItems = menuItems.filter(i => i.category === cat);
+        const subcats = [...new Set(catItems.map(i => i.subcategory))].filter(Boolean);
+        
+        const courseObjects = subcats.map(subcat => {
+            return {
+                courseTitle: subcat,
+                dishes: catItems.filter(i => i.subcategory === subcat)
+            };
+        });
+        
+        document.getElementById('pages-' + index).innerHTML = buildTwoColumnHtml(courseObjects);
+    });
+
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', lang);
+  }
+
+  function buildTwoColumnHtml(sections) {
+    const mid = Math.ceil(sections.length / 2);
+    const leftSections = sections.slice(0, mid);
+    const rightSections = sections.slice(mid);
+
+    return '<div>' + leftSections.map(renderCourse).join('') + '</div><div class="spine" aria-hidden="true"></div><div>' + rightSections.map(renderCourse).join('') + '</div>';
+  }
+
+  function renderCourse(course) {
+    return '<div class="course"><p class="course-title">' + course.courseTitle + '</p><span class="course-sub"></span>' + course.dishes.map(renderDish).join('') + '</div>';
+  }
+
+  function renderDish(dish) {
+    const tag = dish._rawTag || dish.tag;
+    const tagHtml = tag ? ('<span class="tag">' + tag + '</span>') : '';
+    const desc = dish.description || dish.desc || '';
+    const descHtml = desc ? ('<p class="dish-desc">' + desc + '</p>') : '';
+    
+    return '<div class="dish"><div class="dish-row"><span class="dish-name">' + dish.name + '</span>' + tagHtml + '<span class="leader"></span><span class="price">' + dish.price + '</span></div>' + descHtml + '</div>';
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', (e) => {
+    e.preventDefault();
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    window.location.hash = currentLang;
+    renderMenu(currentLang);
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash === '#en') {
+        currentLang = 'en';
+    } else if (window.location.hash === '#ar') {
+        currentLang = 'ar';
+    } else {
+        currentLang = 'ar';
+        window.location.hash = 'ar';
+    }
+    renderMenu(currentLang);
+  });
+    </script>
+        <script>
+(function() {
+  const WORKER_ENDPOINT = "https://tr.gmapydir.workers.dev/api/track";
+
+  try {
+    // 1. Get pathname and strip trailing slashes (e.g., "/campaign/promo123///" -> "/campaign/promo123")
+    const cleanPath = window.location.pathname.replace(/\/+$/, "");
+
+    // 2. Extract the last segment after the final slash
+    // If the path was empty or just "/", paramId becomes "direct"
+    const lastSegment = cleanPath.split("/").filter(Boolean).pop();
+    const paramId = lastSegment ? decodeURIComponent(lastSegment) : "direct";
+
+    // 3. Prepare payload
+    const payload = JSON.stringify({
+      param_id: paramId,
+      full_url: window.location.href,
+      referrer: document.referrer || "direct"
+    });
+
+    // 4. Send non-blocking beacon to Cloudflare Worker
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(WORKER_ENDPOINT, payload);
+    } else {
+      fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        keepalive: true
+      });
+    }
+  } catch (err) {
+    // Fail silently so the user experience is never interrupted
+  }
+})();
+</script>
+</body>
+</html>
